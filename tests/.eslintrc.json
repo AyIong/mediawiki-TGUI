@@ -1,0 +1,17 @@
+{
+	"root": true,
+	"extends": [
+		"../.eslintrc.json"
+	],
+	"parserOptions": {
+		"ecmaVersion": 2017
+	},
+	"rules": {
+		"es/no-object-assign": "off"
+	},
+	"env": {
+		"es6": true,
+		"node": true,
+		"jest": true
+	}
+}
