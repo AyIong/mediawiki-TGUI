@@ -19,14 +19,14 @@
  * @since 1.35
  */
 
-namespace MediaWiki\Skins\Vector\Tests\Unit\FeatureManagement;
+namespace MediaWiki\Skins\TGUI\Tests\Unit\FeatureManagement;
 
-use MediaWiki\Skins\Vector\FeatureManagement\FeatureManager;
+use MediaWiki\Skins\TGUI\FeatureManagement\FeatureManager;
 
 /**
- * @group Vector
+ * @group TGUI
  * @group FeatureManagement
- * @coversDefaultClass \MediaWiki\Skins\Vector\FeatureManagement\FeatureManager
+ * @coversDefaultClass \MediaWiki\Skins\TGUI\FeatureManagement\FeatureManager
  */
 class FeatureManagerTest extends \MediaWikiUnitTestCase {
 
@@ -73,9 +73,9 @@ class FeatureManagerTest extends \MediaWikiUnitTestCase {
 		$featureManager->registerFeature( 'Test', [ 'disabled' ] );
 		$this->assertEquals(
 			[
-				'vector-feature-sticky-header-enabled',
-				'vector-feature-table-of-contents-enabled',
-				'vector-feature-test-disabled'
+				'tgui-feature-sticky-header-enabled',
+				'tgui-feature-table-of-contents-enabled',
+				'tgui-feature-test-disabled'
 			],
 			$featureManager->getFeatureBodyClass()
 		);

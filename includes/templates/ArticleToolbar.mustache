@@ -1,4 +1,4 @@
-<nav class="vector-article-toolbar" aria-label="{{msg-vector-article-tools-nav-label}}"
+<nav class="tgui-article-toolbar" aria-label="{{msg-tgui-article-tools-nav-label}}"
 	role="navigation">
 	<div class="mw-article-toolbar-container">
 		{{#data-portlets}}
@@ -6,7 +6,7 @@
 			{{#data-associated-pages}}{{>Menu}}{{/data-associated-pages}}
 			{{#data-variants}}{{>Menu}}{{/data-variants}}
 		</div>
-		<div id="right-navigation" class="vector-collapsible {{#data-views.is-empty}}{{#data-actions.is-empty}}right-navigation-empty{{/data-actions.is-empty}}{{/data-views.is-empty}}">
+		<div id="right-navigation" class="tgui-collapsible {{#data-views.is-empty}}{{#data-actions.is-empty}}right-navigation-empty{{/data-actions.is-empty}}{{/data-views.is-empty}}">
 			{{#data-views}}{{>Menu}}{{/data-views}}
 			{{#data-actions}}{{>Menu}}{{/data-actions}}
 		</div>

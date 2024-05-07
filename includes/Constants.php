@@ -1,12 +1,12 @@
 <?php
-namespace MediaWiki\Skins\Vector;
+namespace MediaWiki\Skins\TGUI;
 
 use FatalError;
 
 /**
- * A namespace for Vector constants for internal Vector usage only. **Do not rely on this file as an
+ * A namespace for TGUI constants for internal TGUI usage only. **Do not rely on this file as an
  * API as it may change without warning at any time.**
- * @package Vector
+ * @package TGUI
  * @internal
  */
 final class Constants {
@@ -14,13 +14,13 @@ final class Constants {
 	 * This is tightly coupled to the ValidSkinNames field in skin.json.
 	 * @var string
 	 */
-	public const SKIN_NAME_MODERN = 'vector-2022';
+	public const SKIN_NAME_MODERN = 'tgui-2022';
 
 	/**
 	 * This is tightly coupled to the ValidSkinNames field in skin.json.
 	 * @var string
 	 */
-	public const SKIN_NAME_LEGACY = 'vector';
+	public const SKIN_NAME_LEGACY = 'tgui';
 
 	// These are used to provide different default skin for new users.
 	/**
@@ -35,26 +35,26 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const SERVICE_FEATURE_MANAGER = 'Vector.FeatureManager';
+	public const SERVICE_FEATURE_MANAGER = 'TGUI.FeatureManager';
 
 	// These are tightly coupled to skin.json's configs. See skin.json for documentation.
 	/**
 	 * @var string
 	 */
 	public const CONFIG_KEY_DEFAULT_SKIN_VERSION_FOR_NEW_ACCOUNTS =
-		'VectorDefaultSkinVersionForNewAccounts';
+		'TGUIDefaultSkinVersionForNewAccounts';
 
 	/**
 	 * @var string
 	 */
 	public const CONFIG_KEY_DEFAULT_SIDEBAR_VISIBLE_FOR_AUTHORISED_USER =
-		'VectorDefaultSidebarVisibleForAuthorisedUser';
+		'TGUIDefaultSidebarVisibleForAuthorisedUser';
 
 	/**
 	 * @var string
 	 */
 	public const CONFIG_KEY_DEFAULT_SIDEBAR_VISIBLE_FOR_ANONYMOUS_USER =
-		'VectorDefaultSidebarVisibleForAnonymousUser';
+		'TGUIDefaultSidebarVisibleForAnonymousUser';
 
 	/**
 	 * @var string
@@ -64,7 +64,7 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const PREF_KEY_SIDEBAR_VISIBLE = 'VectorSidebarVisible';
+	public const PREF_KEY_SIDEBAR_VISIBLE = 'TGUISidebarVisible';
 
 	// These are used in the Feature Management System.
 	/**
@@ -86,12 +86,12 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const CONFIG_KEY_DISABLE_SIDEBAR_PERSISTENCE = 'VectorDisableSidebarPersistence';
+	public const CONFIG_KEY_DISABLE_SIDEBAR_PERSISTENCE = 'TGUIDisableSidebarPersistence';
 
 	/**
 	 * @var string
 	 */
-	public const CONFIG_KEY_LANGUAGE_IN_HEADER = 'VectorLanguageInHeader';
+	public const CONFIG_KEY_LANGUAGE_IN_HEADER = 'TGUILanguageInHeader';
 
 	/**
 	 * @var string
@@ -103,21 +103,21 @@ final class Constants {
 	 * https://phabricator.wikimedia.org/T280825 for additional detail about the test.
 	 *
 	 * Note well that if the associated config value is falsy, then we fall back to choosing the
-	 * language treatment based on the `VectorLanguageInHeader` config variable.
+	 * language treatment based on the `TGUILanguageInHeader` config variable.
 	 *
 	 * @var string
 	 */
-	public const CONFIG_LANGUAGE_IN_HEADER_TREATMENT_AB_TEST = 'VectorLanguageInHeaderTreatmentABTest';
+	public const CONFIG_LANGUAGE_IN_HEADER_TREATMENT_AB_TEST = 'TGUILanguageInHeaderTreatmentABTest';
 
 	/**
 	 * @var string
 	 */
-	public const CONFIG_STICKY_HEADER = 'VectorStickyHeader';
+	public const CONFIG_STICKY_HEADER = 'TGUIStickyHeader';
 
 	/**
 	 * @var string
 	 */
-	public const CONFIG_STICKY_HEADER_EDIT = 'VectorStickyHeaderEdit';
+	public const CONFIG_STICKY_HEADER_EDIT = 'TGUIStickyHeaderEdit';
 
 	/**
 	 * @var string
@@ -144,7 +144,7 @@ final class Constants {
 	 *
 	 * @var string
 	 */
-	public const CONFIG_WEB_AB_TEST_ENROLLMENT = 'VectorWebABTestEnrollment';
+	public const CONFIG_WEB_AB_TEST_ENROLLMENT = 'TGUIWebABTestEnrollment';
 
 	/**
 	 * The `mediawiki.searchSuggest` protocol piece of the SearchSatisfaction instrumention reads
@@ -184,7 +184,7 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const CONFIG_LANGUAGE_IN_MAIN_PAGE_HEADER = 'VectorLanguageInMainPageHeader';
+	public const CONFIG_LANGUAGE_IN_MAIN_PAGE_HEADER = 'TGUILanguageInMainPageHeader';
 
 	/**
 	 * @var string
@@ -199,7 +199,7 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const CONFIG_LANGUAGE_ALERT_IN_SIDEBAR = 'VectorLanguageAlertInSidebar';
+	public const CONFIG_LANGUAGE_ALERT_IN_SIDEBAR = 'TGUILanguageAlertInSidebar';
 
 	/**
 	 * @var string
@@ -234,7 +234,7 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const CONFIG_KEY_VISUAL_ENHANCEMENTS = 'VectorVisualEnhancementNext';
+	public const CONFIG_KEY_VISUAL_ENHANCEMENTS = 'TGUIVisualEnhancementNext';
 
 	/**
 	 * This class is for namespacing constants only. Forbid construction.

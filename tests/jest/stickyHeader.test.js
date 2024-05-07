@@ -4,7 +4,7 @@ const tocContainerTemplate = fs.readFileSync( 'includes/templates/TableOfContent
 const stickyHeaderTemplate = fs.readFileSync( 'includes/templates/StickyHeader.mustache', 'utf8' );
 const buttonTemplate = fs.readFileSync( 'includes/templates/Button.mustache', 'utf8' );
 const menuTemplate = fs.readFileSync( 'includes/templates/Menu.mustache', 'utf8' );
-const sticky = require( '../../resources/skins.vector.es6/stickyHeader.js' );
+const sticky = require( '../../resources/skins.tgui.es6/stickyHeader.js' );
 const { userLinksHTML } = require( './userLinksData.js' );
 
 const defaultButtonsTemplateData = [ {
@@ -62,10 +62,10 @@ const editButtonsTemplateData = [ {
 const templateData = {
 	'data-sticky-header-toc': {
 		id: 'p-sticky-header-toc',
-		class: 'mw-portlet mw-portlet-sticky-header-toc vector-sticky-header-toc',
+		class: 'mw-portlet mw-portlet-sticky-header-toc tgui-sticky-header-toc',
 		'html-items': '',
-		'html-vector-menu-checkbox-attributes': 'tabindex="-1"',
-		'html-vector-menu-heading-attributes': 'tabindex="-1"',
+		'html-tgui-menu-checkbox-attributes': 'tabindex="-1"',
+		'html-tgui-menu-heading-attributes': 'tabindex="-1"',
 		'heading-class': 'mw-ui-button mw-ui-quiet mw-ui-icon mw-ui-icon-element mw-ui-icon-wikimedia-listBullet'
 	},
 	'data-primary-action': {
@@ -74,7 +74,7 @@ const templateData = {
 		'is-quiet': true,
 		tabindex: '-1',
 		label: '0 languages',
-		'html-vector-button-icon': '<span class="mw-ui-icon mw-ui-icon-wikimedia-language"></span>',
+		'html-tgui-button-icon': '<span class="mw-ui-icon mw-ui-icon-wikimedia-language"></span>',
 		event: 'ui.dropdown-p-lang-btn-sticky-header'
 	},
 	'data-button-start': {
@@ -82,8 +82,8 @@ const templateData = {
 		icon: 'wikimedia-search',
 		'is-quiet': true,
 		tabindex: '-1',
-		class: 'vector-sticky-header-search-toggle',
-		event: 'ui.vector-sticky-search-form.icon'
+		class: 'tgui-sticky-header-search-toggle',
+		event: 'ui.tgui-sticky-search-form.icon'
 	},
 	'data-search': {},
 	'data-buttons': defaultButtonsTemplateData.concat( editButtonsTemplateData )
@@ -117,8 +117,8 @@ describe( 'sticky header', () => {
 	} );
 
 	describe( 'moveToc', () => {
-		const sidebarTocContainerClass = 'vector-sticky-toc-container';
-		const stickyTocContainerClass = 'vector-menu-content';
+		const sidebarTocContainerClass = 'tgui-sticky-toc-container';
+		const stickyTocContainerClass = 'tgui-menu-content';
 		const tocId = 'mw-panel-toc';
 
 		function setupToc() {

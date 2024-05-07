@@ -1,31 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Sticky header renders 1`] = `
-"<header id=\\"vector-sticky-header\\" aria-hidden=\\"true\\" class=\\"vector-sticky-header\\">
-	<div class=\\"vector-sticky-header-start\\">
-		<div class=\\"vector-sticky-header-icon-start\\">
+"<header id=\\"tgui-sticky-header\\" aria-hidden=\\"true\\" class=\\"tgui-sticky-header\\">
+	<div class=\\"tgui-sticky-header-start\\">
+		<div class=\\"tgui-sticky-header-icon-start\\">
 
-<button tabindex=\\"-1\\" data-event-name=\\"ui.vector-sticky-search-form.icon\\" class=\\"mw-ui-button mw-ui-quiet mw-ui-icon mw-ui-icon-element mw-ui-icon-wikimedia-search vector-sticky-header-search-toggle\\">
+<button tabindex=\\"-1\\" data-event-name=\\"ui.tgui-sticky-search-form.icon\\" class=\\"mw-ui-button mw-ui-quiet mw-ui-icon mw-ui-icon-element mw-ui-icon-wikimedia-search tgui-sticky-header-search-toggle\\">
 	<span>search</span>
 
 </button>
 		</div>
-<div> </div>		<div class=\\"vector-sticky-header-context-bar\\">
-			<div class=\\"vector-sticky-header-toc-container\\">
+<div> </div>		<div class=\\"tgui-sticky-header-context-bar\\">
+			<div class=\\"tgui-sticky-header-toc-container\\">
 
-<div id=\\"p-sticky-header-toc\\" class=\\"vector-menu mw-portlet mw-portlet-sticky-header-toc vector-sticky-header-toc\\">
-	<div class=\\"vector-menu-content\\">
-		
-		<ul class=\\"vector-menu-content-list\\"></ul>
-		
+<div id=\\"p-sticky-header-toc\\" class=\\"tgui-menu mw-portlet mw-portlet-sticky-header-toc tgui-sticky-header-toc\\">
+	<div class=\\"tgui-menu-content\\">
+
+		<ul class=\\"tgui-menu-content-list\\"></ul>
+
 	</div>
 </div>
 			</div>
-			<div class=\\"vector-sticky-header-context-bar-primary\\"></div>
+			<div class=\\"tgui-sticky-header-context-bar-primary\\"></div>
 		</div>
 	</div>
-	<div class=\\"vector-sticky-header-end\\">
-		<div class=\\"vector-sticky-header-icons\\">
+	<div class=\\"tgui-sticky-header-end\\">
+		<div class=\\"tgui-sticky-header-icons\\">
 <a href=\\"#\\" id=\\"ca-talk-sticky-header\\" data-event-name=\\"talk-sticky-header\\" class=\\"mw-ui-button mw-ui-quiet mw-ui-icon mw-ui-icon-element mw-ui-icon-wikimedia-speechBubbles sticky-header-icon\\">
 	<span></span>
 </a>
@@ -56,8 +56,8 @@ exports[`Sticky header renders 1`] = `
 	<span class=\\"mw-ui-icon mw-ui-icon-wikimedia-language\\"></span><span>0 languages</span>
 
 </button>
-		<div class=\\"vector-sticky-header-icon-end\\">
-			<div class=\\"vector-user-links\\">
+		<div class=\\"tgui-sticky-header-icon-end\\">
+			<div class=\\"tgui-user-links\\">
 			</div>
 		</div>
 	</div>

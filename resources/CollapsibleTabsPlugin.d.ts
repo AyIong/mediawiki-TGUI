@@ -6,7 +6,7 @@ interface JQuery {
 	collapsibleTabs(options: Partial<CollapsibleTabsOptions>): void;
 }
 
-/** A jQuery plugin that makes collapsible tabs for the Vector skin. */
+/** A jQuery plugin that makes collapsible tabs for the TGUI skin. */
 interface CollapsibleTabsOptions {
 	/** Optional tab selector. Defaults to `#p-views ul`. */
 	expandedContainer: string;

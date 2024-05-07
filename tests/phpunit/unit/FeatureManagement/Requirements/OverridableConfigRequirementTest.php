@@ -18,19 +18,19 @@
  * @file
  */
 
-namespace MediaWiki\Skins\Vector\Tests\Unit\FeatureManagement\Requirements;
+namespace MediaWiki\Skins\TGUI\Tests\Unit\FeatureManagement\Requirements;
 
 use CentralIdLookup;
 use HashConfig;
-use MediaWiki\Skins\Vector\Constants;
-use MediaWiki\Skins\Vector\FeatureManagement\Requirements\OverridableConfigRequirement;
+use MediaWiki\Skins\TGUI\Constants;
+use MediaWiki\Skins\TGUI\FeatureManagement\Requirements\OverridableConfigRequirement;
 use User;
 use WebRequest;
 
 /**
- * @group Vector
+ * @group TGUI
  * @group FeatureManagement
- * @coversDefaultClass \MediaWiki\Skins\Vector\FeatureManagement\Requirements\OverridableConfigRequirement
+ * @coversDefaultClass \MediaWiki\Skins\TGUI\FeatureManagement\Requirements\OverridableConfigRequirement
  */
 class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 
@@ -70,7 +70,7 @@ class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 				// `languageinheader` query param
 				null,
 				// AB test name
-				'VectorLanguageInHeaderTreatmentABTest',
+				'TGUILanguageInHeaderTreatmentABTest',
 				true,
 				'Anon users should get new treatment if enabled when A/B test disabled'
 			],
@@ -88,7 +88,7 @@ class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 				// `languageinheader` query param
 				null,
 				// AB test name
-				'VectorLanguageInHeaderTreatmentABTest',
+				'TGUILanguageInHeaderTreatmentABTest',
 				true,
 				'Logged in users should get new treatment if enabled when A/B test disabled'
 			],
@@ -106,7 +106,7 @@ class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 				// `languageinheader` query param
 				null,
 				// AB test name
-				'VectorLanguageInHeaderTreatmentABTest',
+				'TGUILanguageInHeaderTreatmentABTest',
 				true,
 				'All odd logged in users should get new treatent when A/B test disabled'
 			],
@@ -125,7 +125,7 @@ class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 				// `languageinheader` query param
 				null,
 				// AB test name
-				'VectorLanguageInHeaderTreatmentABTest',
+				'TGUILanguageInHeaderTreatmentABTest',
 				true,
 				// Ab test is only for logged in users
 				'Anon users with a/b test enabled should see new treatment when config enabled'
@@ -146,7 +146,7 @@ class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 				// `languageinheader` query param
 				null,
 				// AB test name
-				'VectorLanguageInHeaderTreatmentABTest',
+				'TGUILanguageInHeaderTreatmentABTest',
 				false,
 				// Ab test is only for logged in users
 				'Anon users with a/b test enabled should see old treatment when config disabled'
@@ -165,7 +165,7 @@ class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 				// `languageinheader` query param
 				null,
 				// AB test name
-				'VectorLanguageInHeaderTreatmentABTest',
+				'TGUILanguageInHeaderTreatmentABTest',
 				true,
 				'Even logged in users get new treatment when A/B test enabled'
 			],
@@ -183,7 +183,7 @@ class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 				// `languageinheader` query param
 				null,
 				// AB test name
-				'VectorLanguageInHeaderTreatmentABTest',
+				'TGUILanguageInHeaderTreatmentABTest',
 				false,
 				'Odd logged in users do not get new treatment when A/B test enabled'
 			],
@@ -201,7 +201,7 @@ class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 				// `languageinheader` query param
 				null,
 				// AB test name
-				'VectorLanguageInHeaderTreatmentABTest',
+				'TGUILanguageInHeaderTreatmentABTest',
 				true,
 				'With CentralIdLookup, even logged in users get new treatment when A/B test enabled'
 			],
@@ -219,7 +219,7 @@ class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 				// `languageinheader` query param
 				null,
 				// AB test name
-				'VectorLanguageInHeaderTreatmentABTest',
+				'TGUILanguageInHeaderTreatmentABTest',
 				false,
 				'With CentralIdLookup, odd logged in users do not get new treatment when A/B test enabled'
 			],
@@ -237,7 +237,7 @@ class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 				// `languageinheader` query param
 				"1",
 				// AB test name
-				'VectorLanguageInHeaderTreatmentABTest',
+				'TGUILanguageInHeaderTreatmentABTest',
 				true,
 				'Odd logged in users get new treatment when A/B test enabled and query param set to "1"'
 			],
@@ -255,7 +255,7 @@ class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 				// `languageinheader` query param
 				"0",
 				// AB test name
-				'VectorLanguageInHeaderTreatmentABTest',
+				'TGUILanguageInHeaderTreatmentABTest',
 				false,
 				'Even logged in users get old treatment when A/B test enabled and query param set to "0"'
 			],
@@ -341,7 +341,7 @@ class OverridableConfigRequirementTest extends \MediaWikiUnitTestCase {
 			$user,
 			$request,
 			$useCentralIdLookup ? $centralIdLookup : null,
-			'VectorLanguageInHeader',
+			'TGUILanguageInHeader',
 			'LanguageInHeader',
 			'languageinheader',
 			$testName ?? null

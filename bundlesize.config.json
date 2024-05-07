@@ -1,22 +1,22 @@
 [
 	{
-		"resourceModule": "skins.vector.styles.legacy",
+		"resourceModule": "skins.tgui.styles.legacy",
 		"maxSize": "7.9 kB"
 	},
 	{
-		"resourceModule": "skins.vector.styles",
+		"resourceModule": "skins.tgui.styles",
 		"maxSize": "11.0 kB"
 	},
 	{
-		"resourceModule": "skins.vector.legacy.js",
+		"resourceModule": "skins.tgui.legacy.js",
 		"maxSize": "2.2 kB"
 	},
 	{
-		"resourceModule": "skins.vector.search",
+		"resourceModule": "skins.tgui.search",
 		"maxSize": "3 kB"
 	},
 	{
-		"resourceModule": "skins.vector.icons",
+		"resourceModule": "skins.tgui.icons",
 		"maxSize": "1 kB"
 	}
 ]

@@ -1,18 +1,18 @@
 @import '../variables.less';
 
 /**
- * Common styles responsible for hiding/showing the Vector dropdown.
+ * Common styles responsible for hiding/showing the TGUI dropdown.
  */
 
 /**
- * Vector Dropdown. Contains the dropdown label, checkbox, and
+ * TGUI Dropdown. Contains the dropdown label, checkbox, and
  * dropdown content.
  */
-.vector-menu-dropdown {
+.tgui-menu-dropdown {
 	position: relative;
 
 	// Dropdown menu container. Hidden by default until checkbox is checked.
-	.vector-menu-content {
+	.tgui-menu-content {
 		position: absolute;
 		top: 100%;
 		left: -@border-width-base;
@@ -28,7 +28,7 @@
 	}
 
 	// Dropdown <ul> element.
-	.vector-menu-content-list {
+	.tgui-menu-content-list {
 		list-style: none;
 	}
 
@@ -55,7 +55,7 @@
 /**
  * Invisible checkbox covering the dropdown menu handle.
  */
-.vector-menu-checkbox {
+.tgui-menu-checkbox {
 	cursor: pointer;
 	position: absolute;
 	top: 0;
@@ -70,7 +70,7 @@
 	display: none;
 
 	// Hide and show menu content based off checked status.
-	&:checked ~ .vector-menu-content {
+	&:checked ~ .tgui-menu-content {
 		opacity: 1;
 		visibility: visible;
 		height: auto;
@@ -82,7 +82,7 @@
 	}
 
 	// Add focus state to menu dropdown buttons (i.e. #p-variants, #p-cactions)
-	&:focus + .vector-menu-heading {
+	&:focus + .tgui-menu-heading {
 		// Simulate browser focus ring
 		outline: dotted 1px; // Firefox style
 		outline: auto -webkit-focus-ring-color; // Webkit style

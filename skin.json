@@ -1,5 +1,5 @@
 {
-	"name": "Vector",
+	"name": "TGUI",
 	"version": "1.0.0",
 	"author": [
 		"[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team]",
@@ -15,20 +15,20 @@
 		"Stephen Niedzielski",
 		"Volker E."
 	],
-	"url": "https://www.mediawiki.org/wiki/Skin:Vector",
-	"descriptionmsg": "vector-skin-desc",
-	"namemsg": "vector-specialversion-name",
+	"url": "https://www.mediawiki.org/wiki/Skin:TGUI",
+	"descriptionmsg": "tgui-skin-desc",
+	"namemsg": "tgui-specialversion-name",
 	"license-name": "GPL-2.0-or-later",
 	"type": "skin",
 	"requires": {
 		"MediaWiki": ">= 1.39.0"
 	},
 	"ValidSkinNames": {
-		"vector-2022": {
-			"class": "MediaWiki\\Skins\\Vector\\SkinVector22",
+		"tgui-2022": {
+			"class": "MediaWiki\\Skins\\TGUI\\SkinTGUI22",
 			"args": [
 				{
-					"name": "vector-2022",
+					"name": "tgui-2022",
 					"templateDirectory": "includes/templates",
 					"template": "skin",
 					"responsive": true,
@@ -38,8 +38,8 @@
 						}
 					},
 					"bodyClasses": [
-						"skin-vector",
-						"skin-vector-search-vue"
+						"skin-tgui",
+						"skin-tgui-search-vue"
 					],
 					"menus": [
 						"user-interface-preferences",
@@ -52,33 +52,33 @@
 						"associated-pages"
 					],
 					"scripts": [
-						"skins.vector.user",
-						"skins.vector.js",
-						"skins.vector.es6"
+						"skins.tgui.user",
+						"skins.tgui.js",
+						"skins.tgui.es6"
 					],
 					"styles": [
 						"mediawiki.ui.button",
-						"skins.vector.styles",
-						"skins.vector.user.styles",
-						"skins.vector.icons",
+						"skins.tgui.styles",
+						"skins.tgui.user.styles",
+						"skins.tgui.icons",
 						"mediawiki.ui.icon"
 					],
 					"messages": [
 						"tooltip-p-logo",
-						"vector-opt-out-tooltip",
-						"vector-opt-out",
-						"vector-action-toggle-sidebar",
-						"vector-main-menu-tooltip",
-						"vector-jumptosearch",
-						"vector-jumptocontent",
-						"vector-toc-beginning",
-						"vector-toc-heading",
-						"vector-toc-toggle-position-sidebar",
-						"vector-toc-toggle-position-title",
-						"vector-toc-menu-tooltip",
-						"vector-toc-collapsible-button-label",
-						"vector-article-tools-nav-label",
-						"vector-site-nav-label",
+						"tgui-opt-out-tooltip",
+						"tgui-opt-out",
+						"tgui-action-toggle-sidebar",
+						"tgui-main-menu-tooltip",
+						"tgui-jumptosearch",
+						"tgui-jumptocontent",
+						"tgui-toc-beginning",
+						"tgui-toc-heading",
+						"tgui-toc-toggle-position-sidebar",
+						"tgui-toc-toggle-position-title",
+						"tgui-toc-menu-tooltip",
+						"tgui-toc-collapsible-button-label",
+						"tgui-article-tools-nav-label",
+						"tgui-site-nav-label",
 						"search",
 						"searchbutton",
 						"searcharticle",
@@ -91,12 +91,12 @@
 				}
 			]
 		},
-		"vector": {
-			"class": "MediaWiki\\Skins\\Vector\\SkinVectorLegacy",
-			"@args": "See SkinVector::__construct for more detail.",
+		"tgui": {
+			"class": "MediaWiki\\Skins\\TGUI\\SkinTGUILegacy",
+			"@args": "See SkinTGUI::__construct for more detail.",
 			"args": [
 				{
-					"name": "vector",
+					"name": "tgui",
 					"template": "skin-legacy",
 					"templateDirectory": "includes/templates",
 					"responsive": true,
@@ -106,21 +106,21 @@
 						}
 					},
 					"scripts": [
-						"skins.vector.legacy.js"
+						"skins.tgui.legacy.js"
 					],
 					"styles": [
-						"skins.vector.styles.legacy"
+						"skins.tgui.styles.legacy"
 					],
 					"messages": [
 						"tooltip-p-logo",
-						"vector-opt-out-tooltip",
-						"vector-opt-out",
+						"tgui-opt-out-tooltip",
+						"tgui-opt-out",
 						"navigation-heading",
-						"vector-action-toggle-sidebar",
-						"vector-main-menu-tooltip",
-						"vector-jumptonavigation",
-						"vector-jumptosearch",
-						"vector-jumptocontent",
+						"tgui-action-toggle-sidebar",
+						"tgui-main-menu-tooltip",
+						"tgui-jumptonavigation",
+						"tgui-jumptosearch",
+						"tgui-jumptocontent",
 						"search",
 						"searchbutton",
 						"searcharticle",
@@ -134,47 +134,47 @@
 		}
 	},
 	"SkinLessImportPaths": {
-		"vector-2022": "resources/mediawiki.less",
-		"vector": "resources/mediawiki.less.legacy"
+		"tgui-2022": "resources/mediawiki.less",
+		"tgui": "resources/mediawiki.less.legacy"
 	},
 	"MessagesDirs": {
-		"Vector": [
+		"TGUI": [
 			"i18n"
 		]
 	},
 	"AutoloadNamespaces": {
-		"MediaWiki\\Skins\\Vector\\": "includes/"
+		"MediaWiki\\Skins\\TGUI\\": "includes/"
 	},
 	"TestAutoloadNamespaces": {
-		"MediaWiki\\Skins\\Vector\\Tests\\": "tests/phpunit/"
+		"MediaWiki\\Skins\\TGUI\\Tests\\": "tests/phpunit/"
 	},
 	"ConfigRegistry": {
-		"vector": "GlobalVarConfig::newInstance"
+		"tgui": "GlobalVarConfig::newInstance"
 	},
 	"HookHandlers": {
-		"VectorHooks": {
-			"class": "MediaWiki\\Skins\\Vector\\Hooks"
+		"TGUIHooks": {
+			"class": "MediaWiki\\Skins\\TGUI\\Hooks"
 		}
 	},
 	"Hooks": {
-		"RequestContextCreateSkin": "VectorHooks",
-		"GetPreferences": "VectorHooks",
-		"LocalUserCreated": "VectorHooks",
-		"MakeGlobalVariablesScript": "VectorHooks",
-		"OutputPageBodyAttributes": "VectorHooks",
-		"ResourceLoaderSiteModulePages": "VectorHooks",
-		"ResourceLoaderSiteStylesModulePages": "VectorHooks",
-		"SkinPageReadyConfig": "VectorHooks"
+		"RequestContextCreateSkin": "TGUIHooks",
+		"GetPreferences": "TGUIHooks",
+		"LocalUserCreated": "TGUIHooks",
+		"MakeGlobalVariablesScript": "TGUIHooks",
+		"OutputPageBodyAttributes": "TGUIHooks",
+		"ResourceLoaderSiteModulePages": "TGUIHooks",
+		"ResourceLoaderSiteStylesModulePages": "TGUIHooks",
+		"SkinPageReadyConfig": "TGUIHooks"
 	},
-	"@note": "When modifying skins.vector.styles definition, make sure the installer still works",
+	"@note": "When modifying skins.tgui.styles definition, make sure the installer still works",
 	"ResourceModules": {
-		"skins.vector.user": {
-			"class": "MediaWiki\\Skins\\Vector\\ResourceLoader\\VectorResourceLoaderUserModule"
+		"skins.tgui.user": {
+			"class": "MediaWiki\\Skins\\TGUI\\ResourceLoader\\TGUIResourceLoaderUserModule"
 		},
-		"skins.vector.user.styles": {
-			"class": "MediaWiki\\Skins\\Vector\\ResourceLoader\\VectorResourceLoaderUserStylesModule"
+		"skins.tgui.user.styles": {
+			"class": "MediaWiki\\Skins\\TGUI\\ResourceLoader\\TGUIResourceLoaderUserStylesModule"
 		},
-		"skins.vector.search": {
+		"skins.tgui.search": {
 			"es6": true,
 			"dependencies": [
 				"mediawiki.Uri",
@@ -182,24 +182,24 @@
 				"@wikimedia/codex-search"
 			],
 			"packageFiles": [
-				"resources/skins.vector.search/skins.vector.search.js",
-				"resources/skins.vector.search/instrumentation.js",
-				"resources/skins.vector.search/fetch.js",
-				"resources/skins.vector.search/restSearchClient.js",
-				"resources/skins.vector.search/urlGenerator.js",
-				"resources/skins.vector.search/App.vue",
+				"resources/skins.tgui.search/skins.tgui.search.js",
+				"resources/skins.tgui.search/instrumentation.js",
+				"resources/skins.tgui.search/fetch.js",
+				"resources/skins.tgui.search/restSearchClient.js",
+				"resources/skins.tgui.search/urlGenerator.js",
+				"resources/skins.tgui.search/App.vue",
 				{
-					"name": "resources/skins.vector.search/config.json",
-					"callback": "MediaWiki\\Skins\\Vector\\Hooks::getVectorSearchResourceLoaderConfig"
+					"name": "resources/skins.tgui.search/config.json",
+					"callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUISearchResourceLoaderConfig"
 				}
 			],
 			"messages": [
 				"searchbutton",
 				"searchresults",
-				"vector-searchsuggest-containing"
+				"tgui-searchsuggest-containing"
 			]
 		},
-		"skins.vector.styles.legacy": {
+		"skins.tgui.styles.legacy": {
 			"class": "ResourceLoaderSkinModule",
 			"features": {
 				"normalize": true,
@@ -222,21 +222,21 @@
 			],
 			"styles": [
 				"resources/common/common.less",
-				"resources/skins.vector.styles.legacy/skin-legacy.less"
+				"resources/skins.tgui.styles.legacy/skin-legacy.less"
 			]
 		},
-		"skins.vector.AB.styles": {
+		"skins.tgui.AB.styles": {
 			"class": "ResourceLoaderSkinModule",
 			"features": [ "toc" ],
 			"styles": [
-				"resources/skins.vector.AB.styles.less"
+				"resources/skins.tgui.AB.styles.less"
 			],
 			"targets": [
 				"desktop",
 				"mobile"
 			]
 		},
-		"skins.vector.styles": {
+		"skins.tgui.styles": {
 			"class": "ResourceLoaderSkinModule",
 			"features": {
 				"normalize": true,
@@ -264,7 +264,7 @@
 			],
 			"styles": [
 				"resources/common/common.less",
-				"resources/skins.vector.styles/skin.less"
+				"resources/skins.tgui.styles/skin.less"
 			],
 			"lessMessages": [
 				"parentheses-start",
@@ -273,7 +273,7 @@
 				"brackets-end"
 			]
 		},
-		"skins.vector.icons.js": {
+		"skins.tgui.icons.js": {
 			"selectorWithVariant": ".mw-ui-icon-wikimedia-{name}-{variant}:before",
 			"selectorWithoutVariant": ".mw-ui-icon-wikimedia-{name}:before",
 			"useDataURI": false,
@@ -298,7 +298,7 @@
 				"wikiText"
 			]
 		},
-		"skins.vector.icons": {
+		"skins.tgui.icons": {
 			"selectorWithVariant": ".mw-ui-icon-wikimedia-{name}-{variant}:before",
 			"selectorWithoutVariant": ".mw-ui-icon-wikimedia-{name}:before",
 			"useDataURI": false,
@@ -332,79 +332,79 @@
 				"listBullet"
 			]
 		},
-		"skins.vector.es6": {
+		"skins.tgui.es6": {
 			"es6": true,
 			"packageFiles": [
-				"resources/skins.vector.es6/main.js",
-				"resources/skins.vector.es6/searchToggle.js",
-				"resources/skins.vector.es6/stickyHeader.js",
-				"resources/skins.vector.es6/scrollObserver.js",
-				"resources/skins.vector.es6/AB.js",
-				"resources/skins.vector.es6/tableOfContents.js",
-				"resources/skins.vector.es6/sectionObserver.js",
-				"resources/skins.vector.es6/deferUntilFrame.js",
+				"resources/skins.tgui.es6/main.js",
+				"resources/skins.tgui.es6/searchToggle.js",
+				"resources/skins.tgui.es6/stickyHeader.js",
+				"resources/skins.tgui.es6/scrollObserver.js",
+				"resources/skins.tgui.es6/AB.js",
+				"resources/skins.tgui.es6/tableOfContents.js",
+				"resources/skins.tgui.es6/sectionObserver.js",
+				"resources/skins.tgui.es6/deferUntilFrame.js",
 				{
-					"name": "resources/skins.vector.es6/config.json",
-					"callback": "MediaWiki\\Skins\\Vector\\Hooks::getVectorResourceLoaderConfig"
+					"name": "resources/skins.tgui.es6/config.json",
+					"callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUIResourceLoaderConfig"
 				},
 				{
-					"name": "resources/skins.vector.es6/tableOfContentsConfig.json",
+					"name": "resources/skins.tgui.es6/tableOfContentsConfig.json",
 					"config": [
-						"VectorTableOfContentsCollapseAtCount",
-						"VectorTableOfContentsBeginning"
+						"TGUITableOfContentsCollapseAtCount",
+						"TGUITableOfContentsBeginning"
 					]
 				},
 				{
-					"name": "resources/skins.vector.es6/templates/TableOfContents.mustache",
+					"name": "resources/skins.tgui.es6/templates/TableOfContents.mustache",
 					"file": "includes/templates/TableOfContents.mustache",
 					"type": "text"
 				},
 				{
-					"name": "resources/skins.vector.es6/templates/TableOfContents__line.mustache",
+					"name": "resources/skins.tgui.es6/templates/TableOfContents__line.mustache",
 					"file": "includes/templates/TableOfContents__line.mustache",
 					"type": "text"
 				}
 			],
 			"dependencies": [
 				"mediawiki.user",
-				"skins.vector.icons.js",
+				"skins.tgui.icons.js",
 				"mediawiki.page.ready",
 				"mediawiki.page.watch.ajax",
 				"mediawiki.util",
 				"mediawiki.experiments"
 			],
 			"messages": [
-				"vector-toc-beginning",
-				"vector-toc-heading",
-				"vector-toc-toggle-position-sidebar",
-				"vector-toc-toggle-position-title"
+				"tgui-toc-beginning",
+				"tgui-toc-heading",
+				"tgui-toc-toggle-position-sidebar",
+				"tgui-toc-toggle-position-title"
 			]
 		},
-		"skins.vector.js": {
+		"skins.tgui.js": {
 			"packageFiles": [
-				"resources/skins.vector.js/skin.js",
+				"resources/skins.tgui.js/skin.js",
 				{
-					"name": "resources/skins.vector.js/config.json",
-					"callback": "MediaWiki\\Skins\\Vector\\Hooks::getVectorResourceLoaderConfig"
+					"name": "resources/skins.tgui.js/config.json",
+					"callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUIResourceLoaderConfig"
 				},
-				"resources/skins.vector.js/dropdownMenus.js",
-				"resources/skins.vector.js/checkbox.js",
-				"resources/skins.vector.js/sidebarPersistence.js",
-				"resources/skins.vector.js/languageButton.js",
-				"resources/skins.vector.js/searchLoader.js"
+				"resources/skins.tgui.js/dropdownMenus.js",
+				"resources/skins.tgui.js/checkbox.js",
+				"resources/skins.tgui.js/sidebarPersistence.js",
+				"resources/skins.tgui.js/languageButton.js",
+				"resources/skins.tgui.js/searchLoader.js"
 			],
 			"dependencies": [
-				"skins.vector.icons.js",
+				"skins.tgui.icons.js",
 				"mediawiki.page.ready",
 				"mediawiki.util"
 			],
-			"messages": [ "vector-search-loader" ]
+			"messages": [ "tgui-search-loader" ]
 		},
-		"skins.vector.legacy.js": {
+		"skins.tgui.legacy.js": {
 			"packageFiles": [
-				"resources/skins.vector.legacy.js/skin-legacy.js",
-				"resources/skins.vector.legacy.js/collapsibleTabs.js",
-				"resources/skins.vector.legacy.js/vector.js"
+				"resources/skins.tgui.legacy.js/skin-legacy.js",
+				"resources/skins.tgui.legacy.js/collapsibleTabs.js",
+				"resources/skins.tgui.legacy.js/tgui.js"
 			],
 			"dependencies": [
 				"mediawiki.page.ready",
@@ -414,10 +414,10 @@
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
-		"remoteSkinPath": "Vector"
+		"remoteSkinPath": "TGUI"
 	},
 	"ResourceModuleSkinStyles": {
-		"vector-2022": {
+		"tgui-2022": {
 			"+ext.echo.styles.alert": "skinStyles/ext.echo.styles.alert.less",
 			"+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
 			"+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
@@ -429,7 +429,7 @@
 			"+ext.uls.interface": "skinStyles/ext.uls.interface.less",
 			"+ext.visualEditor.base": "skinStyles/ext.visualEditor.less"
 		},
-		"vector": {
+		"tgui": {
 			"+ext.echo.styles.alert": "skinStyles/ext.echo.styles.alert.less",
 			"jquery.tipsy": "skinStyles/jquery.tipsy.less",
 			"jquery.ui": [
@@ -458,22 +458,22 @@
 		}
 	},
 	"config": {
-		"VectorVisualEnhancementNext": {
+		"TGUIVisualEnhancementNext": {
 			"value": false,
 			"description": "Temporary configuration flag for enabling in development enhancements."
 		},
-		"Vector2022PreviewPages": {
+		"TGUI2022PreviewPages": {
 			"value": [],
-			"description": "Temporary configuration flag for allowing users to preview the new Vector skin."
+			"description": "Temporary configuration flag for allowing users to preview the new TGUI skin."
 		},
-		"VectorSearchHost": {
+		"TGUISearchHost": {
 			"value": "",
 			"description": "Override default search API. Can be used with $wgDisableTextSearch and $wgSearchForwardUrl to mimic user experience on production."
 		},
-		"VectorUseIconWatch": {
+		"TGUIUseIconWatch": {
 			"value": true
 		},
-		"VectorMaxWidthOptions": {
+		"TGUIMaxWidthOptions": {
 			"value": {
 				"exclude": {
 					"mainpage": false,
@@ -492,72 +492,72 @@
 			},
 			"description": "options for configuring where where max-width should and should not apply. More details can be found in Hooks::shouldDisableMaxWidth PHP documentation."
 		},
-		"VectorResponsive": {
+		"TGUIResponsive": {
 			"value": false,
-			"description": "@var boolean turn Vector-2022 into a responsive skin by applying a view port and disabling the min-width"
+			"description": "@var boolean turn TGUI-2022 into a responsive skin by applying a view port and disabling the min-width"
 		},
-		"VectorDefaultSkinVersionForExistingAccounts": {
+		"TGUIDefaultSkinVersionForExistingAccounts": {
 			"value": "1",
-			"description": "@var string:['2'|'1'] The version ('2' for latest, '1' for legacy) of the Vector skin to use when an existing user has not specified a preference. This configuration is not used for new accounts (see VectorDefaultSkinVersionForNewAccounts) and is impermanent. In the future, this field may contains versions such as \"beta\" which when specified and the BetaFeatures extension is installed, and the user is enrolled, the latest version is used otherwise legacy. The value is _not_ persisted."
+			"description": "@var string:['2'|'1'] The version ('2' for latest, '1' for legacy) of the TGUI skin to use when an existing user has not specified a preference. This configuration is not used for new accounts (see TGUIDefaultSkinVersionForNewAccounts) and is impermanent. In the future, this field may contains versions such as \"beta\" which when specified and the BetaFeatures extension is installed, and the user is enrolled, the latest version is used otherwise legacy. The value is _not_ persisted."
 		},
-		"VectorDefaultSkinVersionForNewAccounts": {
+		"TGUIDefaultSkinVersionForNewAccounts": {
 			"value": null,
-			"description": "@var string|null The version ('2' for latest, '1' for legacy) of the Vector skin to **set** for newly created user accounts. **The value is persisted as a user preference.** This configuration is not used for preexisting accounts (see VectorDefaultSkinVersionForExistingAccounts) and only ever executed once at new account creation time. If it is null, no user preference will be set."
+			"description": "@var string|null The version ('2' for latest, '1' for legacy) of the TGUI skin to **set** for newly created user accounts. **The value is persisted as a user preference.** This configuration is not used for preexisting accounts (see TGUIDefaultSkinVersionForExistingAccounts) and only ever executed once at new account creation time. If it is null, no user preference will be set."
 		},
-		"VectorWvuiSearchOptions": {
+		"TGUIWvuiSearchOptions": {
 			"value": {
 				"showThumbnail": true,
 				"showDescription": true
 			}
 		},
-		"VectorDefaultSidebarVisibleForAuthorisedUser": {
+		"TGUIDefaultSidebarVisibleForAuthorisedUser": {
 			"value": true
 		},
-		"VectorDefaultSidebarVisibleForAnonymousUser": {
+		"TGUIDefaultSidebarVisibleForAnonymousUser": {
 			"value": false
 		},
-		"VectorLanguageInHeader": {
+		"TGUILanguageInHeader": {
 			"value": {
 				"logged_in": true,
 				"logged_out": true
 			},
 			"description": "@var array Moves the language links from the sidebar into a menu beside the page title. Also moves the indicators to the line below, next to the tagline (siteSub)."
 		},
-		"VectorLanguageInMainPageHeader": {
+		"TGUILanguageInMainPageHeader": {
 			"value": {
 				"logged_in": false,
 				"logged_out": false
 			},
-			"description": "@var When `VectorLanguageInHeader` is enabled, determines whether the Main Page's language button should be at the top or bottom of the content. The default position on the main page is at the bottom."
+			"description": "@var When `TGUILanguageInHeader` is enabled, determines whether the Main Page's language button should be at the top or bottom of the content. The default position on the main page is at the bottom."
 		},
-		"VectorLanguageAlertInSidebar": {
+		"TGUILanguageAlertInSidebar": {
 			"value": {
 				"logged_in": false,
 				"logged_out": false
 			},
-			"description": "@var When `VectorLanguageAlertInSidebar` is enabled, the language switch alert box is shown in the sidebar."
+			"description": "@var When `TGUILanguageAlertInSidebar` is enabled, the language switch alert box is shown in the sidebar."
 		},
-		"VectorLanguageInHeaderTreatmentABTest": {
+		"TGUILanguageInHeaderTreatmentABTest": {
 			"value": false,
 			"description": "@var boolean Enables or disables the language in header treatment A/B test. See https://phabricator.wikimedia.org/T280825 and associated tasks for additional detail."
 		},
-		"VectorStickyHeader": {
+		"TGUIStickyHeader": {
 			"value": {
 				"logged_in": true,
 				"logged_out": false
 			},
 			"description": "@var array Enables a persistent header that allows quick access to user links, editing tools, search and other links while scrolling down a page"
 		},
-		"VectorStickyHeaderEdit": {
+		"TGUIStickyHeaderEdit": {
 			"value": {
 				"logged_in": false,
 				"logged_out": false
 			},
-			"description": "@var array Enables the edit icons if $wgVectorStickyHeader is true."
+			"description": "@var array Enables the edit icons if $wgTGUIStickyHeader is true."
 		},
-		"VectorWebABTestEnrollment": {
+		"TGUIWebABTestEnrollment": {
 			"value": {
-				"name": "skin-vector-toc-experiment",
+				"name": "skin-tgui-toc-experiment",
 				"enabled": false,
 				"buckets": {
 					"unsampled": {
@@ -573,15 +573,15 @@
 			},
 			"description": "An associative array of A/B test configs keyed by parameters noted in mediawiki.experiments.js. There must be an `unsampled` bucket that represents a population excluded from the experiment. Additionally, the treatment bucket(s) must include a case-insensitive `treatment` substring in their name (e.g. `treatment`, `stickyHeaderTreatment`, `sticky-header-treatment`)"
 		},
-		"VectorDisableSidebarPersistence": {
+		"TGUIDisableSidebarPersistence": {
 			"value": false,
 			"description": "@var boolean Temporary feature flag that disables saving the sidebar expanded/collapsed state as a user-preference (triggered via clicking the main menu icon). This is intended as a temporary kill-switch in the event that the DB is overloaded with writes to the user_options table."
 		},
-		"VectorTableOfContentsBeginning": {
+		"TGUITableOfContentsBeginning": {
 			"value": true,
 			"description": "@var boolean Temporary feature flag that controls link to beginning of article."
 		},
-		"VectorTableOfContentsCollapseAtCount": {
+		"TGUITableOfContentsCollapseAtCount": {
 			"value": 20,
 			"description": "@var The minimum number of headings required to collapse all headings in the sticky table of contents by default."
 		}

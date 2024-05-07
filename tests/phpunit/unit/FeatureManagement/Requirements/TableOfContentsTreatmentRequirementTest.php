@@ -1,17 +1,17 @@
 <?php
 
-namespace MediaWiki\Skins\Vector\Tests\Unit\FeatureManagement\Requirements;
+namespace MediaWiki\Skins\TGUI\Tests\Unit\FeatureManagement\Requirements;
 
 use CentralIdLookup;
 use HashConfig;
-use MediaWiki\Skins\Vector\Constants;
-use MediaWiki\Skins\Vector\FeatureManagement\Requirements\TableOfContentsTreatmentRequirement;
+use MediaWiki\Skins\TGUI\Constants;
+use MediaWiki\Skins\TGUI\FeatureManagement\Requirements\TableOfContentsTreatmentRequirement;
 use User;
 
 /**
- * @group Vector
+ * @group TGUI
  * @group FeatureManagement
- * @coversDefaultClass \MediaWiki\Skins\Vector\FeatureManagement\Requirements\TableOfContentsTreatmentRequirement
+ * @coversDefaultClass \MediaWiki\Skins\TGUI\FeatureManagement\Requirements\TableOfContentsTreatmentRequirement
  */
 class TableOfContentsTreatmentRequirementTest extends \MediaWikiUnitTestCase {
 
@@ -74,7 +74,7 @@ class TableOfContentsTreatmentRequirementTest extends \MediaWikiUnitTestCase {
 	) {
 		$config = new HashConfig( [
 			Constants::CONFIG_WEB_AB_TEST_ENROLLMENT => [
-				'name' => 'skin-vector-toc-experiment',
+				'name' => 'skin-tgui-toc-experiment',
 				'enabled' => $abValue,
 				'buckets' => [
 					'unsampled' => [

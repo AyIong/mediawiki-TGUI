@@ -1,5 +1,5 @@
 /* global fetchMock */
-const restSearchClient = require( '../../resources/skins.vector.search/restSearchClient.js' );
+const restSearchClient = require( '../../resources/skins.tgui.search/restSearchClient.js' );
 const jestFetchMock = require( 'jest-fetch-mock' );
 
 const mockedRequests = !process.env.TEST_LIVE_REQUESTS;

@@ -3,7 +3,7 @@ const path = require( 'path' );
 
 const testData = {
 	baseUrl: process.env.MW_SERVER,
-	pageUrl: '/wiki/Polar_bear?useskin=vector-2022&tableofcontents=1',
+	pageUrl: '/wiki/Polar_bear?useskin=tgui-2022&tableofcontents=1',
 	loginUser: process.env.MEDIAWIKI_USER,
 	loginPassword: process.env.MEDIAWIKI_PASSWORD
 };
@@ -11,7 +11,7 @@ const testData = {
 module.exports = {
 	// LOG_DIR set in CI, used to make report files available in Jenkins
 	reportDir: process.env.LOG_DIR || path.join( process.cwd(), 'a11y/' ),
-	namespace: 'Vector',
+	namespace: 'TGUI',
 	defaults: {
 		viewport: {
 			width: 1200,
@@ -46,8 +46,8 @@ module.exports = {
 			wait: '500',
 			actions: [
 				'click #p-personal-checkbox',
-				'wait for .vector-user-menu-login a to be visible',
-				'click .vector-user-menu-login a',
+				'wait for .tgui-user-menu-login a to be visible',
+				'click .tgui-user-menu-login a',
 				'wait for #wpName1 to be visible',
 				'set field #wpName1 to ' + testData.loginUser,
 				'set field #wpPassword1 to ' + testData.loginPassword,

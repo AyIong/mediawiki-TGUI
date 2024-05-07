@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Skins\Vector;
+namespace MediaWiki\Skins\TGUI;
 
 use Config;
 use IContextSource;
@@ -22,11 +22,11 @@ use Title;
 use User;
 
 /**
- * Presentation hook handlers for Vector skin.
+ * Presentation hook handlers for TGUI skin.
  *
  * Hook handler method names should be in the form of:
  *	on<HookName>()
- * @package Vector
+ * @package TGUI
  * @internal
  */
 class Hooks implements
@@ -40,12 +40,12 @@ class Hooks implements
 	SkinPageReadyConfigHook
 {
 	/**
-	 * Checks if the current skin is a variant of Vector
+	 * Checks if the current skin is a variant of TGUI
 	 *
 	 * @param string $skinName
 	 * @return bool
 	 */
-	private static function isVectorSkin( string $skinName ): bool {
+	private static function isTGUISkin( string $skinName ): bool {
 		return (
 			$skinName === Constants::SKIN_NAME_LEGACY ||
 			$skinName === Constants::SKIN_NAME_MODERN
@@ -65,20 +65,20 @@ class Hooks implements
 			return $ab;
 		}
 		if ( !array_key_exists( 'buckets', $ab ) ) {
-			throw new RuntimeException( 'Invalid VectorWebABTestEnrollment value: Must contain buckets key.' );
+			throw new RuntimeException( 'Invalid TGUIWebABTestEnrollment value: Must contain buckets key.' );
 		}
 		if ( !array_key_exists( 'unsampled', $ab['buckets'] ) ) {
-			throw new RuntimeException( 'Invalid VectorWebABTestEnrollment value: Must define an `unsampled` bucket.' );
+			throw new RuntimeException( 'Invalid TGUIWebABTestEnrollment value: Must define an `unsampled` bucket.' );
 		} else {
 			// check bucket values.
 			foreach ( $ab['buckets'] as $bucketName => $bucketDefinition ) {
 				if ( !is_array( $bucketDefinition ) ) {
-					throw new RuntimeException( 'Invalid VectorWebABTestEnrollment value: Buckets should be arrays' );
+					throw new RuntimeException( 'Invalid TGUIWebABTestEnrollment value: Buckets should be arrays' );
 				}
 				$samplingRate = $bucketDefinition['samplingRate'];
 				if ( is_string( $samplingRate ) ) {
 					throw new RuntimeException(
-						'Invalid VectorWebABTestEnrollment value: Sampling rate should be number between 0 and 1.'
+						'Invalid TGUIWebABTestEnrollment value: Sampling rate should be number between 0 and 1.'
 					);
 				}
 			}
@@ -88,36 +88,36 @@ class Hooks implements
 	}
 
 	/**
-	 * Passes config variables to Vector (modern) ResourceLoader module.
+	 * Passes config variables to TGUI (modern) ResourceLoader module.
 	 * @param RL\Context $context
 	 * @param Config $config
 	 * @return array
 	 */
-	public static function getVectorResourceLoaderConfig(
+	public static function getTGUIResourceLoaderConfig(
 		RL\Context $context,
 		Config $config
 	) {
 		return [
-			'wgVectorSearchHost' => $config->get( 'VectorSearchHost' ),
-			'wgVectorWebABTestEnrollment' => self::getActiveABTest( $config ),
+			'wgTGUISearchHost' => $config->get( 'TGUISearchHost' ),
+			'wgTGUIWebABTestEnrollment' => self::getActiveABTest( $config ),
 		];
 	}
 
 	/**
-	 * Generates config variables for skins.vector.search Resource Loader module (defined in
+	 * Generates config variables for skins.tgui.search Resource Loader module (defined in
 	 * skin.json).
 	 *
 	 * @param RL\Context $context
 	 * @param Config $config
 	 * @return array<string,mixed>
 	 */
-	public static function getVectorSearchResourceLoaderConfig(
+	public static function getTGUISearchResourceLoaderConfig(
 		RL\Context $context,
 		Config $config
 	): array {
-		$result = $config->get( 'VectorWvuiSearchOptions' );
+		$result = $config->get( 'TGUIWvuiSearchOptions' );
 		$result['highlightQuery'] =
-			VectorServices::getLanguageService()->canWordsBeSplitSafely( $context->getLanguage() );
+			TGUIServices::getLanguageService()->canWordsBeSplitSafely( $context->getLanguage() );
 
 		return $result;
 	}
@@ -137,17 +137,17 @@ class Hooks implements
 		array &$config
 	): void {
 		// It's better to exit before any additional check
-		if ( !self::isVectorSkin( $context->getSkin() ) ) {
+		if ( !self::isTGUISkin( $context->getSkin() ) ) {
 			return;
 		}
 
 		// Tell the `mediawiki.page.ready` module not to wire up search.
 		// This allows us to use the new Vue implementation.
-		// Context has no knowledge of legacy / modern Vector
+		// Context has no knowledge of legacy / modern TGUI
 		// and from its point of view they are the same thing.
-		// Please see the modules `skins.vector.js` and `skins.vector.legacy.js`
+		// Please see the modules `skins.tgui.js` and `skins.tgui.legacy.js`
 		// for the wire up of search.
-		// The related method self::getVectorResourceLoaderConfig handles which
+		// The related method self::getTGUIResourceLoaderConfig handles which
 		// search to load.
 		$config['search'] = false;
 	}
@@ -205,7 +205,7 @@ class Hooks implements
 	}
 
 	/**
-	 * Updates personal navigation menu (user links) dropdown for modern Vector:
+	 * Updates personal navigation menu (user links) dropdown for modern TGUI:
 	 *  - Adds icons
 	 *  - Makes user page and watchlist collapsible
 	 *
@@ -213,7 +213,7 @@ class Hooks implements
 	 * @param array &$content_navigation
 	 */
 	private static function updateUserLinksDropdownItems( $sk, &$content_navigation ) {
-		// For logged-in users in modern Vector, rearrange some links in the personal toolbar.
+		// For logged-in users in modern TGUI, rearrange some links in the personal toolbar.
 		$user = $sk->getUser();
 		$isTemp = $user->isTemp();
 		$isRegistered = $user->isRegistered();
@@ -236,7 +236,7 @@ class Hooks implements
 			if ( isset( $content_navigation['user-menu']['watchlist'] ) ) {
 				$content_navigation['user-menu']['watchlist']['collapsible'] = true;
 			}
-			// Remove logout link from user-menu and recreate it in SkinVector,
+			// Remove logout link from user-menu and recreate it in SkinTGUI,
 			unset( $content_navigation['user-menu']['logout'] );
 		}
 
@@ -251,9 +251,9 @@ class Hooks implements
 		}
 
 		if ( !$isRegistered || $isTemp ) {
-			// "Create account" link is handled manually by Vector
+			// "Create account" link is handled manually by TGUI
 			unset( $content_navigation['user-menu']['createaccount'] );
-			// "Login" link is handled manually by Vector
+			// "Login" link is handled manually by TGUI
 			unset( $content_navigation['user-menu']['login'] );
 			// Remove duplicate "Login" link added by SkinTemplate::buildPersonalUrls if group read permissions
 			// are set to false.
@@ -262,14 +262,14 @@ class Hooks implements
 	}
 
 	/**
-	 * Populates 'vector-user-menu-overflow' bucket for modern Vector with modified personal navigation (user links)
-	 * menu items, including 'notification', 'user-interface-preferences', 'user-page', 'vector-user-menu-overflow'
+	 * Populates 'tgui-user-menu-overflow' bucket for modern TGUI with modified personal navigation (user links)
+	 * menu items, including 'notification', 'user-interface-preferences', 'user-page', 'tgui-user-menu-overflow'
 	 *
 	 * @param SkinTemplate $sk
 	 * @param array &$content_navigation
 	 */
 	private static function updateUserLinksOverflowItems( $sk, &$content_navigation ) {
-		$overflow = 'vector-user-menu-overflow';
+		$overflow = 'tgui-user-menu-overflow';
 		$content_navigation[$overflow] = [];
 
 		// Logged in and logged out overflow items
@@ -327,8 +327,8 @@ class Hooks implements
 	}
 
 	/**
-	 * Updates personal navigation menu (user links) for modern Vector wherein user page, create account and login links
-	 * are removed from the dropdown to be handled separately. In legacy Vector, the custom "user-page" bucket is
+	 * Updates personal navigation menu (user links) for modern TGUI wherein user page, create account and login links
+	 * are removed from the dropdown to be handled separately. In legacy TGUI, the custom "user-page" bucket is
 	 * removed to preserve existing behavior.
 	 *
 	 * @param SkinTemplate $sk
@@ -338,7 +338,7 @@ class Hooks implements
 		$skinName = $sk->getSkinName();
 		if ( self::isSkinVersionLegacy( $skinName ) ) {
 			// Remove user page from personal toolbar since it will be inside the personal menu for logged-in
-			// users in legacy Vector.
+			// users in legacy TGUI.
 			unset( $content_navigation['user-page'] );
 		} else {
 			self::updateUserLinksOverflowItems( $sk, $content_navigation );
@@ -360,7 +360,7 @@ class Hooks implements
 	/**
 	 * Make an icon
 	 *
-	 * @internal for use inside Vector skin.
+	 * @internal for use inside TGUI skin.
 	 * @param string $name
 	 * @return string of HTML
 	 */
@@ -372,7 +372,7 @@ class Hooks implements
 	/**
 	 * Update template data to include classes and html that handle buttons, icons, and collapsible items.
 	 *
-	 * @internal for use inside Vector skin.
+	 * @internal for use inside TGUI skin.
 	 * @param array $item data to update
 	 * @param string $buttonClassProp property to append button classes
 	 * @param string $iconHtmlProp property to set icon HTML
@@ -412,19 +412,19 @@ class Hooks implements
 	}
 
 	/**
-	 * Updates template data for Vector dropdown menus.
+	 * Updates template data for TGUI dropdown menus.
 	 *
 	 * @param array $item Menu data to update
 	 * @return array $item Updated menu data
 	 */
 	public static function updateDropdownMenuData( $item ) {
 		$buttonClassProp = 'heading-class';
-		$iconHtmlProp = 'html-vector-heading-icon';
+		$iconHtmlProp = 'html-tgui-heading-icon';
 		return self::updateItemData( $item, $buttonClassProp, $iconHtmlProp );
 	}
 
 	/**
-	 * Updates template data for Vector link items.
+	 * Updates template data for TGUI link items.
 	 *
 	 * @param array $item link data to update
 	 * @return array $item Updated link data
@@ -436,7 +436,7 @@ class Hooks implements
 	}
 
 	/**
-	 * Updates template data for Vector menu items.
+	 * Updates template data for TGUI menu items.
 	 *
 	 * @param array $item menu item data to update
 	 * @return array $item Updated menu item data
@@ -448,7 +448,7 @@ class Hooks implements
 	}
 
 	/**
-	 * Updates user interface preferences for modern Vector to upgrade icon/button menu items.
+	 * Updates user interface preferences for modern TGUI to upgrade icon/button menu items.
 	 *
 	 * @param array &$content_navigation
 	 * @param string $menu identifier
@@ -460,7 +460,7 @@ class Hooks implements
 	}
 
 	/**
-	 * Vector 2022 only:
+	 * TGUI 2022 only:
 	 * Creates an additional menu that will be injected inside the more (cactions)
 	 * dropdown menu. This menu is a clone of `views` and this menu will only be
 	 * shown at low resolutions (when the `views` menu is hidden).
@@ -478,7 +478,7 @@ class Hooks implements
 			$newItem = $content_navigation['views'][$key];
 			self::makeMenuItemCollapsible(
 				$newItem,
-				'vector-more-'
+				'tgui-more-'
 			);
 			$clonedViews['more-' . $key] = $newItem;
 		}
@@ -487,8 +487,8 @@ class Hooks implements
 	}
 
 	/**
-	 * Upgrades Vector's watch action to a watchstar.
-	 * This is invoked inside SkinVector, not via skin registration, as skin hooks
+	 * Upgrades TGUI's watch action to a watchstar.
+	 * This is invoked inside SkinTGUI, not via skin registration, as skin hooks
 	 * are not guaranteed to run last.
 	 * This can possibly be revised based on the outcome of T287622.
 	 *
@@ -500,9 +500,9 @@ class Hooks implements
 		$title = $sk->getRelevantTitle();
 
 		$skinName = $sk->getSkinName();
-		if ( self::isVectorSkin( $skinName ) ) {
+		if ( self::isTGUISkin( $skinName ) ) {
 			if (
-				$sk->getConfig()->get( 'VectorUseIconWatch' ) &&
+				$sk->getConfig()->get( 'TGUIUseIconWatch' ) &&
 				$title && $title->canExist()
 			) {
 				self::updateActionsMenu( $content_navigation );
@@ -516,26 +516,26 @@ class Hooks implements
 	}
 
 	/**
-	 * Adds MediaWiki:Vector.css as the skin style that controls classic Vector.
+	 * Adds MediaWiki:TGUI.css as the skin style that controls classic TGUI.
 	 *
 	 * @param string $skin
 	 * @param array &$pages
 	 */
 	public function onResourceLoaderSiteStylesModulePages( $skin, &$pages ): void {
 		if ( $skin === Constants::SKIN_NAME_MODERN ) {
-			$pages['MediaWiki:Vector.css'] = [ 'type' => 'style' ];
+			$pages['MediaWiki:TGUI.css'] = [ 'type' => 'style' ];
 		}
 	}
 
 	/**
-	 * Adds MediaWiki:Vector.css as the skin style that controls classic Vector.
+	 * Adds MediaWiki:TGUI.css as the skin style that controls classic TGUI.
 	 *
 	 * @param string $skin
 	 * @param array &$pages
 	 */
 	public function onResourceLoaderSiteModulePages( $skin, &$pages ): void {
 		if ( $skin === Constants::SKIN_NAME_MODERN ) {
-			$pages['MediaWiki:Vector.js'] = [ 'type' => 'script' ];
+			$pages['MediaWiki:TGUI.js'] = [ 'type' => 'script' ];
 		}
 	}
 
@@ -547,7 +547,7 @@ class Hooks implements
 	 */
 	public function onGetPreferences( $user, &$prefs ): void {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$vectorPrefs = [
+		$tguiPrefs = [
 			Constants::PREF_KEY_SIDEBAR_VISIBLE => [
 				'type' => 'api',
 				'default' => $config->get(
@@ -555,7 +555,7 @@ class Hooks implements
 				),
 			],
 		];
-		$prefs += $vectorPrefs;
+		$prefs += $tguiPrefs;
 	}
 
 	/**
@@ -586,7 +586,7 @@ class Hooks implements
 	 * @return string[]
 	 */
 	private static function getTocClasses( Skin $sk, $config ): array {
-		if ( !( $sk instanceof SkinVector22 ) ) {
+		if ( !( $sk instanceof SkinTGUI22 ) ) {
 			return [];
 		}
 
@@ -618,7 +618,7 @@ class Hooks implements
 	 */
 	public function onOutputPageBodyAttributes( $out, $sk, &$bodyAttrs ): void {
 		$skinName = $out->getSkin()->getSkinName();
-		if ( !self::isVectorSkin( $skinName ) ) {
+		if ( !self::isTGUISkin( $skinName ) ) {
 			return;
 		}
 		$config = $sk->getConfig();
@@ -629,10 +629,10 @@ class Hooks implements
 		// - CodeMirror
 		// - WikimediaEvents
 		//
-		// See https://codesearch.wmcloud.org/deployed/?q=skin-vector-legacy for an up-to-date
+		// See https://codesearch.wmcloud.org/deployed/?q=skin-tgui-legacy for an up-to-date
 		// list.
 		if ( self::isSkinVersionLegacy( $skinName ) ) {
-			$bodyAttrs['class'] .= ' skin-vector-legacy';
+			$bodyAttrs['class'] .= ' skin-tgui-legacy';
 		}
 
 		$tocClasses = self::getTocClasses( $sk, $config );
@@ -642,21 +642,21 @@ class Hooks implements
 
 		// Should we disable the max-width styling?
 		if ( !self::isSkinVersionLegacy( $skinName ) && $sk->getTitle() && self::shouldDisableMaxWidth(
-			$config->get( 'VectorMaxWidthOptions' ),
+			$config->get( 'TGUIMaxWidthOptions' ),
 			$sk->getTitle(),
 			$out->getRequest()->getValues()
 		) ) {
-			$bodyAttrs['class'] .= ' skin-vector-disable-max-width';
+			$bodyAttrs['class'] .= ' skin-tgui-disable-max-width';
 		}
 
-		$featureManager = VectorServices::getFeatureManager();
+		$featureManager = TGUIServices::getFeatureManager();
 		$bodyAttrs['class'] .= ' ' . implode( ' ', $featureManager->getFeatureBodyClass() );
 		$bodyAttrs['class'] = trim( $bodyAttrs['class'] );
 	}
 
 	/**
 	 * Temporary RequestContextCreateSkin hook handler.
-	 * Switches to new Vector on certain pages.
+	 * Switches to new TGUI on certain pages.
 	 *
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/RequestContextCreateSkin
 	 *
@@ -670,17 +670,17 @@ class Hooks implements
 			// user is anonymous
 			$user = $context->getUser();
 			$config = $context->getConfig();
-			$titles = $config->get( 'Vector2022PreviewPages' );
+			$titles = $config->get( 'TGUI2022PreviewPages' );
 			$title = $context->getTitle();
 			$titleText = $title ? $title->getPrefixedText() : null;
 			if ( $titleText && $user->isAnon() && in_array( $titleText, $titles ) ) {
-				$skin = 'vector-2022';
+				$skin = 'tgui-2022';
 			}
 		}
 	}
 
 	/**
-	 * Per the $options configuration (for use with $wgVectorMaxWidthOptions)
+	 * Per the $options configuration (for use with $wgTGUIMaxWidthOptions)
 	 * determine whether max-width should be disabled on the page.
 	 * For the main page: Check the value of $options['exclude']['mainpage']
 	 * For all other pages, the following will happen:
@@ -754,7 +754,7 @@ class Hooks implements
 	 * for adding config to the page.
 	 * Adds config variables to JS that depend on current page/request.
 	 *
-	 * Adds a config flag that can disable saving the VectorSidebarVisible
+	 * Adds a config flag that can disable saving the TGUISidebarVisible
 	 * user preference when the sidebar menu icon is clicked.
 	 *
 	 * @param array &$vars Array of variables to be added into the output.
@@ -763,27 +763,27 @@ class Hooks implements
 	public function onMakeGlobalVariablesScript( &$vars, $out ): void {
 		$skin = $out->getSkin();
 		$skinName = $skin->getSkinName();
-		if ( !self::isVectorSkin( $skinName ) ) {
+		if ( !self::isTGUISkin( $skinName ) ) {
 			return;
 		}
 		$config = $out->getConfig();
 		$user = $out->getUser();
 
 		if ( $user->isRegistered() && self::isSkinVersionLegacy( $skinName ) ) {
-			$vars[ 'wgVectorDisableSidebarPersistence' ] =
+			$vars[ 'wgTGUIDisableSidebarPersistence' ] =
 				$config->get(
 					Constants::CONFIG_KEY_DISABLE_SIDEBAR_PERSISTENCE
 				);
 		}
 		// Must be exposed to CentralNotice banners via mw.config
-		$vars[ 'wgVector2022PreviewPages' ] = $config->get( 'Vector2022PreviewPages' );
+		$vars[ 'wgTGUI2022PreviewPages' ] = $config->get( 'TGUI2022PreviewPages' );
 	}
 
 	/**
 	 * Gets whether the current skin version is the legacy version.
-	 * Should mirror SkinVector::isLegacy
+	 * Should mirror SkinTGUI::isLegacy
 	 *
-	 * @param string $skinName hint that can be used to detect modern vector.
+	 * @param string $skinName hint that can be used to detect modern tgui.
 	 * @return bool
 	 */
 	private static function isSkinVersionLegacy( $skinName ): bool {

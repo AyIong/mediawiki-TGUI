@@ -1,10 +1,10 @@
-Vector Skin
+TGUI Skin
 ========================
 
 Installation
 ------------
 
-See <https://www.mediawiki.org/wiki/Skin:Vector>.
+See <https://www.mediawiki.org/wiki/Skin:TGUI>.
 
 ### Configuration options
 

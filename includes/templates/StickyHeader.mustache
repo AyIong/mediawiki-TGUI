@@ -7,10 +7,10 @@
 	See https://dequeuniversity.com/rules/axe/4.1/aria-hidden-focus and https://phabricator.wikimedia.org/T290201
 	for more context.
 }}
-<header id="vector-sticky-header" aria-hidden="true"
-	class="vector-sticky-header">
-	<div class="vector-sticky-header-start">
-		<div class="vector-sticky-header-icon-start">
+<header id="tgui-sticky-header" aria-hidden="true"
+	class="tgui-sticky-header">
+	<div class="tgui-sticky-header-start">
+		<div class="tgui-sticky-header-icon-start">
 			{{#data-button-start}}
 			{{>Button}}
 			{{/data-button-start}}
@@ -18,18 +18,18 @@
 		{{#data-search}}
 		{{>SearchBox}}
 		{{/data-search}}
-		<div class="vector-sticky-header-context-bar">
-			<div class="vector-sticky-header-toc-container">
+		<div class="tgui-sticky-header-context-bar">
+			<div class="tgui-sticky-header-toc-container">
 				{{! TOC is cloned into this menu from the sidebar in stickyHeader.js. }}
 				{{#data-sticky-header-toc}}
 				{{>Menu}}
 				{{/data-sticky-header-toc}}
 			</div>
-			<div class="vector-sticky-header-context-bar-primary" {{{html-user-language-attributes}}}>{{{html-title}}}</div>
+			<div class="tgui-sticky-header-context-bar-primary" {{{html-user-language-attributes}}}>{{{html-title}}}</div>
 		</div>
 	</div>
-	<div class="vector-sticky-header-end">
-		<div class="vector-sticky-header-icons">
+	<div class="tgui-sticky-header-end">
+		<div class="tgui-sticky-header-icons">
 			{{#data-buttons}}
 			{{>Button}}
 			{{/data-buttons}}
@@ -37,8 +37,8 @@
 		{{#data-primary-action}}
 		{{>Button}}
 		{{/data-primary-action}}
-		<div class="vector-sticky-header-icon-end">
-			<div class="vector-user-links">
+		<div class="tgui-sticky-header-icon-end">
+			<div class="tgui-user-links">
 				{{! User menu items with unique ids are cloned here from the fixed header in stickyHeader.js. }}
 			</div>
 		</div>

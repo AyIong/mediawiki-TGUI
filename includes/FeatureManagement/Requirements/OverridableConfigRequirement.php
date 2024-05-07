@@ -19,11 +19,11 @@
  * @file
  */
 
-namespace MediaWiki\Skins\Vector\FeatureManagement\Requirements;
+namespace MediaWiki\Skins\TGUI\FeatureManagement\Requirements;
 
 use CentralIdLookup;
 use Config;
-use MediaWiki\Skins\Vector\FeatureManagement\Requirement;
+use MediaWiki\Skins\TGUI\FeatureManagement\Requirement;
 use User;
 use WebRequest;
 
@@ -63,7 +63,7 @@ use WebRequest;
  * NOTE: This API hasn't settled. It may change at any time without warning. Please don't bind to
  * it unless you absolutely need to
  *
- * @package MediaWiki\Skins\Vector\FeatureManagement\Requirements
+ * @package MediaWiki\Skins\TGUI\FeatureManagement\Requirements
  */
 final class OverridableConfigRequirement implements Requirement {
 

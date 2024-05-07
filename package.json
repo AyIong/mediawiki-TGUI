@@ -1,5 +1,5 @@
 {
-	"name": "Vector",
+	"name": "TGUI",
 	"private": true,
 	"scripts": {
 		"test": "npm -s run lint && tsc && npm run test:unit",

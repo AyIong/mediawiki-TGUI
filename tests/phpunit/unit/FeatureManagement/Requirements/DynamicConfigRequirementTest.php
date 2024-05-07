@@ -20,14 +20,14 @@
  * @since 1.35
  */
 
-namespace MediaWiki\Skins\Vector\Tests\Unit\FeatureManagement\Requirements;
+namespace MediaWiki\Skins\TGUI\Tests\Unit\FeatureManagement\Requirements;
 
-use MediaWiki\Skins\Vector\FeatureManagement\Requirements\DynamicConfigRequirement;
+use MediaWiki\Skins\TGUI\FeatureManagement\Requirements\DynamicConfigRequirement;
 
 /**
- * @group Vector
+ * @group TGUI
  * @group FeatureManagement
- * @coversDefaultClass \MediaWiki\Skins\Vector\FeatureManagement\Requirements\DynamicConfigRequirement
+ * @coversDefaultClass \MediaWiki\Skins\TGUI\FeatureManagement\Requirements\DynamicConfigRequirement
  */
 class DynamicConfigRequirementTest extends \MediaWikiUnitTestCase {
 

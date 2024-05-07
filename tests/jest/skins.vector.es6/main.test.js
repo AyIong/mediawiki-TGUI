@@ -6,11 +6,11 @@ window.matchMedia = window.matchMedia || function () {
 	};
 };
 
-const { test } = require( '../../../resources/skins.vector.es6/main.js' );
+const { test } = require( '../../../resources/skins.tgui.es6/main.js' );
 const {
 	STICKY_HEADER_EXPERIMENT_NAME,
 	STICKY_HEADER_EDIT_EXPERIMENT_NAME
-} = require( '../../../resources/skins.vector.es6/stickyHeader.js' );
+} = require( '../../../resources/skins.tgui.es6/stickyHeader.js' );
 describe( 'main.js', () => {
 	it( 'getHeadingIntersectionHandler', () => {
 		const section = document.createElement( 'div' );
@@ -51,7 +51,7 @@ describe( 'main.js', () => {
 			enabled: false
 		};
 		const TABLE_OF_CONTENTS_AB = {
-			name: 'skin-vector-toc-experiment',
+			name: 'skin-tgui-toc-experiment',
 			enabled: true,
 			buckets: {}
 		};
@@ -144,7 +144,7 @@ describe( 'main.js', () => {
 				isUserInTreatmentBucket,
 				expectedResult
 			} ) => {
-				document.documentElement.classList.add( 'vector-sticky-header-enabled' );
+				document.documentElement.classList.add( 'tgui-sticky-header-enabled' );
 				const result = test.initStickyHeaderABTests(
 					abConfig,
 					// isStickyHeaderFeatureAllowed
@@ -162,7 +162,7 @@ describe( 'main.js', () => {
 				expect( result ).toMatchObject( expectedResult );
 				// Check that there are no side effects
 				expect(
-					document.documentElement.classList.contains( 'vector-sticky-header-enabled' )
+					document.documentElement.classList.contains( 'tgui-sticky-header-enabled' )
 				).toBe( true );
 			} );
 	} );

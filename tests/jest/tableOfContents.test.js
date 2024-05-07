@@ -2,7 +2,7 @@ const mustache = require( 'mustache' );
 const fs = require( 'fs' );
 const tableOfContentsTemplate = fs.readFileSync( 'includes/templates/TableOfContents.mustache', 'utf8' );
 const tableOfContentsLineTemplate = fs.readFileSync( 'includes/templates/TableOfContents__line.mustache', 'utf8' );
-const initTableOfContents = require( '../../resources/skins.vector.es6/tableOfContents.js' );
+const initTableOfContents = require( '../../resources/skins.tgui.es6/tableOfContents.js' );
 
 let /** @type {HTMLElement} */ fooSection,
 	/** @type {HTMLElement} */ barSection,
@@ -19,10 +19,10 @@ const onToggleCollapse = jest.fn();
  */
 function render( templateProps = {} ) {
 	const templateData = Object.assign( {
-		'is-vector-toc-beginning-enabled': true,
-		'msg-vector-toc-beginning': 'Beginning',
-		'msg-vector-toc-heading': 'Contents',
-		'vector-is-collapse-sections-enabled': false,
+		'is-tgui-toc-beginning-enabled': true,
+		'msg-tgui-toc-beginning': 'Beginning',
+		'msg-tgui-toc-heading': 'Contents',
+		'tgui-is-collapse-sections-enabled': false,
 		'array-sections': [ {
 			toclevel: 1,
 			number: '1',
@@ -38,7 +38,7 @@ function render( templateProps = {} ) {
 			anchor: 'bar',
 			'is-top-level-section': true,
 			'is-parent-section': true,
-			'vector-button-label': 'Toggle bar subsection',
+			'tgui-button-label': 'Toggle bar subsection',
 			'array-sections': [ {
 				toclevel: 2,
 				number: '2.1',
@@ -100,13 +100,13 @@ describe( 'Table of contents', () => {
 	} );
 
 	describe( 'renders', () => {
-		test( 'when `vector-is-collapse-sections-enabled` is false', () => {
+		test( 'when `tgui-is-collapse-sections-enabled` is false', () => {
 			const toc = mount();
 			expect( document.body.innerHTML ).toMatchSnapshot();
 			expect( barSection.classList.contains( toc.EXPANDED_SECTION_CLASS ) ).toEqual( true );
 		} );
-		test( 'when `vector-is-collapse-sections-enabled` is true', () => {
-			const toc = mount( { 'vector-is-collapse-sections-enabled': true } );
+		test( 'when `tgui-is-collapse-sections-enabled` is true', () => {
+			const toc = mount( { 'tgui-is-collapse-sections-enabled': true } );
 			expect( document.body.innerHTML ).toMatchSnapshot();
 			expect( barSection.classList.contains( toc.EXPANDED_SECTION_CLASS ) ).toEqual( false );
 		} );
@@ -141,7 +141,7 @@ describe( 'Table of contents', () => {
 
 	describe( 'applies correct classes', () => {
 		test( 'when changing active sections', () => {
-			const toc = mount( { 'vector-is-collapse-sections-enabled': true } );
+			const toc = mount( { 'tgui-is-collapse-sections-enabled': true } );
 			toc.changeActiveSection( 'toc-foo' );
 			expect( fooSection.classList.contains( toc.ACTIVE_SECTION_CLASS ) ).toEqual( true );
 			expect( barSection.classList.contains( toc.ACTIVE_SECTION_CLASS ) ).toEqual( false );

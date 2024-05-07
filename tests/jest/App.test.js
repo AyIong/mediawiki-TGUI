@@ -1,5 +1,5 @@
 const VueTestUtils = require( '@vue/test-utils' );
-const App = require( '../../resources/skins.vector.search/App.vue' );
+const App = require( '../../resources/skins.tgui.search/App.vue' );
 
 const defaultProps = {
 	id: 'searchform',

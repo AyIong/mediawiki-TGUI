@@ -1,6 +1,6 @@
 {{!
 	string|null html-site-notice the contents of a banner defined in MediaWiki:Sitenotice.
-		Also used by CentralNotice to inject banners into Vector.
+		Also used by CentralNotice to inject banners into TGUI.
 	Indicator[] array-indicators wiki-defined badges such as "good article",
 		"featured article". An empty array if none are defined.
 	string html-title
@@ -9,8 +9,8 @@
 	string html-subtitle
 	string html-undelete-link
 	string html-newtalk
-	string msg-vector-jumptonavigation
-	string msg-vector-jumptosearch
+	string msg-tgui-jumptonavigation
+	string msg-tgui-jumptosearch
 	string html-body-content
 	string html-categories
 	string html-after-content
@@ -31,7 +31,7 @@
 	<div id="siteNotice">{{{html-site-notice}}}</div>
 	{{>Indicators}}
 	{{{html-title-heading}}}
-	<div id="bodyContent" class="vector-body">
+	<div id="bodyContent" class="tgui-body">
 		{{#is-article}}<div id="siteSub" class="noprint">{{msg-tagline}}</div>{{/is-article}}
 		<div id="contentSub"{{{html-user-language-attributes}}}>{{{html-subtitle}}}</div>
 		<div id="contentSub2">{{{html-undelete-link}}}</div>
@@ -41,8 +41,8 @@
 			using this place to insert extra elements before.
 		}}
 		<div id="jump-to-nav"></div>
-		<a class="mw-jump-link" href="#mw-head">{{msg-vector-jumptonavigation}}</a>
-		<a class="mw-jump-link" href="#searchInput">{{msg-vector-jumptosearch}}</a>
+		<a class="mw-jump-link" href="#mw-head">{{msg-tgui-jumptonavigation}}</a>
+		<a class="mw-jump-link" href="#searchInput">{{msg-tgui-jumptosearch}}</a>
 		{{{html-body-content}}}
 		{{{html-categories}}}
 	</div>

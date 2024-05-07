@@ -1,0 +1,43 @@
+@import '../../common/variables.less';
+@import '../../common/mixins.less';
+@import 'mediawiki.mixins.less';
+
+/**
+ * Targets all dropdown labels.
+ * - language variants, Actions menus
+ * - more menu, user menu
+ * - ULS button in sticky header
+ */
+.tgui-menu-dropdown .tgui-menu-heading,
+.mw-interlanguage-selector {
+	display: flex;
+
+	&:after {
+		.mixin-tgui-menu-heading-arrow();
+	}
+}
+
+/**
+ * Dropdown container
+ */
+.tgui-menu-dropdown {
+	.tgui-menu-content {
+		background-color: @background-color-base;
+		border: @border-width-base @border-style-base @border-color-base;
+		box-shadow: 0 1px 1px 0 rgba( 0, 0, 0, 0.1 );
+		transition-property: opacity;
+		transition-duration: @transition-duration-base;
+	}
+}
+
+//non-standard dropdown menu item.
+.tgui-user-menu-logout,
+.tgui-user-menu-create-account,
+.tgui-user-menu-login,
+.tgui-menu-dropdown .mw-list-item {
+	a {
+		.mixin-tgui-dropdown-menu-item();
+		white-space: nowrap;
+		color: @color-link;
+	}
+}

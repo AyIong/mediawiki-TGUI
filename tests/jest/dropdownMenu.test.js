@@ -1,4 +1,4 @@
-const { addPortletLinkHandler } = require( '../../resources/skins.vector.js/dropdownMenus.js' );
+const { addPortletLinkHandler } = require( '../../resources/skins.tgui.js/dropdownMenus.js' );
 
 describe( 'addPortletLinkHandler', () => {
 
@@ -6,7 +6,7 @@ describe( 'addPortletLinkHandler', () => {
 
 		// <li> element is the assumed HTML output of mw.util.addPortlet
 		document.body.innerHTML = `
-		<ul class="vector-menu vector-menu-dropdown">
+		<ul class="tgui-menu tgui-menu-dropdown">
 			<li class="mw-list-item mw-list-item-js" id="test-id">
 				<a href="#test-href">
 					<span>
@@ -26,7 +26,7 @@ describe( 'addPortletLinkHandler', () => {
 
 		// <li> element is the assumed HTML output of mw.util.addPortlet
 		document.body.innerHTML = `
-		<ul class="vector-menu vector-menu-dropdown vector-menu-dropdown-noicon">
+		<ul class="tgui-menu tgui-menu-dropdown tgui-menu-dropdown-noicon">
 			<li class="mw-list-item mw-list-item-js" id="test-id">
 				<a href="#test-href">
 					<span>
@@ -57,7 +57,7 @@ describe( 'addPortletLinkHandler', () => {
 				</ul>
 			</div>
 
-			<ul id="p-views" class="vector-menu vector-menu-dropdown">
+			<ul id="p-views" class="tgui-menu tgui-menu-dropdown">
 				<li class="mw-list-item mw-list-item-js" id="test-id">
 					<a href="#test-href">
 						<span>
