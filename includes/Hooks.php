@@ -451,7 +451,7 @@ class Hooks implements
 	}
 
 	/**
-	 * TGUI 2022 only:
+	 * TGUI only:
 	 * Creates an additional menu that will be injected inside the more (cactions)
 	 * dropdown menu. This menu is a clone of `views` and this menu will only be
 	 * shown at low resolutions (when the `views` menu is hidden).

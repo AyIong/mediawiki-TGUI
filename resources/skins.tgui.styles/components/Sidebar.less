@@ -1,5 +1,4 @@
 @import '../../common/variables.less';
-@import 'mediawiki.mixins.less';
 @import '../layouts/screen.less';
 @import './checkboxHack.less';
 
@@ -14,7 +13,6 @@
 
 	@media ( min-width: @min-width-desktop-wide ) {
 		width: @width-sidebar-px-wide;
-		margin-left: @margin-start-sidebar-content;
 	}
 }
 
@@ -28,11 +26,21 @@
 }
 
 .mw-sidebar {
+	position: fixed;
+	overflow: hidden;
+	height: -webkit-fill-available;
+	padding: 1em 0 0.75em 0;
+	margin: 2.65em 0 0 0;
+    background-color: var(--color-bg-section);
+	color: var(--color-fg);
+    transform: translateX(0);
+	backdrop-filter: var(--blur-intensity);
+    transition: all var(--transition-time);
 	box-sizing: border-box;
-	// Temporary magic number, will be calculated after TOC specs are finalized
-	padding: 12px 19px 12px 9px;
-	background-image: none;
-	background-color: @background-color-secondary--modern;
+
+	&:hover {
+		overflow-y: auto;
+	}
 
 	@media ( max-width: @max-width-tablet ) {
 		// Makes the sidebar full screen at lower resolutions.
@@ -48,6 +56,7 @@
 	#p-navigation .tgui-menu-heading {
 		display: none;
 	}
+
 }
 
 .mw-sidebar-action {

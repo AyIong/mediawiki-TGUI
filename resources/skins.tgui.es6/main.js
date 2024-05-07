@@ -9,7 +9,6 @@ const
 	deferUntilFrame = require( './deferUntilFrame.js' ),
 	ABTestConfig = require( /** @type {string} */ ( './config.json' ) ).wgTGUIWebABTestEnrollment || {},
 	stickyHeaderEditIconConfig = require( /** @type {string} */ ( './config.json' ) ).wgTGUIStickyHeaderEdit || true,
-	STICKY_HEADER_VISIBLE_CLASS = 'tgui-sticky-header-visible',
 	TOC_ID = 'mw-panel-toc',
 	TOC_ID_LEGACY = 'toc',
 	BODY_CONTENT_ID = 'bodyContent',
@@ -118,9 +117,8 @@ function initStickyHeaderABTests( abConfig, isStickyHeaderFeatureAllowed, getEna
  */
 const updateTocLocation = () => {
 	const isTocCollapsed = document.body.classList.contains( TOC_COLLAPSED_CLASS );
-	const isStickyHeaderVisible = document.body.classList.contains( STICKY_HEADER_VISIBLE_CLASS );
 	const isBelowDesktop = belowDesktopMedia.matches;
-	if ( isTocCollapsed && isStickyHeaderVisible && !isBelowDesktop ) {
+	if ( isTocCollapsed && !isBelowDesktop ) {
 		stickyHeader.moveToc( 'stickyheader' );
 	} else {
 		stickyHeader.moveToc( 'sidebar' );

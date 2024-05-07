@@ -1,8 +1,11 @@
 @import '../variables.less';
 
 /* Footer */
-.mw-footer {
+.mw-footer-container {
 	direction: ltr;
+	padding: 0 0.5em;
+	margin: 0.75em 0 0 245px;
+	background-color: var(--color-bg-section);
 
 	ul {
 		list-style: none;
@@ -11,26 +14,28 @@
 	}
 
 	li {
-		color: @color-base;
+		color: var(--color-text);
 		margin: 0;
 		padding: 0.5em 0;
 		font-size: @font-size-footer;
 	}
 }
 
+@{selector-main-menu-closed} ~ .mw-footer-container {
+	margin: 0.75em 0 0 0;
+}
+
+#footer {
+	margin-top: 0.5em;
+}
+
 #footer-icons {
 	float: right;
-
-	li {
-		float: left;
-		margin-left: 0.5em;
-		line-height: @line-height-footer-buttons;
-		text-align: right;
-	}
 }
 
 #footer-info {
 	li {
+		color: var(--color-text-darker);
 		line-height: @line-height-footer-info;
 	}
 }

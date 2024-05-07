@@ -26,10 +26,10 @@
 // 31.25em - 3.75em = 27.5em @ 16
 
 body {
-	background-color: @background-color-secondary--modern;
-	color: @color-base;
-	// Vertical scrollbar always visible.
 	overflow-y: scroll;
+	background-color: var(--color-bg);
+	color: var(--color-text-darker);
+
 }
 
 .mw-body,
@@ -38,10 +38,7 @@ body {
 }
 
 .mw-body {
-	border-top: @border-width-base @border-style-base transparent;
-	/* Merge the border with tabs' one (in their background image) */
-	margin-top: -@border-width-base;
-	padding: @padding-content;
+	background-color: var(--color-bg-section);
 
 	.firstHeading {
 		/* Change the default from mediawiki.skinning CSS to let indicators float into heading area */
@@ -51,13 +48,18 @@ body {
 }
 
 .mw-header {
-	// allow z-index to apply so search results overlay article
-	position: relative;
+	position: fixed;
+    padding: 0.5em 0;
+    backdrop-filter: var(--blur-intensity);
+    background-color: var(--color-bg-section);
+    color: var(--color-fg);
+    width: 100%;
+    top: 0;
 	z-index: @z-index-header;
 }
 
 .mw-body-content {
-	margin-top: 16px;
+	padding: 0 0.75em 0.75em 0.75em;
 }
 
 /* Main column */
@@ -107,7 +109,6 @@ body {
 
 #left-navigation {
 	float: left;
-	margin-left: -@padding-horizontal-tabs;
 }
 
 #right-navigation {
@@ -125,46 +126,39 @@ body {
 	padding: @padding-content;
 }
 
-.mw-footer {
-	border-top: @border-base;
-	padding: 0.75em;
-}
-
 // Container logic.
 .mw-page-container {
-	// Setting position and z-index is important as it allows overlays appended to the body tag
-	// to position themselves over the TGUI interface. This forms another stacking context for
-	// elements placed inside this element
 	position: relative;
 	z-index: 0;
-	max-width: @max-width-page-container;
-	// Fill the viewport even if the content height is small. This also helps
-	// mitigate a long sidebar overflowing the page container (T257518).
+	max-width: 100%;
 	min-height: 100%;
 	margin-left: auto;
 	margin-right: auto;
-	// Use non-zero padding to disable margin collapse.
-	// Be careful not to use overflow-y: scroll here (see T270146 and T271868)
-	padding: 0.05px ( @padding-horizontal-page-container / 2 );
-	background-color: @background-color-page-container;
-	// Set a min-width to make explicit we do not support anything below this threshold.
-	// For devices too small, they should be more useable with horizontal scrolling.
-	// e.g. Portrait on an iPad
 	min-width: @min-width-supported;
-
-	@media ( min-width: @min-width-desktop ) {
-		padding-left: @padding-horizontal-page-container;
-		padding-right: @padding-horizontal-page-container;
-	}
-
-	@media ( min-width: @min-width-desktop-wide ) {
-		padding-left: @padding-horizontal-page-container-wide;
-		padding-right: @padding-horizontal-page-container-wide;
-	}
 }
 
 .skin--responsive .mw-page-container {
 	min-width: auto;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 1.5vh;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner,
+::-webkit-resizer {
+    background-color: var(--color-scrollbar-base);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-scrollbar-thumb);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-scrollbar-thumb-hover);
+}
+
 
 @import 'grid.less';

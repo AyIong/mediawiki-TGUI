@@ -6,7 +6,6 @@ const
 	STICKY_HEADER_ID = 'tgui-sticky-header',
 	STICKY_HEADER_APPENDED_ID = '-sticky-header',
 	STICKY_HEADER_APPENDED_PARAM = [ 'wvprov', 'sticky-header' ],
-	STICKY_HEADER_VISIBLE_CLASS = 'tgui-sticky-header-visible',
 	STICKY_HEADER_USER_MENU_CONTAINER_CLASS = 'tgui-sticky-header-icon-end',
 	TOC_ID = 'mw-panel-toc',
 	FIRST_HEADING_ID = 'firstHeading',
@@ -36,7 +35,6 @@ function copyAttribute( from, to, attribute ) {
  * Show the sticky header.
  */
 function show() {
-	document.body.classList.add( STICKY_HEADER_VISIBLE_CLASS );
 	document.body.classList.remove( ULS_HIDE_CLASS );
 }
 
@@ -44,7 +42,6 @@ function show() {
  * Hide the sticky header.
  */
 function hide() {
-	document.body.classList.remove( STICKY_HEADER_VISIBLE_CLASS );
 	document.body.classList.add( ULS_HIDE_CLASS );
 }
 
@@ -494,7 +491,6 @@ function makeStickyHeaderFunctional(
 	const primaryEdit = disableEditIcons ? null : protectedEdit || veEdit || ceEdit;
 	const secondaryEdit = veEdit ? ceEdit : null;
 	const disableStickyHeader = () => {
-		document.body.classList.remove( STICKY_HEADER_VISIBLE_CLASS );
 		stickyObserver.unobserve( stickyIntersection );
 	};
 	const addSection = document.querySelector( '#ca-addsection a' );
