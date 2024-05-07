@@ -3,11 +3,11 @@
 @border-base-ems: unit( 1px / @font-size-browser / @font-size-base, em );
 
 .mw-article-toolbar-container {
-	// clearfix for #left-navigation and #right-navigation
-	display: flow-root;
-	border-bottom: @border-bottom-tabs;
+	display: flex;
+	justify-content: space-between;
+	margin: 0.5em 0.75em 0 0.75em;
+	color: var(--color-text);
 
-	/* Targets #left-navigation and #right-navigation */
 	& > div {
 		font-size: @font-size-tabs;
 	}

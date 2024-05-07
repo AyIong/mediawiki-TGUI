@@ -10,19 +10,32 @@
  */
 .tgui-menu-dropdown {
 	position: relative;
+	margin-right: 1em;
+	transition: background-color var(--transition-time);
+
+	&:hover {
+		background-color: var(--color-hover);
+	}
+
+	&:focus {
+		background-color: var(--color-selected);
+	}
 
 	// Dropdown menu container. Hidden by default until checkbox is checked.
 	.tgui-menu-content {
-		position: absolute;
-		top: 100%;
-		opacity: 0;
-		height: 0;
 		visibility: hidden;
+		position: absolute;
 		overflow: hidden;
-		// The menu content should not be narrower than the menu button.
-		min-width: 100%;
-		margin: 0;
-		padding: 0;
+		opacity: 0;
+		height: unset;
+		padding: 0.5em;
+		background-color: var(--color-bg);
+		color: var(--color-text);
+		border: 1px solid var(--color-border);
+		border-radius: var(--border-radius-small);
+		box-shadow: 0px 0px 25px 5px rgba(0, 0, 0, 0.7);
+		transform: translate(0, 0);
+		transition: all var(--transition-time) ease-in-out;
 		z-index: @z-index-menu;
 	}
 
@@ -30,60 +43,32 @@
 	.tgui-menu-content-list {
 		list-style: none;
 	}
-
-	// dropdown list items.
-	.mw-list-item {
-		padding: 0;
-		margin: 0;
-
-		a {
-			// displays all links in a single column.
-			display: block;
-			white-space: nowrap;
-			cursor: pointer;
-		}
-	}
-
-	.selected a,
-	.selected a:visited {
-		color: @color-link-selected;
-		text-decoration: none;
-	}
 }
 
 /**
  * Invisible checkbox covering the dropdown menu handle.
  */
 .tgui-menu-checkbox {
-	cursor: pointer;
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: @z-index-menu-checkbox;
-	opacity: 0;
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
 	// Hide the checkbox completely in browsers that don't support :checked
 	display: none;
+	position: absolute;
+	cursor: pointer;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	z-index: @z-index-menu-checkbox;
+	transition: transform var(--transition-time);
 
 	// Hide and show menu content based off checked status.
 	&:checked ~ .tgui-menu-content {
-		opacity: 1;
 		visibility: visible;
+		opacity: 1;
 		height: auto;
+		transform: translate(0, 1em);
 	}
 
 	:not( :checked ) > & {
 		// When the browser supports :checked, display it
 		display: block;
-	}
-
-	// Add focus state to menu dropdown buttons (i.e. #p-variants, #p-cactions)
-	&:focus + .tgui-menu-heading {
-		// Simulate browser focus ring
-		outline: dotted 1px; // Firefox style
-		outline: auto -webkit-focus-ring-color; // Webkit style
 	}
 }

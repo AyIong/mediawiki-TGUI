@@ -276,7 +276,6 @@ abstract class SkinTGUI extends SkinMustache {
 		$isTempUser = $user->isTemp();
 		$returnto = $this->getReturnToParam();
 		$useCombinedLoginLink = $this->useCombinedLoginLink();
-		$userMenuOverflowData = $menuData[ 'data-tgui-user-menu-overflow' ];
 		$userMenuData = $menuData[ 'data-user-menu' ];
 		if ( $isAnon || $isTempUser ) {
 			$userMenuData[ 'html-before-portal' ] .= $this->getAnonMenuBeforePortletHTML(
@@ -295,10 +294,7 @@ abstract class SkinTGUI extends SkinMustache {
 			$userMenuData[ 'html-after-portal' ] .= $this->getLogoutHTML();
 		}
 
-		$moreItems = substr_count( $userMenuOverflowData['html-items'], '<li' );
 		return [
-			'is-wide' => $moreItems > 3,
-			'data-user-menu-overflow' => $menuData[ 'data-tgui-user-menu-overflow' ],
 			'data-user-menu' => $userMenuData
 		];
 	}
@@ -808,9 +804,6 @@ abstract class SkinTGUI extends SkinMustache {
 			case 'data-notifications':
 			case 'data-personal':
 			case 'data-user-page':
-			case 'data-tgui-user-menu-overflow':
-				$type = self::MENU_TYPE_DEFAULT;
-				break;
 			case 'data-languages':
 				$type = $this->isLanguagesInContent() ?
 					self::MENU_TYPE_DROPDOWN : self::MENU_TYPE_PORTAL;
@@ -826,10 +819,6 @@ abstract class SkinTGUI extends SkinMustache {
 
 		if ( $key === 'data-user-menu' ) {
 			$portletData = $this->getUserMenuPortletData( $portletData );
-		}
-
-		if ( $key === 'data-tgui-user-menu-overflow' ) {
-			$portletData['class'] .= ' tgui-user-menu-overflow';
 		}
 
 		// Special casing for Variant to change label to selected.

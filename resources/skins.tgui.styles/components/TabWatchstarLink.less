@@ -2,22 +2,18 @@
 @import 'mediawiki.mixins.less';
 @import 'mediawiki.mixins.rotation.less';
 
-/* Watch/Unwatch Icon Styling */
-/* Only use icon if the menu item is not collapsed into the "More" dropdown
- * (in which case it is inside `.tgui-menu-dropdown` instead of `.tgui-menu-tabs`). */
 .tgui-menu-tabs {
-	@size-watchlink-icon: unit( 16 / @font-size-tabs / @font-size-browser, em );
-
 	.mw-watchlink.icon a {
 		overflow: hidden;
+		margin: 0 0.5em;
 		text-indent: -99999px;
 		color: transparent;
 
 		&:before {
 			content: '';
 			display: block;
-			width: @size-watchlink-icon;
-			height: @size-watchlink-icon;
+			width: 1em;
+			height: 1em;
 		}
 	}
 

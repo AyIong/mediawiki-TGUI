@@ -87,11 +87,6 @@ body {
 	float: right;
 }
 
-#siteSub {
-	// By default its hidden as it was hidden in TGUI legacy but site styles can reveal.
-	display: none;
-}
-
 .tgui-body {
 	position: relative;
 	z-index: @z-index-base;
@@ -117,12 +112,29 @@ body {
 
 #right-navigation {
 	float: right;
-	margin-right: -@padding-horizontal-tabs;
-	// Any dropdowns inside the right navigation in modern TGUI (e.g. "more" menu).
-	// should be right-aligned to prevent horizontal scrolling.
+
+	#p-cactions {
+		margin: 0;
+		max-height: 3em;
+		font-size: 1.1em;
+		background-color: var(--color-primary);
+		color: var(--color-button-text);
+		border-radius: var(--border-radius-small);
+		transition: background-color var(--transition-time);
+		text-decoration: none;
+
+		label {
+			padding: 0.5em 0.75em 0.33em 0.75em;
+			border-bottom: 2px solid transparent;
+		}
+
+		&:hover{
+			background-color: var(--color-primary-light);
+		}
+	}
+
 	.tgui-menu-content {
-		left: auto;
-		right: -1px;
+		right: 0;
 	}
 }
 

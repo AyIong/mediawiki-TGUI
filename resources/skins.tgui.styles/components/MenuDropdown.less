@@ -17,26 +17,52 @@
 	}
 }
 
-/**
- * Dropdown container
- */
-.tgui-menu-dropdown {
-	.tgui-menu-content {
-		background-color: var(--color-bg);
-		border: 1px solid @border-color-base;
-		transition-property: opacity;
-		transition-duration: 100ms;
-	}
-}
-
 //non-standard dropdown menu item.
 .tgui-user-menu-logout,
 .tgui-user-menu-create-account,
 .tgui-user-menu-login,
 .tgui-menu-dropdown .mw-list-item {
 	a {
-		.mixin-tgui-dropdown-menu-item();
+		display: flex;
+		min-height: 32px;
+		align-items: center;
 		white-space: nowrap;
-		color: @color-link;
+		padding: 0 0.5em;
+		margin-bottom: 0.5em;
+		background-color: var(--color-primary);
+		color: var(--color-button-text);
+		border-radius: var(--border-radius-small);
+		transition: background-color var(--transition-time);
+		text-decoration: none;
+
+		&:hover {
+			background-color: var(--color-primary-light);
+		}
+
+		span:before {
+			filter: var(--invert-button-icon);
+		}
 	}
+}
+
+.tgui-user-menu-logout a {
+	background-color: var(--color-red);
+	margin: 0.5em 0 0 0;
+
+	&:hover {
+		background-color: var(--color-red-light);
+	}
+  }
+
+.tgui-user-menu-login a {
+	background-color: var(--color-blue);
+
+	&:hover {
+		background-color: var(--color-blue-light);
+	}
+}
+
+/* Remove margin from last item */
+#ca-protect a {
+	margin-bottom: 0;
 }

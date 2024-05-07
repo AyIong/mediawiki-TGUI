@@ -65,17 +65,11 @@
 	}
 
 	.tgui-menu-content {
+		display: none;
+		overflow: auto;
 		top: auto;
-		left: -1px;
-		right: -1px;
-		// align borders of open menu align with button
 		box-sizing: border-box;
 		max-height: 65vh;
-		overflow: auto;
-
-		// Adds to the show/hide technique in MenuDropdown.less with
-		// display to prevent rendering and long scrolling on Main page
-		display: none;
 
 		li a {
 			font-size: inherit;
@@ -84,6 +78,7 @@
 
 	.tgui-menu-checkbox:checked ~ .tgui-menu-content {
 		display: block;
+		transform: translate(0, 1em);
 	}
 
 	.after-portlet {

@@ -9,13 +9,3 @@
 	width: unit( 16 / @font-size-tabs / @font-size-browser, em );
 	height: unit( 16 / @font-size-tabs / @font-size-browser, em );
 }
-
-.mixin-tgui-dropdown-menu-item() {
-	//NOTE: using px instead of em's due to difference in font-size
-	// across dropdowns (i.e tabs 13px vs. personal menu 14px).
-	min-height: 32px;
-	display: flex;
-	align-items: center;
-	padding: 0 12px;
-	color: var(--color-button-text);
-}

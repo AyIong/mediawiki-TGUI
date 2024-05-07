@@ -41,19 +41,11 @@
 		right: 0;
 		min-width: 200px;
 	}
-
-	.user-links-collapsible-item {
-		@media ( min-width: @min-width-tablet ) {
-			display: none;
-		}
-	}
 }
 
 /**
  * Horizontal links menu - logged in and logged out.
  */
-// TODO: Remove tgui-user-menu-more after I371bb11903d8cdd8f0da89266fcf549050c0da8c has been in prod for a week
-.tgui-user-menu-more,
 .tgui-user-menu-overflow {
 	.tgui-menu-content-list {
 		display: flex;
@@ -63,12 +55,6 @@
 	// Add margin to links that don't have the .mw-ui-button or related icon classes.
 	a:not( .mw-ui-button ):not( .mw-echo-notifications-badge  ) {
 		margin: 0 8px;
-	}
-
-	.user-links-collapsible-item {
-		@media ( max-width: @max-width-mobile ) {
-			display: none;
-		}
 	}
 }
 
@@ -94,7 +80,6 @@
 
 // Anon editor notice i.e. "Pages for logged out editors".
 .tgui-user-menu-anon-editor {
-	.mixin-tgui-dropdown-menu-item();
 	color: var(--color-text);
 
 	a:before {
@@ -114,24 +99,4 @@
 // Logout link
 .tgui-user-menu-logout {
 	border-top: 1px solid var(--color-border);
-}
-
-//User-page link in personal (overflow) menu.
-#pt-userpage-2 {
-	max-width: unit( 155 / @font-size-browser / @font-size-user-links, em );
-
-	a {
-		// T312157 Override redlink (.new) color for non-existant userpage
-		color: var(--color-button-text);
-	}
-
-	span {
-		.text-overflow( @visible: false );
-	}
-
-	// T287522#7295558: Increase the max-width of the username when viewport
-	// allows for it.
-	@media ( min-width: @min-width-desktop-wide ) {
-		max-width: unit( 200 / @font-size-browser / @font-size-user-links, em );
-	}
 }
