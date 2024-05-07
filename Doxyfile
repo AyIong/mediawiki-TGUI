@@ -1,5 +1,5 @@
 PROJECT_NAME           = TGUI
-PROJECT_BRIEF          = "TGUI is a skin for MediaWiki. TGUI has been the default skin on all Wikimedia wikis since 2010."
+PROJECT_BRIEF          = "TGUI is a skin for MediaWiki. Based on Vector skin. Inspired by SS13 TGUI."
 
 OUTPUT_DIRECTORY       = docs
 HTML_OUTPUT            = php

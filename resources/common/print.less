@@ -1,12 +1,12 @@
-@wmui-color-base0: var(--color-text);
+@wmui-color-base0: #000;
 
 @color-base: @wmui-color-base0;
 
 @border-color-base: @wmui-color-base0;
-@border-color-footer: var(--color-border);
+@border-color-footer: #eee;
 
 /* These styles retain the existing typography in skin.less
-In future (when deploying these styles) we may want to refactor skins.tgui.styles
+In future (when deploying these styles) we may want to refactor skins.vector.styles
 to apply certain styles in print as well as screen mode. */
 .toc,
 body {
@@ -46,7 +46,7 @@ img {
 
 // Normalize Blue links in the article
 .mw-body a:not( .image ) {
-	border-bottom: 1px solid var(--color-border);
+	border-bottom: 1px solid #aaa;
 }
 
 .firstHeading {
@@ -59,15 +59,16 @@ img {
 // Headings
 .firstHeading,
 h2 {
+	// To avoid the bottom border of section headings with floated elements
 	overflow: hidden;
-	border-bottom: 2px solid var(--color-primary);
+	border-bottom: 2px solid @border-color-base;
 }
 
 h3,
 h4,
 h5,
 h6 {
-	margin: 2.5em 0 0;
+	margin: 30px 0 0;
 }
 
 h2,
@@ -206,7 +207,7 @@ ul {
 	padding: 0;
 
 	li {
-		color: var(--color-text-darker);
+		color: #999;
 		list-style: none;
 		display: block;
 		padding-bottom: 10px;
@@ -214,7 +215,7 @@ ul {
 
 		a {
 			// override default black print style.
-			color: var(--color-text-darker) !important; /* stylelint-disable-line declaration-no-important */
+			color: #999 !important; /* stylelint-disable-line declaration-no-important */
 		}
 	}
 }

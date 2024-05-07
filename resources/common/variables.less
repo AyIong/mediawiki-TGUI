@@ -4,13 +4,13 @@
 //
 // == Media query breakpoints ==
 //
-@min-width-mobile: @width-breakpoint-mobile; // Above 320px
-@max-width-mobile: @width-breakpoint-tablet - 1px; // Below 719px
-@min-width-tablet: @width-breakpoint-tablet; // Above 720px
-@max-width-tablet: @width-breakpoint-desktop - 1px; // Below 999px
-@min-width-desktop: @width-breakpoint-desktop; // Above 1000px
-@max-width-desktop: @width-breakpoint-desktop-wide - 1px; // Below 1199px
-@min-width-desktop-wide: @width-breakpoint-desktop-wide; // Above 1200px
+@min-width-mobile: 320px;
+@max-width-mobile: 719px;
+@min-width-tablet: 720px;
+@max-width-tablet: 999px;
+@min-width-desktop: 1000px;
+@max-width-desktop: 1199px;
+@min-width-desktop-wide: 1200px;
 
 // Sizing calculation primitives.
 @font-size-root: 100%;
@@ -20,10 +20,9 @@
 // == Page content ==
 //
 
-@color-base--subtle: #54595d;
-@color-link-selected: @color-base;
+@color-link-selected: var(--color-text);
 
-@outline-color-base--focus: @color-primary;
+@outline-color-base--focus: var(--color-primary);
 
 //
 // == Typography ==
@@ -35,13 +34,7 @@
 // Source of this font stack definition in WikimediaUI Base:
 // https://phabricator.wikimedia.org/source/wikimedia-ui-base/browse/master/wikimedia-ui-base.less$202
 @font-family-serif: 'Linux Libertine', 'Georgia', 'Times', serif;
-
-// Body content uses the user setting in browser / operating system default sans-serif font:
-// For example, Arial on Windows, Roboto on Android.
-// FIXME: Use WikimediaUI Base's OS specific default sans-serif fonts.
-// @font-family-sans is set in mediawiki.variables/variables.less
-
-// Fallback for headings, language: ja,he,ko. See T73240, T65817, T65843, T65844, T65827.
+@font-family-sans: sans-serif;
 @font-family-sans--fallback: sans-serif;
 
 @font-size-base: unit( 14 / @font-size-browser, em ); // Equals `0.875em`.
@@ -78,17 +71,13 @@
 @border-color-pagetitle: #eaecf0;
 // Use `rgba()` notation for better Safari support, see T254489.
 @border-color-portal-heading-transparent: rgba( red( @border-color-portal-heading ), green( @border-color-portal-heading ), blue( @border-color-portal-heading ), 0 );
-@border-start-blockquote: 4px @border-style-base #eaecf0;
+@border-start-blockquote: 4px solid #eaecf0;
 @padding-top-content: 0.5em;
 @padding-horizontal-content: 0.5em;
 @padding-blockquote: 8px 32px;
-@border-bottom-tabs: @border-width-base @border-style-base #eaecf0;
-
-@background-color-secondary--modern: #f8f9fa;
-@background-color-page-container: @background-color-base;
+@border-bottom-tabs: 1px solid var(--color-border);
 
 // Navigation
-@background-color-secondary: #f6f6f6;
 @color-nav-subtle: #444;
 // Navigation `line-height` has to be set in `em`s due to a rendering calculation issue.
 @line-height-nav: 1.125em;

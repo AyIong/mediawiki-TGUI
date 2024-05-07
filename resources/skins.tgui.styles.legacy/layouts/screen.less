@@ -8,15 +8,15 @@
 @import '../../common/variables.less';
 
 body {
-	background-color: @background-color-secondary;
+	background-color: var(--color-bg);
 	overflow-y: scroll;
 }
 
 .mw-body,
 .parsoid-body {
 	// General background/foreground color definition as one exception to the rule.
-	background-color: @background-color-base;
-	color: @color-base;
+	background-color: var(--color-bg);
+	color: var(--color-text);
 	direction: ltr;
 	padding: 1em;
 }
@@ -39,9 +39,9 @@ body {
 
 .mw-body {
 	// Merge the border below with tabs' one (in their background image).
-	margin-top: -@border-width-base;
+	margin-top: -1px;
 	// Border on top, left, and bottom side.
-	border: @border-width-base @border-style-base @border-color-content;
+	border: 1px solid @border-color-content;
 	border-right-width: 0;
 
 	.firstHeading {
@@ -61,7 +61,6 @@ body {
 
 /* Head */
 #mw-page-base {
-	.vertical-gradient( @background-color-base, @background-color-secondary, 50%, 100% );
 	background-position: bottom left;
 	height: 5em;
 }

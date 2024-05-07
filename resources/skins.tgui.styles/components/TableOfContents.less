@@ -62,14 +62,14 @@
 	padding: @sidebar-toc-vertical-padding @sidebar-toc-right-padding @sidebar-toc-vertical-padding @sidebar-toc-left-padding;
 	box-sizing: border-box;
 	overflow: auto;
-	background-color: @background-color-page-container;
+	background-color: var(--color-bg-section);
 
 	.sidebar-toc-header {
 		padding-bottom: 12px;
 	}
 
 	.sidebar-toc-title {
-		color: @color-base--subtle;
+		color: var(--color-text);
 		font-size: @font-size-base;
 		margin: 0;
 		padding: 0;
@@ -89,7 +89,7 @@
 		width: @toc-subsection-toggle-icon-size; // ~22px @ 12
 		height: @toc-subsection-toggle-icon-size;
 		font-size: 0.75em; // reduces size of toggle icon to 12px @ 16
-		transition: @transition-duration-base;
+		transition: 100ms;
 		cursor: pointer;
 	}
 
@@ -101,7 +101,7 @@
 
 	.sidebar-toc-list-item-active > .sidebar-toc-link {
 		// Highlight active section
-		color: @color-base;
+		color: var(--color-text);
 		font-weight: bold;
 		// increase width to prevent line wrapping due to bold text
 		width: ~'calc( 100% + @{sidebar-toc-right-padding} )';
@@ -130,24 +130,6 @@
 		a {
 			font-size: @font-size-base;
 		}
-	}
-}
-
-// T302076: Add fade scrollable indicator when TOC is in sidebar
-// Avoid showing indicator when the TOC is floating, or collapsed in the page title/sticky header
-@media ( min-width: @min-width-desktop ) {
-	.tgui-toc-not-collapsed .sidebar-toc:after {
-		content: '';
-		display: block;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		height: @sidebar-toc-fade-height;
-		background: linear-gradient( rgba( 255, 255, 255, 0 ), @background-color-page-container );
-		background-repeat: no-repeat;
-		background-position: -@sidebar-toc-right-padding; // T311436 Hacky way to prevent the fade from covering the scrollbar
-		pointer-events: none; // Make the link below the fade clickable
 	}
 }
 

@@ -11,7 +11,6 @@
 	position: absolute;
 	z-index: 9999;
 	max-width: 300px;
-	box-shadow: 0 0 5px #aaa;
 }
 
 body .ui-tooltip { border-width: 2px; }

@@ -170,7 +170,6 @@
 			"class": "ResourceLoaderSkinModule",
 			"features": {
 				"normalize": true,
-				"elements": true,
 				"content-links": true,
 				"content-links-external": false,
 				"content-media": true,

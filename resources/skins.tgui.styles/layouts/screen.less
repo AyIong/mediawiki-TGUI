@@ -25,6 +25,10 @@
 	( 2 * @padding-horizontal-page-container-wide );
 // 31.25em - 3.75em = 27.5em @ 16
 
+h1, h2, h3, h4, h5, h6 {
+	color: var(--color-text);
+}
+
 body {
 	overflow-y: scroll;
 	background-color: var(--color-bg);
@@ -118,7 +122,7 @@ body {
 	// should be right-aligned to prevent horizontal scrolling.
 	.tgui-menu-content {
 		left: auto;
-		right: -@border-width-base;
+		right: -1px;
 	}
 }
 

@@ -18,7 +18,7 @@
 	.mw-list-item a:focus,
 	.mw-list-item a:hover {
 		text-decoration: none;
-		border-bottom: @border-width-base @border-style-base;
+		border-bottom: 1px solid;
 	}
 
 	.mw-list-item.new a,
@@ -29,7 +29,7 @@
 	.mw-list-item.selected a,
 	.mw-list-item.selected a:visited {
 		color: @color-link-selected;
-		border-bottom: @border-width-base @border-style-base;
+		border-bottom: 1px solid;
 	}
 }
 
@@ -56,7 +56,7 @@
 		// bottom margin to overlap border with toolbar border.
 		margin-bottom: -1px;
 		cursor: pointer;
-		border-bottom: @border-width-base @border-style-base transparent;
+		border-bottom: 1px solid transparent;
 		// max-height & box-sizing to make link, watchstar & dropdown height consistent.
 		// NOTE: Was 40px instead of 41, but changed to avoid visual regressions.
 		max-height: unit( 41 / @font-size-tabs / @font-size-browser, em );

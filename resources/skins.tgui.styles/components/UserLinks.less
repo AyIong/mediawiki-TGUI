@@ -95,7 +95,7 @@
 // Anon editor notice i.e. "Pages for logged out editors".
 .tgui-user-menu-anon-editor {
 	.mixin-tgui-dropdown-menu-item();
-	color: @color-base--subtle;
+	color: var(--color-text);
 
 	a:before {
 		content: '@{msg-parentheses-start}';
@@ -108,12 +108,12 @@
 
 // Login link.
 .tgui-user-menu-login {
-	border-bottom: @border-width-base @border-style-base @colorGray14;
+	border-bottom: 1px solid var(--color-border);
 }
 
 // Logout link
 .tgui-user-menu-logout {
-	border-top: @border-width-base @border-style-base @colorGray14;
+	border-top: 1px solid var(--color-border);
 }
 
 //User-page link in personal (overflow) menu.
@@ -122,7 +122,7 @@
 
 	a {
 		// T312157 Override redlink (.new) color for non-existant userpage
-		color: @color-primary;
+		color: var(--color-button-text);
 	}
 
 	span {

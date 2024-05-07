@@ -13,11 +13,11 @@
 	padding: 7px 10px 7px 10px;
 	// Override background color for when the TOC is overlaps content
 	// as a sticky element when the page is scrolled down.
-	background-color: @background-color-base;
+	background-color: var(--color-bg);
 
 	&:hover,
 	&:active {
-		background-color: @colorGray15;
+		background-color: var(--color-selected);
 	}
 }
 
@@ -39,21 +39,21 @@
 	border: 0;
 	padding: 0;
 	background-color: transparent;
-	color: @color-primary;
+	color: var(--color-primary);
 	cursor: pointer;
 
 	&:hover {
-		color: @color-primary--hover;
+		color: var(--color-primary-light);
 	}
 
 	&:before {
 		content: '@{msg-brackets-start}';
-		color: @color-base--subtle;
+		color: var(--color-text);
 	}
 
 	&:after {
 		content: '@{msg-brackets-end}';
-		color: @color-base--subtle;
+		color: var(--color-text);
 	}
 }
 
@@ -75,7 +75,7 @@
 		position: absolute;
 		margin: 0;
 		// FIXME: Collapsed TOC styles are not consistent with other tgui dropdowns
-		border: @border-width-base @border-style-base @border-color-base;
+		border: 1px solid @border-color-base;
 	}
 
 	@{selector-collapsed-toc-open} ~ @{sidebar-toc-selector} {

@@ -15,9 +15,9 @@
 	display: none;
 	align-items: center;
 	margin: 0 auto;
-	background: @background-color-base;
+	background: var(--color-bg);
 	background-color: #fffffff7;
-	border-bottom: @border-width-base @border-style-base @colorGray14;
+	border-bottom: 1px solid var(--color-border);
 	// FIXME: Should this adapt to different thresholds? Ask Alex!
 	padding: 6px 8px 6px 10px;
 	justify-content: space-between;
@@ -72,8 +72,8 @@
 	// Components
 	//
 	&-context-bar {
-		border-left: @border-width-base @border-style-base #c8c8c8;
-		margin: 0 15px;
+		border-left: 1px solid var(--color-border);
+		margin: 0 2.25em;
 		padding-left: 30px;
 		white-space: nowrap;
 		min-width: 0;
@@ -142,7 +142,7 @@
 			margin-left: @margin-start-search-box-with-thumbnail;
 
 			.cdx-text-input__start-icon {
-				color: @colorGray2;
+				color: var(--color-text-darker);
 			}
 		}
 	}
