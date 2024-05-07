@@ -140,8 +140,6 @@ abstract class SkinTGUI extends SkinMustache {
 	 */
 	private const OPT_OUT_LINK_TRACKING_CODE = 'vctw1';
 
-	abstract protected function isLegacy(): bool;
-
 	/**
 	 * Calls getLanguages with caching.
 	 * @return array
@@ -216,7 +214,7 @@ abstract class SkinTGUI extends SkinMustache {
 	 * @return bool
 	 */
 	protected function shouldHideLanguages() {
-		return $this->isLegacy() || !$this->isLanguagesInContent() || !$this->isULSExtensionEnabled();
+		return !$this->isLanguagesInContent() || !$this->isULSExtensionEnabled();
 	}
 
 	/**
@@ -478,7 +476,6 @@ abstract class SkinTGUI extends SkinMustache {
 		//
 		// Conditionally used values must use null to indicate absence (not false or '').
 		$commonSkinData = array_merge( $parentData, [
-			'is-legacy' => $this->isLegacy(),
 			'input-location' => $this->getSearchBoxInputLocation(),
 			'sidebar-visible' => $this->isSidebarVisible(),
 			'is-language-in-content' => $this->isLanguagesInContent(),
@@ -486,58 +483,34 @@ abstract class SkinTGUI extends SkinMustache {
 			'is-language-in-content-bottom' => $this->isLanguagesInContentAt( 'bottom' ),
 			'data-search-box' => $this->getSearchData(
 				$parentData['data-search-box'],
-				!$this->isLegacy(),
-				// is primary mode of search
-				true,
-				'searchform',
-				true
+				false,
+				false,
+				'tgui-sticky-search-form',
+				false
 			)
 		] );
 
 		$user = $skin->getUser();
-		if ( $user->isRegistered() ) {
-			// Note: This data is also passed to legacy template where it is unused.
-			$optOutUrl = [
-				'text' => $this->msg( 'tgui-opt-out' )->text(),
-				'href' => SpecialPage::getTitleFor(
-					'Preferences',
-					false,
-					'mw-prefsection-rendering-skin'
-				)->getLinkURL( 'useskin=tgui&wprov=' . self::OPT_OUT_LINK_TRACKING_CODE ),
-				'title' => $this->msg( 'tgui-opt-out-tooltip' )->text(),
-				'active' => false,
-			];
-			$htmlData = [
-				'link' => $optOutUrl,
-			];
-			$commonSkinData['data-emphasized-sidebar-action'][] = $this->makeSidebarActionData(
-				$htmlData,
-				[]
-			);
-		}
+		$commonSkinData['data-tgui-user-links'] = $this->getUserLinksTemplateData(
+			$commonSkinData['data-portlets'],
+			$user
+		);
 
-		if ( !$this->isLegacy() ) {
-			$commonSkinData['data-tgui-user-links'] = $this->getUserLinksTemplateData(
-				$commonSkinData['data-portlets'],
-				$user
+		// T295555 Add language switch alert message temporarily (to be removed).
+		if ( $this->shouldLanguageAlertBeInSidebar() ) {
+			$languageSwitchAlert = [
+				'html-content' => Html::noticeBox(
+					$this->msg( 'tgui-language-redirect-to-top' )->parse(),
+					'tgui-language-sidebar-alert'
+				),
+			];
+			$headingOptions = [
+				'heading' => $this->msg( 'tgui-languages' )->plain(),
+			];
+			$commonSkinData['data-tgui-language-switch-alert'][] = $this->makeSidebarActionData(
+				$languageSwitchAlert,
+				$headingOptions
 			);
-
-			// T295555 Add language switch alert message temporarily (to be removed).
-			if ( $this->shouldLanguageAlertBeInSidebar() ) {
-				$languageSwitchAlert = [
-					'html-content' => Html::noticeBox(
-						$this->msg( 'tgui-language-redirect-to-top' )->parse(),
-						'tgui-language-sidebar-alert'
-					),
-				];
-				$headingOptions = [
-					'heading' => $this->msg( 'tgui-languages' )->plain(),
-				];
-				$commonSkinData['data-tgui-language-switch-alert'][] = $this->makeSidebarActionData(
-					$languageSwitchAlert,
-					$headingOptions
-				);
-			}
 		}
 
 		return $commonSkinData;
@@ -599,10 +572,6 @@ abstract class SkinTGUI extends SkinMustache {
 	 *  `Constants::SEARCH_BOX_INPUT_LOCATION_MOVED`
 	 */
 	private function getSearchBoxInputLocation(): string {
-		if ( $this->isLegacy() ) {
-			return Constants::SEARCH_BOX_INPUT_LOCATION_DEFAULT;
-		}
-
 		return Constants::SEARCH_BOX_INPUT_LOCATION_MOVED;
 	}
 
@@ -696,7 +665,7 @@ abstract class SkinTGUI extends SkinMustache {
 			'id' => 'ca-addsection-sticky-header',
 			'event' => 'addsection-sticky-header',
 			'html-tgui-button-icon' => Hooks::makeIcon( 'wikimedia-speechBubbleAdd-progressive' ),
-			'label' => $this->msg( [ 'tgui-2022-action-addsection', 'skin-action-addsection' ] ),
+			'label' => $this->msg( [ 'tgui-action-addsection', 'skin-action-addsection' ] ),
 			'is-quiet' => true,
 			'tabindex' => '-1',
 			'class' => 'sticky-header-icon mw-ui-primary mw-ui-progressive'
@@ -807,9 +776,6 @@ abstract class SkinTGUI extends SkinMustache {
 			self::MENU_TYPE_PORTAL => 'tgui-menu-portal portal',
 			self::MENU_TYPE_DEFAULT => '',
 		];
-		if ( $this->isLegacy() ) {
-			$extraClasses[self::MENU_TYPE_TABS] .= ' tgui-menu-tabs-legacy';
-		}
 		$portletData['class'] .= ' ' . $extraClasses[$type];
 
 		if ( !isset( $portletData['heading-class'] ) ) {
@@ -896,19 +862,12 @@ abstract class SkinTGUI extends SkinMustache {
 			$portletData = array_merge( $portletData, $this->getULSPortletData() );
 		}
 
-		if ( $key === 'data-user-menu' && !$this->isLegacy() ) {
+		if ( $key === 'data-user-menu' ) {
 			$portletData = $this->getUserMenuPortletData( $portletData );
 		}
 
 		if ( $key === 'data-tgui-user-menu-overflow' ) {
 			$portletData['class'] .= ' tgui-user-menu-overflow';
-		}
-
-		if ( $key === 'data-personal' && $this->isLegacy() ) {
-			// Set tooltip to empty string for the personal menu for both logged-in and logged-out users
-			// to avoid showing the tooltip for legacy version.
-			$portletData['html-tooltip'] = '';
-			$portletData['class'] .= ' tgui-user-menu-legacy';
 		}
 
 		// Special casing for Variant to change label to selected.

@@ -108,15 +108,6 @@ class SkinTGUI22 extends SkinTGUI {
 	}
 
 	/**
-	 * Temporary function while we deprecate SkinTGUI class.
-	 *
-	 * @return bool
-	 */
-	protected function isLegacy(): bool {
-		return false;
-	}
-
-	/**
 	 * Merges the `view-overflow` menu into the `action` menu.
 	 * This ensures that the previous state of the menu e.g. emptyPortlet class
 	 * is preserved.

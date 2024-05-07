@@ -14,35 +14,12 @@ final class Constants {
 	 * This is tightly coupled to the ValidSkinNames field in skin.json.
 	 * @var string
 	 */
-	public const SKIN_NAME_MODERN = 'tgui-2022';
-
-	/**
-	 * This is tightly coupled to the ValidSkinNames field in skin.json.
-	 * @var string
-	 */
-	public const SKIN_NAME_LEGACY = 'tgui';
-
-	// These are used to provide different default skin for new users.
-	/**
-	 * @var string
-	 */
-	public const SKIN_VERSION_LEGACY = '1';
-	/**
-	 * @var string
-	 */
-	public const SKIN_VERSION_LATEST = '2';
+	public const SKIN_NAME = 'tgui';
 
 	/**
 	 * @var string
 	 */
 	public const SERVICE_FEATURE_MANAGER = 'TGUI.FeatureManager';
-
-	// These are tightly coupled to skin.json's configs. See skin.json for documentation.
-	/**
-	 * @var string
-	 */
-	public const CONFIG_KEY_DEFAULT_SKIN_VERSION_FOR_NEW_ACCOUNTS =
-		'TGUIDefaultSkinVersionForNewAccounts';
 
 	/**
 	 * @var string

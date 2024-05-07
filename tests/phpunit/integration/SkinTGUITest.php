@@ -3,8 +3,7 @@ namespace MediaWiki\Skins\TGUI\Tests\Integration;
 
 use Exception;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Skins\TGUI\SkinTGUI22;
-use MediaWiki\Skins\TGUI\SkinTGUILegacy;
+use MediaWiki\Skins\TGUI\SkinTGUI;
 use MediaWikiIntegrationTestCase;
 use ReflectionMethod;
 use RequestContext;
@@ -176,7 +175,7 @@ class SkinTGUITest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Skins\TGUI\SkinTGUI22::getTocData
+	 * @covers \MediaWiki\Skins\TGUI\SkinTGUI::getTocData
 	 * @dataProvider provideGetTOCData
 	 */
 	public function testGetTocData(
@@ -187,7 +186,7 @@ class SkinTGUITest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValues( $config );
 		$this->setUserLang( 'qqx' );
 
-		$skinTGUI = new SkinTGUI22( [ 'name' => 'tgui-2022' ] );
+		$skinTGUI = new SkinTGUI( [ 'name' => 'tgui' ] );
 		$openSkinTGUI = TestingAccessWrapper::newFromObject( $skinTGUI );
 		$data = $openSkinTGUI->getTocData( $tocData );
 		$this->assertEquals( $expected, $data );
@@ -433,12 +432,10 @@ class SkinTGUITest extends MediaWikiIntegrationTestCase {
 		bool $expected
 	) {
 		$this->overrideConfigValues( array_merge( $requirements, [
-			'DefaultSkin' => 'tgui-2022',
-			'TGUIDefaultSkinVersion' => '2',
-			'TGUISkinMigrationMode' => true,
+			'DefaultSkin' => 'tgui'
 		] ) );
 
-		$mockSkinTGUI = $this->getMockBuilder( SkinTGUI22::class )
+		$mockSkinTGUI = $this->getMockBuilder( SkinTGUI::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'getTitle', 'getLanguagesCached','isLanguagesInContentAt', 'shouldHideLanguages' ] )
 			->getMock();
@@ -452,7 +449,7 @@ class SkinTGUITest extends MediaWikiIntegrationTestCase {
 			->willReturn( $shouldHideLanguages );
 
 		$shouldLanguageAlertBeInSidebarMethod = new ReflectionMethod(
-			SkinTGUI22::class,
+			SkinTGUI::class,
 			'shouldLanguageAlertBeInSidebar'
 		);
 		$shouldLanguageAlertBeInSidebarMethod->setAccessible( true );

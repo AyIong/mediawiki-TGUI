@@ -46,10 +46,7 @@ class Hooks implements
 	 * @return bool
 	 */
 	private static function isTGUISkin( string $skinName ): bool {
-		return (
-			$skinName === Constants::SKIN_NAME_LEGACY ||
-			$skinName === Constants::SKIN_NAME_MODERN
-		);
+		return ($skinName === Constants::SKIN_NAME);
 	}
 
 	/**
@@ -336,14 +333,8 @@ class Hooks implements
 	 */
 	private static function updateUserLinksItems( $sk, &$content_navigation ) {
 		$skinName = $sk->getSkinName();
-		if ( self::isSkinVersionLegacy( $skinName ) ) {
-			// Remove user page from personal toolbar since it will be inside the personal menu for logged-in
-			// users in legacy TGUI.
-			unset( $content_navigation['user-page'] );
-		} else {
-			self::updateUserLinksOverflowItems( $sk, $content_navigation );
-			self::updateUserLinksDropdownItems( $sk, $content_navigation );
-		}
+		self::updateUserLinksOverflowItems( $sk, $content_navigation );
+		self::updateUserLinksDropdownItems( $sk, $content_navigation );
 	}
 
 	/**
@@ -510,7 +501,7 @@ class Hooks implements
 
 			self::updateUserLinksItems( $sk, $content_navigation );
 		}
-		if ( $skinName === Constants::SKIN_NAME_MODERN ) {
+		if ( $skinName === Constants::SKIN_NAME ) {
 			self::createMoreOverflowMenu( $content_navigation );
 		}
 	}
@@ -522,7 +513,7 @@ class Hooks implements
 	 * @param array &$pages
 	 */
 	public function onResourceLoaderSiteStylesModulePages( $skin, &$pages ): void {
-		if ( $skin === Constants::SKIN_NAME_MODERN ) {
+		if ( $skin === Constants::SKIN_NAME ) {
 			$pages['MediaWiki:TGUI.css'] = [ 'type' => 'style' ];
 		}
 	}
@@ -534,7 +525,7 @@ class Hooks implements
 	 * @param array &$pages
 	 */
 	public function onResourceLoaderSiteModulePages( $skin, &$pages ): void {
-		if ( $skin === Constants::SKIN_NAME_MODERN ) {
+		if ( $skin === Constants::SKIN_NAME ) {
 			$pages['MediaWiki:TGUI.js'] = [ 'type' => 'script' ];
 		}
 	}
@@ -572,8 +563,7 @@ class Hooks implements
 			$optionsManager->setOption(
 				$user,
 				Constants::PREF_KEY_SKIN,
-				$default === Constants::SKIN_VERSION_LEGACY ?
-					Constants::SKIN_NAME_LEGACY : Constants::SKIN_NAME_MODERN
+				$default === Constants::SKIN_NAME
 			);
 		}
 	}
@@ -586,10 +576,6 @@ class Hooks implements
 	 * @return string[]
 	 */
 	private static function getTocClasses( Skin $sk, $config ): array {
-		if ( !( $sk instanceof SkinTGUI22 ) ) {
-			return [];
-		}
-
 		$classes = [];
 		if (
 			$sk->isTOCABTestEnabled() &&
@@ -631,22 +617,9 @@ class Hooks implements
 		//
 		// See https://codesearch.wmcloud.org/deployed/?q=skin-tgui-legacy for an up-to-date
 		// list.
-		if ( self::isSkinVersionLegacy( $skinName ) ) {
-			$bodyAttrs['class'] .= ' skin-tgui-legacy';
-		}
-
 		$tocClasses = self::getTocClasses( $sk, $config );
 		if ( $tocClasses ) {
 			$bodyAttrs['class'] .= ' ' . implode( ' ', $tocClasses );
-		}
-
-		// Should we disable the max-width styling?
-		if ( !self::isSkinVersionLegacy( $skinName ) && $sk->getTitle() && self::shouldDisableMaxWidth(
-			$config->get( 'TGUIMaxWidthOptions' ),
-			$sk->getTitle(),
-			$out->getRequest()->getValues()
-		) ) {
-			$bodyAttrs['class'] .= ' skin-tgui-disable-max-width';
 		}
 
 		$featureManager = TGUIServices::getFeatureManager();
@@ -670,12 +643,8 @@ class Hooks implements
 			// user is anonymous
 			$user = $context->getUser();
 			$config = $context->getConfig();
-			$titles = $config->get( 'TGUI2022PreviewPages' );
 			$title = $context->getTitle();
 			$titleText = $title ? $title->getPrefixedText() : null;
-			if ( $titleText && $user->isAnon() && in_array( $titleText, $titles ) ) {
-				$skin = 'tgui-2022';
-			}
 		}
 	}
 
@@ -768,25 +737,5 @@ class Hooks implements
 		}
 		$config = $out->getConfig();
 		$user = $out->getUser();
-
-		if ( $user->isRegistered() && self::isSkinVersionLegacy( $skinName ) ) {
-			$vars[ 'wgTGUIDisableSidebarPersistence' ] =
-				$config->get(
-					Constants::CONFIG_KEY_DISABLE_SIDEBAR_PERSISTENCE
-				);
-		}
-		// Must be exposed to CentralNotice banners via mw.config
-		$vars[ 'wgTGUI2022PreviewPages' ] = $config->get( 'TGUI2022PreviewPages' );
-	}
-
-	/**
-	 * Gets whether the current skin version is the legacy version.
-	 * Should mirror SkinTGUI::isLegacy
-	 *
-	 * @param string $skinName hint that can be used to detect modern tgui.
-	 * @return bool
-	 */
-	private static function isSkinVersionLegacy( $skinName ): bool {
-		return $skinName === Constants::SKIN_NAME_LEGACY;
 	}
 }

@@ -31,14 +31,11 @@
 			"Vlad5250"
 		]
 	},
-	"skinname-tgui": "TGUI, устаревшая (2010)",
-	"skinname-tgui-2022": "TGUI (2022)",
+	"skinname-tgui": "TGUI",
 	"tgui-specialversion-name": "TGUI",
 	"tgui-skin-desc": "Предоставляет две векторные темы оформления:\n* 2011: ''Современная'' — версия MonoBook с обновлённым оформлением и многими улучшениями пользовательского опыта.\n* 2022: ''TGUI'' — созданная в рамках проекта Фонда Викимедиа «[[mw:Desktop Improvements]]».",
 	"prefs-tgui-enable-tgui-1-label": "Использовать TGUI тему оформления прежней версии",
 	"prefs-tgui-enable-tgui-1-help": "В течение следующих нескольких лет мы постепенно будем обновлять «TGUI» тему оформления. Прежняя версия темы оформления «TGUI» позволит вам видеть старую версию «TGUI» (по состоянию на декабрь 2019 года). Чтобы узнать больше об обновлениях, перейдите на [[mw:Reading/Web/Desktop_Improvements|страницу нашего проекта]].",
-	"tgui-opt-out": "Переключиться на старый вид",
-	"tgui-opt-out-tooltip": "Измените настройки, чтобы вернуться к старому виду темы оформления (Устаревшая TGUI)",
 	"tgui.css": "/* Весь CSS будет отсюда будет загружен пользователям темы оформления «TGUI» */",
 	"tgui.js": "/* Любой код JavaScript отсюда будет загружаться пользователям темы оформления «TGUI» */",
 	"tgui-action-toggle-sidebar": "Переключить боковую панель",
@@ -80,6 +77,6 @@
 	"tgui-toc-collapsible-button-label": "Отобразить/Скрыть содержание",
 	"tgui-article-tools-nav-label": "Инструменты",
 	"tgui-site-nav-label": "Сайт",
-	"tgui-2022-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Обсуждение]]",
+	"tgui-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Обсуждение]]",
 	"tooltip-tgui-anon-user-menu-title": "Больше возможностей"
 }

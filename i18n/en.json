@@ -2,14 +2,11 @@
 	"@metadata": {
 		"authors": []
 	},
-	"skinname-tgui": "TGUI legacy (2010)",
-	"skinname-tgui-2022": "TGUI (2022)",
+	"skinname-tgui": "TGUI",
 	"tgui-specialversion-name": "TGUI",
 	"tgui-skin-desc": "Provides 2 TGUI skins:\n* 2011 - The Modern version of MonoBook with fresh look and many usability improvements.\n* 2022 - The TGUI built as part of the WMF [[mw:Desktop Improvements]] project.",
 	"prefs-tgui-enable-tgui-1-label": "Use Legacy TGUI",
 	"prefs-tgui-enable-tgui-1-help": "Over the next few years, we will be gradually updating the TGUI skin. Legacy TGUI will allow you to view the old version of TGUI (as of December 2019). To learn more about the updates, go to our [[mw:Reading/Web/Desktop_Improvements|project page]].",
-	"tgui-opt-out": "Switch to old look",
-	"tgui-opt-out-tooltip": "Change your settings to go back to the old look of the skin (legacy TGUI)",
 	"tgui.css": "/* All CSS here will be loaded for users of the TGUI skin */",
 	"tgui.js": "/* All JavaScript here will be loaded for users of the TGUI skin */",
 	"tgui-action-toggle-sidebar": "Toggle sidebar",
@@ -51,6 +48,6 @@
 	"tgui-toc-collapsible-button-label": "Toggle the table of contents",
 	"tgui-article-tools-nav-label": "Tools",
 	"tgui-site-nav-label": "Site",
-	"tgui-2022-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Discussion]]",
+	"tgui-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Discussion]]",
 	"tooltip-tgui-anon-user-menu-title": "More options"
 }

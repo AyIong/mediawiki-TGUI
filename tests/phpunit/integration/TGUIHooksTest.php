@@ -9,8 +9,7 @@ namespace MediaWiki\Skins\TGUI\Tests\Integration;
 use HashConfig;
 use MediaWiki\Skins\TGUI\Constants;
 use MediaWiki\Skins\TGUI\Hooks;
-use MediaWiki\Skins\TGUI\SkinTGUI22;
-use MediaWiki\Skins\TGUI\SkinTGUILegacy;
+use MediaWiki\Skins\TGUI\SkinTGUI;
 use MediaWiki\User\UserOptionsManager;
 use MediaWikiIntegrationTestCase;
 use ReflectionMethod;
@@ -348,55 +347,13 @@ class TGUIHooksTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ::onLocalUserCreated
-	 */
-	public function testOnLocalUserCreatedLegacy() {
-		$this->setMwGlobals( [
-			'wgTGUIDefaultSkinVersionForNewAccounts' => Constants::SKIN_VERSION_LEGACY,
-		] );
-
-		$user = $this->createMock( User::class );
-		$userOptionsManager = $this->createMock( UserOptionsManager::class );
-		$userOptionsManager->expects( $this->once() )
-			->method( 'setOption' )
-			->with( $user, 'skin', Constants::SKIN_NAME_LEGACY );
-		$this->setService( 'UserOptionsManager', $userOptionsManager );
-
-		// NOTE: Using $this->getServiceContainer()->getHookContainer()->run( ... )
-		// will instead call Echo's legacy hook as that is already registered which
-		// will break this test. Use TGUI's hook handler instead.
-		( new Hooks() )->onLocalUserCreated( $user, false );
-	}
-
-	/**
-	 * @covers ::onLocalUserCreated
-	 */
-	public function testOnLocalUserCreatedLatest() {
-		$this->setMwGlobals( [
-			'wgTGUIDefaultSkinVersionForNewAccounts' => Constants::SKIN_VERSION_LATEST,
-		] );
-
-		$user = $this->createMock( User::class );
-		$userOptionsManager = $this->createMock( UserOptionsManager::class );
-		$userOptionsManager->expects( $this->once() )
-			->method( 'setOption' )
-			->with( $user, 'skin', Constants::SKIN_NAME_MODERN );
-		$this->setService( 'UserOptionsManager', $userOptionsManager );
-
-		// NOTE: Using $this->getServiceContainer()->getHookContainer()->run( ... )
-		// will instead call Echo's legacy hook as that is already registered which
-		// will break this test. Use TGUI's hook handler instead.
-		( new Hooks() )->onLocalUserCreated( $user, false );
-	}
-
-	/**
 	 * @covers ::onSkinTemplateNavigation
 	 */
 	public function testOnSkinTemplateNavigation() {
 		$this->setMwGlobals( [
 			'wgTGUIUseIconWatch' => true
 		] );
-		$skin = new SkinTGUI22( [ 'name' => 'tgui' ] );
+		$skin = new SkinTGUI( [ 'name' => 'tgui' ] );
 		$skin->getContext()->setTitle( Title::newFromText( 'Foo' ) );
 		$contentNavWatch = [
 			'actions' => [
@@ -431,7 +388,7 @@ class TGUIHooksTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::updateUserLinksItems
 	 */
 	public function testUpdateUserLinksItems() {
-		$tgui2022Skin = new SkinTGUI22( [ 'name' => 'tgui-2022' ] );
+		$tguiSkin = new SkinTGUI( [ 'name' => 'tgui' ] );
 		$contentNav = [
 			'user-page' => [
 				'userpage' => [ 'class' => [], 'icon' => 'userpage' ],
@@ -447,7 +404,7 @@ class TGUIHooksTest extends MediaWikiIntegrationTestCase {
 			]
 		];
 
-		Hooks::onSkinTemplateNavigation( $tgui2022Skin, $contentNav );
+		Hooks::onSkinTemplateNavigation( $tguiSkin, $contentNav );
 		$this->assertFalse( isset( $contentNav['user-page']['login'] ),
 			'updateUserLinksDropdownItems is called when not legacy'
 		);
@@ -468,7 +425,7 @@ class TGUIHooksTest extends MediaWikiIntegrationTestCase {
 		$updateUserLinksDropdownItems->setAccessible( true );
 
 		// Anon users
-		$skin = new SkinTGUI22( [ 'name' => 'tgui-2022' ] );
+		$skin = new SkinTGUI( [ 'name' => 'tgui' ] );
 		$contentAnon = [
 			'user-menu' => [
 				'anonuserpage' => [ 'class' => [], 'icon' => 'anonuserpage' ],
@@ -527,7 +484,7 @@ class TGUIHooksTest extends MediaWikiIntegrationTestCase {
 			'updateUserLinksOverflowItems'
 		);
 		$updateUserLinksOverflowItems->setAccessible( true );
-		$skin = new SkinTGUI22( [ 'name' => 'tgui-2022' ] );
+		$skin = new SkinTGUI( [ 'name' => 'tgui' ] );
 
 		// Registered user
 		$registeredUser = $this->createMock( User::class );

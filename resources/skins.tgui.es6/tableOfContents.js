@@ -509,7 +509,7 @@ module.exports = function tableOfContents( props ) {
 	/**
 	 * Prepares the data for rendering the table of contents,
 	 * nesting child sections within their parent sections.
-	 * This shoul yield the same result as the php function SkinTGUI22::getTocData(),
+	 * This shoul yield the same result as the php function SkinTGUI::getTocData(),
 	 * please make sure to keep them in sync.
 	 *
 	 * @param {Section[]} sections
