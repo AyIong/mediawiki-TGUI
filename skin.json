@@ -1,19 +1,9 @@
 {
 	"name": "TGUI",
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"author": [
-		"[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team]",
-		"Trevor Parscal",
-		"Roan Kattouw",
-		"Alex Hollender",
-		"Bernard Wang",
-		"Clare Ming",
-		"Jan Drewniak",
-		"Jon Robson",
-		"Nick Ray",
-		"Sam Smith",
-		"Stephen Niedzielski",
-		"Volker E."
+		"Александр Кица (Aylong)",
+		"[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team] with Original [https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
 	],
 	"url": "https://www.mediawiki.org/wiki/Skin:TGUI",
 	"descriptionmsg": "tgui-skin-desc",
