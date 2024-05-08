@@ -1,16 +1,11 @@
 {
-	"extends": [
-		"../../.eslintrcEs6.json"
-	],
-	"rules": {
-		"jsdoc/no-undefined-types": [
-			"error",
-			{
-				"definedTypes": [
-					"RequestInit",
-					"MwMap"
-				]
-			}
-		]
-	}
+  "extends": ["../../.eslintrcEs6.json"],
+  "rules": {
+    "jsdoc/no-undefined-types": [
+      "error",
+      {
+        "definedTypes": ["RequestInit", "MwMap"]
+      }
+    ]
+  }
 }

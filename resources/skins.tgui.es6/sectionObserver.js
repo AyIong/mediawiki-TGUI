@@ -37,145 +37,144 @@
  * @param {SectionObserverProps} props
  * @return {SectionObserver}
  */
-module.exports = function sectionObserver( props ) {
-	props = Object.assign( {
-		topMargin: 0,
-		throttleMs: 200,
-		onIntersection: () => {}
-	}, props );
+module.exports = function sectionObserver(props) {
+  props = Object.assign(
+    {
+      topMargin: 0,
+      throttleMs: 200,
+      onIntersection: () => {},
+    },
+    props,
+  );
 
-	let /** @type {boolean} */ inThrottle = false;
-	let /** @type {HTMLElement | undefined} */ current;
-	// eslint-disable-next-line compat/compat
-	const observer = new IntersectionObserver( ( entries ) => {
-		let /** @type {IntersectionObserverEntry | undefined} */ closestNegativeEntry;
-		let /** @type {IntersectionObserverEntry | undefined} */ closestPositiveEntry;
-		const topMargin = /** @type {number} */ ( props.topMargin );
+  let /** @type {boolean} */ inThrottle = false;
+  let /** @type {HTMLElement | undefined} */ current;
+  // eslint-disable-next-line compat/compat
+  const observer = new IntersectionObserver((entries) => {
+    let /** @type {IntersectionObserverEntry | undefined} */ closestNegativeEntry;
+    let /** @type {IntersectionObserverEntry | undefined} */ closestPositiveEntry;
+    const topMargin = /** @type {number} */ (props.topMargin);
 
-		entries.forEach( ( entry ) => {
-			const top =
-					entry.boundingClientRect.top - topMargin;
-			if (
-				top > 0 &&
-				(
-					closestPositiveEntry === undefined ||
-					top < closestPositiveEntry.boundingClientRect.top - topMargin
-				)
-			) {
-				closestPositiveEntry = entry;
-			}
+    entries.forEach((entry) => {
+      const top = entry.boundingClientRect.top - topMargin;
+      if (
+        top > 0 &&
+        (closestPositiveEntry === undefined ||
+          top < closestPositiveEntry.boundingClientRect.top - topMargin)
+      ) {
+        closestPositiveEntry = entry;
+      }
 
-			if (
-				top <= 0 &&
-				(
-					closestNegativeEntry === undefined ||
-					top > closestNegativeEntry.boundingClientRect.top - topMargin
-				)
-			) {
-				closestNegativeEntry = entry;
-			}
-		} );
+      if (
+        top <= 0 &&
+        (closestNegativeEntry === undefined ||
+          top > closestNegativeEntry.boundingClientRect.top - topMargin)
+      ) {
+        closestNegativeEntry = entry;
+      }
+    });
 
-		const closestTag =
-			/** @type {HTMLElement} */ ( closestNegativeEntry ? closestNegativeEntry.target :
-				/** @type {IntersectionObserverEntry} */ ( closestPositiveEntry ).target
-			);
+    const closestTag = /** @type {HTMLElement} */ (
+      closestNegativeEntry
+        ? closestNegativeEntry.target
+        : /** @type {IntersectionObserverEntry} */ (closestPositiveEntry).target
+    );
 
-		// If the intersection is new, fire the `onIntersection` callback.
-		if ( current !== closestTag ) {
-			props.onIntersection( closestTag );
-		}
-		current = closestTag;
+    // If the intersection is new, fire the `onIntersection` callback.
+    if (current !== closestTag) {
+      props.onIntersection(closestTag);
+    }
+    current = closestTag;
 
-		// When finished finding the intersecting element, stop observing all
-		// observed elements. The scroll event handler will be responsible for
-		// throttling and reobserving the elements again. Because we don't have a
-		// wrapper element around our content headings and their children, we can't
-		// rely on IntersectionObserver (which is optimized to detect intersecting
-		// elements *within* the viewport) to reliably fire this callback without
-		// this manual step. Instead, we offload the work of calculating the
-		// position of each element in an efficient manner to IntersectionObserver,
-		// but do not use it to detect when a new element has entered the viewport.
-		observer.disconnect();
-	} );
+    // When finished finding the intersecting element, stop observing all
+    // observed elements. The scroll event handler will be responsible for
+    // throttling and reobserving the elements again. Because we don't have a
+    // wrapper element around our content headings and their children, we can't
+    // rely on IntersectionObserver (which is optimized to detect intersecting
+    // elements *within* the viewport) to reliably fire this callback without
+    // this manual step. Instead, we offload the work of calculating the
+    // position of each element in an efficient manner to IntersectionObserver,
+    // but do not use it to detect when a new element has entered the viewport.
+    observer.disconnect();
+  });
 
-	function calcIntersection() {
-		// IntersectionObserver will asynchronously calculate the boundingClientRect
-		// of each observed element off the main thread after `observe` is called.
-		props.elements.forEach( ( element ) => {
-			observer.observe( /** @type {HTMLElement} */ ( element ) );
-		} );
-	}
+  function calcIntersection() {
+    // IntersectionObserver will asynchronously calculate the boundingClientRect
+    // of each observed element off the main thread after `observe` is called.
+    props.elements.forEach((element) => {
+      observer.observe(/** @type {HTMLElement} */ (element));
+    });
+  }
 
-	function handleScroll() {
-		// Throttle the scroll event handler to fire at a rate limited by `props.throttleMs`.
-		if ( !inThrottle ) {
-			inThrottle = true;
+  function handleScroll() {
+    // Throttle the scroll event handler to fire at a rate limited by `props.throttleMs`.
+    if (!inThrottle) {
+      inThrottle = true;
 
-			setTimeout( () => {
-				calcIntersection();
-				inThrottle = false;
-			}, props.throttleMs );
-		}
-	}
+      setTimeout(() => {
+        calcIntersection();
+        inThrottle = false;
+      }, props.throttleMs);
+    }
+  }
 
-	function bindScrollListener() {
-		window.addEventListener( 'scroll', handleScroll );
-	}
+  function bindScrollListener() {
+    window.addEventListener("scroll", handleScroll);
+  }
 
-	function unbindScrollListener() {
-		window.removeEventListener( 'scroll', handleScroll );
-	}
+  function unbindScrollListener() {
+    window.removeEventListener("scroll", handleScroll);
+  }
 
-	/**
-	 * Pauses intersection observation until `resume` is called.
-	 */
-	function pause() {
-		unbindScrollListener();
-		// Assume current is no longer valid while paused.
-		current = undefined;
-	}
+  /**
+   * Pauses intersection observation until `resume` is called.
+   */
+  function pause() {
+    unbindScrollListener();
+    // Assume current is no longer valid while paused.
+    current = undefined;
+  }
 
-	/**
-	 * Resumes intersection observation.
-	 */
-	function resume() {
-		bindScrollListener();
-	}
+  /**
+   * Resumes intersection observation.
+   */
+  function resume() {
+    bindScrollListener();
+  }
 
-	/**
-	 * Cleans up event listeners and intersection observer. Should be called when
-	 * the observer is permanently no longer needed.
-	 */
-	function unmount() {
-		unbindScrollListener();
-		observer.disconnect();
-	}
+  /**
+   * Cleans up event listeners and intersection observer. Should be called when
+   * the observer is permanently no longer needed.
+   */
+  function unmount() {
+    unbindScrollListener();
+    observer.disconnect();
+  }
 
-	/**
-	 * Set a list of HTML elements to observe for intersection changes.
-	 *
-	 * @param {NodeList} list
-	 */
-	function setElements( list ) {
-		props.elements = list;
-	}
+  /**
+   * Set a list of HTML elements to observe for intersection changes.
+   *
+   * @param {NodeList} list
+   */
+  function setElements(list) {
+    props.elements = list;
+  }
 
-	bindScrollListener();
-	// Calculate intersection on page load.
-	calcIntersection();
+  bindScrollListener();
+  // Calculate intersection on page load.
+  calcIntersection();
 
-	/**
-	 * @typedef {Object} SectionObserver
-	 * @property {pause} pause
-	 * @property {resume} resume
-	 * @property {unmount} unmount
-	 * @property {setElements} setElements
-	 */
-	return {
-		pause,
-		resume,
-		unmount,
-		setElements
-	};
+  /**
+   * @typedef {Object} SectionObserver
+   * @property {pause} pause
+   * @property {resume} resume
+   * @property {unmount} unmount
+   * @property {setElements} setElements
+   */
+  return {
+    pause,
+    resume,
+    unmount,
+    setElements,
+  };
 };

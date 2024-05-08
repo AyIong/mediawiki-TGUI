@@ -1,8 +1,6 @@
-TGUI Skin
-========================
+# TGUI Skin
 
-Installation
-------------
+## Installation
 
 See <https://www.mediawiki.org/wiki/Skin:TGUI>.
 
@@ -10,8 +8,7 @@ See <https://www.mediawiki.org/wiki/Skin:TGUI>.
 
 See [skin.json](skin.json).
 
-Development
------------
+## Development
 
 ### Node version
 
@@ -50,4 +47,5 @@ $ PRE_COMMIT=0 git commit
 Skipping the pre-commit tests has no impact on Gerrit change identifier hooks.
 
 ### Hooks
+
 See [hooks.txt](hooks.txt).

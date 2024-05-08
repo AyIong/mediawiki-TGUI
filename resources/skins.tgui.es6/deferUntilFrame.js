@@ -8,15 +8,15 @@
  * @param {number} frameCount The number of frames to wait before calling the
  * specified callback.
  */
-function deferUntilFrame( callback, frameCount ) {
-	if ( frameCount === 0 ) {
-		callback();
-		return;
-	}
+function deferUntilFrame(callback, frameCount) {
+  if (frameCount === 0) {
+    callback();
+    return;
+  }
 
-	requestAnimationFrame( () => {
-		deferUntilFrame( callback, frameCount - 1 );
-	} );
+  requestAnimationFrame(() => {
+    deferUntilFrame(callback, frameCount - 1);
+  });
 }
 
 module.exports = deferUntilFrame;

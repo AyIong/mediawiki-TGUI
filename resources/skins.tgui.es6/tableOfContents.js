@@ -1,23 +1,29 @@
 /** @module TableOfContents */
 
-const SECTION_CLASS = 'sidebar-toc-list-item';
-const ACTIVE_SECTION_CLASS = 'sidebar-toc-list-item-active';
-const EXPANDED_SECTION_CLASS = 'sidebar-toc-list-item-expanded';
-const PARENT_SECTION_CLASS = 'sidebar-toc-level-1';
-const LINK_CLASS = 'sidebar-toc-link';
-const TOGGLE_CLASS = 'sidebar-toc-toggle';
-const TOC_COLLAPSED_CLASS = 'tgui-toc-collapsed';
-const TOC_NOT_COLLAPSED_CLASS = 'tgui-toc-not-collapsed';
-const TOC_ID = 'mw-panel-toc';
+const SECTION_CLASS = "sidebar-toc-list-item";
+const ACTIVE_SECTION_CLASS = "sidebar-toc-list-item-active";
+const EXPANDED_SECTION_CLASS = "sidebar-toc-list-item-expanded";
+const PARENT_SECTION_CLASS = "sidebar-toc-level-1";
+const LINK_CLASS = "sidebar-toc-link";
+const TOGGLE_CLASS = "sidebar-toc-toggle";
+const TOC_COLLAPSED_CLASS = "tgui-toc-collapsed";
+const TOC_NOT_COLLAPSED_CLASS = "tgui-toc-not-collapsed";
+const TOC_ID = "mw-panel-toc";
 /**
  * TableOfContents Mustache templates
  */
-const templateBody = require( /** @type {string} */ ( './templates/TableOfContents.mustache' ) );
-const templateTocLine = require( /** @type {string} */ ( './templates/TableOfContents__line.mustache' ) );
+const templateBody = require(
+  /** @type {string} */ ("./templates/TableOfContents.mustache"),
+);
+const templateTocLine = require(
+  /** @type {string} */ ("./templates/TableOfContents__line.mustache"),
+);
 /**
  * TableOfContents Config object for filling mustache templates
  */
-const tableOfContentsConfig = require( /** @type {string} */ ( './tableOfContentsConfig.json' ) );
+const tableOfContentsConfig = require(
+  /** @type {string} */ ("./tableOfContentsConfig.json"),
+);
 
 /**
  * @callback onHeadingClick
@@ -80,484 +86,503 @@ const tableOfContentsConfig = require( /** @type {string} */ ( './tableOfContent
  * @param {TableOfContentsProps} props
  * @return {TableOfContents}
  */
-module.exports = function tableOfContents( props ) {
-	let /** @type {HTMLElement | undefined} */ activeTopSection;
-	let /** @type {HTMLElement | undefined} */ activeSubSection;
-	let /** @type {Array<HTMLElement>} */ expandedSections;
+module.exports = function tableOfContents(props) {
+  let /** @type {HTMLElement | undefined} */ activeTopSection;
+  let /** @type {HTMLElement | undefined} */ activeSubSection;
+  let /** @type {Array<HTMLElement>} */ expandedSections;
 
-	/**
-	 * @typedef {Object} activeSectionIds
-	 * @property {string|undefined} parent - The active  top level section ID
-	 * @property {string|undefined} child - The active subsection ID
-	 */
+  /**
+   * @typedef {Object} activeSectionIds
+   * @property {string|undefined} parent - The active  top level section ID
+   * @property {string|undefined} child - The active subsection ID
+   */
 
-	/**
-	 * Get the ids of the active sections.
-	 *
-	 * @return {activeSectionIds}
-	 */
-	function getActiveSectionIds() {
-		return {
-			parent: ( activeTopSection ) ? activeTopSection.id : undefined,
-			child: ( activeSubSection ) ? activeSubSection.id : undefined
-		};
-	}
+  /**
+   * Get the ids of the active sections.
+   *
+   * @return {activeSectionIds}
+   */
+  function getActiveSectionIds() {
+    return {
+      parent: activeTopSection ? activeTopSection.id : undefined,
+      child: activeSubSection ? activeSubSection.id : undefined,
+    };
+  }
 
-	/**
-	 * Does the user prefer reduced motion?
-	 *
-	 * @return {boolean}
-	 */
-	const prefersReducedMotion = () => {
-		return window.matchMedia( '(prefers-reduced-motion: reduce)' ).matches;
-	};
+  /**
+   * Does the user prefer reduced motion?
+   *
+   * @return {boolean}
+   */
+  const prefersReducedMotion = () => {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  };
 
-	/**
-	 * Sets an `ACTIVE_SECTION_CLASS` on the element with an id that matches `id`.
-	 * If the element is not a top level heading (e.g. element with the
-	 * `PARENT_SECTION_CLASS`), the top level heading will also have the
-	 * `ACTIVE_SECTION_CLASS`;
-	 *
-	 * @param {string} id The id of the element to be activated in the Table of Contents.
-	 */
-	function activateSection( id ) {
-		const selectedTocSection = document.getElementById( id );
-		const {
-			parent: previousActiveTopId,
-			child: previousActiveSubSectionId
-		} = getActiveSectionIds();
+  /**
+   * Sets an `ACTIVE_SECTION_CLASS` on the element with an id that matches `id`.
+   * If the element is not a top level heading (e.g. element with the
+   * `PARENT_SECTION_CLASS`), the top level heading will also have the
+   * `ACTIVE_SECTION_CLASS`;
+   *
+   * @param {string} id The id of the element to be activated in the Table of Contents.
+   */
+  function activateSection(id) {
+    const selectedTocSection = document.getElementById(id);
+    const { parent: previousActiveTopId, child: previousActiveSubSectionId } =
+      getActiveSectionIds();
 
-		if (
-			!selectedTocSection ||
-			( previousActiveTopId === id ) ||
-			( previousActiveSubSectionId === id )
-		) {
-			return;
-		}
+    if (
+      !selectedTocSection ||
+      previousActiveTopId === id ||
+      previousActiveSubSectionId === id
+    ) {
+      return;
+    }
 
-		const topSection = /** @type {HTMLElement} */ ( selectedTocSection.closest( `.${PARENT_SECTION_CLASS}` ) );
+    const topSection = /** @type {HTMLElement} */ (
+      selectedTocSection.closest(`.${PARENT_SECTION_CLASS}`)
+    );
 
-		if ( selectedTocSection === topSection ) {
-			activeTopSection = topSection;
-			activeTopSection.classList.add( ACTIVE_SECTION_CLASS );
-		} else {
-			activeTopSection = topSection;
-			activeSubSection = selectedTocSection;
-			activeTopSection.classList.add( ACTIVE_SECTION_CLASS );
-			activeSubSection.classList.add( ACTIVE_SECTION_CLASS );
-		}
-	}
+    if (selectedTocSection === topSection) {
+      activeTopSection = topSection;
+      activeTopSection.classList.add(ACTIVE_SECTION_CLASS);
+    } else {
+      activeTopSection = topSection;
+      activeSubSection = selectedTocSection;
+      activeTopSection.classList.add(ACTIVE_SECTION_CLASS);
+      activeSubSection.classList.add(ACTIVE_SECTION_CLASS);
+    }
+  }
 
-	/**
-	 * Removes the `ACTIVE_SECTION_CLASS` from all ToC sections.
-	 *
-	 */
-	function deactivateSections() {
-		if ( activeSubSection ) {
-			activeSubSection.classList.remove( ACTIVE_SECTION_CLASS );
-			activeSubSection = undefined;
-		}
-		if ( activeTopSection ) {
-			activeTopSection.classList.remove( ACTIVE_SECTION_CLASS );
-			activeTopSection = undefined;
-		}
-	}
+  /**
+   * Removes the `ACTIVE_SECTION_CLASS` from all ToC sections.
+   *
+   */
+  function deactivateSections() {
+    if (activeSubSection) {
+      activeSubSection.classList.remove(ACTIVE_SECTION_CLASS);
+      activeSubSection = undefined;
+    }
+    if (activeTopSection) {
+      activeTopSection.classList.remove(ACTIVE_SECTION_CLASS);
+      activeTopSection = undefined;
+    }
+  }
 
-	/**
-	 * Scroll active section into view if necessary
-	 *
-	 * @param {string} id The id of the element to be scrolled to in the Table of Contents.
-	 */
-	function scrollToActiveSection( id ) {
-		const section = document.getElementById( id );
-		if ( !section ) {
-			return;
-		}
+  /**
+   * Scroll active section into view if necessary
+   *
+   * @param {string} id The id of the element to be scrolled to in the Table of Contents.
+   */
+  function scrollToActiveSection(id) {
+    const section = document.getElementById(id);
+    if (!section) {
+      return;
+    }
 
-		// Get currently visible active link
-		let link = section.firstElementChild;
-		// @ts-ignore
-		if ( link && !link.offsetParent ) {
-			// If active link is a hidden subsection, use active parent link
-			const { parent: activeTopId } = getActiveSectionIds();
-			const parentSection = document.getElementById( activeTopId || '' );
-			if ( parentSection ) {
-				link = parentSection.firstElementChild;
-			} else {
-				link = null;
-			}
-		}
+    // Get currently visible active link
+    let link = section.firstElementChild;
+    // @ts-ignore
+    if (link && !link.offsetParent) {
+      // If active link is a hidden subsection, use active parent link
+      const { parent: activeTopId } = getActiveSectionIds();
+      const parentSection = document.getElementById(activeTopId || "");
+      if (parentSection) {
+        link = parentSection.firstElementChild;
+      } else {
+        link = null;
+      }
+    }
 
-		const isContainerScrollable = props.container.scrollHeight > props.container.clientHeight;
-		if ( link && isContainerScrollable ) {
-			const containerRect = props.container.getBoundingClientRect();
-			const linkRect = link.getBoundingClientRect();
+    const isContainerScrollable =
+      props.container.scrollHeight > props.container.clientHeight;
+    if (link && isContainerScrollable) {
+      const containerRect = props.container.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
 
-			// Pixels above or below the TOC where we start scrolling the active section into view
-			const hiddenThreshold = 100;
-			const midpoint = ( containerRect.bottom - containerRect.top ) / 2;
-			const linkHiddenTopValue = containerRect.top - linkRect.top;
-			// Because the bottom of the TOC can extend below the viewport,
-			// min() is used to find the value where the active section first becomes hidden
-			const linkHiddenBottomValue = linkRect.bottom -
-				Math.min( containerRect.bottom, window.innerHeight );
+      // Pixels above or below the TOC where we start scrolling the active section into view
+      const hiddenThreshold = 100;
+      const midpoint = (containerRect.bottom - containerRect.top) / 2;
+      const linkHiddenTopValue = containerRect.top - linkRect.top;
+      // Because the bottom of the TOC can extend below the viewport,
+      // min() is used to find the value where the active section first becomes hidden
+      const linkHiddenBottomValue =
+        linkRect.bottom - Math.min(containerRect.bottom, window.innerHeight);
 
-			// Respect 'prefers-reduced-motion' user preference
-			const scrollBehavior = prefersReducedMotion() ? 'smooth' : undefined;
+      // Respect 'prefers-reduced-motion' user preference
+      const scrollBehavior = prefersReducedMotion() ? "smooth" : undefined;
 
-			// Manually increment and decrement TOC scroll rather than using scrollToView
-			// in order to account for threshold
-			if ( linkHiddenTopValue + hiddenThreshold > 0 ) {
-				props.container.scrollTo( {
-					top: props.container.scrollTop - linkHiddenTopValue - midpoint,
-					behavior: scrollBehavior
-				} );
-			}
-			if ( linkHiddenBottomValue + hiddenThreshold > 0 ) {
-				props.container.scrollTo( {
-					top: props.container.scrollTop + linkHiddenBottomValue + midpoint,
-					behavior: scrollBehavior
-				} );
-			}
-		}
-	}
+      // Manually increment and decrement TOC scroll rather than using scrollToView
+      // in order to account for threshold
+      if (linkHiddenTopValue + hiddenThreshold > 0) {
+        props.container.scrollTo({
+          top: props.container.scrollTop - linkHiddenTopValue - midpoint,
+          behavior: scrollBehavior,
+        });
+      }
+      if (linkHiddenBottomValue + hiddenThreshold > 0) {
+        props.container.scrollTo({
+          top: props.container.scrollTop + linkHiddenBottomValue + midpoint,
+          behavior: scrollBehavior,
+        });
+      }
+    }
+  }
 
-	/**
-	 * Adds the `EXPANDED_SECTION_CLASS` CSS class name
-	 * to a top level heading in the ToC.
-	 *
-	 * @param {string} id
-	 */
-	function expandSection( id ) {
-		const tocSection = document.getElementById( id );
+  /**
+   * Adds the `EXPANDED_SECTION_CLASS` CSS class name
+   * to a top level heading in the ToC.
+   *
+   * @param {string} id
+   */
+  function expandSection(id) {
+    const tocSection = document.getElementById(id);
 
-		if ( !tocSection ) {
-			return;
-		}
+    if (!tocSection) {
+      return;
+    }
 
-		const parentSection = /** @type {HTMLElement} */ ( tocSection.closest( `.${PARENT_SECTION_CLASS}` ) );
-		const toggle = tocSection.querySelector( `.${TOGGLE_CLASS}` );
+    const parentSection = /** @type {HTMLElement} */ (
+      tocSection.closest(`.${PARENT_SECTION_CLASS}`)
+    );
+    const toggle = tocSection.querySelector(`.${TOGGLE_CLASS}`);
 
-		if ( parentSection && toggle && expandedSections.indexOf( parentSection ) < 0 ) {
-			toggle.setAttribute( 'aria-expanded', 'true' );
-			parentSection.classList.add( EXPANDED_SECTION_CLASS );
-			expandedSections.push( parentSection );
-		}
-	}
+    if (
+      parentSection &&
+      toggle &&
+      expandedSections.indexOf(parentSection) < 0
+    ) {
+      toggle.setAttribute("aria-expanded", "true");
+      parentSection.classList.add(EXPANDED_SECTION_CLASS);
+      expandedSections.push(parentSection);
+    }
+  }
 
-	/**
-	 * Get the IDs of expanded sections.
-	 *
-	 * @return {Array<string>}
-	 */
-	function getExpandedSectionIds() {
-		return expandedSections.map( ( s ) => s.id );
-	}
+  /**
+   * Get the IDs of expanded sections.
+   *
+   * @return {Array<string>}
+   */
+  function getExpandedSectionIds() {
+    return expandedSections.map((s) => s.id);
+  }
 
-	/**
-	 *
-	 * @param {string} id
-	 */
-	function changeActiveSection( id ) {
+  /**
+   *
+   * @param {string} id
+   */
+  function changeActiveSection(id) {
+    const { parent: activeParentId, child: activeChildId } =
+      getActiveSectionIds();
 
-		const { parent: activeParentId, child: activeChildId } = getActiveSectionIds();
+    if (id === activeParentId && id === activeChildId) {
+      return;
+    } else {
+      deactivateSections();
+      activateSection(id);
+      scrollToActiveSection(id);
+    }
+  }
 
-		if ( id === activeParentId && id === activeChildId ) {
-			return;
-		} else {
-			deactivateSections();
-			activateSection( id );
-			scrollToActiveSection( id );
-		}
-	}
+  /**
+   * @param {string} id
+   * @return {boolean}
+   */
+  function isTopLevelSection(id) {
+    const section = document.getElementById(id);
+    return !!section && section.classList.contains(PARENT_SECTION_CLASS);
+  }
 
-	/**
-	 * @param {string} id
-	 * @return {boolean}
-	 */
-	function isTopLevelSection( id ) {
-		const section = document.getElementById( id );
-		return !!section && section.classList.contains( PARENT_SECTION_CLASS );
-	}
+  /**
+   * Removes all `EXPANDED_SECTION_CLASS` CSS class names
+   * from the top level sections in the ToC.
+   *
+   * @param {Array<string>} [selectedIds]
+   */
+  function collapseSections(selectedIds) {
+    const sectionIdsToCollapse = selectedIds || getExpandedSectionIds();
+    expandedSections = expandedSections.filter(function (section) {
+      const isSelected = sectionIdsToCollapse.indexOf(section.id) > -1;
+      const toggle = isSelected
+        ? section.getElementsByClassName(TOGGLE_CLASS)
+        : undefined;
+      if (isSelected && toggle && toggle.length > 0) {
+        toggle[0].setAttribute("aria-expanded", "false");
+        section.classList.remove(EXPANDED_SECTION_CLASS);
+        return false;
+      }
+      return true;
+    });
+  }
 
-	/**
-	 * Removes all `EXPANDED_SECTION_CLASS` CSS class names
-	 * from the top level sections in the ToC.
-	 *
-	 * @param {Array<string>} [selectedIds]
-	 */
-	function collapseSections( selectedIds ) {
-		const sectionIdsToCollapse = selectedIds || getExpandedSectionIds();
-		expandedSections = expandedSections.filter( function ( section ) {
-			const isSelected = sectionIdsToCollapse.indexOf( section.id ) > -1;
-			const toggle = isSelected ? section.getElementsByClassName( TOGGLE_CLASS ) : undefined;
-			if ( isSelected && toggle && toggle.length > 0 ) {
-				toggle[ 0 ].setAttribute( 'aria-expanded', 'false' );
-				section.classList.remove( EXPANDED_SECTION_CLASS );
-				return false;
-			}
-			return true;
-		} );
-	}
+  /**
+   * @param {string} id
+   */
+  function toggleExpandSection(id) {
+    const expandedSectionIds = getExpandedSectionIds();
+    const indexOfExpandedSectionId = expandedSectionIds.indexOf(id);
+    if (isTopLevelSection(id)) {
+      if (indexOfExpandedSectionId >= 0) {
+        collapseSections([id]);
+      } else {
+        expandSection(id);
+      }
+    }
+  }
 
-	/**
-	 * @param {string} id
-	 */
-	function toggleExpandSection( id ) {
-		const expandedSectionIds = getExpandedSectionIds();
-		const indexOfExpandedSectionId = expandedSectionIds.indexOf( id );
-		if ( isTopLevelSection( id ) ) {
-			if ( indexOfExpandedSectionId >= 0 ) {
-				collapseSections( [ id ] );
-			} else {
-				expandSection( id );
-			}
-		}
-	}
+  /**
+   * Set aria-expanded attribute for all toggle buttons.
+   */
+  function initializeExpandedStatus() {
+    const parentSections = props.container.querySelectorAll(
+      `.${PARENT_SECTION_CLASS}`,
+    );
+    parentSections.forEach((section) => {
+      const expanded = section.classList.contains(EXPANDED_SECTION_CLASS);
+      const toggle = section.querySelector(`.${TOGGLE_CLASS}`);
+      if (toggle) {
+        toggle.setAttribute("aria-expanded", expanded.toString());
+      }
+    });
+  }
 
-	/**
-	 * Set aria-expanded attribute for all toggle buttons.
-	 */
-	function initializeExpandedStatus() {
-		const parentSections = props.container.querySelectorAll( `.${PARENT_SECTION_CLASS}` );
-		parentSections.forEach( ( section ) => {
-			const expanded = section.classList.contains( EXPANDED_SECTION_CLASS );
-			const toggle = section.querySelector( `.${TOGGLE_CLASS}` );
-			if ( toggle ) {
-				toggle.setAttribute( 'aria-expanded', expanded.toString() );
-			}
-		} );
-	}
+  /**
+   * Bind event listener for clicking on show/hide Table of Contents links.
+   */
+  function bindCollapseToggleListeners() {
+    // Initialize toc collapsed status
+    document.body.classList.add(TOC_NOT_COLLAPSED_CLASS);
 
-	/**
-	 * Bind event listener for clicking on show/hide Table of Contents links.
-	 */
-	function bindCollapseToggleListeners() {
-		// Initialize toc collapsed status
-		document.body.classList.add( TOC_NOT_COLLAPSED_CLASS );
+    const showHideTocElement = document.querySelectorAll(
+      "#sidebar-toc-label button",
+    );
+    showHideTocElement.forEach(function (btn) {
+      btn.addEventListener("click", () => {
+        document.body.classList.toggle(TOC_COLLAPSED_CLASS);
+        document.body.classList.toggle(TOC_NOT_COLLAPSED_CLASS);
 
-		const showHideTocElement = document.querySelectorAll( '#sidebar-toc-label button' );
-		showHideTocElement.forEach( function ( btn ) {
-			btn.addEventListener( 'click', () => {
-				document.body.classList.toggle( TOC_COLLAPSED_CLASS );
-				document.body.classList.toggle( TOC_NOT_COLLAPSED_CLASS );
+        props.onToggleCollapse();
+      });
+    });
+  }
 
-				props.onToggleCollapse();
-			} );
-		} );
-	}
+  /**
+   * Bind event listeners for clicking on section headings and toggle buttons.
+   */
+  function bindSubsectionToggleListeners() {
+    props.container.addEventListener("click", function (e) {
+      if (!(e.target instanceof HTMLElement)) {
+        return;
+      }
 
-	/**
-	 * Bind event listeners for clicking on section headings and toggle buttons.
-	 */
-	function bindSubsectionToggleListeners() {
-		props.container.addEventListener( 'click', function ( e ) {
-			if (
-				!( e.target instanceof HTMLElement )
-			) {
-				return;
-			}
+      const tocSection = /** @type {HTMLElement | null} */ (
+        e.target.closest(`.${SECTION_CLASS}`)
+      );
 
-			const tocSection =
-				/** @type {HTMLElement | null} */ ( e.target.closest( `.${SECTION_CLASS}` ) );
+      if (tocSection && tocSection.id) {
+        // In case section link contains HTML,
+        // test if click occurs on any child elements.
+        if (e.target.closest(`.${LINK_CLASS}`)) {
+          props.onHeadingClick(tocSection.id);
+        }
+        // Toggle button does not contain child elements,
+        // so classList check will suffice.
+        if (e.target.classList.contains(TOGGLE_CLASS)) {
+          props.onToggleClick(tocSection.id);
+        }
+      }
+    });
+  }
 
-			if ( tocSection && tocSection.id ) {
-				// In case section link contains HTML,
-				// test if click occurs on any child elements.
-				if ( e.target.closest( `.${LINK_CLASS}` ) ) {
-					props.onHeadingClick( tocSection.id );
-				}
-				// Toggle button does not contain child elements,
-				// so classList check will suffice.
-				if ( e.target.classList.contains( TOGGLE_CLASS ) ) {
-					props.onToggleClick( tocSection.id );
-				}
-			}
+  /**
+   * Binds event listeners and sets the default state of the component.
+   */
+  function initialize() {
+    // Sync component state to the default rendered state of the table of contents.
+    expandedSections = Array.from(
+      props.container.querySelectorAll(`.${EXPANDED_SECTION_CLASS}`),
+    );
 
-		} );
-	}
+    // Initialize toggle buttons aria-expanded attribute.
+    initializeExpandedStatus();
 
-	/**
-	 * Binds event listeners and sets the default state of the component.
-	 */
-	function initialize() {
-		// Sync component state to the default rendered state of the table of contents.
-		expandedSections = Array.from(
-			props.container.querySelectorAll( `.${EXPANDED_SECTION_CLASS}` )
-		);
+    // Bind event listeners.
+    bindSubsectionToggleListeners();
+    bindCollapseToggleListeners();
 
-		// Initialize toggle buttons aria-expanded attribute.
-		initializeExpandedStatus();
+    mw.hook("wikipage.tableOfContents").add(reloadTableOfContents);
+  }
 
-		// Bind event listeners.
-		bindSubsectionToggleListeners();
-		bindCollapseToggleListeners();
+  /**
+   * Reexpands all sections that were expanded before the table of contents was reloaded.
+   * Edited Sections are not reexpanded, as the ID of the edited section is changed after reload.
+   */
+  function reExpandSections() {
+    initializeExpandedStatus();
+    const expandedSectionIds = getExpandedSectionIds();
+    for (const id of expandedSectionIds) {
+      expandSection(id);
+    }
+  }
 
-		mw.hook( 'wikipage.tableOfContents' ).add( reloadTableOfContents );
-	}
+  /**
+   * Reloads the table of contents from saved data
+   *
+   * @param {Section[]} sections
+   */
+  function reloadTableOfContents(sections) {
+    if (sections.length < 1) {
+      reloadPartialHTML(TOC_ID, "");
+      return;
+    }
+    mw.loader.using("mediawiki.template.mustache").then(() => {
+      reloadPartialHTML(TOC_ID, getTableOfContentsHTML(sections));
+      // Reexpand sections that were expanded before the table of contents was reloaded.
+      reExpandSections();
+      // Initialize Collapse toggle buttons
+      bindCollapseToggleListeners();
+    });
+  }
 
-	/**
-	 * Reexpands all sections that were expanded before the table of contents was reloaded.
-	 * Edited Sections are not reexpanded, as the ID of the edited section is changed after reload.
-	 */
-	function reExpandSections() {
-		initializeExpandedStatus();
-		const expandedSectionIds = getExpandedSectionIds();
-		for ( const id of expandedSectionIds ) {
-			expandSection( id );
-		}
-	}
+  /**
+   * Replaces the contents of the given element with the given HTML
+   *
+   * @param {string} elementId
+   * @param {string} html
+   * @param {boolean} setInnerHTML
+   */
+  function reloadPartialHTML(elementId, html, setInnerHTML = true) {
+    const htmlElement = document.getElementById(elementId);
+    if (htmlElement) {
+      if (setInnerHTML) {
+        htmlElement.innerHTML = html;
+      } else if (htmlElement.outerHTML) {
+        htmlElement.outerHTML = html;
+      } else {
+        // IF outerHTML property access is not supported
+        const tmpContainer = document.createElement("div");
+        tmpContainer.innerHTML = html.trim();
+        const childNode = tmpContainer.firstChild;
+        if (childNode) {
+          const tmpElement = document.createElement("div");
+          tmpElement.setAttribute("id", `div-tmp-${elementId}`);
+          const parentNode = htmlElement.parentNode;
+          if (parentNode) {
+            parentNode.replaceChild(tmpElement, htmlElement);
+            parentNode.replaceChild(childNode, tmpElement);
+          }
+        }
+      }
+    }
+  }
 
-	/**
-	 * Reloads the table of contents from saved data
-	 *
-	 * @param {Section[]} sections
-	 */
-	function reloadTableOfContents( sections ) {
-		if ( sections.length < 1 ) {
-			reloadPartialHTML( TOC_ID, '' );
-			return;
-		}
-		mw.loader.using( 'mediawiki.template.mustache' ).then( () => {
-			reloadPartialHTML( TOC_ID, getTableOfContentsHTML( sections ) );
-			// Reexpand sections that were expanded before the table of contents was reloaded.
-			reExpandSections();
-			// Initialize Collapse toggle buttons
-			bindCollapseToggleListeners();
-		} );
-	}
+  /**
+   * Generates the HTML for the table of contents.
+   *
+   * @param {Section[]} sections
+   * @return {string}
+   */
+  function getTableOfContentsHTML(sections) {
+    return getTableOfContentsListHtml(getTableOfContentsData(sections));
+  }
 
-	/**
-	 * Replaces the contents of the given element with the given HTML
-	 *
-	 * @param {string} elementId
-	 * @param {string} html
-	 * @param {boolean} setInnerHTML
-	 */
-	function reloadPartialHTML( elementId, html, setInnerHTML = true ) {
-		const htmlElement = document.getElementById( elementId );
-		if ( htmlElement ) {
-			if ( setInnerHTML ) {
-				htmlElement.innerHTML = html;
-			} else if ( htmlElement.outerHTML ) {
-				htmlElement.outerHTML = html;
-			} else { // IF outerHTML property access is not supported
-				const tmpContainer = document.createElement( 'div' );
-				tmpContainer.innerHTML = html.trim();
-				const childNode = tmpContainer.firstChild;
-				if ( childNode ) {
-					const tmpElement = document.createElement( 'div' );
-					tmpElement.setAttribute( 'id', `div-tmp-${elementId}` );
-					const parentNode = htmlElement.parentNode;
-					if ( parentNode ) {
-						parentNode.replaceChild( tmpElement, htmlElement );
-						parentNode.replaceChild( childNode, tmpElement );
-					}
-				}
-			}
-		}
-	}
+  /**
+   * Generates the table of contents List HTML from the templates
+   *
+   * @param {Object} data
+   * @return {string}
+   */
+  function getTableOfContentsListHtml(data) {
+    // @ts-ignore
+    const mustacheCompiler = mw.template.getCompiler("mustache");
+    const compiledTemplateBody = mustacheCompiler.compile(templateBody);
+    const compiledTemplateTocLine = mustacheCompiler.compile(templateTocLine);
 
-	/**
-	 * Generates the HTML for the table of contents.
-	 *
-	 * @param {Section[]} sections
-	 * @return {string}
-	 */
-	function getTableOfContentsHTML( sections ) {
-		return getTableOfContentsListHtml( getTableOfContentsData( sections ) );
-	}
+    // Identifier 'TableOfContents__line' is not in camel case
+    // (template name is 'TableOfContents__line')
+    const partials = {
+      TableOfContents__line: compiledTemplateTocLine, // eslint-disable-line camelcase
+    };
 
-	/**
-	 * Generates the table of contents List HTML from the templates
-	 *
-	 * @param {Object} data
-	 * @return {string}
-	 */
-	function getTableOfContentsListHtml( data ) {
-		// @ts-ignore
-		const mustacheCompiler = mw.template.getCompiler( 'mustache' );
-		const compiledTemplateBody = mustacheCompiler.compile( templateBody );
-		const compiledTemplateTocLine = mustacheCompiler.compile( templateTocLine );
+    return compiledTemplateBody.render(data, partials).html();
+  }
 
-		// Identifier 'TableOfContents__line' is not in camel case
-		// (template name is 'TableOfContents__line')
-		const partials = {
-			TableOfContents__line: compiledTemplateTocLine // eslint-disable-line camelcase
-		};
+  /**
+   * @param {Section[]} sections
+   * @return {SectionsListData}
+   */
+  function getTableOfContentsData(sections) {
+    return {
+      "number-section-count": sections.length,
+      "msg-tgui-toc-heading": mw.message("tgui-toc-heading").text(),
+      "msg-tgui-toc-toggle-position-sidebar": mw
+        .message("tgui-toc-toggle-position-sidebar")
+        .text(),
+      "msg-tgui-toc-toggle-position-title": mw
+        .message("tgui-toc-toggle-position-title")
+        .text(),
+      "msg-tgui-toc-beginning": mw.message("tgui-toc-beginning").text(),
+      "array-sections": getTableOfContentsSectionsData(sections, 1),
+      "tgui-is-collapse-sections-enabled":
+        sections.length >=
+        tableOfContentsConfig.TGUITableOfContentsCollapseAtCount,
+      "is-tgui-toc-beginning-enabled":
+        tableOfContentsConfig.TGUITableOfContentsBeginning,
+    };
+  }
 
-		return compiledTemplateBody.render( data, partials ).html();
-	}
+  /**
+   * Prepares the data for rendering the table of contents,
+   * nesting child sections within their parent sections.
+   * This shoul yield the same result as the php function SkinTGUI::getTocData(),
+   * please make sure to keep them in sync.
+   *
+   * @param {Section[]} sections
+   * @param {number} toclevel
+   * @return {Section[]}
+   */
+  function getTableOfContentsSectionsData(sections, toclevel = 1) {
+    const data = [];
+    for (let i = 0; i < sections.length; i++) {
+      const section = sections[i];
+      if (section.toclevel === toclevel) {
+        const childSections = getTableOfContentsSectionsData(
+          sections.slice(i + 1),
+          toclevel + 1,
+        );
+        section["array-sections"] = childSections;
+        section["is-top-level-section"] = toclevel === 1;
+        section["is-parent-section"] = Object.keys(childSections).length > 0;
+        data.push(section);
+      }
+      // Child section belongs to a higher parent.
+      if (section.toclevel < toclevel) {
+        return data;
+      }
+    }
 
-	/**
-	 * @param {Section[]} sections
-	 * @return {SectionsListData}
-	 */
-	function getTableOfContentsData( sections ) {
-		return {
-			'number-section-count': sections.length,
-			'msg-tgui-toc-heading': mw.message( 'tgui-toc-heading' ).text(),
-			'msg-tgui-toc-toggle-position-sidebar': mw.message( 'tgui-toc-toggle-position-sidebar' ).text(),
-			'msg-tgui-toc-toggle-position-title': mw.message( 'tgui-toc-toggle-position-title' ).text(),
-			'msg-tgui-toc-beginning': mw.message( 'tgui-toc-beginning' ).text(),
-			'array-sections': getTableOfContentsSectionsData( sections, 1 ),
-			'tgui-is-collapse-sections-enabled': sections.length >= tableOfContentsConfig.TGUITableOfContentsCollapseAtCount,
-			'is-tgui-toc-beginning-enabled': tableOfContentsConfig.TGUITableOfContentsBeginning
-		};
-	}
+    return data;
+  }
 
-	/**
-	 * Prepares the data for rendering the table of contents,
-	 * nesting child sections within their parent sections.
-	 * This shoul yield the same result as the php function SkinTGUI::getTocData(),
-	 * please make sure to keep them in sync.
-	 *
-	 * @param {Section[]} sections
-	 * @param {number} toclevel
-	 * @return {Section[]}
-	 */
-	function getTableOfContentsSectionsData( sections, toclevel = 1 ) {
-		const data = [];
-		for ( let i = 0; i < sections.length; i++ ) {
-			const section = sections[ i ];
-			if ( section.toclevel === toclevel ) {
-				const childSections = getTableOfContentsSectionsData(
-					sections.slice( i + 1 ),
-					toclevel + 1
-				);
-				section[ 'array-sections' ] = childSections;
-				section[ 'is-top-level-section' ] = toclevel === 1;
-				section[ 'is-parent-section' ] = Object.keys( childSections ).length > 0;
-				data.push( section );
-			}
-			// Child section belongs to a higher parent.
-			if ( section.toclevel < toclevel ) {
-				return data;
-			}
-		}
+  initialize();
 
-		return data;
-	}
-
-	initialize();
-
-	/**
-	 * @typedef {Object} TableOfContents
-	 * @property {changeActiveSection} changeActiveSection
-	 * @property {expandSection} expandSection
-	 * @property {toggleExpandSection} toggleExpandSection
-	 * @property {string} ACTIVE_SECTION_CLASS
-	 * @property {string} EXPANDED_SECTION_CLASS
-	 * @property {string} LINK_CLASS
-	 * @property {string} TOGGLE_CLASS
-	 */
-	return {
-		expandSection,
-		changeActiveSection,
-		toggleExpandSection,
-		ACTIVE_SECTION_CLASS,
-		EXPANDED_SECTION_CLASS,
-		LINK_CLASS,
-		TOGGLE_CLASS
-	};
+  /**
+   * @typedef {Object} TableOfContents
+   * @property {changeActiveSection} changeActiveSection
+   * @property {expandSection} expandSection
+   * @property {toggleExpandSection} toggleExpandSection
+   * @property {string} ACTIVE_SECTION_CLASS
+   * @property {string} EXPANDED_SECTION_CLASS
+   * @property {string} LINK_CLASS
+   * @property {string} TOGGLE_CLASS
+   */
+  return {
+    expandSection,
+    changeActiveSection,
+    toggleExpandSection,
+    ACTIVE_SECTION_CLASS,
+    EXPANDED_SECTION_CLASS,
+    LINK_CLASS,
+    TOGGLE_CLASS,
+  };
 };

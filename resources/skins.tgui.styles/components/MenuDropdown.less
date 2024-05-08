@@ -1,6 +1,6 @@
-@import '../../common/variables.less';
-@import '../../common/mixins.less';
-@import 'mediawiki.mixins.less';
+@import "../../common/variables.less";
+@import "../../common/mixins.less";
+@import "mediawiki.mixins.less";
 
 /**
  * Targets all dropdown labels.
@@ -10,11 +10,11 @@
  */
 .tgui-menu-dropdown .tgui-menu-heading,
 .mw-interlanguage-selector {
-	display: flex;
+  display: flex;
 
-	&:after {
-		.mixin-tgui-menu-heading-arrow();
-	}
+  &:after {
+    .mixin-tgui-menu-heading-arrow();
+  }
 }
 
 //non-standard dropdown menu item.
@@ -22,47 +22,47 @@
 .tgui-user-menu-create-account,
 .tgui-user-menu-login,
 .tgui-menu-dropdown .mw-list-item {
-	a {
-		display: flex;
-		min-height: 32px;
-		align-items: center;
-		white-space: nowrap;
-		padding: 0 0.5em;
-		margin-bottom: 0.5em;
-		background-color: var(--color-primary);
-		color: var(--color-button-text);
-		border-radius: var(--border-radius-small);
-		transition: background-color var(--transition-time);
-		text-decoration: none;
+  a {
+    display: flex;
+    min-height: 32px;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0 0.5em;
+    margin-bottom: 0.5em;
+    background-color: var(--color-primary);
+    color: var(--color-button-text);
+    border-radius: var(--border-radius-small);
+    transition: background-color var(--transition-time);
+    text-decoration: none;
 
-		&:hover {
-			background-color: var(--color-primary-light);
-		}
+    &:hover {
+      background-color: var(--color-primary-light);
+    }
 
-		span:before {
-			filter: var(--invert-button-icon);
-		}
-	}
+    span:before {
+      filter: var(--invert-button-icon);
+    }
+  }
 }
 
 .tgui-user-menu-logout a {
-	background-color: var(--color-red);
-	margin: 0.5em 0 0 0;
+  background-color: var(--color-red);
+  margin: 0.5em 0 0 0;
 
-	&:hover {
-		background-color: var(--color-red-light);
-	}
+  &:hover {
+    background-color: var(--color-red-light);
   }
+}
 
 .tgui-user-menu-login a {
-	background-color: var(--color-blue);
+  background-color: var(--color-blue);
 
-	&:hover {
-		background-color: var(--color-blue-light);
-	}
+  &:hover {
+    background-color: var(--color-blue-light);
+  }
 }
 
 /* Remove margin from last item */
 #ca-protect a {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }

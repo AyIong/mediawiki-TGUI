@@ -1,4 +1,4 @@
 /** See TGUI\Hooks::getTGUIResourceLoaderConfig */
 interface TGUIResourceLoaderVirtualConfig {
-	wgTGUISearchHost: string;
+  wgTGUISearchHost: string;
 }

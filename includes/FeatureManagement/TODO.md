@@ -1,5 +1,4 @@
-TODO
-====
+# TODO
 
 Currently the `FeatureManager` class is a very shallow interpretation of Piotr Miazga's proposed
 API and associated scaffolding classes (see https://phabricator.wikimedia.org/T244481 and

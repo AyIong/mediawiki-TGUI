@@ -10,7 +10,9 @@
 /** @interface MwApiConstructor */
 /** @interface CheckboxHack */
 
-var checkboxHack = /** @type {CheckboxHack} */ require( /** @type {string} */( 'mediawiki.page.ready' ) ).checkboxHack;
+var checkboxHack = /** @type {CheckboxHack} */ require(
+  /** @type {string} */ ("mediawiki.page.ready"),
+).checkboxHack;
 
 /**
  * Revise the button's `aria-expanded` state to match the checked state.
@@ -20,8 +22,8 @@ var checkboxHack = /** @type {CheckboxHack} */ require( /** @type {string} */( '
  * @return {void}
  * @ignore
  */
-function updateAriaExpanded( checkbox, button ) {
-	button.setAttribute( 'aria-expanded', checkbox.checked.toString() );
+function updateAriaExpanded(checkbox, button) {
+  button.setAttribute("aria-expanded", checkbox.checked.toString());
 }
 
 /**
@@ -32,14 +34,14 @@ function updateAriaExpanded( checkbox, button ) {
  * @return {function(): void} Cleanup function that removes the added event listeners.
  * @ignore
  */
-function bindUpdateAriaExpandedOnInput( checkbox, button ) {
-	var listener = updateAriaExpanded.bind( undefined, checkbox, button );
-	// Whenever the checkbox state changes, update the `aria-expanded` state.
-	checkbox.addEventListener( 'input', listener );
+function bindUpdateAriaExpandedOnInput(checkbox, button) {
+  var listener = updateAriaExpanded.bind(undefined, checkbox, button);
+  // Whenever the checkbox state changes, update the `aria-expanded` state.
+  checkbox.addEventListener("input", listener);
 
-	return function () {
-		checkbox.removeEventListener( 'input', listener );
-	};
+  return function () {
+    checkbox.removeEventListener("input", listener);
+  };
 }
 
 /**
@@ -49,44 +51,44 @@ function bindUpdateAriaExpandedOnInput( checkbox, button ) {
  * @return {function(): void} Cleanup function that removes the added event listeners.
  * @ignore
  */
-function bindToggleOnSpaceEnter( button ) {
-	function isEnterOrSpace( /** @type {KeyboardEvent} */ event ) {
-		return event.key === ' ' || event.key === 'Enter';
-	}
+function bindToggleOnSpaceEnter(button) {
+  function isEnterOrSpace(/** @type {KeyboardEvent} */ event) {
+    return event.key === " " || event.key === "Enter";
+  }
 
-	function onKeydown( /** @type {KeyboardEvent} */ event ) {
-		// Only handle SPACE and ENTER.
-		if ( !isEnterOrSpace( event ) ) {
-			return;
-		}
-		// Prevent the browser from scrolling when pressing space. The browser will
-		// try to do this unless the "button" element is a button or a checkbox.
-		// Depending on the actual "button" element, this also possibly prevents a
-		// native click event from being triggered so we programatically trigger a
-		// click event in the keyup handler.
-		event.preventDefault();
-	}
+  function onKeydown(/** @type {KeyboardEvent} */ event) {
+    // Only handle SPACE and ENTER.
+    if (!isEnterOrSpace(event)) {
+      return;
+    }
+    // Prevent the browser from scrolling when pressing space. The browser will
+    // try to do this unless the "button" element is a button or a checkbox.
+    // Depending on the actual "button" element, this also possibly prevents a
+    // native click event from being triggered so we programatically trigger a
+    // click event in the keyup handler.
+    event.preventDefault();
+  }
 
-	function onKeyup( /** @type {KeyboardEvent} */ event ) {
-		// Only handle SPACE and ENTER.
-		if ( !isEnterOrSpace( event ) ) {
-			return;
-		}
+  function onKeyup(/** @type {KeyboardEvent} */ event) {
+    // Only handle SPACE and ENTER.
+    if (!isEnterOrSpace(event)) {
+      return;
+    }
 
-		// A native button element triggers a click event when the space or enter
-		// keys are pressed. Since the passed in "button" may or may not be a
-		// button, programmatically trigger a click event to make it act like a
-		// button.
-		button.click();
-	}
+    // A native button element triggers a click event when the space or enter
+    // keys are pressed. Since the passed in "button" may or may not be a
+    // button, programmatically trigger a click event to make it act like a
+    // button.
+    button.click();
+  }
 
-	button.addEventListener( 'keydown', onKeydown );
-	button.addEventListener( 'keyup', onKeyup );
+  button.addEventListener("keydown", onKeydown);
+  button.addEventListener("keyup", onKeyup);
 
-	return function () {
-		button.removeEventListener( 'keydown', onKeydown );
-		button.removeEventListener( 'keyup', onKeyup );
-	};
+  return function () {
+    button.removeEventListener("keydown", onKeydown);
+    button.removeEventListener("keyup", onKeyup);
+  };
 }
 
 /**
@@ -97,13 +99,13 @@ function bindToggleOnSpaceEnter( button ) {
  * @param {HTMLElement|null} target
  * @return {void}
  */
-function initMainMenu( checkbox, button, target ) {
-	if ( checkbox instanceof HTMLInputElement && button && target ) {
-		checkboxHack.bindToggleOnClick( checkbox, button );
-		bindUpdateAriaExpandedOnInput( checkbox, button );
-		updateAriaExpanded( checkbox, button );
-		bindToggleOnSpaceEnter( button );
-	}
+function initMainMenu(checkbox, button, target) {
+  if (checkbox instanceof HTMLInputElement && button && target) {
+    checkboxHack.bindToggleOnClick(checkbox, button);
+    bindUpdateAriaExpandedOnInput(checkbox, button);
+    updateAriaExpanded(checkbox, button);
+    bindToggleOnSpaceEnter(button);
+  }
 }
 
 /**
@@ -114,15 +116,15 @@ function initMainMenu( checkbox, button, target ) {
  * @param {HTMLElement|null} target
  * @return {void}
  */
-function initCollapsedToc( checkbox, button, target ) {
-	if ( checkbox instanceof HTMLInputElement && button && target ) {
-		checkboxHack.bindToggleOnClick( checkbox, button );
-		checkboxHack.bindDismissOnClickOutside( window, checkbox, button, target );
-		checkboxHack.bindDismissOnClickLink( checkbox, target );
-		bindUpdateAriaExpandedOnInput( checkbox, button );
-		updateAriaExpanded( checkbox, button );
-		bindToggleOnSpaceEnter( button );
-	}
+function initCollapsedToc(checkbox, button, target) {
+  if (checkbox instanceof HTMLInputElement && button && target) {
+    checkboxHack.bindToggleOnClick(checkbox, button);
+    checkboxHack.bindDismissOnClickOutside(window, checkbox, button, target);
+    checkboxHack.bindDismissOnClickLink(checkbox, target);
+    bindUpdateAriaExpandedOnInput(checkbox, button);
+    updateAriaExpanded(checkbox, button);
+    bindToggleOnSpaceEnter(button);
+  }
 }
 
 /**
@@ -130,20 +132,20 @@ function initCollapsedToc( checkbox, button, target ) {
  *
  * @param {Document} document
  */
-function init( document ) {
-	initMainMenu(
-		document.getElementById( 'mw-sidebar-checkbox' ),
-		document.getElementById( 'mw-sidebar-button' ),
-		document.getElementById( 'mw-navigation' )
-	);
+function init(document) {
+  initMainMenu(
+    document.getElementById("mw-sidebar-checkbox"),
+    document.getElementById("mw-sidebar-button"),
+    document.getElementById("mw-navigation"),
+  );
 
-	initCollapsedToc(
-		document.getElementById( 'tgui-toc-collapsed-checkbox' ),
-		document.getElementById( 'tgui-toc-collapsed-button' ),
-		document.getElementById( 'mw-panel-toc' )
-	);
+  initCollapsedToc(
+    document.getElementById("tgui-toc-collapsed-checkbox"),
+    document.getElementById("tgui-toc-collapsed-button"),
+    document.getElementById("mw-panel-toc"),
+  );
 }
 
 module.exports = {
-	init: init
+  init: init,
 };

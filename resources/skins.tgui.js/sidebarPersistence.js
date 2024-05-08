@@ -5,11 +5,11 @@
 
 /** @interface MwApi */
 
-var /** @type {MwApi} */api,
-	SIDEBAR_BUTTON_ID = 'mw-sidebar-button',
-	debounce = require( /** @type {string} */ ( 'mediawiki.util' ) ).debounce,
-	SIDEBAR_CHECKBOX_ID = 'mw-sidebar-checkbox',
-	SIDEBAR_PREFERENCE_NAME = 'TGUISidebarVisible';
+var /** @type {MwApi} */ api,
+  SIDEBAR_BUTTON_ID = "mw-sidebar-button",
+  debounce = require(/** @type {string} */ ("mediawiki.util")).debounce,
+  SIDEBAR_CHECKBOX_ID = "mw-sidebar-checkbox",
+  SIDEBAR_PREFERENCE_NAME = "TGUISidebarVisible";
 
 /**
  * Execute a debounced API request to save the sidebar user preference.
@@ -19,22 +19,22 @@ var /** @type {MwApi} */api,
  * @param {HTMLInputElement} checkbox
  * @return {any}
  */
-function saveSidebarState( checkbox ) {
-	return debounce( function () {
-		api = api || new mw.Api();
-		api.saveOption( SIDEBAR_PREFERENCE_NAME, checkbox.checked ? 1 : 0 );
+function saveSidebarState(checkbox) {
+  return debounce(function () {
+    api = api || new mw.Api();
+    api.saveOption(SIDEBAR_PREFERENCE_NAME, checkbox.checked ? 1 : 0);
 
-		// Trigger a resize event so other parts of the page can adapt:
-		var event;
-		if ( typeof Event === 'function' ) {
-			event = new Event( 'resize' );
-		} else {
-			// IE11
-			event = window.document.createEvent( 'UIEvents' );
-			event.initUIEvent( 'resize', true, false, window, 0 );
-		}
-		window.dispatchEvent( event );
-	}, 1000 );
+    // Trigger a resize event so other parts of the page can adapt:
+    var event;
+    if (typeof Event === "function") {
+      event = new Event("resize");
+    } else {
+      // IE11
+      event = window.document.createEvent("UIEvents");
+      event.initUIEvent("resize", true, false, window, 0);
+    }
+    window.dispatchEvent(event);
+  }, 1000);
 }
 
 /**
@@ -44,21 +44,24 @@ function saveSidebarState( checkbox ) {
  * @param {HTMLElement|null} checkbox
  * @param {HTMLElement|null} button
  */
-function bindSidebarClickEvent( checkbox, button ) {
-	if ( checkbox instanceof HTMLInputElement && button ) {
-		checkbox.addEventListener( 'input', saveSidebarState( checkbox ) );
-	}
+function bindSidebarClickEvent(checkbox, button) {
+  if (checkbox instanceof HTMLInputElement && button) {
+    checkbox.addEventListener("input", saveSidebarState(checkbox));
+  }
 }
 
 function init() {
-	var checkbox = window.document.getElementById( SIDEBAR_CHECKBOX_ID ),
-		button = window.document.getElementById( SIDEBAR_BUTTON_ID );
+  var checkbox = window.document.getElementById(SIDEBAR_CHECKBOX_ID),
+    button = window.document.getElementById(SIDEBAR_BUTTON_ID);
 
-	if ( mw.config.get( 'wgUserName' ) && !mw.config.get( 'wgTGUIDisableSidebarPersistence' ) ) {
-		bindSidebarClickEvent( checkbox, button );
-	}
+  if (
+    mw.config.get("wgUserName") &&
+    !mw.config.get("wgTGUIDisableSidebarPersistence")
+  ) {
+    bindSidebarClickEvent(checkbox, button);
+  }
 }
 
 module.exports = {
-	init: init
+  init: init,
 };

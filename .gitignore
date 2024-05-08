@@ -42,5 +42,4 @@ Thumbs.db
 /.htaccess
 /.htpasswd
 .eslintcache
-.vscode
 /.phpunit.result.cache

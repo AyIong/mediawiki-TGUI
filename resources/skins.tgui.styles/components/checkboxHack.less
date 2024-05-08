@@ -30,18 +30,18 @@
 //	       display: none;
 //     }
 
-@import '../../common/variables.less';
+@import "../../common/variables.less";
 
 .mw-checkbox-hack-checkbox {
-	// We don't want the browser to focus on the checkbox so we remove it from the
-	// accessibility tree. Instead, we want the label button to receive focus
-	// which has a tabindex of '0'.
-	display: none;
+  // We don't want the browser to focus on the checkbox so we remove it from the
+  // accessibility tree. Instead, we want the label button to receive focus
+  // which has a tabindex of '0'.
+  display: none;
 }
 
 .mw-checkbox-hack-button {
-	// Labels are inlined by default but are also an icon having width and height specified.
-	display: inline-block;
-	// Use the hand icon for the toggle button which is actually a checkbox label.
-	cursor: pointer;
+  // Labels are inlined by default but are also an icon having width and height specified.
+  display: inline-block;
+  // Use the hand icon for the toggle button which is actually a checkbox label.
+  cursor: pointer;
 }

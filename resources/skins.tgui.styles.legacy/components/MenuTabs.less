@@ -1,5 +1,5 @@
-@import '../../common/variables.less';
-@import 'mediawiki.mixins.less';
+@import "../../common/variables.less";
+@import "mediawiki.mixins.less";
 
 /**
  * Styling for namespace tabs (page, discussion) and views (read, edit, view history, watch and other actions)
@@ -7,79 +7,84 @@
 
 /* Namespaces and Views */
 .tgui-menu-tabs-legacy {
-	// Tab separator: Outer start border (left in LTR) of tab row.
-	background-position: left bottom;
-	float: left;
-	height: 2.5em;
-	padding-left: 1px;
+  // Tab separator: Outer start border (left in LTR) of tab row.
+  background-position: left bottom;
+  float: left;
+  height: 2.5em;
+  padding-left: 1px;
 
-	/* Navigation Labels */
-	.tgui-menu-heading {
-		display: none;
-	}
+  /* Navigation Labels */
+  .tgui-menu-heading {
+    display: none;
+  }
 
-	ul {
-		float: left;
-		height: 100%;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
+  ul {
+    float: left;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
-	li {
-		// Tab fade background: Fade inside from light grey to white.
-		background-image: linear-gradient( to top, @border-color-content--tabs-inactive 0, #e8f2f8 1px, #fff 100% ); // Support: Standard (Firefox 16+, IE 10+, Safari 6.1+, Chrome 26+)
-		background-position: left bottom;
-		background-repeat: repeat-x;
-		float: left;
-		display: block;
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		line-height: @line-height-nav;
-		white-space: nowrap;
+  li {
+    // Tab fade background: Fade inside from light grey to white.
+    background-image: linear-gradient(
+      to top,
+      @border-color-content--tabs-inactive 0,
+      #e8f2f8 1px,
+      #fff 100%
+    ); // Support: Standard (Firefox 16+, IE 10+, Safari 6.1+, Chrome 26+)
+    background-position: left bottom;
+    background-repeat: repeat-x;
+    float: left;
+    display: block;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: @line-height-nav;
+    white-space: nowrap;
 
-		a {
-			// Tab separator: Border between tabs and outer right border.
-			background-position: right bottom;
-			color: @color-link;
-			box-sizing: border-box;
-			display: block;
-			float: left;
-			height: unit( 40 / @font-size-tabs / @font-size-browser, em );
-			position: relative;
-			padding-top: 1.25em;
-			padding-left: @padding-horizontal-tabs;
-			padding-right: @padding-horizontal-tabs;
-			font-size: @font-size-tabs;
-			cursor: pointer;
-		}
-	}
+    a {
+      // Tab separator: Border between tabs and outer right border.
+      background-position: right bottom;
+      color: @color-link;
+      box-sizing: border-box;
+      display: block;
+      float: left;
+      height: unit(40 / @font-size-tabs / @font-size-browser, em);
+      position: relative;
+      padding-top: 1.25em;
+      padding-left: @padding-horizontal-tabs;
+      padding-right: @padding-horizontal-tabs;
+      font-size: @font-size-tabs;
+      cursor: pointer;
+    }
+  }
 
-	.new {
-		a,
-		a:visited {
-			color: @color-link-new;
-		}
-	}
+  .new {
+    a,
+    a:visited {
+      color: @color-link-new;
+    }
+  }
 
-	.selected {
-		// Overwrite above in browsers that support `rgba()`.
-		background: rgba( 255, 255, 255, 1 );
+  .selected {
+    // Overwrite above in browsers that support `rgba()`.
+    background: rgba(255, 255, 255, 1);
 
-		a,
-		a:visited {
-			color: @color-link-selected;
-			text-decoration: none;
-		}
-	}
+    a,
+    a:visited {
+      color: @color-link-selected;
+      text-decoration: none;
+    }
+  }
 
-	.icon {
-		a {
-			background-position: right bottom;
-			background-repeat: no-repeat;
-		}
-	}
+  .icon {
+    a {
+      background-position: right bottom;
+      background-repeat: no-repeat;
+    }
+  }
 }
 
 // Tab Separators
@@ -90,13 +95,17 @@
 .tgui-menu-tabs,
 .tgui-menu-tabs a,
 #mw-head .tgui-menu-dropdown .tgui-menu-heading {
-	background-image: linear-gradient( to bottom, rgba( 167, 215, 249, 0 ) 0, @border-color-content 100% );
-	background-repeat: no-repeat;
-	// Contain gradient to 1px × 100% size and draw from top to bottom-left or -right corner.
-	background-size: 1px 100%;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(167, 215, 249, 0) 0,
+    @border-color-content 100%
+  );
+  background-repeat: no-repeat;
+  // Contain gradient to 1px × 100% size and draw from top to bottom-left or -right corner.
+  background-size: 1px 100%;
 }
 
 #mw-head .tgui-menu-dropdown .tgui-menu-heading {
-	// Tab separator: Outer end (right in LTR) border of "Actions" menu.
-	background-position: right bottom;
+  // Tab separator: Outer end (right in LTR) border of "Actions" menu.
+  background-position: right bottom;
 }

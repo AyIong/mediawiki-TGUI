@@ -1,9 +1,9 @@
-@import '../../common/variables.less';
-@import '../../common/mixins.less';
-@import 'mediawiki.mixins.less';
-@import 'mediawiki.ui/variables.less';
+@import "../../common/variables.less";
+@import "../../common/mixins.less";
+@import "mediawiki.mixins.less";
+@import "mediawiki.ui/variables.less";
 
-@font-size-user-links: unit( 14 / @font-size-browser, em ); // Equals `0.875em`.
+@font-size-user-links: unit(14 / @font-size-browser, em); // Equals `0.875em`.
 // Applies to links in the overflow menu that do not have the .mw-ui-button class.
 @overflow-link-margin: 0 8px;
 
@@ -11,67 +11,67 @@
  * Container that holds both the horizontal menu and dropdown menus.
  */
 .tgui-user-links {
-	display: flex;
-	align-items: center;
-	position: relative;
-	justify-content: flex-end;
-	flex-shrink: 1;
-	font-size: @font-size-user-links;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: flex-end;
+  flex-shrink: 1;
+  font-size: @font-size-user-links;
 
-	.mw-ui-button {
-		// FIXME: Overrides mw-ui-button's `display: inline-block` property so that
-		// the text in the button is vertically centered. `.mw-ui-button` sets a
-		// min-height to the button, but should also vertically center the
-		// button's children.
-		display: flex;
-		align-items: center;
-	}
+  .mw-ui-button {
+    // FIXME: Overrides mw-ui-button's `display: inline-block` property so that
+    // the text in the button is vertically centered. `.mw-ui-button` sets a
+    // min-height to the button, but should also vertically center the
+    // button's children.
+    display: flex;
+    align-items: center;
+  }
 
-	.mw-list-item {
-		margin: 0;
-	}
+  .mw-list-item {
+    margin: 0;
+  }
 }
 
 /**
  * Both logged-in and logged-out dropdown menus.
  */
 .tgui-user-menu {
-	.tgui-menu-content {
-		left: auto;
-		right: 0;
-		min-width: 200px;
-	}
+  .tgui-menu-content {
+    left: auto;
+    right: 0;
+    min-width: 200px;
+  }
 }
 
 /**
  * Horizontal links menu - logged in and logged out.
  */
 .tgui-user-menu-overflow {
-	.tgui-menu-content-list {
-		display: flex;
-		align-items: center;
-	}
+  .tgui-menu-content-list {
+    display: flex;
+    align-items: center;
+  }
 
-	// Add margin to links that don't have the .mw-ui-button or related icon classes.
-	a:not( .mw-ui-button ):not( .mw-echo-notifications-badge  ) {
-		margin: 0 8px;
-	}
+  // Add margin to links that don't have the .mw-ui-button or related icon classes.
+  a:not(.mw-ui-button):not(.mw-echo-notifications-badge) {
+    margin: 0 8px;
+  }
 }
 
 /**
  * Logged-in dropdown menu
  */
 .tgui-user-menu-logged-in {
-	.tgui-menu-heading {
-		// override user menu (.mw-ui-icon) fixed width,
-		// so chevron beside icon is visible.
-		width: auto;
+  .tgui-menu-heading {
+    // override user menu (.mw-ui-icon) fixed width,
+    // so chevron beside icon is visible.
+    width: auto;
 
-		// and override again to ensure the user icon is 20px wide.
-		&:before {
-			width: auto;
-		}
-	}
+    // and override again to ensure the user icon is 20px wide.
+    &:before {
+      width: auto;
+    }
+  }
 }
 
 /**
@@ -80,23 +80,23 @@
 
 // Anon editor notice i.e. "Pages for logged out editors".
 .tgui-user-menu-anon-editor {
-	color: var(--color-text);
+  color: var(--color-text);
 
-	a:before {
-		content: '@{msg-parentheses-start}';
-	}
+  a:before {
+    content: "@{msg-parentheses-start}";
+  }
 
-	a:after {
-		content: '@{msg-parentheses-end}';
-	}
+  a:after {
+    content: "@{msg-parentheses-end}";
+  }
 }
 
 // Login link.
 .tgui-user-menu-login {
-	border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 // Logout link
 .tgui-user-menu-logout {
-	border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
 }

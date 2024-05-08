@@ -1,460 +1,436 @@
 {
-	"name": "TGUI",
-	"version": "0.1.0",
-	"author": [
-		"Александр Кица (Aylong)",
-		"[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team] with Original [https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
-	],
-	"url": "https://www.mediawiki.org/wiki/Skin:TGUI",
-	"descriptionmsg": "tgui-skin-desc",
-	"namemsg": "tgui-specialversion-name",
-	"license-name": "GPL-2.0-or-later",
-	"type": "skin",
-	"requires": {
-		"MediaWiki": ">= 1.39.0"
-	},
-	"ValidSkinNames": {
-		"tgui": {
-			"class": "MediaWiki\\Skins\\TGUI\\SkinTGUI22",
-			"args": [
-				{
-					"name": "tgui",
-					"templateDirectory": "includes/templates",
-					"template": "skin",
-					"responsive": true,
-					"link": {
-						"text-wrapper": {
-							"tag": "span"
-						}
-					},
-					"bodyClasses": [
-						"skin-tgui",
-						"skin-tgui-search-vue"
-					],
-					"menus": [
-						"user-interface-preferences",
-						"user-page",
-						"user-menu",
-						"notifications",
-						"views",
-						"actions",
-						"variants",
-						"associated-pages"
-					],
-					"scripts": [
-						"skins.tgui.user",
-						"skins.tgui.js",
-						"skins.tgui.es6"
-					],
-					"styles": [
-						"mediawiki.ui.button",
-						"skins.tgui.styles",
-						"skins.tgui.user.styles",
-						"skins.tgui.icons",
-						"mediawiki.ui.icon"
-					],
-					"messages": [
-						"tooltip-p-logo",
-						"tgui-action-toggle-sidebar",
-						"tgui-main-menu-tooltip",
-						"tgui-jumptosearch",
-						"tgui-jumptocontent",
-						"tgui-toc-beginning",
-						"tgui-toc-heading",
-						"tgui-toc-toggle-position-sidebar",
-						"tgui-toc-toggle-position-title",
-						"tgui-toc-menu-tooltip",
-						"tgui-toc-collapsible-button-label",
-						"tgui-article-tools-nav-label",
-						"tgui-site-nav-label",
-						"search",
-						"searchbutton",
-						"searcharticle",
-						"searchsuggest-search",
-						"sitesubtitle",
-						"sitetitle",
-						"tagline",
-						"personaltools"
-					]
-				}
-			]
-		}
-	},
-	"SkinLessImportPaths": {
-		"tgui": "resources/mediawiki.less"
-	},
-	"MessagesDirs": {
-		"TGUI": [
-			"i18n"
-		]
-	},
-	"AutoloadNamespaces": {
-		"MediaWiki\\Skins\\TGUI\\": "includes/"
-	},
-	"TestAutoloadNamespaces": {
-		"MediaWiki\\Skins\\TGUI\\Tests\\": "tests/phpunit/"
-	},
-	"ConfigRegistry": {
-		"tgui": "GlobalVarConfig::newInstance"
-	},
-	"HookHandlers": {
-		"TGUIHooks": {
-			"class": "MediaWiki\\Skins\\TGUI\\Hooks"
-		}
-	},
-	"Hooks": {
-		"RequestContextCreateSkin": "TGUIHooks",
-		"GetPreferences": "TGUIHooks",
-		"LocalUserCreated": "TGUIHooks",
-		"MakeGlobalVariablesScript": "TGUIHooks",
-		"OutputPageBodyAttributes": "TGUIHooks",
-		"ResourceLoaderSiteModulePages": "TGUIHooks",
-		"ResourceLoaderSiteStylesModulePages": "TGUIHooks",
-		"SkinPageReadyConfig": "TGUIHooks"
-	},
-	"@note": "When modifying skins.tgui.styles definition, make sure the installer still works",
-	"ResourceModules": {
-		"skins.tgui.user": {
-			"class": "MediaWiki\\Skins\\TGUI\\ResourceLoader\\TGUIResourceLoaderUserModule"
-		},
-		"skins.tgui.user.styles": {
-			"class": "MediaWiki\\Skins\\TGUI\\ResourceLoader\\TGUIResourceLoaderUserStylesModule"
-		},
-		"skins.tgui.search": {
-			"es6": true,
-			"dependencies": [
-				"mediawiki.Uri",
-				"mediawiki.util",
-				"@wikimedia/codex-search"
-			],
-			"packageFiles": [
-				"resources/skins.tgui.search/skins.tgui.search.js",
-				"resources/skins.tgui.search/instrumentation.js",
-				"resources/skins.tgui.search/fetch.js",
-				"resources/skins.tgui.search/restSearchClient.js",
-				"resources/skins.tgui.search/urlGenerator.js",
-				"resources/skins.tgui.search/App.vue",
-				{
-					"name": "resources/skins.tgui.search/config.json",
-					"callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUISearchResourceLoaderConfig"
-				}
-			],
-			"messages": [
-				"searchbutton",
-				"searchresults",
-				"tgui-searchsuggest-containing"
-			]
-		},
-		"skins.tgui.AB.styles": {
-			"class": "ResourceLoaderSkinModule",
-			"features": [ "toc" ],
-			"styles": [
-				"resources/skins.tgui.AB.styles.less"
-			],
-			"targets": [
-				"desktop",
-				"mobile"
-			]
-		},
-		"skins.tgui.styles": {
-			"class": "ResourceLoaderSkinModule",
-			"features": {
-				"normalize": true,
-				"content-links": true,
-				"content-links-external": false,
-				"content-media": true,
-				"content-tables": true,
-				"interface": false,
-				"interface-category": true,
-				"interface-edit-section-links": true,
-				"interface-indicators": false,
-				"interface-message-box": true,
-				"interface-site-notice": false,
-				"interface-subtitle": false,
-				"interface-user-message": true,
-				"i18n-ordered-lists": true,
-				"i18n-all-lists-margins": true,
-				"i18n-headings": true,
-				"toc": false
-			},
-			"targets": [
-				"desktop",
-				"mobile"
-			],
-			"styles": [
-				"resources/common/common.less",
-				"resources/skins.tgui.styles/skin.less"
-			],
-			"lessMessages": [
-				"parentheses-start",
-				"parentheses-end",
-				"brackets-start",
-				"brackets-end"
-			]
-		},
-		"skins.tgui.icons.js": {
-			"selectorWithVariant": ".mw-ui-icon-wikimedia-{name}-{variant}:before",
-			"selectorWithoutVariant": ".mw-ui-icon-wikimedia-{name}:before",
-			"useDataURI": false,
-			"class": "ResourceLoaderOOUIIconPackModule",
-			"variants": {
-				"progressive": {
-					"color": "#36c",
-					"global": true
-				}
-			},
-			"icons": [
-				"article",
-				"edit",
-				"editLock",
-				"halfStar",
-				"history",
-				"speechBubbles",
-				"speechBubbleAdd",
-				"star",
-				"unStar",
-				"wikiText"
-			]
-		},
-		"skins.tgui.icons": {
-			"selectorWithVariant": ".mw-ui-icon-wikimedia-{name}-{variant}:before",
-			"selectorWithoutVariant": ".mw-ui-icon-wikimedia-{name}:before",
-			"useDataURI": false,
-			"class": "ResourceLoaderOOUIIconPackModule",
-			"variants": {
-				"progressive": {
-					"color": "#36c",
-					"global": true
-				}
-			},
-			"icons": [
-				"language",
-				"ellipsis",
-				"userAvatar",
-				"userAdd",
-				"userAnonymous",
-				"userTalk",
-				"sandbox",
-				"search",
-				"settings",
-				"labFlask",
-				"unStar",
-				"watchlist",
-				"userContributions",
-				"logIn",
-				"logOut",
-				"imageGallery",
-				"userGroup",
-				"expand",
-				"listBullet"
-			]
-		},
-		"skins.tgui.es6": {
-			"es6": true,
-			"packageFiles": [
-				"resources/skins.tgui.es6/main.js",
-				"resources/skins.tgui.es6/searchToggle.js",
-				"resources/skins.tgui.es6/stickyHeader.js",
-				"resources/skins.tgui.es6/scrollObserver.js",
-				"resources/skins.tgui.es6/AB.js",
-				"resources/skins.tgui.es6/tableOfContents.js",
-				"resources/skins.tgui.es6/sectionObserver.js",
-				"resources/skins.tgui.es6/deferUntilFrame.js",
-				{
-					"name": "resources/skins.tgui.es6/config.json",
-					"callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUIResourceLoaderConfig"
-				},
-				{
-					"name": "resources/skins.tgui.es6/tableOfContentsConfig.json",
-					"config": [
-						"TGUITableOfContentsCollapseAtCount",
-						"TGUITableOfContentsBeginning"
-					]
-				},
-				{
-					"name": "resources/skins.tgui.es6/templates/TableOfContents.mustache",
-					"file": "includes/templates/TableOfContents.mustache",
-					"type": "text"
-				},
-				{
-					"name": "resources/skins.tgui.es6/templates/TableOfContents__line.mustache",
-					"file": "includes/templates/TableOfContents__line.mustache",
-					"type": "text"
-				}
-			],
-			"dependencies": [
-				"mediawiki.user",
-				"skins.tgui.icons.js",
-				"mediawiki.page.ready",
-				"mediawiki.page.watch.ajax",
-				"mediawiki.util",
-				"mediawiki.experiments"
-			],
-			"messages": [
-				"tgui-toc-beginning",
-				"tgui-toc-heading",
-				"tgui-toc-toggle-position-sidebar",
-				"tgui-toc-toggle-position-title"
-			]
-		},
-		"skins.tgui.js": {
-			"packageFiles": [
-				"resources/skins.tgui.js/skin.js",
-				{
-					"name": "resources/skins.tgui.js/config.json",
-					"callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUIResourceLoaderConfig"
-				},
-				"resources/skins.tgui.js/dropdownMenus.js",
-				"resources/skins.tgui.js/checkbox.js",
-				"resources/skins.tgui.js/sidebarPersistence.js",
-				"resources/skins.tgui.js/languageButton.js",
-				"resources/skins.tgui.js/searchLoader.js"
-			],
-			"dependencies": [
-				"skins.tgui.icons.js",
-				"mediawiki.page.ready",
-				"mediawiki.util"
-			],
-			"messages": [ "tgui-search-loader" ]
-		}
-	},
-	"ResourceFileModulePaths": {
-		"localBasePath": "",
-		"remoteSkinPath": "TGUI"
-	},
-	"ResourceModuleSkinStyles": {
-		"tgui": {
-			"+ext.echo.styles.alert": "skinStyles/ext.echo.styles.alert.less",
-			"+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
-			"+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
-			"+mediawiki.notification": "skinStyles/mediawiki.notification.less",
-			"+oojs-ui-core.styles": "skinStyles/ooui.less",
-			"mediawiki.special": "skinStyles/mediawiki.special.less",
-			"+ext.relatedArticles.readMore": "skinStyles/ext.relatedArticles.readMore.less",
-			"+ext.uls.compactlinks": "skinStyles/ext.uls.compactlinks.less",
-			"+ext.uls.interface": "skinStyles/ext.uls.interface.less",
-			"+ext.visualEditor.base": "skinStyles/ext.visualEditor.less"
-		}
-	},
-	"config": {
-		"TGUIVisualEnhancementNext": {
-			"value": false,
-			"description": "Temporary configuration flag for enabling in development enhancements."
-		},
-		"TGUISearchHost": {
-			"value": "",
-			"description": "Override default search API. Can be used with $wgDisableTextSearch and $wgSearchForwardUrl to mimic user experience on production."
-		},
-		"TGUIUseIconWatch": {
-			"value": true
-		},
-		"TGUIMaxWidthOptions": {
-			"value": {
-				"exclude": {
-					"mainpage": false,
-					"querystring": {
-						"action": "(history|edit)",
-						"diff": ".+"
-					},
-					"namespaces": [
-						-1,
-						14
-					]
-				},
-				"include": [
-					"Special:Preferences"
-				]
-			},
-			"description": "options for configuring where where max-width should and should not apply. More details can be found in Hooks::shouldDisableMaxWidth PHP documentation."
-		},
-		"TGUIResponsive": {
-			"value": false,
-			"description": "@var boolean turn TGUI-2022 into a responsive skin by applying a view port and disabling the min-width"
-		},
-		"TGUIWvuiSearchOptions": {
-			"value": {
-				"showThumbnail": true,
-				"showDescription": true
-			}
-		},
-		"TGUIDefaultSidebarVisibleForAuthorisedUser": {
-			"value": true
-		},
-		"TGUIDefaultSidebarVisibleForAnonymousUser": {
-			"value": false
-		},
-		"TGUILanguageInHeader": {
-			"value": {
-				"logged_in": true,
-				"logged_out": true
-			},
-			"description": "@var array Moves the language links from the sidebar into a menu beside the page title. Also moves the indicators to the line below, next to the tagline (siteSub)."
-		},
-		"TGUILanguageInMainPageHeader": {
-			"value": {
-				"logged_in": false,
-				"logged_out": false
-			},
-			"description": "@var When `TGUILanguageInHeader` is enabled, determines whether the Main Page's language button should be at the top or bottom of the content. The default position on the main page is at the bottom."
-		},
-		"TGUILanguageAlertInSidebar": {
-			"value": {
-				"logged_in": false,
-				"logged_out": false
-			},
-			"description": "@var When `TGUILanguageAlertInSidebar` is enabled, the language switch alert box is shown in the sidebar."
-		},
-		"TGUILanguageInHeaderTreatmentABTest": {
-			"value": false,
-			"description": "@var boolean Enables or disables the language in header treatment A/B test. See https://phabricator.wikimedia.org/T280825 and associated tasks for additional detail."
-		},
-		"TGUIStickyHeader": {
-			"value": {
-				"logged_in": true,
-				"logged_out": false
-			},
-			"description": "@var array Enables a persistent header that allows quick access to user links, editing tools, search and other links while scrolling down a page"
-		},
-		"TGUIStickyHeaderEdit": {
-			"value": {
-				"logged_in": false,
-				"logged_out": false
-			},
-			"description": "@var array Enables the edit icons if $wgTGUIStickyHeader is true."
-		},
-		"TGUIWebABTestEnrollment": {
-			"value": {
-				"name": "skin-tgui-toc-experiment",
-				"enabled": false,
-				"buckets": {
-					"unsampled": {
-						"samplingRate": 0
-					},
-					"control": {
-						"samplingRate": 0.5
-					},
-					"treatment": {
-						"samplingRate": 0.5
-					}
-				}
-			},
-			"description": "An associative array of A/B test configs keyed by parameters noted in mediawiki.experiments.js. There must be an `unsampled` bucket that represents a population excluded from the experiment. Additionally, the treatment bucket(s) must include a case-insensitive `treatment` substring in their name (e.g. `treatment`, `stickyHeaderTreatment`, `sticky-header-treatment`)"
-		},
-		"TGUIDisableSidebarPersistence": {
-			"value": false,
-			"description": "@var boolean Temporary feature flag that disables saving the sidebar expanded/collapsed state as a user-preference (triggered via clicking the main menu icon). This is intended as a temporary kill-switch in the event that the DB is overloaded with writes to the user_options table."
-		},
-		"TGUITableOfContentsBeginning": {
-			"value": true,
-			"description": "@var boolean Temporary feature flag that controls link to beginning of article."
-		},
-		"TGUITableOfContentsCollapseAtCount": {
-			"value": 20,
-			"description": "@var The minimum number of headings required to collapse all headings in the sticky table of contents by default."
-		}
-	},
-	"ServiceWiringFiles": [
-		"includes/ServiceWiring.php"
-	],
-	"manifest_version": 2
+  "name": "TGUI",
+  "version": "0.1.0",
+  "author": [
+    "Александр Кица (Aylong)",
+    "[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team] with Original [https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
+  ],
+  "url": "https://www.mediawiki.org/wiki/Skin:TGUI",
+  "descriptionmsg": "tgui-skin-desc",
+  "namemsg": "tgui-specialversion-name",
+  "license-name": "GPL-2.0-or-later",
+  "type": "skin",
+  "requires": {
+    "MediaWiki": ">= 1.39.0"
+  },
+  "ValidSkinNames": {
+    "tgui": {
+      "class": "MediaWiki\\Skins\\TGUI\\SkinTGUI22",
+      "args": [
+        {
+          "name": "tgui",
+          "templateDirectory": "includes/templates",
+          "template": "skin",
+          "responsive": true,
+          "link": {
+            "text-wrapper": {
+              "tag": "span"
+            }
+          },
+          "bodyClasses": ["skin-tgui", "skin-tgui-search-vue"],
+          "menus": [
+            "user-interface-preferences",
+            "user-page",
+            "user-menu",
+            "notifications",
+            "views",
+            "actions",
+            "variants",
+            "associated-pages"
+          ],
+          "scripts": ["skins.tgui.user", "skins.tgui.js", "skins.tgui.es6"],
+          "styles": [
+            "mediawiki.ui.button",
+            "skins.tgui.styles",
+            "skins.tgui.user.styles",
+            "skins.tgui.icons",
+            "mediawiki.ui.icon"
+          ],
+          "messages": [
+            "tooltip-p-logo",
+            "tgui-action-toggle-sidebar",
+            "tgui-main-menu-tooltip",
+            "tgui-jumptosearch",
+            "tgui-jumptocontent",
+            "tgui-toc-beginning",
+            "tgui-toc-heading",
+            "tgui-toc-toggle-position-sidebar",
+            "tgui-toc-toggle-position-title",
+            "tgui-toc-menu-tooltip",
+            "tgui-toc-collapsible-button-label",
+            "tgui-article-tools-nav-label",
+            "tgui-site-nav-label",
+            "search",
+            "searchbutton",
+            "searcharticle",
+            "searchsuggest-search",
+            "sitesubtitle",
+            "sitetitle",
+            "tagline",
+            "personaltools"
+          ]
+        }
+      ]
+    }
+  },
+  "SkinLessImportPaths": {
+    "tgui": "resources/mediawiki.less"
+  },
+  "MessagesDirs": {
+    "TGUI": ["i18n"]
+  },
+  "AutoloadNamespaces": {
+    "MediaWiki\\Skins\\TGUI\\": "includes/"
+  },
+  "TestAutoloadNamespaces": {
+    "MediaWiki\\Skins\\TGUI\\Tests\\": "tests/phpunit/"
+  },
+  "ConfigRegistry": {
+    "tgui": "GlobalVarConfig::newInstance"
+  },
+  "HookHandlers": {
+    "TGUIHooks": {
+      "class": "MediaWiki\\Skins\\TGUI\\Hooks"
+    }
+  },
+  "Hooks": {
+    "RequestContextCreateSkin": "TGUIHooks",
+    "GetPreferences": "TGUIHooks",
+    "LocalUserCreated": "TGUIHooks",
+    "MakeGlobalVariablesScript": "TGUIHooks",
+    "OutputPageBodyAttributes": "TGUIHooks",
+    "ResourceLoaderSiteModulePages": "TGUIHooks",
+    "ResourceLoaderSiteStylesModulePages": "TGUIHooks",
+    "SkinPageReadyConfig": "TGUIHooks"
+  },
+  "@note": "When modifying skins.tgui.styles definition, make sure the installer still works",
+  "ResourceModules": {
+    "skins.tgui.user": {
+      "class": "MediaWiki\\Skins\\TGUI\\ResourceLoader\\TGUIResourceLoaderUserModule"
+    },
+    "skins.tgui.user.styles": {
+      "class": "MediaWiki\\Skins\\TGUI\\ResourceLoader\\TGUIResourceLoaderUserStylesModule"
+    },
+    "skins.tgui.search": {
+      "es6": true,
+      "dependencies": [
+        "mediawiki.Uri",
+        "mediawiki.util",
+        "@wikimedia/codex-search"
+      ],
+      "packageFiles": [
+        "resources/skins.tgui.search/skins.tgui.search.js",
+        "resources/skins.tgui.search/instrumentation.js",
+        "resources/skins.tgui.search/fetch.js",
+        "resources/skins.tgui.search/restSearchClient.js",
+        "resources/skins.tgui.search/urlGenerator.js",
+        "resources/skins.tgui.search/App.vue",
+        {
+          "name": "resources/skins.tgui.search/config.json",
+          "callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUISearchResourceLoaderConfig"
+        }
+      ],
+      "messages": [
+        "searchbutton",
+        "searchresults",
+        "tgui-searchsuggest-containing"
+      ]
+    },
+    "skins.tgui.AB.styles": {
+      "class": "ResourceLoaderSkinModule",
+      "features": ["toc"],
+      "styles": ["resources/skins.tgui.AB.styles.less"],
+      "targets": ["desktop", "mobile"]
+    },
+    "skins.tgui.styles": {
+      "class": "ResourceLoaderSkinModule",
+      "features": {
+        "normalize": true,
+        "content-links": true,
+        "content-links-external": false,
+        "content-media": true,
+        "content-tables": true,
+        "interface": false,
+        "interface-category": true,
+        "interface-edit-section-links": true,
+        "interface-indicators": false,
+        "interface-message-box": true,
+        "interface-site-notice": false,
+        "interface-subtitle": false,
+        "interface-user-message": true,
+        "i18n-ordered-lists": true,
+        "i18n-all-lists-margins": true,
+        "i18n-headings": true,
+        "toc": false
+      },
+      "targets": ["desktop", "mobile"],
+      "styles": [
+        "resources/common/common.less",
+        "resources/skins.tgui.styles/skin.less"
+      ],
+      "lessMessages": [
+        "parentheses-start",
+        "parentheses-end",
+        "brackets-start",
+        "brackets-end"
+      ]
+    },
+    "skins.tgui.icons.js": {
+      "selectorWithVariant": ".mw-ui-icon-wikimedia-{name}-{variant}:before",
+      "selectorWithoutVariant": ".mw-ui-icon-wikimedia-{name}:before",
+      "useDataURI": false,
+      "class": "ResourceLoaderOOUIIconPackModule",
+      "variants": {
+        "progressive": {
+          "color": "#36c",
+          "global": true
+        }
+      },
+      "icons": [
+        "article",
+        "edit",
+        "editLock",
+        "halfStar",
+        "history",
+        "speechBubbles",
+        "speechBubbleAdd",
+        "star",
+        "unStar",
+        "wikiText"
+      ]
+    },
+    "skins.tgui.icons": {
+      "selectorWithVariant": ".mw-ui-icon-wikimedia-{name}-{variant}:before",
+      "selectorWithoutVariant": ".mw-ui-icon-wikimedia-{name}:before",
+      "useDataURI": false,
+      "class": "ResourceLoaderOOUIIconPackModule",
+      "variants": {
+        "progressive": {
+          "color": "#36c",
+          "global": true
+        }
+      },
+      "icons": [
+        "language",
+        "ellipsis",
+        "userAvatar",
+        "userAdd",
+        "userAnonymous",
+        "userTalk",
+        "sandbox",
+        "search",
+        "settings",
+        "labFlask",
+        "unStar",
+        "watchlist",
+        "userContributions",
+        "logIn",
+        "logOut",
+        "imageGallery",
+        "userGroup",
+        "expand",
+        "listBullet"
+      ]
+    },
+    "skins.tgui.es6": {
+      "es6": true,
+      "packageFiles": [
+        "resources/skins.tgui.es6/main.js",
+        "resources/skins.tgui.es6/searchToggle.js",
+        "resources/skins.tgui.es6/stickyHeader.js",
+        "resources/skins.tgui.es6/scrollObserver.js",
+        "resources/skins.tgui.es6/AB.js",
+        "resources/skins.tgui.es6/tableOfContents.js",
+        "resources/skins.tgui.es6/sectionObserver.js",
+        "resources/skins.tgui.es6/deferUntilFrame.js",
+        {
+          "name": "resources/skins.tgui.es6/config.json",
+          "callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUIResourceLoaderConfig"
+        },
+        {
+          "name": "resources/skins.tgui.es6/tableOfContentsConfig.json",
+          "config": [
+            "TGUITableOfContentsCollapseAtCount",
+            "TGUITableOfContentsBeginning"
+          ]
+        },
+        {
+          "name": "resources/skins.tgui.es6/templates/TableOfContents.mustache",
+          "file": "includes/templates/TableOfContents.mustache",
+          "type": "text"
+        },
+        {
+          "name": "resources/skins.tgui.es6/templates/TableOfContents__line.mustache",
+          "file": "includes/templates/TableOfContents__line.mustache",
+          "type": "text"
+        }
+      ],
+      "dependencies": [
+        "mediawiki.user",
+        "skins.tgui.icons.js",
+        "mediawiki.page.ready",
+        "mediawiki.page.watch.ajax",
+        "mediawiki.util",
+        "mediawiki.experiments"
+      ],
+      "messages": [
+        "tgui-toc-beginning",
+        "tgui-toc-heading",
+        "tgui-toc-toggle-position-sidebar",
+        "tgui-toc-toggle-position-title"
+      ]
+    },
+    "skins.tgui.js": {
+      "packageFiles": [
+        "resources/skins.tgui.js/skin.js",
+        {
+          "name": "resources/skins.tgui.js/config.json",
+          "callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUIResourceLoaderConfig"
+        },
+        "resources/skins.tgui.js/dropdownMenus.js",
+        "resources/skins.tgui.js/checkbox.js",
+        "resources/skins.tgui.js/sidebarPersistence.js",
+        "resources/skins.tgui.js/languageButton.js",
+        "resources/skins.tgui.js/searchLoader.js"
+      ],
+      "dependencies": [
+        "skins.tgui.icons.js",
+        "mediawiki.page.ready",
+        "mediawiki.util"
+      ],
+      "messages": ["tgui-search-loader"]
+    }
+  },
+  "ResourceFileModulePaths": {
+    "localBasePath": "",
+    "remoteSkinPath": "TGUI"
+  },
+  "ResourceModuleSkinStyles": {
+    "tgui": {
+      "+ext.echo.styles.alert": "skinStyles/ext.echo.styles.alert.less",
+      "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
+      "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
+      "+mediawiki.notification": "skinStyles/mediawiki.notification.less",
+      "+oojs-ui-core.styles": "skinStyles/ooui.less",
+      "mediawiki.special": "skinStyles/mediawiki.special.less",
+      "+ext.relatedArticles.readMore": "skinStyles/ext.relatedArticles.readMore.less",
+      "+ext.uls.compactlinks": "skinStyles/ext.uls.compactlinks.less",
+      "+ext.uls.interface": "skinStyles/ext.uls.interface.less",
+      "+ext.visualEditor.base": "skinStyles/ext.visualEditor.less"
+    }
+  },
+  "config": {
+    "TGUIVisualEnhancementNext": {
+      "value": false,
+      "description": "Temporary configuration flag for enabling in development enhancements."
+    },
+    "TGUISearchHost": {
+      "value": "",
+      "description": "Override default search API. Can be used with $wgDisableTextSearch and $wgSearchForwardUrl to mimic user experience on production."
+    },
+    "TGUIUseIconWatch": {
+      "value": true
+    },
+    "TGUIMaxWidthOptions": {
+      "value": {
+        "exclude": {
+          "mainpage": false,
+          "querystring": {
+            "action": "(history|edit)",
+            "diff": ".+"
+          },
+          "namespaces": [-1, 14]
+        },
+        "include": ["Special:Preferences"]
+      },
+      "description": "options for configuring where where max-width should and should not apply. More details can be found in Hooks::shouldDisableMaxWidth PHP documentation."
+    },
+    "TGUIResponsive": {
+      "value": false,
+      "description": "@var boolean turn TGUI-2022 into a responsive skin by applying a view port and disabling the min-width"
+    },
+    "TGUIWvuiSearchOptions": {
+      "value": {
+        "showThumbnail": true,
+        "showDescription": true
+      }
+    },
+    "TGUIDefaultSidebarVisibleForAuthorisedUser": {
+      "value": true
+    },
+    "TGUIDefaultSidebarVisibleForAnonymousUser": {
+      "value": false
+    },
+    "TGUILanguageInHeader": {
+      "value": {
+        "logged_in": true,
+        "logged_out": true
+      },
+      "description": "@var array Moves the language links from the sidebar into a menu beside the page title. Also moves the indicators to the line below, next to the tagline (siteSub)."
+    },
+    "TGUILanguageInMainPageHeader": {
+      "value": {
+        "logged_in": false,
+        "logged_out": false
+      },
+      "description": "@var When `TGUILanguageInHeader` is enabled, determines whether the Main Page's language button should be at the top or bottom of the content. The default position on the main page is at the bottom."
+    },
+    "TGUILanguageAlertInSidebar": {
+      "value": {
+        "logged_in": false,
+        "logged_out": false
+      },
+      "description": "@var When `TGUILanguageAlertInSidebar` is enabled, the language switch alert box is shown in the sidebar."
+    },
+    "TGUILanguageInHeaderTreatmentABTest": {
+      "value": false,
+      "description": "@var boolean Enables or disables the language in header treatment A/B test. See https://phabricator.wikimedia.org/T280825 and associated tasks for additional detail."
+    },
+    "TGUIStickyHeader": {
+      "value": {
+        "logged_in": true,
+        "logged_out": false
+      },
+      "description": "@var array Enables a persistent header that allows quick access to user links, editing tools, search and other links while scrolling down a page"
+    },
+    "TGUIStickyHeaderEdit": {
+      "value": {
+        "logged_in": false,
+        "logged_out": false
+      },
+      "description": "@var array Enables the edit icons if $wgTGUIStickyHeader is true."
+    },
+    "TGUIWebABTestEnrollment": {
+      "value": {
+        "name": "skin-tgui-toc-experiment",
+        "enabled": false,
+        "buckets": {
+          "unsampled": {
+            "samplingRate": 0
+          },
+          "control": {
+            "samplingRate": 0.5
+          },
+          "treatment": {
+            "samplingRate": 0.5
+          }
+        }
+      },
+      "description": "An associative array of A/B test configs keyed by parameters noted in mediawiki.experiments.js. There must be an `unsampled` bucket that represents a population excluded from the experiment. Additionally, the treatment bucket(s) must include a case-insensitive `treatment` substring in their name (e.g. `treatment`, `stickyHeaderTreatment`, `sticky-header-treatment`)"
+    },
+    "TGUIDisableSidebarPersistence": {
+      "value": false,
+      "description": "@var boolean Temporary feature flag that disables saving the sidebar expanded/collapsed state as a user-preference (triggered via clicking the main menu icon). This is intended as a temporary kill-switch in the event that the DB is overloaded with writes to the user_options table."
+    },
+    "TGUITableOfContentsBeginning": {
+      "value": true,
+      "description": "@var boolean Temporary feature flag that controls link to beginning of article."
+    },
+    "TGUITableOfContentsCollapseAtCount": {
+      "value": 20,
+      "description": "@var The minimum number of headings required to collapse all headings in the sticky table of contents by default."
+    }
+  },
+  "ServiceWiringFiles": ["includes/ServiceWiring.php"],
+  "manifest_version": 2
 }

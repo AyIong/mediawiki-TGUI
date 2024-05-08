@@ -1,7 +1,6 @@
-const
-	HEADER_SELECTOR = 'header',
-	SEARCH_BOX_SELECTOR = '.tgui-search-box',
-	SEARCH_VISIBLE_CLASS = 'tgui-header-search-toggled';
+const HEADER_SELECTOR = "header",
+  SEARCH_BOX_SELECTOR = ".tgui-search-box",
+  SEARCH_VISIBLE_CLASS = "tgui-header-search-toggled";
 
 /**
  * Binds event handlers necessary for the searchBox to disappear when the user
@@ -10,29 +9,29 @@ const
  * @param {HTMLElement} searchBox
  * @param {HTMLElement} header
  */
-function bindSearchBoxHandler( searchBox, header ) {
-	/**
-	 * @param {Event} ev
-	 * @ignore
-	 */
-	const clickHandler = ( ev ) => {
-		if (
-			ev.target instanceof HTMLElement &&
-			// Check if the click target was a suggestion link. Codex clears the
-			// suggestion elements from the DOM when a suggestion is clicked so we
-			// can't test if the suggestion is a child of the searchBox.
-			//
-			// Note: The .closest API is feature detected in `initSearchToggle`.
-			!ev.target.closest( '.cdx-typeahead-search .cdx-menu-item__content' ) &&
-			!searchBox.contains( ev.target )
-		) {
-			header.classList.remove( SEARCH_VISIBLE_CLASS );
+function bindSearchBoxHandler(searchBox, header) {
+  /**
+   * @param {Event} ev
+   * @ignore
+   */
+  const clickHandler = (ev) => {
+    if (
+      ev.target instanceof HTMLElement &&
+      // Check if the click target was a suggestion link. Codex clears the
+      // suggestion elements from the DOM when a suggestion is clicked so we
+      // can't test if the suggestion is a child of the searchBox.
+      //
+      // Note: The .closest API is feature detected in `initSearchToggle`.
+      !ev.target.closest(".cdx-typeahead-search .cdx-menu-item__content") &&
+      !searchBox.contains(ev.target)
+    ) {
+      header.classList.remove(SEARCH_VISIBLE_CLASS);
 
-			document.removeEventListener( 'click', clickHandler );
-		}
-	};
+      document.removeEventListener("click", clickHandler);
+    }
+  };
 
-	document.addEventListener( 'click', clickHandler );
+  document.addEventListener("click", clickHandler);
 }
 
 /**
@@ -43,55 +42,57 @@ function bindSearchBoxHandler( searchBox, header ) {
  * @param {HTMLElement} header
  * @param {Element} searchToggle
  */
-function bindToggleClickHandler( searchBox, header, searchToggle ) {
-	/**
-	 * @param {Event} ev
-	 * @ignore
-	 */
-	const handler = ( ev ) => {
-		// The toggle is an anchor element. Prevent the browser from navigating away
-		// from the page when clicked.
-		ev.preventDefault();
+function bindToggleClickHandler(searchBox, header, searchToggle) {
+  /**
+   * @param {Event} ev
+   * @ignore
+   */
+  const handler = (ev) => {
+    // The toggle is an anchor element. Prevent the browser from navigating away
+    // from the page when clicked.
+    ev.preventDefault();
 
-		header.classList.add( SEARCH_VISIBLE_CLASS );
+    header.classList.add(SEARCH_VISIBLE_CLASS);
 
-		// Defer binding the search box handler until after the event bubbles to the
-		// top of the document so that the handler isn't called when the user clicks
-		// the search toggle. Event bubbled callbacks execute within the same task
-		// in the event loop.
-		//
-		// Also, defer focusing the input to another task in the event loop. At the time
-		// of this writing, Safari 14.0.3 has trouble changing the visibility of the
-		// element and focusing the input within the same task.
-		setTimeout( () => {
-			bindSearchBoxHandler( searchBox, header );
+    // Defer binding the search box handler until after the event bubbles to the
+    // top of the document so that the handler isn't called when the user clicks
+    // the search toggle. Event bubbled callbacks execute within the same task
+    // in the event loop.
+    //
+    // Also, defer focusing the input to another task in the event loop. At the time
+    // of this writing, Safari 14.0.3 has trouble changing the visibility of the
+    // element and focusing the input within the same task.
+    setTimeout(() => {
+      bindSearchBoxHandler(searchBox, header);
 
-			const searchInput = /** @type {HTMLInputElement|null} */ ( searchBox.querySelector( 'input[type="search"]' ) );
+      const searchInput = /** @type {HTMLInputElement|null} */ (
+        searchBox.querySelector('input[type="search"]')
+      );
 
-			if ( searchInput ) {
-				const beforeScrollX = window.scrollX;
-				const beforeScrollY = window.scrollY;
-				searchInput.focus();
-				// For some reason, Safari 14,15 tends to undesirably change the scroll
-				// position of `input` elements inside fixed position elements.
-				// While an Internet search suggests similar problems with mobile Safari
-				// it didn't yield any results for desktop Safari.
-				// This line resets any unexpected scrolling that occurred while the
-				// input received focus.
-				// If you are in the future with a modern version of Safari, where 14 and 15
-				// receive a low amount of page views, please reference T297636 and test
-				// to see whether this line of code can be removed.
-				// Additionally, these lines might become unnecessary when/if Safari
-				// supports the `preventScroll` focus option [1] in the future:
-				// https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus#parameters
-				if ( beforeScrollX !== undefined && beforeScrollY !== undefined ) {
-					window.scroll( beforeScrollX, beforeScrollY );
-				}
-			}
-		} );
-	};
+      if (searchInput) {
+        const beforeScrollX = window.scrollX;
+        const beforeScrollY = window.scrollY;
+        searchInput.focus();
+        // For some reason, Safari 14,15 tends to undesirably change the scroll
+        // position of `input` elements inside fixed position elements.
+        // While an Internet search suggests similar problems with mobile Safari
+        // it didn't yield any results for desktop Safari.
+        // This line resets any unexpected scrolling that occurred while the
+        // input received focus.
+        // If you are in the future with a modern version of Safari, where 14 and 15
+        // receive a low amount of page views, please reference T297636 and test
+        // to see whether this line of code can be removed.
+        // Additionally, these lines might become unnecessary when/if Safari
+        // supports the `preventScroll` focus option [1] in the future:
+        // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus#parameters
+        if (beforeScrollX !== undefined && beforeScrollY !== undefined) {
+          window.scroll(beforeScrollX, beforeScrollY);
+        }
+      }
+    });
+  };
 
-	searchToggle.addEventListener( 'click', handler );
+  searchToggle.addEventListener("click", handler);
 }
 
 /**
@@ -105,20 +106,22 @@ function bindToggleClickHandler( searchBox, header, searchToggle ) {
  *
  * @param {HTMLElement|Element} searchToggle
  */
-module.exports = function initSearchToggle( searchToggle ) {
-	const header =
-		/** @type {HTMLElement|null} */ ( searchToggle.closest( HEADER_SELECTOR ) );
+module.exports = function initSearchToggle(searchToggle) {
+  const header = /** @type {HTMLElement|null} */ (
+    searchToggle.closest(HEADER_SELECTOR)
+  );
 
-	if ( !header ) {
-		return;
-	}
+  if (!header) {
+    return;
+  }
 
-	const searchBox =
-	/** @type {HTMLElement|null} */ ( header.querySelector( SEARCH_BOX_SELECTOR ) );
+  const searchBox = /** @type {HTMLElement|null} */ (
+    header.querySelector(SEARCH_BOX_SELECTOR)
+  );
 
-	if ( !searchBox ) {
-		return;
-	}
+  if (!searchBox) {
+    return;
+  }
 
-	bindToggleClickHandler( searchBox, header, searchToggle );
+  bindToggleClickHandler(searchBox, header, searchToggle);
 };

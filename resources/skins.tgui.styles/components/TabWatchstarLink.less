@@ -1,57 +1,57 @@
-@import '../../common/variables.less';
-@import 'mediawiki.mixins.less';
-@import 'mediawiki.mixins.rotation.less';
+@import "../../common/variables.less";
+@import "mediawiki.mixins.less";
+@import "mediawiki.mixins.rotation.less";
 
 .tgui-menu-tabs {
-	.mw-watchlink.icon a {
-		overflow: hidden;
-		margin: 0 0.5em;
-		text-indent: -99999px;
-		color: transparent;
+  .mw-watchlink.icon a {
+    overflow: hidden;
+    margin: 0 0.5em;
+    text-indent: -99999px;
+    color: transparent;
 
-		&:before {
-			content: '';
-			display: block;
-			width: 1em;
-			height: 1em;
-		}
-	}
+    &:before {
+      content: "";
+      display: block;
+      width: 1em;
+      height: 1em;
+    }
+  }
 
-	#ca-unwatch.icon a:before {
-		background-image: url( ../common/images/unwatch-icon.svg );
-	}
+  #ca-unwatch.icon a:before {
+    background-image: url(../common/images/unwatch-icon.svg);
+  }
 
-	#ca-unwatch.mw-watchlink-temp.icon a:before {
-		background-image: url( ../common/images/unwatch-temp-icon.svg );
-	}
+  #ca-unwatch.mw-watchlink-temp.icon a:before {
+    background-image: url(../common/images/unwatch-temp-icon.svg);
+  }
 
-	#ca-watch.icon a:before {
-		background-image: url( ../common/images/watch-icon.svg );
-	}
+  #ca-watch.icon a:before {
+    background-image: url(../common/images/watch-icon.svg);
+  }
 
-	#ca-unwatch.icon a:hover:before,
-	#ca-unwatch.icon a:focus:before {
-		background-image: url( ../common/images/unwatch-icon-hl.svg );
-	}
+  #ca-unwatch.icon a:hover:before,
+  #ca-unwatch.icon a:focus:before {
+    background-image: url(../common/images/unwatch-icon-hl.svg);
+  }
 
-	#ca-unwatch.mw-watchlink-temp.icon a:hover:before,
-	#ca-unwatch.mw-watchlink-temp.icon a:focus:before {
-		background-image: url( ../common/images/unwatch-temp-icon-hl.svg );
-	}
+  #ca-unwatch.mw-watchlink-temp.icon a:hover:before,
+  #ca-unwatch.mw-watchlink-temp.icon a:focus:before {
+    background-image: url(../common/images/unwatch-temp-icon-hl.svg);
+  }
 
-	#ca-watch.icon a:hover:before,
-	#ca-watch.icon a:focus:before {
-		background-image: url( ../common/images/watch-icon-hl.svg );
-	}
+  #ca-watch.icon a:hover:before,
+  #ca-watch.icon a:focus:before {
+    background-image: url(../common/images/watch-icon-hl.svg);
+  }
 
-	// Loading watchstar link class.
-	#ca-unwatch.icon .loading:before,
-	#ca-watch.icon .loading:before {
-		.rotation( 700ms );
-		/* Suppress the hilarious rotating focus outline on Firefox */
-		outline: 0;
-		cursor: default;
-		pointer-events: none;
-		transform-origin: 50% 50%;
-	}
+  // Loading watchstar link class.
+  #ca-unwatch.icon .loading:before,
+  #ca-watch.icon .loading:before {
+    .rotation( 700ms );
+    /* Suppress the hilarious rotating focus outline on Firefox */
+    outline: 0;
+    cursor: default;
+    pointer-events: none;
+    transform-origin: 50% 50%;
+  }
 }

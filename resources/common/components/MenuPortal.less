@@ -1,55 +1,55 @@
-@import '../variables.less';
+@import "../variables.less";
 
 .tgui-menu-portal {
-	direction: ltr;
-	margin: 0.5em 0.75em;
-	border: 1px solid var(--color-border);
+  direction: ltr;
+  margin: 0.5em 0.75em;
+  border: 1px solid var(--color-border);
 
-	&:first-child {
-		margin-top: 0;
-	}
+  &:first-child {
+    margin-top: 0;
+  }
 
-	.tgui-menu-heading {
-		display: block;
-		color: var(--color-text-darker);
-		padding: 0.5em 0 0.4em 1.5em;
-		font-size: @font-size-nav-main-heading;
-		font-weight: bold;
-		cursor: default;
-	}
+  .tgui-menu-heading {
+    display: block;
+    color: var(--color-text-darker);
+    padding: 0.5em 0 0.4em 1.5em;
+    font-size: @font-size-nav-main-heading;
+    font-weight: bold;
+    cursor: default;
+  }
 
-	.tgui-menu-content {
-		background-color: var(--color-bg-section-light);
+  .tgui-menu-content {
+    background-color: var(--color-bg-section-light);
 
-		ul {
-			list-style: none;
-			padding: 0.5em 0;
-		}
+    ul {
+      list-style: none;
+      padding: 0.5em 0;
+    }
 
-		li {
-			font-size: @font-size-portal-list-item;
-			line-height: @line-height-nav;
-			word-wrap: break-word;
-			margin: 0 0.5em 0.5em 0.5em;
-			background-color: var(--color-primary);
-			border-radius: var(--border-radius-small);
-			transition: background-color var(--transition-time);
+    li {
+      font-size: @font-size-portal-list-item;
+      line-height: @line-height-nav;
+      word-wrap: break-word;
+      margin: 0 0.5em 0.5em 0.5em;
+      background-color: var(--color-primary);
+      border-radius: var(--border-radius-small);
+      transition: background-color var(--transition-time);
 
-			&:hover {
-				background-color: var(--color-primary-light);
-			}
+      &:hover {
+        background-color: var(--color-primary-light);
+      }
 
-			&:last-child {
-				margin-bottom: 0;
-			}
+      &:last-child {
+        margin-bottom: 0;
+      }
 
-			a {
-				display: inline-flex;
-				width: 100%;
-				padding: 0.5em 0 0.25em 0.5em;
-				color: var(--color-button-text);
-				text-decoration: none;
-			}
-		}
-	}
+      a {
+        display: inline-flex;
+        width: 100%;
+        padding: 0.5em 0 0.25em 0.5em;
+        color: var(--color-button-text);
+        text-decoration: none;
+      }
+    }
+  }
 }
