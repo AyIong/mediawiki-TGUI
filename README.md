@@ -4,7 +4,7 @@
 
 Download all these files into a folder name "TGUI"
 
-Place the TGUI folder into Mediawiki/Skins (Or, clone this repo into the skin folder, and rename cloned folder into "TGUI)
+Place the TGUI folder into Mediawiki/Skins (Or, clone this repo into the skin folder, and rename cloned folder into "TGUI")
 
 go to MediaWiki LocalSetting.php and add this line `wfLoadSkin( 'TGUI' );` next to all the other wfLoadSkin() calls
 
