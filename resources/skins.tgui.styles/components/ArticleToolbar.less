@@ -1,0 +1,39 @@
+@import "../../common/variables.less";
+
+@border-base-ems: unit(1px / @font-size-browser / @font-size-base, em);
+
+.mw-article-toolbar-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5em 0.75em 0 0.75em;
+  color: var(--color-text);
+
+  & > div {
+    font-size: @font-size-tabs;
+  }
+
+  .mw-portlet-views {
+    display: none;
+
+    @media (min-width: @min-width-tablet) {
+      &:not(.emptyPortlet) {
+        display: block;
+      }
+    }
+  }
+
+  .tgui-more-collapsible-item {
+    display: block;
+
+    @media (min-width: @min-width-tablet) {
+      display: none;
+    }
+  }
+
+  // Make sure pcactions is displayed (even if .emptyPortlet present)
+  .tgui-has-collapsible-items {
+    @media (max-width: @max-width-mobile) {
+      display: block;
+    }
+  }
+}

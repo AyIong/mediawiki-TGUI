@@ -1,11 +1,11 @@
 <?php
 
-namespace MediaWiki\Skins\Vector\FeatureManagement\Requirements;
+namespace MediaWiki\Skins\TGUI\FeatureManagement\Requirements;
 
 use CentralIdLookup;
 use Config;
-use MediaWiki\Skins\Vector\Constants;
-use MediaWiki\Skins\Vector\FeatureManagement\Requirement;
+use MediaWiki\Skins\TGUI\Constants;
+use MediaWiki\Skins\TGUI\FeatureManagement\Requirement;
 use RuntimeException;
 use User;
 
@@ -14,7 +14,7 @@ use User;
  *
  * @unstable
  *
- * @package Vector\FeatureManagement\Requirements
+ * @package TGUI\FeatureManagement\Requirements
  * @internal
  */
 final class TableOfContentsTreatmentRequirement implements Requirement {
@@ -63,7 +63,7 @@ final class TableOfContentsTreatmentRequirement implements Requirement {
 	 */
 	public function isMet(): bool {
 		$currentAbTest = $this->config->get( Constants::CONFIG_WEB_AB_TEST_ENROLLMENT );
-		$isTOCExperiment = $currentAbTest['name'] === 'skin-vector-toc-experiment';
+		$isTOCExperiment = $currentAbTest['name'] === 'skin-tgui-toc-experiment';
 		if ( $isTOCExperiment && $currentAbTest['enabled'] && $this->user->isRegistered() ) {
 			$id = null;
 			$buckets = $currentAbTest['buckets'] ?? [];

@@ -20,9 +20,9 @@
  * @since 1.35
  */
 
-namespace MediaWiki\Skins\Vector\FeatureManagement\Requirements;
+namespace MediaWiki\Skins\TGUI\FeatureManagement\Requirements;
 
-use MediaWiki\Skins\Vector\FeatureManagement\Requirement;
+use MediaWiki\Skins\TGUI\FeatureManagement\Requirement;
 
 /**
  * Some application state changes throughout the lifetime of the application, e.g. `wgSitename` or
@@ -61,7 +61,7 @@ use MediaWiki\Skins\Vector\FeatureManagement\Requirement;
  *
  * @unstable
  *
- * @package MediaWiki\Skins\Vector\FeatureManagement\Requirements
+ * @package MediaWiki\Skins\TGUI\FeatureManagement\Requirements
  * @internal
  */
 final class DynamicConfigRequirement implements Requirement {

@@ -20,9 +20,9 @@
  * @since 1.35
  */
 
-namespace MediaWiki\Skins\Vector\FeatureManagement;
+namespace MediaWiki\Skins\TGUI\FeatureManagement;
 
-use MediaWiki\Skins\Vector\FeatureManagement\Requirements\SimpleRequirement;
+use MediaWiki\Skins\TGUI\FeatureManagement\Requirements\SimpleRequirement;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -33,7 +33,7 @@ use Wikimedia\Assert\Assert;
  *
  * @unstable
  *
- * @package MediaWiki\Skins\Vector\FeatureManagement
+ * @package MediaWiki\Skins\TGUI\FeatureManagement
  * @internal
  */
 final class FeatureManager {
@@ -136,7 +136,7 @@ final class FeatureManager {
 		return array_map( static function ( $featureName ) use ( $featureManager ) {
 			// switch to lower case and switch from camel case to hyphens
 			$featureClass = ltrim( strtolower( preg_replace( '/[A-Z]([A-Z](?![a-z]))*/', '-$0', $featureName ) ), '-' );
-			$prefix = 'vector-feature-' . $featureClass . '-';
+			$prefix = 'tgui-feature-' . $featureClass . '-';
 			return $featureManager->isFeatureEnabled( $featureName ) ? $prefix . 'enabled' : $prefix . 'disabled';
 		}, array_keys( $this->features ) );
 	}

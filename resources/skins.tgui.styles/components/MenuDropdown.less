@@ -1,0 +1,68 @@
+@import "../../common/variables.less";
+@import "../../common/mixins.less";
+@import "mediawiki.mixins.less";
+
+/**
+ * Targets all dropdown labels.
+ * - language variants, Actions menus
+ * - more menu, user menu
+ * - ULS button in sticky header
+ */
+.tgui-menu-dropdown .tgui-menu-heading,
+.mw-interlanguage-selector {
+  display: flex;
+
+  &:after {
+    .mixin-tgui-menu-heading-arrow();
+  }
+}
+
+//non-standard dropdown menu item.
+.tgui-user-menu-logout,
+.tgui-user-menu-create-account,
+.tgui-user-menu-login,
+.tgui-menu-dropdown .mw-list-item {
+  a {
+    display: flex;
+    min-height: 32px;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0 0.5em;
+    margin-bottom: 0.5em;
+    background-color: var(--color-primary);
+    color: var(--color-button-text);
+    border-radius: var(--border-radius-small);
+    transition: background-color var(--transition-time);
+    text-decoration: none;
+
+    &:hover {
+      background-color: var(--color-primary-light);
+    }
+
+    span:before {
+      filter: var(--invert-button-icon);
+    }
+  }
+}
+
+.tgui-user-menu-logout a {
+  background-color: var(--color-red);
+  margin: 0.5em 0 0 0;
+
+  &:hover {
+    background-color: var(--color-red-light);
+  }
+}
+
+.tgui-user-menu-login a {
+  background-color: var(--color-blue);
+
+  &:hover {
+    background-color: var(--color-blue-light);
+  }
+}
+
+/* Remove margin from last item */
+#ca-protect a {
+  margin-bottom: 0;
+}

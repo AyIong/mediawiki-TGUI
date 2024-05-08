@@ -1,6 +1,6 @@
 {{!
 	string|null html-site-notice the contents of a banner defined in MediaWiki:Sitenotice.
-		Also used by CentralNotice to inject banners into Vector.
+		Also used by CentralNotice to inject banners into TGUI.
 	Indicator[] array-indicators wiki-defined badges such as "good article",
 		"featured article". An empty array if none are defined.
 	string html-title
@@ -9,9 +9,9 @@
 	string html-subtitle
 	string html-undelete-link
 	string html-newtalk
-	string msg-vector-jumptonavigation
-	string msg-vector-jumptosearch
-	string msg-vector-jumptocontent
+	string msg-tgui-jumptonavigation
+	string msg-tgui-jumptosearch
+	string msg-tgui-jumptocontent
 	string html-body-content
 	string html-categories
 	string html-after-content
@@ -25,14 +25,13 @@
 	object data-search-box. See SearchBox.mustache for documentation.
 	boolean sidebar-visible For users that want to see the sidebar on initial render, this should be
 	  true.
-	string msg-vector-action-toggle-sidebar The label used by the sidebar button.
-	string msg-vector-main-menu-tooltip The title attribute for the main menu icon.
+	string msg-tgui-main-menu-tooltip The title attribute for the main menu icon.
 	object data-portlets-sidebar. See Sidebar.mustache for documentation.
 	object data-footer for footer template partial. see Footer.mustache for documentation.
 }}
 <div class="mw-page-container">
 	<span id="top-page"></span>
-	<a class="mw-jump-link" href="#content">{{msg-vector-jumptocontent}}</a>
+	<a class="mw-jump-link" href="#content">{{msg-tgui-jumptocontent}}</a>
 	<div class="mw-page-container-inner">
 		<input
 			type="checkbox"
@@ -40,15 +39,15 @@
 			class="mw-checkbox-hack-checkbox"
 			{{#sidebar-visible}}checked{{/sidebar-visible}}>
 		{{>Header}}
-		<div class="vector-sidebar-container {{^data-toc}}vector-sidebar-container-no-toc{{/data-toc}}">
+		<div class="tgui-sidebar-container {{^data-toc}}tgui-sidebar-container-no-toc{{/data-toc}}">
 			<div id="mw-navigation">
 				{{#data-portlets-sidebar}}{{>Sidebar}}{{/data-portlets-sidebar}}
 			</div>
 		</div>
-		<div class="vector-sitenotice-container">
+		<div class="tgui-sitenotice-container">
 			<div id="siteNotice">{{{html-site-notice}}}</div>
 		</div>
-		<input type="checkbox" id="vector-toc-collapsed-checkbox" class="mw-checkbox-hack-checkbox">
+		<input type="checkbox" id="tgui-toc-collapsed-checkbox" class="mw-checkbox-hack-checkbox">
 		{{>TableOfContentsContainer}}
 		<div class="mw-content-container">
 			{{! `role` is unnecessary but kept to support selectors in any gadgets or user styles. }}
@@ -56,7 +55,7 @@
 				<a id="top"></a>
 				{{>ContentHeader}}
 				{{>ArticleToolbar}}
-				<div id="bodyContent" class="vector-body" data-mw-ve-target-container>
+				<div id="bodyContent" class="tgui-body" data-mw-ve-target-container>
 					{{>ContentSubheader}}
 					{{#html-subtitle}}<div id="contentSub"{{{html-user-language-attributes}}}>{{{.}}}</div>{{/html-subtitle}}
 					{{#html-undelete-link}}<div id="contentSub2">{{{.}}}</div>{{/html-undelete-link}}
@@ -75,4 +74,3 @@
 		</div>
 	</div> {{! END mw-page-container-inner }}
 </div> {{! END mw-page-container }}
-{{#data-vector-sticky-header}}{{>StickyHeader}}{{/data-vector-sticky-header}}

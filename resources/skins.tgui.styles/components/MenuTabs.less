@@ -1,0 +1,64 @@
+@import "../../common/variables.less";
+@import "mediawiki.mixins.less";
+
+/**
+ * Styling for namespace tabs (page, discussion) and views (read, edit, view history, watch and other actions)
+ */
+
+/* Tab list items */
+.tgui-menu-tabs {
+  float: left;
+
+  .mw-list-item a {
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+    padding: 0.5em 0.75em 0.33em 0.75em;
+    max-height: 3em;
+    font-size: 1.1em;
+    color: var(--color-text-translucent);
+    border-bottom: 2px solid transparent;
+    transition: background-color var(--transition-time);
+    text-decoration: none;
+  }
+
+  .mw-list-item a:focus,
+  .mw-list-item a:hover {
+    background-color: var(--color-hover);
+    color: var(--color-text-translucent);
+  }
+
+  .mw-list-item.new a,
+  .mw-list-item.new a:visited {
+    color: @color-link-new;
+  }
+
+  .mw-list-item.selected a,
+  .mw-list-item.selected a:visited {
+    background-color: var(--color-selected);
+    color: var(--color-text-darker);
+    border-bottom: 2px solid var(--color-fg);
+  }
+}
+
+/**
+ * Tab list item appearance. Applies to both <li>'s inside .tgui-menu-tabs
+ * and dropdown menus inside the article toolbar
+ */
+.tgui-menu-tabs .mw-list-item,
+.mw-article-toolbar-container .tgui-menu-dropdown {
+  float: left;
+  white-space: nowrap;
+
+  // target links inside of .tgui-tab-menu
+  // and dropdown menu headings inside the article toolbar.
+  // NOTE: Consider adding a single selector to define both items,
+  // since they both appear beside each other in the article toolbar.
+  & > a,
+  .tgui-menu-heading {
+    display: inline-flex;
+    position: relative;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-weight: normal;
+  }
+}

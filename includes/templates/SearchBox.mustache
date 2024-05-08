@@ -1,7 +1,7 @@
 {{!
  See @typedef SearchData
 }}
-<div{{#is-primary}} id="p-search"{{/is-primary}} role="search" class="{{class}} vector-search-box">
+<div{{#is-primary}} id="p-search"{{/is-primary}} role="search" class="{{class}} tgui-search-box">
 	{{#is-collapsible}}
 	{{#data-collapse-icon}}
 	{{>Button}}
@@ -14,11 +14,11 @@
 			</h3>
 		{{/is-legacy}}
 		<form action="{{form-action}}" id="{{form-id}}"
-			class="vector-search-box-form">
+			class="tgui-search-box-form">
 			<div {{#is-primary}}id="simpleSearch"{{/is-primary}}
-				class="vector-search-box-inner"
+				class="tgui-search-box-inner"
 				{{#input-location}} data-search-loc="{{.}}"{{/input-location}}>
-				<input class="vector-search-box-input"
+				<input class="tgui-search-box-input"
 					{{#is-primary}}{{{html-input-attributes}}} id="searchInput"{{/is-primary}}
 					{{^is-primary}}
 					type="search" name="search"

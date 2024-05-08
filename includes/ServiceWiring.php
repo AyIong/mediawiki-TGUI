@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Service Wirings for Vector skin
+ * Service Wirings for TGUI skin
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,11 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Skins\Vector\Constants;
-use MediaWiki\Skins\Vector\FeatureManagement\FeatureManager;
-use MediaWiki\Skins\Vector\FeatureManagement\Requirements\DynamicConfigRequirement;
-use MediaWiki\Skins\Vector\FeatureManagement\Requirements\OverridableConfigRequirement;
-use MediaWiki\Skins\Vector\FeatureManagement\Requirements\TableOfContentsTreatmentRequirement;
+use MediaWiki\Skins\TGUI\Constants;
+use MediaWiki\Skins\TGUI\FeatureManagement\FeatureManager;
+use MediaWiki\Skins\TGUI\FeatureManagement\Requirements\DynamicConfigRequirement;
+use MediaWiki\Skins\TGUI\FeatureManagement\Requirements\OverridableConfigRequirement;
+use MediaWiki\Skins\TGUI\FeatureManagement\Requirements\TableOfContentsTreatmentRequirement;
 
 return [
 	Constants::SERVICE_FEATURE_MANAGER => static function ( MediaWikiServices $services ) {
@@ -64,7 +64,7 @@ return [
 		$requirementName = 'T286932';
 
 		// MultiConfig checks each config in turn, allowing us to override the main config for specific keys. In this
-		// case, override the "VectorLanguageInHeaderABTest" configuration value so that the following requirement
+		// case, override the "TGUILanguageInHeaderABTest" configuration value so that the following requirement
 		// always buckets the user as if the language treatment A/B test were running.
 		$config = new MultiConfig( [
 			new HashConfig( [
