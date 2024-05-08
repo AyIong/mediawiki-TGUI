@@ -2,18 +2,33 @@
 
 ## Installation
 
-See <https://www.mediawiki.org/wiki/Skin:TGUI>.
+Download all these files into a folder name "TGUI"
+
+Place the TGUI folder into Mediawiki/Skins (Or, clone this repo into the skin folder, and rename cloned folder into "TGUI)
+
+go to MediaWiki LocalSetting.php and add this line `wfLoadSkin( 'TGUI' );` next to all the other wfLoadSkin() calls
+
+You may need to reload Mediawiki for it to show up.
+
+Now when users go to their Special:Preferences page, they can change their appearance setting theme to TGUI
+
+## Uninstall
+
+REQUIRED: remove this line `wfLoadSkin( 'TGUI' );` from LocalSetting.php
+REQUIRED: If you set $wgDefaultSkin to 'TGUI' you must switch it to another skin you have installed
+
+MediaWiki will automatically switch users using TGUI back to the default skin
+
+You can keep the TGUI folder in Skins if you just want to disable its use for the time being without
+any issues. Otherwise you can just delete it at this point.
 
 ### Configuration options
 
-See [skin.json](skin.json).
+WiP.
 
-## Development
+### Development
 
-### Node version
-
-It is recommended to use [nvm](https://github.com/nvm-sh/nvm) to use the version of node defined
-in `.nvmrc` during local development. This ensures consistency amongst development environments.
+Most of the Template/Skin PHP files is sourced from the Vector Skin(I did a bit of customization) so credit goes to everyone who worked on that.
 
 ### Coding conventions
 
@@ -26,26 +41,6 @@ project are noted at:
 
 <https://www.mediawiki.org/wiki/Reading/Web/Coding_conventions>
 
-### Pre-commit tests
+## Licensing
 
-A pre-commit hook is installed when executing `npm install`. By default, it runs
-`npm test` which is useful for automatically validating everything that can be
-in a reasonable amount of time. If you wish to defer these tests to be executed
-by continuous integration only, set the `PRE_COMMIT` environment variable to `0`:
-
-```bash
-$ export PRE_COMMIT=0
-$ git commit
-```
-
-Or more succinctly:
-
-```bash
-$ PRE_COMMIT=0 git commit
-```
-
-Skipping the pre-commit tests has no impact on Gerrit change identifier hooks.
-
-### Hooks
-
-See [hooks.txt](hooks.txt).
+this is protected under GDL 2.0+ so you're free to take and use this and modify it to whatever the hell you want. Just credit the author and follow the license.
