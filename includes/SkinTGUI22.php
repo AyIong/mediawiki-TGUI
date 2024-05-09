@@ -160,9 +160,6 @@ class SkinTGUI22 extends SkinTGUI {
 
 		$parentData['data-toc'] = $this->getTocData( $parentData['data-toc'] ?? [] );
 
-		if ( !$this->isTableOfContentsVisibleInSidebar() ) {
-			unset( $parentData['data-toc'] );
-		}
 		$parentData = $this->mergeViewOverflowIntoActions( $parentData );
 
 		return array_merge( $parentData, [

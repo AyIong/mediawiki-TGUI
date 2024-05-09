@@ -409,13 +409,6 @@ abstract class SkinTGUI extends SkinMustache {
 
 		$parentData = $this->decoratePortletsData( parent::getTemplateData() );
 
-		// SkinTGUI sometimes serves new TGUI as part of removing the
-		// skin version user preference. TCho avoid T302461 we need to unset it here.
-		// This shouldn't be run on SkinTGUI22.
-		if ( $this->getSkinName() === 'tgui' ) {
-			unset( $parentData['data-toc'] );
-		}
-
 		//
 		// Naming conventions for Mustache parameters.
 		//
