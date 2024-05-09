@@ -5,7 +5,6 @@
 		"featured article". An empty array if none are defined.
 	string html-title
 	bool is-article
-	string msg-tagline
 	string html-subtitle
 	string html-undelete-link
 	string html-newtalk
@@ -52,7 +51,19 @@
 		<div class="mw-content-container">
 			{{! `role` is unnecessary but kept to support selectors in any gadgets or user styles. }}
 			<main id="content" class="mw-body" role="main">
-				<a id="top"></a>
+				{{#data-toc}}
+				<label
+					id="tgui-toc-collapsed-button"
+					class="mw-ui-button mw-ui-quiet mw-ui-icon mw-ui-icon-element mw-ui-icon-wikimedia-listBullet mw-checkbox-hack-button"
+					for="tgui-toc-collapsed-checkbox"
+					role="button"
+					aria-controls="toc-toggle-list"
+					data-event-name="tgui.toc-toggle-list"
+					tabindex="0"
+					title="{{msg-tgui-toc-menu-tooltip}}">
+					{{msg-tgui-toc-collapsible-button-label}}
+				</label>
+				{{/data-toc}}
 				{{>ContentHeader}}
 				{{>ArticleToolbar}}
 				<div id="bodyContent" class="tgui-body" data-mw-ve-target-container>

@@ -6,18 +6,18 @@
 
 #tgui-toc-collapsed-button {
   display: none;
-  float: left;
-  margin-right: 4px;
-  margin-left: -@icon-padding-md;
-  // Reduce padding to fit with page title
-  padding: 7px 10px 7px 10px;
-  // Override background color for when the TOC is overlaps content
-  // as a sticky element when the page is scrolled down.
-  background-color: var(--color-bg);
+  position: fixed;
+  bottom: 1em;
+  right: 1.75em;
+  padding: 0.5em;
+  background-color: var(--color-bg-section-light);
+  border: 1px solid var(--color-border);
+  backdrop-filter: var(--blur-intensity);
+  transition: background-color var(--transition-time);
 
   &:hover,
   &:active {
-    background-color: var(--color-selected);
+    background-color: var(--color-hover);
   }
 }
 
@@ -124,8 +124,8 @@
         }
 
         @{sidebar-toc-selector} {
-          bottom: 0.75em;
-          right: 1.5em;
+          bottom: 1em;
+          right: 1.75em;
         }
 
         // Collapsed to floating icon

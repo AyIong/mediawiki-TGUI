@@ -42,19 +42,8 @@
     overflow-y: auto;
   }
 
-  @media (max-width: @max-width-tablet) {
-    // Makes the sidebar full screen at lower resolutions.
-    width: 100%;
-  }
-
-  // Hide sidebar entirely when the checkbox is disabled
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
-    display: none;
-  }
-
-  // Hide #p-navigation label
-  #p-navigation .tgui-menu-heading {
-    display: none;
+    transform: translateX(-25em);
   }
 }
 

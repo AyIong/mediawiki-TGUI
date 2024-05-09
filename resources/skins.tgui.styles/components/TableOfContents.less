@@ -26,6 +26,10 @@
   backdrop-filter: var(--blur-intensity);
   transition: all var(--transition-time);
 
+  @{selector-main-menu-closed} ~ .mw-table-of-contents-container & {
+    max-height: 100vh;
+  }
+
   .sidebar-toc-header {
     padding: 0.33em 0 0.33em 0.5em;
     border-bottom: 2px solid var(--color-primary);
