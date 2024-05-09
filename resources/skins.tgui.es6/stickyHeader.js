@@ -58,7 +58,7 @@ function moveToc(position) {
 
   // FIXME: Remove after Ia263c606dce5a6060b6b29fbaedc49cef3e17a5c has been in prod for 5 days
   const isCachedHtml = document.querySelector(
-    ".mw-table-of-contents-container.mw-sticky-header-element",
+    ".mw-table-of-contents-container .mw-sticky-header-element"
   );
 
   let newTocContainer;
@@ -77,7 +77,7 @@ function moveToc(position) {
     position === "stickyheader"
   ) {
     newTocContainer = document.querySelector(
-      `.tgui-sticky-header-toc .${stickyHeaderTocContainerClass}`,
+      `.tgui-sticky-header-toc .${stickyHeaderTocContainerClass}`
     );
   }
 
@@ -127,7 +127,7 @@ function suffixStickyHref(node) {
   if (url && !url.searchParams.has(STICKY_HEADER_APPENDED_PARAM[0])) {
     url.searchParams.append(
       STICKY_HEADER_APPENDED_PARAM[0],
-      STICKY_HEADER_APPENDED_PARAM[1],
+      STICKY_HEADER_APPENDED_PARAM[1]
     );
     // @ts-ignore
     node.href = url.toString();
@@ -197,19 +197,19 @@ function removeNodes(nodes) {
 function updateStickyWatchlink(watchSticky, status) {
   watchSticky.classList.toggle(
     "mw-ui-icon-wikimedia-star",
-    status === "unwatched",
+    status === "unwatched"
   );
   watchSticky.classList.toggle(
     "mw-ui-icon-wikimedia-unStar",
-    status === "watched",
+    status === "watched"
   );
   watchSticky.classList.toggle(
     "mw-ui-icon-wikimedia-halfStar",
-    status === "temporary",
+    status === "temporary"
   );
   watchSticky.setAttribute(
     "data-event-name",
-    status === "unwatched" ? "watch-sticky-header" : "unwatch-sticky-header",
+    status === "unwatched" ? "watch-sticky-header" : "unwatch-sticky-header"
   );
 }
 
@@ -224,7 +224,7 @@ function watchstarCallback($link, isWatched, expiry) {
   updateStickyWatchlink(
     // @ts-ignore
     $link[0],
-    expiry !== "infinity" ? "temporary" : isWatched ? "watched" : "unwatched",
+    expiry !== "infinity" ? "temporary" : isWatched ? "watched" : "unwatched"
   );
 }
 
@@ -274,16 +274,16 @@ function prepareIcons(header, history, talk, subject, watch) {
         ? "temporary"
         : watchContainer.getAttribute("id") === "ca-watch"
           ? "unwatched"
-          : "watched",
+          : "watched"
     );
 
     const watchLib = require(
-      /** @type {string} */ ("mediawiki.page.watch.ajax"),
+      /** @type {string} */ ("mediawiki.page.watch.ajax")
     );
     watchLib.watchstar(
       $(watchSticky),
       mw.config.get("wgRelevantPageName"),
-      watchstarCallback,
+      watchstarCallback
     );
   } else {
     removeNode(watchSticky);
@@ -307,7 +307,7 @@ function prepareEditIcons(
   isProtected,
   secondaryEdit,
   addSection,
-  disableStickyHeader,
+  disableStickyHeader
 ) {
   const primaryEditSticky = header.querySelector("#ca-ve-edit-sticky-header"),
     protectedSticky = header.querySelector("#ca-viewsource-sticky-header"),
@@ -441,7 +441,7 @@ function prepareUserMenu(userMenu) {
   const // Type declaration needed because of https://github.com/Microsoft/TypeScript/issues/3734#issuecomment-118934518
     userMenuClone = /** @type {Element} */ (userMenu.cloneNode(true)),
     userMenuStickyElementsWithIds = userMenuClone.querySelectorAll(
-      "[ id ], [ data-event-name ]",
+      "[ id ], [ data-event-name ]"
     );
   // Update all ids of the cloned user menu to make them unique.
   makeNodeTrackable(userMenuClone);
@@ -450,7 +450,7 @@ function prepareUserMenu(userMenu) {
   removeNodes(userMenuClone.querySelectorAll(".mw-list-item-js"));
   removeClassFromNodes(
     userMenuClone.querySelectorAll(".user-links-collapsible-item"),
-    "user-links-collapsible-item",
+    "user-links-collapsible-item"
   );
   // Prevents user menu from being focusable, T290201
   const userMenuCheckbox = userMenuClone.querySelector("input");
@@ -476,10 +476,10 @@ function makeStickyHeaderFunctional(
   userMenuStickyContainer,
   stickyObserver,
   stickyIntersection,
-  disableEditIcons,
+  disableEditIcons
 ) {
   const userMenuStickyContainerInner = userMenuStickyContainer.querySelector(
-    VECTOR_USER_LINKS_SELECTOR,
+    VECTOR_USER_LINKS_SELECTOR
   );
 
   // Clone the updated user menu to the sticky header.
@@ -505,7 +505,7 @@ function makeStickyHeaderFunctional(
     document.querySelector("#ca-history a"),
     document.querySelector("#ca-talk:not( .selected ) a"),
     document.querySelector("#" + namespaceTabId + ":not( .selected ) a"),
-    document.querySelector("#ca-watch a, #ca-unwatch a"),
+    document.querySelector("#ca-watch a, #ca-unwatch a")
   );
 
   const veEdit = document.querySelector("#ca-ve-edit a");
@@ -529,7 +529,7 @@ function makeStickyHeaderFunctional(
     isProtected,
     secondaryEdit,
     addSection,
-    disableStickyHeader,
+    disableStickyHeader
   );
 
   stickyObserver.observe(stickyIntersection);
@@ -589,7 +589,7 @@ function isAllowedAction(action) {
  */
 function initStickyHeader(props) {
   const userMenuStickyContainer = document.getElementsByClassName(
-    STICKY_HEADER_USER_MENU_CONTAINER_CLASS,
+    STICKY_HEADER_USER_MENU_CONTAINER_CLASS
   )[0];
 
   makeStickyHeaderFunctional(
@@ -598,7 +598,7 @@ function initStickyHeader(props) {
     userMenuStickyContainer,
     props.observer,
     props.stickyIntersection,
-    props.disableEditIcons,
+    props.disableEditIcons
   );
 
   setupSearchIfNeeded(props.header);

@@ -1,4 +1,4 @@
-<nav id="mw-panel-toc" class="sidebar-toc" role="navigation" aria-labelledby="sidebar-toc-label" data-event-name="ui.sidebar-toc">
+<nav class="sidebar-toc" role="navigation" aria-labelledby="sidebar-toc-label" data-event-name="ui.sidebar-toc">
 	<div id="sidebar-toc-label" class="sidebar-toc-header">
 		<p class="sidebar-toc-title">
 		{{ msg-tgui-toc-heading }}
@@ -6,6 +6,7 @@
 		<button class="tgui-toc-collapse-button">{{msg-tgui-toc-toggle-position-title}}</button>
 		</p>
 	</div>
+	<div id="mw-panel-toc" class="sidebar-toc-contents-container">
 	<ul class="sidebar-toc-contents" id="mw-panel-toc-list">
 		{{#is-tgui-toc-beginning-enabled}}
 		<li id="toc-mw-content-text"
@@ -19,4 +20,5 @@
 		{{>TableOfContents__line}}
 		{{/array-sections}}
 	</ul>
+	</div>
 </nav>
