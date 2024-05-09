@@ -18,8 +18,12 @@
 }
 
 .sidebar-toc {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   bottom: 0;
+  height: -webkit-fill-available;
+  max-height: 15em;
   box-sizing: border-box;
   background-color: var(--color-bg-section);
   border-top: 1px solid var(--color-border);
@@ -28,6 +32,8 @@
 
   @{selector-main-menu-closed} ~ .mw-table-of-contents-container & {
     max-height: 100vh;
+    margin-top: 66px;
+    border: 0;
   }
 
   .sidebar-toc-header {
@@ -48,16 +54,11 @@
 
   .sidebar-toc-contents-container {
     overflow: hidden;
-    height: -webkit-fill-available;
-    max-height: 13em;
-
+    height: 100%;
+    padding: 0 0.5em 0 1em;
     &:hover {
-      overflow-y: scroll;
+      overflow-y: auto;
     }
-  }
-
-  .sidebar-toc-numb {
-    display: none;
   }
 
   .sidebar-toc-toggle {
@@ -100,14 +101,13 @@
   }
 
   .sidebar-toc-text {
-    padding: 4px 0;
+    padding: 0.25em 0;
   }
 
   .sidebar-toc-contents,
   .sidebar-toc-list {
-    margin: 0 0.5em 0 1.5em;
     list-style: none;
-    line-height: 18px;
+    margin-left: 0.5em;
 
     &:first-child {
       margin-top: 0.5em;
