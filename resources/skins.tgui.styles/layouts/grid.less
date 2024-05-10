@@ -45,7 +45,7 @@
   }
 
   .mw-table-of-contents-container {
-    grid-area: toc;
+    grid-area: sidebar;
   }
 
   .mw-header {
@@ -71,15 +71,9 @@
   }
 }
 
-@{selector-sidebar-no-toc-sidebar-closed} {
+@{selector-sidebar-no-toc-sidebar-closed},
+@{selector-sidebar-no-toc-sidebar-disabled} {
   & ~ .mw-content-container {
-    .mixin-column-full-width();
-  }
-}
-
-.tgui-toc-collapsed @{selector-main-menu-closed} {
-  & ~ .mw-content-container,
-  & ~ .mw-table-of-contents-container {
     .mixin-column-full-width();
   }
 }

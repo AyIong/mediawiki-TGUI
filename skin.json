@@ -1,6 +1,6 @@
 {
   "name": "TGUI",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": [
     "Александр Кица (Aylong)",
     "[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team] with Original [https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
@@ -15,7 +15,7 @@
   },
   "ValidSkinNames": {
     "tgui": {
-      "class": "MediaWiki\\Skins\\TGUI\\SkinTGUI22",
+      "class": "MediaWiki\\Skins\\TGUI\\SkinTGUI",
       "args": [
         {
           "name": "tgui",
@@ -54,10 +54,7 @@
             "tgui-jumptocontent",
             "tgui-toc-beginning",
             "tgui-toc-heading",
-            "tgui-toc-toggle-position-sidebar",
-            "tgui-toc-toggle-position-title",
             "tgui-toc-menu-tooltip",
-            "tgui-toc-collapsible-button-label",
             "tgui-article-tools-nav-label",
             "tgui-site-nav-label",
             "search",
@@ -136,12 +133,6 @@
         "tgui-searchsuggest-containing"
       ]
     },
-    "skins.tgui.AB.styles": {
-      "class": "ResourceLoaderSkinModule",
-      "features": ["toc"],
-      "styles": ["resources/skins.tgui.AB.styles.less"],
-      "targets": ["desktop", "mobile"]
-    },
     "skins.tgui.styles": {
       "class": "ResourceLoaderSkinModule",
       "features": {
@@ -160,8 +151,7 @@
         "interface-user-message": true,
         "i18n-ordered-lists": true,
         "i18n-all-lists-margins": true,
-        "i18n-headings": true,
-        "toc": false
+        "i18n-headings": true
       },
       "targets": ["desktop", "mobile"],
       "styles": [
@@ -237,9 +227,7 @@
       "packageFiles": [
         "resources/skins.tgui.es6/main.js",
         "resources/skins.tgui.es6/searchToggle.js",
-        "resources/skins.tgui.es6/stickyHeader.js",
         "resources/skins.tgui.es6/scrollObserver.js",
-        "resources/skins.tgui.es6/AB.js",
         "resources/skins.tgui.es6/tableOfContents.js",
         "resources/skins.tgui.es6/sectionObserver.js",
         "resources/skins.tgui.es6/deferUntilFrame.js",
@@ -273,12 +261,7 @@
         "mediawiki.util",
         "mediawiki.experiments"
       ],
-      "messages": [
-        "tgui-toc-beginning",
-        "tgui-toc-heading",
-        "tgui-toc-toggle-position-sidebar",
-        "tgui-toc-toggle-position-title"
-      ]
+      "messages": ["tgui-toc-beginning", "tgui-toc-heading"]
     },
     "skins.tgui.js": {
       "packageFiles": [
@@ -385,38 +368,6 @@
     "TGUILanguageInHeaderTreatmentABTest": {
       "value": false,
       "description": "@var boolean Enables or disables the language in header treatment A/B test. See https://phabricator.wikimedia.org/T280825 and associated tasks for additional detail."
-    },
-    "TGUIStickyHeader": {
-      "value": {
-        "logged_in": true,
-        "logged_out": false
-      },
-      "description": "@var array Enables a persistent header that allows quick access to user links, editing tools, search and other links while scrolling down a page"
-    },
-    "TGUIStickyHeaderEdit": {
-      "value": {
-        "logged_in": false,
-        "logged_out": false
-      },
-      "description": "@var array Enables the edit icons if $wgTGUIStickyHeader is true."
-    },
-    "TGUIWebABTestEnrollment": {
-      "value": {
-        "name": "skin-tgui-toc-experiment",
-        "enabled": false,
-        "buckets": {
-          "unsampled": {
-            "samplingRate": 0
-          },
-          "control": {
-            "samplingRate": 0.5
-          },
-          "treatment": {
-            "samplingRate": 0.5
-          }
-        }
-      },
-      "description": "An associative array of A/B test configs keyed by parameters noted in mediawiki.experiments.js. There must be an `unsampled` bucket that represents a population excluded from the experiment. Additionally, the treatment bucket(s) must include a case-insensitive `treatment` substring in their name (e.g. `treatment`, `stickyHeaderTreatment`, `sticky-header-treatment`)"
     },
     "TGUIDisableSidebarPersistence": {
       "value": false,

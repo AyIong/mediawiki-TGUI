@@ -146,66 +146,6 @@ return [
 			]
 		);
 
-		// Feature: Sticky header
-		// ================================
-		$featureManager->registerRequirement(
-			new OverridableConfigRequirement(
-				$services->getMainConfig(),
-				$context->getUser(),
-				$context->getRequest(),
-				null,
-				Constants::CONFIG_STICKY_HEADER,
-				Constants::REQUIREMENT_STICKY_HEADER
-			)
-		);
-
-		$featureManager->registerRequirement(
-			new OverridableConfigRequirement(
-				$services->getMainConfig(),
-				$context->getUser(),
-				$context->getRequest(),
-				null,
-				Constants::CONFIG_STICKY_HEADER_EDIT,
-				Constants::REQUIREMENT_STICKY_HEADER_EDIT
-			)
-		);
-
-		$featureManager->registerFeature(
-			Constants::FEATURE_STICKY_HEADER,
-			[
-				Constants::REQUIREMENT_FULLY_INITIALISED,
-				Constants::REQUIREMENT_STICKY_HEADER
-			]
-		);
-
-		$featureManager->registerFeature(
-			Constants::FEATURE_STICKY_HEADER_EDIT,
-			[
-				Constants::REQUIREMENT_FULLY_INITIALISED,
-				Constants::REQUIREMENT_STICKY_HEADER,
-				Constants::REQUIREMENT_STICKY_HEADER_EDIT,
-			]
-		);
-
-		// T313435 Feature: Table of Contents
-		// Temporary - remove after TOC A/B test is finished.
-		// ================================
-		$featureManager->registerRequirement(
-			new TableOfContentsTreatmentRequirement(
-				$services->getMainConfig(),
-				$context->getUser(),
-				$services->getCentralIdLookupFactory()->getNonLocalLookup()
-			)
-		);
-
-		$featureManager->registerFeature(
-			Constants::FEATURE_TABLE_OF_CONTENTS,
-			[
-				Constants::REQUIREMENT_FULLY_INITIALISED,
-				Constants::REQUIREMENT_TABLE_OF_CONTENTS,
-			]
-		);
-
 		// Temporary feature: Visual enhancements
 		// ================================
 		$featureManager->registerRequirement(

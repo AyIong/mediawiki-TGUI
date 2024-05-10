@@ -7,22 +7,21 @@ const PARENT_SECTION_CLASS = "sidebar-toc-level-1";
 const LINK_CLASS = "sidebar-toc-link";
 const TOGGLE_CLASS = "sidebar-toc-toggle";
 const TOC_COLLAPSED_CLASS = "tgui-toc-collapsed";
-const TOC_NOT_COLLAPSED_CLASS = "tgui-toc-not-collapsed";
 const TOC_ID = "mw-panel-toc";
 /**
  * TableOfContents Mustache templates
  */
 const templateBody = require(
-  /** @type {string} */ ("./templates/TableOfContents.mustache"),
+  /** @type {string} */ ("./templates/TableOfContents.mustache")
 );
 const templateTocLine = require(
-  /** @type {string} */ ("./templates/TableOfContents__line.mustache"),
+  /** @type {string} */ ("./templates/TableOfContents__line.mustache")
 );
 /**
  * TableOfContents Config object for filling mustache templates
  */
 const tableOfContentsConfig = require(
-  /** @type {string} */ ("./tableOfContentsConfig.json"),
+  /** @type {string} */ ("./tableOfContentsConfig.json")
 );
 
 /**
@@ -70,7 +69,6 @@ const tableOfContentsConfig = require(
  * @property {string} msg-tgui-toc-heading
  * @property {number} number-section-count
  * @property {string} msg-tgui-toc-beginning
- * @property {string} msg-tgui-toc-toggle-position-title
  * @property {string} msg-tgui-toc-toggle-position-sidebar
  */
 
@@ -335,7 +333,7 @@ module.exports = function tableOfContents(props) {
    */
   function initializeExpandedStatus() {
     const parentSections = props.container.querySelectorAll(
-      `.${PARENT_SECTION_CLASS}`,
+      `.${PARENT_SECTION_CLASS}`
     );
     parentSections.forEach((section) => {
       const expanded = section.classList.contains(EXPANDED_SECTION_CLASS);
@@ -350,17 +348,12 @@ module.exports = function tableOfContents(props) {
    * Bind event listener for clicking on show/hide Table of Contents links.
    */
   function bindCollapseToggleListeners() {
-    // Initialize toc collapsed status
-    document.body.classList.add(TOC_NOT_COLLAPSED_CLASS);
-
     const showHideTocElement = document.querySelectorAll(
-      "#sidebar-toc-label button",
+      "#sidebar-toc-label button"
     );
     showHideTocElement.forEach(function (btn) {
       btn.addEventListener("click", () => {
         document.body.classList.toggle(TOC_COLLAPSED_CLASS);
-        document.body.classList.toggle(TOC_NOT_COLLAPSED_CLASS);
-
         props.onToggleCollapse();
       });
     });
@@ -400,7 +393,7 @@ module.exports = function tableOfContents(props) {
   function initialize() {
     // Sync component state to the default rendered state of the table of contents.
     expandedSections = Array.from(
-      props.container.querySelectorAll(`.${EXPANDED_SECTION_CLASS}`),
+      props.container.querySelectorAll(`.${EXPANDED_SECTION_CLASS}`)
     );
 
     // Initialize toggle buttons aria-expanded attribute.
@@ -518,9 +511,6 @@ module.exports = function tableOfContents(props) {
       "msg-tgui-toc-toggle-position-sidebar": mw
         .message("tgui-toc-toggle-position-sidebar")
         .text(),
-      "msg-tgui-toc-toggle-position-title": mw
-        .message("tgui-toc-toggle-position-title")
-        .text(),
       "msg-tgui-toc-beginning": mw.message("tgui-toc-beginning").text(),
       "array-sections": getTableOfContentsSectionsData(sections, 1),
       "tgui-is-collapse-sections-enabled":
@@ -548,7 +538,7 @@ module.exports = function tableOfContents(props) {
       if (section.toclevel === toclevel) {
         const childSections = getTableOfContentsSectionsData(
           sections.slice(i + 1),
-          toclevel + 1,
+          toclevel + 1
         );
         section["array-sections"] = childSections;
         section["is-top-level-section"] = toclevel === 1;
@@ -557,6 +547,7 @@ module.exports = function tableOfContents(props) {
       }
       // Child section belongs to a higher parent.
       if (section.toclevel < toclevel) {
+        document.body.classList.add(TOC_COLLAPSED_CLASS);
         return data;
       }
     }

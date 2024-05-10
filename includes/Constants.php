@@ -87,43 +87,6 @@ final class Constants {
 	public const CONFIG_LANGUAGE_IN_HEADER_TREATMENT_AB_TEST = 'TGUILanguageInHeaderTreatmentABTest';
 
 	/**
-	 * @var string
-	 */
-	public const CONFIG_STICKY_HEADER = 'TGUIStickyHeader';
-
-	/**
-	 * @var string
-	 */
-	public const CONFIG_STICKY_HEADER_EDIT = 'TGUIStickyHeaderEdit';
-
-	/**
-	 * @var string
-	 */
-	public const REQUIREMENT_STICKY_HEADER = 'StickyHeader';
-
-	/**
-	 * @var string
-	 */
-	public const REQUIREMENT_STICKY_HEADER_EDIT = 'StickyHeaderEdit';
-
-	/**
-	 * @var string
-	 */
-	public const FEATURE_STICKY_HEADER = 'StickyHeader';
-
-	/**
-	 * @var string
-	 */
-	public const FEATURE_STICKY_HEADER_EDIT = 'StickyHeaderEdit';
-
-	/**
-	 * Defines whether an A/B test is running.
-	 *
-	 * @var string
-	 */
-	public const CONFIG_WEB_AB_TEST_ENROLLMENT = 'TGUIWebABTestEnrollment';
-
-	/**
 	 * The `mediawiki.searchSuggest` protocol piece of the SearchSatisfaction instrumention reads
 	 * the value of an element with the "data-search-loc" attribute and set the event's
 	 * `inputLocation` property accordingly.
@@ -182,16 +145,6 @@ final class Constants {
 	 * @var string
 	 */
 	public const FEATURE_LANGUAGE_ALERT_IN_SIDEBAR = 'LanguageAlertInSidebar';
-
-	/**
-	 * @var string
-	 */
-	public const FEATURE_TABLE_OF_CONTENTS = 'TableOfContents';
-
-	/**
-	 * @var string
-	 */
-	public const REQUIREMENT_TABLE_OF_CONTENTS = 'TableOfContents';
 
 	/**
 	 * @var string

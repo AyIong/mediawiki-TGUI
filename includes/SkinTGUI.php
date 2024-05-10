@@ -12,7 +12,7 @@ use SpecialPage;
 use Title;
 use User;
 
-abstract class SkinTGUI extends SkinMustache {
+class SkinTGUI extends SkinMustache {
 	/** @var null|array for caching purposes */
 	private $languages;
 	/** @var int */
@@ -22,70 +22,6 @@ abstract class SkinTGUI extends SkinMustache {
 	/** @var int */
 	private const MENU_TYPE_DROPDOWN = 2;
 	private const MENU_TYPE_PORTAL = 3;
-	private const TALK_ICON = [
-		'href' => '#',
-		'id' => 'ca-talk-sticky-header',
-		'event' => 'talk-sticky-header',
-		'icon' => 'wikimedia-speechBubbles',
-		'is-quiet' => true,
-		'tabindex' => '-1',
-		'class' => 'sticky-header-icon'
-	];
-	private const SUBJECT_ICON = [
-		'href' => '#',
-		'id' => 'ca-subject-sticky-header',
-		'event' => 'subject-sticky-header',
-		'icon' => 'wikimedia-article',
-		'is-quiet' => true,
-		'tabindex' => '-1',
-		'class' => 'sticky-header-icon'
-	];
-	private const HISTORY_ICON = [
-		'href' => '#',
-		'id' => 'ca-history-sticky-header',
-		'event' => 'history-sticky-header',
-		'icon' => 'wikimedia-history',
-		'is-quiet' => true,
-		'tabindex' => '-1',
-		'class' => 'sticky-header-icon'
-	];
-	// Event and icon will be updated depending on watchstar state
-	private const WATCHSTAR_ICON = [
-		'href' => '#',
-		'id' => 'ca-watchstar-sticky-header',
-		'event' => 'watch-sticky-header',
-		'icon' => 'wikimedia-star',
-		'is-quiet' => true,
-		'tabindex' => '-1',
-		'class' => 'sticky-header-icon mw-watchlink'
-	];
-	private const EDIT_VE_ICON = [
-		'href' => '#',
-		'id' => 'ca-ve-edit-sticky-header',
-		'event' => 've-edit-sticky-header',
-		'icon' => 'wikimedia-edit',
-		'is-quiet' => true,
-		'tabindex' => '-1',
-		'class' => 'sticky-header-icon'
-	];
-	private const EDIT_WIKITEXT_ICON = [
-		'href' => '#',
-		'id' => 'ca-edit-sticky-header',
-		'event' => 'wikitext-edit-sticky-header',
-		'icon' => 'wikimedia-wikiText',
-		'is-quiet' => true,
-		'tabindex' => '-1',
-		'class' => 'sticky-header-icon'
-	];
-	private const EDIT_PROTECTED_ICON = [
-		'href' => '#',
-		'id' => 'ca-viewsource-sticky-header',
-		'event' => 've-edit-protected-sticky-header',
-		'icon' => 'wikimedia-editLock',
-		'is-quiet' => true,
-		'tabindex' => '-1',
-		'class' => 'sticky-header-icon'
-	];
 	private const SEARCH_SHOW_THUMBNAIL_CLASS = 'tgui-search-box-show-thumbnail';
 	private const SEARCH_AUTO_EXPAND_WIDTH_CLASS = 'tgui-search-box-auto-expand-width';
 	private const CLASS_PROGRESSIVE = 'mw-ui-progressive';
@@ -317,76 +253,6 @@ abstract class SkinTGUI extends SkinMustache {
 	}
 
 	/**
-	 * Generate data needed to generate the sticky header.
-	 * @param array $searchBoxData
-	 * @param bool $includeEditIcons
-	 * @return array
-	 */
-	final protected function getStickyHeaderData( $searchBoxData, $includeEditIcons ): array {
-		$btns = [
-			self::TALK_ICON,
-			self::SUBJECT_ICON,
-			self::HISTORY_ICON,
-			self::WATCHSTAR_ICON,
-		];
-		if ( $includeEditIcons ) {
-			$btns[] = self::EDIT_WIKITEXT_ICON;
-			$btns[] = self::EDIT_PROTECTED_ICON;
-			$btns[] = self::EDIT_VE_ICON;
-		}
-		$btns[] = $this->getAddSectionButtonData();
-
-		$tocPortletData = $this->decoratePortletData( 'data-sticky-header-toc', [
-			'id' => 'p-sticky-header-toc',
-			'class' => 'mw-portlet mw-portlet-sticky-header-toc tgui-sticky-header-toc',
-			'html-items' => '',
-			'html-tgui-menu-checkbox-attributes' => 'tabindex="-1"',
-			'html-tgui-menu-heading-attributes' => 'tabindex="-1"',
-			'button' => true,
-			'text-hidden' => true,
-			'icon' => 'listBullet'
-		] );
-
-		// Show sticky ULS if the ULS extension is enabled and the ULS in header is not hidden
-		$showStickyULS = $this->isULSExtensionEnabled() && !$this->shouldHideLanguages();
-		return [
-			'data-sticky-header-toc' => $tocPortletData,
-			'data-primary-action' => $showStickyULS ?
-				$this->getULSButtonData() : null,
-			'data-button-start' => [
-				'label' => $this->msg( 'search' ),
-				'icon' => 'wikimedia-search',
-				'is-quiet' => true,
-				'tabindex' => '-1',
-				'class' => 'tgui-sticky-header-search-toggle',
-				'event' => 'ui.' . $searchBoxData['form-id'] . '.icon'
-			],
-			'data-search' => $searchBoxData,
-			'data-buttons' => $btns,
-		];
-	}
-
-	/**
-	 * Generate data needed to create SidebarAction item.
-	 * @param array $htmlData data to make a link or raw html
-	 * @param array $headingOptions optional heading for the html
-	 * @return array keyed data for the SidebarAction template
-	 */
-	private function makeSidebarActionData( array $htmlData = [], array $headingOptions = [] ): array {
-		$htmlContent = '';
-		// Populates the sidebar as a standalone link or custom html.
-		if ( array_key_exists( 'link', $htmlData ) ) {
-			$htmlContent = $this->makeLink( 'link', $htmlData['link'] );
-		} elseif ( array_key_exists( 'html-content', $htmlData ) ) {
-			$htmlContent = $htmlData['html-content'];
-		}
-
-		return $headingOptions + [
-			'html-content' => $htmlContent,
-		];
-	}
-
-	/**
 	 * Determines if the language switching alert box should be in the sidebar.
 	 *
 	 * @return bool
@@ -399,79 +265,6 @@ abstract class SkinTGUI extends SkinMustache {
 		return ( $this->isLanguagesInContentAt( 'top' ) && !$isMainPage && !$this->shouldHideLanguages() &&
 			$featureManager->isFeatureEnabled( Constants::FEATURE_LANGUAGE_ALERT_IN_SIDEBAR ) ) ||
 			$shouldShowOnMainPage;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getTemplateData(): array {
-		$skin = $this;
-
-		$parentData = $this->decoratePortletsData( parent::getTemplateData() );
-
-		// SkinTGUI sometimes serves new TGUI as part of removing the
-		// skin version user preference. TCho avoid T302461 we need to unset it here.
-		// This shouldn't be run on SkinTGUI22.
-		if ( $this->getSkinName() === 'tgui' ) {
-			unset( $parentData['data-toc'] );
-		}
-
-		//
-		// Naming conventions for Mustache parameters.
-		//
-		// Value type (first segment):
-		// - Prefix "is" or "has" for boolean values.
-		// - Prefix "msg-" for interface message text.
-		// - Prefix "html-" for raw HTML.
-		// - Prefix "data-" for an array of template parameters that should be passed directly
-		//   to a template partial.
-		// - Prefix "array-" for lists of any values.
-		//
-		// Source of value (first or second segment)
-		// - Segment "page-" for data relating to the current page (e.g. Title, WikiPage, or OutputPage).
-		// - Segment "hook-" for any thing generated from a hook.
-		//   It should be followed by the name of the hook in hyphenated lowercase.
-		//
-		// Conditionally used values must use null to indicate absence (not false or '').
-		$commonSkinData = array_merge( $parentData, [
-			'input-location' => $this->getSearchBoxInputLocation(),
-			'sidebar-visible' => $this->isSidebarVisible(),
-			'is-language-in-content' => $this->isLanguagesInContent(),
-			'is-language-in-content-top' => $this->isLanguagesInContentAt( 'top' ),
-			'is-language-in-content-bottom' => $this->isLanguagesInContentAt( 'bottom' ),
-			'data-search-box' => $this->getSearchData(
-				$parentData['data-search-box'],
-				false,
-				false,
-				'tgui-sticky-search-form',
-				false
-			)
-		] );
-
-		$user = $skin->getUser();
-		$commonSkinData['data-tgui-user-links'] = $this->getUserLinksTemplateData(
-			$commonSkinData['data-portlets'],
-			$user
-		);
-
-		// T295555 Add language switch alert message temporarily (to be removed).
-		if ( $this->shouldLanguageAlertBeInSidebar() ) {
-			$languageSwitchAlert = [
-				'html-content' => Html::noticeBox(
-					$this->msg( 'tgui-language-redirect-to-top' )->parse(),
-					'tgui-language-sidebar-alert'
-				),
-			];
-			$headingOptions = [
-				'heading' => $this->msg( 'tgui-languages' )->plain(),
-			];
-			$commonSkinData['data-tgui-language-switch-alert'][] = $this->makeSidebarActionData(
-				$languageSwitchAlert,
-				$headingOptions
-			);
-		}
-
-		return $commonSkinData;
 	}
 
 	/**
@@ -534,24 +327,6 @@ abstract class SkinTGUI extends SkinMustache {
 	}
 
 	/**
-	 * @inheritDoc
-	 */
-	public function isResponsive() {
-		// Check it's enabled by user preference and configuration
-		$responsive = parent::isResponsive() && $this->getConfig()->get( 'TGUIResponsive' );
-		// For historic reasons, the viewport is added when TGUI is loaded on the mobile
-		// domain. This is only possible for 3rd parties or by useskin parameter as there is
-		// no preference for changing mobile skin. Only need to check if $responsive is falsey.
-		if ( !$responsive && ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) ) {
-			$mobFrontContext = MediaWikiServices::getInstance()->getService( 'MobileFrontend.Context' );
-			if ( $mobFrontContext->shouldDisplayMobileView() ) {
-				return true;
-			}
-		}
-		return $responsive;
-	}
-
-	/**
 	 * Returns `true` if Vue search is enabled to show thumbnails and `false` otherwise.
 	 * Note this is only relevant for Vue search experience (not legacy search).
 	 *
@@ -610,43 +385,6 @@ abstract class SkinTGUI extends SkinMustache {
 				'aria-label' => $this->msg( 'tgui-language-button-aria-label' )->numParams( $numLanguages )->escaped()
 			];
 		}
-	}
-
-	/**
-	 * Creates button data for the "Add section" button in the sticky header
-	 *
-	 * @return array
-	 */
-	private function getAddSectionButtonData() {
-		return [
-			'href' => '#',
-			'id' => 'ca-addsection-sticky-header',
-			'event' => 'addsection-sticky-header',
-			'html-tgui-button-icon' => Hooks::makeIcon( 'wikimedia-speechBubbleAdd-progressive' ),
-			'label' => $this->msg( [ 'tgui-action-addsection', 'skin-action-addsection' ] ),
-			'is-quiet' => true,
-			'tabindex' => '-1',
-			'class' => 'sticky-header-icon mw-ui-primary mw-ui-progressive'
-		];
-	}
-
-	/**
-	 * Creates button data for the ULS button in the sticky header
-	 *
-	 * @return array
-	 */
-	private function getULSButtonData() {
-		$numLanguages = count( $this->getLanguagesCached() );
-
-		return [
-			'id' => 'p-lang-btn-sticky-header',
-			'class' => 'mw-interlanguage-selector',
-			'is-quiet' => true,
-			'tabindex' => '-1',
-			'label' => $this->getULSLabels()[ 'label' ],
-			'html-tgui-button-icon' => Hooks::makeIcon( 'wikimedia-language' ),
-			'event' => 'ui.dropdown-p-lang-btn-sticky-header'
-		];
 	}
 
 	/**
@@ -843,5 +581,132 @@ abstract class SkinTGUI extends SkinMustache {
 			'is-dropdown' => $type === self::MENU_TYPE_DROPDOWN,
 			'is-portal' => $type === self::MENU_TYPE_PORTAL,
 		];
+	}
+
+	/**
+	 * Determines if the Table of Contents should be visible.
+	 * TOC is visible on main namespaces except for the Main Page.
+	 *
+	 * @internal
+	 * @return bool
+	 */
+	public function isTableOfContentsVisibleInSidebar(): bool {
+		$title = $this->getTitle();
+
+		if (
+			!$title ||
+			$title->isMainPage()
+		) {
+			return false;
+		}
+
+		if ( $this->isTOCABTestEnabled() ) {
+			return $title->getArticleID() !== 0;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Annotates table of contents data with TGUI-specific information.
+	 *
+	 * In tableOfContents.js we have tableOfContents::getTableOfContentsSectionsData(),
+	 * that yields the same result as this function, please make sure to keep them in sync.
+	 *
+	 * @param array $tocData
+	 * @return array
+	 */
+	private function getTocData( array $tocData ): array {
+		// If the table of contents has no items, we won't output it.
+		// empty array is interpreted by Mustache as falsey.
+		if ( empty( $tocData ) || empty( $tocData[ 'array-sections' ] ) ) {
+			return [];
+		}
+
+		// Populate button labels for collapsible TOC sections
+		foreach ( $tocData[ 'array-sections' ] as &$section ) {
+			if ( $section['is-top-level-section'] && $section['is-parent-section'] ) {
+				$section['tgui-button-label'] =
+					$this->msg( 'tgui-toc-toggle-button-label', $section['line'] )->text();
+			}
+		}
+
+		return array_merge( $tocData, [
+			'is-tgui-toc-beginning-enabled' => $this->getConfig()->get(
+				'TGUITableOfContentsBeginning'
+			),
+			'tgui-is-collapse-sections-enabled' =>
+				$tocData[ 'number-section-count'] >= $this->getConfig()->get(
+					'TGUITableOfContentsCollapseAtCount'
+				)
+		] );
+	}
+
+	/**
+	 * Merges the `view-overflow` menu into the `action` menu.
+	 * This ensures that the previous state of the menu e.g. emptyPortlet class
+	 * is preserved.
+	 * @param array $data
+	 * @return array
+	 */
+	private function mergeViewOverflowIntoActions( $data ) {
+		$portlets = $data['data-portlets'];
+		$actions = $portlets['data-actions'];
+		$overflow = $portlets['data-views-overflow'];
+		// if the views overflow menu is not empty, then signal that the more menu despite
+		// being initially empty now has collapsible items.
+		if ( !$overflow['is-empty'] ) {
+			$data['data-portlets']['data-actions']['class'] .= ' tgui-has-collapsible-items';
+		}
+		$data['data-portlets']['data-actions']['html-items'] = $overflow['html-items'] . $actions['html-items'];
+		return $data;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getTemplateData(): array {
+		$skin = $this;
+
+		$parentData = $this->decoratePortletsData( parent::getTemplateData() );
+		$commonSkinData = array_merge( $parentData, [
+			'input-location' => $this->getSearchBoxInputLocation(),
+			'sidebar-visible' => $this->isSidebarVisible(),
+			'is-language-in-content' => $this->isLanguagesInContent(),
+			'is-language-in-content-top' => $this->isLanguagesInContentAt( 'top' ),
+			'is-language-in-content-bottom' => $this->isLanguagesInContentAt( 'bottom' ),
+			'data-search-box' => $this->getSearchData(
+				$parentData['data-search-box'],
+				false,
+				false,
+				'tgui-sticky-search-form',
+				false
+			)
+		] );
+
+		$user = $skin->getUser();
+		$commonSkinData['data-tgui-user-links'] = $this->getUserLinksTemplateData(
+			$commonSkinData['data-portlets'],
+			$user
+		);
+
+		// T295555 Add language switch alert message temporarily (to be removed).
+		if ( $this->shouldLanguageAlertBeInSidebar() ) {
+			$languageSwitchAlert = [
+				'html-content' => Html::noticeBox(
+					$this->msg( 'tgui-language-redirect-to-top' )->parse(),
+					'tgui-language-sidebar-alert'
+				),
+			];
+			$headingOptions = [
+				'heading' => $this->msg( 'tgui-languages' )->plain(),
+			];
+			$commonSkinData['data-tgui-language-switch-alert'][] = $this->makeSidebarActionData(
+				$languageSwitchAlert,
+				$headingOptions
+			);
+		}
+
+		return $commonSkinData;
 	}
 }

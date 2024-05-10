@@ -5,7 +5,6 @@
 		"featured article". An empty array if none are defined.
 	string html-title
 	bool is-article
-	string msg-tagline
 	string html-subtitle
 	string html-undelete-link
 	string html-newtalk
@@ -42,17 +41,16 @@
 		<div class="tgui-sidebar-container {{^data-toc}}tgui-sidebar-container-no-toc{{/data-toc}}">
 			<div id="mw-navigation">
 				{{#data-portlets-sidebar}}{{>Sidebar}}{{/data-portlets-sidebar}}
+				{{#data-toc}}{{>TableOfContents}}{{/data-toc}}
 			</div>
 		</div>
 		<div class="tgui-sitenotice-container">
 			<div id="siteNotice">{{{html-site-notice}}}</div>
 		</div>
 		<input type="checkbox" id="tgui-toc-collapsed-checkbox" class="mw-checkbox-hack-checkbox">
-		{{>TableOfContentsContainer}}
 		<div class="mw-content-container">
 			{{! `role` is unnecessary but kept to support selectors in any gadgets or user styles. }}
 			<main id="content" class="mw-body" role="main">
-				<a id="top"></a>
 				{{>ContentHeader}}
 				{{>ArticleToolbar}}
 				<div id="bodyContent" class="tgui-body" data-mw-ve-target-container>

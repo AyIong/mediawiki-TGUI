@@ -29,32 +29,28 @@
   position: fixed;
   overflow: hidden;
   height: -webkit-fill-available;
-  padding: 1em 0 0.75em 0;
-  margin: 2.65em 0 0 0;
+  padding-top: 1em;
+  margin: 42px 0 32px 0;
   background-color: var(--color-bg-section);
   color: var(--color-fg);
-  transform: translateX(0);
   backdrop-filter: var(--blur-intensity);
   transition: all var(--transition-time);
-  box-sizing: border-box;
+  z-index: 1;
 
   &:hover {
     overflow-y: auto;
   }
 
-  @media (max-width: @max-width-tablet) {
-    // Makes the sidebar full screen at lower resolutions.
-    width: 100%;
-  }
-
-  // Hide sidebar entirely when the checkbox is disabled
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
-    display: none;
+    transform: translateX(-25em);
   }
 
-  // Hide #p-navigation label
-  #p-navigation .tgui-menu-heading {
-    display: none;
+  body:not(.tgui-toc-collapsed) & {
+    margin-bottom: 240px;
+  }
+
+  &:not(:has(+ .sidebar-toc)) {
+    margin-bottom: 0 !important;
   }
 }
 
