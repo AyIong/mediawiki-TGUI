@@ -8,19 +8,6 @@ namespace MediaWiki\Skins\TGUI;
  * @internal
  */
 class SkinTGUI22 extends SkinTGUI {
-	private const TOC_AB_TEST_NAME = 'skin-tgui-toc-experiment';
-	private const STICKY_HEADER_ENABLED_CLASS = 'tgui-sticky-header-enabled';
-
-	/**
-	 * Check whether the user is bucketed in the treatment group for TOC.
-	 *
-	 * @return bool
-	 */
-	public function isUserInTocTreatmentBucket(): bool {
-		$featureManager = TGUIServices::getFeatureManager();
-		return $featureManager->isFeatureEnabled( Constants::FEATURE_TABLE_OF_CONTENTS );
-	}
-
 	/**
 	 * Determines if the Table of Contents should be visible.
 	 * TOC is visible on main namespaces except for the Main Page.
@@ -106,8 +93,6 @@ class SkinTGUI22 extends SkinTGUI {
 	public function getTemplateData(): array {
 		$featureManager = TGUIServices::getFeatureManager();
 		$parentData = parent::getTemplateData();
-
-		$parentData['data-toc'] = $this->getTocData( $parentData['data-toc'] ?? [] );
 
 		$parentData = $this->mergeViewOverflowIntoActions( $parentData );
 

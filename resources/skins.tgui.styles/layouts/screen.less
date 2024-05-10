@@ -8,7 +8,8 @@
 @import "../../common/variables.less";
 @import "mediawiki.mixins.less";
 
-@selector-sidebar-no-toc-sidebar-closed: ~"@{selector-main-menu-closed} ~ .tgui-sidebar-container-no-toc";
+@selector-main-menu-closed: ~"#mw-sidebar-checkbox:not( :checked )";
+@selector-sidebar-no-toc-sidebar-closed: ~".tgui-toc-collapsed @{selector-main-menu-closed}";
 
 // Content container
 
@@ -37,6 +38,11 @@ body {
   overflow-y: scroll;
   background-color: var(--color-bg);
   color: var(--color-text-darker);
+}
+
+// Hide Legacy ToC. It will be removed anyway, but we don't need to see it!
+#toc {
+  display: none;
 }
 
 .mw-body,

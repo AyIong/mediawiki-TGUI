@@ -41,29 +41,16 @@
 		<div class="tgui-sidebar-container {{^data-toc}}tgui-sidebar-container-no-toc{{/data-toc}}">
 			<div id="mw-navigation">
 				{{#data-portlets-sidebar}}{{>Sidebar}}{{/data-portlets-sidebar}}
+				{{#data-toc}}{{>TableOfContents}}{{/data-toc}}
 			</div>
 		</div>
 		<div class="tgui-sitenotice-container">
 			<div id="siteNotice">{{{html-site-notice}}}</div>
 		</div>
 		<input type="checkbox" id="tgui-toc-collapsed-checkbox" class="mw-checkbox-hack-checkbox">
-		{{>TableOfContentsContainer}}
 		<div class="mw-content-container">
 			{{! `role` is unnecessary but kept to support selectors in any gadgets or user styles. }}
 			<main id="content" class="mw-body" role="main">
-				{{#data-toc}}
-				<label
-					id="tgui-toc-collapsed-button"
-					class="mw-ui-button mw-ui-quiet mw-ui-icon mw-ui-icon-element mw-ui-icon-wikimedia-listBullet mw-checkbox-hack-button"
-					for="tgui-toc-collapsed-checkbox"
-					role="button"
-					aria-controls="toc-toggle-list"
-					data-event-name="tgui.toc-toggle-list"
-					tabindex="0"
-					title="{{msg-tgui-toc-menu-tooltip}}">
-					{{msg-tgui-toc-collapsible-button-label}}
-				</label>
-				{{/data-toc}}
 				{{>ContentHeader}}
 				{{>ArticleToolbar}}
 				<div id="bodyContent" class="tgui-body" data-mw-ve-target-container>

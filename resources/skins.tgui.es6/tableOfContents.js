@@ -7,6 +7,7 @@ const PARENT_SECTION_CLASS = "sidebar-toc-level-1";
 const LINK_CLASS = "sidebar-toc-link";
 const TOGGLE_CLASS = "sidebar-toc-toggle";
 const TOC_COLLAPSED_CLASS = "tgui-toc-collapsed";
+const TOC_DISABLED_CLASS = "tgui-toc-disabled";
 const TOC_ID = "mw-panel-toc";
 /**
  * TableOfContents Mustache templates
@@ -69,7 +70,6 @@ const tableOfContentsConfig = require(
  * @property {string} msg-tgui-toc-heading
  * @property {number} number-section-count
  * @property {string} msg-tgui-toc-beginning
- * @property {string} msg-tgui-toc-toggle-position-title
  * @property {string} msg-tgui-toc-toggle-position-sidebar
  */
 
@@ -512,9 +512,6 @@ module.exports = function tableOfContents(props) {
       "msg-tgui-toc-toggle-position-sidebar": mw
         .message("tgui-toc-toggle-position-sidebar")
         .text(),
-      "msg-tgui-toc-toggle-position-title": mw
-        .message("tgui-toc-toggle-position-title")
-        .text(),
       "msg-tgui-toc-beginning": mw.message("tgui-toc-beginning").text(),
       "array-sections": getTableOfContentsSectionsData(sections, 1),
       "tgui-is-collapse-sections-enabled":
@@ -551,6 +548,7 @@ module.exports = function tableOfContents(props) {
       }
       // Child section belongs to a higher parent.
       if (section.toclevel < toclevel) {
+        document.body.classList.add(TOC_COLLAPSED_CLASS);
         return data;
       }
     }

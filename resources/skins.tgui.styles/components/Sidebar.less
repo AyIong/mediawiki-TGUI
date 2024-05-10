@@ -30,7 +30,7 @@
   overflow: hidden;
   height: -webkit-fill-available;
   padding-top: 1em;
-  margin: 42px 0 0 0;
+  margin: 42px 0 32px 0;
   background-color: var(--color-bg-section);
   color: var(--color-fg);
   backdrop-filter: var(--blur-intensity);
@@ -44,8 +44,12 @@
     transform: translateX(-25em);
   }
 
-  #tgui-toc-collapsed-checkbox:checked ~ .tgui-sidebar-container & {
-    height: calc(100% - 350px);
+  body:not(.tgui-toc-collapsed) & {
+    margin-bottom: 240px;
+  }
+
+  &:not(:has(+ .sidebar-toc)) {
+    margin-bottom: 0 !important;
   }
 }
 

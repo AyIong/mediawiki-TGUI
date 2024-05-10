@@ -54,7 +54,6 @@
             "tgui-jumptocontent",
             "tgui-toc-beginning",
             "tgui-toc-heading",
-            "tgui-toc-toggle-position-title",
             "tgui-toc-menu-tooltip",
             "tgui-article-tools-nav-label",
             "tgui-site-nav-label",
@@ -134,12 +133,6 @@
         "tgui-searchsuggest-containing"
       ]
     },
-    "skins.tgui.AB.styles": {
-      "class": "ResourceLoaderSkinModule",
-      "features": ["toc"],
-      "styles": ["resources/skins.tgui.AB.styles.less"],
-      "targets": ["desktop", "mobile"]
-    },
     "skins.tgui.styles": {
       "class": "ResourceLoaderSkinModule",
       "features": {
@@ -158,8 +151,7 @@
         "interface-user-message": true,
         "i18n-ordered-lists": true,
         "i18n-all-lists-margins": true,
-        "i18n-headings": true,
-        "toc": false
+        "i18n-headings": true
       },
       "targets": ["desktop", "mobile"],
       "styles": [
@@ -236,7 +228,6 @@
         "resources/skins.tgui.es6/main.js",
         "resources/skins.tgui.es6/searchToggle.js",
         "resources/skins.tgui.es6/scrollObserver.js",
-        "resources/skins.tgui.es6/AB.js",
         "resources/skins.tgui.es6/tableOfContents.js",
         "resources/skins.tgui.es6/sectionObserver.js",
         "resources/skins.tgui.es6/deferUntilFrame.js",
@@ -270,11 +261,7 @@
         "mediawiki.util",
         "mediawiki.experiments"
       ],
-      "messages": [
-        "tgui-toc-beginning",
-        "tgui-toc-heading",
-        "tgui-toc-toggle-position-title"
-      ]
+      "messages": ["tgui-toc-beginning", "tgui-toc-heading"]
     },
     "skins.tgui.js": {
       "packageFiles": [
