@@ -61,7 +61,6 @@ class Hooks implements
 	) {
 		return [
 			'wgTGUISearchHost' => $config->get( 'TGUISearchHost' ),
-			'wgTGUIWebABTestEnrollment' => self::getActiveABTest( $config ),
 		];
 	}
 
