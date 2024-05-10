@@ -7,7 +7,6 @@ const PARENT_SECTION_CLASS = "sidebar-toc-level-1";
 const LINK_CLASS = "sidebar-toc-link";
 const TOGGLE_CLASS = "sidebar-toc-toggle";
 const TOC_COLLAPSED_CLASS = "tgui-toc-collapsed";
-const TOC_DISABLED_CLASS = "tgui-toc-disabled";
 const TOC_ID = "mw-panel-toc";
 /**
  * TableOfContents Mustache templates
