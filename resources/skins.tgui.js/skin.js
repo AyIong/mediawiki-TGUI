@@ -2,8 +2,8 @@ var languageButton = require("./languageButton.js"),
   initSearchLoader = require("./searchLoader.js").initSearchLoader,
   dropdownMenus = require("./dropdownMenus.js").dropdownMenus,
   sidebarPersistence = require("./sidebarPersistence.js"),
-  checkbox = require("./checkbox.js");
-
+  checkbox = require("./checkbox.js"),
+  collapsiblePortlets = require("./collapsiblePortlets.js");
 /**
  * Wait for first paint before calling this function. That's its whole purpose.
  *
@@ -56,7 +56,7 @@ function addNamespacesGadgetSupport() {
       $("#p-associated-pages ul").append(node);
       // @ts-ignore
       mw.log.warn(
-        "Please update call to mw.util.addPortletLink with ID p-namespaces. Use p-associatedPages instead.",
+        "Please update call to mw.util.addPortletLink with ID p-namespaces. Use p-associatedPages instead."
       );
       // in case it was empty before:
       mw.util.showPortlet("p-associated-pages");
@@ -76,6 +76,7 @@ function main(window) {
   languageButton();
   dropdownMenus();
   addNamespacesGadgetSupport();
+  collapsiblePortlets();
 }
 
 /**
@@ -103,7 +104,7 @@ function init(window) {
     ) {
       mw.track(
         "timing.TGUI.ready",
-        now - window.performance.timing.navigationStart,
+        now - window.performance.timing.navigationStart
       ); // milliseconds
     }
   });
@@ -133,7 +134,7 @@ function initAfterEs6Module() {
       // Loading of the 'skins.tgui.es6' has failed (e.g. this will fail in
       // browsers that don't support ES6) so only initialize this module.
       main(window);
-    },
+    }
   );
 }
 
