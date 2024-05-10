@@ -33,7 +33,6 @@
   "tgui-searchsuggest-containing": "Search for pages containing <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
   "tgui-intro-page": "Help:Introduction",
   "tgui-toc-heading": "Contents",
-  "tgui-toc-toggle-position-sidebar": "move to sidebar",
   "tgui-toc-toggle-position-title": "hide",
   "tgui-toc-beginning": "Beginning",
   "tgui-toc-toggle-button-label": "Toggle $1 subsection",

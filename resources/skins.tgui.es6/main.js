@@ -20,7 +20,6 @@ const searchToggle = require("./searchToggle.js"),
   TOC_LEGACY_PLACEHOLDER_SELECTOR =
     'mw\\3Atocplace,meta[property="mw:PageProp/toc"]',
   TOC_SCROLL_HOOK = "table_of_contents",
-  TOC_COLLAPSED_CLASS = "tgui-toc-collapsed",
   PAGE_TITLE_SCROLL_HOOK = "page_title",
   PAGE_TITLE_INTERSECTION_CLASS = "tgui-below-page-title",
   TOC_EXPERIMENT_NAME = "skin-tgui-toc-experiment";
@@ -66,7 +65,7 @@ const getHeadingIntersectionHandler = (changeActiveSection) => {
 function initStickyHeaderABTests(
   abConfig,
   isStickyHeaderFeatureAllowed,
-  getEnabledExperiment,
+  getEnabledExperiment
 ) {
   let show = isStickyHeaderFeatureAllowed,
     stickyHeaderExperiment,
@@ -127,13 +126,7 @@ function initStickyHeaderABTests(
  * @return {void}
  */
 const updateTocLocation = () => {
-  const isTocCollapsed = document.body.classList.contains(TOC_COLLAPSED_CLASS);
-  const isBelowDesktop = belowDesktopMedia.matches;
-  if (isTocCollapsed && !isBelowDesktop) {
-    stickyHeader.moveToc("stickyheader");
-  } else {
-    stickyHeader.moveToc("sidebar");
-  }
+  stickyHeader.moveToc("sidebar");
 };
 
 /**
@@ -143,7 +136,7 @@ const main = () => {
   // Initialize the search toggle for the main header only. The sticky header
   // toggle is initialized after Codex search loads.
   const searchToggleElement = document.querySelector(
-    ".mw-header .search-toggle",
+    ".mw-header .search-toggle"
   );
   if (searchToggleElement) {
     searchToggle(searchToggleElement);
@@ -156,7 +149,7 @@ const main = () => {
     stickyIntersection = document.getElementById(stickyHeader.FIRST_HEADING_ID),
     userMenu = document.getElementById(stickyHeader.USER_MENU_ID),
     allowedNamespace = stickyHeader.isAllowedNamespace(
-      mw.config.get("wgNamespaceNumber"),
+      mw.config.get("wgNamespaceNumber")
     ),
     allowedAction = stickyHeader.isAllowedAction(mw.config.get("wgAction"));
 
@@ -172,7 +165,7 @@ const main = () => {
     ABTestConfig,
     isStickyHeaderAllowed && !mw.user.isAnon(),
     (config) =>
-      initExperiment(Object.assign({}, config, { token: mw.user.getId() })),
+      initExperiment(Object.assign({}, config, { token: mw.user.getId() }))
   );
 
   // Set up intersection observer for page title
@@ -193,7 +186,7 @@ const main = () => {
       }
       document.body.classList.remove(PAGE_TITLE_INTERSECTION_CLASS);
       scrollObserver.fireScrollHook("up", PAGE_TITLE_SCROLL_HOOK);
-    },
+    }
   );
 
   // Handle toc location when sticky header is hidden on lower viewports
@@ -225,7 +218,7 @@ const main = () => {
   // Setup intersection observer for TOC scroll event tracking
   // fire hooks for event logging if AB tests are enabled
   const tocLegacyPlaceholder = document.querySelectorAll(
-    TOC_LEGACY_PLACEHOLDER_SELECTOR,
+    TOC_LEGACY_PLACEHOLDER_SELECTOR
   )[0];
   const tocLegacyTargetIntersection = tocElementLegacy || tocLegacyPlaceholder;
   // Initiate observer for table of contents in main content.
@@ -236,7 +229,7 @@ const main = () => {
       },
       () => {
         scrollObserver.fireScrollHook("up", TOC_SCROLL_HOOK);
-      },
+      }
     );
     tocObserver.observe(tocLegacyTargetIntersection);
   }
@@ -314,11 +307,11 @@ const main = () => {
     .join(",");
   const sectionObserver = initSectionObserver({
     elements: bodyContent.querySelectorAll(
-      `${headingSelector}, .mw-body-content`,
+      `${headingSelector}, .mw-body-content`
     ),
     topMargin: header ? header.getBoundingClientRect().height : 0,
     onIntersection: getHeadingIntersectionHandler(
-      tableOfContents.changeActiveSection,
+      tableOfContents.changeActiveSection
     ),
   });
 };

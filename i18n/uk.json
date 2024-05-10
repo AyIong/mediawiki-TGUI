@@ -50,7 +50,6 @@
   "tgui-searchsuggest-containing": "Знайдіть сторінки, що містять <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
   "tgui-intro-page": "Help:Вступ",
   "tgui-toc-heading": "Зміст",
-  "tgui-toc-toggle-position-sidebar": "перемістити на бічну панель",
   "tgui-toc-toggle-position-title": "сховати",
   "tgui-toc-beginning": "Вступ",
   "tgui-toc-toggle-button-label": "Перемкнути підрозділ $1",

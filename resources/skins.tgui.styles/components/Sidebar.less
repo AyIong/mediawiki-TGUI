@@ -28,15 +28,13 @@
 .mw-sidebar {
   position: fixed;
   overflow: hidden;
-  height: -webkit-fill-available;
+  height: 100%;
   padding: 1em 0 0.75em 0;
   margin: 42px 0 0 0;
   background-color: var(--color-bg-section);
   color: var(--color-fg);
-  transform: translateX(0);
   backdrop-filter: var(--blur-intensity);
   transition: all var(--transition-time);
-  box-sizing: border-box;
 
   &:hover {
     overflow-y: auto;
@@ -44,6 +42,10 @@
 
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
     transform: translateX(-25em);
+  }
+
+  #tgui-toc-collapsed-checkbox:checked ~ .tgui-sidebar-container & {
+    height: calc(100% - 350px);
   }
 }
 

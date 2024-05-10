@@ -54,7 +54,6 @@
             "tgui-jumptocontent",
             "tgui-toc-beginning",
             "tgui-toc-heading",
-            "tgui-toc-toggle-position-sidebar",
             "tgui-toc-toggle-position-title",
             "tgui-toc-menu-tooltip",
             "tgui-article-tools-nav-label",
@@ -275,7 +274,6 @@
       "messages": [
         "tgui-toc-beginning",
         "tgui-toc-heading",
-        "tgui-toc-toggle-position-sidebar",
         "tgui-toc-toggle-position-title"
       ]
     },

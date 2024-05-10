@@ -62,7 +62,6 @@
   "tgui-searchsuggest-containing": "Поиск страниц, содержащих <strong class=\"cdx-typeahead-search__search-footer__query\">$1</strong>",
   "tgui-intro-page": "Help:Введение",
   "tgui-toc-heading": "Содержание",
-  "tgui-toc-toggle-position-sidebar": "переместить в боковую панель",
   "tgui-toc-toggle-position-title": "скрыть",
   "tgui-toc-beginning": "Начало",
   "tgui-toc-toggle-button-label": "Отобразить/Скрыть подраздел $1",
