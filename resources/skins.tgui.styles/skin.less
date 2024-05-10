@@ -3,12 +3,15 @@
  * See '../common/common.less' for common screen and print TGUI stylesheets.
  */
 
-@import "../common/variables.less";
+@import "./variables.less";
+@import "./css-variables.less";
 @import "mediawiki.mixins.less";
 
 // Common styles
-@import "skinning/elements.less";
-@import "skinning/interface.category.less";
+@import "./skinning/normalize.less";
+@import "./skinning/typography.less";
+@import "./skinning/elements.less";
+@import "./skinning/interface.category.less";
 
 @media screen {
   @import "./layouts/screen.less";
@@ -26,6 +29,14 @@
   @import "./components/MenuPortal.less";
   @import "./components/TabWatchstarLink.less";
   @import "./components/TableOfContents.less";
+  @import "./components/Indicators.less";
+  @import "./components/SiteNotice.less";
+  @import "./components/Menu.less";
+  @import "./components/MenuDropdownCheckbox.less";
+  @import "./components/MenuPortal.less";
+  @import "./components/SearchBox.less";
+  @import "./components/SidebarLogo.less";
+  @import "./components/Footer.less";
 }
 
 @media all {

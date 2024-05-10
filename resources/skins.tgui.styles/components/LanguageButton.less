@@ -1,5 +1,5 @@
 // The use of mixins.buttons requires @font-size-base to be defined for this to work in Storybook
-@import "../../common/variables.less";
+@import "../variables.less";
 @import "mediawiki.mixins.less";
 
 // Note tgui-feature-language-in-header-enabled class is not used here as that class
@@ -45,7 +45,7 @@
 
       &:after {
         // Invert arrow color
-        background-image: url(../common/images/arrow-down-progressive.svg);
+        background-image: url(../images/arrow-down-progressive.svg);
         opacity: 1;
       }
     }
@@ -54,7 +54,7 @@
   input:active + .tgui-menu-heading {
     &.mw-ui-progressive.mw-ui-quiet {
       &:after {
-        background-image: url(../common/images/arrow-down.svg);
+        background-image: url(../images/arrow-down.svg);
       }
     }
   }
