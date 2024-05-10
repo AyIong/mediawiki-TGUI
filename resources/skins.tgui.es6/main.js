@@ -1,6 +1,5 @@
 // Enable TGUI features limited to ES6 browse
 const searchToggle = require("./searchToggle.js"),
-  stickyHeader = require("./stickyHeader.js"),
   scrollObserver = require("./scrollObserver.js"),
   initExperiment = require("./AB.js"),
   initSectionObserver = require("./sectionObserver.js"),
@@ -9,9 +8,6 @@ const searchToggle = require("./searchToggle.js"),
   ABTestConfig =
     require(/** @type {string} */ ("./config.json"))
       .wgTGUIWebABTestEnrollment || {},
-  stickyHeaderEditIconConfig =
-    require(/** @type {string} */ ("./config.json")).wgTGUIStickyHeaderEdit ||
-    true,
   TOC_ID = "mw-panel-toc",
   TOC_ID_LEGACY = "toc",
   BODY_CONTENT_ID = "bodyContent",
@@ -20,8 +16,6 @@ const searchToggle = require("./searchToggle.js"),
   TOC_LEGACY_PLACEHOLDER_SELECTOR =
     'mw\\3Atocplace,meta[property="mw:PageProp/toc"]',
   TOC_SCROLL_HOOK = "table_of_contents",
-  PAGE_TITLE_SCROLL_HOOK = "page_title",
-  PAGE_TITLE_INTERSECTION_CLASS = "tgui-below-page-title",
   TOC_EXPERIMENT_NAME = "skin-tgui-toc-experiment";
 
 const belowDesktopMedia = window.matchMedia("(max-width: 999px)");
@@ -50,75 +44,6 @@ const getHeadingIntersectionHandler = (changeActiveSection) => {
   };
 };
 
-/**
- * Initialize sticky header AB tests and determine whether to show the sticky header
- * based on which buckets the user is in.
- *
- * @typedef {Object} InitStickyHeaderABTests
- * @property {boolean} disableEditIcons - Should the sticky header have an edit icon
- * @property {boolean} showStickyHeader - Should the sticky header be shown
- * @param {ABTestConfig} abConfig
- * @param {boolean} isStickyHeaderFeatureAllowed and the user is logged in
- * @param {function(ABTestConfig): initExperiment.WebABTest} getEnabledExperiment
- * @return {InitStickyHeaderABTests}
- */
-function initStickyHeaderABTests(
-  abConfig,
-  isStickyHeaderFeatureAllowed,
-  getEnabledExperiment
-) {
-  let show = isStickyHeaderFeatureAllowed,
-    stickyHeaderExperiment,
-    noEditIcons = stickyHeaderEditIconConfig;
-
-  // One of the sticky header AB tests is specified in the config
-  const abTestName = abConfig.name,
-    isStickyHeaderExperiment =
-      abTestName === stickyHeader.STICKY_HEADER_EXPERIMENT_NAME ||
-      abTestName === stickyHeader.STICKY_HEADER_EDIT_EXPERIMENT_NAME;
-
-  // Determine if user is eligible for sticky header AB test
-  if (
-    isStickyHeaderFeatureAllowed && // The sticky header can be shown on the page
-    abConfig.enabled && // An AB test config is enabled
-    isStickyHeaderExperiment // The AB test is one of the sticky header experiments
-  ) {
-    // If eligible, initialize the AB test
-    stickyHeaderExperiment = getEnabledExperiment(abConfig);
-
-    // If running initial or edit AB test, show sticky header to treatment groups
-    // only. Unsampled and control buckets do not see sticky header.
-    if (
-      abTestName === stickyHeader.STICKY_HEADER_EXPERIMENT_NAME ||
-      abTestName === stickyHeader.STICKY_HEADER_EDIT_EXPERIMENT_NAME
-    ) {
-      show = stickyHeaderExperiment.isInTreatmentBucket();
-    }
-
-    // If running edit-button AB test, the edit buttons in sticky header are shown
-    // to second treatment group only.
-    if (abTestName === stickyHeader.STICKY_HEADER_EDIT_EXPERIMENT_NAME) {
-      if (stickyHeaderExperiment.isInTreatmentBucket("1")) {
-        noEditIcons = true;
-      }
-      if (stickyHeaderExperiment.isInTreatmentBucket("2")) {
-        noEditIcons = false;
-      }
-    }
-  } else if (
-    // T310750 Account for when the current experiment is not sticky header or it's disabled.
-    isStickyHeaderFeatureAllowed &&
-    (!abConfig.enabled || !isStickyHeaderExperiment)
-  ) {
-    noEditIcons = false;
-  }
-
-  return {
-    showStickyHeader: show,
-    disableEditIcons: noEditIcons,
-  };
-}
-
 /*
  * Updates TOC's location in the DOM (in sidebar or sticky header)
  * depending on if the TOC is collapsed and if the sticky header is visible
@@ -126,7 +51,10 @@ function initStickyHeaderABTests(
  * @return {void}
  */
 const updateTocLocation = () => {
-  stickyHeader.moveToc("sidebar");
+  const tocElements = document.querySelectorAll(".sidebar-toc");
+  tocElements.forEach((element) => {
+    element.classList.add("hidden");
+  });
 };
 
 /**
@@ -142,73 +70,10 @@ const main = () => {
     searchToggle(searchToggleElement);
   }
 
-  //
-  // Sticky header
-  //
-  const header = document.getElementById(stickyHeader.STICKY_HEADER_ID),
-    stickyIntersection = document.getElementById(stickyHeader.FIRST_HEADING_ID),
-    userMenu = document.getElementById(stickyHeader.USER_MENU_ID),
-    allowedNamespace = stickyHeader.isAllowedNamespace(
-      mw.config.get("wgNamespaceNumber")
-    ),
-    allowedAction = stickyHeader.isAllowedAction(mw.config.get("wgAction"));
-
-  const isStickyHeaderAllowed =
-    !!header &&
-    !!stickyIntersection &&
-    !!userMenu &&
-    allowedNamespace &&
-    allowedAction &&
-    "IntersectionObserver" in window;
-
-  const { showStickyHeader, disableEditIcons } = initStickyHeaderABTests(
-    ABTestConfig,
-    isStickyHeaderAllowed && !mw.user.isAnon(),
-    (config) =>
-      initExperiment(Object.assign({}, config, { token: mw.user.getId() }))
-  );
-
-  // Set up intersection observer for page title
-  // Used to show/hide sticky header and add class used by collapsible TOC (T307900)
-  const observer = scrollObserver.initScrollObserver(
-    () => {
-      if (isStickyHeaderAllowed && showStickyHeader) {
-        stickyHeader.show();
-        updateTocLocation();
-      }
-      document.body.classList.add(PAGE_TITLE_INTERSECTION_CLASS);
-      scrollObserver.fireScrollHook("down", PAGE_TITLE_SCROLL_HOOK);
-    },
-    () => {
-      if (isStickyHeaderAllowed && showStickyHeader) {
-        stickyHeader.hide();
-        updateTocLocation();
-      }
-      document.body.classList.remove(PAGE_TITLE_INTERSECTION_CLASS);
-      scrollObserver.fireScrollHook("up", PAGE_TITLE_SCROLL_HOOK);
-    }
-  );
-
   // Handle toc location when sticky header is hidden on lower viewports
   belowDesktopMedia.onchange = () => {
     updateTocLocation();
   };
-
-  if (!showStickyHeader) {
-    stickyHeader.hide();
-  }
-
-  if (isStickyHeaderAllowed && showStickyHeader) {
-    stickyHeader.initStickyHeader({
-      header,
-      userMenu,
-      observer,
-      stickyIntersection,
-      disableEditIcons,
-    });
-  } else if (stickyIntersection) {
-    observer.observe(stickyIntersection);
-  }
 
   // Table of contents
   const tocElement = document.getElementById(TOC_ID);
@@ -309,7 +174,6 @@ const main = () => {
     elements: bodyContent.querySelectorAll(
       `${headingSelector}, .mw-body-content`
     ),
-    topMargin: header ? header.getBoundingClientRect().height : 0,
     onIntersection: getHeadingIntersectionHandler(
       tableOfContents.changeActiveSection
     ),
@@ -319,7 +183,6 @@ const main = () => {
 module.exports = {
   main,
   test: {
-    initStickyHeaderABTests,
     getHeadingIntersectionHandler,
   },
 };
