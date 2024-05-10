@@ -1,6 +1,6 @@
 {
   "name": "TGUI",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": [
     "Александр Кица (Aylong)",
     "[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team] with Original [https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
@@ -15,7 +15,7 @@
   },
   "ValidSkinNames": {
     "tgui": {
-      "class": "MediaWiki\\Skins\\TGUI\\SkinTGUI22",
+      "class": "MediaWiki\\Skins\\TGUI\\SkinTGUI",
       "args": [
         {
           "name": "tgui",
