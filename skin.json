@@ -320,10 +320,6 @@
       },
       "description": "options for configuring where where max-width should and should not apply. More details can be found in Hooks::shouldDisableMaxWidth PHP documentation."
     },
-    "TGUIResponsive": {
-      "value": false,
-      "description": "@var boolean turn TGUI-2022 into a responsive skin by applying a view port and disabling the min-width"
-    },
     "TGUIWvuiSearchOptions": {
       "value": {
         "showThumbnail": true,
