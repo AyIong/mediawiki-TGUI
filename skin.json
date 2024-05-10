@@ -235,7 +235,6 @@
       "packageFiles": [
         "resources/skins.tgui.es6/main.js",
         "resources/skins.tgui.es6/searchToggle.js",
-        "resources/skins.tgui.es6/stickyHeader.js",
         "resources/skins.tgui.es6/scrollObserver.js",
         "resources/skins.tgui.es6/AB.js",
         "resources/skins.tgui.es6/tableOfContents.js",
@@ -382,38 +381,6 @@
     "TGUILanguageInHeaderTreatmentABTest": {
       "value": false,
       "description": "@var boolean Enables or disables the language in header treatment A/B test. See https://phabricator.wikimedia.org/T280825 and associated tasks for additional detail."
-    },
-    "TGUIStickyHeader": {
-      "value": {
-        "logged_in": true,
-        "logged_out": false
-      },
-      "description": "@var array Enables a persistent header that allows quick access to user links, editing tools, search and other links while scrolling down a page"
-    },
-    "TGUIStickyHeaderEdit": {
-      "value": {
-        "logged_in": false,
-        "logged_out": false
-      },
-      "description": "@var array Enables the edit icons if $wgTGUIStickyHeader is true."
-    },
-    "TGUIWebABTestEnrollment": {
-      "value": {
-        "name": "skin-tgui-toc-experiment",
-        "enabled": false,
-        "buckets": {
-          "unsampled": {
-            "samplingRate": 0
-          },
-          "control": {
-            "samplingRate": 0.5
-          },
-          "treatment": {
-            "samplingRate": 0.5
-          }
-        }
-      },
-      "description": "An associative array of A/B test configs keyed by parameters noted in mediawiki.experiments.js. There must be an `unsampled` bucket that represents a population excluded from the experiment. Additionally, the treatment bucket(s) must include a case-insensitive `treatment` substring in their name (e.g. `treatment`, `stickyHeaderTreatment`, `sticky-header-treatment`)"
     },
     "TGUIDisableSidebarPersistence": {
       "value": false,

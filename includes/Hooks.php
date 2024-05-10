@@ -50,41 +50,6 @@ class Hooks implements
 	}
 
 	/**
-	 * @param Config $config
-	 * @return array
-	 */
-	private static function getActiveABTest( $config ) {
-		$ab = $config->get(
-			Constants::CONFIG_WEB_AB_TEST_ENROLLMENT
-		);
-		if ( count( $ab ) === 0 ) {
-			// If array is empty then no experiment and need to validate.
-			return $ab;
-		}
-		if ( !array_key_exists( 'buckets', $ab ) ) {
-			throw new RuntimeException( 'Invalid TGUIWebABTestEnrollment value: Must contain buckets key.' );
-		}
-		if ( !array_key_exists( 'unsampled', $ab['buckets'] ) ) {
-			throw new RuntimeException( 'Invalid TGUIWebABTestEnrollment value: Must define an `unsampled` bucket.' );
-		} else {
-			// check bucket values.
-			foreach ( $ab['buckets'] as $bucketName => $bucketDefinition ) {
-				if ( !is_array( $bucketDefinition ) ) {
-					throw new RuntimeException( 'Invalid TGUIWebABTestEnrollment value: Buckets should be arrays' );
-				}
-				$samplingRate = $bucketDefinition['samplingRate'];
-				if ( is_string( $samplingRate ) ) {
-					throw new RuntimeException(
-						'Invalid TGUIWebABTestEnrollment value: Sampling rate should be number between 0 and 1.'
-					);
-				}
-			}
-		}
-
-		return $ab;
-	}
-
-	/**
 	 * Passes config variables to TGUI (modern) ResourceLoader module.
 	 * @param RL\Context $context
 	 * @param Config $config
@@ -569,32 +534,6 @@ class Hooks implements
 	}
 
 	/**
-	 * Returns the necessary TOC classes.
-	 *
-	 * @param Skin $sk
-	 * @param Config $config
-	 * @return string[]
-	 */
-	private static function getTocClasses( Skin $sk, $config ): array {
-		$classes = [];
-		if (
-			$sk->isTOCABTestEnabled() &&
-			$sk->isTableOfContentsVisibleInSidebar() &&
-			!$sk->getUser()->isAnon()
-		) {
-			$userBucket = !$sk->isUserInTocTreatmentBucket()
-				? 'control'
-				: 'treatment';
-			$experimentConfig = $config->get( Constants::CONFIG_WEB_AB_TEST_ENROLLMENT );
-			$experimentName = $experimentConfig[ 'name' ];
-			$classes[] = $experimentName;
-			$classes[] = "$experimentName-$userBucket";
-		}
-
-		return $classes;
-	}
-
-	/**
 	 * Called when OutputPage::headElement is creating the body tag to allow skins
 	 * and extensions to add attributes they might need to the body of the page.
 	 *
@@ -608,20 +547,6 @@ class Hooks implements
 			return;
 		}
 		$config = $sk->getConfig();
-
-		// As of 2020/08/13, this CSS class is referred to by the following deployed extensions:
-		//
-		// - VisualEditor
-		// - CodeMirror
-		// - WikimediaEvents
-		//
-		// See https://codesearch.wmcloud.org/deployed/?q=skin-tgui-legacy for an up-to-date
-		// list.
-		$tocClasses = self::getTocClasses( $sk, $config );
-		if ( $tocClasses ) {
-			$bodyAttrs['class'] .= ' ' . implode( ' ', $tocClasses );
-		}
-
 		$featureManager = TGUIServices::getFeatureManager();
 		$bodyAttrs['class'] .= ' ' . implode( ' ', $featureManager->getFeatureBodyClass() );
 		$bodyAttrs['class'] = trim( $bodyAttrs['class'] );

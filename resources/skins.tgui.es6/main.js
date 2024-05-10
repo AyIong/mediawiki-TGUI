@@ -1,13 +1,9 @@
 // Enable TGUI features limited to ES6 browse
 const searchToggle = require("./searchToggle.js"),
   scrollObserver = require("./scrollObserver.js"),
-  initExperiment = require("./AB.js"),
   initSectionObserver = require("./sectionObserver.js"),
   initTableOfContents = require("./tableOfContents.js"),
   deferUntilFrame = require("./deferUntilFrame.js"),
-  ABTestConfig =
-    require(/** @type {string} */ ("./config.json"))
-      .wgTGUIWebABTestEnrollment || {},
   TOC_ID = "mw-panel-toc",
   TOC_ID_LEGACY = "toc",
   BODY_CONTENT_ID = "bodyContent",
@@ -15,8 +11,7 @@ const searchToggle = require("./searchToggle.js"),
   TOC_SECTION_ID_PREFIX = "toc-",
   TOC_LEGACY_PLACEHOLDER_SELECTOR =
     'mw\\3Atocplace,meta[property="mw:PageProp/toc"]',
-  TOC_SCROLL_HOOK = "table_of_contents",
-  TOC_EXPERIMENT_NAME = "skin-tgui-toc-experiment";
+  TOC_SCROLL_HOOK = "table_of_contents";
 
 const belowDesktopMedia = window.matchMedia("(max-width: 999px)");
 
@@ -112,21 +107,6 @@ const main = () => {
       window.requestAnimationFrame
     )
   ) {
-    return;
-  }
-
-  const experiment =
-    !!ABTestConfig.enabled &&
-    ABTestConfig.name === TOC_EXPERIMENT_NAME &&
-    document.body.classList.contains(ABTestConfig.name) &&
-    // eslint-disable-next-line compat/compat
-    window.URLSearchParams &&
-    !mw.user.isAnon() &&
-    initExperiment(ABTestConfig);
-  const isInTreatmentBucket = !!experiment && experiment.isInTreatmentBucket();
-
-  if (experiment && !isInTreatmentBucket) {
-    // Return early if the old TOC is shown.
     return;
   }
 

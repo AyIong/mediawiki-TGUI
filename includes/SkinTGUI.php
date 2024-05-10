@@ -317,56 +317,6 @@ abstract class SkinTGUI extends SkinMustache {
 	}
 
 	/**
-	 * Generate data needed to generate the sticky header.
-	 * @param array $searchBoxData
-	 * @param bool $includeEditIcons
-	 * @return array
-	 */
-	final protected function getStickyHeaderData( $searchBoxData, $includeEditIcons ): array {
-		$btns = [
-			self::TALK_ICON,
-			self::SUBJECT_ICON,
-			self::HISTORY_ICON,
-			self::WATCHSTAR_ICON,
-		];
-		if ( $includeEditIcons ) {
-			$btns[] = self::EDIT_WIKITEXT_ICON;
-			$btns[] = self::EDIT_PROTECTED_ICON;
-			$btns[] = self::EDIT_VE_ICON;
-		}
-		$btns[] = $this->getAddSectionButtonData();
-
-		$tocPortletData = $this->decoratePortletData( 'data-sticky-header-toc', [
-			'id' => 'p-sticky-header-toc',
-			'class' => 'mw-portlet mw-portlet-sticky-header-toc tgui-sticky-header-toc',
-			'html-items' => '',
-			'html-tgui-menu-checkbox-attributes' => 'tabindex="-1"',
-			'html-tgui-menu-heading-attributes' => 'tabindex="-1"',
-			'button' => true,
-			'text-hidden' => true,
-			'icon' => 'listBullet'
-		] );
-
-		// Show sticky ULS if the ULS extension is enabled and the ULS in header is not hidden
-		$showStickyULS = $this->isULSExtensionEnabled() && !$this->shouldHideLanguages();
-		return [
-			'data-sticky-header-toc' => $tocPortletData,
-			'data-primary-action' => $showStickyULS ?
-				$this->getULSButtonData() : null,
-			'data-button-start' => [
-				'label' => $this->msg( 'search' ),
-				'icon' => 'wikimedia-search',
-				'is-quiet' => true,
-				'tabindex' => '-1',
-				'class' => 'tgui-sticky-header-search-toggle',
-				'event' => 'ui.' . $searchBoxData['form-id'] . '.icon'
-			],
-			'data-search' => $searchBoxData,
-			'data-buttons' => $btns,
-		];
-	}
-
-	/**
 	 * Generate data needed to create SidebarAction item.
 	 * @param array $htmlData data to make a link or raw html
 	 * @param array $headingOptions optional heading for the html

@@ -12,33 +12,6 @@ class SkinTGUI22 extends SkinTGUI {
 	private const STICKY_HEADER_ENABLED_CLASS = 'tgui-sticky-header-enabled';
 
 	/**
-	 * Updates the constructor to conditionally disable table of contents in article
-	 * body. Note, the constructor can only check feature flags that do not vary on
-	 * whether the user is logged in e.g. features with the 'default' key set.
-	 * @inheritDoc
-	 */
-	public function __construct( array $options ) {
-		if ( !$this->isTOCABTestEnabled() ) {
-			$options['toc'] = !$this->isTableOfContentsVisibleInSidebar();
-		} else {
-			$options['styles'][] = 'skins.tgui.AB.styles';
-		}
-
-		parent::__construct( $options );
-	}
-
-	/**
-	 * @internal
-	 * @return bool
-	 */
-	public function isTOCABTestEnabled(): bool {
-		$experimentConfig = $this->getConfig()->get( Constants::CONFIG_WEB_AB_TEST_ENROLLMENT );
-
-		return $experimentConfig['name'] === self::TOC_AB_TEST_NAME &&
-			$experimentConfig['enabled'];
-	}
-
-	/**
 	 * Check whether the user is bucketed in the treatment group for TOC.
 	 *
 	 * @return bool
@@ -128,30 +101,6 @@ class SkinTGUI22 extends SkinTGUI {
 	}
 
 	/**
-	 * @inheritDoc
-	 */
-	public function getHtmlElementAttributes() {
-		$original = parent::getHtmlElementAttributes();
-
-		if ( TGUIServices::getFeatureManager()->isFeatureEnabled( Constants::FEATURE_STICKY_HEADER ) ) {
-			// T290518: Add scroll padding to root element when the sticky header is
-			// enabled. This class needs to be server rendered instead of added from
-			// JS in order to correctly handle situations where the sticky header
-			// isn't visible yet but we still need scroll padding applied (e.g. when
-			// the user navigates to a page with a hash fragment in the URI). For this
-			// reason, we can't rely on the `tgui-sticky-header-visible` class as it
-			// is added too late.
-			//
-			// Please note that this class applies scroll padding which does not work
-			// when applied to the body tag in Chrome, Safari, and Firefox (and
-			// possibly others). It must instead be applied to the html tag.
-			$original['class'] = implode( ' ', [ $original['class'] ?? '', self::STICKY_HEADER_ENABLED_CLASS ] );
-		}
-
-		return $original;
-	}
-
-	/**
 	 * @return array
 	 */
 	public function getTemplateData(): array {
@@ -165,21 +114,6 @@ class SkinTGUI22 extends SkinTGUI {
 		return array_merge( $parentData, [
 			// Cast empty string to null
 			'html-subtitle' => $parentData['html-subtitle'] === '' ? null : $parentData['html-subtitle'],
-			'data-tgui-sticky-header' => $featureManager->isFeatureEnabled(
-				Constants::FEATURE_STICKY_HEADER
-			) ? $this->getStickyHeaderData(
-				$this->getSearchData(
-					$parentData['data-search-box'],
-					// Collapse inside search box is disabled.
-					false,
-					false,
-					'tgui-sticky-search-form',
-					false
-				),
-				$featureManager->isFeatureEnabled(
-					Constants::FEATURE_STICKY_HEADER_EDIT
-				)
-			) : false,
 		] );
 	}
 }
