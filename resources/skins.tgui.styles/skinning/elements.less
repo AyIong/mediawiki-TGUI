@@ -158,14 +158,14 @@ samp,
 pre,
 code,
 .mw-code {
-  background-color: #f8f9fa;
-  color: #000;
-  border: 1px solid #eaecf0;
+  background-color: var(--color-bg-section-light);
+  color: var(--color-text-darker);
+  border: 1px solid var(--color-border);
 }
 
 code {
-  border-radius: 2px;
-  padding: 1px 4px;
+  border-radius: var(--border-radius-small);
+  padding: 0.1em 0.25em;
 }
 
 pre,
@@ -209,7 +209,7 @@ textarea {
   width: 100%;
   /* Support: Firefox */
   /* Border rule required to override system appearance on Linux. T13641. */
-  border: 1px solid #c8ccd1;
+  border: 1px solid var(--color-border);
   padding: 0.1em;
 }
 

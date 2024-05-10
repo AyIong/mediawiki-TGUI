@@ -253,26 +253,6 @@ class SkinTGUI extends SkinMustache {
 	}
 
 	/**
-	 * Generate data needed to create SidebarAction item.
-	 * @param array $htmlData data to make a link or raw html
-	 * @param array $headingOptions optional heading for the html
-	 * @return array keyed data for the SidebarAction template
-	 */
-	private function makeSidebarActionData( array $htmlData = [], array $headingOptions = [] ): array {
-		$htmlContent = '';
-		// Populates the sidebar as a standalone link or custom html.
-		if ( array_key_exists( 'link', $htmlData ) ) {
-			$htmlContent = $this->makeLink( 'link', $htmlData['link'] );
-		} elseif ( array_key_exists( 'html-content', $htmlData ) ) {
-			$htmlContent = $htmlData['html-content'];
-		}
-
-		return $headingOptions + [
-			'html-content' => $htmlContent,
-		];
-	}
-
-	/**
 	 * Determines if the language switching alert box should be in the sidebar.
 	 *
 	 * @return bool
@@ -344,24 +324,6 @@ class SkinTGUI extends SkinMustache {
 	 */
 	private function getSearchBoxInputLocation(): string {
 		return Constants::SEARCH_BOX_INPUT_LOCATION_MOVED;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function isResponsive() {
-		// Check it's enabled by user preference and configuration
-		$responsive = parent::isResponsive() && $this->getConfig()->get( 'TGUIResponsive' );
-		// For historic reasons, the viewport is added when TGUI is loaded on the mobile
-		// domain. This is only possible for 3rd parties or by useskin parameter as there is
-		// no preference for changing mobile skin. Only need to check if $responsive is falsey.
-		if ( !$responsive && ExtensionRegistry::getInstance()->isLoaded( 'MobileFrontend' ) ) {
-			$mobFrontContext = MediaWikiServices::getInstance()->getService( 'MobileFrontend.Context' );
-			if ( $mobFrontContext->shouldDisplayMobileView() ) {
-				return true;
-			}
-		}
-		return $responsive;
 	}
 
 	/**
