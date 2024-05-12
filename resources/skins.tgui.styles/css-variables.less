@@ -1,5 +1,5 @@
 :root {
-  /* Базовые цвета */
+  /* Base Colors */
   --color-fg: #ffffff;
   --color-bg: #252525;
   --color-bg-opaque: rgba(37, 37, 37, 0.75);
@@ -9,19 +9,20 @@
   --color-text-darker: rgba(220, 220, 220, 1);
   --color-text-gray: rgba(185, 185, 185, 0.75);
   --color-text-translucent: rgba(255, 255, 255, 0.5);
-  --color-button-text: rgba(255, 255, 255, 1);
-  --color-button-text-transparent: rgba(255, 255, 255, 0.5);
+  --color-text-static-white: rgba(255, 255, 255, 1);
+  --color-text-static-dark: rgba(0, 0, 0, 1);
+  --color-text-static-transparent: rgba(255, 255, 255, 0.5);
   --color-border: rgba(255, 255, 255, 0.1);
   --color-border-input: rgba(128, 181, 255, 1);
   --color-hover: rgba(255, 255, 255, 0.075);
   --color-selected: rgba(255, 255, 255, 0.125);
 
-  /* Скроллбар */
+  /* Scrollbar */
   --color-scrollbar-base: #191919;
   --color-scrollbar-thumb: #3b3b3b;
   --color-scrollbar-thumb-hover: #4d4d4d;
 
-  /* Цвета элементов */
+  /* TGUI Elements Colors */
   --color-red: rgba(219, 40, 40, 1);
   --color-orange: rgba(240, 143, 17, 1);
   --color-yellow: rgba(251, 214, 8, 1);
@@ -37,7 +38,7 @@
   --color-primary: rgba(73, 114, 161, 1);
   --color-label: rgba(126, 144, 167, 1);
 
-  /* Осветлённые цвета элементов. Знаю что бред, но увы, Lighten нет */
+  /* TGUI Elements Colors (Light or Hover) */
   --color-red-light: rgba(251, 58, 58, 1);
   --color-orange-light: rgba(255, 163, 40, 1);
   --color-yellow-light: rgba(255, 233, 29, 1);
@@ -53,89 +54,95 @@
   --color-primary-light: rgba(119, 148, 187, 1);
   --color-label-light: rgba(145, 166, 192, 1);
 
-  /*
-     *  Палитра цветов на вики. Неплохо смотрится как на светлой, так и на тёмной теме.
-     *  Крайне рекомендуется использовать в шаблонах *только* их!
-     */
+  /* Wiki Palette. Use with ColorPalette template! */
+  --primary-opacity: 0.66;
+  --secondary-opacity: 0.33;
+  /* Gray. Default */
+  --gray-opaque: rgba(127, 127, 127, 1);
+  --gray-primary: rgba(127, 127, 127, var(--primary-opacity));
+  --gray-secondary: rgba(127, 127, 127, var(--secondary-opacity));
+  /* Black */
+  --black-opaque: rgba(0, 0, 0, 1);
+  --black-primary: rgba(0, 0, 0, var(--primary-opacity));
+  --black-secondary: rgba(0, 0, 0, var(--secondary-opacity));
+  /* Cyan */
+  --cyan-opaque: rgba(48, 242, 210, 1);
+  --cyan-primary: rgba(48, 242, 210, var(--primary-opacity));
+  --cyan-secondary: rgba(48, 242, 210, var(--secondary-opacity));
+  /* Aqua blue */
+  --blue-opaque: rgba(0, 255, 255, 1);
+  --blue-primary: rgba(0, 255, 255, var(--primary-opacity));
+  --blue-secondary: rgba(0, 255, 255, var(--secondary-opacity));
+  /* Brown */
+  --brown-opaque: rgba(166, 107, 25, 1);
+  --brown-primary: rgba(166, 107, 25, var(--primary-opacity));
+  --brown-secondary: rgba(166, 107, 25, var(--secondary-opacity));
+  /* Green */
+  --green-opaque: rgba(48, 191, 19, 1);
+  --green-primary: rgba(48, 191, 19, var(--primary-opacity));
+  --green-secondary: rgba(48, 191, 19, var(--secondary-opacity));
+  /* Yellow */
+  --yellow-opaque: rgba(255, 234, 0, 1);
+  --yellow-primary: rgba(255, 234, 0, var(--primary-opacity));
+  --yellow-secondary: rgba(255, 234, 0, var(--secondary-opacity));
+  /* Light red */
+  --red-opaque: rgba(255, 64, 64, 1);
+  --red-primary: rgba(255, 64, 64, var(--primary-opacity));
+  --red-secondary: rgba(255, 64, 64, var(--secondary-opacity));
+  /* Pink */
+  --pink-opaque: rgba(255, 64, 255, 1);
+  --pink-primary: rgba(255, 64, 255, var(--primary-opacity));
+  --pink-secondary: rgba(255, 64, 255, var(--secondary-opacity));
+  /* Light green */
+  --civilian-opaque: rgba(29, 191, 83, 1);
+  --civilian-primary: rgba(29, 191, 83, var(--primary-opacity));
+  --civilian-secondary: rgba(29, 191, 83, var(--secondary-opacity));
+  /* Blue */
+  --medical-opaque: rgba(0, 191, 255, 1);
+  --medical-primary: rgba(0, 191, 255, var(--primary-opacity));
+  --medical-secondary: rgba(0, 191, 255, var(--secondary-opacity));
+  /* Light brown */
+  --supply-opaque: rgba(166, 124, 66, 1);
+  --supply-primary: rgba(166, 124, 66, var(--primary-opacity));
+  --supply-secondary: rgba(166, 124, 66, var(--secondary-opacity));
+  /* Purple */
+  --science-opaque: rgba(191, 0, 255, 1);
+  --science-primary: rgba(191, 0, 255, var(--primary-opacity));
+  --science-secondary: rgba(191, 0, 255, var(--secondary-opacity));
+  /* Orange */
+  --engineer-opaque: rgba(255, 170, 0, 1);
+  --engineer-primary: rgba(255, 170, 0, var(--primary-opacity));
+  --engineer-secondary: rgba(255, 170, 0, var(--secondary-opacity));
+  /* Red */
+  --security-opaque: rgba(255, 0, 0, 1);
+  --security-primary: rgba(255, 0, 0, var(--primary-opacity));
+  --security-secondary: rgba(255, 0, 0, var(--secondary-opacity));
+  /* Dark red */
+  --antag-opaque: rgba(153, 15, 15, 1);
+  --antag-primary: rgba(153, 15, 15, var(--primary-opacity));
+  --antag-secondary: rgba(153, 15, 15, var(--secondary-opacity));
+  /* Magenta Pink */
+  --legal-opaque: rgba(255, 0, 149, 1);
+  --legal-primary: rgba(255, 0, 149, var(--primary-opacity));
+  --legal-secondary: rgba(255, 0, 149, var(--secondary-opacity));
+  /* Blue Ribbon */
+  --command-opaque: rgba(0, 106, 255, 1);
+  --command-primary: rgba(0, 106, 255, var(--primary-opacity));
+  --command-secondary: rgba(0, 106, 255, var(--secondary-opacity));
+  /* Blue Azure */
+  --synthetic-opaque: rgba(67, 129, 191, 1);
+  --synthetic-primary: rgba(67, 129, 191, var(--primary-opacity));
+  --synthetic-secondary: rgba(67, 129, 191, var(--secondary-opacity));
+  /* Dark Purple */
+  --special-opaque: rgba(91, 19, 191, 1);
+  --special-primary: rgba(91, 19, 191, var(--primary-opacity));
+  --special-secondary: rgba(91, 19, 191, var(--secondary-opacity));
+  /* Dark Blue */
+  --centcom-opaque: rgba(0, 64, 128, 1);
+  --centcom-primary: rgba(0, 64, 128, var(--primary-opacity));
+  --centcom-secondary: rgba(0, 64, 128, var(--secondary-opacity));
 
-  --palette-primary-bold: rgba(127, 127, 127, 1);
-  --palette-primary: rgba(127, 127, 127, 0.75);
-  --palette-secondary: rgba(127, 127, 127, 0.5);
-  --palette-tertiary: rgba(127, 127, 127, 0.25);
-  --palette-light: rgba(127, 127, 127, 0.2);
-  --palette-very-light: rgba(127, 127, 127, 0.1);
-
-  --palette-civ-primary-bold: rgba(29, 191, 83, 1);
-  --palette-civ-primary: rgba(29, 191, 83, 0.75);
-  --palette-civ-secondary: rgba(29, 191, 83, 0.5);
-  --palette-civ-tertiary: rgba(29, 191, 83, 0.25);
-  --palette-civ-light: rgba(29, 191, 83, 0.2);
-  --palette-civ-very-light: rgba(29, 191, 83, 0.1);
-
-  --palette-med-primary-bold: rgba(0, 191, 255, 1);
-  --palette-med-primary: rgba(0, 191, 255, 0.75);
-  --palette-med-secondary: rgba(0, 191, 255, 0.5);
-  --palette-med-tertiary: rgba(0, 191, 255, 0.25);
-  --palette-med-light: rgba(0, 191, 255, 0.2);
-  --palette-med-very-light: rgba(0, 191, 255, 0.1);
-
-  --palette-supp-primary-bold: rgba(166, 124, 66, 1);
-  --palette-supp-primary: rgba(166, 124, 66, 0.75);
-  --palette-supp-secondary: rgba(166, 124, 66, 0.5);
-  --palette-supp-tertiary: rgba(166, 124, 66, 0.25);
-  --palette-supp-light: rgba(166, 124, 66, 0.2);
-  --palette-supp-very-light: rgba(166, 124, 66, 0.1);
-
-  --palette-rnd-primary-bold: rgba(191, 0, 255, 1);
-  --palette-rnd-primary: rgba(191, 0, 255, 0.75);
-  --palette-rnd-secondary: rgba(191, 0, 255, 0.5);
-  --palette-rnd-tertiary: rgba(191, 0, 255, 0.25);
-  --palette-rnd-light: rgba(191, 0, 255, 0.2);
-  --palette-rnd-very-light: rgba(191, 0, 255, 0.1);
-
-  --palette-eng-primary-bold: rgba(255, 170, 0, 1);
-  --palette-eng-primary: rgba(255, 170, 0, 0.75);
-  --palette-eng-secondary: rgba(255, 170, 0, 0.5);
-  --palette-eng-tertiary: rgba(255, 170, 0, 0.25);
-  --palette-eng-light: rgba(255, 170, 0, 0.2);
-  --palette-eng-very-light: rgba(255, 170, 0, 0.1);
-
-  --palette-sec-primary-bold: rgba(255, 0, 0, 1);
-  --palette-sec-primary: rgba(255, 0, 0, 0.75);
-  --palette-sec-secondary: rgba(255, 0, 0, 0.5);
-  --palette-sec-tertiary: rgba(255, 0, 0, 0.25);
-  --palette-sec-light: rgba(255, 0, 0, 0.2);
-  --palette-sec-very-light: rgba(255, 0, 0, 0.1);
-
-  --palette-comm-primary-bold: rgba(0, 106, 255, 1);
-  --palette-comm-primary: rgba(0, 106, 255, 0.75);
-  --palette-comm-secondary: rgba(0, 106, 255, 0.5);
-  --palette-comm-tertiary: rgba(0, 106, 255, 0.25);
-  --palette-comm-light: rgba(0, 106, 255, 0.2);
-  --palette-comm-very-light: rgba(0, 106, 255, 0.1);
-
-  --palette-synth-primary-bold: rgba(255, 0, 191, 1);
-  --palette-synth-primary: rgba(255, 0, 191, 0.75);
-  --palette-synth-secondary: rgba(255, 0, 191, 0.5);
-  --palette-synth-tertiary: rgba(255, 0, 191, 0.25);
-  --palette-synth-light: rgba(255, 0, 191, 0.2);
-  --palette-synth-very-light: rgba(255, 0, 191, 0.1);
-
-  --palette-xeno-primary-bold: rgba(96, 0, 191, 1);
-  --palette-xeno-primary: rgba(96, 0, 191, 0.75);
-  --palette-xeno-secondary: rgba(96, 0, 191, 0.5);
-  --palette-xeno-tertiary: rgba(96, 0, 191, 0.25);
-  --palette-xeno-light: rgba(96, 0, 191, 0.2);
-  --palette-xeno-very-light: rgba(96, 0, 191, 0.1);
-
-  --palette-cc-primary-bold: rgba(0, 64, 128, 1);
-  --palette-cc-primary: rgba(0, 64, 128, 0.75);
-  --palette-cc-secondary: rgba(0, 64, 128, 0.5);
-  --palette-cc-tertiary: rgba(0, 64, 128, 0.25);
-  --palette-cc-light: rgba(0, 64, 128, 0.2);
-  --palette-cc-very-light: rgba(0, 64, 128, 0.1);
-
-  /* Остальные цвета */
+  /* Unsorted */
   --color-notice: #235982;
   --color-notice-brown: #735834;
   --color-hyperlink: #6699ff;
@@ -143,7 +150,7 @@
   --color-hyperlink-new: #ff6666;
   --color-hyperlink-new-visited: #ff8359;
 
-  /* Значения */
+  /* Values */
   --border-radius-small: 0.25em;
   --border-radius-medium: 0.5em;
   --border-radius-large: 1em;
@@ -151,14 +158,12 @@
   --invert-icon: invert(0.9);
   --invert-button-icon: invert(1);
   --logo-invert: brightness(5) hue-rotate(25deg) opacity(0.8);
-
-  /* Время */
   --transition-time: 0.2s;
   --transition-delay: 0.2s;
 }
 
 :root.light {
-  /* Базовые цвета - Light */
+  /* Base Colors - Light */
   --color-fg: #252525;
   --color-bg: #ffffff;
   --color-bg-opaque: rgba(204, 201, 198, 0.75);
@@ -168,19 +173,107 @@
   --color-text-darker: rgba(40, 40, 40, 1);
   --color-text-gray: rgba(80, 80, 80, 0.75);
   --color-text-translucent: rgba(0, 0, 0, 0.5);
-  --color-button-text: rgba(255, 255, 255, 1);
-  --color-button-text-transparent: rgba(255, 255, 255, 0.5);
+  --color-text-static-white: rgba(255, 255, 255, 1);
+  --color-text-static-white-transparent: rgba(255, 255, 255, 0.5);
   --color-border: rgba(0, 0, 0, 0.1);
   --color-border-input: rgba(128, 181, 255, 1);
   --color-hover: rgba(0, 0, 0, 0.075);
   --color-selected: rgba(0, 0, 0, 0.125);
 
-  /* Скроллбар */
+  /* Scrollbar - Light */
   --color-scrollbar-base: #d9d9d9;
   --color-scrollbar-thumb: #808080;
   --color-scrollbar-thumb-hover: #a6a6a6;
 
-  /* Остальные цвета */
+  /* Wiki Palette. Use with ColorPalette template! */
+  --primary-opacity: 0.66;
+  --secondary-opacity: 0.33;
+  /* Gray. Default */
+  --gray-opaque: rgba(127, 127, 127, 1);
+  --gray-primary: rgba(127, 127, 127, var(--primary-opacity));
+  --gray-secondary: rgba(127, 127, 127, var(--secondary-opacity));
+  /* Black */
+  --black-opaque: rgba(0, 0, 0, 1);
+  --black-primary: rgba(0, 0, 0, var(--primary-opacity));
+  --black-secondary: rgba(0, 0, 0, var(--secondary-opacity));
+  /* Cyan */
+  --cyan-opaque: rgba(48, 242, 210, 1);
+  --cyan-primary: rgba(48, 242, 210, var(--primary-opacity));
+  --cyan-secondary: rgba(48, 242, 210, var(--secondary-opacity));
+  /* Aqua blue */
+  --blue-opaque: rgba(0, 255, 255, 1);
+  --blue-primary: rgba(0, 255, 255, var(--primary-opacity));
+  --blue-secondary: rgba(0, 255, 255, var(--secondary-opacity));
+  /* Brown */
+  --brown-opaque: rgba(166, 107, 25, 1);
+  --brown-primary: rgba(166, 107, 25, var(--primary-opacity));
+  --brown-secondary: rgba(166, 107, 25, var(--secondary-opacity));
+  /* Green */
+  --green-opaque: rgba(48, 191, 19, 1);
+  --green-primary: rgba(48, 191, 19, var(--primary-opacity));
+  --green-secondary: rgba(48, 191, 19, var(--secondary-opacity));
+  /* Yellow */
+  --yellow-opaque: rgba(255, 234, 0, 1);
+  --yellow-primary: rgba(255, 234, 0, var(--primary-opacity));
+  --yellow-secondary: rgba(255, 234, 0, var(--secondary-opacity));
+  /* Light red */
+  --red-opaque: rgba(255, 64, 64, 1);
+  --red-primary: rgba(255, 64, 64, var(--primary-opacity));
+  --red-secondary: rgba(255, 64, 64, var(--secondary-opacity));
+  /* Pink */
+  --pink-opaque: rgba(255, 64, 255, 1);
+  --pink-primary: rgba(255, 64, 255, var(--primary-opacity));
+  --pink-secondary: rgba(255, 64, 255, var(--secondary-opacity));
+  /* Light green */
+  --civilian-opaque: rgba(29, 191, 83, 1);
+  --civilian-primary: rgba(29, 191, 83, var(--primary-opacity));
+  --civilian-secondary: rgba(29, 191, 83, var(--secondary-opacity));
+  /* Blue */
+  --medical-opaque: rgba(0, 191, 255, 1);
+  --medical-primary: rgba(0, 191, 255, var(--primary-opacity));
+  --medical-secondary: rgba(0, 191, 255, var(--secondary-opacity));
+  /* Light brown */
+  --supply-opaque: rgba(166, 124, 66, 1);
+  --supply-primary: rgba(166, 124, 66, var(--primary-opacity));
+  --supply-secondary: rgba(166, 124, 66, var(--secondary-opacity));
+  /* Purple */
+  --science-opaque: rgba(191, 0, 255, 1);
+  --science-primary: rgba(191, 0, 255, var(--primary-opacity));
+  --science-secondary: rgba(191, 0, 255, var(--secondary-opacity));
+  /* Orange */
+  --engineer-opaque: rgba(255, 170, 0, 1);
+  --engineer-primary: rgba(255, 170, 0, var(--primary-opacity));
+  --engineer-secondary: rgba(255, 170, 0, var(--secondary-opacity));
+  /* Red */
+  --security-opaque: rgba(255, 0, 0, 1);
+  --security-primary: rgba(255, 0, 0, var(--primary-opacity));
+  --security-secondary: rgba(255, 0, 0, var(--secondary-opacity));
+  /* Dark red */
+  --antag-opaque: rgba(153, 15, 15, 1);
+  --antag-primary: rgba(153, 15, 15, var(--primary-opacity));
+  --antag-secondary: rgba(153, 15, 15, var(--secondary-opacity));
+  /* Magenta Pink */
+  --legal-opaque: rgba(255, 0, 149, 1);
+  --legal-primary: rgba(255, 0, 149, var(--primary-opacity));
+  --legal-secondary: rgba(255, 0, 149, var(--secondary-opacity));
+  /* Blue Ribbon */
+  --command-opaque: rgba(0, 106, 255, 1);
+  --command-primary: rgba(0, 106, 255, var(--primary-opacity));
+  --command-secondary: rgba(0, 106, 255, var(--secondary-opacity));
+  /* Blue Azure */
+  --synthetic-opaque: rgba(67, 129, 191, 1);
+  --synthetic-primary: rgba(67, 129, 191, var(--primary-opacity));
+  --synthetic-secondary: rgba(67, 129, 191, var(--secondary-opacity));
+  /* Dark Purple */
+  --special-opaque: rgba(91, 19, 191, 1);
+  --special-primary: rgba(91, 19, 191, var(--primary-opacity));
+  --special-secondary: rgba(91, 19, 191, var(--secondary-opacity));
+  /* Dark Blue */
+  --centcomm-opaque: rgba(0, 64, 128, 1);
+  --centcomm-primary: rgba(0, 64, 128, var(--primary-opacity));
+  --centcomm-secondary: rgba(0, 64, 128, var(--secondary-opacity));
+
+  /* Unsorted - Light */
   --color-notice: #36a3d9;
   --color-notice-brown: #cca266;
   --color-hyperlink: #3377ff;
@@ -188,7 +281,7 @@
   --color-hyperlink-new: #e60000;
   --color-hyperlink-new-visited: #a62a00;
 
-  /* Значения */
+  /* Values */
   --invert-icon: invert(0);
   --logo-invert: none;
 }

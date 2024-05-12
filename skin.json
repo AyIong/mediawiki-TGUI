@@ -330,7 +330,7 @@
       "value": true
     },
     "TGUIDefaultSidebarVisibleForAnonymousUser": {
-      "value": false
+      "value": true
     },
     "TGUILanguageInHeader": {
       "value": {
