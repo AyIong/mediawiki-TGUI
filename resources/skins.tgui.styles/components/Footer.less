@@ -2,15 +2,14 @@
 
 /* Footer */
 .mw-footer-container {
-  direction: ltr;
-  padding: 0 0.5em;
+  display: flex;
+  flex-direction: column;
   margin: 0.75em 0 0 245px;
   background-color: var(--color-bg-section);
 
   ul {
+    margin: 0.5em;
     list-style: none;
-    margin: 0;
-    padding: 0;
   }
 
   li {
@@ -21,18 +20,6 @@
   }
 }
 
-@{selector-main-menu-closed} ~ .mw-footer-container {
-  margin: 0.75em 0 0 0;
-}
-
-#footer {
-  margin-top: 0.5em;
-}
-
-#footer-icons {
-  float: right;
-}
-
 #footer-info {
   li {
     color: var(--color-text-darker);
@@ -41,9 +28,33 @@
 }
 
 #footer-places {
-  li {
-    float: left;
-    margin-right: 1em;
-    line-height: @line-height-footer-buttons;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+
+  #footer-places-links {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    margin: 0;
+
+    li {
+      margin-right: 1em;
+      line-height: @line-height-footer-buttons;
+
+      a {
+        padding: 0.5em 0.75em;
+        background-color: var(--color-primary);
+        color: var(--color-text-static-white);
+        border-radius: var(--border-radius-small);
+        transition: background-color var(--transition-time);
+        text-decoration: none;
+        text-wrap: nowrap;
+
+        &:hover {
+          background-color: var(--color-primary-light);
+        }
+      }
+    }
   }
 }
