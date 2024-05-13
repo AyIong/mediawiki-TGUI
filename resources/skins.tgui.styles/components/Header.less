@@ -26,20 +26,6 @@
     flex-grow: 1;
   }
 
-  @media (min-width: @min-width-desktop-wide) {
-    // Ensure search box is aligned with content when search thumbnails or JS is off
-    .tgui-search-box:not(.tgui-search-box-auto-expand-width),
-    html:not(.client-js) & .tgui-search-box {
-      padding-left: @size-search-expand;
-    }
-  }
-
-  @media (min-width: @min-width-desktop) {
-    .tgui-search-box {
-      margin-right: @margin-end-search;
-    }
-  }
-
   /**
 	 * Toggles the visibility of the search box at lower resolutions.
 	 */
