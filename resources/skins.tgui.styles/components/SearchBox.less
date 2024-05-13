@@ -33,14 +33,6 @@
   transition-property: border-color, box-shadow;
   transition-duration: 250ms;
 
-  // Undo the proprietary styles, we provide our own.
-  // Support: Safari/iOS `none` needed, Chrome would accept `textfield` as well. See T247299.
-  // stylelint-disable-next-line plugin/no-unsupported-browser-features
-  -webkit-appearance: none;
-  // Support: Firefox.
-  // stylelint-disable-next-line plugin/no-unsupported-browser-features
-  -moz-appearance: textfield;
-
   .tgui-search-box-inner:hover & {
     border-color: var(--color-border);
   }
