@@ -2,11 +2,8 @@
 @import "mediawiki.mixins.less";
 
 .mw-logo {
-  .flex-display();
-  // If icon is not configured, ensure that the logo still takes up available
-  // space allocated by layout.
+  display: flex;
   height: 100%;
-  // Center vertically.
   align-items: center;
   // Hamburger menu icon with padding (22px + 12px = 46px) + right margin (12px) + logo (222px @ 16) + space between
   // logo and searchbox (28px) = 296px which equals the sum of widths of sidebar elements (i.e. TOC) when toggled.
