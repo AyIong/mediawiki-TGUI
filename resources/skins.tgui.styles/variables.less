@@ -53,13 +53,10 @@
 @border-bottom-tabs: var(--border-classic);
 
 // Navigation
-@color-nav-subtle: #444;
-// Navigation `line-height` has to be set in `em`s due to a rendering calculation issue.
 @line-height-nav: 1.125em;
 
 // Navigation: Main
 @font-size-nav-main: inherit;
-
 @font-size-nav-main-heading: unit(
   12 / @font-size-browser,
   em
@@ -71,15 +68,9 @@
 // Tabs
 @font-size-tabs: unit(13 / @font-size-browser, em); // Equals `0.8125em`.
 
-// Menu button
-@margin-horizontal-sidebar-button-icon: unit(
-  12px / @font-size-browser,
-  em
-); // 0.75em @ 16
-
 // Main menu
 @selector-main-menu-open: ~"#mw-sidebar-checkbox:checked";
-@selector-main-menu-closed: ~"#mw-sidebar-checkbox:not( :checked )";
+@selector-main-menu-closed: ~"#mw-sidebar-checkbox:not(:checked)";
 
 // Sidebar
 @width-sidebar-px: 220px;

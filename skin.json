@@ -137,7 +137,6 @@
       "class": "ResourceLoaderSkinModule",
       "features": {
         "normalize": true,
-        "content-tables": true,
         "interface-edit-section-links": true,
         "interface-user-message": true,
         "i18n-ordered-lists": true,
@@ -280,14 +279,15 @@
   "ResourceModuleSkinStyles": {
     "tgui": {
       "+ext.echo.styles.alert": "skinStyles/ext.echo.styles.alert.less",
-      "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
-      "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
-      "+mediawiki.notification": "skinStyles/mediawiki.notification.less",
-      "+oojs-ui-core.styles": "skinStyles/ooui.less",
       "+ext.relatedArticles.readMore": "skinStyles/ext.relatedArticles.readMore.less",
       "+ext.uls.compactlinks": "skinStyles/ext.uls.compactlinks.less",
       "+ext.uls.interface": "skinStyles/ext.uls.interface.less",
-      "+ext.visualEditor.base": "skinStyles/ext.visualEditor.less"
+      "+ext.visualEditor.base": "skinStyles/ext.visualEditor.less",
+      "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
+      "+mediawiki.action.view.filepage": "skinStyles/mediawiki.action.view.filepage.less",
+      "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
+      "+mediawiki.notification": "skinStyles/mediawiki.notification.less",
+      "+oojs-ui-core.styles": "skinStyles/ooui.less"
     }
   },
   "config": {

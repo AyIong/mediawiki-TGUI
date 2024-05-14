@@ -1,0 +1,28 @@
+/**
+ * wikitable class for skinning normal tables.
+ * Keep in sync with content.tables-print.less.
+ */
+.wikitable {
+  background-color: var(--color-bg-section-light);
+  color: var(--color-text-darker);
+  border: var(--border-classic);
+  border-collapse: collapse;
+
+  > tr > th,
+  > tr > td,
+  > * > tr > th,
+  > * > tr > td {
+    border: var(--border-classic);
+    padding: 0.2em 0.4em;
+  }
+
+  > tr > th,
+  > * > tr > th {
+    background-color: var(--color-bg-section-light);
+    text-align: center;
+  }
+
+  > caption {
+    font-weight: bold;
+  }
+}
