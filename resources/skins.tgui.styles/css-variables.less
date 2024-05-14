@@ -1,0 +1,290 @@
+:root {
+  /* Base Colors */
+  --color-fg: #ffffff;
+  --color-bg: #252525;
+  --color-bg-opaque: rgba(37, 37, 37, 0.75);
+  --color-bg-section: rgba(0, 0, 0, 0.33);
+  --color-bg-section-light: rgba(125, 125, 125, 0.075);
+  --color-text: rgba(255, 255, 255, 1);
+  --color-text-darker: rgba(220, 220, 220, 1);
+  --color-text-gray: rgba(185, 185, 185, 0.75);
+  --color-text-translucent: rgba(255, 255, 255, 0.5);
+  --color-text-static-white: rgba(255, 255, 255, 1);
+  --color-text-static-dark: rgba(0, 0, 0, 1);
+  --color-text-static-transparent: rgba(255, 255, 255, 0.5);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-input: rgba(128, 181, 255, 0.75);
+  --color-border-input-focus: rgba(89, 131, 255, 1);
+  --color-hover: rgba(255, 255, 255, 0.075);
+  --color-selected: rgba(255, 255, 255, 0.125);
+
+  /* Scrollbar */
+  --color-scrollbar-base: #191919;
+  --color-scrollbar-thumb: #3b3b3b;
+  --color-scrollbar-thumb-hover: #4d4d4d;
+
+  /* TGUI Elements Colors */
+  --color-red: rgba(219, 40, 40, 1);
+  --color-orange: rgba(240, 143, 17, 1);
+  --color-yellow: rgba(251, 214, 8, 1);
+  --color-olive: rgba(181, 204, 24, 1);
+  --color-green: rgba(91, 170, 39, 1);
+  --color-teal: rgba(0, 181, 173, 1);
+  --color-blue: rgba(33, 133, 208, 1);
+  --color-violet: rgba(100, 53, 201, 1);
+  --color-purple: rgba(163, 51, 200, 1);
+  --color-pink: rgba(224, 57, 151, 1);
+  --color-brown: rgba(165, 103, 63, 1);
+  --color-grey: rgba(118, 118, 118, 1);
+  --color-primary: rgba(73, 114, 161, 1);
+  --color-label: rgba(126, 144, 167, 1);
+
+  /* TGUI Elements Colors (Light or Hover) */
+  --color-red-light: rgba(251, 58, 58, 1);
+  --color-orange-light: rgba(255, 163, 40, 1);
+  --color-yellow-light: rgba(255, 233, 29, 1);
+  --color-olive-light: rgba(208, 225, 37, 1);
+  --color-green-light: rgba(105, 195, 43, 1);
+  --color-teal-light: rgba(0, 209, 193, 1);
+  --color-blue-light: rgba(70, 168, 255, 1);
+  --color-violet-light: rgba(168, 68, 255, 1);
+  --color-purple-light: rgba(188, 68, 255, 1);
+  --color-pink-light: rgba(255, 79, 181, 1);
+  --color-brown-light: rgba(191, 123, 76, 1);
+  --color-grey-light: rgba(136, 136, 136, 1);
+  --color-primary-light: rgba(119, 148, 187, 1);
+  --color-label-light: rgba(145, 166, 192, 1);
+
+  /* Wiki Palette. Use with ColorPalette template! */
+  /* Gray. Default */
+  --gray-opaque: rgba(127, 127, 127, 1);
+  --gray-primary: rgba(127, 127, 127, 0.66);
+  --gray-secondary: rgba(127, 127, 127, 0.33);
+  /* Black */
+  --black-opaque: rgba(0, 0, 0, 1);
+  --black-primary: rgba(0, 0, 0, 0.66);
+  --black-secondary: rgba(0, 0, 0, 0.33);
+  /* Cyan */
+  --cyan-opaque: rgba(48, 242, 210, 1);
+  --cyan-primary: rgba(48, 242, 210, 0.66);
+  --cyan-secondary: rgba(48, 242, 210, 0.33);
+  /* Aqua blue */
+  --blue-opaque: rgba(0, 255, 255, 1);
+  --blue-primary: rgba(0, 255, 255, 0.66);
+  --blue-secondary: rgba(0, 255, 255, 0.33);
+  /* Brown */
+  --brown-opaque: rgba(166, 107, 25, 1);
+  --brown-primary: rgba(166, 107, 25, 0.66);
+  --brown-secondary: rgba(166, 107, 25, 0.33);
+  /* Green */
+  --green-opaque: rgba(48, 191, 19, 1);
+  --green-primary: rgba(48, 191, 19, 0.66);
+  --green-secondary: rgba(48, 191, 19, 0.33);
+  /* Yellow */
+  --yellow-opaque: rgba(255, 234, 0, 1);
+  --yellow-primary: rgba(255, 234, 0, 0.66);
+  --yellow-secondary: rgba(255, 234, 0, 0.33);
+  /* Light red */
+  --red-opaque: rgba(255, 64, 64, 1);
+  --red-primary: rgba(255, 64, 64, 0.66);
+  --red-secondary: rgba(255, 64, 64, 0.33);
+  /* Pink */
+  --pink-opaque: rgba(255, 64, 255, 1);
+  --pink-primary: rgba(255, 64, 255, 0.66);
+  --pink-secondary: rgba(255, 64, 255, 0.33);
+  /* Light green */
+  --civilian-opaque: rgba(29, 191, 83, 1);
+  --civilian-primary: rgba(29, 191, 83, 0.66);
+  --civilian-secondary: rgba(29, 191, 83, 0.33);
+  /* Blue */
+  --medical-opaque: rgba(0, 191, 255, 1);
+  --medical-primary: rgba(0, 191, 255, 0.66);
+  --medical-secondary: rgba(0, 191, 255, 0.33);
+  /* Light brown */
+  --supply-opaque: rgba(166, 124, 66, 1);
+  --supply-primary: rgba(166, 124, 66, 0.66);
+  --supply-secondary: rgba(166, 124, 66, 0.33);
+  /* Purple */
+  --science-opaque: rgba(191, 0, 255, 1);
+  --science-primary: rgba(191, 0, 255, 0.66);
+  --science-secondary: rgba(191, 0, 255, 0.33);
+  /* Orange */
+  --engineer-opaque: rgba(255, 170, 0, 1);
+  --engineer-primary: rgba(255, 170, 0, 0.66);
+  --engineer-secondary: rgba(255, 170, 0, 0.33);
+  /* Red */
+  --security-opaque: rgba(255, 0, 0, 1);
+  --security-primary: rgba(255, 0, 0, 0.66);
+  --security-secondary: rgba(255, 0, 0, 0.33);
+  /* Dark red */
+  --antag-opaque: rgba(153, 15, 15, 1);
+  --antag-primary: rgba(153, 15, 15, 0.66);
+  --antag-secondary: rgba(153, 15, 15, 0.33);
+  /* Magenta Pink */
+  --legal-opaque: rgba(255, 0, 149, 1);
+  --legal-primary: rgba(255, 0, 149, 0.66);
+  --legal-secondary: rgba(255, 0, 149, 0.33);
+  /* Blue Ribbon */
+  --command-opaque: rgba(0, 106, 255, 1);
+  --command-primary: rgba(0, 106, 255, 0.66);
+  --command-secondary: rgba(0, 106, 255, 0.33);
+  /* Blue Azure */
+  --synthetic-opaque: rgba(67, 129, 191, 1);
+  --synthetic-primary: rgba(67, 129, 191, 0.66);
+  --synthetic-secondary: rgba(67, 129, 191, 0.33);
+  /* Dark Purple */
+  --special-opaque: rgba(91, 19, 191, 1);
+  --special-primary: rgba(91, 19, 191, 0.66);
+  --special-secondary: rgba(91, 19, 191, 0.33);
+  /* Dark Blue */
+  --centcom-opaque: rgba(0, 64, 128, 1);
+  --centcom-primary: rgba(0, 64, 128, 0.66);
+  --centcom-secondary: rgba(0, 64, 128, 0.33);
+
+  /* Notices */
+  --color-notice: #666666;
+  --color-notice-red: #733434;
+  --color-notice-green: #3f7334;
+  --color-notice-blue: #235982;
+  --color-notice-brown: #735834;
+  /* Links */
+  --color-hyperlink: #6699ff;
+  --color-hyperlink-visited: #a173ff;
+  --color-hyperlink-new: #ff6666;
+  --color-hyperlink-new-visited: #ff8359;
+
+  /* Values */
+  --border-radius-small: 0.25em;
+  --border-radius-medium: 0.5em;
+  --border-radius-large: 1em;
+  --blur-intensity: blur(24px);
+  --invert-icon: invert(0.9);
+  --invert-button-icon: invert(1);
+  --logo-invert: brightness(5) hue-rotate(25deg) opacity(0.8);
+  --transition-time: 0.2s;
+  --transition-delay: 0.2s;
+}
+
+:root.light {
+  /* Base Colors - Light */
+  --color-fg: #252525;
+  --color-bg: #ffffff;
+  --color-bg-opaque: rgba(204, 201, 198, 0.75);
+  --color-bg-section: rgba(204, 201, 198, 0.33);
+  --color-bg-section-light: rgba(153, 146, 141, 0.1);
+  --color-text: rgba(0, 0, 0, 1);
+  --color-text-darker: rgba(40, 40, 40, 1);
+  --color-text-gray: rgba(80, 80, 80, 0.75);
+  --color-text-translucent: rgba(0, 0, 0, 0.5);
+  --color-text-static-white: rgba(255, 255, 255, 1);
+  --color-text-static-white-transparent: rgba(255, 255, 255, 0.5);
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-border-input: rgba(128, 181, 255, 1);
+  --color-hover: rgba(0, 0, 0, 0.075);
+  --color-selected: rgba(0, 0, 0, 0.125);
+
+  /* Scrollbar - Light */
+  --color-scrollbar-base: #d9d9d9;
+  --color-scrollbar-thumb: #808080;
+  --color-scrollbar-thumb-hover: #a6a6a6;
+
+  /* Wiki Palette. Use with ColorPalette template! */
+  --primary-opacity: 0.66;
+  --secondary-opacity: 0.33;
+  /* Gray. Default */
+  --gray-opaque: rgba(127, 127, 127, 1);
+  --gray-primary: rgba(127, 127, 127, 0.66);
+  --gray-secondary: rgba(127, 127, 127, 0.33);
+  /* Black */
+  --black-opaque: rgba(0, 0, 0, 1);
+  --black-primary: rgba(0, 0, 0, 0.66);
+  --black-secondary: rgba(0, 0, 0, 0.33);
+  /* Cyan */
+  --cyan-opaque: rgba(48, 242, 210, 1);
+  --cyan-primary: rgba(48, 242, 210, 0.66);
+  --cyan-secondary: rgba(48, 242, 210, 0.33);
+  /* Aqua blue */
+  --blue-opaque: rgba(0, 255, 255, 1);
+  --blue-primary: rgba(0, 255, 255, 0.66);
+  --blue-secondary: rgba(0, 255, 255, 0.33);
+  /* Brown */
+  --brown-opaque: rgba(166, 107, 25, 1);
+  --brown-primary: rgba(166, 107, 25, 0.66);
+  --brown-secondary: rgba(166, 107, 25, 0.33);
+  /* Green */
+  --green-opaque: rgba(48, 191, 19, 1);
+  --green-primary: rgba(48, 191, 19, 0.66);
+  --green-secondary: rgba(48, 191, 19, 0.33);
+  /* Yellow */
+  --yellow-opaque: rgba(255, 234, 0, 1);
+  --yellow-primary: rgba(255, 234, 0, 0.66);
+  --yellow-secondary: rgba(255, 234, 0, 0.33);
+  /* Light red */
+  --red-opaque: rgba(255, 64, 64, 1);
+  --red-primary: rgba(255, 64, 64, 0.66);
+  --red-secondary: rgba(255, 64, 64, 0.33);
+  /* Pink */
+  --pink-opaque: rgba(255, 64, 255, 1);
+  --pink-primary: rgba(255, 64, 255, 0.66);
+  --pink-secondary: rgba(255, 64, 255, 0.33);
+  /* Light green */
+  --civilian-opaque: rgba(29, 191, 83, 1);
+  --civilian-primary: rgba(29, 191, 83, 0.66);
+  --civilian-secondary: rgba(29, 191, 83, 0.33);
+  /* Blue */
+  --medical-opaque: rgba(0, 191, 255, 1);
+  --medical-primary: rgba(0, 191, 255, 0.66);
+  --medical-secondary: rgba(0, 191, 255, 0.33);
+  /* Light brown */
+  --supply-opaque: rgba(166, 124, 66, 1);
+  --supply-primary: rgba(166, 124, 66, 0.66);
+  --supply-secondary: rgba(166, 124, 66, 0.33);
+  /* Purple */
+  --science-opaque: rgba(191, 0, 255, 1);
+  --science-primary: rgba(191, 0, 255, 0.66);
+  --science-secondary: rgba(191, 0, 255, 0.33);
+  /* Orange */
+  --engineer-opaque: rgba(255, 170, 0, 1);
+  --engineer-primary: rgba(255, 170, 0, 0.66);
+  --engineer-secondary: rgba(255, 170, 0, 0.33);
+  /* Red */
+  --security-opaque: rgba(255, 0, 0, 1);
+  --security-primary: rgba(255, 0, 0, 0.66);
+  --security-secondary: rgba(255, 0, 0, 0.33);
+  /* Dark red */
+  --antag-opaque: rgba(153, 15, 15, 1);
+  --antag-primary: rgba(153, 15, 15, 0.66);
+  --antag-secondary: rgba(153, 15, 15, 0.33);
+  /* Magenta Pink */
+  --legal-opaque: rgba(255, 0, 149, 1);
+  --legal-primary: rgba(255, 0, 149, 0.66);
+  --legal-secondary: rgba(255, 0, 149, 0.33);
+  /* Blue Ribbon */
+  --command-opaque: rgba(0, 106, 255, 1);
+  --command-primary: rgba(0, 106, 255, 0.66);
+  --command-secondary: rgba(0, 106, 255, 0.33);
+  /* Blue Azure */
+  --synthetic-opaque: rgba(67, 129, 191, 1);
+  --synthetic-primary: rgba(67, 129, 191, 0.66);
+  --synthetic-secondary: rgba(67, 129, 191, 0.33);
+  /* Dark Purple */
+  --special-opaque: rgba(91, 19, 191, 1);
+  --special-primary: rgba(91, 19, 191, 0.66);
+  --special-secondary: rgba(91, 19, 191, 0.33);
+  /* Dark Blue */
+  --centcomm-opaque: rgba(0, 64, 128, 1);
+  --centcomm-primary: rgba(0, 64, 128, 0.66);
+  --centcomm-secondary: rgba(0, 64, 128, 0.33);
+
+  /* Unsorted - Light */
+  --color-notice: #36a3d9;
+  --color-notice-brown: #cca266;
+  --color-hyperlink: #3377ff;
+  --color-hyperlink-visited: #9f2bd9;
+  --color-hyperlink-new: #e60000;
+  --color-hyperlink-new-visited: #a62a00;
+
+  /* Values */
+  --invert-icon: invert(0);
+  --logo-invert: none;
+}

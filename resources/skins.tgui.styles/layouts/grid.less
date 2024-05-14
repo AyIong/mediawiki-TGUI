@@ -20,7 +20,7 @@
     display: grid;
     width: 100%;
     min-height: 100vh;
-    background: url(../common/images/bg-nanotrasen.svg);
+    background: url(../skins.tgui.styles/images/bg-nanotrasen.svg);
     background-size: 40%;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -75,5 +75,9 @@
 @{selector-sidebar-no-toc-sidebar-disabled} {
   & ~ .mw-content-container {
     .mixin-column-full-width();
+  }
+
+  & ~ .mw-footer-container {
+    margin: 0.75em 0 0 0;
   }
 }

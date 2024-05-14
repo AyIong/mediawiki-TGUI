@@ -1,4 +1,4 @@
-@import "../../common/variables.less";
+@import "../variables.less";
 @import "mediawiki.mixins.less";
 
 /**
@@ -29,7 +29,7 @@
 
   .mw-list-item.new a,
   .mw-list-item.new a:visited {
-    color: @color-link-new;
+    color: var(--color-hyperlink-new);
   }
 
   .mw-list-item.selected a,

@@ -1,0 +1,57 @@
+#mw-panel.collapsible-nav {
+  .portal {
+    .tgui-menu-heading {
+      cursor: pointer;
+
+      &:before {
+        content: "";
+        position: fixed;
+        left: 1.5em;
+        background-image: url(../skins.tgui.styles/images/arrow-down.svg);
+        background-repeat: no-repeat;
+        width: 10px;
+        height: 10px;
+        filter: invert(1);
+        transform: rotate(0deg) translate(0, 1px);
+        transition: transform var(--transition-time);
+      }
+
+      a {
+        color: var(--color-text-darker);
+        text-decoration: none;
+      }
+    }
+
+    &.collapsed {
+      .tgui-menu-heading:before {
+        transform: rotate(-90deg) translate(-1px, 0px);
+      }
+    }
+
+    .tgui-menu-content {
+      background-image: none !important;
+      display: none;
+    }
+
+    /* First */
+    &.first {
+      background-image: none;
+    }
+
+    /* Persistent */
+    &.persistent {
+      .tgui-menu-content {
+        display: block;
+      }
+
+      .tgui-menu-heading {
+        cursor: default;
+
+        &:before {
+          background-image: none !important;
+          cursor: default;
+        }
+      }
+    }
+  }
+}

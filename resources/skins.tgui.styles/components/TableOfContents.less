@@ -1,4 +1,4 @@
-@import "../../common/variables.less";
+@import "../variables.less";
 
 @sidebar-toc-fade-height: 30px;
 @sidebar-toc-vertical-padding: 20px;
@@ -86,7 +86,7 @@
     word-break: break-word;
     padding-left: 0.5em;
     margin-bottom: 0.5em;
-    color: var(--color-button-text);
+    color: var(--color-text-static-white);
     background-color: var(--color-primary);
     border-radius: var(--border-radius-small);
     transition: all var(--transition-time);
@@ -100,7 +100,7 @@
   .sidebar-toc-list-item-active > .sidebar-toc-link {
     font-weight: bold;
     background-color: var(--color-green);
-    color: var(--color-button-text);
+    color: var(--color-text-static-white);
 
     &:hover {
       background-color: var(--color-green-light);
@@ -142,7 +142,7 @@
   padding: 0.2em;
   margin: 0 0.5em 0 0;
   background-color: var(--color-primary);
-  color: var(--color-button-text);
+  color: var(--color-text-static-white);
   border-radius: var(--border-radius-small);
   border: 0;
   text-decoration: none;
@@ -155,10 +155,11 @@
   &:before {
     content: "";
     display: block;
-    background: url(../common/images/arrow-down.svg);
+    background: url(../skins.tgui.styles/images/arrow-down.svg);
     width: 13px;
     height: 13px;
     transition: transform var(--transition-time);
+    filter: var(--invert-button-icon);
 
     .tgui-toc-collapsed & {
       transform: rotate(180deg);

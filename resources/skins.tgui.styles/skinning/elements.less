@@ -1,4 +1,4 @@
-/*
+/**
  * TGUI
  *
  * Module: mediawiki.skinning.elements
@@ -6,39 +6,6 @@
  *
  * Date: 2022-11-14
  */
-
-/* Links */
-// Some of the link styles are handled in content.links
-a {
-  text-decoration: none;
-  color: @color-link;
-  background: none;
-}
-
-a:not([href]) {
-  cursor: pointer; /* Always cursor:pointer even without href */
-}
-
-a:visited {
-  color: @color-link--visited;
-}
-
-a:active {
-  color: @color-link--active;
-}
-
-a:hover,
-a:focus {
-  text-decoration: underline;
-}
-
-a:lang(ar),
-a:lang(kk-arab),
-a:lang(mzn),
-a:lang(ps),
-a:lang(ur) {
-  text-decoration: none;
-}
 
 /* Inline Elements */
 img {
@@ -48,8 +15,8 @@ img {
 }
 
 hr {
-  height: 1px;
-  background-color: #a2a9b1;
+  height: 2px;
+  background-color: var(--color-border);
   border: 0;
   margin: 0.2em 0;
 }

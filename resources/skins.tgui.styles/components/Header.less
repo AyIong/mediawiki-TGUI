@@ -1,26 +1,15 @@
-@import "../../common/variables.less";
+@import "../variables.less";
 @import "mediawiki.mixins.less";
 
-// Header sizes defined in the description of T246170 and comment T246170#5957100
-@padding-vertical-header: 0.125em;
-@margin-top-header: 0.5em;
-@margin-bottom-header: 2em;
-
-// Logo sizes per specification in T245190.
-@height-logo-icon: 3.125em;
-
 .mw-header {
-  // A min-height is set to account for projects where no icon is set.
-  min-height: @height-logo-icon;
+  display: flex;
+  min-height: 3.125em;
   padding: 8px 0;
-  // Vertical centering of header elements (IE>=11), requires Flexbox.
-  .flex-display();
   flex-wrap: nowrap;
-  // https://caniuse.com/#search=align-items
   align-items: center;
 
   #mw-sidebar-button {
-    margin-right: @margin-horizontal-sidebar-button-icon; // Accidentally the same.
+    margin: 0 0.75em 0 0.5em;
   }
 
   &-content,
@@ -35,20 +24,6 @@
 
   &-content {
     flex-grow: 1;
-  }
-
-  @media (min-width: @min-width-desktop-wide) {
-    // Ensure search box is aligned with content when search thumbnails or JS is off
-    .tgui-search-box:not(.tgui-search-box-auto-expand-width),
-    html:not(.client-js) & .tgui-search-box {
-      padding-left: @size-search-expand;
-    }
-  }
-
-  @media (min-width: @min-width-desktop) {
-    .tgui-search-box {
-      margin-right: @margin-end-search;
-    }
   }
 
   /**

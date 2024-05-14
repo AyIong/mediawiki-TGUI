@@ -3,12 +3,18 @@
  * See '../common/common.less' for common screen and print TGUI stylesheets.
  */
 
-@import "../common/variables.less";
+@import "./variables.less";
+@import "./css-variables.less";
 @import "mediawiki.mixins.less";
 
 // Common styles
-@import "skinning/elements.less";
-@import "skinning/interface.category.less";
+@import "./skinning/normalize.less";
+@import "./skinning/typography.less";
+@import "./skinning/elements.less";
+@import "./skinning/interface.category.less";
+@import "./skinning/messageBoxes.less";
+@import "./skinning/feedlink.less";
+@import "./skinning/content.links.less";
 
 @media screen {
   @import "./layouts/screen.less";
@@ -16,7 +22,6 @@
   // Components
   @import "./components/ArticleToolbar.less";
   @import "./components/SearchBoxLoader.less";
-  @import "./components/VueEnhancedSearchBox.less";
   @import "./components/Sidebar.less";
   @import "./components/LanguageButton.less";
   @import "./components/UserLinks.less";
@@ -26,6 +31,16 @@
   @import "./components/MenuPortal.less";
   @import "./components/TabWatchstarLink.less";
   @import "./components/TableOfContents.less";
+  @import "./components/Indicators.less";
+  @import "./components/SiteNotice.less";
+  @import "./components/MenuDropdownCheckbox.less";
+  @import "./components/MenuPortal.less";
+  @import "./components/SearchBox.less";
+  @import "./components/SidebarLogo.less";
+  @import "./components/Footer.less";
+
+  // Extentions
+  @import "./extentions/collapsiblePortlets.less";
 }
 
 @media all {

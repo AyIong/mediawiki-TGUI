@@ -1,5 +1,5 @@
-@import "../../common/variables.less";
-@import "../../common/mixins.less";
+@import "../variables.less";
+@import "../mixins.less";
 @import "mediawiki.mixins.less";
 @import "mediawiki.ui/variables.less";
 
@@ -39,7 +39,7 @@
   .tgui-menu-content {
     left: auto;
     right: 0;
-    min-width: 200px;
+    min-width: 215px;
   }
 }
 
@@ -66,11 +66,6 @@
     // override user menu (.mw-ui-icon) fixed width,
     // so chevron beside icon is visible.
     width: auto;
-
-    // and override again to ensure the user icon is 20px wide.
-    &:before {
-      width: auto;
-    }
   }
 }
 
@@ -80,8 +75,6 @@
 
 // Anon editor notice i.e. "Pages for logged out editors".
 .tgui-user-menu-anon-editor {
-  color: var(--color-text);
-
   a:before {
     content: "@{msg-parentheses-start}";
   }

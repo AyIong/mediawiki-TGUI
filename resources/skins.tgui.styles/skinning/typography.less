@@ -1,11 +1,11 @@
-/*
+/**
  * TGUI's common typography rules,
  * including whitespace with `margin` & `padding` and list bullets
  * as part of typographic styles. Iconography wouldn't belong here.
  *
  */
 
-@import "./variables.less";
+@import "../variables.less";
 
 html {
   font-size: @font-size-root;
@@ -14,6 +14,10 @@ html {
 html,
 body {
   font-family: @font-family-sans;
+}
+
+strong {
+  color: var(--color-text);
 }
 
 pre,
@@ -113,7 +117,7 @@ pre,
 // External links
 // Use of `a` element selector for limiting generic class scope due to `.external` widespread usage.
 .mw-parser-output a.external {
-  background-image: url(images/link-external-small-ltr-progressive.svg);
+  background-image: url(images/arrow-up-right-from-square-solid.svg);
   background-position: center right;
   background-repeat: no-repeat;
   background-size: 0.85em;

@@ -1,5 +1,5 @@
-@import "../../common/variables.less";
-@import "../../common/mixins.less";
+@import "../variables.less";
+@import "../mixins.less";
 @import "mediawiki.mixins.less";
 
 /**
@@ -31,7 +31,7 @@
     padding: 0 0.5em;
     margin-bottom: 0.5em;
     background-color: var(--color-primary);
-    color: var(--color-button-text) !important;
+    color: var(--color-text-static-white) !important;
     border-radius: var(--border-radius-small);
     transition: background-color var(--transition-time);
     text-decoration: none;
@@ -64,6 +64,9 @@
 }
 
 /* Remove margin from last item */
-#ca-protect a {
-  margin-bottom: 0;
+#ca-protect,
+#pt-anoncontribs {
+  a {
+    margin-bottom: 0;
+  }
 }

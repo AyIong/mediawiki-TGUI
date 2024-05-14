@@ -5,7 +5,8 @@
 // Defines the arrow beside dropdown headings.
 .mixin-tgui-menu-heading-arrow() {
   content: "";
-  background: url(../common/images/arrow-down.svg) 100% 50% no-repeat;
+  background: url(../skins.tgui.styles/images/arrow-down.svg) 100% 50% no-repeat;
   width: unit(13 / @font-size-tabs / @font-size-browser, em);
   height: unit(13 / @font-size-tabs / @font-size-browser, em);
+  filter: var(--invert-button-icon);
 }

@@ -5,7 +5,7 @@
  * The rules here should only define the layout, not color or typography.
  */
 
-@import "../../common/variables.less";
+@import "../variables.less";
 @import "mediawiki.mixins.less";
 
 @selector-main-menu-closed: ~"#mw-sidebar-checkbox:not( :checked )";
@@ -59,6 +59,10 @@ body {
     overflow: visible;
     margin-bottom: 0;
   }
+}
+
+.mw-ui-icon-element::before {
+  filter: var(--invert-icon);
 }
 
 .mw-header {
@@ -125,7 +129,7 @@ body {
     max-height: 3em;
     font-size: 1.1em;
     background-color: var(--color-primary);
-    color: var(--color-button-text);
+    color: var(--color-text-static-white);
     border-radius: var(--border-radius-small);
     transition: background-color var(--transition-time);
     text-decoration: none;

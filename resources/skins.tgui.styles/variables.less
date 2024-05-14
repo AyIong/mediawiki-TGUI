@@ -1,4 +1,3 @@
-@import "mediawiki.skin.variables.less";
 @import "mediawiki.ui/variables.less";
 
 /* Media query breakpoints */
@@ -17,9 +16,6 @@
 //
 // == Page content ==
 //
-
-@color-link-selected: var(--color-text);
-
 @outline-color-base--focus: var(--color-primary);
 
 //
@@ -68,15 +64,7 @@
 @border-color-content: #a7d7f9;
 // Due to darker background gradient, border needs to be darkened for aligned visual perception.
 @border-color-content--tabs-inactive: darken(@border-color-content, 10%);
-@border-color-portal-heading: #c8ccd1;
 @border-color-pagetitle: #eaecf0;
-// Use `rgba()` notation for better Safari support, see T254489.
-@border-color-portal-heading-transparent: rgba(
-  red(@border-color-portal-heading),
-  green(@border-color-portal-heading),
-  blue(@border-color-portal-heading),
-  0
-);
 @border-start-blockquote: 4px solid #eaecf0;
 @padding-top-content: 0.5em;
 @padding-horizontal-content: 0.5em;
@@ -157,7 +145,6 @@
   500px / @font-size-browser / @font-size-base,
   em
 ); // 35.71428571em @ 16 & 0.875em T270202
-@min-width-search-button: 28px;
 @width-search-button: unit(
   28 / @font-size-browser / @font-size-search-input,
   em
@@ -189,7 +176,6 @@
 @z-index-header: 4;
 @z-index-sidebar: 1;
 @z-index-menu-checkbox: 1;
-@z-index-search-button: 1;
 @z-index-search-loader: 1;
 // Ensure that this is displayed on top of .tgui-body and clickable.
 @z-index-indicators: 1;

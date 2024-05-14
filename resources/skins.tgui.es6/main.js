@@ -32,7 +32,7 @@ const getHeadingIntersectionHandler = (changeActiveSection) => {
   };
 };
 
-/*
+/**
  * Updates TOC's status
  * Makes it hidden or not
  *

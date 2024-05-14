@@ -137,27 +137,16 @@
       "class": "ResourceLoaderSkinModule",
       "features": {
         "normalize": true,
-        "content-links": true,
-        "content-links-external": false,
         "content-media": true,
         "content-tables": true,
-        "interface": false,
-        "interface-category": true,
         "interface-edit-section-links": true,
-        "interface-indicators": false,
-        "interface-message-box": true,
-        "interface-site-notice": false,
-        "interface-subtitle": false,
         "interface-user-message": true,
         "i18n-ordered-lists": true,
         "i18n-all-lists-margins": true,
         "i18n-headings": true
       },
       "targets": ["desktop", "mobile"],
-      "styles": [
-        "resources/common/common.less",
-        "resources/skins.tgui.styles/skin.less"
-      ],
+      "styles": ["resources/skins.tgui.styles/skin.less"],
       "lessMessages": [
         "parentheses-start",
         "parentheses-end",
@@ -270,8 +259,9 @@
           "name": "resources/skins.tgui.js/config.json",
           "callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUIResourceLoaderConfig"
         },
-        "resources/skins.tgui.js/dropdownMenus.js",
         "resources/skins.tgui.js/checkbox.js",
+        "resources/skins.tgui.js/collapsiblePortlets.js",
+        "resources/skins.tgui.js/dropdownMenus.js",
         "resources/skins.tgui.js/sidebarPersistence.js",
         "resources/skins.tgui.js/languageButton.js",
         "resources/skins.tgui.js/searchLoader.js"
@@ -295,7 +285,6 @@
       "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
       "+mediawiki.notification": "skinStyles/mediawiki.notification.less",
       "+oojs-ui-core.styles": "skinStyles/ooui.less",
-      "mediawiki.special": "skinStyles/mediawiki.special.less",
       "+ext.relatedArticles.readMore": "skinStyles/ext.relatedArticles.readMore.less",
       "+ext.uls.compactlinks": "skinStyles/ext.uls.compactlinks.less",
       "+ext.uls.interface": "skinStyles/ext.uls.interface.less",
@@ -328,10 +317,6 @@
       },
       "description": "options for configuring where where max-width should and should not apply. More details can be found in Hooks::shouldDisableMaxWidth PHP documentation."
     },
-    "TGUIResponsive": {
-      "value": false,
-      "description": "@var boolean turn TGUI-2022 into a responsive skin by applying a view port and disabling the min-width"
-    },
     "TGUIWvuiSearchOptions": {
       "value": {
         "showThumbnail": true,
@@ -342,7 +327,7 @@
       "value": true
     },
     "TGUIDefaultSidebarVisibleForAnonymousUser": {
-      "value": false
+      "value": true
     },
     "TGUILanguageInHeader": {
       "value": {
