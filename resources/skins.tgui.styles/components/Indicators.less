@@ -9,4 +9,22 @@
 
 .mw-indicator {
   display: inline-block;
+  background-color: var(--color-primary);
+  padding: 0.25em 0.5em;
+  border-radius: var(--border-radius-small);
+  margin: 0.66em;
+  transition: background-color var(--transition-time);
+
+  a {
+    color: var(--color-text-static-white) !important;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: var(--color-primary-light);
+  }
+}
+
+#mw-indicator-mw-helplink a {
+  background-image: url(../skins.tgui.styles/images/circle-question-solid.svg);
 }
