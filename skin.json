@@ -146,7 +146,7 @@
         "i18n-headings": true
       },
       "targets": ["desktop", "mobile"],
-      "styles": ["resources/skins.tgui.styles/skin.less"],
+      "styles": ["resources/skins.tgui.styles/core-skin.less"],
       "lessMessages": [
         "parentheses-start",
         "parentheses-end",
