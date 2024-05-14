@@ -137,7 +137,6 @@
       "class": "ResourceLoaderSkinModule",
       "features": {
         "normalize": true,
-        "content-media": true,
         "content-tables": true,
         "interface-edit-section-links": true,
         "interface-user-message": true,
