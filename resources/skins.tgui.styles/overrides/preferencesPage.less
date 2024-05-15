@@ -1,0 +1,62 @@
+#preferences {
+  filter: none;
+}
+
+.mw-prefs-tabs-wrapper.oo-ui-panelLayout-framed,
+.mw-prefs-tabs
+  > .oo-ui-menuLayout-content
+  > .oo-ui-indexLayout-stackLayout
+  > .oo-ui-tabPanelLayout {
+  border: 0;
+  border-radius: 0;
+}
+
+.oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
+  padding: 1.5em !important;
+  border: var(--border-classic) !important;
+  backdrop-filter: var(--blur-intensity);
+}
+
+/* Tab Selector */
+.oo-ui-panelLayout .oo-ui-tabSelectWidget-framed {
+  background-color: transparent;
+  border: 0;
+
+  .oo-ui-tabOptionWidget.oo-ui-widget-enabled {
+    color: var(--color-text-translucent);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    font-weight: normal;
+    border-top-left-radius: var(--border-radius-small);
+    border-top-right-radius: var(--border-radius-small);
+    transition: all var(--transition-time);
+
+    .oo-ui-labelElement-label {
+      padding: 0.33em 1em;
+      border: 0;
+      transition: none;
+    }
+
+    &:hover {
+      background-color: var(--color-hover);
+      color: var(--color-text-translucent);
+    }
+  }
+
+  .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
+    background-color: var(--color-selected) !important;
+    color: var(--color-text) !important;
+    border-bottom: 2px solid var(--color-text) !important;
+  }
+}
+
+/* Buttons sticky footer */
+.mw-prefs-buttons {
+  box-shadow: none;
+  padding: 0.75em;
+  background-color: var(--color-bg-opaque);
+  border-top: var(--border-classic);
+  backdrop-filter: var(--blur-intensity);
+}

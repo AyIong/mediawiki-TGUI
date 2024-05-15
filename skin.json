@@ -287,6 +287,7 @@
       "+mediawiki.action.view.filepage": "skinStyles/mediawiki.action.view.filepage.less",
       "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
       "+mediawiki.notification": "skinStyles/mediawiki.notification.less",
+      "+mediawiki.ui.button": "skinStyles/mediawiki/mediawiki.ui.button.less",
       "+oojs-ui-core.styles": "skinStyles/ooui.less"
     }
   },
