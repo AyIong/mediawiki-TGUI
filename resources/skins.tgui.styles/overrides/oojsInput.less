@@ -222,8 +222,22 @@
   border-color: var(--color-red);
 }
 
+.oo-ui-icon-search,
+.mw-ui-icon-search:before {
+  pointer-events: none;
+  background-image: url(../skins.tgui.styles/images/magnifying-glass-solid.svg);
+  transition: opacity var(--transition-time);
+  filter: var(--invert-icon);
+}
+
 .oo-ui-indicator-required {
   pointer-events: none;
   background-image: url(../skins.tgui.styles/images/asterisk-solid.svg);
+  filter: var(--invert-icon);
+}
+
+.oo-ui-indicator-clear {
+  width: 16px;
+  background-image: url(../skins.tgui.styles/images/circle-xmark.svg);
   filter: var(--invert-icon);
 }

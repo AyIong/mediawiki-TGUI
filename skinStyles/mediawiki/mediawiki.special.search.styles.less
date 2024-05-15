@@ -1,0 +1,222 @@
+/* Special:Search */
+.mw-search-results {
+  margin-top: 1em;
+  max-width: 50em;
+
+  li {
+    list-style: none;
+    padding: 0;
+    background-color: var(--color-base-section-alt);
+    margin-bottom: 0.75em;
+    border: var(--border-classic);
+    border-radius: var(--border-radius-medium);
+    backdrop-filter: var(--blur-intensity);
+
+    a {
+      font-size: 114%;
+    }
+  }
+
+  .mw-search-result-heading {
+    padding: 0.2em 0.5em 0 0.5em;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  .searchresult {
+    padding: 0.5em;
+
+    .searchmatch {
+      font-weight: bold;
+      color: var(--color-text);
+    }
+
+    .mw-search-exists {
+      margin-bottom: 1em;
+    }
+  }
+
+  .mw-search-result-data {
+    font-size: 90%;
+    padding: 0.5em 0.5em 0 0.5em;
+    color: var(--color-text-gray);
+  }
+}
+
+.searchResultImage {
+  background-color: transparent;
+  border: 0;
+  backdrop-filter: none;
+}
+
+.searchresults {
+  margin: 0;
+}
+
+.mw-body .mw-search-nonefound {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  margin: 1em;
+  background-image: url(/skins/TGUI/resources/skins.tgui.styles/images/face-frown-regular.svg);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 150px;
+  height: 200px;
+}
+
+.mw-search-visualclear {
+  clear: both;
+}
+
+.mw-search-profile-tabs {
+  background-color: var(--color-base-section-alt);
+  margin-top: 1em;
+  border: var(--border-classic);
+  border-radius: var(--border-radius-small);
+
+  .search-types {
+    float: left;
+    padding-left: 0.25em;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      float: left;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      display: block;
+      padding: 0 0.5em;
+      margin: 0.5em 0.25em;
+      text-decoration: none;
+      background-color: var(--color-primary);
+      color: var(--color-text-static);
+      border-radius: var(--border-radius-small);
+      transition: background-color var(--transition-time);
+
+      &:hover {
+        background-color: var(--color-primary-light);
+      }
+    }
+
+    .current a {
+      cursor: default;
+      pointer-events: none;
+      background-color: var(--color-green);
+      transition: background-color var(--transition-time);
+    }
+  }
+}
+
+.results-info {
+  float: right;
+  padding: 0.5em;
+  padding-right: 0.75em;
+  color: var(--color-text-gray);
+  font-size: 95%;
+}
+
+#mw-search-top-table div.oo-ui-actionFieldLayout {
+  float: left;
+  width: 100%;
+}
+
+/* Advanced options menu */
+#mw-searchoptions {
+  padding: 0.5em 0.75em 0.75em 0.75em;
+  background-color: var(--color-base-section-alt);
+  margin: 0;
+  border: var(--border-classic);
+  border-top: 0;
+  border-radius: 0 0 var(--border-radius-small) var(--border-radius-small);
+  backdrop-filter: var(--blur-intensity);
+
+  legend {
+    display: none;
+  }
+
+  h4 {
+    padding: 0;
+    margin: 0;
+    float: left;
+  }
+
+  .divider {
+    clear: both;
+    border-bottom: var(--border-classic);
+    padding-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .checkbox-container {
+    columns: 13em;
+    margin: 1em 0 0 0;
+  }
+}
+
+#mw-search-menu {
+  padding-left: 6em;
+  font-size: 85%;
+}
+
+#mw-search-interwiki {
+  float: right;
+  width: 18em;
+  border: var(--border-classic);
+  margin-top: 2ex;
+}
+
+.searchalttitle,
+#mw-search-interwiki li {
+  font-size: 95%;
+}
+
+.mw-search-interwiki-more {
+  float: right;
+  font-size: 90%;
+}
+
+#mw-search-interwiki-caption {
+  text-align: center;
+  font-weight: bold;
+  font-size: 95%;
+}
+
+.mw-search-interwiki-project {
+  font-size: 97%;
+  text-align: left;
+  padding: 0.15em 0.15em 0.2em 0.2em;
+  background-color: var(--color-base-section-alt);
+  border-top: var(--border-classic);
+}
+
+.searchdidyoumean {
+  font-size: 114%;
+  margin-top: 0.8em;
+
+  em {
+    font-style: normal;
+  }
+}
+
+#mw-search-togglebox {
+  float: right;
+
+  label {
+    margin-right: 0.25em;
+  }
+
+  input {
+    margin-left: 0.25em;
+  }
+}
+
+.client-nojs #mw-search-togglebox {
+  display: none;
+}
