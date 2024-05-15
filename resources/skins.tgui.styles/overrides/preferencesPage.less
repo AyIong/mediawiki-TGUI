@@ -13,6 +13,7 @@
 
 .oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
   padding: 1.5em !important;
+  background-color: transparent;
   border: var(--border-classic) !important;
   backdrop-filter: var(--blur-intensity);
 }
@@ -59,4 +60,14 @@
   background-color: var(--color-base-transparent);
   border-top: var(--border-classic);
   backdrop-filter: var(--blur-intensity);
+}
+
+/* Override OOUI styles */
+#preferences div div div fieldset {
+  padding: 0;
+  border: 0;
+}
+
+.mw-prefs-tabs-wrapper.oo-ui-layout.oo-ui-panelLayout.oo-ui-panelLayout-framed {
+  background-color: transparent;
 }

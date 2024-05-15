@@ -4,6 +4,11 @@
   outline: none !important;
 }
 
+/* All */
+.oo-ui-labelWidget.oo-ui-inline-help {
+  color: var(--color-text-gray);
+}
+
 /* Buttons */
 .oo-ui-inputWidget {
   margin-right: 0.25em;
@@ -63,8 +68,45 @@
   }
 }
 
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-active
+  > .oo-ui-buttonElement-button {
+  background-color: var(--color-green);
+  color: var(--color-text-static);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: var(--color-green-light);
+    color: var(--color-text-static);
+  }
+}
+
 .oo-ui-buttonElement-frameless.oo-ui-labelElement:first-child {
   margin-left: 0;
+}
+
+.oo-ui-buttonSelectWidget
+  .oo-ui-buttonOptionWidget:first-child
+  .oo-ui-buttonElement-button {
+  border-bottom-left-radius: var(--border-radius-small) !important;
+  border-top-left-radius: var(--border-radius-small) !important;
+}
+
+.oo-ui-buttonSelectWidget
+  .oo-ui-buttonOptionWidget:last-child
+  .oo-ui-buttonElement-button {
+  border-bottom-right-radius: var(--border-radius-small) !important;
+  border-top-right-radius: var(--border-radius-small) !important;
+}
+
+.oo-ui-icon-edit {
+  background-image: url(../skins.tgui.styles/images/pen-to-square.svg) !important;
+  filter: var(--invert-button-icon);
+}
+
+.oo-ui-icon-calendar {
+  background-image: url(../skins.tgui.styles/images/calendar-days.svg) !important;
+  filter: var(--invert-button-icon);
 }
 
 /* Radio */
@@ -102,6 +144,11 @@
   background-color: var(--color-base-section-alt);
   border-color: var(--color-border);
   border-radius: var(--border-radius-small);
+}
+
+.oo-ui-checkboxInputWidget [type="checkbox"]:disabled + span {
+  background-color: var(--color-grey);
+  border-color: var(--color-border);
 }
 
 .oo-ui-checkboxInputWidget [type="checkbox"] + span:hover {
@@ -170,7 +217,8 @@
   transition: background-color var(--transition-time);
 }
 
-.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected {
+.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected,
+.oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted {
   background-color: var(--color-base-focus) !important;
 }
 
@@ -189,6 +237,11 @@
 
 .oo-ui-indicator-down {
   background-image: none;
+}
+
+.oo-ui-buttonElement-button .oo-ui-indicator-down {
+  background-image: url(../skins.tgui.styles/images/angle-right-solid.svg);
+  transform: rotate(90deg) !important;
 }
 
 .oo-ui-dropdownWidget {
@@ -240,4 +293,113 @@
   width: 16px;
   background-image: url(../skins.tgui.styles/images/circle-xmark.svg);
   filter: var(--invert-icon);
+}
+
+/* Multiselect */
+div .oo-ui-fieldLayout-body .oo-ui-fieldLayout-field {
+  div .oo-ui-pendingElement-pending {
+    .disable-borders();
+    border: var(--border-classic);
+    background-color: var(--color-base-hover);
+    background-image: linear-gradient(
+      135deg,
+      var(--color-base-focus) 25%,
+      transparent 25%,
+      transparent 50%,
+      var(--color-base-focus) 50%,
+      var(--color-base-focus) 75%,
+      transparent 75%,
+      transparent
+    );
+  }
+
+  .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled {
+    .disable-borders();
+    background-color: var(--color-base-section);
+    transition:
+      border var(--transition-time),
+      background-color var(--transition-time);
+
+    .oo-ui-tagMultiselectWidget-handle {
+      .disable-borders();
+      border: var(--border-classic);
+
+      &:hover {
+        border: var(--border-classic-input);
+      }
+
+      &:focus,
+      &:active {
+        border: var(--border-classic-input-focus) !important;
+      }
+    }
+
+    input {
+      color: var(--color-text);
+    }
+  }
+
+  .oo-ui-tagMultiselectWidget.oo-ui-widget-disabled.oo-ui-tagMultiselectWidget-inlined.oo-ui-tagMultiselectWidget {
+    .oo-ui-tagMultiselectWidget-handle {
+      background-color: var(--color-base-section-alt);
+      border: var(--border-classic);
+      transition:
+        border var(--transition-time),
+        background-color var(--transition-time);
+    }
+  }
+}
+
+/* Calendar */
+.skin-tgui {
+  .mw-widget-dateInputWidget-handle {
+    background-color: var(--color-base-section);
+    color: var(--color-text);
+    border: var(--border-classic);
+
+    &:hover {
+      border: var(--border-classic-input);
+    }
+  }
+
+  .mw-widget-dateInputWidget-empty .mw-widget-dateInputWidget-handle {
+    color: var(--color-text-gray);
+  }
+
+  .mw-widget-dateInputWidget-calendar {
+    margin: 0;
+    background-color: var(--color-base);
+    border: var(--border-classic);
+    border-top: 0;
+    box-shadow: 0px 20px 30px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
+
+    .mw-widget-calendarWidget-item {
+      transition:
+        background-color var(--transition-time),
+        color var(--transition-time);
+
+      &:hover {
+        background-color: var(--color-base-hover);
+      }
+    }
+
+    .mw-widget-calendarWidget-day-heading {
+      color: var(--color-primary);
+    }
+
+    .mw-widget-calendarWidget-day-additional {
+      color: var(--color-grey) !important;
+    }
+
+    .mw-widget-calendarWidget-day {
+      color: var(--color-text-darker);
+      border-radius: var(--border-radius-small);
+    }
+
+    .mw-widget-calendarWidget-day-today {
+      background-color: var(--color-base-focus);
+      box-shadow: inset 0 0 0 1px var(--color-primary);
+    }
+  }
 }
