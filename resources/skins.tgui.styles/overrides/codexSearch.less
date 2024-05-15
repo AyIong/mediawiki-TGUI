@@ -20,12 +20,17 @@
   }
 
   .cdx-search-input__input-wrapper .cdx-menu {
+    display: block !important;
     margin: -1px 0 0 1px;
     box-shadow: 0px 20px 30px 5px rgba(0, 0, 0, 0.75);
     background-color: var(--color-bg);
     border: var(--border-classic);
     border-top: 0;
     border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1, 0.9) translateY(-26px);
+    transition: all var(--transition-time);
 
     .cdx-menu-item {
       margin: 0.5em;
@@ -67,6 +72,12 @@
         border: 0;
       }
     }
+  }
+
+  .cdx-typeahead-search--expanded .cdx-search-input__input-wrapper .cdx-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1, 1) translateY(0px);
   }
 
   .cdx-text-input {
