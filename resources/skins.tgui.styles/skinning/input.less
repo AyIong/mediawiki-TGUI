@@ -19,7 +19,6 @@ input:not(
     [type="submit"]
   ),
 textarea {
-  padding: 0.25em 0.5em;
   background-color: var(--color-bg-section);
   color: var(--color-text);
   border: var(--border-classic);
@@ -31,6 +30,11 @@ textarea {
 
   &:focus {
     border: var(--border-classic-input-focus);
+  }
+
+  &::placeholder {
+    color: var(--color-text-darker);
+    opacity: 0.5;
   }
 
   &:autofill,
@@ -45,6 +49,17 @@ textarea {
       border var(--transition-time) !important;
     border: 1px solid var(--color-violet);
   }
+}
+
+input:not(
+    [type="file"],
+    [type="image"],
+    [type="checkbox"],
+    [type="radio"],
+    [type="submit"]
+  ) {
+  padding: 0.5em 1em;
+  border-radius: var(--border-radius-small);
 }
 
 /* Buttons */

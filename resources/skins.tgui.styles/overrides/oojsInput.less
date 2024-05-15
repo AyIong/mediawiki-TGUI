@@ -1,9 +1,16 @@
 .disable-borders() {
   border: 0;
-  box-shadow: none;
-  outline: none;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
+/* Buttons */
+.oo-ui-inputWidget {
+  margin-right: 0.25em;
+}
+
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button,
+.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive
   > .oo-ui-buttonElement-button {
   .disable-borders();
@@ -12,7 +19,9 @@
   border-radius: var(--border-radius-small);
   transition: background-color var(--transition-time) !important;
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus {
     background-color: var(--color-primary-light);
     color: var(--color-text-static-white);
   }
@@ -23,4 +32,182 @@
   .disable-borders();
   background-color: var(--color-grey);
   color: var(--color-text-static-transparent);
+}
+
+.oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive
+  > .oo-ui-buttonElement-button {
+  background-color: var(--color-blue);
+  color: var(--color-text-static-white);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: var(--color-blue-light);
+    color: var(--color-text-static-white);
+  }
+}
+
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive
+  > .oo-ui-buttonElement-button {
+  background-color: var(--color-red);
+  color: var(--color-text-static-white);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: var(--color-red-light);
+    color: var(--color-text-static-white);
+  }
+}
+
+.oo-ui-buttonElement-frameless.oo-ui-labelElement:first-child {
+  margin-left: 0;
+}
+
+/* Radio */
+.oo-ui-radioInputWidget [type="radio"] + span {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: var(--color-bg-section-light);
+  border-color: var(--color-border);
+}
+
+.oo-ui-radioInputWidget.oo-ui-widget-enabled [type="radio"] + span {
+  transition:
+    background-color var(--transition-time),
+    border var(--transition-time);
+}
+
+.oo-ui-radioInputWidget.oo-ui-widget-enabled [type="radio"]:checked + span {
+  border-color: var(--color-blue);
+}
+
+.oo-ui-radioInputWidget [type="radio"]:checked + span,
+.oo-ui-radioInputWidget [type="radio"]:checked:hover + span,
+.oo-ui-radioInputWidget [type="radio"]:checked:focus:hover + span {
+  border-width: 6px;
+}
+
+.oo-ui-radioInputWidget [type="radio"] + span:before {
+  border: unset;
+}
+
+/* Checkbox */
+.oo-ui-checkboxInputWidget [type="checkbox"] + span {
+  outline: 0 !important;
+  box-shadow: none !important;
+  background-color: var(--color-bg-section-light);
+  border-color: var(--color-border);
+  border-radius: var(--border-radius-small);
+}
+
+.oo-ui-checkboxInputWidget [type="checkbox"] + span:hover {
+  border-color: var(--color-border-input);
+}
+
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled
+  [type="checkbox"]:checked
+  + span,
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled
+  [type="checkbox"]:indeterminate
+  + span {
+  background-color: var(--color-blue);
+  border-color: var(--color-blue);
+}
+
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled
+  [type="checkbox"]:checked
+  + span:hover,
+.oo-ui-checkboxInputWidget.oo-ui-widget-enabled
+  [type="checkbox"]:indeterminate
+  + span:hover {
+  background-color: var(--color-border-input);
+  border-color: var(--color-border-input);
+}
+
+/* Dropdown */
+.oo-ui-dropdownWidget-handle,
+.oo-ui-dropdownInputWidget select,
+.oo-ui-dropdownInputWidget.oo-ui-widget-enabled,
+.oo-ui-dropdownInputWidget.oo-ui-widget-enabled select,
+.oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:hover,
+.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: var(--color-primary);
+  color: var(--color-text-static-white);
+  border-radius: var(--border-radius-small) !important;
+  transition: background-color var(--transition-time);
+}
+
+.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:hover,
+.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:active,
+.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open
+  .oo-ui-dropdownWidget-handle,
+.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open
+  .oo-ui-dropdownWidget-handle:hover,
+.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open
+  .oo-ui-dropdownWidget-handle:active {
+  background-color: var(--color-primary-light);
+  color: var(--color-text-static-white);
+}
+
+.oo-ui-menuSelectWidget {
+  margin: 0;
+  box-shadow: none;
+  background-color: var(--color-bg-opaque);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-small);
+  backdrop-filter: var(--blur-intensity);
+}
+
+.oo-ui-menuOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget {
+  color: var(--color-text-darker) !important;
+  transition: background-color var(--transition-time);
+}
+
+.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected {
+  background-color: var(--color-selected) !important;
+}
+
+.oo-ui-menuOptionWidget.oo-ui-optionWidget:hover {
+  background-color: var(--color-hover);
+}
+
+.oo-ui-dropdownInputWidget option {
+  background-color: var(--color-bg);
+  color: var(--color-text-darker) !important;
+}
+
+.oo-ui-dropdownInputWidget option:hover {
+  background-color: var(--color-grey-light);
+}
+
+.oo-ui-indicator-down {
+  background-image: none;
+}
+
+.oo-ui-dropdownWidget {
+  .oo-ui-indicator-down {
+    background-image: url(../skins.tgui.styles/images/angle-right-solid.svg);
+    transform: rotate(90deg);
+  }
+}
+
+/* Text Input */
+.oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input {
+  background-color: var(--color-bg-section);
+  color: var(--color-text);
+  border: var(--border-classic);
+  transition: border var(--transition-time);
+
+  &:hover {
+    border: var(--border-classic-input);
+  }
+
+  &:focus,
+  &:active {
+    border: var(--border-classic-input-focus) !important;
+  }
 }
