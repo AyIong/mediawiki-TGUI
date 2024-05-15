@@ -36,13 +36,14 @@ pre,
   vertical-align: middle !important;
 
   a {
-    margin-left: 0.5em;
+    font-size: smaller;
+    text-decoration: none !important;
     padding: 0.2em 0.5em 0.3em 0.5em;
+    margin-left: 0.5em;
     background-color: var(--color-primary);
     color: var(--color-text-static-white);
     border-radius: var(--border-radius-small);
-    text-decoration: none !important;
-    font-size: smaller;
+    transition: background-color var(--transition-time);
 
     &:hover {
       background-color: var(--color-primary-light);
