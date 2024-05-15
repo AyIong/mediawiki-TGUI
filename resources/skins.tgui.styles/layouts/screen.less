@@ -39,7 +39,7 @@ h6 {
 body {
   overflow-y: scroll;
   overflow-x: hidden;
-  background-color: var(--color-bg);
+  background-color: var(--color-base);
   color: var(--color-text-darker);
   transition:
     background-color var(--transition-time),
@@ -63,7 +63,7 @@ body {
 }
 
 .mw-body {
-  background-color: var(--color-bg-section);
+  background-color: var(--color-base-section);
 
   .firstHeading {
     /* Change the default from mediawiki.skinning CSS to let indicators float into heading area */
@@ -80,8 +80,8 @@ body {
   position: fixed;
   padding: 0.5em 0;
   backdrop-filter: var(--blur-intensity);
-  background-color: var(--color-bg-section);
-  color: var(--color-fg);
+  background-color: var(--color-base-section);
+  color: var(--color-text);
   width: 100%;
   top: 0;
   z-index: @z-index-header;
@@ -140,7 +140,7 @@ body {
     max-height: 3em;
     font-size: 1.1em;
     background-color: var(--color-primary);
-    color: var(--color-text-static-white);
+    color: var(--color-text-static);
     border-radius: var(--border-radius-small);
     transition: background-color var(--transition-time);
     text-decoration: none;

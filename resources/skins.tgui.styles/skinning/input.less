@@ -19,7 +19,7 @@ input:not(
     [type="submit"]
   ),
 textarea {
-  background-color: var(--color-bg-section);
+  background-color: var(--color-base-section);
   color: var(--color-text);
   border: var(--border-classic);
   transition: border var(--transition-time);
@@ -69,7 +69,7 @@ input::file-selector-button {
   cursor: pointer;
   padding: 0.25em 0.5em;
   background-color: var(--color-primary);
-  color: var(--color-text-static-white);
+  color: var(--color-text-static);
   border-radius: var(--border-radius-small);
   transition: background-color var(--transition-time);
 
@@ -81,7 +81,7 @@ input::file-selector-button {
 
 /* File Upload */
 input[type="file"] {
-  background-color: var(--color-bg-section-light);
+  background-color: var(--color-base-section-alt);
   color: var(--color-text-darker);
   border: var(--border-classic);
 }
@@ -89,21 +89,21 @@ input[type="file"] {
 /* Dropdowns (Select) */
 select {
   padding: 0.25em 0.5em;
-  background-color: var(--color-bg-section-light);
+  background-color: var(--color-base-section-alt);
   color: var(--color-text);
   border: var(--border-classic);
   border-radius: var(--border-radius-small);
 
   option {
     padding: 0.25em 0.5em;
-    background-color: var(--color-bg);
+    background-color: var(--color-base);
     color: var(--color-text);
   }
 }
 
 /* Checkbox */
 input[type="checkbox"] {
-  background-color: var(--color-bg-section-light);
+  background-color: var(--color-base-section-alt);
   color: var(--color-text);
   border: var(--border-classic);
 }

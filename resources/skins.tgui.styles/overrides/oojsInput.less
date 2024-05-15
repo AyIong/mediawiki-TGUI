@@ -16,7 +16,7 @@
   > .oo-ui-buttonElement-button {
   .disable-borders();
   background-color: var(--color-primary);
-  color: var(--color-text-static-white);
+  color: var(--color-text-static);
   border-radius: var(--border-radius-small);
   transition: background-color var(--transition-time) !important;
 
@@ -24,7 +24,7 @@
   &:active,
   &:focus {
     background-color: var(--color-primary-light);
-    color: var(--color-text-static-white);
+    color: var(--color-text-static);
   }
 }
 
@@ -38,13 +38,13 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive
   > .oo-ui-buttonElement-button {
   background-color: var(--color-blue);
-  color: var(--color-text-static-white);
+  color: var(--color-text-static);
 
   &:hover,
   &:active,
   &:focus {
     background-color: var(--color-blue-light);
-    color: var(--color-text-static-white);
+    color: var(--color-text-static);
   }
 }
 
@@ -53,13 +53,13 @@
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive
   > .oo-ui-buttonElement-button {
   background-color: var(--color-red);
-  color: var(--color-text-static-white);
+  color: var(--color-text-static);
 
   &:hover,
   &:active,
   &:focus {
     background-color: var(--color-red-light);
-    color: var(--color-text-static-white);
+    color: var(--color-text-static);
   }
 }
 
@@ -71,7 +71,7 @@
 .oo-ui-radioInputWidget [type="radio"] + span {
   outline: none !important;
   box-shadow: none !important;
-  background-color: var(--color-bg-section-light);
+  background-color: var(--color-base-section-alt);
   border-color: var(--color-border);
 }
 
@@ -99,7 +99,7 @@
 .oo-ui-checkboxInputWidget [type="checkbox"] + span {
   outline: 0 !important;
   box-shadow: none !important;
-  background-color: var(--color-bg-section-light);
+  background-color: var(--color-base-section-alt);
   border-color: var(--color-border);
   border-radius: var(--border-radius-small);
 }
@@ -139,7 +139,7 @@
   outline: none !important;
   box-shadow: none !important;
   background-color: var(--color-primary);
-  color: var(--color-text-static-white);
+  color: var(--color-text-static);
   border-radius: var(--border-radius-small) !important;
   transition: background-color var(--transition-time);
 }
@@ -153,13 +153,13 @@
 .oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open
   .oo-ui-dropdownWidget-handle:active {
   background-color: var(--color-primary-light);
-  color: var(--color-text-static-white);
+  color: var(--color-text-static);
 }
 
 .oo-ui-menuSelectWidget {
   margin: 0;
   box-shadow: none;
-  background-color: var(--color-bg-opaque);
+  background-color: var(--color-base-transparent);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-small);
   backdrop-filter: var(--blur-intensity);
@@ -171,15 +171,15 @@
 }
 
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-selected {
-  background-color: var(--color-selected) !important;
+  background-color: var(--color-base-focus) !important;
 }
 
 .oo-ui-menuOptionWidget.oo-ui-optionWidget:hover {
-  background-color: var(--color-hover);
+  background-color: var(--color-base-hover);
 }
 
 .oo-ui-dropdownInputWidget option {
-  background-color: var(--color-bg);
+  background-color: var(--color-base);
   color: var(--color-text-darker) !important;
 }
 
@@ -200,7 +200,7 @@
 
 /* Text Input */
 .oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input {
-  background-color: var(--color-bg-section);
+  background-color: var(--color-base-section);
   color: var(--color-text);
   border: var(--border-classic);
   transition: border var(--transition-time);
