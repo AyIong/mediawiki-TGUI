@@ -214,3 +214,16 @@
     border: var(--border-classic-input-focus) !important;
   }
 }
+
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid
+  .oo-ui-inputWidget-input,
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid
+  .oo-ui-inputWidget-input:hover {
+  border-color: var(--color-red);
+}
+
+.oo-ui-indicator-required {
+  pointer-events: none;
+  background-image: url(../skins.tgui.styles/images/asterisk-solid.svg);
+  filter: var(--invert-icon);
+}

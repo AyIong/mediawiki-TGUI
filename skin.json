@@ -283,6 +283,7 @@
       "+ext.uls.compactlinks": "skinStyles/ext.uls.compactlinks.less",
       "+ext.uls.interface": "skinStyles/ext.uls.interface.less",
       "+ext.visualEditor.base": "skinStyles/ext.visualEditor.less",
+      "+jquery.tablesorter.styles": "skinStyles/jQuery/jquery.tablesorter.styles.less",
       "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
       "+mediawiki.action.view.filepage": "skinStyles/mediawiki.action.view.filepage.less",
       "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",

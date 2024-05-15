@@ -1,0 +1,45 @@
+.sortIcon() {
+  content: "";
+  float: right;
+  width: 12px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: var(--invert-icon);
+}
+
+.client-js
+  .sortable:not(.jquery-tablesorter)
+  > *
+  > tr:first-child
+  > th:not(.unsortable),
+.jquery-tablesorter th.headerSort {
+  cursor: pointer;
+  padding-right: 0.5em;
+  background-image: none;
+
+  &:after {
+    .sortIcon();
+    background-image: url(/skins/TGUI/resources/skins.tgui.styles/images/sort.svg?9bebe);
+  }
+}
+
+.jquery-tablesorter {
+  th.headerSortUp {
+    background-image: none;
+
+    &:after {
+      .sortIcon();
+      background-image: url(../../resources/skins.tgui.styles/images/sort-up.svg);
+    }
+  }
+
+  th.headerSortDown {
+    background-image: none;
+
+    &:after {
+      .sortIcon();
+      background-image: url(../../resources/skins.tgui.styles/images/sort-down.svg);
+    }
+  }
+}
