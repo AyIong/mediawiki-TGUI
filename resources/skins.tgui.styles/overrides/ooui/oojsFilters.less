@@ -100,7 +100,11 @@
   .mw-rcfilters-ui-filterMenuOptionWidget.oo-ui-flaggedElement-muted
     .mw-rcfilters-ui-itemMenuOptionWidget-label-title,
   .mw-rcfilters-ui-filterMenuOptionWidget.oo-ui-flaggedElement-muted
-    .mw-rcfilters-ui-itemMenuOptionWidget-label-desc {
+    .mw-rcfilters-ui-itemMenuOptionWidget-label-desc,
+  .mw-rcfilters-ui-filterMenuOptionWidget.oo-ui-flaggedElement-muted:not(
+      .oo-ui-optionWidget-selected
+    ) {
+    background-color: transparent !important;
     color: var(--color-text-gray);
     opacity: 0.75;
   }
