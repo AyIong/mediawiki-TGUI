@@ -294,7 +294,9 @@
   background-color: var(--color-bg-section);
   color: var(--color-text);
   border: var(--border-classic);
-  transition: border var(--transition-time);
+  transition:
+    background-color var(--transition-time),
+    border var(--transition-time);
 
   &:hover {
     border: var(--border-classic-input);
@@ -312,6 +314,7 @@
   color: var(--color-text-gray);
   text-shadow: none;
   border-color: var(--color-border);
+  transition: background-color var(--transition-time);
 }
 
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid
