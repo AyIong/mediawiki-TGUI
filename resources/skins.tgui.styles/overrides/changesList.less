@@ -1,0 +1,79 @@
+.skin-tgui {
+  .mw-rcfilters-ui-changesListWrapperWidget a {
+    word-break: break-word;
+  }
+
+  .mw-changeslist table.mw-enhanced-rc {
+    backdrop-filter: none;
+  }
+
+  #pagehistory {
+    li {
+      padding: 0.1em;
+    }
+
+    li.selected {
+      outline: 0;
+      background-color: var(--color-bg-focus);
+      color: var(--color-text);
+      backdrop-filter: var(--blur-intensity);
+    }
+
+    [type="checkbox"],
+    [type="radio"] {
+      margin: 0 0.25em;
+    }
+  }
+
+  .diff-addedline,
+  .diff-deletedline,
+  .diff-context {
+    border-width: 1px 4px 1px 4px;
+    border-radius: var(--border-radius-small);
+  }
+
+  .diff-context {
+    background: var(--color-bg-section-alt);
+    color: var(--color-text-darker);
+    border-color: var(--color-border);
+  }
+
+  .diff-addedline {
+    border-color: var(--color-green);
+
+    .diffchange {
+      padding: 0.25em;
+      background: var(--color-green);
+      color: var(--color-text-static);
+      border-radius: var(--border-radius-small);
+    }
+  }
+
+  .diff-deletedline {
+    border-color: var(--color-red);
+
+    .diffchange {
+      padding: 0.25em;
+      background: var(--color-red);
+      color: var(--color-text-static);
+      border-radius: var(--border-radius-small);
+    }
+  }
+}
+
+.mw-changeslist-legend {
+  padding: 0.5em 0.75em;
+  background-color: var(--color-bg-section-alt-opaque) !important;
+  color: var(--color-text-darker);
+  border: var(--border-classic) !important;
+  border-radius: var(--border-radius-small);
+}
+
+.unpatrolled,
+.mw-plusminus-neg {
+  color: var(--color-red);
+}
+
+.mw-plusminus-pos {
+  color: var(--color-green);
+}

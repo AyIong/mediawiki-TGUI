@@ -76,7 +76,8 @@ input::file-selector-button {
 
   &:hover,
   &:focus {
-    background-color: var(--color-primary-light);
+    background-color: var(--color-primary-light) !important;
+    color: var(--color-text-static) !important;
   }
 }
 
@@ -107,4 +108,31 @@ input[type="checkbox"] {
   background-color: var(--color-bg-section-alt);
   color: var(--color-text);
   border: var(--border-classic);
+}
+
+/* Radio */
+input[type="radio"] {
+  appearance: none;
+  background-color: var(--color-bg-hover);
+  height: 16px;
+  width: 16px;
+  border-radius: var(--border-radius-large);
+  border: var(--border-classic);
+  transition:
+    background-color var(--transition-time),
+    border var(--transition-time);
+
+  &:hover {
+    background-color: var(--color-bg-focus);
+  }
+
+  &:active {
+    background-color: var(--color-bg-focus);
+    border: 1px solid var(--color-border-input-focus);
+  }
+
+  &:checked {
+    background-color: var(--color-bg-focus);
+    border: 5px solid var(--color-border-input-focus);
+  }
 }
