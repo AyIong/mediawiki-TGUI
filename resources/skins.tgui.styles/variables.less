@@ -13,14 +13,9 @@
 @font-size-root: 100%;
 @font-size-browser: 16; // Assumed browser default of `16px`
 
-//
-// == Page content ==
-//
+// Page content
 @outline-color-base--focus: var(--color-primary);
 
-//
-// == Typography ==
-//
 // Typography in Wikimedia Design Style Guide:;
 // https://design.wikimedia.org/style-guide/visual-style_typography.html
 // Historic overview and background information of fonts in Wikimedia software:
@@ -50,35 +45,18 @@
 
 @size-icon: unit(20 / @font-size-browser, em);
 @size-indicator: unit(12 / @font-size-browser, em);
-// Copied from mediawiki.ui.icons
 @icon-padding-md: unit(12 / @font-size-browser, em);
 
-@background-position-nav-personal-icon: left
-  unit(4 / @font-size-browser / @font-size-nav-personal, em);
-@background-size-nav-personal-icon: unit(
-  14 / @font-size-browser / @font-size-nav-personal,
-  em
-);
-
-// FIXME: Use global variable since Echo and CentralNotice use this variable
-@border-color-content: #a7d7f9;
-// Due to darker background gradient, border needs to be darkened for aligned visual perception.
-@border-color-content--tabs-inactive: darken(@border-color-content, 10%);
-@border-color-pagetitle: #eaecf0;
-@border-start-blockquote: 4px solid #eaecf0;
 @padding-top-content: 0.5em;
 @padding-horizontal-content: 0.5em;
 @padding-blockquote: 8px 32px;
-@border-bottom-tabs: 1px solid var(--color-border);
+@border-bottom-tabs: var(--border-classic);
 
 // Navigation
-@color-nav-subtle: #444;
-// Navigation `line-height` has to be set in `em`s due to a rendering calculation issue.
 @line-height-nav: 1.125em;
 
 // Navigation: Main
 @font-size-nav-main: inherit;
-
 @font-size-nav-main-heading: unit(
   12 / @font-size-browser,
   em
@@ -87,120 +65,38 @@
 @font-size-nav-main-body: unit(12 / @font-size-browser, em);
 @margin-start-nav-main-body: 0.5em;
 
-// Navigation: Portal
-// Font size of the Portal links.
-@font-size-portal-list-item: @font-size-nav-main-body;
-
-// Margin space from the start of the Portal (left edge in LTR
-// languages).
-@margin-start-portal: 0.7em;
-
-// Margin space from the end of the Portal (right edge in LTR
-// languages).
-@margin-end-portal: 0.6em;
-
-// Margin space from the start of the Portal body (left edge in LTR languages).
-@margin-start-portal-body: @margin-start-nav-main-body;
-
-// Navigation: Personal tools
-@background-position-nav-personal-icon: left
-  unit(4 / @font-size-browser / @font-size-nav-personal, em);
-@background-size-nav-personal-icon: unit(
-  14 / @font-size-browser / @font-size-nav-personal,
-  em
-);
-@top-personal-tools: 6px;
-@font-size-nav-personal: 0.75em;
-// Using `unit()` without second parameter to achieve a unitless output for `line-height`.
-@line-height-nav-personal: unit(
-  14 / @font-size-browser / @font-size-nav-personal
-); // Equals `1.667`.
-
 // Tabs
 @font-size-tabs: unit(13 / @font-size-browser, em); // Equals `0.8125em`.
-@padding-horizontal-tabs: 8px;
-
-// Menu button
-@margin-horizontal-sidebar-button-icon: unit(
-  12px / @font-size-browser,
-  em
-); // 0.75em @ 16
 
 // Main menu
 @selector-main-menu-open: ~"#mw-sidebar-checkbox:checked";
-@selector-main-menu-closed: ~"#mw-sidebar-checkbox:not( :checked )";
+@selector-main-menu-closed: ~"#mw-sidebar-checkbox:not(:checked)";
 
 // Sidebar
 @width-sidebar-px: 220px;
 @width-sidebar-px-wide: 245px;
-// T305069 Layout adjustments of sidebar elements:
-// Vertically align the left edge of sidebar elements with the visible edge of the sidebar toggle hamburger menu.
 @margin-start-sidebar-content: unit(
   12px / @font-size-browser,
   em
 ); // 0.75em @ 16
 
-// Search
-@max-width-search: unit(
-  500px / @font-size-browser / @font-size-base,
-  em
-); // 35.71428571em @ 16 & 0.875em T270202
-@width-search-button: unit(
-  28 / @font-size-browser / @font-size-search-input,
-  em
-);
-@font-size-search-input: unit(
-  13 / @font-size-browser,
-  em
-); // Equals `0.8125em`.
-// Derived from @size-typeahead-search-focus-addition in Codex
-// https://gerrit.wikimedia.org/r/plugins/gitiles/design/codex/+/refs/tags/v0.1.0-alpha.8/packages/codex/src/components/typeahead-search/TypeaheadSearch.vue#703
-@size-search-expand: 24px;
-@margin-end-search: 12px;
-
 // Language button
 @height-button-lang: unit(32 / @font-size-browser, em);
-
-// T296321 For sticky header, set an explicit height. This is needed for scroll padding
-// and for other sticky elements on the page. Setting the height in relative units enables
-// the header's height to adapt to the browser's font size setting. Because
-// this variable is used to determine top offsets for sticky elements where the
-// font-size might not be 16px, using rem avoids the cascading effects of em units.
 @height-sticky-header: unit(50px / @font-size-browser, rem);
 
-// Z-indices
-// See skinStyles/jquery.ui/jquery.ui.datepicker.css.
-// @z-index-ui-datepicker-cover: -1;
+// Z-indexes
 @z-index-base: 0;
-// Header z-index-header higher than z-index-menu so that search results overlay variants and more menu
 @z-index-header: 4;
 @z-index-sidebar: 1;
 @z-index-menu-checkbox: 1;
 @z-index-search-loader: 1;
-// Ensure that this is displayed on top of .tgui-body and clickable.
 @z-index-indicators: 1;
-// See skinStyles/jquery.ui/jquery.ui.slider.css.
-// @z-index-ui-slider-range: 1;
-// Menus must overlap indicators (@z-index-indicators) and VisualEditor toolbar (z-index: 2).
 @z-index-menu: 3;
-// See skinStyles/jquery.ui/jquery.ui.slider.css.
-// @z-index-ui-slider-handle: 2;
-// Display on top of page tabs (T39158, T50078).
 @z-index-personal: 100;
 @z-index-sidebar-button: 101;
-// See skinStyles/jquery.ui/jquery.ui.selectable.css.
-// @z-index-ui-selectable-helper: 100;
 @z-index-overlay: 101;
-// See skinStyles/jquery.ui/jquery.ui.tooltip.css.
-// @z-index-ui-tooltip: 9999;
 
-// Transitions
-// Sticky header hide/show transition
-@transition-sticky-header: transform 250ms linear;
-
-//
 // Layout
-//
 @max-width-page-container: unit(
   1514px / @font-size-browser,
   em

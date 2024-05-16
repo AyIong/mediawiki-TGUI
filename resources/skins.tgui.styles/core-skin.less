@@ -1,0 +1,72 @@
+/**
+ * TGUI modern stylesheets
+ * See '../common/common.less' for common screen and print TGUI stylesheets.
+ */
+
+@import "./variables.less";
+@import "./css-variables.less";
+@import "mediawiki.mixins.less";
+
+// Common styles
+@import "./skinning/normalize.less";
+@import "./skinning/typography.less";
+@import "./skinning/elements.less";
+@import "./skinning/input.less";
+@import "./skinning/interface.category.less";
+@import "./skinning/messageBoxes.less";
+@import "./skinning/feedlink.less";
+@import "./skinning/content.links.less";
+@import "./skinning/content.thumbnails-screen.less";
+@import "./skinning/content.tables.less";
+@import "./skinning/loginRegister.less";
+
+@media screen {
+  @import "./layouts/screen.less";
+
+  // Components
+  @import "./components/ArticleToolbar.less";
+  @import "./components/SearchBoxLoader.less";
+  @import "./components/Sidebar.less";
+  @import "./components/LanguageButton.less";
+  @import "./components/UserLinks.less";
+  @import "./components/Header.less";
+  @import "./components/MenuDropdown.less";
+  @import "./components/MenuTabs.less";
+  @import "./components/MenuPortal.less";
+  @import "./components/TabWatchstarLink.less";
+  @import "./components/TableOfContents.less";
+  @import "./components/Indicators.less";
+  @import "./components/SiteNotice.less";
+  @import "./components/MenuDropdownCheckbox.less";
+  @import "./components/MenuPortal.less";
+  @import "./components/SearchBox.less";
+  @import "./components/SidebarLogo.less";
+  @import "./components/Footer.less";
+  @import "./components/Tooltip.less";
+
+  // Extentions
+  @import "./extentions/collapsiblePortlets.less";
+
+  // Overrides
+  @import "./overrides/codexSearch.less";
+  @import "./overrides/fieldset.less";
+  @import "./overrides/dataTable.less";
+  @import "./overrides/editPage.less";
+  @import "./overrides/preferencesPage.less";
+  @import "./overrides/changesList.less";
+
+  // OOUI
+  @import "./overrides/ooui/oojsCore.less";
+  @import "./overrides/ooui/oojsIcons.less";
+  @import "./overrides/ooui/oojsInput.less";
+  @import "./overrides/ooui/oojsFilters.less";
+}
+
+@media all {
+  // Component styles that should apply in all media.
+  @import "./components/Logo.less";
+}
+
+@media print {
+  @import "./layouts/print.less";
+}

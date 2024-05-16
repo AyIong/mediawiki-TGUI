@@ -5,6 +5,7 @@
  * The rules here should only define the layout, not color or typography.
  */
 
+@import "grid.less";
 @import "../variables.less";
 @import "mediawiki.mixins.less";
 
@@ -37,8 +38,18 @@ h6 {
 
 body {
   overflow-y: scroll;
+  overflow-x: hidden;
   background-color: var(--color-bg);
   color: var(--color-text-darker);
+  transition:
+    background-color var(--transition-time),
+    color var(--transition-time);
+}
+
+html,
+body {
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
+  scrollbar-width: 1.5vh;
 }
 
 // Hide Legacy ToC. It will be removed anyway, but we don't need to see it!
@@ -70,7 +81,7 @@ body {
   padding: 0.5em 0;
   backdrop-filter: var(--blur-intensity);
   background-color: var(--color-bg-section);
-  color: var(--color-fg);
+  color: var(--color-text);
   width: 100%;
   top: 0;
   z-index: @z-index-header;
@@ -112,7 +123,7 @@ body {
     line-height: 1.2em;
     // T311564
     margin: 8px 0 0;
-    color: #54595d;
+    color: var(--color-text-gray);
     width: auto;
   }
 }
@@ -129,7 +140,7 @@ body {
     max-height: 3em;
     font-size: 1.1em;
     background-color: var(--color-primary);
-    color: var(--color-text-static-white);
+    color: var(--color-text-static);
     border-radius: var(--border-radius-small);
     transition: background-color var(--transition-time);
     text-decoration: none;
@@ -167,24 +178,3 @@ body {
 .skin--responsive .mw-page-container {
   min-width: auto;
 }
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 1.5vh;
-}
-
-::-webkit-scrollbar-track,
-::-webkit-scrollbar-corner,
-::-webkit-resizer {
-  background-color: var(--color-scrollbar-base);
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--color-scrollbar-thumb);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-scrollbar-thumb-hover);
-}
-
-@import "grid.less";

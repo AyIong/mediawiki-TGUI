@@ -5,9 +5,6 @@
 .mw-sidebar,
 .sidebar-toc,
 .sidebar-toc:after {
-  // Match styles between TOC and fade element to ensure the fade covers the correct area
-  // This is expressed in pixels to support different font sizes since our layout is currently
-  // expressed in pixels. See T313817.
   width: @width-sidebar-px;
   margin-left: 0;
 
@@ -28,14 +25,16 @@
 .mw-sidebar {
   position: fixed;
   overflow: hidden;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
   height: -webkit-fill-available;
   padding-top: 1em;
   margin: 42px 0 32px 0;
   background-color: var(--color-bg-section);
-  color: var(--color-fg);
+  color: var(--color-text);
   backdrop-filter: var(--blur-intensity);
   transition: all var(--transition-time);
-  z-index: 1;
+  z-index: @z-index-header;
 
   &:hover {
     overflow-y: auto;
@@ -68,7 +67,7 @@
 
     .mw-sidebar-action-content {
       > * {
-        font-size: @font-size-portal-list-item;
+        font-size: @font-size-nav-main-body;
       }
 
       > a {

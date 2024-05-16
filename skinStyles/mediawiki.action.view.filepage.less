@@ -1,0 +1,62 @@
+/* filetoc */
+#filetoc {
+  padding: 0.25em;
+  background-color: var(--color-bg-section-alt);
+  border: var(--border-classic);
+
+  li {
+    padding: 0;
+
+    a {
+      text-decoration: none;
+      padding: 0.2em 0.5em;
+      background-color: var(--color-primary);
+      color: var(--color-text-static);
+      border-radius: var(--border-radius-small);
+      transition: background-color var(--transition-time);
+
+      &:hover {
+        background-color: var(--color-primary-light);
+      }
+    }
+  }
+}
+
+/*
+ * Classes for Exif data display
+ */
+.mw_metadata {
+  font-size: 0.8em;
+  margin-left: 0.5em;
+  margin-bottom: 0.5em;
+  border: 0;
+  border-collapse: collapse;
+  width: 400px;
+}
+
+.mw_metadata caption {
+  font-weight: bold;
+}
+
+.mw_metadata td,
+.mw_metadata th {
+  border: 1px solid var(--border-classic);
+  padding: 0 0.5em;
+}
+
+.mw_metadata th {
+  background-color: var(--color-bg-section-alt);
+  font-weight: normal;
+  text-align: center;
+}
+
+.mw_metadata td {
+  background-color: var(--color-bg-section-alt);
+  padding: 0.1em 0;
+}
+
+.mw_metadata ul.metadata-langlist {
+  list-style: none;
+  padding: 0 0.5em;
+  margin: 0;
+}

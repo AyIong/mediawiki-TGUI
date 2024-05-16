@@ -1,0 +1,115 @@
+.skin-tgui {
+  .mw-rcfilters-ui-watchlistTopSectionWidget-separator {
+    border-color: var(--color-border);
+  }
+
+  .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined {
+    background-color: transparent;
+    border-color: var(--color-border);
+
+    .oo-ui-tagMultiselectWidget-handle {
+      background-color: var(--color-bg-section-alt);
+      border: var(--border-classic);
+      border-bottom: 0;
+      border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
+      padding: 0.5em 0.75em;
+      backdrop-filter: var(--blur-intensity);
+
+      .mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-content-title {
+        color: var(--color-text);
+      }
+
+      .mw-rcfilters-ui-filterTagMultiselectWidget-emptyFilters {
+        color: var(--color-text-gray);
+        vertical-align: -webkit-baseline-middle;
+      }
+    }
+
+    .mw-rcfilters-ui-table {
+      .mw-rcfilters-ui-filterTagMultiselectWidget-views-select-widget.oo-ui-widget {
+        background-color: var(--color-bg-section-alt);
+        border: var(--border-classic);
+        border-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+
+  .oo-ui-menuSelectWidget {
+    margin: 0.5em 0;
+    box-shadow: none;
+    background-color: var(--color-bg-transparent);
+    border: var(--border-classic);
+    border-radius: var(--border-radius-medium);
+  }
+
+  .oo-ui-popupWidget {
+    backdrop-filter: var(--blur-intensity);
+
+    .oo-ui-popupWidget-popup {
+      padding: 0 0.5em 0.5em 0;
+      background-color: var(--color-bg-transparent);
+      border: var(--border-classic);
+      box-shadow: var(--box-shadow-medium) !important;
+      border-radius: var(--border-radius-medium);
+
+      .oo-ui-optionWidget.oo-ui-widget-enabled {
+        margin-right: 0.5em;
+      }
+    }
+
+    .mw-rcfilters-ui-datePopupWidget {
+      border-color: var(--color-border);
+    }
+  }
+
+  .mw-rcfilters-ui-filterMenuHeaderWidget-header {
+    border-bottom: var(--border-classic);
+    background-color: var(--color-bg-section-alt);
+  }
+
+  .mw-rcfilters-ui-itemMenuOptionWidget-label-title,
+  .mw-rcfilters-ui-filterMenuHeaderWidget-title {
+    color: var(--color-text);
+  }
+
+  .mw-rcfilters-ui-itemMenuOptionWidget:not(:last-child):not(
+      .mw-rcfilters-ui-itemMenuOptionWidget-identifier-talk
+    ) {
+    border-bottom: var(--border-classic);
+  }
+
+  .mw-rcfilters-ui-filterMenuSectionOptionWidget {
+    background-color: var(--color-bg-section-alt);
+  }
+
+  .mw-rcfilters-ui-itemMenuOptionWidget-label-desc,
+  .mw-rcfilters-ui-filterMenuSectionOptionWidget-header-title.oo-ui-labelElement-label {
+    color: var(--color-text-gray);
+  }
+
+  .mw-rcfilters-ui-menuSelectWidget-footer {
+    background-color: var(--color-bg-section-alt);
+    border-top: var(--border-classic);
+  }
+
+  .mw-rcfilters-ui-viewSwitchWidget label.oo-ui-labelWidget {
+    color: var(--color-text-darker);
+  }
+
+  .mw-rcfilters-ui-filterMenuOptionWidget.oo-ui-flaggedElement-muted
+    .mw-rcfilters-ui-itemMenuOptionWidget-label-title,
+  .mw-rcfilters-ui-filterMenuOptionWidget.oo-ui-flaggedElement-muted
+    .mw-rcfilters-ui-itemMenuOptionWidget-label-desc,
+  .mw-rcfilters-ui-filterMenuOptionWidget.oo-ui-flaggedElement-muted:not(
+      .oo-ui-optionWidget-selected
+    ) {
+    background-color: transparent !important;
+    color: var(--color-text-gray);
+    opacity: 0.75;
+  }
+
+  .mw-rcfilters-ui-itemMenuOptionWidget-view-namespaces {
+    border-top: 4px solid var(--color-border);
+  }
+}

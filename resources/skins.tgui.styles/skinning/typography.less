@@ -33,6 +33,27 @@ pre,
 .mw-editsection,
 .mw-editsection-like {
   font-family: @font-family-sans;
+  vertical-align: middle !important;
+
+  a {
+    font-size: smaller;
+    text-decoration: none !important;
+    padding: 0.2em 0.5em 0.3em 0.5em;
+    margin-left: 0.5em;
+    background-color: var(--color-primary);
+    color: var(--color-text-static);
+    border-radius: var(--border-radius-small);
+    transition: background-color var(--transition-time);
+
+    &:hover {
+      background-color: var(--color-primary-light);
+    }
+  }
+}
+
+.mw-editsection-bracket,
+.mw-editsection-divider {
+  display: none;
 }
 
 /* Main content area, including siteNotice, indicators, categories, firstHeading and `.tgui-body`. */
@@ -100,7 +121,7 @@ pre,
   }
 
   blockquote {
-    border-left: @border-start-blockquote;
+    border-left: 2px solid var(--color-label);
     padding: @padding-blockquote;
 
     // Ensure not to inherit whitespace mashing margins on child elements.

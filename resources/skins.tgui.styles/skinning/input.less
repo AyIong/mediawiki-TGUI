@@ -1,0 +1,138 @@
+/* Shared betwen all inputs */
+input,
+button,
+textarea,
+select,
+optgroup,
+input::file-selector-button {
+  outline: 0 !important;
+  box-shadow: none !important;
+  border: 0;
+}
+
+/* Text Input */
+input:not(
+    [type="file"],
+    [type="image"],
+    [type="checkbox"],
+    [type="radio"],
+    [type="submit"]
+  ),
+textarea {
+  background-color: var(--color-bg-section);
+  color: var(--color-text);
+  border: var(--border-classic);
+  transition: border var(--transition-time);
+
+  &:hover {
+    border: var(--border-classic-input);
+  }
+
+  &:focus {
+    border: var(--border-classic-input-focus);
+  }
+
+  &::placeholder {
+    color: var(--color-text-darker);
+    opacity: 0.5;
+  }
+
+  &:autofill,
+  &:autofill:focus {
+    /**
+    * Tricky hack from StackOverflow
+    * https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied
+    */
+    transition:
+      background-color 0s 600000s,
+      color 0s 600000s,
+      border var(--transition-time) !important;
+    border: 1px solid var(--color-violet);
+  }
+}
+
+input:not(
+    [type="file"],
+    [type="image"],
+    [type="checkbox"],
+    [type="radio"],
+    [type="submit"]
+  ) {
+  padding: 0.5em 1em;
+  border-radius: var(--border-radius-small);
+}
+
+/* Buttons */
+input[type="submit"],
+input[type="button"],
+input::file-selector-button {
+  cursor: pointer;
+  padding: 0.25em 0.5em;
+  background-color: var(--color-primary);
+  color: var(--color-text-static);
+  border: 0 !important;
+  border-radius: var(--border-radius-small);
+  transition: background-color var(--transition-time);
+
+  &:hover,
+  &:focus {
+    background-color: var(--color-primary-light) !important;
+    color: var(--color-text-static) !important;
+  }
+}
+
+/* File Upload */
+input[type="file"] {
+  background-color: var(--color-bg-section-alt);
+  color: var(--color-text-darker);
+  border: var(--border-classic);
+}
+
+/* Dropdowns (Select) */
+select {
+  padding: 0.25em 0.5em;
+  background-color: var(--color-bg-section-alt);
+  color: var(--color-text);
+  border: var(--border-classic);
+  border-radius: var(--border-radius-small);
+
+  option {
+    padding: 0.25em 0.5em;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  background-color: var(--color-bg-section-alt);
+  color: var(--color-text);
+  border: var(--border-classic);
+}
+
+/* Radio */
+input[type="radio"] {
+  appearance: none;
+  background-color: var(--color-bg-hover);
+  height: 16px;
+  width: 16px;
+  border-radius: var(--border-radius-large);
+  border: var(--border-classic);
+  transition:
+    background-color var(--transition-time),
+    border var(--transition-time);
+
+  &:hover {
+    background-color: var(--color-bg-focus);
+  }
+
+  &:active {
+    background-color: var(--color-bg-focus);
+    border: 1px solid var(--color-border-input-focus);
+  }
+
+  &:checked {
+    background-color: var(--color-bg-focus);
+    border: 5px solid var(--color-border-input-focus);
+  }
+}

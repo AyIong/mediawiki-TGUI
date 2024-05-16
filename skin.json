@@ -137,8 +137,6 @@
       "class": "ResourceLoaderSkinModule",
       "features": {
         "normalize": true,
-        "content-media": true,
-        "content-tables": true,
         "interface-edit-section-links": true,
         "interface-user-message": true,
         "i18n-ordered-lists": true,
@@ -146,7 +144,7 @@
         "i18n-headings": true
       },
       "targets": ["desktop", "mobile"],
-      "styles": ["resources/skins.tgui.styles/skin.less"],
+      "styles": ["resources/skins.tgui.styles/core-skin.less"],
       "lessMessages": [
         "parentheses-start",
         "parentheses-end",
@@ -281,14 +279,19 @@
   "ResourceModuleSkinStyles": {
     "tgui": {
       "+ext.echo.styles.alert": "skinStyles/ext.echo.styles.alert.less",
-      "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
-      "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
-      "+mediawiki.notification": "skinStyles/mediawiki.notification.less",
-      "+oojs-ui-core.styles": "skinStyles/ooui.less",
       "+ext.relatedArticles.readMore": "skinStyles/ext.relatedArticles.readMore.less",
       "+ext.uls.compactlinks": "skinStyles/ext.uls.compactlinks.less",
       "+ext.uls.interface": "skinStyles/ext.uls.interface.less",
-      "+ext.visualEditor.base": "skinStyles/ext.visualEditor.less"
+      "+ext.visualEditor.base": "skinStyles/ext.visualEditor.less",
+      "+jquery.tablesorter.styles": "skinStyles/jQuery/jquery.tablesorter.styles.less",
+      "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
+      "+mediawiki.action.view.filepage": "skinStyles/mediawiki.action.view.filepage.less",
+      "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
+      "+mediawiki.notification": "skinStyles/mediawiki.notification.less",
+      "+mediawiki.ui.button": "skinStyles/mediawiki/mediawiki.ui.button.less",
+      "+mediawiki.page.gallery.styles": "skinStyles/mediawiki/mediawiki.page.gallery.styles.less",
+      "+mediawiki.special.search.styles": "skinStyles/mediawiki/mediawiki.special.search.styles.less",
+      "+oojs-ui-core.styles": "skinStyles/ooui.less"
     }
   },
   "config": {

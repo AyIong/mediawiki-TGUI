@@ -6,7 +6,7 @@
  * The search input.
  * Note that these rules only apply to the non-Vue enabled search input field.
  * When Vue.js has loaded this element will no longer be in the page and substituted with
- * a Codex element.
+ * a Codex element. Codex overrides into codexSearch.less
  */
 .tgui-search-box {
   display: flex;
@@ -29,198 +29,55 @@
   font-size: inherit;
 }
 
-.tgui-search-box-input {
-  width: 100%;
-  height: 32px;
-  outline: none;
-  padding: @search-placeholder-padding;
-  background-color: var(--color-bg-section-light);
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-small);
-  transition: all var(--transition-time);
+.tgui-search-box-inner {
+  .tgui-search-box-input {
+    width: 100%;
+    height: 32px;
+    outline: none;
+    padding: @search-placeholder-padding;
+    background-color: var(--color-bg-section-alt);
+    color: var(--color-text);
+    border: var(--border-classic);
+    border-radius: var(--border-radius-small);
+    transition: all var(--transition-time);
 
-  .tgui-search-box-inner:hover & {
-    border-color: var(--color-border-input);
-  }
+    .tgui-search-box-inner:hover & {
+      border-color: var(--color-border-input);
+    }
 
-  .mixin-placeholder( {
+    .mixin-placeholder( {
 		color: var(--color-text-translucent);
 		opacity: 0.67;
 	} );
 
-  &::-webkit-search-decoration,
-  &::-webkit-search-cancel-button,
-  &::-webkit-search-results-button,
-  &::-webkit-search-results-decoration {
-    display: none;
-  }
-}
-
-.searchButton {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 36px;
-  border: 0;
-  padding: 0;
-  background-color: transparent;
-  color: transparent;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.searchButton[name="go"] {
-  background-image: url(images/magnifying-glass-solid.svg);
-  background-size: 1.25em;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5;
-  filter: var(--invert-icon);
-}
-
-/**
- * Vue search input, customised style special for TGUI
- * There are only overrides, cause unreal make it nice
- */
-
-.client-js .tgui-search-box-vue {
-  &.tgui-search-box-show-thumbnail {
-    > div {
-      max-width: 75%;
-      flex-grow: 1;
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      display: none;
     }
   }
 
-  /* Disable all strange, non-sense shit */
-  .cdx-search-input {
-    background-color: unset;
-    color: unset;
-    border: unset;
-    border-radius: unset;
+  .searchButton {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 36px;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    color: transparent;
+    z-index: 1;
+    pointer-events: none;
   }
 
-  .cdx-search-input__input-wrapper .cdx-menu {
-    margin: -1px 0 0 1px;
-    box-shadow: 0px 20px 30px 5px rgba(0, 0, 0, 0.75);
-    background-color: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-top: 0;
-    border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
-
-    .cdx-menu-item {
-      margin: 0.5em;
-      background-color: var(--color-bg-section-light);
-      border-radius: var(--border-radius-medium);
-
-      &:hover {
-        background-color: var(--color-hover);
-      }
-
-      &:last-child {
-        margin: 0;
-        background-color: transparent;
-        border-radius: 0;
-      }
-
-      &__content {
-        padding: 0.5em;
-        color: var(--color-text-darker);
-
-        &:hover {
-          color: var(--color-text) !important;
-        }
-
-        .cdx-menu-item__thumbnail .cdx-thumbnail__placeholder {
-          background-color: var(--color-bg-section-light);
-          border: 1px solid transparent;
-          border-radius: var(--border-radius-small);
-
-          .cdx-thumbnail__placeholder__icon {
-            color: var(--color-primary);
-          }
-        }
-      }
-
-      .cdx-typeahead-search__search-footer {
-        padding: 0.5em 1em;
-        color: var(--color-text-gray);
-        border: 0;
-      }
-    }
-  }
-
-  .cdx-text-input {
-    .cdx-text-input__input {
-      padding: @search-placeholder-padding;
-
-      &:enabled {
-        margin: 1px;
-        box-shadow: none;
-        background-color: var(--color-bg-section-light);
-        color: var(--color-text);
-        border: 1px solid var(--color-border);
-        border-radius: var(--border-radius-small) 0 0 var(--border-radius-small);
-        transition: all var(--transition-time);
-
-        .mixin-placeholder( {
-          color: var(--color-text-translucent);
-          opacity: 0.67;
-        } );
-
-        &:hover {
-          border: 1px solid var(--color-border-input);
-        }
-
-        &:focus {
-          outline: 0;
-          padding: 0 0.5em 0 72px;
-          border: 1px solid var(--color-border-input-focus);
-
-          ~ span {
-            padding-left: 36px;
-          }
-        }
-      }
-    }
-
-    .cdx-text-input__icon {
-      left: 1px;
-      width: 36px;
-      height: 20px;
-      opacity: 0.5;
-      background-image: url(images/magnifying-glass-solid.svg);
-      background-size: 1.25em;
-      background-position: center;
-      background-repeat: no-repeat;
-      transition: all var(--transition-time);
-      filter: var(--invert-icon);
-
-      svg {
-        display: none;
-      }
-    }
-  }
-
-  .cdx-button {
-    margin: 0 0 0 2px;
-    outline: 0 !important;
-    box-shadow: none !important;
-    background-color: var(--color-bg-section-light);
-    color: var(--color-text-darker);
-    border: 1px solid var(--color-border) !important;
-    border-left: 0;
-    transition: all var(--transition-time);
-
-    &:hover {
-      background-color: var(--color-hover);
-      color: var(--color-text);
-    }
-
-    &:focus {
-      background-color: var(--color-selected);
-      color: var(--color-text);
-    }
+  .searchButton[name="go"] {
+    background-image: url(images/magnifying-glass-solid.svg);
+    background-size: 1.25em;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    filter: var(--invert-icon);
   }
 }

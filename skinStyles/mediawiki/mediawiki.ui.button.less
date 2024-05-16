@@ -1,0 +1,225 @@
+/*
+ * TGUI
+ *
+ * SkinStyles for MediaWiki
+ * Module: mediawiki.ui.button
+ * Version: REL1_39
+ *
+ * Date: 15-05-2024
+*/
+
+#mw-createaccount-join {
+  background-color: var(--color-green);
+  color: var(--color-text-static);
+
+  &:hover,
+  &:active,
+  &:focus {
+    box-shadow: none;
+    background-color: var(--color-green-light);
+    color: var(--color-text-static);
+    border-color: transparent;
+  }
+}
+
+.mw-ui-button {
+  font-weight: var(--font-weight-medium);
+  background-color: transparent;
+  color: var(--color-text-darker);
+  border-color: transparent;
+  border-radius: var(--border-radius-small);
+  transition: all var(--transition-time) !important;
+
+  &:not(:disabled) {
+    &:visited {
+      color: var(--color-text-darker);
+    }
+
+    // Simplify hover style to only change background color
+    &:hover {
+      background-color: transparent;
+      color: var(--color-text-darker);
+      border-color: transparent;
+    }
+
+    &:focus {
+      color: var(--color-text-darker);
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    &:active,
+    &.is-on {
+      background-color: var(--color-bg-hover);
+      color: var(--color-text);
+      border-color: transparent;
+    }
+  }
+
+  &:disabled {
+    color: var(--color-text-gray);
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  &.mw-ui-quiet,
+  &.mw-ui-quiet.mw-ui-progressive,
+  &.mw-ui-quiet.mw-ui-destructive {
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-darker);
+
+    input[type="checkbox"]:hover + &,
+    &:hover {
+      background-color: transparent;
+      color: var(--color-text-darker);
+    }
+
+    input[type="checkbox"]:focus + &,
+    &:focus {
+      color: var(--color-text);
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    input[type="checkbox"]:active + &,
+    &:active {
+      background-color: var(--color-bg-hover);
+      color: var(--color-text);
+      border-color: transparent;
+    }
+
+    &:disabled,
+    &:disabled:hover,
+    &:disabled:active {
+      color: var(--color-text-gray);
+    }
+  }
+
+  &.mw-ui-progressive {
+    &:not(:disabled) {
+      background-color: var(--color-primary);
+      border-color: transparent;
+
+      &:hover {
+        background-color: var(--color-primary-light);
+        color: var(--color-text-static);
+        border-color: transparent;
+      }
+
+      &:focus {
+        background-color: var(--color-primary-light);
+        color: var(--color-text-static);
+        box-shadow: none;
+      }
+
+      &:active,
+      &.is-on {
+        background-color: var(--color-primary-light);
+        color: var(--color-text-static);
+        border-color: transparent;
+      }
+    }
+
+    &:disabled {
+      background-color: var(--color-grey);
+      color: var(--color-text-static-transparent);
+      border-color: transparent;
+    }
+
+    &.mw-ui-quiet {
+      color: var(--color-text-darker);
+
+      input[type="checkbox"]:hover + &,
+      &:hover {
+        background-color: transparent;
+        color: var(--color-text);
+      }
+
+      input[type="checkbox"]:focus + &,
+      &:focus {
+        background-color: transparent;
+        color: var(--color-text);
+        border-color: transparent;
+      }
+
+      input[type="checkbox"]:active + &,
+      &:active {
+        background-color: var(--color-bg-hover);
+        color: var(--color-text);
+        border-color: transparent;
+      }
+    }
+  }
+
+  &.mw-ui-destructive {
+    &:not(:disabled) {
+      background-color: var(--color-red);
+      border-color: transparent;
+
+      &:hover {
+        background-color: var(--color-red-light);
+        color: var(--color-text-static);
+        border-color: transparent;
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
+
+      &:active,
+      &.is-on {
+        background-color: var(--color-red-light);
+        color: var(--color-text-static);
+        border-color: transparent;
+      }
+    }
+
+    &:disabled {
+      background-color: var(--color-grey);
+      color: var(--color-text-static-transparent);
+      border-color: transparent;
+    }
+
+    &.mw-ui-quiet {
+      background-color: var(--color-red);
+
+      input[type="checkbox"]:hover + &,
+      &:hover {
+        background-color: var(--color-red-light);
+        color: var(--color-text-static);
+        border-color: transparent;
+      }
+
+      input[type="checkbox"]:focus + &,
+      &:focus {
+        background-color: var(--color-red-light);
+        color: var(--color-text-static);
+        border-color: transparent;
+      }
+
+      input[type="checkbox"]:active + &,
+      &:active {
+        background-color: var(--color-red-light);
+        color: var(--color-text-static);
+        border-color: transparent;
+      }
+    }
+  }
+
+  &.mw-ui-big {
+    // Smaller font size since MW UI assume a 14px base font size
+    font-size: 1.125em;
+  }
+
+  & > * {
+    &:first-child {
+      border-top-left-radius: var(--border-radius-small);
+      border-bottom-left-radius: var(--border-radius-small);
+    }
+
+    &:last-child {
+      border-top-right-radius: var(--border-radius-small);
+      border-bottom-right-radius: var(--border-radius-small);
+    }
+  }
+}
