@@ -232,6 +232,15 @@
   color: var(--color-text-static);
 }
 
+.oo-ui-dropdownInputWidget.oo-ui-widget-disabled,
+.oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
+  text-shadow: none;
+  background-color: var(--color-grey);
+  color: var(--color-text-static-transparent);
+  border-radius: var(--border-radius-small) !important;
+  transition: background-color var(--transition-time);
+}
+
 .oo-ui-menuSelectWidget {
   margin: 0;
   box-shadow: none;
@@ -295,6 +304,14 @@
   &:active {
     border: var(--border-classic-input-focus) !important;
   }
+}
+
+.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-inputWidget-input {
+  background-color: var(--color-bg-focus);
+  -webkit-text-fill-color: var(--color-text-gray);
+  color: var(--color-text-gray);
+  text-shadow: none;
+  border-color: var(--color-border);
 }
 
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid
