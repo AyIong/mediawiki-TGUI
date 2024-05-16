@@ -284,14 +284,14 @@
       "+ext.uls.interface": "skinStyles/ext.uls.interface.less",
       "+ext.visualEditor.base": "skinStyles/ext.visualEditor.less",
       "+jquery.tablesorter.styles": "skinStyles/jQuery/jquery.tablesorter.styles.less",
-      "+mediawiki.action.edit": "skinStyles/mediawiki/ediawiki.action.edit.less",
-      "+mediawiki.action.view.filepage": "skinStyles/mediawiki/mediawiki.action.view.filepage.less",
-      "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki/mediawiki.action.view.redirectPage.less",
-      "+mediawiki.notification": "skinStyles/mediawiki/mediawiki.notification.less",
+      "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
+      "+mediawiki.action.view.filepage": "skinStyles/mediawiki.action.view.filepage.less",
+      "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
+      "+mediawiki.notification": "skinStyles/mediawiki.notification.less",
       "+mediawiki.ui.button": "skinStyles/mediawiki/mediawiki.ui.button.less",
       "+mediawiki.page.gallery.styles": "skinStyles/mediawiki/mediawiki.page.gallery.styles.less",
       "+mediawiki.special.search.styles": "skinStyles/mediawiki/mediawiki.special.search.styles.less",
-      "+oojs-ui-core.styles": "skinStyles/ooui/ooui.less"
+      "+oojs-ui-core.styles": "skinStyles/ooui.less"
     }
   },
   "config": {
@@ -334,8 +334,8 @@
     },
     "TGUILanguageInHeader": {
       "value": {
-        "logged_in": false,
-        "logged_out": false
+        "logged_in": true,
+        "logged_out": true
       },
       "description": "@var array Moves the language links from the sidebar into a menu beside the page title. Also moves the indicators to the line below, next to the tagline (siteSub)."
     },
