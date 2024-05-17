@@ -1,0 +1,32 @@
+#theme-toggle {
+  display: none;
+
+  &:checked + #theme-button:before {
+    background-image: url(../skins.tgui.styles/images/moon.svg);
+  }
+}
+
+#theme-button {
+  cursor: pointer;
+  border: 0;
+  margin-right: 0.5em;
+  background-color: transparent;
+  transition: all var(--transition-time);
+
+  &:hover {
+    background-color: var(--color-bg-section-light);
+  }
+
+  &:before {
+    content: "";
+    display: block;
+    padding: 0.8em;
+    width: 1.5em;
+    height: 1.5em;
+    background-image: url(../skins.tgui.styles/images/sun.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: scale(0.43);
+    filter: var(--invert-icon);
+  }
+}
