@@ -15,7 +15,7 @@ Now when users go to their Special:Preferences page, they can change their appea
 ## Uninstall
 
 REQUIRED: remove this line `wfLoadSkin( 'TGUI' );` from LocalSetting.php
-REQUIRED: If you set $wgDefaultSkin to 'TGUI' you must switch it to another skin you have installed
+REQUIRED: If you set $wgDefaultSkin to 'tgui' you must switch it to another skin you have installed
 
 MediaWiki will automatically switch users using TGUI back to the default skin
 
@@ -24,7 +24,7 @@ any issues. Otherwise you can just delete it at this point.
 
 ### Configuration options
 
-WiP.
+1984
 
 ### Development
 
