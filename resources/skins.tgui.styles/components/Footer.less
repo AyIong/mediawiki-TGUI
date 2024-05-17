@@ -1,10 +1,16 @@
 @import "../variables.less";
 
 /* Footer */
+#mw-sidebar-checkbox:checked {
+  & ~ .mw-footer-container {
+    margin-left: 245px;
+  }
+}
+
 .mw-footer-container {
   display: flex;
   flex-direction: column;
-  margin: 0.75em 0 0 245px;
+  margin-top: 0.75em;
   background-color: var(--color-bg-section);
 
   ul {

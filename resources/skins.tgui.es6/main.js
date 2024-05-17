@@ -103,6 +103,14 @@ const main = () => {
       tableOfContents.changeActiveSection
     ),
   });
+
+  const checkWindowSize = () => {
+    if (window.innerWidth < 999) {
+      document.body.classList.add("tgui-toc-collapsed");
+      updateTocStatus();
+    }
+  };
+  checkWindowSize();
 };
 
 module.exports = {
