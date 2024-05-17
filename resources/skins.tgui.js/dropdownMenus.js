@@ -1,7 +1,7 @@
 /** @interface CheckboxHack */
 
 var checkboxHack = /** @type {CheckboxHack} */ require(
-    /** @type {string} */ ("mediawiki.page.ready"),
+    /** @type {string} */ ("mediawiki.page.ready")
   ).checkboxHack,
   CHECKBOX_HACK_CONTAINER_SELECTOR = ".tgui-menu-dropdown",
   CHECKBOX_HACK_CHECKBOX_SELECTOR = ".tgui-menu-checkbox",
@@ -112,10 +112,38 @@ Array.prototype.forEach.call(
     addPortletLinkHandler(item, {
       id: item.getAttribute("id"),
     });
-  },
+  }
 );
 
 mw.hook("util.addPortletLink").add(addPortletLinkHandler);
+
+/**
+ * Function to add purge button to the p-captions menu
+ */
+function addPurgeButton() {
+  var purgeListItem = document.createElement("li");
+  purgeListItem.id = "ca-purge";
+  purgeListItem.className = "mw-list-item";
+
+  var purgeButton = document.createElement("a");
+  purgeButton.textContent = "Очистить кэш";
+  purgeButton.setAttribute("title", "Очистить кэш страницы");
+  purgeButton.href = mw.util.getUrl("", {
+    action: "purge",
+    title: mw.config.get("wgPageName"),
+  });
+
+  purgeListItem.appendChild(purgeButton);
+
+  var parentElement = document
+    .getElementById("p-cactions")
+    .getElementsByTagName("ul")[0];
+  parentElement.insertBefore(purgeListItem, parentElement.firstChild);
+}
+
+$(document).ready(function () {
+  addPurgeButton();
+});
 
 module.exports = {
   dropdownMenus: function dropdownMenus() {
