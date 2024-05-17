@@ -3,7 +3,8 @@ var languageButton = require("./languageButton.js"),
   dropdownMenus = require("./dropdownMenus.js").dropdownMenus,
   sidebarPersistence = require("./sidebarPersistence.js"),
   checkbox = require("./checkbox.js"),
-  collapsiblePortlets = require("./collapsiblePortlets.js");
+  collapsiblePortlets = require("./collapsiblePortlets.js"),
+  toggleTheme = require("./toggleTheme.js");
 /**
  * Wait for first paint before calling this function. That's its whole purpose.
  *
@@ -69,14 +70,15 @@ function addNamespacesGadgetSupport() {
  * @return {void}
  */
 function main(window) {
+  toggleTheme();
   enableCssAnimations(window.document);
+  collapsiblePortlets();
   sidebarPersistence.init();
   checkbox.init(window.document);
   initSearchLoader(document);
   languageButton();
   dropdownMenus();
   addNamespacesGadgetSupport();
-  collapsiblePortlets();
 }
 
 /**

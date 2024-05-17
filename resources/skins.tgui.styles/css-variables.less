@@ -33,105 +33,138 @@
   --border-classic-input-focus: 1px solid var(--color-border-input-focus);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Base Colors */
-    --color-bg: hsl(0, 0%, 15%);
-    --color-bg-hover: rgba(255, 255, 255, 0.075);
-    --color-bg-focus: rgba(255, 255, 255, 0.125);
-    --color-bg-transparent: rgba(37, 37, 37, 0.66);
-    --color-bg-section: rgba(0, 0, 0, 0.33);
-    --color-bg-section-opaque: hsl(0, 0%, 10%);
-    --color-bg-section-light: rgba(125, 125, 125, 0.075);
-    --color-bg-section-light-opaque: hsl(0, 0%, 13%);
-    --color-text: rgba(255, 255, 255, 1);
-    --color-text-darker: rgba(220, 220, 220, 1);
-    --color-text-gray: rgba(185, 185, 185, 0.75);
-    --color-text-translucent: rgba(255, 255, 255, 0.5);
-    --color-text-static: rgba(255, 255, 255, 1);
-    --color-text-static-dark: rgba(0, 0, 0, 1);
-    --color-text-static-transparent: rgba(255, 255, 255, 0.5);
-    --color-border: rgba(255, 255, 255, 0.1);
-    --color-border-input: rgba(128, 181, 255, 1);
-    --color-border-input-focus: var(--color-blue);
+.dark-theme() {
+  /* Base Colors */
+  --color-bg: hsl(0, 0%, 15%);
+  --color-bg-hover: rgba(255, 255, 255, 0.075);
+  --color-bg-focus: rgba(255, 255, 255, 0.125);
+  --color-bg-transparent: rgba(37, 37, 37, 0.66);
+  --color-bg-section: rgba(0, 0, 0, 0.33);
+  --color-bg-section-opaque: hsl(0, 0%, 10%);
+  --color-bg-section-light: rgba(125, 125, 125, 0.075);
+  --color-bg-section-light-opaque: hsl(0, 0%, 13%);
+  --color-text: rgba(255, 255, 255, 1);
+  --color-text-darker: rgba(220, 220, 220, 1);
+  --color-text-gray: rgba(185, 185, 185, 0.75);
+  --color-text-translucent: rgba(255, 255, 255, 0.5);
+  --color-text-static: rgba(255, 255, 255, 1);
+  --color-text-static-dark: rgba(0, 0, 0, 1);
+  --color-text-static-transparent: rgba(255, 255, 255, 0.5);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-input: rgba(128, 181, 255, 1);
+  --color-border-input-focus: var(--color-blue);
 
-    /* Scrollbar */
-    --color-scrollbar-base: hsl(0, 0%, 10%);
-    --color-scrollbar-thumb: hsl(0, 0%, 23%);
+  /* Scrollbar */
+  --color-scrollbar-base: hsl(0, 0%, 10%);
+  --color-scrollbar-thumb: hsl(0, 0%, 23%);
 
-    /* Notices */
-    --color-notice: hsl(0, 0%, 40%);
-    --color-notice-red: hsl(0, 38%, 33%);
-    --color-notice-green: hsl(110, 38%, 33%);
-    --color-notice-blue: hsl(206, 58%, 32%);
-    --color-notice-brown: hsl(34, 38%, 33%);
+  /* Notices */
+  --color-notice: hsl(0, 0%, 40%);
+  --color-notice-red: hsl(0, 38%, 33%);
+  --color-notice-green: hsl(110, 38%, 33%);
+  --color-notice-blue: hsl(206, 58%, 32%);
+  --color-notice-brown: hsl(34, 38%, 33%);
 
-    /* Links */
-    --color-hyperlink: hsl(220, 100%, 70%);
-    --color-hyperlink-visited: hsl(260, 100%, 73%);
-    --color-hyperlink-new: hsl(0, 100%, 70%);
-    --color-hyperlink-new-visited: hsl(15, 100%, 67%);
+  /* Links */
+  --color-hyperlink: hsl(220, 100%, 70%);
+  --color-hyperlink-visited: hsl(260, 100%, 73%);
+  --color-hyperlink-new: hsl(0, 100%, 70%);
+  --color-hyperlink-new-visited: hsl(15, 100%, 67%);
 
-    /* Invert */
-    --invert-icon: invert(0.9);
-    --invert-button-icon: invert(1);
-    --logo-invert: brightness(5) hue-rotate(25deg) opacity(0.8);
+  /* Invert */
+  --invert-icon: invert(0.9);
+  --invert-button-icon: invert(1);
+  --logo-invert: brightness(5) hue-rotate(25deg) opacity(0.8);
 
-    /* Shadow */
-    --box-shadow-small: 0px 15px 20px 0px rgba(0, 0, 0, 0.75);
-    --box-shadow-medium: 0px 25px 30px 5px rgba(0, 0, 0, 0.75);
-    --box-shadow-big: 0px 0px 35px 5px rgba(0, 0, 0, 0.75);
+  /* Shadow */
+  --box-shadow-small: 0px 15px 20px 0px rgba(0, 0, 0, 0.75);
+  --box-shadow-medium: 0px 25px 30px 5px rgba(0, 0, 0, 0.75);
+  --box-shadow-big: 0px 0px 35px 5px rgba(0, 0, 0, 0.75);
+}
+
+.light-theme() {
+  /* Base Colors - Light */
+  --color-bg: hsl(0, 0%, 100%);
+  --color-bg-hover: rgba(0, 0, 0, 0.075);
+  --color-bg-focus: rgba(0, 0, 0, 0.125);
+  --color-bg-transparent: rgba(204, 201, 198, 0.66);
+  --color-bg-section: rgba(204, 201, 198, 0.33);
+  --color-bg-section-opaque: hsl(30, 6%, 93%);
+  --color-bg-section-light: rgba(158, 152, 148, 0.15);
+  --color-bg-section-light-opaque: hsl(30, 7%, 88%);
+  --color-text: rgba(0, 0, 0, 1);
+  --color-text-darker: rgba(40, 40, 40, 1);
+  --color-text-gray: rgba(80, 80, 80, 0.75);
+  --color-text-translucent: rgba(0, 0, 0, 0.5);
+  --color-text-static: rgba(255, 255, 255, 1);
+  --color-text-static-dark: rgba(0, 0, 0, 1);
+  --color-text-static-transparent: rgba(255, 255, 255, 0.5);
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-border-input: rgba(128, 181, 255, 1);
+  --color-border-input-focus: var(--color-blue);
+
+  /* Scrollbar - Light */
+  --color-scrollbar-base: hsl(30, 6%, 93%);
+  --color-scrollbar-thumb: hsl(30, 1%, 70%);
+
+  /* Notices */
+  --color-notice: hsl(0, 0%, 60%);
+  --color-notice-red: hsl(0, 100%, 70%);
+  --color-notice-green: hsl(110, 50%, 50%);
+  --color-notice-blue: hsl(200, 65%, 50%);
+  --color-notice-brown: hsl(35, 50%, 60%);
+
+  /* Links */
+  --color-hyperlink: hsl(220, 100%, 60%);
+  --color-hyperlink-visited: hsl(280, 70%, 51%);
+  --color-hyperlink-new: hsl(0, 100%, 45%);
+  --color-hyperlink-new-visited: hsl(15, 100%, 33%);
+
+  /* Invert */
+  --invert-icon: invert(0.1);
+  --invert-button-icon: invert(1);
+  --logo-invert: none;
+
+  /* Shadow */
+  --box-shadow-small: 0px 15px 20px 0px rgba(0, 0, 0, 0.33);
+  --box-shadow-medium: 0px 25px 30px 5px rgba(0, 0, 0, 0.33);
+  --box-shadow-big: 0px 0px 35px 5px rgba(0, 0, 0, 0.33);
+}
+
+/**
+ * Временные костыли для тем
+ * Сделано для того, чтобы если системная тема светлая,
+ * человек мог выбрать тёмную на сайте, и наоборот.
+ *
+ * Будет сделано нормально когда портирую префы с Citizen
+ */
+.tgui-light {
+  :root& {
+    .light-theme();
   }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    /* Base Colors - Light */
-    --color-bg: hsl(0, 0%, 100%);
-    --color-bg-hover: rgba(0, 0, 0, 0.075);
-    --color-bg-focus: rgba(0, 0, 0, 0.125);
-    --color-bg-transparent: rgba(204, 201, 198, 0.66);
-    --color-bg-section: rgba(204, 201, 198, 0.33);
-    --color-bg-section-opaque: hsl(30, 6%, 93%);
-    --color-bg-section-light: rgba(158, 152, 148, 0.15);
-    --color-bg-section-light-opaque: hsl(30, 7%, 88%);
-    --color-text: rgba(0, 0, 0, 1);
-    --color-text-darker: rgba(40, 40, 40, 1);
-    --color-text-gray: rgba(80, 80, 80, 0.75);
-    --color-text-translucent: rgba(0, 0, 0, 0.5);
-    --color-text-static: rgba(255, 255, 255, 1);
-    --color-text-static-dark: rgba(0, 0, 0, 1);
-    --color-text-static-transparent: rgba(255, 255, 255, 0.5);
-    --color-border: rgba(0, 0, 0, 0.1);
-    --color-border-input: rgba(128, 181, 255, 1);
-    --color-border-input-focus: var(--color-blue);
+.tgui-light {
+  @media (prefers-color-scheme: light) {
+    :root& {
+      .dark-theme();
+    }
+  }
+}
 
-    /* Scrollbar - Light */
-    --color-scrollbar-base: hsl(30, 6%, 93%);
-    --color-scrollbar-thumb: hsl(30, 1%, 70%);
+:not(.tgui-light) {
+  @media (prefers-color-scheme: dark) {
+    :root& {
+      .dark-theme();
+    }
+  }
+}
 
-    /* Notices */
-    --color-notice: hsl(0, 0%, 60%);
-    --color-notice-red: hsl(0, 100%, 70%);
-    --color-notice-green: hsl(110, 50%, 50%);
-    --color-notice-blue: hsl(200, 65%, 50%);
-    --color-notice-brown: hsl(35, 50%, 60%);
-
-    /* Links */
-    --color-hyperlink: hsl(220, 100%, 60%);
-    --color-hyperlink-visited: hsl(280, 70%, 51%);
-    --color-hyperlink-new: hsl(0, 100%, 45%);
-    --color-hyperlink-new-visited: hsl(15, 100%, 33%);
-
-    /* Invert */
-    --invert-icon: invert(0.1);
-    --invert-button-icon: invert(1);
-    --logo-invert: none;
-
-    /* Shadow */
-    --box-shadow-small: 0px 15px 20px 0px rgba(0, 0, 0, 0.33);
-    --box-shadow-medium: 0px 25px 30px 5px rgba(0, 0, 0, 0.33);
-    --box-shadow-big: 0px 0px 35px 5px rgba(0, 0, 0, 0.33);
+:not(.tgui-light) {
+  @media (prefers-color-scheme: light) {
+    :root& {
+      .light-theme();
+    }
   }
 }
 
