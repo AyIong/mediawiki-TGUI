@@ -15,6 +15,10 @@
     rgba(0, 0, 0, 0.1) 20px
   );
 
+  p {
+    margin: 0;
+  }
+
   // Used in MobileFrontend/Nearby extensions
   h2 {
     color: inherit;
@@ -41,4 +45,18 @@
 
 .mw-message-box-success {
   background-color: var(--color-notice-green);
+}
+
+.mw-continue-editing a {
+  float: right;
+  padding: 0em 0.5em;
+  background-color: var(--color-primary);
+  color: var(--color-text-static);
+  border-radius: var(--border-radius-small);
+  transition: background-color var(--transition-time);
+
+  &:hover {
+    text-decoration: none;
+    background-color: var(--color-primary-light);
+  }
 }

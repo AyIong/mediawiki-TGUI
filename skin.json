@@ -284,6 +284,7 @@
       "+ext.uls.interface": "skinStyles/extensions/ext.uls.interface.less",
       "+ext.visualEditor.base": "skinStyles/extensions/ext.visualEditor.less",
       "+ext.tabs": "skinStyles/extensions/ext.tabs.less",
+      "+ext.wikiEditor": "skinStyles/extensions/ext.wikiEditor.less",
       "+jquery.tablesorter.styles": "skinStyles/jQuery/jquery.tablesorter.styles.less",
       "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
       "+mediawiki.action.view.filepage": "skinStyles/mediawiki.action.view.filepage.less",
