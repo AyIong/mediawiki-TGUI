@@ -290,7 +290,7 @@
       "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
       "+mediawiki.action.view.filepage": "skinStyles/mediawiki.action.view.filepage.less",
       "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
-      "+mediawiki.notification": "skinStyles/mediawiki.notification.less",
+      "+mediawiki.notification": "skinStyles/mediawiki/mediawiki.notification.less",
       "+mediawiki.ui.button": "skinStyles/mediawiki/mediawiki.ui.button.less",
       "+mediawiki.page.gallery.styles": "skinStyles/mediawiki/mediawiki.page.gallery.styles.less",
       "+mediawiki.special.search.styles": "skinStyles/mediawiki/mediawiki.special.search.styles.less",
