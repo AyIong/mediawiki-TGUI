@@ -1,0 +1,143 @@
+/* Soo much !important cause i'm skill issue and bored */
+.ve-active #siteNotice {
+  display: block;
+}
+
+.skin-tgui {
+  .ve-ui-toolbar {
+    > .oo-ui-toolbar-bar {
+      background-color: var(--color-bg-section-light);
+      color: var(--color-text);
+      border-color: var(--color-border) !important;
+      box-shadow: none !important;
+      backdrop-filter: var(--blur-intensity);
+
+      .oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-indicatorElement
+        .oo-ui-popupToolGroup-handle,
+      .oo-ui-popupToolGroup.oo-ui-widget-enabled
+        > .oo-ui-popupToolGroup-handle {
+        color: var(--color-text-darker);
+        border: 0 !important;
+
+        &:hover {
+          background-color: var(--color-bg-hover);
+          color: var(--color-text);
+        }
+      }
+
+      .oo-ui-tool.oo-ui-widget-enabled > .oo-ui-tool-link:active,
+      .oo-ui-tool.oo-ui-widget-enabled.oo-ui-tool-active > .oo-ui-tool-link,
+      .oo-ui-tool.oo-ui-widget-enabled.oo-ui-popupToolGroup-active
+        > .oo-ui-tool-link,
+      .oo-ui-popupToolGroup.oo-ui-popupToolGroup-active
+        > .oo-ui-popupToolGroup-handle {
+        background-color: var(--color-bg-focus) !important;
+        color: var(--color-text) !important;
+        border: 0 !important;
+      }
+
+      a.oo-ui-tool-link {
+        border: 0 !important;
+
+        &:hover {
+          background-color: var(--color-bg-hover);
+          color: var(--color-text);
+        }
+      }
+    }
+  }
+
+  .ve-ui-toolbar-floating > .oo-ui-toolbar-bar {
+    top: 66px;
+  }
+
+  .ve-ui-mwTwoPaneTransclusionDialogLayout > .oo-ui-menuLayout-menu {
+    border-right: var(--border-classic);
+  }
+
+  .ve-ui-mwTransclusionOutlineTemplateWidget-sticky {
+    background-color: var(--color-bg-section-light);
+  }
+
+  .ve-ui-mwTransclusionDialog-single-transclusion
+    .ve-ui-mwTransclusionOutlineWidget
+    .ve-ui-mwTransclusionOutlinePartWidget
+    .ve-ui-mwTransclusionOutlineTemplateWidget-sticky {
+    margin-top: -23px;
+    padding-bottom: 8px;
+  }
+}
+
+.oo-ui-toolbar-position-top .ve-ui-toolbarDialog-position-above {
+  border-top: var(--border-classic) !important;
+}
+
+.ve-init-mw-desktopArticleTarget-toolbarPlaceholder-bar {
+  border-bottom: var(--border-classic) !important;
+  box-shadow: none !important;
+}
+
+.ve-init-mw-progressBarWidget {
+  background-color: var(--color-bg);
+  border: 1px solid transparent;
+  box-shadow: 0 0px 5px 2.5px rgba(0, 0, 0, 0.15);
+
+  .ve-init-mw-progressBarWidget-bar {
+    background-color: var(--color-blue);
+  }
+}
+
+.ve-ui-mwTransclusionOutlineTemplateWidget
+  .ve-ui-mwTransclusionOutlineParameterWidget.oo-ui-optionWidget-highlighted {
+  color: var(--color-blue) !important;
+}
+
+.ve-ui-specialCharacterPage h3 {
+  color: var(--color-text) !important;
+}
+
+.ve-ui-specialCharacterPage-character {
+  border-color: var(--color-border) !important;
+
+  &:hover {
+    border-color: var(--color-border-input-focus) !important;
+  }
+}
+
+.ve-ui-mwMediaInfoFieldWidget.oo-ui-iconElement
+  .ve-ui-mwMediaInfoFieldWidget-icon {
+  filter: var(--invert-icon);
+}
+
+.skin-tgui {
+  .ve-ce-branchNode-blockSlug,
+  .ve-ce-branchNode-newSlug {
+    outline: 1px solid var(--color-border);
+    background-color: transparent;
+  }
+
+  .ve-ui-mwGalleryDialog-highlighted-image {
+    background-color: transparent;
+  }
+
+  .ve-ui-mwGalleryDialog-menuLayout-desktop > .oo-ui-menuLayout-menu,
+  .ve-ui-mwGalleryDialog-imageListMenuLayout-desktop > .oo-ui-menuLayout-menu {
+    border-right: var(--border-classic);
+  }
+
+  .ve-ui-targetWidget {
+    border: var(--border-classic);
+    border-radius: var(--border-radius-medium);
+    transition:
+      border-color var(--transition-time),
+      box-shadow var(--transition-time);
+  }
+
+  .ve-ui-targetWidget:not(.oo-ui-pendingElement-pending) {
+    background: var(--color-bg-section);
+  }
+
+  .ve-ui-mwSaveDialog-summary {
+    background-color: transparent;
+  }
+}

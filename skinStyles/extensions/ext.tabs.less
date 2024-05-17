@@ -1,0 +1,139 @@
+/*
+ * TGUI
+ *
+ * SkinStyles for Extension:Tabs
+ * Module: ext.tabs
+ * Version: REL1_39 63ccef2
+ *
+ * Date: 16-05-2024
+*/
+
+/* Classic Tabs */
+.tabs-tabbox {
+  .tabs-label {
+    margin: 0 !important;
+    padding: 0.2em 0.75em;
+    background-color: transparent;
+    color: var(--color-text-translucent);
+    border-width: 0 0 2px 0;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: var(--border-radius-small) var(--border-radius-small) 0 0;
+    transition:
+      background-color var(--transition-time),
+      color var(--transition-time);
+
+    &:hover {
+      background-color: var(--color-bg-hover);
+    }
+
+    &:active,
+    &:checked {
+      color: var(--color-text);
+    }
+  }
+
+  .tabs-input:checked + .tabs-label,
+  .tabs-input-0:checked + .tabs-input-1 + .tabs-label {
+    background-color: var(--color-bg-focus);
+    color: var(--color-text);
+    border-color: var(--color-text);
+  }
+
+  .tabs-container {
+    margin: 0;
+    padding: 0.75em;
+    background-color: var(--color-bg-section-light);
+    border: var(--border-classic);
+    border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
+    backdrop-filter: var(--blur-intensity);
+  }
+}
+
+/* Dropdown Tabs */
+.tabs-dropdown {
+  a {
+    color: var(--color-hyperlink);
+
+    &:hover {
+      color: var(--color-hyperlink);
+    }
+  }
+
+  a:visited {
+    color: var(--color-hyperlink-visited);
+
+    &:hover {
+      color: var(--color-hyperlink-visited);
+    }
+  }
+
+  li {
+    border-top: var(--border-classic);
+  }
+
+  &:hover .tabs-container {
+    .tabs-label {
+      border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
+    }
+  }
+
+  .tabs-container,
+  ul,
+  li {
+    background-color: transparent !important;
+
+    .tabs-label {
+      background-color: var(--color-primary);
+      color: var(--color-text-static);
+      border: 1px solid transparent;
+      border-radius: var(--border-radius-medium);
+      transition:
+        background-color var(--transition-time),
+        border-radius var(--transition-time);
+
+      &:hover {
+        background-color: var(--color-primary-light);
+      }
+
+      &:focus {
+        background-color: var(--color-green);
+      }
+    }
+
+    .tabs-content {
+      left: 0;
+      opacity: 0;
+      visibility: hidden;
+      background-color: var(--color-bg-transparent);
+      box-shadow: var(--box-shadow-small);
+      border: var(--border-classic);
+      border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
+      backdrop-filter: var(--blur-intensity);
+      transform: translateY(-24px) scale(0.95);
+      transition: all var(--transition-time);
+      z-index: 5;
+
+      > a {
+        border-top: var(--border-classic);
+
+        &:hover {
+          background-color: var(--color-bg-hover);
+        }
+      }
+
+      li {
+        &:hover {
+          background-color: var(--color-bg-hover);
+        }
+      }
+    }
+  }
+}
+
+.tabs-dropdown > * > .tabs-label:focus + .tabs-content,
+.tabs-dropdown:hover > * > .tabs-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}

@@ -6,9 +6,37 @@
   filter: var(--invert-button-icon);
 }
 
+.oo-ui-popupToolGroup.oo-ui-widget-enabled
+  > .oo-ui-popupToolGroup-handle
+  .oo-ui-iconElement-icon,
+.oo-ui-popupToolGroup.oo-ui-widget-enabled
+  > .oo-ui-popupToolGroup-handle
+  .oo-ui-indicatorElement-indicator,
+.oo-ui-tool.oo-ui-widget-enabled .oo-ui-iconElement-icon,
 .oo-ui-buttonElement-frameless.oo-ui-iconElement
   > .oo-ui-buttonElement-button
-  > .oo-ui-iconElement-icon {
+  > .oo-ui-iconElement-icon,
+.oo-ui-toolGroup.oo-ui-widget-disabled:not(.oo-ui-flaggedElement-primary)
+  .oo-ui-indicatorElement-indicator,
+.oo-ui-toolGroup.oo-ui-widget-disabled:not(.oo-ui-flaggedElement-primary)
+  .oo-ui-iconElement-icon,
+.oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools
+  .oo-ui-tool.oo-ui-widget-disabled
+  .oo-ui-iconElement-icon,
+.oo-ui-barToolGroup-tools.oo-ui-toolGroup-disabled-tools
+  .oo-ui-tool
+  .oo-ui-iconElement-icon,
+.oo-ui-listToolGroup-tools
+  .oo-ui-tool.oo-ui-widget-disabled
+  .oo-ui-indicatorElement-indicator,
+.oo-ui-listToolGroup-tools
+  .oo-ui-tool.oo-ui-widget-disabled
+  .oo-ui-iconElement-icon,
+.oo-ui-iconWidget,
+.skin-tgui
+  .oo-ui-fieldsetLayout.oo-ui-iconElement
+  > .oo-ui-fieldsetLayout-header
+  .oo-ui-iconElement-icon {
   filter: var(--invert-icon);
 }
 
@@ -56,4 +84,16 @@
 .oo-ui-popupWidget-head > .oo-ui-iconElement-icon,
 .oo-ui-decoratedOptionWidget .oo-ui-iconElement-icon {
   filter: var(--invert-icon);
+}
+
+.oo-ui-icon-puzzle,
+.mw-ui-icon-puzzle:before {
+  background-image: url(../skins.tgui.styles/images/puzzle.svg) !important;
+  filter: var(--invert-icon);
+}
+
+.oo-ui-icon-help,
+.mw-ui-icon-help:before {
+  background-image: url(../skins.tgui.styles/images/question.svg) !important;
+  transform: scale(0.75) !important;
 }

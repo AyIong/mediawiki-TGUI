@@ -1,0 +1,150 @@
+.wikiEditor-ui {
+  .wikiEditor-ui-view {
+    border: var(--border-classic);
+  }
+
+  .wikiEditor-ui-top {
+    border-bottom: var(--border-classic);
+
+    .wikiEditor-ui-toolbar {
+      box-shadow: none;
+      background-color: var(--color-bg-section-light-opaque);
+
+      .group,
+      .section-secondary .group {
+        border-color: var(--color-border);
+      }
+
+      .tabs span.tab {
+        line-height: normal;
+        margin: 0.33em 0.25em 0 0.25em;
+
+        a {
+          height: auto;
+          padding: 0.2em 0.5em 0.25em 1.5em;
+          line-height: var(--font-size-medium);
+          text-decoration: none !important;
+          background-color: var(--color-primary);
+          color: var(--color-text-static);
+          border-radius: var(--border-radius-small);
+          transition: background-color var(--transition-time);
+
+          &:hover {
+            background-color: var(--color-primary-light);
+          }
+
+          &:before {
+            content: "";
+            background: url(/skins/TGUI/resources/skins.tgui.styles/images/arrow-down.svg)
+              center no-repeat;
+            background-size: 14px;
+            width: 22px;
+            height: 22px;
+            transition: transform var(--transition-time);
+            filter: var(--invert-button-icon);
+          }
+
+          &.current {
+            background-color: var(--color-green);
+
+            &:hover {
+              background-color: var(--color-green-light);
+            }
+          }
+        }
+      }
+
+      .sections {
+        .section {
+          border-top: var(--border-classic);
+        }
+      }
+
+      .group {
+        .label {
+          color: var(--color-text-gray);
+        }
+
+        .tool-select {
+          .menu .options {
+            background-color: var(--color-bg-section-light-opaque);
+            border: var(--border-classic);
+            box-shadow: var(--box-shadow-small);
+
+            .option {
+              color: var(--color-text-darker);
+
+              &:hover {
+                background-color: var(--color-bg-hover);
+              }
+            }
+          }
+
+          .label {
+            padding: 0 2em 0 1.8em;
+            color: var(--color-text);
+
+            &:after {
+              background: url(/skins/TGUI/resources/skins.tgui.styles/images/arrow-down.svg)
+                center no-repeat;
+              right: 6px;
+              width: 16px;
+              height: 32px;
+              filter: var(--invert-icon);
+              transform: scale(0.9);
+            }
+          }
+        }
+      }
+
+      .booklet {
+        > .index {
+          height: 215px;
+
+          > .current {
+            background-color: var(--color-bg-focus) !important;
+            color: var(--color-text);
+          }
+
+          > div {
+            transition: background-color var(--transition-time);
+
+            &:hover {
+              background-color: var(--color-bg-hover);
+            }
+          }
+        }
+      }
+
+      .pages {
+        height: 215px;
+        border-left: var(--border-classic);
+      }
+
+      .page-characters div span {
+        background-color: transparent;
+        color: var(--color-text-darker);
+        border: var(--border-classic);
+        transition:
+          background-color var(--transition-time),
+          border var(--transition-time);
+
+        &:hover {
+          background-color: var(--color-bg-hover);
+          border: var(--border-classic-input-focus);
+        }
+      }
+
+      .page-table {
+        th {
+          color: var(--color-text-darker);
+        }
+
+        td {
+          color: var(--color-text);
+          border-top: var(--border-classic);
+        }
+      }
+    }
+  }
+}

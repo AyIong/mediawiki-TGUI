@@ -36,7 +36,6 @@
   }
 
   .oo-ui-menuSelectWidget {
-    margin: 0.5em 0;
     box-shadow: none;
     background-color: var(--color-bg-transparent);
     border: var(--border-classic);
@@ -44,11 +43,9 @@
   }
 
   .oo-ui-popupWidget {
-    backdrop-filter: var(--blur-intensity);
-
     .oo-ui-popupWidget-popup {
       padding: 0 0.5em 0.5em 0;
-      background-color: var(--color-bg-transparent);
+      background-color: var(--color-bg);
       border: var(--border-classic);
       box-shadow: var(--box-shadow-medium) !important;
       border-radius: var(--border-radius-medium);
@@ -56,6 +53,10 @@
       .oo-ui-optionWidget.oo-ui-widget-enabled {
         margin-right: 0.5em;
       }
+    }
+
+    .oo-ui-popupWidget-head {
+      color: var(--color-text);
     }
 
     .mw-rcfilters-ui-datePopupWidget {
