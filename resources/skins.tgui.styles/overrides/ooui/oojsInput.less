@@ -28,6 +28,8 @@
     > .oo-ui-buttonElement-button,
   .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive,
   .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive
+    > .oo-ui-buttonElement-button,
+  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive
     > .oo-ui-buttonElement-button {
     .disable-borders();
     background-color: var(--color-primary);
@@ -47,7 +49,11 @@
     .oo-ui-dropdownWidget-handle,
   .oo-ui-buttonElement-frameless.oo-ui-labelElement
     > .oo-ui-buttonElement-button,
-  .oo-ui-buttonElement-frameless.oo-ui-widget-enabled
+  .oo-ui-buttonElement-frameless.oo-ui-widget-enabled,
+  .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle,
+  > .oo-ui-buttonElement-button,
+  .oo-ui-processDialog-actions-safe
+    .oo-ui-widget-enabled.oo-ui-iconElement:not(.oo-ui-labelElement)
     > .oo-ui-buttonElement-button {
     .disable-borders();
     background-color: transparent;
@@ -62,10 +68,16 @@
   }
 
   .oo-ui-buttonElement-framed.oo-ui-widget-disabled
-    > .oo-ui-buttonElement-button {
+    > .oo-ui-buttonElement-button,
+  .oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools
+    .oo-ui-tool.oo-ui-widget-disabled.oo-ui-flaggedElement-primary
+    > .oo-ui-tool-link,
+  .oo-ui-barToolGroup-tools.oo-ui-toolGroup-disabled-tools
+    .oo-ui-tool.oo-ui-flaggedElement-primary
+    > .oo-ui-tool-link {
     .disable-borders();
-    background-color: var(--color-grey);
-    color: var(--color-text-static-transparent);
+    background-color: var(--color-grey) !important;
+    color: var(--color-text-static-transparent) !important;
   }
 
   .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive
@@ -217,10 +229,10 @@
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-  background-color: var(--color-primary);
-  color: var(--color-text-static);
+  background-color: var(--color-primary) !important;
+  color: var(--color-text-static) !important;
   border-radius: var(--border-radius-small) !important;
-  transition: background-color var(--transition-time);
+  transition: background-color var(--transition-time) !important;
 }
 
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:hover,
@@ -231,8 +243,8 @@
   .oo-ui-dropdownWidget-handle:hover,
 .oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open
   .oo-ui-dropdownWidget-handle:active {
-  background-color: var(--color-primary-light);
-  color: var(--color-text-static);
+  background-color: var(--color-primary-light) !important;
+  color: var(--color-text-static) !important;
 }
 
 .oo-ui-dropdownInputWidget.oo-ui-widget-disabled,
@@ -276,8 +288,8 @@
   background-color: var(--color-grey-light);
 }
 
-.oo-ui-indicator-down {
-  background-image: none;
+:not(.oo-ui-buttonElement-button, .oo-ui-dropdownWidget).oo-ui-indicator-down {
+  background-image: url(../skins.tgui.styles/images/arrow-down.svg);
 }
 
 .oo-ui-buttonElement-button .oo-ui-indicator-down {
@@ -312,12 +324,12 @@
 }
 
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-inputWidget-input {
-  background-color: var(--color-bg-focus);
-  -webkit-text-fill-color: var(--color-text-gray);
-  color: var(--color-text-gray);
-  text-shadow: none;
-  border-color: var(--color-border);
-  transition: background-color var(--transition-time);
+  background-color: var(--color-bg-focus) !important;
+  -webkit-text-fill-color: var(--color-text-gray) !important;
+  color: var(--color-text-gray) !important;
+  text-shadow: none !important;
+  border-color: var(--color-border) !important;
+  transition: background-color var(--transition-time) !important;
 }
 
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid
