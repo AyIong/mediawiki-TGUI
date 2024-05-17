@@ -286,6 +286,7 @@
       "+ext.tabs": "skinStyles/extensions/ext.tabs.less",
       "+ext.wikiEditor": "skinStyles/extensions/ext.wikiEditor.less",
       "+ext.visualEditor": "skinStyles/extensions/ext.wikiEditor.less",
+      "+mediasearch.styles": "skinStyles/extensions/mediasearch.styles.less",
       "+jquery.tablesorter.styles": "skinStyles/jQuery/jquery.tablesorter.styles.less",
       "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
       "+mediawiki.action.view.filepage": "skinStyles/mediawiki.action.view.filepage.less",
