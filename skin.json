@@ -262,6 +262,7 @@
         "resources/skins.tgui.js/dropdownMenus.js",
         "resources/skins.tgui.js/sidebarPersistence.js",
         "resources/skins.tgui.js/languageButton.js",
+        "resources/skins.tgui.js/toggleTheme.js",
         "resources/skins.tgui.js/searchLoader.js"
       ],
       "dependencies": [
