@@ -1,13 +1,236 @@
 @import "mediawiki.ui/variables.less";
 
-/* Media query breakpoints */
-@min-width-mobile: 320px;
-@max-width-mobile: 719px;
-@min-width-tablet: 720px;
-@max-width-tablet: 999px;
-@min-width-desktop: 1000px;
-@max-width-desktop: 1199px;
-@min-width-desktop-wide: 1200px;
+/**
+ * TGUI
+ *
+ * All LESS variables used in the skin must be defined here
+ * Use CSS variables from cssvariables.less is preferrable
+ * Only import this stylesheet when LESS variables is nessecary
+ *
+ * Related files:
+ * - TGUI CSS variables: skins.citizen.styles/css-variables.less
+ * - Override MW skin default variables: mediawiki.less/mediawiki.skin.variables.less
+ */
+
+/* Imports */
+/**
+ * MediaWiki mixins
+ * @see https://github.com/wikimedia/mediawiki/blob/master/resources/src/mediawiki.less/mediawiki.mixins.less
+ */
+@import "mediawiki.mixins";
+/**
+ * MediaWiki skin variables
+ * mediawiki.less/mediawiki.skin.variables.less
+ * @see https://github.com/wikimedia/mediawiki/blob/master/resources/src/mediawiki.less/mediawiki.skin.defaults.less
+ */
+@import "mediawiki.skin.variables.less";
+
+/* == Spacing == */
+@space-unit: 1rem;
+@line-height-xs: 1.25;
+@line-height-sm: 1.375;
+@line-height-md: 1.6;
+
+/* == Fonts == */
+// TGUI sans-serif fonts
+@font-family-base: Verdana, Geneva, sans-serif;
+// TGUI serif fonts
+@font-family-serif: Georgia, Verdana, serif;
+// TGUI monospace fonts
+@font-family-monospace: "Consolas", monospace;
+
+/**
+ * Syntax highlight colors
+ * Based on Material Theme Lighter
+ * https://material-theme.site
+ */
+@color-syntax-red: #e53935;
+@color-syntax-orange: #f76d47;
+@color-syntax-yellow: #e2931d;
+@color-syntax-green: #91b859;
+@color-syntax-cyan: #39adb5;
+@color-syntax-blue: #6182b8;
+@color-syntax-paleblue: #8796b0;
+@color-syntax-purple: #9c3eda;
+@color-syntax-brown: #916b53;
+@color-syntax-pink: #ff5370;
+@color-syntax-violet: #945eb8;
+@color-syntax-grey: #90a4ae;
+
+/**
+ * Syntax highlight colors
+ * Based on Material Theme Palenight
+ * https://material-theme.site
+ */
+@color-syntax-red-dark: #f07178;
+@color-syntax-orange-dark: #f78c6c;
+@color-syntax-yellow-dark: #ffcb6b;
+@color-syntax-green-dark: #c3e88d;
+@color-syntax-cyan-dark: #89ddff;
+@color-syntax-blue-dark: #82aaff;
+@color-syntax-paleblue-dark: #b2ccd6;
+@color-syntax-purple-dark: #c792ea;
+@color-syntax-brown-dark: #916b53;
+@color-syntax-pink-dark: #ff9cac;
+@color-syntax-violet-dark: #bb80b3;
+@color-syntax-grey-dark: #676e95;
+
+/**
+ * Based WikimediaUI (`wmui`) color palette
+ * See https://design.wikimedia.org/style-guide/visual-style_colors.html
+ * Don't use those variables directly, instead define your vars
+ * referring to them as applied further below.
+ */
+// @color-base0: #000;
+@color-base10: #202122;
+@color-base20: #54595d;
+@color-base30: #72777d;
+@color-base50: #a2a9b1;
+@color-base70: #c8ccd1;
+@color-base80: #eaecf0;
+@color-base90: #f8f9fa;
+@color-base100: #fff;
+
+@color-accent30: #2a4b8d;
+@color-accent50: #36c;
+@color-accent90: #eaf3ff;
+
+@color-red30: #b32424;
+@color-red50: #d33;
+@color-red90: #fee7e6;
+
+@color-yellow30: #ac6600;
+@color-yellow50: #fc3;
+@color-yellow90: #fef6e7;
+
+@color-green30: #14866d;
+@color-green50: #00af89;
+@color-green90: #d5fdf4;
+
+@color-accent50--lighten: #5b84d6;
+@color-red50--lighten: #e35b5b;
+
+@color-accent-30--darken: #26437f;
+
+@background-color-overlay: rgba(255, 255, 255, 0.95);
+@background-color-overlay--lighter: rgba(255, 255, 255, 0.6);
+
+@background-color-icon: rgba(0, 0, 0, 0.6);
+@background-color-icon--hover: rgba(0, 0, 0, 0.8);
+@background-color-icon--active: rgba(0, 0, 0, 1);
+@background-color-quiet: transparent;
+@background-color-quiet--hover: rgba(0, 0, 0, 0.07);
+@background-color-quiet--active: rgba(0, 0, 0, 0.09);
+
+@background-color-primary--hover: @color-accent90;
+@background-color-primary--active: rgba(41, 98, 204, 0.1);
+
+/* Foreground colors */
+/* color-base is deprecated */
+@color-base: @color-base20;
+@color-base--emphasized: @color-base10;
+@color-base--subtle: @color-base30;
+
+@color-primary: @color-accent50;
+@color-primary--hover: @color-accent50--lighten;
+@color-primary--active: @color-accent30;
+
+@color-destructive: @color-red50;
+@color-destructive--hover: @color-red50--lighten;
+@color-destructive--active: @color-red30;
+
+@color-warning: @color-yellow50;
+@color-success: @color-green50;
+
+@color-text-error: @color-red50;
+@color-text-warning: @color-yellow30;
+@color-text-success: @color-green30;
+
+@color-link: @color-accent50;
+@color-link--hover: @color-accent50--lighten;
+@color-link--active: @color-accent30;
+@color-link-new: @color-red50;
+@color-link-new--hover: @color-red50--lighten;
+@color-link-new--active: @color-red30;
+
+/* Opacity */
+@opacity-base--disabled: 0.3;
+@opacity-icon-base: 0.6;
+@opacity-icon-base--hover: 0.8;
+@opacity-icon-base--active: 1;
+
+/* Z-Index */
+// @z-index-base: 0; - WMUI
+@z-index-page-header: 11;
+@z-index-site-header: 91;
+@z-index-overlay: 101; // WMUI
+
+/* Border radius */
+@border-radius--small: var(--border-radius-small);
+@border-radius--medium: var(--border-radius-medium);
+@border-radius--large: var(--border-radius-large);
+@border-radius--pill: 9999px;
+@border-radius--circle: 100%;
+
+/* Transitions */
+@transition-hover: var(--transition-time) ease-in-out;
+@transition-menu: var(--transition-time) ease-in-out;
+
+@dark-background-color-icon: rgba(255, 255, 255, 0.6);
+@dark-background-color-icon--hover: rgba(255, 255, 255, 0.8);
+@dark-background-color-icon--active: rgba(255, 255, 255, 0.4);
+@dark-background-color-quiet--hover: rgba(255, 255, 255, 0.07);
+@dark-background-color-quiet--active: rgba(255, 255, 255, 0.03);
+
+@dark-background-color-primary--hover: @color-accent30;
+@dark-background-color-primary--active: @color-accent-30--darken;
+
+@dark-color-text-error: @color-red50--lighten;
+@dark-color-text-warning: @color-yellow50;
+@dark-color-text-success: @color-green50;
+
+@dark-color-link: @color-accent50--lighten;
+@dark-color-link--hover: @color-accent90;
+@dark-color-link--active: @color-accent30;
+@dark-color-link-new: @color-red50--lighten;
+@dark-color-link-new--hover: @color-red90;
+@dark-color-link-new--active: @color-red30;
+
+/* Opacity */
+// @dark-opacity-icon-base:			0.4;
+// @dark-opacity-icon-base--hover:		0.6;
+@dark-opacity-icon-base--active: 0.4;
+
+/*
+ * Framework
+ */
+@html-font-size: 100%;
+@icon-size: 1.125rem; // 18px, TODO: Replace this var
+@icon-box-size: @icon-size + @icon-margin * 2;
+@icon-margin: 3px;
+
+/**
+ * Legacy colors
+ *
+ * They are used by the SMW skinstyles and a few MW UI stuff.
+ * Those styles should be updated to the new standard.
+ * After that we can remove all theses LESS variables.
+ */
+@dark-bg-10: #1d2129;
+@dark-bg-20: #22262d;
+@dark-bg-30: #24272f;
+@dark-bg-40: #2b2f36;
+@dark-bg-50: #33363d;
+@dark-bg-60: #34383f;
+
+/**
+ * Used by Math and WikiHiero for recolor
+ * TODO: Figure out a way to do recolor with CSS variable
+ * e.g. If the primary color is changed on wiki, it won't be reflected here.
+ */
+@dark-color-base: hsl(215, 25%, 80%);
+@dark-color-base--emphasized: hsl(60, 80%, 95%);
+@dark-color-base--subtle: hsl(50, 25%, 65%);
 
 /* Sizing calculation primitives */
 @font-size-root: 100%;
@@ -16,12 +239,6 @@
 // Page content
 @outline-color-base--focus: var(--color-primary);
 
-// Typography in Wikimedia Design Style Guide:;
-// https://design.wikimedia.org/style-guide/visual-style_typography.html
-// Historic overview and background information of fonts in Wikimedia software:
-// https://www.mediawiki.org/wiki/Wikimedia_User_Interface/Use_cases/Font_family_stack
-// Source of this font stack definition in WikimediaUI Base:
-// https://phabricator.wikimedia.org/source/wikimedia-ui-base/browse/master/wikimedia-ui-base.less$202
 @font-family-sans: sans-serif;
 @font-family-sans--fallback: sans-serif;
 
@@ -75,10 +292,6 @@
 // Sidebar
 @width-sidebar-px: 220px;
 @width-sidebar-px-wide: 245px;
-@margin-start-sidebar-content: unit(
-  12px / @font-size-browser,
-  em
-); // 0.75em @ 16
 
 // Language button
 @height-button-lang: unit(32 / @font-size-browser, em);
