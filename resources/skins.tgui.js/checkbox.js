@@ -10,9 +10,7 @@
 /** @interface MwApiConstructor */
 /** @interface CheckboxHack */
 
-var checkboxHack = /** @type {CheckboxHack} */ require(
-  /** @type {string} */ ("mediawiki.page.ready"),
-).checkboxHack;
+var checkboxHack = /** @type {CheckboxHack} */ require(/** @type {string} */ ("mediawiki.page.ready")).checkboxHack;
 
 /**
  * Revise the button's `aria-expanded` state to match the checked state.

@@ -56,9 +56,7 @@ function addNamespacesGadgetSupport() {
       // eslint-disable-next-line no-jquery/no-global-selector
       $("#p-associated-pages ul").append(node);
       // @ts-ignore
-      mw.log.warn(
-        "Please update call to mw.util.addPortletLink with ID p-namespaces. Use p-associatedPages instead."
-      );
+      mw.log.warn("Please update call to mw.util.addPortletLink with ID p-namespaces. Use p-associatedPages instead.");
       // in case it was empty before:
       mw.util.showPortlet("p-associated-pages");
     }
@@ -104,10 +102,7 @@ function init(window) {
       window.performance.timing &&
       window.performance.timing.navigationStart
     ) {
-      mw.track(
-        "timing.TGUI.ready",
-        now - window.performance.timing.navigationStart
-      ); // milliseconds
+      mw.track("timing.TGUI.ready", now - window.performance.timing.navigationStart); // milliseconds
     }
   });
 }
@@ -136,14 +131,11 @@ function initAfterEs6Module() {
       // Loading of the 'skins.tgui.es6' has failed (e.g. this will fail in
       // browsers that don't support ES6) so only initialize this module.
       main(window);
-    }
+    },
   );
 }
 
-if (
-  document.readyState === "interactive" ||
-  document.readyState === "complete"
-) {
+if (document.readyState === "interactive" || document.readyState === "complete") {
   initAfterEs6Module();
 } else {
   // This is needed when document.readyState === 'loading'.

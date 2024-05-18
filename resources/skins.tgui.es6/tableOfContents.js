@@ -11,18 +11,12 @@ const TOC_ID = "mw-panel-toc";
 /**
  * TableOfContents Mustache templates
  */
-const templateBody = require(
-  /** @type {string} */ ("./templates/TableOfContents.mustache")
-);
-const templateTocLine = require(
-  /** @type {string} */ ("./templates/TableOfContents__line.mustache")
-);
+const templateBody = require(/** @type {string} */ ("./templates/TableOfContents.mustache"));
+const templateTocLine = require(/** @type {string} */ ("./templates/TableOfContents__line.mustache"));
 /**
  * TableOfContents Config object for filling mustache templates
  */
-const tableOfContentsConfig = require(
-  /** @type {string} */ ("./tableOfContentsConfig.json")
-);
+const tableOfContentsConfig = require(/** @type {string} */ ("./tableOfContentsConfig.json"));
 
 /**
  * @callback onHeadingClick
@@ -126,20 +120,13 @@ module.exports = function tableOfContents(props) {
    */
   function activateSection(id) {
     const selectedTocSection = document.getElementById(id);
-    const { parent: previousActiveTopId, child: previousActiveSubSectionId } =
-      getActiveSectionIds();
+    const { parent: previousActiveTopId, child: previousActiveSubSectionId } = getActiveSectionIds();
 
-    if (
-      !selectedTocSection ||
-      previousActiveTopId === id ||
-      previousActiveSubSectionId === id
-    ) {
+    if (!selectedTocSection || previousActiveTopId === id || previousActiveSubSectionId === id) {
       return;
     }
 
-    const topSection = /** @type {HTMLElement} */ (
-      selectedTocSection.closest(`.${PARENT_SECTION_CLASS}`)
-    );
+    const topSection = /** @type {HTMLElement} */ (selectedTocSection.closest(`.${PARENT_SECTION_CLASS}`));
 
     if (selectedTocSection === topSection) {
       activeTopSection = topSection;
@@ -192,8 +179,7 @@ module.exports = function tableOfContents(props) {
       }
     }
 
-    const isContainerScrollable =
-      props.container.scrollHeight > props.container.clientHeight;
+    const isContainerScrollable = props.container.scrollHeight > props.container.clientHeight;
     if (link && isContainerScrollable) {
       const containerRect = props.container.getBoundingClientRect();
       const linkRect = link.getBoundingClientRect();
@@ -204,8 +190,7 @@ module.exports = function tableOfContents(props) {
       const linkHiddenTopValue = containerRect.top - linkRect.top;
       // Because the bottom of the TOC can extend below the viewport,
       // min() is used to find the value where the active section first becomes hidden
-      const linkHiddenBottomValue =
-        linkRect.bottom - Math.min(containerRect.bottom, window.innerHeight);
+      const linkHiddenBottomValue = linkRect.bottom - Math.min(containerRect.bottom, window.innerHeight);
 
       // Respect 'prefers-reduced-motion' user preference
       const scrollBehavior = prefersReducedMotion() ? "smooth" : undefined;
@@ -240,16 +225,10 @@ module.exports = function tableOfContents(props) {
       return;
     }
 
-    const parentSection = /** @type {HTMLElement} */ (
-      tocSection.closest(`.${PARENT_SECTION_CLASS}`)
-    );
+    const parentSection = /** @type {HTMLElement} */ (tocSection.closest(`.${PARENT_SECTION_CLASS}`));
     const toggle = tocSection.querySelector(`.${TOGGLE_CLASS}`);
 
-    if (
-      parentSection &&
-      toggle &&
-      expandedSections.indexOf(parentSection) < 0
-    ) {
+    if (parentSection && toggle && expandedSections.indexOf(parentSection) < 0) {
       toggle.setAttribute("aria-expanded", "true");
       parentSection.classList.add(EXPANDED_SECTION_CLASS);
       expandedSections.push(parentSection);
@@ -270,8 +249,7 @@ module.exports = function tableOfContents(props) {
    * @param {string} id
    */
   function changeActiveSection(id) {
-    const { parent: activeParentId, child: activeChildId } =
-      getActiveSectionIds();
+    const { parent: activeParentId, child: activeChildId } = getActiveSectionIds();
 
     if (id === activeParentId && id === activeChildId) {
       return;
@@ -301,9 +279,7 @@ module.exports = function tableOfContents(props) {
     const sectionIdsToCollapse = selectedIds || getExpandedSectionIds();
     expandedSections = expandedSections.filter(function (section) {
       const isSelected = sectionIdsToCollapse.indexOf(section.id) > -1;
-      const toggle = isSelected
-        ? section.getElementsByClassName(TOGGLE_CLASS)
-        : undefined;
+      const toggle = isSelected ? section.getElementsByClassName(TOGGLE_CLASS) : undefined;
       if (isSelected && toggle && toggle.length > 0) {
         toggle[0].setAttribute("aria-expanded", "false");
         section.classList.remove(EXPANDED_SECTION_CLASS);
@@ -332,9 +308,7 @@ module.exports = function tableOfContents(props) {
    * Set aria-expanded attribute for all toggle buttons.
    */
   function initializeExpandedStatus() {
-    const parentSections = props.container.querySelectorAll(
-      `.${PARENT_SECTION_CLASS}`
-    );
+    const parentSections = props.container.querySelectorAll(`.${PARENT_SECTION_CLASS}`);
     parentSections.forEach((section) => {
       const expanded = section.classList.contains(EXPANDED_SECTION_CLASS);
       const toggle = section.querySelector(`.${TOGGLE_CLASS}`);
@@ -348,9 +322,7 @@ module.exports = function tableOfContents(props) {
    * Bind event listener for clicking on show/hide Table of Contents links.
    */
   function bindCollapseToggleListeners() {
-    const showHideTocElement = document.querySelectorAll(
-      "#sidebar-toc-label button"
-    );
+    const showHideTocElement = document.querySelectorAll("#sidebar-toc-label button");
     showHideTocElement.forEach(function (btn) {
       btn.addEventListener("click", () => {
         document.body.classList.toggle(TOC_COLLAPSED_CLASS);
@@ -368,9 +340,7 @@ module.exports = function tableOfContents(props) {
         return;
       }
 
-      const tocSection = /** @type {HTMLElement | null} */ (
-        e.target.closest(`.${SECTION_CLASS}`)
-      );
+      const tocSection = /** @type {HTMLElement | null} */ (e.target.closest(`.${SECTION_CLASS}`));
 
       if (tocSection && tocSection.id) {
         // In case section link contains HTML,
@@ -392,9 +362,7 @@ module.exports = function tableOfContents(props) {
    */
   function initialize() {
     // Sync component state to the default rendered state of the table of contents.
-    expandedSections = Array.from(
-      props.container.querySelectorAll(`.${EXPANDED_SECTION_CLASS}`)
-    );
+    expandedSections = Array.from(props.container.querySelectorAll(`.${EXPANDED_SECTION_CLASS}`));
 
     // Initialize toggle buttons aria-expanded attribute.
     initializeExpandedStatus();
@@ -508,16 +476,11 @@ module.exports = function tableOfContents(props) {
     return {
       "number-section-count": sections.length,
       "msg-tgui-toc-heading": mw.message("tgui-toc-heading").text(),
-      "msg-tgui-toc-toggle-position-sidebar": mw
-        .message("tgui-toc-toggle-position-sidebar")
-        .text(),
+      "msg-tgui-toc-toggle-position-sidebar": mw.message("tgui-toc-toggle-position-sidebar").text(),
       "msg-tgui-toc-beginning": mw.message("tgui-toc-beginning").text(),
       "array-sections": getTableOfContentsSectionsData(sections, 1),
-      "tgui-is-collapse-sections-enabled":
-        sections.length >=
-        tableOfContentsConfig.TGUITableOfContentsCollapseAtCount,
-      "is-tgui-toc-beginning-enabled":
-        tableOfContentsConfig.TGUITableOfContentsBeginning,
+      "tgui-is-collapse-sections-enabled": sections.length >= tableOfContentsConfig.TGUITableOfContentsCollapseAtCount,
+      "is-tgui-toc-beginning-enabled": tableOfContentsConfig.TGUITableOfContentsBeginning,
     };
   }
 
@@ -536,10 +499,7 @@ module.exports = function tableOfContents(props) {
     for (let i = 0; i < sections.length; i++) {
       const section = sections[i];
       if (section.toclevel === toclevel) {
-        const childSections = getTableOfContentsSectionsData(
-          sections.slice(i + 1),
-          toclevel + 1
-        );
+        const childSections = getTableOfContentsSectionsData(sections.slice(i + 1), toclevel + 1);
         section["array-sections"] = childSections;
         section["is-top-level-section"] = toclevel === 1;
         section["is-parent-section"] = Object.keys(childSections).length > 0;

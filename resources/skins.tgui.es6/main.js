@@ -23,9 +23,7 @@ const getHeadingIntersectionHandler = (changeActiveSection) => {
    * @param {HTMLElement} section
    */
   return (section) => {
-    const headline = section.classList.contains("mw-body-content")
-      ? section
-      : section.querySelector(HEADLINE_SELECTOR);
+    const headline = section.classList.contains("mw-body-content") ? section : section.querySelector(HEADLINE_SELECTOR);
     if (headline) {
       changeActiveSection(`${TOC_SECTION_ID_PREFIX}${headline.id}`);
     }
@@ -51,9 +49,7 @@ const updateTocStatus = () => {
 const main = () => {
   // Initialize the search toggle for the main header only. The sticky header
   // toggle is initialized after Codex search loads.
-  const searchToggleElement = document.querySelector(
-    ".mw-header .search-toggle"
-  );
+  const searchToggleElement = document.querySelector(".mw-header .search-toggle");
   if (searchToggleElement) {
     searchToggle(searchToggleElement);
   }
@@ -68,14 +64,7 @@ const main = () => {
     tocElementLegacy.parentNode.removeChild(tocElementLegacy);
   }
 
-  if (
-    !(
-      tocElement &&
-      bodyContent &&
-      window.IntersectionObserver &&
-      window.requestAnimationFrame
-    )
-  ) {
+  if (!(tocElement && bodyContent && window.IntersectionObserver && window.requestAnimationFrame)) {
     return;
   }
 
@@ -92,16 +81,10 @@ const main = () => {
     },
     onToggleCollapse: updateTocStatus,
   });
-  const headingSelector = ["h1", "h2", "h3", "h4", "h5", "h6"]
-    .map((tag) => `.mw-parser-output > ${tag}`)
-    .join(",");
+  const headingSelector = ["h1", "h2", "h3", "h4", "h5", "h6"].map((tag) => `.mw-parser-output > ${tag}`).join(",");
   const sectionObserver = initSectionObserver({
-    elements: bodyContent.querySelectorAll(
-      `${headingSelector}, .mw-body-content`
-    ),
-    onIntersection: getHeadingIntersectionHandler(
-      tableOfContents.changeActiveSection
-    ),
+    elements: bodyContent.querySelectorAll(`${headingSelector}, .mw-body-content`),
+    onIntersection: getHeadingIntersectionHandler(tableOfContents.changeActiveSection),
   });
 
   const checkWindowSize = () => {

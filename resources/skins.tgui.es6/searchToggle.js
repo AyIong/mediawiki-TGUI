@@ -65,9 +65,7 @@ function bindToggleClickHandler(searchBox, header, searchToggle) {
     setTimeout(() => {
       bindSearchBoxHandler(searchBox, header);
 
-      const searchInput = /** @type {HTMLInputElement|null} */ (
-        searchBox.querySelector('input[type="search"]')
-      );
+      const searchInput = /** @type {HTMLInputElement|null} */ (searchBox.querySelector('input[type="search"]'));
 
       if (searchInput) {
         const beforeScrollX = window.scrollX;
@@ -107,17 +105,13 @@ function bindToggleClickHandler(searchBox, header, searchToggle) {
  * @param {HTMLElement|Element} searchToggle
  */
 module.exports = function initSearchToggle(searchToggle) {
-  const header = /** @type {HTMLElement|null} */ (
-    searchToggle.closest(HEADER_SELECTOR)
-  );
+  const header = /** @type {HTMLElement|null} */ (searchToggle.closest(HEADER_SELECTOR));
 
   if (!header) {
     return;
   }
 
-  const searchBox = /** @type {HTMLElement|null} */ (
-    header.querySelector(SEARCH_BOX_SELECTOR)
-  );
+  const searchBox = /** @type {HTMLElement|null} */ (header.querySelector(SEARCH_BOX_SELECTOR));
 
   if (!searchBox) {
     return;

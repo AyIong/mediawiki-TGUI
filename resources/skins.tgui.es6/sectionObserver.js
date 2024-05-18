@@ -59,16 +59,14 @@ module.exports = function sectionObserver(props) {
       const top = entry.boundingClientRect.top - topMargin;
       if (
         top > 0 &&
-        (closestPositiveEntry === undefined ||
-          top < closestPositiveEntry.boundingClientRect.top - topMargin)
+        (closestPositiveEntry === undefined || top < closestPositiveEntry.boundingClientRect.top - topMargin)
       ) {
         closestPositiveEntry = entry;
       }
 
       if (
         top <= 0 &&
-        (closestNegativeEntry === undefined ||
-          top > closestNegativeEntry.boundingClientRect.top - topMargin)
+        (closestNegativeEntry === undefined || top > closestNegativeEntry.boundingClientRect.top - topMargin)
       ) {
         closestNegativeEntry = entry;
       }

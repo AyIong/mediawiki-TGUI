@@ -31,6 +31,4 @@ interface CollapsibleTabsStatic {
   calculateTabDistance(): number;
 }
 
-interface CollapsibleTabs
-  extends CollapsibleTabsStatic,
-    CollapsibleTabsOptions {}
+interface CollapsibleTabs extends CollapsibleTabsStatic, CollapsibleTabsOptions {}

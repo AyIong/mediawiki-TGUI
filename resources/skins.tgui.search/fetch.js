@@ -26,9 +26,7 @@ function fetchJson(resource, init) {
   // https://caniuse.com/abortcontroller
   // so replacing it with no-op if it doesn't exist.
   /* eslint-disable compat/compat */
-  const controller = window.AbortController
-    ? new AbortController()
-    : nullAbortController;
+  const controller = window.AbortController ? new AbortController() : nullAbortController;
   /* eslint-enable compat/compat */
 
   const getJson = fetch(
@@ -38,9 +36,7 @@ function fetchJson(resource, init) {
     }),
   ).then((response) => {
     if (!response.ok) {
-      return Promise.reject(
-        "Network request failed with HTTP code " + response.status,
-      );
+      return Promise.reject("Network request failed with HTTP code " + response.status);
     }
     return response.json();
   });

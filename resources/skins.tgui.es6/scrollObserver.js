@@ -46,10 +46,7 @@ function getScrollVariables(hook) {
  */
 function fireScrollHook(direction, hook) {
   const scrollVariables = getScrollVariables(hook);
-  if (
-    Object.keys(scrollVariables).length === 0 &&
-    scrollVariables.constructor === Object
-  ) {
+  if (Object.keys(scrollVariables).length === 0 && scrollVariables.constructor === Object) {
     return;
   }
   if (direction === "down") {

@@ -91,22 +91,15 @@ function restSearchClient(config) {
        */
       fetchByTitle: (q, domain, limit = 10, showDescription = true) => {
         const params = { q, limit };
-        const url =
-          "//" +
-          domain +
-          config.get("wgScriptPath") +
-          "/rest.php/v1/search/title?" +
-          $.param(params);
+        const url = "//" + domain + config.get("wgScriptPath") + "/rest.php/v1/search/title?" + $.param(params);
         const result = fetchJson(url, {
           headers: {
             accept: "application/json",
           },
         });
-        const searchResponsePromise = result.fetch.then(
-          (/** @type {RestResponse} */ res) => {
-            return adaptApiResponse(config, q, res, showDescription);
-          },
-        );
+        const searchResponsePromise = result.fetch.then((/** @type {RestResponse} */ res) => {
+          return adaptApiResponse(config, q, res, showDescription);
+        });
         return {
           abort: result.abort,
           fetch: searchResponsePromise,

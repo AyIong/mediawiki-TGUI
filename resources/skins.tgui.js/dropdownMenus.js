@@ -1,8 +1,6 @@
 /** @interface CheckboxHack */
 
-var checkboxHack = /** @type {CheckboxHack} */ require(
-    /** @type {string} */ ("mediawiki.page.ready")
-  ).checkboxHack,
+var checkboxHack = /** @type {CheckboxHack} */ require(/** @type {string} */ ("mediawiki.page.ready")).checkboxHack,
   CHECKBOX_HACK_CONTAINER_SELECTOR = ".tgui-menu-dropdown",
   CHECKBOX_HACK_CHECKBOX_SELECTOR = ".tgui-menu-checkbox",
   CHECKBOX_HACK_BUTTON_SELECTOR = ".tgui-menu-heading",
@@ -106,14 +104,11 @@ function addPortletLinkHandler(item, data) {
 }
 
 // Enhance previously added items.
-Array.prototype.forEach.call(
-  document.querySelectorAll(".mw-list-item-js"),
-  function (item) {
-    addPortletLinkHandler(item, {
-      id: item.getAttribute("id"),
-    });
-  }
-);
+Array.prototype.forEach.call(document.querySelectorAll(".mw-list-item-js"), function (item) {
+  addPortletLinkHandler(item, {
+    id: item.getAttribute("id"),
+  });
+});
 
 mw.hook("util.addPortletLink").add(addPortletLinkHandler);
 
@@ -135,9 +130,7 @@ function addPurgeButton() {
 
   purgeListItem.appendChild(purgeButton);
 
-  var parentElement = document
-    .getElementById("p-cactions")
-    .getElementsByTagName("ul")[0];
+  var parentElement = document.getElementById("p-cactions").getElementsByTagName("ul")[0];
   parentElement.insertBefore(purgeListItem, parentElement.firstChild);
 }
 

@@ -51,11 +51,7 @@ function urlGenerator(config) {
           params.fulltext = "1";
         }
 
-        return (
-          articlePath +
-          "?" +
-          $.param($.extend({}, params, { search: suggestion }))
-        );
+        return articlePath + "?" + $.param($.extend({}, params, { search: suggestion }));
       },
     }
   );
