@@ -1,20 +1,54 @@
 a {
   text-decoration: none;
   color: var(--color-hyperlink);
-  background: none;
+  text-shadow: var(--hyperlink-shadow);
+  transition:
+    color var(--transition-time),
+    text-shadow var(--transition-time);
+
+  &:hover,
+  &:focus {
+    color: var(--color-hyperlink-hover);
+    text-shadow: var(--hyperlink-shadow-hover);
+  }
+
+  &:visited {
+    color: var(--color-hyperlink-visited);
+
+    &:hover {
+      color: var(--color-hyperlink-visited-hover);
+    }
+  }
+}
+
+a.new {
+  color: var(--color-hyperlink-new);
+  text-shadow: var(--hyperlink-shadow-new);
+
+  &:hover,
+  &:focus {
+    color: var(--color-hyperlink-new-hover);
+    text-shadow: var(--hyperlink-shadow-new-hover);
+  }
+}
+
+a.new:visited {
+  color: var(--color-hyperlink-new-visited);
+  text-shadow: var(--hyperlink-shadow-new);
+
+  &:hover,
+  &:focus {
+    color: var(--color-hyperlink-new-visited-hover);
+    text-shadow: var(--hyperlink-shadow-new-hover);
+  }
 }
 
 a:not([href]) {
   cursor: pointer;
 }
 
-a:visited {
-  color: var(--color-hyperlink-visited);
-}
-
-a:hover,
-a:focus {
-  text-decoration: underline;
+a * {
+  text-shadow: none !important;
 }
 
 a:lang(ar),
@@ -23,10 +57,6 @@ a:lang(mzn),
 a:lang(ps),
 a:lang(ur) {
   text-decoration: none;
-}
-
-a.new {
-  color: var(--color-hyperlink-new);
 }
 
 /* self links */
@@ -43,10 +73,6 @@ a.mw-selflink:hover {
 
 a.mw-selflink:visited {
   color: inherit;
-}
-
-a.new:visited {
-  color: var(--color-hyperlink-new-visited);
 }
 
 /* Interwiki & External links */
