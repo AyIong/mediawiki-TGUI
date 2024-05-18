@@ -1,7 +1,7 @@
-@import "../variables.less";
-@import "../mixins.less";
-@import "mediawiki.mixins.less";
-@import "mediawiki.ui/variables.less";
+@import '../variables.less';
+@import '../mixins.less';
+@import 'mediawiki.mixins.less';
+@import 'mediawiki.ui/variables.less';
 
 @font-size-user-links: unit(14 / @font-size-browser, em); // Equals `0.875em`.
 // Applies to links in the overflow menu that do not have the .mw-ui-button class.
@@ -75,11 +75,11 @@
 // Anon editor notice i.e. "Pages for logged out editors".
 .tgui-user-menu-anon-editor {
   a:before {
-    content: "@{msg-parentheses-start}";
+    content: '@{msg-parentheses-start}';
   }
 
   a:after {
-    content: "@{msg-parentheses-end}";
+    content: '@{msg-parentheses-end}';
   }
 }
 
