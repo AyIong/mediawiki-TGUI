@@ -1,4 +1,4 @@
-@import "mediawiki.ui/variables.less";
+@import 'mediawiki.ui/variables.less';
 
 /**
  * TGUI
@@ -17,13 +17,13 @@
  * MediaWiki mixins
  * @see https://github.com/wikimedia/mediawiki/blob/master/resources/src/mediawiki.less/mediawiki.mixins.less
  */
-@import "mediawiki.mixins";
+@import 'mediawiki.mixins';
 /**
  * MediaWiki skin variables
  * mediawiki.less/mediawiki.skin.variables.less
  * @see https://github.com/wikimedia/mediawiki/blob/master/resources/src/mediawiki.less/mediawiki.skin.defaults.less
  */
-@import "mediawiki.skin.variables.less";
+@import 'mediawiki.skin.variables.less';
 
 /* == Spacing == */
 @space-unit: 1rem;
@@ -37,7 +37,7 @@
 // TGUI serif fonts
 @font-family-serif: Georgia, Verdana, serif;
 // TGUI monospace fonts
-@font-family-monospace: "Consolas", monospace;
+@font-family-monospace: 'Consolas', monospace;
 
 /**
  * Syntax highlight colors
@@ -243,7 +243,7 @@
 @font-family-sans--fallback: sans-serif;
 
 @font-size-base: unit(14 / @font-size-browser, em); // Equals `0.875em`.
-@font-size-base--trident-hack: calc(1em ~"*" unit(@font-size-base));
+@font-size-base--trident-hack: calc(1em ~'*' unit(@font-size-base));
 @font-size-reset: @font-size-root;
 @font-size-heading-1: 1.8em;
 @font-size-heading-2: 1.5em;
@@ -286,8 +286,8 @@
 @font-size-tabs: unit(13 / @font-size-browser, em); // Equals `0.8125em`.
 
 // Main menu
-@selector-main-menu-open: ~"#mw-sidebar-checkbox:checked";
-@selector-main-menu-closed: ~"#mw-sidebar-checkbox:not(:checked)";
+@selector-main-menu-open: ~'#mw-sidebar-checkbox:checked';
+@selector-main-menu-closed: ~'#mw-sidebar-checkbox:not(:checked)';
 
 // Sidebar
 @width-sidebar-px: 220px;

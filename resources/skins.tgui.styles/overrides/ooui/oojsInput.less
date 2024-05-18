@@ -152,7 +152,7 @@
 }
 
 /* Radio */
-.oo-ui-radioInputWidget [type="radio"] + span {
+.oo-ui-radioInputWidget [type='radio'] + span {
   outline: none !important;
   box-shadow: none !important;
   background-color: var(--color-bg-section-light);
@@ -160,29 +160,29 @@
   filter: none !important;
 }
 
-.oo-ui-radioInputWidget.oo-ui-widget-enabled [type="radio"] + span {
+.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio'] + span {
   transition:
     background-color var(--transition-time),
     border var(--transition-time);
 }
 
-.oo-ui-radioInputWidget.oo-ui-widget-enabled [type="radio"]:checked + span {
+.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked + span {
   border-color: var(--color-blue);
 }
 
-.oo-ui-radioInputWidget [type="radio"]:checked + span,
-.oo-ui-radioInputWidget [type="radio"]:checked:hover + span,
-.oo-ui-radioInputWidget [type="radio"]:checked:focus:hover + span {
+.oo-ui-radioInputWidget [type='radio']:checked + span,
+.oo-ui-radioInputWidget [type='radio']:checked:hover + span,
+.oo-ui-radioInputWidget [type='radio']:checked:focus:hover + span {
   border-width: 6px;
 }
 
-.oo-ui-radioInputWidget [type="radio"] + span:before {
+.oo-ui-radioInputWidget [type='radio'] + span:before {
   border: unset;
 }
 
 /* Checkbox */
 .skin-tgui {
-  .oo-ui-checkboxInputWidget [type="checkbox"] + span {
+  .oo-ui-checkboxInputWidget [type='checkbox'] + span {
     outline: 0 !important;
     box-shadow: none !important;
     background-color: var(--color-bg-section-light);
@@ -191,30 +191,30 @@
     filter: none !important;
   }
 
-  .oo-ui-checkboxInputWidget [type="checkbox"]:disabled + span {
+  .oo-ui-checkboxInputWidget [type='checkbox']:disabled + span {
     background-color: var(--color-grey);
     border-color: var(--color-border);
   }
 
-  .oo-ui-checkboxInputWidget [type="checkbox"] + span:hover {
+  .oo-ui-checkboxInputWidget [type='checkbox'] + span:hover {
     border-color: var(--color-border-input);
   }
 
   .oo-ui-checkboxInputWidget.oo-ui-widget-enabled
-    [type="checkbox"]:checked
+    [type='checkbox']:checked
     + span,
   .oo-ui-checkboxInputWidget.oo-ui-widget-enabled
-    [type="checkbox"]:indeterminate
+    [type='checkbox']:indeterminate
     + span {
     background-color: var(--color-blue);
     border-color: var(--color-blue);
   }
 
   .oo-ui-checkboxInputWidget.oo-ui-widget-enabled
-    [type="checkbox"]:checked
+    [type='checkbox']:checked
     + span:hover,
   .oo-ui-checkboxInputWidget.oo-ui-widget-enabled
-    [type="checkbox"]:indeterminate
+    [type='checkbox']:indeterminate
     + span:hover {
     background-color: var(--color-border-input);
     border-color: var(--color-border-input);
