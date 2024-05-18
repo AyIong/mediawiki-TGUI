@@ -19,37 +19,51 @@
 }
 
 /* Tab Selector */
-.oo-ui-panelLayout .oo-ui-tabSelectWidget-framed {
-  background-color: transparent;
-  border: 0;
+#preferences {
+  .oo-ui-panelLayout-padded {
+    padding: 1em 1em;
+    background-color: var(--color-bg-section-light);
+    border: var(--border-classic);
+    border-radius: var(--border-radius-medium);
 
-  .oo-ui-tabOptionWidget.oo-ui-widget-enabled {
-    color: var(--color-text-translucent);
-    margin: 0;
-    padding: 0;
-    border: 0;
-    border-bottom: 2px solid transparent;
-    font-weight: normal;
-    border-top-left-radius: var(--border-radius-small);
-    border-top-right-radius: var(--border-radius-small);
-    transition: all var(--transition-time);
-
-    .oo-ui-labelElement-label {
-      padding: 0.33em 1em;
-      border: 0;
-      transition: none;
-    }
-
-    &:hover {
-      background-color: var(--color-bg-hover);
-      color: var(--color-text-translucent);
+    &:not(:first-child) {
+      margin-top: 1.5em;
     }
   }
 
-  .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
-    background-color: var(--color-bg-focus) !important;
-    color: var(--color-text) !important;
-    border-bottom: 2px solid var(--color-text) !important;
+  .oo-ui-panelLayout .oo-ui-tabSelectWidget-framed {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+
+    .oo-ui-tabOptionWidget.oo-ui-widget-enabled {
+      color: var(--color-text-translucent);
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      font-weight: normal;
+      border-top-left-radius: var(--border-radius-small);
+      border-top-right-radius: var(--border-radius-small);
+      transition: all var(--transition-time);
+
+      .oo-ui-labelElement-label {
+        padding: 0.33em 1em;
+        border: 0;
+        transition: none;
+      }
+
+      &:hover {
+        background-color: var(--color-bg-hover);
+        color: var(--color-text-translucent);
+      }
+    }
+
+    .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
+      background-color: var(--color-bg-focus) !important;
+      color: var(--color-text) !important;
+      border-bottom: 2px solid var(--color-text) !important;
+    }
   }
 }
 
