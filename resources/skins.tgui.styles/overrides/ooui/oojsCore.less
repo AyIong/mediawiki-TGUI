@@ -27,7 +27,7 @@
       transition: opacity ease-out var(--transition-time);
 
       .oo-ui-window-frame {
-        background-color: var(--color-bg-transparent) !important;
+        background-color: var(--color-bg-translucent) !important;
         border: var(--border-classic) !important;
         border-radius: var(--border-radius-medium) !important;
         box-shadow: var(--box-shadow-big) !important;
@@ -84,10 +84,7 @@
     }
   }
 
-  .oo-ui-listToolGroup-tools
-    .oo-ui-tool-active.oo-ui-widget-enabled
-    .oo-ui-tool-link
-    .oo-ui-tool-title {
+  .oo-ui-listToolGroup-tools .oo-ui-tool-active.oo-ui-widget-enabled .oo-ui-tool-link .oo-ui-tool-title {
     color: var(--color-text) !important;
   }
 
@@ -130,8 +127,7 @@
   color: var(--color-text) !important;
 }
 
-.oo-ui-textInputWidget.oo-ui-widget-enabled
-  .oo-ui-inputWidget-input[readonly]:not(.oo-ui-pendingElement-pending) {
+.oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input[readonly]:not(.oo-ui-pendingElement-pending) {
   background-color: transparent !important;
 }
 

@@ -15,25 +15,19 @@
 }
 
 .oo-ui-buttonElement.oo-ui-labelElement > input.oo-ui-buttonElement-button,
-.oo-ui-buttonElement.oo-ui-labelElement
-  > .oo-ui-buttonElement-button
-  > .oo-ui-labelElement-label {
+.oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
   vertical-align: sub;
 }
 
 .skin-tgui {
-  .oo-ui-buttonElement-framed.oo-ui-widget-enabled
-    > .oo-ui-buttonElement-button,
-  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-pressed
-    > .oo-ui-buttonElement-button,
+  .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button,
+  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button,
   .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive,
-  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive
-    > .oo-ui-buttonElement-button,
-  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive
-    > .oo-ui-buttonElement-button {
+  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button,
+  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
     .disable-borders();
     background-color: var(--color-primary);
-    color: var(--color-text-static);
+    color: var(--color-white);
     border-radius: var(--border-radius-small);
     transition: background-color var(--transition-time) !important;
 
@@ -41,20 +35,16 @@
     &:active,
     &:focus {
       background-color: var(--color-primary-light);
-      color: var(--color-text-static);
+      color: var(--color-white);
     }
   }
 
-  .mw-rcfilters-ui-rclToOrFromWidget.oo-ui-dropdownWidget.oo-ui-widget-enabled
-    .oo-ui-dropdownWidget-handle,
-  .oo-ui-buttonElement-frameless.oo-ui-labelElement
-    > .oo-ui-buttonElement-button,
+  .mw-rcfilters-ui-rclToOrFromWidget.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle,
+  .oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button,
   .oo-ui-buttonElement-frameless.oo-ui-widget-enabled,
   .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle,
   > .oo-ui-buttonElement-button,
-  .oo-ui-processDialog-actions-safe
-    .oo-ui-widget-enabled.oo-ui-iconElement:not(.oo-ui-labelElement)
-    > .oo-ui-buttonElement-button {
+  .oo-ui-processDialog-actions-safe .oo-ui-widget-enabled.oo-ui-iconElement:not(.oo-ui-labelElement) > .oo-ui-buttonElement-button {
     .disable-borders();
     background-color: transparent;
     color: var(--color-text-darker) !important;
@@ -67,60 +57,51 @@
     }
   }
 
-  .oo-ui-buttonElement-framed.oo-ui-widget-disabled
-    > .oo-ui-buttonElement-button,
-  .oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools
-    .oo-ui-tool.oo-ui-widget-disabled.oo-ui-flaggedElement-primary
-    > .oo-ui-tool-link,
-  .oo-ui-barToolGroup-tools.oo-ui-toolGroup-disabled-tools
-    .oo-ui-tool.oo-ui-flaggedElement-primary
-    > .oo-ui-tool-link {
+  .oo-ui-buttonElement-framed.oo-ui-widget-disabled > .oo-ui-buttonElement-button,
+  .oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools .oo-ui-tool.oo-ui-widget-disabled.oo-ui-flaggedElement-primary > .oo-ui-tool-link,
+  .oo-ui-barToolGroup-tools.oo-ui-toolGroup-disabled-tools .oo-ui-tool.oo-ui-flaggedElement-primary > .oo-ui-tool-link {
     .disable-borders();
     background-color: var(--color-grey) !important;
-    color: var(--color-text-static-transparent) !important;
+    color: var(--color-translucent) !important;
   }
 
-  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive
-    > .oo-ui-buttonElement-button {
+  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
     .disable-borders();
     background-color: var(--color-blue);
-    color: var(--color-text-static);
+    color: var(--color-white);
 
     &:hover,
     &:active,
     &:focus {
       background-color: var(--color-blue-light);
-      color: var(--color-text-static);
+      color: var(--color-white);
     }
   }
 
-  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive
-    > .oo-ui-buttonElement-button,
-  .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive
-    > .oo-ui-buttonElement-button {
+  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button,
+  .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
     .disable-borders();
     background-color: var(--color-red);
-    color: var(--color-text-static) !important;
+    color: var(--color-white) !important;
 
     &:hover,
     &:active,
     &:focus {
       background-color: var(--color-red-light);
-      color: var(--color-text-static);
+      color: var(--color-white);
     }
   }
 
-  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-active
-    > .oo-ui-buttonElement-button {
+  .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button {
     .disable-borders();
     background-color: var(--color-green);
-    color: var(--color-text-static);
+    color: var(--color-white);
 
     &:hover,
     &:active,
     &:focus {
       background-color: var(--color-green-light);
-      color: var(--color-text-static);
+      color: var(--color-white);
     }
   }
 
@@ -128,16 +109,12 @@
     margin-left: 0;
   }
 
-  .oo-ui-buttonSelectWidget
-    .oo-ui-buttonOptionWidget:first-child
-    .oo-ui-buttonElement-button {
+  .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:first-child .oo-ui-buttonElement-button {
     border-bottom-left-radius: var(--border-radius-small) !important;
     border-top-left-radius: var(--border-radius-small) !important;
   }
 
-  .oo-ui-buttonSelectWidget
-    .oo-ui-buttonOptionWidget:last-child
-    .oo-ui-buttonElement-button {
+  .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:last-child .oo-ui-buttonElement-button {
     border-bottom-right-radius: var(--border-radius-small) !important;
     border-top-right-radius: var(--border-radius-small) !important;
   }
@@ -200,22 +177,14 @@
     border-color: var(--color-border-input);
   }
 
-  .oo-ui-checkboxInputWidget.oo-ui-widget-enabled
-    [type='checkbox']:checked
-    + span,
-  .oo-ui-checkboxInputWidget.oo-ui-widget-enabled
-    [type='checkbox']:indeterminate
-    + span {
+  .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked + span,
+  .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:indeterminate + span {
     background-color: var(--color-blue);
     border-color: var(--color-blue);
   }
 
-  .oo-ui-checkboxInputWidget.oo-ui-widget-enabled
-    [type='checkbox']:checked
-    + span:hover,
-  .oo-ui-checkboxInputWidget.oo-ui-widget-enabled
-    [type='checkbox']:indeterminate
-    + span:hover {
+  .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked + span:hover,
+  .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:indeterminate + span:hover {
     background-color: var(--color-border-input);
     border-color: var(--color-border-input);
   }
@@ -232,28 +201,25 @@
   outline: none !important;
   box-shadow: none !important;
   background-color: var(--color-primary) !important;
-  color: var(--color-text-static) !important;
+  color: var(--color-white) !important;
   border-radius: var(--border-radius-small) !important;
   transition: background-color var(--transition-time) !important;
 }
 
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:hover,
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:active,
-.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open
-  .oo-ui-dropdownWidget-handle,
-.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open
-  .oo-ui-dropdownWidget-handle:hover,
-.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open
-  .oo-ui-dropdownWidget-handle:active {
+.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle,
+.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle:hover,
+.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle:active {
   background-color: var(--color-primary-light) !important;
-  color: var(--color-text-static) !important;
+  color: var(--color-white) !important;
 }
 
 .oo-ui-dropdownInputWidget.oo-ui-widget-disabled,
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
   text-shadow: none;
   background-color: var(--color-grey);
-  color: var(--color-text-static-transparent);
+  color: var(--color-translucent);
   border-radius: var(--border-radius-small) !important;
   transition: background-color var(--transition-time);
 }
@@ -261,7 +227,7 @@
 .oo-ui-menuSelectWidget {
   margin: 0;
   box-shadow: none;
-  background-color: var(--color-bg-transparent);
+  background-color: var(--color-bg-translucent);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-small);
   backdrop-filter: var(--blur-intensity);
@@ -334,10 +300,8 @@
   transition: background-color var(--transition-time) !important;
 }
 
-.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid
-  .oo-ui-inputWidget-input,
-.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid
-  .oo-ui-inputWidget-input:hover {
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid .oo-ui-inputWidget-input,
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid .oo-ui-inputWidget-input:hover {
   border-color: var(--color-red);
 }
 
@@ -367,16 +331,7 @@ div .oo-ui-fieldLayout-body .oo-ui-fieldLayout-field {
     .disable-borders();
     border: var(--border-classic);
     background-color: var(--color-bg-hover);
-    background-image: linear-gradient(
-      135deg,
-      var(--color-bg-focus) 25%,
-      transparent 25%,
-      transparent 50%,
-      var(--color-bg-focus) 50%,
-      var(--color-bg-focus) 75%,
-      transparent 75%,
-      transparent
-    );
+    background-image: linear-gradient(135deg, var(--color-bg-focus) 25%, transparent 25%, transparent 50%, var(--color-bg-focus) 50%, var(--color-bg-focus) 75%, transparent 75%, transparent);
   }
 
   .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled {

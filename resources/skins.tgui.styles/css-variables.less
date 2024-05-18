@@ -5,6 +5,43 @@
  * Used for both themes
  */
 :root {
+  /* TGUI Elements Colors */
+  --color-red: rgba(219, 40, 40, 1);
+  --color-orange: rgba(240, 143, 17, 1);
+  --color-yellow: rgba(251, 214, 8, 1);
+  --color-olive: rgba(181, 204, 24, 1);
+  --color-green: rgba(91, 170, 39, 1);
+  --color-teal: rgba(0, 181, 173, 1);
+  --color-blue: rgba(33, 133, 208, 1);
+  --color-violet: rgba(100, 53, 201, 1);
+  --color-purple: rgba(163, 51, 200, 1);
+  --color-pink: rgba(224, 57, 151, 1);
+  --color-brown: rgba(165, 103, 63, 1);
+  --color-grey: rgba(118, 118, 118, 1);
+  --color-primary: rgba(73, 114, 161, 1);
+  --color-label: rgba(126, 144, 167, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-white: rgba(255, 255, 255, 1);
+  --color-translucent: rgba(255, 255, 255, 0.5);
+
+  /* TGUI Elements Colors (Light or Hover) */
+  --color-red-light: rgba(251, 58, 58, 1);
+  --color-orange-light: rgba(255, 163, 40, 1);
+  --color-yellow-light: rgba(255, 233, 29, 1);
+  --color-olive-light: rgba(208, 225, 37, 1);
+  --color-green-light: rgba(105, 195, 43, 1);
+  --color-teal-light: rgba(0, 209, 193, 1);
+  --color-blue-light: rgba(70, 168, 255, 1);
+  --color-violet-light: rgba(168, 68, 255, 1);
+  --color-purple-light: rgba(188, 68, 255, 1);
+  --color-pink-light: rgba(255, 79, 181, 1);
+  --color-brown-light: rgba(191, 123, 76, 1);
+  --color-grey-light: rgba(136, 136, 136, 1);
+  --color-primary-light: rgba(119, 148, 187, 1);
+  --color-label-light: rgba(145, 166, 192, 1);
+  --color-black-hover: rgb(30, 30, 30);
+  --color-white-hover: rgba(225, 225, 225, 1);
+
   /* Font sizes */
   --font-size-x-small: 0.75rem;
   --font-size-small: 0.875rem;
@@ -48,7 +85,7 @@
   --color-bg: hsl(0, 0%, 15%);
   --color-bg-hover: rgba(255, 255, 255, 0.075);
   --color-bg-focus: rgba(255, 255, 255, 0.125);
-  --color-bg-transparent: rgba(37, 37, 37, 0.66);
+  --color-bg-translucent: rgba(37, 37, 37, 0.66);
   --color-bg-section: rgba(0, 0, 0, 0.33);
   --color-bg-section-opaque: hsl(0, 0%, 10%);
   --color-bg-section-light: rgba(125, 125, 125, 0.075);
@@ -57,9 +94,6 @@
   --color-text-darker: rgba(220, 220, 220, 1);
   --color-text-gray: rgba(185, 185, 185, 0.75);
   --color-text-translucent: rgba(255, 255, 255, 0.5);
-  --color-text-static: rgba(255, 255, 255, 1);
-  --color-text-static-dark: rgba(0, 0, 0, 1);
-  --color-text-static-transparent: rgba(255, 255, 255, 0.5);
   --color-border: rgba(255, 255, 255, 0.1);
   --color-border-input: rgba(128, 181, 255, 1);
   --color-border-input-focus: var(--color-blue);
@@ -105,38 +139,6 @@
 
   /* Background Image */
   --nt-image: url(../skins.tgui.styles/images/bg-nanotrasen.svg);
-
-  /* TGUI Elements Colors */
-  --color-red: rgba(219, 40, 40, 1);
-  --color-orange: rgba(240, 143, 17, 1);
-  --color-yellow: rgba(251, 214, 8, 1);
-  --color-olive: rgba(181, 204, 24, 1);
-  --color-green: rgba(91, 170, 39, 1);
-  --color-teal: rgba(0, 181, 173, 1);
-  --color-blue: rgba(33, 133, 208, 1);
-  --color-violet: rgba(100, 53, 201, 1);
-  --color-purple: rgba(163, 51, 200, 1);
-  --color-pink: rgba(224, 57, 151, 1);
-  --color-brown: rgba(165, 103, 63, 1);
-  --color-grey: rgba(118, 118, 118, 1);
-  --color-primary: rgba(73, 114, 161, 1);
-  --color-label: rgba(126, 144, 167, 1);
-
-  /* TGUI Elements Colors (Light or Hover) */
-  --color-red-light: rgba(251, 58, 58, 1);
-  --color-orange-light: rgba(255, 163, 40, 1);
-  --color-yellow-light: rgba(255, 233, 29, 1);
-  --color-olive-light: rgba(208, 225, 37, 1);
-  --color-green-light: rgba(105, 195, 43, 1);
-  --color-teal-light: rgba(0, 209, 193, 1);
-  --color-blue-light: rgba(70, 168, 255, 1);
-  --color-violet-light: rgba(168, 68, 255, 1);
-  --color-purple-light: rgba(188, 68, 255, 1);
-  --color-pink-light: rgba(255, 79, 181, 1);
-  --color-brown-light: rgba(191, 123, 76, 1);
-  --color-grey-light: rgba(136, 136, 136, 1);
-  --color-primary-light: rgba(119, 148, 187, 1);
-  --color-label-light: rgba(145, 166, 192, 1);
 }
 
 /**
@@ -148,7 +150,7 @@
   --color-bg: hsl(0, 0%, 100%);
   --color-bg-hover: rgba(0, 0, 0, 0.075);
   --color-bg-focus: rgba(0, 0, 0, 0.125);
-  --color-bg-transparent: rgba(204, 201, 198, 0.66);
+  --color-bg-translucent: rgba(204, 201, 198, 0.66);
   --color-bg-section: rgba(204, 201, 198, 0.33);
   --color-bg-section-opaque: hsl(30, 6%, 93%);
   --color-bg-section-light: rgba(158, 152, 148, 0.15);
@@ -157,9 +159,6 @@
   --color-text-darker: rgba(40, 40, 40, 1);
   --color-text-gray: rgba(80, 80, 80, 0.75);
   --color-text-translucent: rgba(0, 0, 0, 0.5);
-  --color-text-static: rgba(255, 255, 255, 1);
-  --color-text-static-dark: rgba(0, 0, 0, 1);
-  --color-text-static-transparent: rgba(255, 255, 255, 0.5);
   --color-border: rgba(0, 0, 0, 0.1);
   --color-border-input: rgba(128, 181, 255, 1);
   --color-border-input-focus: var(--color-blue);
@@ -205,38 +204,6 @@
 
   /* Background Image */
   --nt-image: url(../skins.tgui.styles/images/bg-nanotrasen-light.svg);
-
-  /* TGUI Elements Colors */
-  --color-red: rgba(219, 40, 40, 1);
-  --color-orange: rgba(240, 143, 17, 1);
-  --color-yellow: rgba(251, 214, 8, 1);
-  --color-olive: rgba(181, 204, 24, 1);
-  --color-green: rgba(91, 170, 39, 1);
-  --color-teal: rgba(0, 181, 173, 1);
-  --color-blue: rgba(33, 133, 208, 1);
-  --color-violet: rgba(100, 53, 201, 1);
-  --color-purple: rgba(163, 51, 200, 1);
-  --color-pink: rgba(224, 57, 151, 1);
-  --color-brown: rgba(165, 103, 63, 1);
-  --color-grey: rgba(118, 118, 118, 1);
-  --color-primary: rgba(73, 114, 161, 1);
-  --color-label: rgba(126, 144, 167, 1);
-
-  /* TGUI Elements Colors (Light or Hover) */
-  --color-red-light: rgba(251, 58, 58, 1);
-  --color-orange-light: rgba(255, 163, 40, 1);
-  --color-yellow-light: rgba(255, 233, 29, 1);
-  --color-olive-light: rgba(208, 225, 37, 1);
-  --color-green-light: rgba(105, 195, 43, 1);
-  --color-teal-light: rgba(0, 209, 193, 1);
-  --color-blue-light: rgba(70, 168, 255, 1);
-  --color-violet-light: rgba(168, 68, 255, 1);
-  --color-purple-light: rgba(188, 68, 255, 1);
-  --color-pink-light: rgba(255, 79, 181, 1);
-  --color-brown-light: rgba(191, 123, 76, 1);
-  --color-grey-light: rgba(136, 136, 136, 1);
-  --color-primary-light: rgba(119, 148, 187, 1);
-  --color-label-light: rgba(145, 166, 192, 1);
 }
 
 /**
