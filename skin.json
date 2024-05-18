@@ -1,6 +1,6 @@
 {
   "name": "TGUI",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "author": [
     "Александр Кица (Aylong)",
     "[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team] with Original [https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
@@ -134,7 +134,7 @@
       ]
     },
     "skins.tgui.styles": {
-      "class": "ResourceLoaderSkinModule",
+      "class": "MediaWiki\\ResourceLoader\\SkinModule",
       "features": {
         "normalize": true,
         "interface-edit-section-links": true,
@@ -156,10 +156,10 @@
       "selectorWithVariant": ".mw-ui-icon-wikimedia-{name}-{variant}:before",
       "selectorWithoutVariant": ".mw-ui-icon-wikimedia-{name}:before",
       "useDataURI": false,
-      "class": "ResourceLoaderOOUIIconPackModule",
+      "class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
       "variants": {
         "progressive": {
-          "color": "#36c",
+          "color": "#000",
           "global": true
         }
       },
@@ -180,10 +180,10 @@
       "selectorWithVariant": ".mw-ui-icon-wikimedia-{name}-{variant}:before",
       "selectorWithoutVariant": ".mw-ui-icon-wikimedia-{name}:before",
       "useDataURI": false,
-      "class": "ResourceLoaderOOUIIconPackModule",
+      "class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
       "variants": {
         "progressive": {
-          "color": "#36c",
+          "color": "#000",
           "global": true
         }
       },
@@ -281,21 +281,21 @@
     "tgui": {
       "+ext.echo.styles.alert": "skinStyles/extensions/ext.echo.styles.alert.less",
       "+ext.relatedArticles.readMore": "skinStyles/extensions/ext.relatedArticles.readMore.less",
+      "+ext.tabs": "skinStyles/extensions/ext.tabs.less",
       "+ext.uls.compactlinks": "skinStyles/extensions/ext.uls.compactlinks.less",
       "+ext.uls.interface": "skinStyles/extensions/ext.uls.interface.less",
-      "+ext.visualEditor.base": "skinStyles/extensions/ext.visualEditor.less",
-      "+ext.tabs": "skinStyles/extensions/ext.tabs.less",
       "+ext.wikiEditor": "skinStyles/extensions/ext.wikiEditor.less",
-      "+ext.visualEditor": "skinStyles/extensions/ext.wikiEditor.less",
+      "+ext.visualEditor": "skinStyles/extensions/ext.visualEditor.less",
+      "+ext.visualEditor.base": "skinStyles/extensions/ext.visualEditor.less",
       "+mediasearch.styles": "skinStyles/extensions/mediasearch.styles.less",
       "+jquery.tablesorter.styles": "skinStyles/jQuery/jquery.tablesorter.styles.less",
+      "+mediawiki.notification": "skinStyles/mediawiki/mediawiki.notification.less",
+      "+mediawiki.page.gallery.styles": "skinStyles/mediawiki/mediawiki.page.gallery.styles.less",
+      "+mediawiki.special.search.styles": "skinStyles/mediawiki/mediawiki.special.search.styles.less",
+      "+mediawiki.ui.button": "skinStyles/mediawiki/mediawiki.ui.button.less",
       "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
       "+mediawiki.action.view.filepage": "skinStyles/mediawiki.action.view.filepage.less",
       "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
-      "+mediawiki.notification": "skinStyles/mediawiki/mediawiki.notification.less",
-      "+mediawiki.ui.button": "skinStyles/mediawiki/mediawiki.ui.button.less",
-      "+mediawiki.page.gallery.styles": "skinStyles/mediawiki/mediawiki.page.gallery.styles.less",
-      "+mediawiki.special.search.styles": "skinStyles/mediawiki/mediawiki.special.search.styles.less",
       "+oojs-ui-core.styles": "skinStyles/ooui.less"
     }
   },
