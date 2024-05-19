@@ -10,11 +10,11 @@
 
 .mw-content-container {
   width: -webkit-fill-available;
-  margin: 3.5em 0.75em 0 0.75em;
+  width: -moz-available;
+  margin: 0.75em;
 }
 
 .mw-page-container-inner {
-  width: 100%;
   min-height: 100vh;
   background: var(--nt-image);
   background-size: 40%;
@@ -24,15 +24,6 @@
 }
 
 @media (max-width: @max-width-tablet) {
-  .mw-content-container {
-    margin-top: 80px;
-    min-height: 100vh;
-  }
-
-  .mw-sidebar {
-    margin: -14px 0 32px 0;
-  }
-
   #mw-sidebar-checkbox:checked {
     & ~ .mw-footer-container {
       margin-left: 220px;
@@ -46,7 +37,7 @@
     grid-template: ~'min-content min-content min-content 1fr min-content / 200px @{width-gutter} minmax(0, 1fr)';
     grid-template-areas:
       'header header header'
-      'sitenotice sitenotice sitenotice'
+      'sidebar gutter content'
       'sidebar gutter content'
       'toc gutter content'
       'footer footer footer';
@@ -54,12 +45,6 @@
 
   .mw-body {
     padding-left: 0;
-  }
-
-  // FIXME: Remove selector after I39959f43f20880e83bef945a7535d58cfe0b6412 has been in prod for a week
-  .mw-page-container-inner > #siteNotice,
-  .tgui-sitenotice-container {
-    grid-area: sitenotice;
   }
 
   .mw-table-of-contents-container {
