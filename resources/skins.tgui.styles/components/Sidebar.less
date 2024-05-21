@@ -14,10 +14,12 @@
 
 .mw-sidebar {
   position: fixed;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   padding-top: 0.75em;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
+  scrollbar-color: transparent transparent;
   height: @height-sidebar-toc-hidden;
   background-color: var(--color-bg-section);
   color: var(--color-text);
@@ -26,7 +28,7 @@
   z-index: @z-index-header;
 
   &:hover {
-    overflow-y: auto;
+    scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
   }
 
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {

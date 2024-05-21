@@ -54,13 +54,17 @@
   }
 
   .sidebar-toc-contents-container {
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-width: thin;
     scrollbar-gutter: stable;
+    scrollbar-color: transparent transparent;
     height: 100%;
     padding-left: 1em;
+    transition: scrollbar-color var(--transition-time);
+
     &:hover {
-      overflow-y: auto;
+      scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
     }
   }
 
