@@ -102,15 +102,6 @@ module.exports = function tableOfContents(props) {
   }
 
   /**
-   * Does the user prefer reduced motion?
-   *
-   * @return {boolean}
-   */
-  const prefersReducedMotion = () => {
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  };
-
-  /**
    * Sets an `ACTIVE_SECTION_CLASS` on the element with an id that matches `id`.
    * If the element is not a top level heading (e.g. element with the
    * `PARENT_SECTION_CLASS`), the top level heading will also have the
@@ -193,7 +184,7 @@ module.exports = function tableOfContents(props) {
       const linkHiddenBottomValue = linkRect.bottom - Math.min(containerRect.bottom, window.innerHeight);
 
       // Respect 'prefers-reduced-motion' user preference
-      const scrollBehavior = prefersReducedMotion() ? "smooth" : undefined;
+      const scrollBehavior = "smooth";
 
       // Manually increment and decrement TOC scroll rather than using scrollToView
       // in order to account for threshold
