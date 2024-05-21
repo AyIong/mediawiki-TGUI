@@ -41,7 +41,7 @@ pre,
     padding: 0.2em 0.5em 0.3em 0.5em;
     margin-left: 0.5em;
     background-color: var(--color-primary);
-    color: var(--color-text-static);
+    color: var(--color-white);
     border-radius: var(--border-radius-small);
     transition: background-color var(--transition-time);
 
@@ -56,7 +56,7 @@ pre,
   display: none;
 }
 
-/* Main content area, including siteNotice, indicators, categories, firstHeading and `.tgui-body`. */
+/* Main content area, including indicators, categories, firstHeading and `.tgui-body`. */
 .mw-body {
   // h1's can exist outside of `.mw-body-content` so some heading styles
   // therefore need to be defined in `.mw-body` as well.
@@ -133,14 +133,4 @@ pre,
       margin-bottom: 0;
     }
   }
-}
-
-// External links
-// Use of `a` element selector for limiting generic class scope due to `.external` widespread usage.
-.mw-parser-output a.external {
-  background-image: url(images/arrow-up-right-from-square-solid.svg);
-  background-position: center right;
-  background-repeat: no-repeat;
-  background-size: 0.85em;
-  padding-right: 1em;
 }

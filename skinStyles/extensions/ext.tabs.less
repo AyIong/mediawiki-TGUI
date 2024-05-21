@@ -58,7 +58,7 @@
     color: var(--color-hyperlink);
 
     &:hover {
-      color: var(--color-hyperlink);
+      color: var(--color-hyperlink-hover);
     }
   }
 
@@ -66,18 +66,12 @@
     color: var(--color-hyperlink-visited);
 
     &:hover {
-      color: var(--color-hyperlink-visited);
+      color: var(--color-hyperlink-visited-hover);
     }
   }
 
   li {
     border-top: var(--border-classic);
-  }
-
-  &:hover .tabs-container {
-    .tabs-label {
-      border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
-    }
   }
 
   .tabs-container,
@@ -87,7 +81,7 @@
 
     .tabs-label {
       background-color: var(--color-primary);
-      color: var(--color-text-static);
+      color: var(--color-white);
       border: 1px solid transparent;
       border-radius: var(--border-radius-medium);
       transition:
@@ -96,10 +90,12 @@
 
       &:hover {
         background-color: var(--color-primary-light);
+        border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
       }
 
       &:focus {
         background-color: var(--color-green);
+        border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
       }
     }
 
@@ -107,7 +103,7 @@
       left: 0;
       opacity: 0;
       visibility: hidden;
-      background-color: var(--color-bg-transparent);
+      background-color: var(--color-bg-translucent);
       box-shadow: var(--box-shadow-small);
       border: var(--border-classic);
       border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);

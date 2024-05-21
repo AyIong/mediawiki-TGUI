@@ -4,10 +4,8 @@ namespace MediaWiki\Skins\TGUI;
 
 use Config;
 use IContextSource;
-use MediaWiki\Auth\Hook\LocalUserCreatedHook;
 use MediaWiki\Hook\MakeGlobalVariablesScriptHook;
 use MediaWiki\Hook\OutputPageBodyAttributesHook;
-use MediaWiki\Hook\RequestContextCreateSkinHook;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader as RL;
@@ -31,12 +29,10 @@ use User;
  */
 class Hooks implements
 	GetPreferencesHook,
-	LocalUserCreatedHook,
 	MakeGlobalVariablesScriptHook,
 	OutputPageBodyAttributesHook,
 	ResourceLoaderSiteModulePagesHook,
 	ResourceLoaderSiteStylesModulePagesHook,
-	RequestContextCreateSkinHook,
 	SkinPageReadyConfigHook
 {
 	/**
@@ -514,25 +510,6 @@ class Hooks implements
 	}
 
 	/**
-	 * Called one time when initializing a users preferences for a newly created account.
-	 *
-	 * @param User $user Newly created user object.
-	 * @param bool $isAutoCreated
-	 */
-	public function onLocalUserCreated( $user, $isAutoCreated ) {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$default = $config->get( Constants::CONFIG_KEY_DEFAULT_SKIN_VERSION_FOR_NEW_ACCOUNTS );
-		if ( $default ) {
-			$optionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
-			$optionsManager->setOption(
-				$user,
-				Constants::PREF_KEY_SKIN,
-				$default === Constants::SKIN_NAME
-			);
-		}
-	}
-
-	/**
 	 * Called when OutputPage::headElement is creating the body tag to allow skins
 	 * and extensions to add attributes they might need to the body of the page.
 	 *
@@ -549,27 +526,6 @@ class Hooks implements
 		$featureManager = TGUIServices::getFeatureManager();
 		$bodyAttrs['class'] .= ' ' . implode( ' ', $featureManager->getFeatureBodyClass() );
 		$bodyAttrs['class'] = trim( $bodyAttrs['class'] );
-	}
-
-	/**
-	 * Temporary RequestContextCreateSkin hook handler.
-	 * Switches to new TGUI on certain pages.
-	 *
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/RequestContextCreateSkin
-	 *
-	 * @param IContextSource $context The RequestContext object the skin is being created for.
-	 * @param Skin|null|string &$skin A variable reference you may set a Skin instance or string
-	 *                                key on to override the skin that will be used for the context.
-	 * @return bool|void
-	 */
-	public function onRequestContextCreateSkin( $context, &$skin ) {
-		if ( !$skin ) {
-			// user is anonymous
-			$user = $context->getUser();
-			$config = $context->getConfig();
-			$title = $context->getTitle();
-			$titleText = $title ? $title->getPrefixedText() : null;
-		}
 	}
 
 	/**

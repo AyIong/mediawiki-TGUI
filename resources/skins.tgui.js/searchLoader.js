@@ -40,8 +40,7 @@ var /** @type {TGUIResourceLoaderVirtualConfig} */
  * @param {null|function(): void} afterLoadFn function to execute after search module loads.
  */
 function loadSearchModule(element, moduleName, startMarker, afterLoadFn) {
-  var SHOULD_TEST_SEARCH =
-    CAN_TEST_SEARCH && moduleName === "skins.tgui.search";
+  var SHOULD_TEST_SEARCH = CAN_TEST_SEARCH && moduleName === "skins.tgui.search";
 
   function requestSearchModule() {
     if (SHOULD_TEST_SEARCH && startMarker !== null && afterLoadFn !== null) {
@@ -73,10 +72,7 @@ function renderSearchLoadingIndicator(event) {
   var form = /** @type {HTMLElement} */ (event.currentTarget),
     input = /** @type {HTMLInputElement} */ (event.target);
 
-  if (
-    !(event.currentTarget instanceof HTMLElement) ||
-    !(event.target instanceof HTMLInputElement)
-  ) {
+  if (!(event.currentTarget instanceof HTMLElement) || !(event.target instanceof HTMLInputElement)) {
     return;
   }
 
@@ -167,19 +163,14 @@ function initSearchLoader(document) {
           renderSearchLoadingIndicator,
         );
       },
-      isPrimarySearch =
-        searchInput && searchInput.getAttribute("id") === "searchInput";
+      isPrimarySearch = searchInput && searchInput.getAttribute("id") === "searchInput";
 
     if (!searchInput || !searchInner) {
       return;
     }
     // Remove tooltips while Vue search is still loading
     searchInput.setAttribute("autocomplete", "off");
-    setLoadingIndicatorListeners(
-      searchInner,
-      true,
-      renderSearchLoadingIndicator,
-    );
+    setLoadingIndicatorListeners(searchInner, true, renderSearchLoadingIndicator);
     loadSearchModule(
       searchInput,
       "skins.tgui.search",

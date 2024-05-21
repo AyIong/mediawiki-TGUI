@@ -10,7 +10,6 @@
 .mw-footer-container {
   display: flex;
   flex-direction: column;
-  margin-top: 0.75em;
   background-color: var(--color-bg-section);
 
   ul {
@@ -41,6 +40,7 @@
   #footer-places-links {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     flex-grow: 1;
     margin: 0;
 
@@ -51,7 +51,7 @@
       a {
         padding: 0.5em 0.75em;
         background-color: var(--color-primary);
-        color: var(--color-text-static);
+        color: var(--color-white);
         border-radius: var(--border-radius-small);
         transition: background-color var(--transition-time);
         text-decoration: none;

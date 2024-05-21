@@ -54,10 +54,7 @@ function init() {
   var checkbox = window.document.getElementById(SIDEBAR_CHECKBOX_ID),
     button = window.document.getElementById(SIDEBAR_BUTTON_ID);
 
-  if (
-    mw.config.get("wgUserName") &&
-    !mw.config.get("wgTGUIDisableSidebarPersistence")
-  ) {
+  if (mw.config.get("wgUserName") && !mw.config.get("wgTGUIDisableSidebarPersistence")) {
     bindSidebarClickEvent(checkbox, button);
   }
 }

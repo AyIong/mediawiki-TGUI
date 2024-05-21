@@ -1,20 +1,56 @@
-a {
+a,
+.mw-parser-output a.extiw,
+.mw-parser-output a.external {
   text-decoration: none;
   color: var(--color-hyperlink);
-  background: none;
+  text-shadow: var(--hyperlink-shadow);
+  transition:
+    color var(--transition-time),
+    text-shadow var(--transition-time);
+
+  &:hover,
+  &:focus {
+    color: var(--color-hyperlink-hover);
+    text-shadow: var(--hyperlink-shadow-hover);
+  }
+
+  &:visited {
+    color: var(--color-hyperlink-visited);
+
+    &:hover {
+      color: var(--color-hyperlink-visited-hover);
+    }
+  }
+}
+
+a.new {
+  color: var(--color-hyperlink-new);
+  text-shadow: var(--hyperlink-shadow-new);
+
+  &:hover,
+  &:focus {
+    color: var(--color-hyperlink-new-hover);
+    text-shadow: var(--hyperlink-shadow-new-hover);
+  }
+}
+
+a.new:visited {
+  color: var(--color-hyperlink-new-visited);
+  text-shadow: var(--hyperlink-shadow-new);
+
+  &:hover,
+  &:focus {
+    color: var(--color-hyperlink-new-visited-hover);
+    text-shadow: var(--hyperlink-shadow-new-hover);
+  }
 }
 
 a:not([href]) {
   cursor: pointer;
 }
 
-a:visited {
-  color: var(--color-hyperlink-visited);
-}
-
-a:hover,
-a:focus {
-  text-decoration: underline;
+a * {
+  text-shadow: none !important;
 }
 
 a:lang(ar),
@@ -23,10 +59,6 @@ a:lang(mzn),
 a:lang(ps),
 a:lang(ur) {
   text-decoration: none;
-}
-
-a.new {
-  color: var(--color-hyperlink-new);
 }
 
 /* self links */
@@ -45,28 +77,13 @@ a.mw-selflink:visited {
   color: inherit;
 }
 
-a.new:visited {
-  color: var(--color-hyperlink-new-visited);
-}
-
-/* Interwiki & External links */
-.mw-parser-output a.extiw,
-.mw-parser-output a.external {
-  color: var(--color-hyperlink);
-}
-
-.mw-parser-output a.extiw:visited,
-.mw-parser-output a.external:visited {
-  color: var(--color-hyperlink-visited);
-}
-
 /* Underline preference */
 .mw-underline-always a {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
 .mw-underline-never a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 /**
@@ -78,11 +95,7 @@ a.new:visited {
   padding: 0 !important;
 }
 
-/* Colors and icons for external links */
-.mw-parser-output a.external {
-  color: var(--color-hyperlink);
-}
-
+/* Icons for external links */
 .mw-parser-output a.external,
 .link-mailto,
 .link-ftp,
@@ -90,11 +103,13 @@ a.new:visited {
 .link-audio,
 .link-video,
 .link-document {
-  background-image: url(images/arrow-up-right-from-square-solid.svg);
   background-position: center right;
   background-repeat: no-repeat;
   background-size: 0.85em;
   padding-right: 1em;
+}
+.mw-parser-output a.external {
+  background-image: url(images/external-link.svg);
 }
 
 .mw-parser-output a.external[href^='mailto:'],
@@ -104,13 +119,13 @@ a.new:visited {
 
 .mw-parser-output a.external[ href^='ftp://' ],
 .link-ftp {
-  background-image: url(images/ftp-ltr.svg);
+  background-image: url(images/file.svg);
 }
 
 .mw-parser-output a.external[ href^='irc://' ],
 .mw-parser-output a.external[ href^='ircs://' ],
 .link-irc {
-  background-image: url(images/chat-ltr.svg);
+  background-image: url(images/comment.svg);
 }
 
 .mw-parser-output a.external[href$='.ogg'],
@@ -126,7 +141,7 @@ a.new:visited {
 .mw-parser-output a.external[href$='.wma'],
 .mw-parser-output a.external[href$='.WMA'],
 .link-audio {
-  background-image: url(images/audio-ltr.svg);
+  background-image: url(images/music.svg);
 }
 
 .mw-parser-output a.external[href$='.ogm'],
@@ -148,5 +163,5 @@ a.new:visited {
 .mw-parser-output a.external[href*='.pdf?'],
 .mw-parser-output a.external[href*='.PDF?'],
 .link-document {
-  background-image: url(images/document-ltr.svg);
+  background-image: url(images/file-pdf.svg);
 }

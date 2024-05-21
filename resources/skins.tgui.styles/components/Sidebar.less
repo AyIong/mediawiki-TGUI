@@ -14,12 +14,13 @@
 
 .mw-sidebar {
   position: fixed;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 0.75em;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
-  height: -webkit-fill-available;
-  padding-top: 1em;
-  margin: 42px 0 32px 0;
+  scrollbar-color: transparent transparent;
+  height: @height-sidebar-toc-hidden;
   background-color: var(--color-bg-section);
   color: var(--color-text);
   backdrop-filter: var(--blur-intensity);
@@ -27,7 +28,7 @@
   z-index: @z-index-header;
 
   &:hover {
-    overflow-y: auto;
+    scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
   }
 
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
@@ -35,11 +36,11 @@
   }
 
   body:not(.tgui-toc-collapsed) & {
-    margin-bottom: 240px;
+    height: @height-sidebar-toc;
   }
 
   &:not(:has(+ .sidebar-toc)) {
-    margin-bottom: 0 !important;
+    height: @height-sidebar-default !important;
   }
 }
 

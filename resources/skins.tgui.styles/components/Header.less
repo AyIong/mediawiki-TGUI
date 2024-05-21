@@ -3,10 +3,16 @@
 
 .mw-header {
   display: flex;
-  min-height: 3.125em;
-  padding: 8px 0;
+  position: sticky;
+  top: 0;
+  min-height: 4.15em;
+  width: 100%;
   flex-wrap: nowrap;
   align-items: center;
+  background-color: var(--color-bg-section);
+  color: var(--color-text);
+  backdrop-filter: var(--blur-intensity);
+  z-index: @z-index-header;
 
   #mw-sidebar-button {
     margin: 0 0.75em 0 0.5em;

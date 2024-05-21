@@ -81,11 +81,7 @@ function onFetchEnd(event) {
           performance.getEntriesByName(loadStartMark).length &&
           !performance.getEntriesByName(loadStartToFirstRenderMeasure).length
         ) {
-          performance.measure(
-            loadStartToFirstRenderMeasure,
-            loadStartMark,
-            renderMark,
-          );
+          performance.measure(loadStartToFirstRenderMeasure, loadStartMark, renderMark);
         }
 
         // The measures are the most meaningful info so we remove the marks

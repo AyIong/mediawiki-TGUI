@@ -29,6 +29,7 @@
   @import 'components/Header.less';
   @import 'components/Indicators.less';
   @import 'components/LanguageButton.less';
+  @import 'components/Logo.less';
   @import 'components/MenuDropdown.less';
   @import 'components/MenuDropdownCheckbox.less';
   @import 'components/MenuPortal.less';
@@ -37,7 +38,6 @@
   @import 'components/SearchBoxLoader.less';
   @import 'components/Sidebar.less';
   @import 'components/SidebarLogo.less';
-  @import 'components/SiteNotice.less';
   @import 'components/TableOfContents.less';
   @import 'components/TabWatchstarLink.less';
   @import 'components/ThemeButton.less';
@@ -59,11 +59,9 @@
   @import 'overrides/editPage.less';
   @import 'overrides/fieldset.less';
   @import 'overrides/preferencesPage.less';
-}
 
-@media all {
-  // Component styles that should apply in all media.
-  @import 'components/Logo.less';
+  // Firefox support
+  @import 'layouts/firefox.less';
 }
 
 @media print {

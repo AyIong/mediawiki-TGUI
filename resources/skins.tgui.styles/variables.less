@@ -274,10 +274,7 @@
 
 // Navigation: Main
 @font-size-nav-main: inherit;
-@font-size-nav-main-heading: unit(
-  12 / @font-size-browser,
-  em
-); // Equals `0.75em`.
+@font-size-nav-main-heading: unit(12 / @font-size-browser, em); // Equals `0.75em`.
 
 @font-size-nav-main-body: unit(12 / @font-size-browser, em);
 @margin-start-nav-main-body: 0.5em;
@@ -290,8 +287,14 @@
 @selector-main-menu-closed: ~'#mw-sidebar-checkbox:not(:checked)';
 
 // Sidebar
-@width-sidebar-px: 220px;
+@width-sidebar-px: 185px;
 @width-sidebar-px-wide: 245px;
+@height-sidebar-default: ~'calc(100vh - 4.90em)';
+@height-sidebar-toc: ~'calc(100vh - 4.90em - 240px)';
+@height-sidebar-toc-hidden: ~'calc(100vh - 4.90em - 32px)';
+
+// ToC
+@height-toc-full: ~'calc(@{height-sidebar-default} + 0.75em)';
 
 // Language button
 @height-button-lang: unit(32 / @font-size-browser, em);
@@ -310,10 +313,7 @@
 @z-index-overlay: 101;
 
 // Layout
-@max-width-page-container: unit(
-  1514px / @font-size-browser,
-  em
-); // 99.75em @ 16
+@max-width-page-container: unit(1514px / @font-size-browser, em); // 99.75em @ 16
 @max-width-content-container: unit(960px / @font-size-browser, em); // 60em @ 16
 @padding-horizontal-page-container: unit(32px / @font-size-browser, em);
 @padding-horizontal-page-container-wide: unit(40px / @font-size-browser, em);

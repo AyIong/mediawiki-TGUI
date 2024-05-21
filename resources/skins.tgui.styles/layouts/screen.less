@@ -6,6 +6,7 @@
  */
 
 @import 'grid.less';
+@import 'mobile.less';
 @import '../variables.less';
 @import 'mediawiki.mixins.less';
 
@@ -23,8 +24,7 @@
 
 // Defines the minimum viewport width, at which point the layout will not get any
 // smaller and will start horizontal scrolling instead.
-@min-width-supported: unit(500px / @font-size-browser, em) -
-  (2 * @padding-horizontal-page-container-wide);
+@min-width-supported: unit(500px / @font-size-browser, em) - (2 * @padding-horizontal-page-container-wide);
 // 31.25em - 3.75em = 27.5em @ 16
 
 h1,
@@ -49,7 +49,6 @@ body {
 html,
 body {
   scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
-  scrollbar-width: 1.5vh;
 }
 
 // Hide Legacy ToC. It will be removed anyway, but we don't need to see it!
@@ -74,17 +73,6 @@ body {
 
 .mw-ui-icon-element::before {
   filter: var(--invert-icon);
-}
-
-.mw-header {
-  position: fixed;
-  padding: 0.5em 0;
-  backdrop-filter: var(--blur-intensity);
-  background-color: var(--color-bg-section);
-  color: var(--color-text);
-  width: 100%;
-  top: 0;
-  z-index: @z-index-header;
 }
 
 .mw-body-content {
@@ -140,7 +128,7 @@ body {
     max-height: 3em;
     font-size: 1.1em;
     background-color: var(--color-primary);
-    color: var(--color-text-static);
+    color: var(--color-white);
     border-radius: var(--border-radius-small);
     transition: background-color var(--transition-time);
     text-decoration: none;

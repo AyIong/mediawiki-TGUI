@@ -9,17 +9,9 @@ function collapsiblePortlets() {
   function toggle($element) {
     var isCollapsed = $element.parent().is(".collapsed");
 
-    localStorage.setItem(
-      "tgui" + "-nav-" + $element.parent().attr("id"),
-      JSON.stringify(isCollapsed)
-    );
+    localStorage.setItem("tgui" + "-nav-" + $element.parent().attr("id"), JSON.stringify(isCollapsed));
 
-    $element
-      .parent()
-      .toggleClass("expanded")
-      .toggleClass("collapsed")
-      .find(".tgui-menu-content")
-      .slideToggle("fast");
+    $element.parent().toggleClass("expanded").toggleClass("collapsed").find(".tgui-menu-content").slideToggle("fast");
     isCollapsed = !isCollapsed;
 
     $element.find("> a").attr({
@@ -55,14 +47,10 @@ function collapsiblePortlets() {
               "aria-controls": id + "-list",
               role: "button",
             })
-            .on("click", false)
+            .on("click", false),
         );
       // In the case that we are not showing the new version, let's show the languages by default
-      if (
-        state === true ||
-        (state === null && i < 1) ||
-        (state === null && id === "p-lang")
-      ) {
+      if (state === true || (state === null && i < 1) || (state === null && id === "p-lang")) {
         $(this)
           .addClass("expanded")
           .removeClass("collapsed")
@@ -82,10 +70,7 @@ function collapsiblePortlets() {
       }
       // Re-save localStorage
       if (state !== null) {
-        localStorage.setItem(
-          "tgui" + "-nav-" + $(this).attr("id"),
-          JSON.stringify(state)
-        );
+        localStorage.setItem("tgui" + "-nav-" + $(this).attr("id"), JSON.stringify(state));
       }
     });
 
@@ -98,28 +83,20 @@ function collapsiblePortlets() {
 
     // Toggle the selected menu's class and expand or collapse the menu
     $("#mw-panel")
-      .on(
-        "keydown",
-        ".portal:not(.persistent) > .tgui-menu-heading",
-        function (e) {
-          // Make the space and enter keys act as a click
-          if (e.which === 13 /* Enter */ || e.which === 32 /* Space */) {
-            toggle($(this));
-          }
+      .on("keydown", ".portal:not(.persistent) > .tgui-menu-heading", function (e) {
+        // Make the space and enter keys act as a click
+        if (e.which === 13 /* Enter */ || e.which === 32 /* Space */) {
+          toggle($(this));
         }
-      )
-      .on(
-        "mousedown",
-        ".portal:not(.persistent) > .tgui-menu-heading",
-        function (e) {
-          if (e.which !== 3) {
-            // Right mouse click
-            toggle($(this));
-            $(this).trigger("blur");
-          }
-          return false;
+      })
+      .on("mousedown", ".portal:not(.persistent) > .tgui-menu-heading", function (e) {
+        if (e.which !== 3) {
+          // Right mouse click
+          toggle($(this));
+          $(this).trigger("blur");
         }
-      );
+        return false;
+      });
   }
 
   $(function ($) {

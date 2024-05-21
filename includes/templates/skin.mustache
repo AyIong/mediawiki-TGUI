@@ -1,6 +1,4 @@
 {{!
-	string|null html-site-notice the contents of a banner defined in MediaWiki:Sitenotice.
-		Also used by CentralNotice to inject banners into TGUI.
 	Indicator[] array-indicators wiki-defined badges such as "good article",
 		"featured article". An empty array if none are defined.
 	string html-title
@@ -43,9 +41,6 @@
 				{{#data-portlets-sidebar}}{{>Sidebar}}{{/data-portlets-sidebar}}
 				{{#data-toc}}{{>TableOfContents}}{{/data-toc}}
 			</div>
-		</div>
-		<div class="tgui-sitenotice-container">
-			<div id="siteNotice">{{{html-site-notice}}}</div>
 		</div>
 		<input type="checkbox" id="tgui-toc-collapsed-checkbox" class="mw-checkbox-hack-checkbox">
 		<div class="mw-content-container">

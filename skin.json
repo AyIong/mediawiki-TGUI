@@ -1,6 +1,6 @@
 {
   "name": "TGUI",
-  "version": "0.4.5",
+  "version": "0.5.0",
   "author": [
     "Александр Кица (Aylong)",
     "[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team] with Original [https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
@@ -91,9 +91,7 @@
     }
   },
   "Hooks": {
-    "RequestContextCreateSkin": "TGUIHooks",
     "GetPreferences": "TGUIHooks",
-    "LocalUserCreated": "TGUIHooks",
     "MakeGlobalVariablesScript": "TGUIHooks",
     "OutputPageBodyAttributes": "TGUIHooks",
     "ResourceLoaderSiteModulePages": "TGUIHooks",
@@ -110,11 +108,7 @@
     },
     "skins.tgui.search": {
       "es6": true,
-      "dependencies": [
-        "mediawiki.Uri",
-        "mediawiki.util",
-        "@wikimedia/codex-search"
-      ],
+      "dependencies": ["mediawiki.Uri", "mediawiki.util", "@wikimedia/codex-search"],
       "packageFiles": [
         "resources/skins.tgui.search/skins.tgui.search.js",
         "resources/skins.tgui.search/instrumentation.js",
@@ -127,11 +121,7 @@
           "callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUISearchResourceLoaderConfig"
         }
       ],
-      "messages": [
-        "searchbutton",
-        "searchresults",
-        "tgui-searchsuggest-containing"
-      ]
+      "messages": ["searchbutton", "searchresults", "tgui-searchsuggest-containing"]
     },
     "skins.tgui.styles": {
       "class": "MediaWiki\\ResourceLoader\\SkinModule",
@@ -145,12 +135,7 @@
       },
       "targets": ["desktop", "mobile"],
       "styles": ["resources/skins.tgui.styles/core-skin.less"],
-      "lessMessages": [
-        "parentheses-start",
-        "parentheses-end",
-        "brackets-start",
-        "brackets-end"
-      ]
+      "lessMessages": ["parentheses-start", "parentheses-end", "brackets-start", "brackets-end"]
     },
     "skins.tgui.icons.js": {
       "selectorWithVariant": ".mw-ui-icon-wikimedia-{name}-{variant}:before",
@@ -224,10 +209,7 @@
         },
         {
           "name": "resources/skins.tgui.es6/tableOfContentsConfig.json",
-          "config": [
-            "TGUITableOfContentsCollapseAtCount",
-            "TGUITableOfContentsBeginning"
-          ]
+          "config": ["TGUITableOfContentsCollapseAtCount", "TGUITableOfContentsBeginning"]
         },
         {
           "name": "resources/skins.tgui.es6/templates/TableOfContents.mustache",
@@ -265,11 +247,7 @@
         "resources/skins.tgui.js/toggleTheme.js",
         "resources/skins.tgui.js/searchLoader.js"
       ],
-      "dependencies": [
-        "skins.tgui.icons.js",
-        "mediawiki.page.ready",
-        "mediawiki.util"
-      ],
+      "dependencies": ["skins.tgui.icons.js", "mediawiki.page.ready", "mediawiki.util"],
       "messages": ["tgui-search-loader"]
     }
   },
