@@ -449,21 +449,15 @@ class Hooks implements
 	 */
 	public static function onSkinTemplateNavigation( $sk, &$content_navigation ) {
 		$title = $sk->getRelevantTitle();
-
-		$skinName = $sk->getSkinName();
-		if ( self::isTGUISkin( $skinName ) ) {
-			if (
-				$sk->getConfig()->get( 'TGUIUseIconWatch' ) &&
-				$title && $title->canExist()
-			) {
-				self::updateActionsMenu( $content_navigation );
-			}
-
-			self::updateUserLinksItems( $sk, $content_navigation );
+		if (
+			$sk->getConfig()->get( 'TGUIUseIconWatch' ) &&
+			$title && $title->canExist()
+		) {
+			self::updateActionsMenu( $content_navigation );
 		}
-		if ( $skinName === Constants::SKIN_NAME ) {
-			self::createMoreOverflowMenu( $content_navigation );
-		}
+
+		self::updateUserLinksItems( $sk, $content_navigation );
+		self::createMoreOverflowMenu( $content_navigation );
 	}
 
 	/**
