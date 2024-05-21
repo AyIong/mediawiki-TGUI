@@ -123,9 +123,26 @@ function addPurgeButton() {
   var purgeButton = document.createElement("a");
   purgeButton.textContent = "Очистить кэш";
   purgeButton.setAttribute("title", "Очистить кэш страницы");
-  purgeButton.href = mw.util.getUrl("", {
-    action: "purge",
-    title: mw.config.get("wgPageName"),
+  purgeButton.href = "#";
+
+  purgeButton.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    var apiUrl = mw.config.get("wgScriptPath") + "/api.php";
+    var params = {
+      action: "purge",
+      titles: mw.config.get("wgPageName"),
+      format: "json",
+    };
+
+    $.post(apiUrl, params)
+      .done(function (data) {
+        console.log("Cache purged successfully", data);
+        location.reload();
+      })
+      .fail(function (textStatus, errorThrown) {
+        console.error("Failed to purge cache", textStatus, errorThrown);
+      });
   });
 
   purgeListItem.appendChild(purgeButton);
