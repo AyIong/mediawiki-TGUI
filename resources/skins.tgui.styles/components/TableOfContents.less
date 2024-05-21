@@ -16,7 +16,7 @@
   flex-direction: column;
   position: fixed;
   bottom: 0;
-  height: -webkit-fill-available;
+  height: @height-toc-full;
   max-height: 15em;
   box-sizing: border-box;
   background-color: var(--color-bg-section);
@@ -33,7 +33,6 @@
 
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
     max-height: 100vh;
-    margin-top: 66px;
     border-top: 1px solid transparent;
     box-shadow: none;
   }

@@ -16,11 +16,9 @@
   position: fixed;
   overflow: hidden;
   padding-top: 0.75em;
-  margin-bottom: 32px;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
-  height: ~'calc(100vh - 4.90em)';
-  height: -webkit-fill-available;
+  height: @height-sidebar-toc-hidden;
   background-color: var(--color-bg-section);
   color: var(--color-text);
   backdrop-filter: var(--blur-intensity);
@@ -36,11 +34,11 @@
   }
 
   body:not(.tgui-toc-collapsed) & {
-    margin-bottom: 240px;
+    height: @height-sidebar-toc;
   }
 
   &:not(:has(+ .sidebar-toc)) {
-    margin-bottom: 0 !important;
+    height: @height-sidebar-default !important;
   }
 }
 
