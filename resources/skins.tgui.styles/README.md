@@ -17,6 +17,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--civilian-opaque)
 | Primary = var(--civilian-primary)
 | Secondary = var(--civilian-secondary)
+| Light = var(--civilian-light)
 | Transparent = var(--civilian-transparent)
 }}
 | Medical =
@@ -24,6 +25,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--medical-opaque)
 | Primary = var(--medical-primary)
 | Secondary = var(--medical-secondary)
+| Light = var(--medical-light)
 | Transparent = var(--medical-transparent)
 }}
 | Supply =
@@ -31,6 +33,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--supply-opaque)
 | Primary = var(--supply-primary)
 | Secondary = var(--supply-secondary)
+| Light = var(--supply-light)
 | Transparent = var(--supply-transparent)
 }}
 | Science =
@@ -38,6 +41,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--science-opaque)
 | Primary = var(--science-primary)
 | Secondary = var(--science-secondary)
+| Light = var(--science-light)
 | Transparent = var(--science-transparent)
 }}
 | Engineering =
@@ -45,6 +49,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--engineer-opaque)
 | Primary = var(--engineer-primary)
 | Secondary = var(--engineer-secondary)
+| Light = var(--engineer-light)
 | Transparent = var(--engineer-transparent)
 }}
 | Security =
@@ -52,6 +57,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--security-opaque)
 | Primary = var(--security-primary)
 | Secondary = var(--security-secondary)
+| Light = var(--security-light)
 | Transparent = var(--security-transparent)
 }}
 | Antag =
@@ -59,6 +65,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--antag-opaque)
 | Primary = var(--antag-primary)
 | Secondary = var(--antag-secondary)
+| Light = var(--antag-light)
 | Transparent = var(--antag-transparent)
 }}
 | Legal =
@@ -66,6 +73,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--legal-opaque)
 | Primary = var(--legal-primary)
 | Secondary = var(--legal-secondary)
+| Light = var(--legal-light)
 | Transparent = var(--legal-transparent)
 }}
 | Command =
@@ -73,6 +81,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--command-opaque)
 | Primary = var(--command-primary)
 | Secondary = var(--command-secondary)
+| Light = var(--command-light)
 | Transparent = var(--command-transparent)
 }}
 | Synthetic =
@@ -80,6 +89,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--synthetic-opaque)
 | Primary = var(--synthetic-primary)
 | Secondary = var(--synthetic-secondary)
+| Light = var(--synthetic-light)
 | Transparent = var(--synthetic-transparent)
 }}
 | CentCom =
@@ -87,6 +97,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--centcom-opaque)
 | Primary = var(--centcom-primary)
 | Secondary = var(--centcom-secondary)
+| Light = var(--centcom-light)
 | Transparent = var(--centcom-transparent)
 }}
 | Special =
@@ -94,6 +105,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--special-opaque)
 | Primary = var(--special-primary)
 | Secondary = var(--special-secondary)
+| Light = var(--special-light)
 | Transparent = var(--special-transparent)
 }}
 | Cyan =
@@ -101,6 +113,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--cyan-opaque)
 | Primary = var(--cyan-primary)
 | Secondary = var(--cyan-secondary)
+| Light = var(--cyan-light)
 | Transparent = var(--cyan-transparent)
 }}
 | Blue =
@@ -108,6 +121,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--blue-opaque)
 | Primary = var(--blue-primary)
 | Secondary = var(--blue-secondary)
+| Light = var(--blue-light)
 | Transparent = var(--blue-transparent)
 }}
 | Green =
@@ -115,6 +129,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--green-opaque)
 | Primary = var(--green-primary)
 | Secondary = var(--green-secondary)
+| Light = var(--green-light)
 | Transparent = var(--green-transparent)
 }}
 | Yellow =
@@ -122,6 +137,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--yellow-opaque)
 | Primary = var(--yellow-primary)
 | Secondary = var(--yellow-secondary)
+| Light = var(--yellow-light)
 | Transparent = var(--yellow-transparent)
 }}
 | Red =
@@ -129,6 +145,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--red-opaque)
 | Primary = var(--red-primary)
 | Secondary = var(--red-secondary)
+| Light = var(--red-light)
 | Transparent = var(--red-transparent)
 }}
 | Pink =
@@ -136,6 +153,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--pink-opaque)
 | Primary = var(--pink-primary)
 | Secondary = var(--pink-secondary)
+| Light = var(--pink-light)
 | Transparent = var(--pink-transparent)
 }}
 | Brown =
@@ -143,6 +161,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--brown-opaque)
 | Primary = var(--brown-primary)
 | Secondary = var(--brown-secondary)
+| Light = var(--brown-light)
 | Transparent = var(--brown-transparent)
 }}
 | Lavaland =
@@ -150,6 +169,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--lavaland-opaque)
 | Primary = var(--lavaland-primary)
 | Secondary = var(--lavaland-secondary)
+| Light = var(--lavaland-light)
 | Transparent = var(--lavaland-transparent)
 }}
 | Cultist =
@@ -157,6 +177,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--cult-opaque)
 | Primary = var(--cult-primary)
 | Secondary = var(--cult-secondary)
+| Light = var(--cult-light)
 | Transparent = var(--cult-transparent)
 }}
 | Ratvar =
@@ -164,6 +185,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--ratvar-opaque)
 | Primary = var(--ratvar-primary)
 | Secondary = var(--ratvar-secondary)
+| Light = var(--ratvar-light)
 | Transparent = var(--ratvar-transparent)
 }}
 | Wizard =
@@ -171,6 +193,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--wizard-opaque)
 | Primary = var(--wizard-primary)
 | Secondary = var(--wizard-secondary)
+| Light = var(--wizard-light)
 | Transparent = var(--wizard-transparent)
 }}
 | Black =
@@ -178,6 +201,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--black-opaque)
 | Primary = var(--black-primary)
 | Secondary = var(--black-secondary)
+| Light = var(--black-light)
 | Transparent = var(--black-transparent)
 }}
 |
@@ -185,6 +209,7 @@ You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:C
 | Opaque = var(--gray-opaque)
 | Primary = var(--gray-primary)
 | Secondary = var(--gray-secondary)
+| Light = var(--gray-light)
 | Transparent = var(--gray-transparent)
 }}
 }}</includeonly><noinclude>
