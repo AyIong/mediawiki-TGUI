@@ -9,7 +9,7 @@ style="background-color: {{ColorPalette|{{{Color}}}|Primary}}"
 And when you use your template, just type:
 |Color = Supply (or any existing in palette color)
 
-You can find more here(RU wiki) - https://skyrat.ss220.club/index.php/Template:ColorPalette
+You can find more here(RU wiki) - https://wiki.ss220.club/index.php/Template:ColorPalette
 
 <includeonly>{{#switch: {{{1}}}
 | Civilian =
