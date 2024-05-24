@@ -1,3 +1,5 @@
+@import '../skins.tgui.styles/mixins.less';
+
 .tgui-pref {
   &__button {
     &[aria-expanded='true'] {
@@ -45,19 +47,14 @@
   }
 
   &-panel {
+    .tgui-background();
     visibility: hidden;
     position: absolute;
     overflow: hidden;
     opacity: 0;
-    left: auto;
-    right: 1em;
+    right: 0;
     min-width: 175px;
     max-width: 250px;
-    background: var(--nt-image);
-    background-size: 40%;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center;
     background-color: var(--color-bg);
     color: var(--color-text);
     border: var(--border-classic);
