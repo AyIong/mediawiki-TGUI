@@ -43,5 +43,12 @@
   "tgui-article-tools-nav-label": "Tools",
   "tgui-site-nav-label": "Site",
   "tgui-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Discussion]]",
-  "tooltip-tgui-anon-user-menu-title": "More options"
+  "tooltip-tgui-anon-user-menu-title": "More options",
+
+  "tgui-theme-name": "Color",
+  "tgui-theme-description": "Change the theme of the wiki",
+  "tgui-theme-day-label": "Light",
+  "tgui-theme-night-label": "Dark",
+  "tgui-theme-os-label": "Auto",
+  "tgui-theme-exclusion-notice": "This page is always in light mode."
 }

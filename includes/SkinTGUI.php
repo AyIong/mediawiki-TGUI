@@ -7,7 +7,6 @@ use ExtensionRegistry;
 use Html;
 use Linker;
 use MediaWiki\MediaWikiServices;
-use RuntimeException;
 use SkinMustache;
 use SkinTemplate;
 use SpecialPage;

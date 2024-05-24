@@ -3,12 +3,14 @@
 namespace MediaWiki\Skins\TGUI;
 
 use Config;
+use Html;
 use IContextSource;
 use MediaWiki\Hook\MakeGlobalVariablesScriptHook;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader as RL;
+use MediaWiki\Skins\TGUI\GetConfigTrait;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteModulePagesHook;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteStylesModulePagesHook;
 use MediaWiki\Skins\Hook\SkinPageReadyConfigHook;
@@ -28,8 +30,8 @@ use User;
  * @internal
  */
 class Hooks implements
-	GetPreferencesHook,
 	BeforePageDisplayHook,
+	GetPreferencesHook,
 	MakeGlobalVariablesScriptHook,
 	ResourceLoaderSiteModulePagesHook,
 	ResourceLoaderSiteStylesModulePagesHook,
@@ -53,7 +55,7 @@ class Hooks implements
 			$script = file_get_contents( MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/inline.js' );
 			$script = Html::inlineScript( $script );
 			$script = RL\ResourceLoader::filter( 'minify-js', $script );
-			$out->addHeadItem( 'skins.tgui.inline', $script );
+			$out->addHeadItem( 'skin.tgui.inline', $script );
 		}
 	}
 

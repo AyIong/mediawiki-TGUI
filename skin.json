@@ -91,6 +91,7 @@
     }
   },
   "Hooks": {
+    "BeforePageDisplay": "TGUIHooks",
     "GetPreferences": "TGUIHooks",
     "MakeGlobalVariablesScript": "TGUIHooks",
     "ResourceLoaderSiteModulePages": "TGUIHooks",
@@ -121,35 +122,6 @@
         }
       ],
       "messages": ["searchbutton", "searchresults", "tgui-searchsuggest-containing"]
-    },
-    "skins.tgui.preferences": {
-      "styles": ["resources/skins.tgui.preferences/skins.tgui.preferences.less"],
-      "packageFiles": [
-        "resources/skins.tgui.preferences/skins.tgui.preferences.js",
-        {
-          "name": "resources/skins.tgui.preferences/config.json",
-          "callback": "MediaWiki\\Skins\\TGUI\\ResourceLoaderHooks::getTGUIPreferencesResourceLoaderConfig"
-        },
-        "resources/skins.tgui.preferences/addPortlet.polyfill.js",
-        "resources/skins.tgui.preferences/clientPreferences.js",
-        "resources/skins.tgui.preferences/clientPreferences.json",
-        "resources/skins.tgui.preferences/clientPrefs.polyfill.js"
-      ],
-      "messages": [
-        "preferences",
-        "tgui-theme-name",
-        "tgui-theme-description",
-        "tgui-theme-day-label",
-        "tgui-theme-night-label",
-        "tgui-theme-os-label",
-        "tgui-theme-exclusion-notice"
-      ],
-      "dependencies": ["mediawiki.storage", "mediawiki.util"],
-      "targets": ["desktop", "mobile"]
-    },
-    "skins.tgui.serviceWorker": {
-      "scripts": ["resources/skins.tgui.serviceWorker/sw.js"],
-      "targets": ["desktop", "mobile"]
     },
     "skins.tgui.styles": {
       "class": "MediaWiki\\ResourceLoader\\SkinModule",
@@ -276,8 +248,38 @@
       ],
       "dependencies": ["skins.tgui.icons.js", "mediawiki.page.ready", "mediawiki.util"],
       "messages": ["tgui-search-loader"]
+    },
+    "skins.tgui.preferences": {
+      "styles": ["resources/skins.tgui.preferences/skins.tgui.preferences.less"],
+      "packageFiles": [
+        "resources/skins.tgui.preferences/skins.tgui.preferences.js",
+        {
+          "name": "resources/skins.tgui.preferences/config.json",
+          "callback": "MediaWiki\\Skins\\TGUI\\ResourceLoaderHooks::getTGUIPreferencesResourceLoaderConfig"
+        },
+        "resources/skins.tgui.preferences/addPortlet.polyfill.js",
+        "resources/skins.tgui.preferences/clientPreferences.js",
+        "resources/skins.tgui.preferences/clientPreferences.json",
+        "resources/skins.tgui.preferences/clientPrefs.polyfill.js"
+      ],
+      "messages": [
+        "preferences",
+        "tgui-theme-name",
+        "tgui-theme-description",
+        "tgui-theme-day-label",
+        "tgui-theme-night-label",
+        "tgui-theme-os-label",
+        "tgui-theme-exclusion-notice"
+      ],
+      "dependencies": ["mediawiki.storage", "mediawiki.util"],
+      "targets": ["desktop", "mobile"]
+    },
+    "skins.tgui.serviceWorker": {
+      "scripts": ["resources/skins.tgui.serviceWorker/sw.js"],
+      "targets": ["desktop", "mobile"]
     }
   },
+
   "ResourceFileModulePaths": {
     "localBasePath": "",
     "remoteSkinPath": "TGUI"

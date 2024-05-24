@@ -72,5 +72,12 @@
   "tgui-article-tools-nav-label": "Инструменты",
   "tgui-site-nav-label": "Сайт",
   "tgui-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Обсуждение]]",
-  "tooltip-tgui-anon-user-menu-title": "Больше возможностей"
+  "tooltip-tgui-anon-user-menu-title": "Больше возможностей",
+
+  "tgui-theme-name": "Цвет",
+  "tgui-theme-description": "Изменить тему оформления вики",
+  "tgui-theme-day-label": "Светлая",
+  "tgui-theme-night-label": "Тёмная",
+  "tgui-theme-os-label": "Авто",
+  "tgui-theme-exclusion-notice": "Эта страница всегда отображается в светлом режиме."
 }

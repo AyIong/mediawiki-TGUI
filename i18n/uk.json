@@ -60,5 +60,12 @@
   "tgui-article-tools-nav-label": "Інструменти",
   "tgui-site-nav-label": "Сайт",
   "tgui-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Обговорення]]",
-  "tooltip-tgui-anon-user-menu-title": "Більше опцій"
+  "tooltip-tgui-anon-user-menu-title": "Більше опцій",
+
+  "tgui-theme-name": "Колір",
+  "tgui-theme-description": "Змінити тему оформлення вікі",
+  "tgui-theme-day-label": "Світла",
+  "tgui-theme-night-label": "Темна",
+  "tgui-theme-os-label": "Авто",
+  "tgui-theme-exclusion-notice": "Ця сторінка завжди відображається у світлому режимі."
 }

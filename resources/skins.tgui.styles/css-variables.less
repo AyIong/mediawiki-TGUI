@@ -208,17 +208,15 @@
   --nt-image: url(../skins.tgui.styles/images/bg-nanotrasen-light.svg);
 }
 
-/**
- * Временные костыли для тем
- * Сделано для того, чтобы если системная тема светлая,
- * человек мог выбрать тёмную на сайте, и наоборот.
- *
- * Будет сделано нормально когда портирую префы с Citizen
- */
-.skin-theme-clientpref-night,
-.skin-tgui-night {
+.skin-theme-clientpref-night {
   :root& {
     .dark-theme();
+  }
+}
+
+.skin-theme-clientpref-day {
+  :root& {
+    .light-theme();
   }
 }
 
@@ -227,12 +225,6 @@
     :root& {
       .dark-theme();
     }
-  }
-}
-
-.skin-theme-clientpref-day {
-  :root& {
-    .light-theme();
   }
 }
 
