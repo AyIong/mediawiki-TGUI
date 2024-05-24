@@ -72,23 +72,3 @@
     }
   }
 }
-
-#mw-sidebar-button {
-  &:before {
-    // Equals `#555`, closest to `#54595d` on background-color `#fff`.
-    opacity: 0.67;
-    /* @embed */
-    background-image: url(images/chevronHorizontal-ltr.svg);
-
-    @{selector-main-menu-closed} ~ .mw-header & {
-      /* @embed */
-      background-image: url(images/menu.svg);
-    }
-  }
-
-  &:hover {
-    &:before {
-      opacity: 1;
-    }
-  }
-}

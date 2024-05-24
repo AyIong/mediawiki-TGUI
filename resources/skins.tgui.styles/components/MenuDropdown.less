@@ -1,20 +1,18 @@
 @import '../variables.less';
-@import '../mixins.less';
 @import 'mediawiki.mixins.less';
 
-/**
- * Targets all dropdown labels.
- * - language variants, Actions menus
- * - more menu, user menu
- * - ULS button in sticky header
- */
-.tgui-menu-dropdown .tgui-menu-heading,
 .mw-interlanguage-selector {
   display: flex;
 
   &:after {
-    .mixin-tgui-menu-heading-arrow();
+    content: '';
     margin-left: 0.33em;
+    background: url(../skins.tgui.styles/images/arrow-down.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: unit(13 / @font-size-tabs / @font-size-browser, em);
+    height: unit(13 / @font-size-tabs / @font-size-browser, em);
+    filter: var(--invert-icon);
   }
 }
 
