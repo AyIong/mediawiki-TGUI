@@ -1,6 +1,6 @@
 {
   "skin-theme": {
-    "options": ["os", "day", "night"],
+    "options": ["day", "night", "os"],
     "preferenceKey": "tgui-theme"
   }
 }
