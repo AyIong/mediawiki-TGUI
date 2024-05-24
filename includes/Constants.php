@@ -55,36 +55,6 @@ final class Constants {
 	 */
 	public const REQUIREMENT_FULLY_INITIALISED = 'FullyInitialised';
 
-	/**
-	 * @var string
-	 */
-	public const FEATURE_LANGUAGE_IN_HEADER = 'LanguageInHeader';
-
-	/**
-	 * @var string
-	 */
-	public const CONFIG_KEY_DISABLE_SIDEBAR_PERSISTENCE = 'TGUIDisableSidebarPersistence';
-
-	/**
-	 * @var string
-	 */
-	public const CONFIG_KEY_LANGUAGE_IN_HEADER = 'TGUILanguageInHeader';
-
-	/**
-	 * @var string
-	 */
-	public const REQUIREMENT_LANGUAGE_IN_HEADER = 'LanguageInHeader';
-
-	/**
-	 * Defines whether or not the Language in header A/B test is running. See
-	 * https://phabricator.wikimedia.org/T280825 for additional detail about the test.
-	 *
-	 * Note well that if the associated config value is falsy, then we fall back to choosing the
-	 * language treatment based on the `TGUILanguageInHeader` config variable.
-	 *
-	 * @var string
-	 */
-	public const CONFIG_LANGUAGE_IN_HEADER_TREATMENT_AB_TEST = 'TGUILanguageInHeaderTreatmentABTest';
 
 	/**
 	 * The `mediawiki.searchSuggest` protocol piece of the SearchSatisfaction instrumention reads
@@ -145,26 +115,6 @@ final class Constants {
 	 * @var string
 	 */
 	public const FEATURE_LANGUAGE_ALERT_IN_SIDEBAR = 'LanguageAlertInSidebar';
-
-	/**
-	 * @var string
-	 */
-	public const WEB_AB_TEST_ARTICLE_ID_FACTORY_SERVICE = 'WikimediaEvents.WebABTestArticleIdFactory';
-
-	/**
-	 * @var string
-	 */
-	public const FEATURE_VISUAL_ENHANCEMENTS = 'VisualEnhancementNext';
-
-	/**
-	 * @var string
-	 */
-	public const REQUIREMENT_VISUAL_ENHANCEMENTS = 'VisualEnhancementNext';
-
-	/**
-	 * @var string
-	 */
-	public const CONFIG_KEY_VISUAL_ENHANCEMENTS = 'TGUIVisualEnhancementNext';
 
 	/**
 	 * This class is for namespacing constants only. Forbid construction.

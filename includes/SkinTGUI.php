@@ -87,54 +87,6 @@ class SkinTGUI extends SkinMustache {
 	}
 
 	/**
-	 * @param string $location Either 'top' or 'bottom' is accepted.
-	 * @return bool
-	 */
-	protected function isLanguagesInContentAt( $location ) {
-		if ( !$this->canHaveLanguages() ) {
-			return false;
-		}
-		$featureManager = TGUIServices::getFeatureManager();
-		$inContent = $featureManager->isFeatureEnabled(
-			Constants::FEATURE_LANGUAGE_IN_HEADER
-		);
-		$isMainPage = $this->getTitle() ? $this->getTitle()->isMainPage() : false;
-
-		switch ( $location ) {
-			case 'top':
-				return $isMainPage ? $inContent && $featureManager->isFeatureEnabled(
-					Constants::FEATURE_LANGUAGE_IN_MAIN_PAGE_HEADER
-				) : $inContent;
-			case 'bottom':
-				return $inContent && $isMainPage && !$featureManager->isFeatureEnabled(
-					Constants::FEATURE_LANGUAGE_IN_MAIN_PAGE_HEADER
-				);
-			default:
-				throw new RuntimeException( 'unknown language button location' );
-		}
-	}
-
-	/**
-	 * Whether or not the languages are out of the sidebar and in the content either at
-	 * the top or the bottom.
-	 * @return bool
-	 */
-	private function isLanguagesInContent() {
-		return $this->isLanguagesInContentAt( 'top' ) || $this->isLanguagesInContentAt( 'bottom' );
-	}
-
-	/**
-	 * Show the ULS button if it's modern TGUI, languages in header is enabled,
-	 * and the ULS extension is enabled. Hide it otherwise.
-	 * There is no point in showing the language button if ULS extension is unavailable
-	 * as there is no ways to add languages without it.
-	 * @return bool
-	 */
-	protected function shouldHideLanguages() {
-		return !$this->isLanguagesInContent() || !$this->isULSExtensionEnabled();
-	}
-
-	/**
 	 * Returns HTML for the create account link inside the anon user links
 	 * @param string[] $returnto array of query strings used to build the login link
 	 * @param bool $isDropdownItem Set true for create account link inside the user menu dropdown
@@ -269,21 +221,6 @@ class SkinTGUI extends SkinMustache {
 	 */
 	private function isULSExtensionEnabled(): bool {
 		return ExtensionRegistry::getInstance()->isLoaded( 'UniversalLanguageSelector' );
-	}
-
-	/**
-	 * Determines if the language switching alert box should be in the sidebar.
-	 *
-	 * @return bool
-	 */
-	private function shouldLanguageAlertBeInSidebar(): bool {
-		$featureManager = TGUIServices::getFeatureManager();
-		$isMainPage = $this->getTitle() ? $this->getTitle()->isMainPage() : false;
-		$shouldShowOnMainPage = $isMainPage && !empty( $this->getLanguagesCached() ) &&
-			$featureManager->isFeatureEnabled( Constants::FEATURE_LANGUAGE_IN_MAIN_PAGE_HEADER );
-		return ( $this->isLanguagesInContentAt( 'top' ) && !$isMainPage && !$this->shouldHideLanguages() &&
-			$featureManager->isFeatureEnabled( Constants::FEATURE_LANGUAGE_ALERT_IN_SIDEBAR ) ) ||
-			$shouldShowOnMainPage;
 	}
 
 	/**
@@ -561,17 +498,9 @@ class SkinTGUI extends SkinMustache {
 			case 'data-notifications':
 			case 'data-personal':
 			case 'data-user-page':
-			case 'data-languages':
-				$type = $this->isLanguagesInContent() ?
-					self::MENU_TYPE_DROPDOWN : self::MENU_TYPE_PORTAL;
-				break;
 			default:
 				$type = self::MENU_TYPE_PORTAL;
 				break;
-		}
-
-		if ( $key === 'data-languages' && $this->isLanguagesInContent() ) {
-			$portletData = array_merge( $portletData, $this->getULSPortletData() );
 		}
 
 		if ( $key === 'data-user-menu' ) {
@@ -691,9 +620,6 @@ class SkinTGUI extends SkinMustache {
 		$commonSkinData = array_merge( $parentData, [
 			'input-location' => $this->getSearchBoxInputLocation(),
 			'sidebar-visible' => $this->isSidebarVisible(),
-			'is-language-in-content' => $this->isLanguagesInContent(),
-			'is-language-in-content-top' => $this->isLanguagesInContentAt( 'top' ),
-			'is-language-in-content-bottom' => $this->isLanguagesInContentAt( 'bottom' ),
 			'data-search-box' => $this->getSearchData(
 				$parentData['data-search-box'],
 				false,
@@ -708,23 +634,6 @@ class SkinTGUI extends SkinMustache {
 			$commonSkinData['data-portlets'],
 			$user
 		);
-
-		// T295555 Add language switch alert message temporarily (to be removed).
-		if ( $this->shouldLanguageAlertBeInSidebar() ) {
-			$languageSwitchAlert = [
-				'html-content' => Html::noticeBox(
-					$this->msg( 'tgui-language-redirect-to-top' )->parse(),
-					'tgui-language-sidebar-alert'
-				),
-			];
-			$headingOptions = [
-				'heading' => $this->msg( 'tgui-languages' )->plain(),
-			];
-			$commonSkinData['data-tgui-language-switch-alert'][] = $this->makeSidebarActionData(
-				$languageSwitchAlert,
-				$headingOptions
-			);
-		}
 
 		return $commonSkinData;
 	}

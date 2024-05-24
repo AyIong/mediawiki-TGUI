@@ -17,29 +17,26 @@ function enableCssAnimations(document) {
 }
 
 /**
- * In https://phabricator.wikimedia.org/T313409 #p-namespaces was renamed to #p-associatedPages
- * This code maps items added by gadgets to the new menu.
- * This code can be removed in MediaWiki 1.40.
+ * Register service worker
+ *
+ * @return {void}
  */
-function addNamespacesGadgetSupport() {
-  // Set up hidden dummy portlet.
-  var dummyPortlet = document.createElement("div");
-  dummyPortlet.setAttribute("id", "p-namespaces");
-  dummyPortlet.setAttribute("style", "display: none;");
-  dummyPortlet.appendChild(document.createElement("ul"));
-  document.body.appendChild(dummyPortlet);
-  mw.hook("util.addPortletLink").add(function (/** @type {Element} */ node) {
-    // If it was added to p-namespaces, show warning and move.
-    // eslint-disable-next-line no-jquery/no-global-selector
-    if ($("#p-namespaces").find(node).length) {
-      // eslint-disable-next-line no-jquery/no-global-selector
-      $("#p-associated-pages ul").append(node);
-      // @ts-ignore
-      mw.log.warn("Please update call to mw.util.addPortletLink with ID p-namespaces. Use p-associatedPages instead.");
-      // in case it was empty before:
-      mw.util.showPortlet("p-associated-pages");
+function registerServiceWorker() {
+  const scriptPath = mw.config.get("wgScriptPath");
+
+  // Only allow serviceWorker when the scriptPath is at root because of its scope
+  // I can't figure out how to add the Service-Worker-Allowed HTTP header
+  // to change the default scope
+  if (scriptPath === "") {
+    if ("serviceWorker" in navigator) {
+      const SW_MODULE_NAME = "skins.tgui.serviceWorker",
+        version = mw.loader.moduleRegistry[SW_MODULE_NAME].version,
+        // HACK: Faking a RL link
+        swUrl =
+          scriptPath + "/load.php?modules=" + SW_MODULE_NAME + "&only=scripts&raw=true&skin=tgui&version=" + version;
+      navigator.serviceWorker.register(swUrl, { scope: "/" });
     }
-  });
+  }
 }
 
 /**
@@ -56,13 +53,14 @@ function main(window) {
   initSearchLoader(document);
   languageButton();
   dropdownMenus();
-  addNamespacesGadgetSupport();
 
   // Preference module
-  if (config.wgTGUIEnablePreferences === true && typeof document.createElement("nav").prepend === "function") {
+  if (config.wgTGUIEnablePreferences === true && typeof document.createElement("div").prepend === "function") {
     mw.loader.load("skins.tgui.preferences");
   }
 }
+
+registerServiceWorker();
 
 /**
  * @param {Window} window
