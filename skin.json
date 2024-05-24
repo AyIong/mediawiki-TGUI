@@ -21,7 +21,7 @@
           "name": "tgui",
           "templateDirectory": "includes/templates",
           "template": "skin",
-          "responsive": true,
+          "responsive": false,
           "link": {
             "text-wrapper": {
               "tag": "span"

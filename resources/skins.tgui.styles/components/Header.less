@@ -26,6 +26,15 @@
 
   &-aside {
     float: left;
+    min-width: @width-sidebar-px-wide;
+
+    @media (min-width: @min-width-desktop-wide) {
+      min-width: @width-sidebar-px-wide;
+    }
+
+    @media (max-width: @min-width-tablet) {
+      min-width: unset;
+    }
   }
 
   &-content {
