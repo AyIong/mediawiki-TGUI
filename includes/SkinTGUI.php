@@ -1,6 +1,8 @@
 <?php
 namespace MediaWiki\Skins\TGUI;
 
+use MediaWiki\Skins\TGUI\Partials\Metadata;
+use MediaWiki\Skins\TGUI\Partials\Theme;
 use ExtensionRegistry;
 use Html;
 use Linker;
@@ -37,6 +39,23 @@ class SkinTGUI extends SkinMustache {
 	 * @var string
 	 */
 	private const OPT_OUT_LINK_TRACKING_CODE = 'vctw1';
+
+	use GetConfigTrait;
+
+	/**
+	 * Overrides template, styles and scripts module
+	 *
+	 * @inheritDoc
+	 */
+	public function __construct( $options = [] ) {
+		if ( !isset( $options['name'] ) ) {
+			$options['name'] = 'tgui';
+		}
+
+		// Add skin-specific features
+		$this->buildSkinFeatures( $options );
+		parent::__construct( $options );
+	}
 
 	/**
 	 * Calls getLanguages with caching.
@@ -708,5 +727,44 @@ class SkinTGUI extends SkinMustache {
 		}
 
 		return $commonSkinData;
+	}
+
+	/**
+	 * Add client preferences features
+	 * Did not add the tgui-feature- prefix because there might be features from core MW or extensions
+	 *
+	 * @param string $feature
+	 * @param string $value
+	 */
+	private function addClientPrefFeature( string $feature, string $value = 'standard' ) {
+		$this->getOutput()->addHtmlClasses( $feature . '-clientpref-' . $value );
+	}
+
+	/**
+	 * Set up optional skin features
+	 *
+	 * @param array &$options
+	 */
+	private function buildSkinFeatures( array &$options ) {
+		$title = $this->getOutput()->getTitle();
+
+		$metadata = new Metadata( $this );
+		$skinTheme = new Theme( $this );
+
+		// Add metadata
+		$metadata->addMetadata();
+
+		// Add theme handler
+		$skinTheme->setSkinTheme( $options );
+
+		// Collapsible sections
+		// Load in content pages
+		if ( $title !== null && $title->isContentPage() ) {
+			// Since we merged the sections module into core styles and scripts to reduce RL modules
+			// The style is now activated through the class below
+			if ( $this->getConfigValue( 'TGUIEnableCollapsibleSections' ) === true ) {
+				$options['bodyClasses'][] = 'tgui-sections-enabled';
+			}
+		}
 	}
 }

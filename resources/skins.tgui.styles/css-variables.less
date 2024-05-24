@@ -215,36 +215,31 @@
  *
  * Будет сделано нормально когда портирую префы с Citizen
  */
-.tgui-light {
+.skin-theme-clientpref-night,
+.skin-tgui-night {
   :root& {
-    .light-theme();
-    .light-palette();
+    .dark-theme();
   }
 }
 
-.tgui-light {
-  @media (prefers-color-scheme: light) {
-    :root& {
-      .dark-theme();
-      .dark-palette();
-    }
-  }
-}
-
-:not(.tgui-light) {
+.skin-theme-clientpref-os {
   @media (prefers-color-scheme: dark) {
     :root& {
       .dark-theme();
-      .dark-palette();
     }
   }
 }
 
-:not(.tgui-light) {
+.skin-theme-clientpref-day {
+  :root& {
+    .light-theme();
+  }
+}
+
+.skin-theme-clientpref-os {
   @media (prefers-color-scheme: light) {
     :root& {
       .light-theme();
-      .light-palette();
     }
   }
 }

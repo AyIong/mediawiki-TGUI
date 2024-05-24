@@ -6,6 +6,7 @@ use Config;
 use IContextSource;
 use MediaWiki\Hook\MakeGlobalVariablesScriptHook;
 use MediaWiki\Hook\OutputPageBodyAttributesHook;
+use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader as RL;
@@ -29,12 +30,35 @@ use User;
  */
 class Hooks implements
 	GetPreferencesHook,
+	BeforePageDisplayHook,
 	MakeGlobalVariablesScriptHook,
 	OutputPageBodyAttributesHook,
 	ResourceLoaderSiteModulePagesHook,
 	ResourceLoaderSiteStylesModulePagesHook,
 	SkinPageReadyConfigHook
 {
+	use GetConfigTrait;
+
+	/**
+	 * Adds the inline theme switcher script to the page
+	 *
+	 * @param OutputPage $out
+	 * @param Skin $skin
+	 */
+	public function onBeforePageDisplay( $out, $skin ): void {
+		// It's better to exit before any additional check
+		if ( $skin->getSkinName() !== 'tgui' ) {
+			return;
+		}
+
+		if ( $this->getConfigValue( 'TGUIEnablePreferences', $out ) === true ) {
+			$script = file_get_contents( MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/inline.js' );
+			$script = Html::inlineScript( $script );
+			$script = RL\ResourceLoader::filter( 'minify-js', $script );
+			$out->addHeadItem( 'skin.tgui.inline', $script );
+		}
+	}
+
 	/**
 	 * Checks if the current skin is a variant of TGUI
 	 *
@@ -43,21 +67,6 @@ class Hooks implements
 	 */
 	private static function isTGUISkin( string $skinName ): bool {
 		return ($skinName === Constants::SKIN_NAME);
-	}
-
-	/**
-	 * Passes config variables to TGUI (modern) ResourceLoader module.
-	 * @param RL\Context $context
-	 * @param Config $config
-	 * @return array
-	 */
-	public static function getTGUIResourceLoaderConfig(
-		RL\Context $context,
-		Config $config
-	) {
-		return [
-			'wgTGUISearchHost' => $config->get( 'TGUISearchHost' ),
-		];
 	}
 
 	/**

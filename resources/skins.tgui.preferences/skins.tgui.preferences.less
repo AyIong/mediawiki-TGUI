@@ -1,0 +1,143 @@
+.tgui-pref {
+  &__button {
+    &[aria-expanded='true'] {
+      background-color: var(--color-bg-focus);
+    }
+  }
+}
+
+#tgui-pref {
+  &-toggle {
+    cursor: pointer;
+    padding: 1.1em;
+    background-color: transparent;
+    transition: background-color var(--transition-time);
+
+    &:hover {
+      background-color: var(--color-bg-hover);
+    }
+  }
+
+  &-header {
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+  }
+
+  &-panel {
+    visibility: hidden;
+    position: absolute;
+    overflow: hidden;
+    opacity: 0;
+    left: auto;
+    right: 1em;
+    min-width: 215px;
+    height: unset;
+    padding: 0.5em;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    border: var(--border-classic);
+    border-radius: var(--border-radius-small);
+    box-shadow: var(--box-shadow-medium);
+    transform: translate(0, 0);
+    transition: all var(--transition-time) ease-in-out;
+    z-index: 10;
+
+    &.tgui-pref-panel--active {
+      visibility: visible;
+      opacity: 1;
+      height: auto;
+      transform: translate(0, 1em);
+    }
+
+    fieldset {
+      padding: 0 0.5em;
+      margin: 0;
+      font-size: var(--font-size-small);
+      appearance: none;
+      border: 0;
+    }
+
+    > * {
+      opacity: 0;
+    }
+  }
+}
+
+.tgui-client-prefs {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding-bottom: 1em;
+
+  form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    text-align: center;
+  }
+
+  &-radio {
+    &__input {
+      display: none;
+
+      &:checked {
+        ~ .tgui-client-prefs-radio__label {
+          border-color: var(--color-primary);
+        }
+      }
+    }
+
+    &__label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 1em 0.5em;
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      border: 2px solid var(--color-primary);
+      border-radius: var(--border-radius-medium);
+
+      &:hover {
+        border-color: var(--color-primary-light);
+      }
+
+      &:active {
+        border-color: var(--color-green);
+      }
+    }
+  }
+}
+
+#tgui-client-prefs {
+  .tgui-menu {
+    &__content {
+      padding: 0 0.5em;
+    }
+  }
+}
+
+#skin-client-prefs-skin-theme {
+  .tgui-client-prefs-radio__label {
+    color: var(--color-text);
+    background: var(--color-primary);
+  }
+}
+
+.tgui-icon::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 1.25em;
+  min-height: 1.25em;
+  background-repeat: no-repeat;
+  background-size: 1.25em 1.25em;
+  background-position: center;
+  filter: var(--invert-icon);
+}
+
+.tgui-icon-settings::before {
+  background-image: url(../skins.tgui.styles/images/gear-solid.svg);
+}

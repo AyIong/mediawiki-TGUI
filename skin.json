@@ -123,6 +123,39 @@
       ],
       "messages": ["searchbutton", "searchresults", "tgui-searchsuggest-containing"]
     },
+    "skins.tgui.preferences": {
+      "styles": ["resources/skins.tgui.preferences/skins.tgui.preferences.less"],
+      "packageFiles": [
+        "resources/skins.tgui.preferences/skins.tgui.preferences.js",
+        {
+          "name": "resources/skins.tgui.preferences/config.json",
+          "callback": "MediaWiki\\Skins\\TGUI\\ResourceLoaderHooks::getTGUIPreferencesResourceLoaderConfig"
+        },
+        "resources/skins.tgui.preferences/addPortlet.polyfill.js",
+        "resources/skins.tgui.preferences/clientPreferences.js",
+        "resources/skins.tgui.preferences/clientPreferences.json",
+        "resources/skins.tgui.preferences/clientPrefs.polyfill.js"
+      ],
+      "messages": [
+        "preferences",
+        "tgui-theme-name",
+        "tgui-theme-description",
+        "tgui-theme-day-label",
+        "tgui-theme-night-label",
+        "tgui-theme-os-label",
+        "tgui-theme-exclusion-notice",
+        "tgui-feature-custom-width-name",
+        "tgui-feature-custom-width-standard-label",
+        "tgui-feature-custom-width-wide-label",
+        "tgui-feature-custom-width-full-label"
+      ],
+      "dependencies": ["mediawiki.storage", "mediawiki.util"],
+      "targets": ["desktop", "mobile"]
+    },
+    "skins.tgui.serviceWorker": {
+      "scripts": ["resources/skins.tgui.serviceWorker/sw.js"],
+      "targets": ["desktop", "mobile"]
+    },
     "skins.tgui.styles": {
       "class": "MediaWiki\\ResourceLoader\\SkinModule",
       "features": {
@@ -205,7 +238,7 @@
         "resources/skins.tgui.es6/deferUntilFrame.js",
         {
           "name": "resources/skins.tgui.es6/config.json",
-          "callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUIResourceLoaderConfig"
+          "callback": "MediaWiki\\Skins\\TGUI\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
         },
         {
           "name": "resources/skins.tgui.es6/tableOfContentsConfig.json",
@@ -237,14 +270,13 @@
         "resources/skins.tgui.js/skin.js",
         {
           "name": "resources/skins.tgui.js/config.json",
-          "callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUIResourceLoaderConfig"
+          "callback": "MediaWiki\\Skins\\TGUI\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
         },
         "resources/skins.tgui.js/checkbox.js",
         "resources/skins.tgui.js/collapsiblePortlets.js",
         "resources/skins.tgui.js/dropdownMenus.js",
         "resources/skins.tgui.js/sidebarPersistence.js",
         "resources/skins.tgui.js/languageButton.js",
-        "resources/skins.tgui.js/toggleTheme.js",
         "resources/skins.tgui.js/searchLoader.js"
       ],
       "dependencies": ["skins.tgui.icons.js", "mediawiki.page.ready", "mediawiki.util"],
@@ -278,6 +310,18 @@
     }
   },
   "config": {
+    "TGUIThemeDefault": {
+      "value": "auto",
+      "description": "Default theme of the skin. Valid values are 'light', 'dark' and 'auto'.",
+      "descriptionmsg": "tgui-config-themedefault",
+      "public": true
+    },
+    "TGUIEnablePreferences": {
+      "value": true,
+      "description": "Enables or disable preferences module",
+      "descriptionmsg": "tgui-config-enablepreferences",
+      "public": true
+    },
     "TGUIVisualEnhancementNext": {
       "value": false,
       "description": "Temporary configuration flag for enabling in development enhancements."
