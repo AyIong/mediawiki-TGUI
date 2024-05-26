@@ -164,6 +164,20 @@
   }
 }
 
+#skin-client-prefs-tgui-feature-darkened-images {
+  display: none;
+
+  .skin-theme-clientpref-night & {
+    display: block;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .skin-theme-clientpref-os & {
+      display: block;
+    }
+  }
+}
+
 .tgui-icon::before {
   content: '';
   display: block;

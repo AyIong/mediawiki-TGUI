@@ -60,5 +60,9 @@
 
   "tgui-feature-reduced-motion-name": "Reduced Motion",
   "tgui-feature-reduced-motion-enabled-label": "Enabled",
-  "tgui-feature-reduced-motion-disabled-label": "Disabled"
+  "tgui-feature-reduced-motion-disabled-label": "Disabled",
+
+  "tgui-feature-darkened-images-name": "Darkened Images",
+  "tgui-feature-darkened-images-enabled-label": "Enabled",
+  "tgui-feature-darkened-images-disabled-label": "Disabled"
 }

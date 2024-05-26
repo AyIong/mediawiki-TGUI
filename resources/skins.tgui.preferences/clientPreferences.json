@@ -10,5 +10,9 @@
   "tgui-feature-reduced-motion": {
     "options": ["enabled", "disabled"],
     "preferenceKey": "tgui-motion"
+  },
+  "tgui-feature-darkened-images": {
+    "options": ["enabled", "disabled"],
+    "preferenceKey": "tgui-darkened-images"
   }
 }
