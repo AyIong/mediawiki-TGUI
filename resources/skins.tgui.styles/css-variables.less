@@ -68,7 +68,8 @@
   --border-radius-small: 0.25em;
   --border-radius-medium: 0.5em;
   --border-radius-large: 1em;
-  --blur-intensity: blur(24px);
+  --blur-default: blur(24px);
+  --blur-important: blur(24px);
   --transition-time: 0.2s;
   --transition-delay: 0.2s;
 
@@ -85,14 +86,16 @@
 .dark-theme() {
   /* Base Colors */
   --color-bg: hsl(0, 0%, 15%);
+  --color-bg-light: hsla(0, 0%, 15%, 0.66);
+  --color-bg-light-opaque: hsl(0, 0%, 14%);
   --color-bg-hover: rgba(255, 255, 255, 0.075);
   --color-bg-focus: rgba(255, 255, 255, 0.125);
-  --color-bg-translucent: rgba(37, 37, 37, 0.66);
   --color-bg-section: rgba(0, 0, 0, 0.33);
   --color-bg-section-opaque: hsl(0, 0%, 10%);
-  --color-bg-section-light: rgba(125, 125, 125, 0.075);
-  --color-bg-section-light-opaque: hsl(0, 0%, 13%);
-  --color-bg-modal-header: hsl(0, 0%, 21%);
+  --color-bg-section-light: var(--color-bg-popup);
+  --color-bg-section-light-opaque: hsl(0, 0%, 12.5%);
+  --color-bg-popup: rgba(125, 125, 125, 0.075);
+  --color-bg-popup-header: hsl(0, 0%, 20%);
   --color-text: rgba(255, 255, 255, 1);
   --color-text-darker: rgba(220, 220, 220, 1);
   --color-text-gray: rgba(185, 185, 185, 0.75);
@@ -151,14 +154,16 @@
 .light-theme() {
   /* Base Colors - Light */
   --color-bg: hsl(0, 0%, 100%);
+  --color-bg-light: hsla(30, 5%, 80%, 0.66);
+  --color-bg-light-opaque: hsl(35, 5%, 82.5%);
   --color-bg-hover: rgba(0, 0, 0, 0.075);
   --color-bg-focus: rgba(0, 0, 0, 0.125);
-  --color-bg-translucent: rgba(204, 201, 198, 0.66);
   --color-bg-section: rgba(204, 201, 198, 0.33);
   --color-bg-section-opaque: hsl(30, 6%, 93%);
-  --color-bg-section-light: rgba(158, 152, 148, 0.15);
+  --color-bg-section-light: var(--color-bg-popup);
   --color-bg-section-light-opaque: hsl(30, 7%, 88%);
-  --color-bg-modal-header: hsl(0, 0%, 50%);
+  --color-bg-popup: rgba(158, 152, 148, 0.15);
+  --color-bg-popup-header: hsl(0, 0%, 50%);
   --color-text: rgba(0, 0, 0, 1);
   --color-text-darker: rgba(40, 40, 40, 1);
   --color-text-gray: rgba(80, 80, 80, 0.75);
@@ -208,36 +213,4 @@
 
   /* Background Image */
   --nt-image: url(../skins.tgui.styles/images/bg-nanotrasen-light.svg);
-}
-
-.skin-theme-clientpref-night {
-  :root& {
-    .dark-theme();
-    .dark-palette();
-  }
-}
-
-.skin-theme-clientpref-day {
-  :root& {
-    .light-theme();
-    .light-palette();
-  }
-}
-
-.skin-theme-clientpref-os {
-  @media (prefers-color-scheme: dark) {
-    :root& {
-      .dark-theme();
-      .dark-palette();
-    }
-  }
-}
-
-.skin-theme-clientpref-os {
-  @media (prefers-color-scheme: light) {
-    :root& {
-      .light-theme();
-      .light-palette();
-    }
-  }
 }

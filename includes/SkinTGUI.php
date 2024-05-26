@@ -665,6 +665,9 @@ class SkinTGUI extends SkinMustache {
 		// Add theme handler
 		$skinTheme->setSkinTheme( $options );
 
+		// Clientprefs feature handling
+		$this->addClientPrefFeature( 'tgui-feature-blur', 'enabled' );
+
 		// Collapsible sections
 		// Load in content pages
 		if ( $title !== null && $title->isContentPage() ) {

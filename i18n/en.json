@@ -50,5 +50,9 @@
   "tgui-theme-day-label": "Light",
   "tgui-theme-night-label": "Dark",
   "tgui-theme-os-label": "Auto",
-  "tgui-theme-exclusion-notice": "This page is always in light mode."
+  "tgui-theme-exclusion-notice": "This page is always in light mode.",
+
+  "tgui-feature-blur-name": "Blur Effects",
+  "tgui-feature-blur-enabled-label": "Enabled",
+  "tgui-feature-blur-disabled-label": "Disabled"
 }

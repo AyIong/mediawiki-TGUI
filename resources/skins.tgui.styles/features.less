@@ -1,0 +1,57 @@
+/* Themes */
+.skin-theme-clientpref-night {
+  :root& {
+    .dark-theme();
+    .dark-palette();
+  }
+}
+
+.skin-theme-clientpref-day {
+  :root& {
+    .light-theme();
+    .light-palette();
+  }
+}
+
+.skin-theme-clientpref-os {
+  @media (prefers-color-scheme: dark) {
+    :root& {
+      .dark-theme();
+      .dark-palette();
+    }
+  }
+}
+
+.skin-theme-clientpref-os {
+  @media (prefers-color-scheme: light) {
+    :root& {
+      .light-theme();
+      .light-palette();
+    }
+  }
+}
+
+/* Blur */
+.disable-blur() {
+  --blur-default: none;
+  --color-bg-light: var(--color-bg-light-opaque);
+  --color-bg-section-light: var(--color-bg-section-light-opaque);
+}
+
+.tgui-feature-blur-clientpref-disabled {
+  :root& {
+    .disable-blur();
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root& {
+      .disable-blur();
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root& {
+      .disable-blur();
+    }
+  }
+}

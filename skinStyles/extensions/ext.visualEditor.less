@@ -16,7 +16,11 @@
       color: var(--color-text);
       border-color: var(--color-border) !important;
       box-shadow: none !important;
-      backdrop-filter: var(--blur-intensity);
+      backdrop-filter: var(--blur-default);
+
+      .oo-ui-toolbar-bar {
+        background-color: var(--color-bg-popup);
+      }
 
       .oo-ui-popupToolGroup.oo-ui-labelElement.oo-ui-indicatorElement .oo-ui-popupToolGroup-handle,
       .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle {
@@ -58,7 +62,7 @@
   }
 
   .ve-ui-mwTransclusionOutlineTemplateWidget-sticky {
-    background-color: var(--color-bg-section-light);
+    background-color: var(--color-bg-popup);
   }
 
   .ve-ui-mwTransclusionDialog-single-transclusion

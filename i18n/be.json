@@ -59,5 +59,9 @@
   "tgui-theme-day-label": "Светлая",
   "tgui-theme-night-label": "Цёмная",
   "tgui-theme-os-label": "Аўта",
-  "tgui-theme-exclusion-notice": "Гэтая старонка заўсёды адлюстроўваецца ў светлым рэжыме."
+  "tgui-theme-exclusion-notice": "Гэтая старонка заўсёды адлюстроўваецца ў светлым рэжыме.",
+
+  "tgui-feature-blur-name": "Эфекты размыцця",
+  "tgui-feature-blur-enabled-label": "Уключаны",
+  "tgui-feature-blur-disabled-label": "Выключаны"
 }

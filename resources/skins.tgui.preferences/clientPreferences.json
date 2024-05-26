@@ -2,5 +2,9 @@
   "skin-theme": {
     "options": ["day", "night", "os"],
     "preferenceKey": "tgui-theme"
+  },
+  "tgui-feature-blur": {
+    "options": ["enabled", "disabled"],
+    "preferenceKey": "tgui-blur"
   }
 }
