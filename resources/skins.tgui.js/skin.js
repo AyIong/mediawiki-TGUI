@@ -3,7 +3,8 @@ var languageButton = require("./languageButton.js"),
   dropdownMenus = require("./dropdownMenus.js").dropdownMenus,
   sidebarPersistence = require("./sidebarPersistence.js"),
   checkbox = require("./checkbox.js"),
-  collapsiblePortlets = require("./collapsiblePortlets.js");
+  collapsiblePortlets = require("./collapsiblePortlets.js"),
+  purgeButton = require("./purgeButton.js");
 
 /**
  * Wait for first paint before calling this function.
@@ -53,6 +54,7 @@ function main(window) {
   initSearchLoader(document);
   languageButton();
   dropdownMenus();
+  purgeButton();
 
   // Preference module
   if (config.wgTGUIEnablePreferences === true && typeof document.createElement("div").prepend === "function") {
@@ -86,15 +88,10 @@ init(window);
 function initAfterEs6Module() {
   mw.loader.using("skins.tgui.es6").then(
     function () {
-      // Loading of the 'skins.tgui.es6' module has succeeded. Initialize the
-      // `skins.tgui.es6` module first.
       require(/** @type {string} */ ("skins.tgui.es6")).main();
-      // Initialize this module second.
       main(window);
     },
     function () {
-      // Loading of the 'skins.tgui.es6' has failed (e.g. this will fail in
-      // browsers that don't support ES6) so only initialize this module.
       main(window);
     },
   );

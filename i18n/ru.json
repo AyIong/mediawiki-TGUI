@@ -73,6 +73,8 @@
   "tgui-site-nav-label": "Сайт",
   "tgui-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Обсуждение]]",
   "tooltip-tgui-anon-user-menu-title": "Больше возможностей",
+  "tgui-purge-button-label": "Очистить кэш",
+  "tgui-purge-button-title": "Очистить кэш страницы [F4]",
 
   "tgui-theme-name": "Цвет",
   "tgui-theme-description": "Изменить тему оформления вики",

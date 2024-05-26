@@ -19,16 +19,8 @@
   min-width: 10%;
 
   .mw-ui-button {
-    // FIXME: Overrides mw-ui-button's `display: inline-block` property so that
-    // the text in the button is vertically centered. `.mw-ui-button` sets a
-    // min-height to the button, but should also vertically center the
-    // button's children.
     display: flex;
     align-items: center;
-  }
-
-  .mw-list-item {
-    margin: 0;
   }
 }
 
@@ -81,14 +73,4 @@
   a:after {
     content: '@{msg-parentheses-end}';
   }
-}
-
-// Login link.
-.tgui-user-menu-login {
-  border-bottom: var(--border-classic);
-}
-
-// Logout link
-.tgui-user-menu-logout {
-  border-top: var(--border-classic);
 }

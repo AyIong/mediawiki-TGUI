@@ -36,7 +36,6 @@ function bind() {
  * @return {HTMLElement|undefined}
  */
 function createIconElement(menuElement, parentElement, id) {
-  // Dropdowns which do not have the noicon class are icon capable.
   var isIconCapable =
     menuElement &&
     menuElement.classList.contains("tgui-menu-dropdown") &&
@@ -50,10 +49,6 @@ function createIconElement(menuElement, parentElement, id) {
   iconElement.classList.add("mw-ui-icon");
 
   if (id) {
-    // The following class allows gadgets developers to style or hide an icon.
-    // * mw-ui-icon-tgui-gadget-<id>
-    // The class is considered stable and should not be removed without
-    // a #user-notice.
     iconElement.classList.add("mw-ui-icon-tgui-gadget-" + id);
   }
 
@@ -63,12 +58,10 @@ function createIconElement(menuElement, parentElement, id) {
 /**
  * Adds icon placeholder for gadgets to use.
  *
- * @typedef {Object} PortletLinkData
- * @property {string|null} id
- */
-/**
  * @param {HTMLElement} item
  * @param {PortletLinkData} data
+ * @typedef {Object} PortletLinkData
+ * @property {string|null} id
  */
 function addPortletLinkHandler(item, data) {
   var link = item.querySelector("a");
@@ -76,21 +69,14 @@ function addPortletLinkHandler(item, data) {
   var menuElement = ($menu.length && $menu.get(0)) || null;
   var iconElement = createIconElement(menuElement, link, data.id);
 
-  // The views menu has limited space so we need to decide whether there is space
-  // to accomodate the new item and if not to redirect to the more dropdown.
-  /* eslint-disable no-jquery/no-global-selector */
   if ($menu.prop("id") === "p-views") {
-    // @ts-ignore if undefined as NaN will be ignored
     var availableWidth =
       $(".mw-article-toolbar-container").width() -
-      // @ts-ignore
       $("#p-namespaces").width() -
       $("#p-variants").width() -
-      // @ts-ignore
       $("#p-views").width() -
       $("#p-cactions").width();
     var moreDropdown = document.querySelector("#p-cactions ul");
-    // If the screen width is less than 720px then the views menu is hidden
     if (moreDropdown && (availableWidth < 0 || window.innerWidth < 720)) {
       moreDropdown.appendChild(item);
       // reveal if hidden
@@ -111,49 +97,6 @@ Array.prototype.forEach.call(document.querySelectorAll(".mw-list-item-js"), func
 });
 
 mw.hook("util.addPortletLink").add(addPortletLinkHandler);
-
-/**
- * Function to add purge button to the p-captions menu
- */
-function addPurgeButton() {
-  var purgeListItem = document.createElement("li");
-  purgeListItem.id = "ca-purge";
-  purgeListItem.className = "mw-list-item";
-
-  var purgeButton = document.createElement("a");
-  purgeButton.textContent = "Очистить кэш";
-  purgeButton.setAttribute("title", "Очистить кэш страницы");
-  purgeButton.href = "#";
-
-  purgeButton.addEventListener("click", function (event) {
-    event.preventDefault();
-
-    var apiUrl = mw.config.get("wgScriptPath") + "/api.php";
-    var params = {
-      action: "purge",
-      titles: mw.config.get("wgPageName"),
-      format: "json",
-    };
-
-    $.post(apiUrl, params)
-      .done(function (data) {
-        console.log("Cache purged successfully", data);
-        location.reload();
-      })
-      .fail(function (textStatus, errorThrown) {
-        console.error("Failed to purge cache", textStatus, errorThrown);
-      });
-  });
-
-  purgeListItem.appendChild(purgeButton);
-
-  var parentElement = document.getElementById("p-cactions").getElementsByTagName("ul")[0];
-  parentElement.insertBefore(purgeListItem, parentElement.firstChild);
-}
-
-$(document).ready(function () {
-  addPurgeButton();
-});
 
 module.exports = {
   dropdownMenus: function dropdownMenus() {

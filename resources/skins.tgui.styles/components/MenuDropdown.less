@@ -21,13 +21,14 @@
 .tgui-user-menu-create-account,
 .tgui-user-menu-login,
 .tgui-menu-dropdown .mw-list-item {
+  margin-bottom: 0.5em;
+
   a {
     display: flex;
     min-height: 32px;
     align-items: center;
     white-space: nowrap;
     padding: 0 0.5em;
-    margin-bottom: 0.5em;
     background-color: var(--color-primary);
     color: var(--color-white) !important;
     border-radius: var(--border-radius-small);
@@ -42,11 +43,14 @@
       filter: var(--invert-button-icon);
     }
   }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .tgui-user-menu-logout a {
   background-color: var(--color-red);
-  margin: 0.5em 0 0 0;
 
   &:hover {
     background-color: var(--color-red-light);
@@ -61,10 +65,13 @@
   }
 }
 
-/* Remove margin from last item */
-#ca-protect,
-#pt-anoncontribs {
-  a {
-    margin-bottom: 0;
+.tgui-user-menu-login,
+.tgui-user-menu-logout {
+  &:before {
+    content: '';
+    display: block;
+    height: 0.1em;
+    margin: 0.5em 0;
+    background: var(--color-border);
   }
 }

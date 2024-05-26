@@ -244,10 +244,11 @@
         "resources/skins.tgui.js/dropdownMenus.js",
         "resources/skins.tgui.js/sidebarPersistence.js",
         "resources/skins.tgui.js/languageButton.js",
+        "resources/skins.tgui.js/purgeButton.js",
         "resources/skins.tgui.js/searchLoader.js"
       ],
       "dependencies": ["skins.tgui.icons.js", "mediawiki.page.ready", "mediawiki.util"],
-      "messages": ["tgui-search-loader"]
+      "messages": ["tgui-search-loader", "tgui-purge-button-label", "tgui-purge-button-title"]
     },
     "skins.tgui.preferences": {
       "styles": ["resources/skins.tgui.preferences/skins.tgui.preferences.less"],

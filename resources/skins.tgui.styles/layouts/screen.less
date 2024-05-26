@@ -125,26 +125,23 @@ body {
     max-height: 3em;
     font-size: 1.1em;
     color: var(--color-text-translucent);
-    border-radius: var(--border-radius-small) var(--border-radius-small) 0 0;
-    border-bottom: 2px solid transparent;
+    border-radius: var(--border-radius-small);
     transition:
       background-color var(--transition-time),
       color var(--transition-time);
     text-decoration: none;
 
     label {
-      padding: 0.5em 0.75em 0.33em 0.75em;
-      border-bottom: 2px solid transparent;
-    }
-
-    &:hover {
-      background-color: var(--color-bg-hover);
+      padding: 0.5em 0.75em;
     }
 
     &:has(#p-cactions-checkbox:checked) {
       background-color: var(--color-bg-focus);
       color: var(--color-text);
-      border-color: var(--color-text);
+    }
+
+    .tgui-menu-content {
+      min-width: auto;
     }
   }
 
