@@ -33,7 +33,7 @@
   },
   "skinname-tgui": "TGUI",
   "tgui-specialversion-name": "TGUI",
-  "tgui-skin-desc": "Основанная на Vector, вдохновлённая SS13 TGUI, тема оформления для MediaWiki. <br> Включает в себя как тёмный, так и светлый режимы.",
+  "tgui-skin-desc": "Основанная на Vector, вдохновлённая [https://www.youtube.com/watch?v=QL8ASZOvvS8 SS13] TGUI, тема оформления для MediaWiki. <br> Включает в себя как тёмный, так и светлый режимы.",
   "tgui.css": "/* Весь CSS будет отсюда будет загружен пользователям темы оформления «TGUI» */",
   "tgui.js": "/* Любой код JavaScript отсюда будет загружаться пользователям темы оформления «TGUI» */",
   "tgui-languages": "Языки",

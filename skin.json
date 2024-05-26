@@ -1,11 +1,12 @@
 {
   "name": "TGUI",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "author": [
     "Александр Кица (Aylong)",
-    "[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team] with Original [https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
+    "[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team]",
+    "Original [https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
   ],
-  "url": "https://www.mediawiki.org/wiki/Skin:TGUI",
+  "url": "https://www.youtube.com/watch?v=JDQBvN1GATw",
   "descriptionmsg": "tgui-skin-desc",
   "namemsg": "tgui-specialversion-name",
   "license-name": "GPL-2.0-or-later",

@@ -4,7 +4,7 @@
   },
   "skinname-tgui": "TGUI",
   "tgui-specialversion-name": "TGUI",
-  "tgui-skin-desc": "Based on Vector, inspired by SS13 TGUI, skin for MediaWiki. <br> Includes dark and light themes.",
+  "tgui-skin-desc": "Based on Vector, inspired by [https://www.youtube.com/watch?v=QL8ASZOvvS8 SS13] TGUI, skin for MediaWiki. <br> Includes dark and light themes.",
   "tgui.css": "/* All CSS here will be loaded for users of the TGUI skin */",
   "tgui.js": "/* All JavaScript here will be loaded for users of the TGUI skin */",
   "tgui-languages": "Languages",
