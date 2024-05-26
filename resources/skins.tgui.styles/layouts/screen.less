@@ -41,9 +41,6 @@ body {
   overflow-x: hidden;
   background-color: var(--color-bg);
   color: var(--color-text-darker);
-  transition:
-    background-color var(--transition-time),
-    color var(--transition-time);
 }
 
 html,
@@ -127,19 +124,24 @@ body {
     margin: 0;
     max-height: 3em;
     font-size: 1.1em;
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    color: var(--color-text-translucent);
     border-radius: var(--border-radius-small);
-    transition: background-color var(--transition-time);
+    transition:
+      background-color var(--transition-time),
+      color var(--transition-time);
     text-decoration: none;
 
     label {
-      padding: 0.5em 0.75em 0.33em 0.75em;
-      border-bottom: 2px solid transparent;
+      padding: 0.5em 0.75em;
     }
 
-    &:hover {
-      background-color: var(--color-primary-light);
+    &:has(#p-cactions-checkbox:checked) {
+      background-color: var(--color-bg-focus);
+      color: var(--color-text);
+    }
+
+    .tgui-menu-content {
+      min-width: auto;
     }
   }
 
@@ -161,8 +163,4 @@ body {
   margin-left: auto;
   margin-right: auto;
   min-width: @min-width-supported;
-}
-
-.skin--responsive .mw-page-container {
-  min-width: auto;
 }

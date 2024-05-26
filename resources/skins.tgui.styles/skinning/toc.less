@@ -1,0 +1,45 @@
+.skin-tgui {
+  .toc,
+  .toccolours {
+    font-size: 95%;
+    padding: 0.5em;
+    margin-bottom: 0.75em;
+    background-color: var(--color-bg-section-light-opaque);
+    border: var(--border-classic);
+
+    &:last-child,
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .toc {
+    padding: 0.5em;
+
+    ul {
+      margin: 0.25em 0;
+
+      ul {
+        margin: 0 0 0 25em;
+      }
+    }
+  }
+
+  .tocnumber {
+    color: var(--color-text);
+  }
+
+  .toctogglelabel {
+    color: var(--color-hyperlink);
+    text-shadow: var(--hyperlink-shadow);
+    transition:
+      color var(--transition-time),
+      text-shadow var(--transition-time);
+
+    &:hover {
+      text-decoration: none;
+      color: var(--color-hyperlink-hover);
+      text-shadow: var(--hyperlink-shadow-hover);
+    }
+  }
+}

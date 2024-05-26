@@ -1,0 +1,18 @@
+{
+  "skin-theme": {
+    "options": ["day", "night", "os"],
+    "preferenceKey": "tgui-theme"
+  },
+  "tgui-feature-blur": {
+    "options": ["enabled", "disabled"],
+    "preferenceKey": "tgui-blur"
+  },
+  "tgui-feature-reduced-motion": {
+    "options": ["enabled", "disabled"],
+    "preferenceKey": "tgui-motion"
+  },
+  "tgui-feature-darkened-images": {
+    "options": ["enabled", "disabled"],
+    "preferenceKey": "tgui-darkened-images"
+  }
+}

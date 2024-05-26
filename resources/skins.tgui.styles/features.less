@@ -1,0 +1,87 @@
+/* Themes */
+.skin-theme-clientpref-os {
+  @media (prefers-color-scheme: dark) {
+    :root& {
+      .dark-theme();
+      .dark-palette();
+    }
+  }
+}
+
+.skin-theme-clientpref-os {
+  @media (prefers-color-scheme: light) {
+    :root& {
+      .light-theme();
+      .light-palette();
+    }
+  }
+}
+
+.skin-theme-clientpref-night {
+  :root& {
+    .dark-theme();
+    .dark-palette();
+  }
+}
+
+.skin-theme-clientpref-day {
+  :root& {
+    .light-theme();
+    .light-palette();
+  }
+}
+
+/* Blur */
+.disable-blur() {
+  --blur-default: none;
+  --color-bg-light: var(--color-bg-light-opaque);
+
+  .mw-page-container-inner {
+    background-image: none !important;
+  }
+}
+
+.tgui-feature-blur-clientpref-disabled {
+  :root& {
+    .disable-blur();
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root& {
+      .disable-blur();
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root& {
+      .disable-blur();
+    }
+  }
+}
+
+/* Reduced Motion */
+.tgui-feature-reduced-motion-clientpref-enabled {
+  :root& {
+    --transition-time: 0;
+  }
+}
+
+/* Darkened Images */
+.tgui-feature-darkened-images-clientpref-enabled {
+  html,
+  body {
+    :root.skin-theme-clientpref-night& {
+      img {
+        filter: brightness(0.9);
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root.skin-theme-clientpref-os& {
+        img {
+          filter: brightness(0.9);
+        }
+      }
+    }
+  }
+}

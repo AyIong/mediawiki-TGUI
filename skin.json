@@ -1,11 +1,12 @@
 {
   "name": "TGUI",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "author": [
     "Александр Кица (Aylong)",
-    "[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team] with Original [https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
+    "[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team]",
+    "Original [https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
   ],
-  "url": "https://www.mediawiki.org/wiki/Skin:TGUI",
+  "url": "https://www.youtube.com/watch?v=JDQBvN1GATw",
   "descriptionmsg": "tgui-skin-desc",
   "namemsg": "tgui-specialversion-name",
   "license-name": "GPL-2.0-or-later",
@@ -21,7 +22,7 @@
           "name": "tgui",
           "templateDirectory": "includes/templates",
           "template": "skin",
-          "responsive": true,
+          "responsive": false,
           "link": {
             "text-wrapper": {
               "tag": "span"
@@ -91,9 +92,9 @@
     }
   },
   "Hooks": {
+    "BeforePageDisplay": "TGUIHooks",
     "GetPreferences": "TGUIHooks",
     "MakeGlobalVariablesScript": "TGUIHooks",
-    "OutputPageBodyAttributes": "TGUIHooks",
     "ResourceLoaderSiteModulePages": "TGUIHooks",
     "ResourceLoaderSiteStylesModulePages": "TGUIHooks",
     "SkinPageReadyConfig": "TGUIHooks"
@@ -205,7 +206,7 @@
         "resources/skins.tgui.es6/deferUntilFrame.js",
         {
           "name": "resources/skins.tgui.es6/config.json",
-          "callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUIResourceLoaderConfig"
+          "callback": "MediaWiki\\Skins\\TGUI\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
         },
         {
           "name": "resources/skins.tgui.es6/tableOfContentsConfig.json",
@@ -237,20 +238,59 @@
         "resources/skins.tgui.js/skin.js",
         {
           "name": "resources/skins.tgui.js/config.json",
-          "callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUIResourceLoaderConfig"
+          "callback": "MediaWiki\\Skins\\TGUI\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
         },
         "resources/skins.tgui.js/checkbox.js",
         "resources/skins.tgui.js/collapsiblePortlets.js",
         "resources/skins.tgui.js/dropdownMenus.js",
         "resources/skins.tgui.js/sidebarPersistence.js",
         "resources/skins.tgui.js/languageButton.js",
-        "resources/skins.tgui.js/toggleTheme.js",
+        "resources/skins.tgui.js/purgeButton.js",
         "resources/skins.tgui.js/searchLoader.js"
       ],
       "dependencies": ["skins.tgui.icons.js", "mediawiki.page.ready", "mediawiki.util"],
-      "messages": ["tgui-search-loader"]
+      "messages": ["tgui-search-loader", "tgui-purge-button-label", "tgui-purge-button-title"]
+    },
+    "skins.tgui.preferences": {
+      "styles": ["resources/skins.tgui.preferences/skins.tgui.preferences.less"],
+      "packageFiles": [
+        "resources/skins.tgui.preferences/skins.tgui.preferences.js",
+        {
+          "name": "resources/skins.tgui.preferences/config.json",
+          "callback": "MediaWiki\\Skins\\TGUI\\ResourceLoaderHooks::getTGUIPreferencesResourceLoaderConfig"
+        },
+        "resources/skins.tgui.preferences/addPortlet.polyfill.js",
+        "resources/skins.tgui.preferences/clientPreferences.js",
+        "resources/skins.tgui.preferences/clientPreferences.json",
+        "resources/skins.tgui.preferences/clientPrefs.polyfill.js"
+      ],
+      "messages": [
+        "preferences",
+        "tgui-theme-name",
+        "tgui-theme-description",
+        "tgui-theme-day-label",
+        "tgui-theme-night-label",
+        "tgui-theme-os-label",
+        "tgui-theme-exclusion-notice",
+        "tgui-feature-blur-name",
+        "tgui-feature-blur-enabled-label",
+        "tgui-feature-blur-disabled-label",
+        "tgui-feature-reduced-motion-name",
+        "tgui-feature-reduced-motion-enabled-label",
+        "tgui-feature-reduced-motion-disabled-label",
+        "tgui-feature-darkened-images-name",
+        "tgui-feature-darkened-images-enabled-label",
+        "tgui-feature-darkened-images-disabled-label"
+      ],
+      "dependencies": ["mediawiki.storage", "mediawiki.util"],
+      "targets": ["desktop", "mobile"]
+    },
+    "skins.tgui.serviceWorker": {
+      "scripts": ["resources/skins.tgui.serviceWorker/sw.js"],
+      "targets": ["desktop", "mobile"]
     }
   },
+
   "ResourceFileModulePaths": {
     "localBasePath": "",
     "remoteSkinPath": "TGUI"
@@ -277,82 +317,47 @@
       "+oojs-ui-core.styles": "skinStyles/ooui.less"
     }
   },
+  "config_prefix": "wgTGUI",
   "config": {
-    "TGUIVisualEnhancementNext": {
-      "value": false,
-      "description": "Temporary configuration flag for enabling in development enhancements."
+    "EnablePreferences": {
+      "value": true,
+      "description": "Enables or disable preferences module",
+      "descriptionmsg": "tgui-config-enablepreferences",
+      "public": true
     },
-    "TGUISearchHost": {
+    "ThemeDefault": {
+      "value": "auto",
+      "description": "Default theme of the skin. Valid values are 'light', 'dark' and 'auto'.",
+      "descriptionmsg": "tgui-config-themedefault",
+      "public": true
+    },
+    "SearchHost": {
       "value": "",
       "description": "Override default search API. Can be used with $wgDisableTextSearch and $wgSearchForwardUrl to mimic user experience on production."
     },
-    "TGUIUseIconWatch": {
+    "UseIconWatch": {
       "value": true
     },
-    "TGUIMaxWidthOptions": {
-      "value": {
-        "exclude": {
-          "mainpage": false,
-          "querystring": {
-            "action": "(history|edit)",
-            "diff": ".+"
-          },
-          "namespaces": [-1, 14]
-        },
-        "include": ["Special:Preferences"]
-      },
-      "description": "options for configuring where where max-width should and should not apply. More details can be found in Hooks::shouldDisableMaxWidth PHP documentation."
-    },
-    "TGUIWvuiSearchOptions": {
+    "WvuiSearchOptions": {
       "value": {
         "showThumbnail": true,
         "showDescription": true
       }
     },
-    "TGUIDefaultSidebarVisibleForAuthorisedUser": {
+    "DefaultSidebarVisibleForAuthorisedUser": {
       "value": true
     },
-    "TGUIDefaultSidebarVisibleForAnonymousUser": {
+    "DefaultSidebarVisibleForAnonymousUser": {
       "value": true
     },
-    "TGUILanguageInHeader": {
-      "value": {
-        "logged_in": true,
-        "logged_out": true
-      },
-      "description": "@var array Moves the language links from the sidebar into a menu beside the page title. Also moves the indicators to the line below, next to the tagline (siteSub)."
-    },
-    "TGUILanguageInMainPageHeader": {
-      "value": {
-        "logged_in": false,
-        "logged_out": false
-      },
-      "description": "@var When `TGUILanguageInHeader` is enabled, determines whether the Main Page's language button should be at the top or bottom of the content. The default position on the main page is at the bottom."
-    },
-    "TGUILanguageAlertInSidebar": {
-      "value": {
-        "logged_in": false,
-        "logged_out": false
-      },
-      "description": "@var When `TGUILanguageAlertInSidebar` is enabled, the language switch alert box is shown in the sidebar."
-    },
-    "TGUILanguageInHeaderTreatmentABTest": {
-      "value": false,
-      "description": "@var boolean Enables or disables the language in header treatment A/B test. See https://phabricator.wikimedia.org/T280825 and associated tasks for additional detail."
-    },
-    "TGUIDisableSidebarPersistence": {
-      "value": false,
-      "description": "@var boolean Temporary feature flag that disables saving the sidebar expanded/collapsed state as a user-preference (triggered via clicking the main menu icon). This is intended as a temporary kill-switch in the event that the DB is overloaded with writes to the user_options table."
-    },
-    "TGUITableOfContentsBeginning": {
+    "TableOfContentsBeginning": {
       "value": true,
       "description": "@var boolean Temporary feature flag that controls link to beginning of article."
     },
-    "TGUITableOfContentsCollapseAtCount": {
+    "TableOfContentsCollapseAtCount": {
       "value": 20,
       "description": "@var The minimum number of headings required to collapse all headings in the sticky table of contents by default."
     }
   },
-  "ServiceWiringFiles": ["includes/ServiceWiring.php"],
   "manifest_version": 2
 }

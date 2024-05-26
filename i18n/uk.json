@@ -21,7 +21,7 @@
   },
   "skinname-tgui": "TGUI",
   "tgui-specialversion-name": "TGUI",
-  "tgui-skin-desc": "Заснована на Vector, натхненна SS13 TGUI, тема оформлення MediaWiki. <br> Включає як темний, так і світлий режими.",
+  "tgui-skin-desc": "Заснована на Vector, натхненна [https://www.youtube.com/watch?v=QL8ASZOvvS8 SS13] TGUI, тема оформлення MediaWiki. <br> Включає як темний, так і світлий режими.",
   "tgui.css": "/* Увесь CSS-код буде завантажений в темі оформлення TGUI */",
   "tgui.js": "/* Увесь тут код JavaScript буде завантажений для всіх користувачів, що використовують векторну тему оформлення */",
   "tgui-languages": "Мови",
@@ -60,5 +60,20 @@
   "tgui-article-tools-nav-label": "Інструменти",
   "tgui-site-nav-label": "Сайт",
   "tgui-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Обговорення]]",
-  "tooltip-tgui-anon-user-menu-title": "Більше опцій"
+  "tooltip-tgui-anon-user-menu-title": "Більше опцій",
+
+  "tgui-theme-name": "Колір",
+  "tgui-theme-description": "Змінити тему оформлення вікі",
+  "tgui-theme-day-label": "Світла",
+  "tgui-theme-night-label": "Темна",
+  "tgui-theme-os-label": "Авто",
+  "tgui-theme-exclusion-notice": "Ця сторінка завжди відображається у світлому режимі.",
+
+  "tgui-feature-blur-name": "Ефекти розмиття",
+  "tgui-feature-blur-enabled-label": "Увімкнені",
+  "tgui-feature-blur-disabled-label": "Вимкнені",
+
+  "tgui-feature-reduced-motion-name": "Зменшений рух",
+  "tgui-feature-reduced-motion-enabled-label": "Увімкнено",
+  "tgui-feature-reduced-motion-disabled-label": "Вимкнено"
 }

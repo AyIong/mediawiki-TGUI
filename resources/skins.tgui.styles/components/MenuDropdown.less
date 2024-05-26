@@ -1,20 +1,18 @@
 @import '../variables.less';
-@import '../mixins.less';
 @import 'mediawiki.mixins.less';
 
-/**
- * Targets all dropdown labels.
- * - language variants, Actions menus
- * - more menu, user menu
- * - ULS button in sticky header
- */
-.tgui-menu-dropdown .tgui-menu-heading,
 .mw-interlanguage-selector {
   display: flex;
 
   &:after {
-    .mixin-tgui-menu-heading-arrow();
+    content: '';
     margin-left: 0.33em;
+    background: url(../skins.tgui.styles/images/arrow-down.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: unit(13 / @font-size-tabs / @font-size-browser, em);
+    height: unit(13 / @font-size-tabs / @font-size-browser, em);
+    filter: var(--invert-icon);
   }
 }
 
@@ -23,13 +21,14 @@
 .tgui-user-menu-create-account,
 .tgui-user-menu-login,
 .tgui-menu-dropdown .mw-list-item {
+  margin-bottom: 0.5em;
+
   a {
     display: flex;
     min-height: 32px;
     align-items: center;
     white-space: nowrap;
-    padding: 0 0.5em;
-    margin-bottom: 0.5em;
+    padding: 0 0.75em 0 0.5em;
     background-color: var(--color-primary);
     color: var(--color-white) !important;
     border-radius: var(--border-radius-small);
@@ -44,11 +43,14 @@
       filter: var(--invert-button-icon);
     }
   }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .tgui-user-menu-logout a {
   background-color: var(--color-red);
-  margin: 0.5em 0 0 0;
 
   &:hover {
     background-color: var(--color-red-light);
@@ -63,10 +65,22 @@
   }
 }
 
-/* Remove margin from last item */
-#ca-protect,
-#pt-anoncontribs {
-  a {
-    margin-bottom: 0;
+.separator() {
+  content: '';
+  display: block;
+  height: 0.1em;
+  margin: 0.5em 0;
+  background: var(--color-border);
+}
+
+.tgui-user-menu-logout {
+  &:before {
+    .separator();
+  }
+}
+
+.tgui-user-menu-login {
+  &:after {
+    .separator();
   }
 }

@@ -3,12 +3,14 @@
 namespace MediaWiki\Skins\TGUI;
 
 use Config;
+use Html;
 use IContextSource;
 use MediaWiki\Hook\MakeGlobalVariablesScriptHook;
-use MediaWiki\Hook\OutputPageBodyAttributesHook;
+use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader as RL;
+use MediaWiki\Skins\TGUI\GetConfigTrait;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteModulePagesHook;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteStylesModulePagesHook;
 use MediaWiki\Skins\Hook\SkinPageReadyConfigHook;
@@ -28,13 +30,35 @@ use User;
  * @internal
  */
 class Hooks implements
+	BeforePageDisplayHook,
 	GetPreferencesHook,
 	MakeGlobalVariablesScriptHook,
-	OutputPageBodyAttributesHook,
 	ResourceLoaderSiteModulePagesHook,
 	ResourceLoaderSiteStylesModulePagesHook,
 	SkinPageReadyConfigHook
 {
+	use GetConfigTrait;
+
+	/**
+	 * Adds the inline theme switcher script to the page
+	 *
+	 * @param OutputPage $out
+	 * @param Skin $skin
+	 */
+	public function onBeforePageDisplay( $out, $skin ): void {
+		// It's better to exit before any additional check
+		if ( $skin->getSkinName() !== 'tgui' ) {
+			return;
+		}
+
+		if ( $this->getConfigValue( 'TGUIEnablePreferences', $out ) === true ) {
+			$script = file_get_contents( MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/inline.js' );
+			$script = Html::inlineScript( $script );
+			$script = RL\ResourceLoader::filter( 'minify-js', $script );
+			$out->addHeadItem( 'skin.tgui.inline', $script );
+		}
+	}
+
 	/**
 	 * Checks if the current skin is a variant of TGUI
 	 *
@@ -45,22 +69,7 @@ class Hooks implements
 		return ($skinName === Constants::SKIN_NAME);
 	}
 
-	/**
-	 * Passes config variables to TGUI (modern) ResourceLoader module.
-	 * @param RL\Context $context
-	 * @param Config $config
-	 * @return array
-	 */
-	public static function getTGUIResourceLoaderConfig(
-		RL\Context $context,
-		Config $config
-	) {
-		return [
-			'wgTGUISearchHost' => $config->get( 'TGUISearchHost' ),
-		];
-	}
-
-	/**
+		/**
 	 * Generates config variables for skins.tgui.search Resource Loader module (defined in
 	 * skin.json).
 	 *
@@ -73,8 +82,6 @@ class Hooks implements
 		Config $config
 	): array {
 		$result = $config->get( 'TGUIWvuiSearchOptions' );
-		$result['highlightQuery'] =
-			TGUIServices::getLanguageService()->canWordsBeSplitSafely( $context->getLanguage() );
 
 		return $result;
 	}
@@ -501,95 +508,6 @@ class Hooks implements
 			],
 		];
 		$prefs += $tguiPrefs;
-	}
-
-	/**
-	 * Called when OutputPage::headElement is creating the body tag to allow skins
-	 * and extensions to add attributes they might need to the body of the page.
-	 *
-	 * @param OutputPage $out
-	 * @param Skin $sk
-	 * @param string[] &$bodyAttrs
-	 */
-	public function onOutputPageBodyAttributes( $out, $sk, &$bodyAttrs ): void {
-		$skinName = $out->getSkin()->getSkinName();
-		if ( !self::isTGUISkin( $skinName ) ) {
-			return;
-		}
-		$config = $sk->getConfig();
-		$featureManager = TGUIServices::getFeatureManager();
-		$bodyAttrs['class'] .= ' ' . implode( ' ', $featureManager->getFeatureBodyClass() );
-		$bodyAttrs['class'] = trim( $bodyAttrs['class'] );
-	}
-
-	/**
-	 * Per the $options configuration (for use with $wgTGUIMaxWidthOptions)
-	 * determine whether max-width should be disabled on the page.
-	 * For the main page: Check the value of $options['exclude']['mainpage']
-	 * For all other pages, the following will happen:
-	 * - the array $options['include'] of canonical page names will be checked
-	 *   against the current page. If a page has been listed there, function will return false
-	 *   (max-width will not be  disabled)
-	 * Max width is disabled if:
-	 *  1) The current namespace is listed in array $options['exclude']['namespaces']
-	 *  OR
-	 *  2) A query string parameter matches one of the regex patterns in $exclusions['querystring'].
-	 *
-	 * @internal only for use inside tests.
-	 * @param array $options
-	 * @param Title $title
-	 * @param array $requestValues
-	 * @return bool
-	 */
-	public static function shouldDisableMaxWidth( array $options, Title $title, array $requestValues ) {
-		$canonicalTitle = $title->getRootTitle();
-
-		$inclusions = $options['include'] ?? [];
-		$exclusions = $options['exclude'] ?? [];
-
-		if ( $title->isMainPage() ) {
-			// only one check to make
-			return $exclusions['mainpage'] ?? false;
-		} elseif ( $canonicalTitle->isSpecialPage() ) {
-			$canonicalTitle->fixSpecialName();
-		}
-
-		//
-		// Check the inclusions based on the canonical title
-		// The inclusions are checked first as these trump any exclusions.
-		//
-		// Now we have the canonical title and the inclusions link we look for any matches.
-		foreach ( $inclusions as $titleText ) {
-			$includedTitle = Title::newFromText( $titleText );
-
-			if ( $canonicalTitle->equals( $includedTitle ) ) {
-				return false;
-			}
-		}
-
-		//
-		// Check the exclusions
-		// If nothing matches the exclusions to determine what should happen
-		//
-		$excludeNamespaces = $exclusions['namespaces'] ?? [];
-		// Max width is disabled on certain namespaces
-		if ( $title->inNamespaces( $excludeNamespaces ) ) {
-			return true;
-		}
-		$excludeQueryString = $exclusions['querystring'] ?? [];
-
-		foreach ( $excludeQueryString as $param => $excludedParamPattern ) {
-			$paramValue = $requestValues[$param] ?? false;
-			if ( $paramValue ) {
-				if ( $excludedParamPattern === '*' ) {
-					// Backwards compatibility for the '*' wildcard.
-					$excludedParamPattern = '.+';
-				}
-				return (bool)preg_match( "/$excludedParamPattern/", $paramValue );
-			}
-		}
-
-		return false;
 	}
 
 	/**

@@ -15,7 +15,7 @@
       "Plaga med"
     ]
   },
-  "tgui-skin-desc": "Заснаваны на Vector, натхнёны SS13 TGUI, скура для MediaWiki. <br> Уключае цёмныя і светлыя тэмы.",
+  "tgui-skin-desc": "Заснаваны на Vector, натхнёны [https://www.youtube.com/watch?v=QL8ASZOvvS8 SS13] TGUI, скура для MediaWiki. <br> Уключае цёмныя і светлыя тэмы.",
   "tgui-languages": "Мовы",
   "tgui-language-button-aria-label": "Перайсці да артыкула на іншай мове. Даступны на $1 {{PLURAL:$1|мове|мовах}}.",
   "tgui-language-button-label": "{{PLURAL:$1|$1 мова|$1 мовы|$1 моў}}",
@@ -52,5 +52,16 @@
   "tgui-article-tools-nav-label": "Інструменты",
   "tgui-site-nav-label": "Праект",
   "tgui-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Размова]]",
-  "tooltip-tgui-anon-user-menu-title": "Больш магчымасцей"
+  "tooltip-tgui-anon-user-menu-title": "Больш магчымасцей",
+
+  "tgui-theme-name": "Колер",
+  "tgui-theme-description": "Змяніць тэму афармлення вікі",
+  "tgui-theme-day-label": "Светлая",
+  "tgui-theme-night-label": "Цёмная",
+  "tgui-theme-os-label": "Аўта",
+  "tgui-theme-exclusion-notice": "Гэтая старонка заўсёды адлюстроўваецца ў светлым рэжыме.",
+
+  "tgui-feature-blur-name": "Эфекты размыцця",
+  "tgui-feature-blur-enabled-label": "Уключаны",
+  "tgui-feature-blur-disabled-label": "Выключаны"
 }

@@ -23,6 +23,7 @@
   --color-black: rgba(0, 0, 0, 1);
   --color-white: rgba(255, 255, 255, 1);
   --color-translucent: rgba(255, 255, 255, 0.5);
+  --color-gray: var(--color-grey);
 
   /* TGUI Elements Colors (Light or Hover) */
   --color-red-light: rgba(251, 58, 58, 1);
@@ -41,6 +42,7 @@
   --color-label-light: rgba(145, 166, 192, 1);
   --color-black-hover: rgb(30, 30, 30);
   --color-white-hover: rgba(225, 225, 225, 1);
+  --color-gray-light: var(--color-grey-light);
 
   /* Font sizes */
   --font-size-x-small: 0.75rem;
@@ -66,7 +68,8 @@
   --border-radius-small: 0.25em;
   --border-radius-medium: 0.5em;
   --border-radius-large: 1em;
-  --blur-intensity: blur(24px);
+  --blur-default: blur(24px);
+  --blur-important: blur(24px);
   --transition-time: 0.2s;
   --transition-delay: 0.2s;
 
@@ -83,13 +86,15 @@
 .dark-theme() {
   /* Base Colors */
   --color-bg: hsl(0, 0%, 15%);
+  --color-bg-light: hsla(0, 0%, 15%, 0.66);
+  --color-bg-light-opaque: hsl(0, 0%, 14%);
   --color-bg-hover: rgba(255, 255, 255, 0.075);
   --color-bg-focus: rgba(255, 255, 255, 0.125);
-  --color-bg-translucent: rgba(37, 37, 37, 0.66);
   --color-bg-section: rgba(0, 0, 0, 0.33);
   --color-bg-section-opaque: hsl(0, 0%, 10%);
   --color-bg-section-light: rgba(125, 125, 125, 0.075);
-  --color-bg-section-light-opaque: hsl(0, 0%, 13%);
+  --color-bg-section-light-opaque: hsl(0, 0%, 12.5%);
+  --color-bg-popup-header: hsl(0, 0%, 20%);
   --color-text: rgba(255, 255, 255, 1);
   --color-text-darker: rgba(220, 220, 220, 1);
   --color-text-gray: rgba(185, 185, 185, 0.75);
@@ -148,13 +153,15 @@
 .light-theme() {
   /* Base Colors - Light */
   --color-bg: hsl(0, 0%, 100%);
+  --color-bg-light: hsla(30, 5%, 80%, 0.66);
+  --color-bg-light-opaque: hsl(35, 5%, 82.5%);
   --color-bg-hover: rgba(0, 0, 0, 0.075);
   --color-bg-focus: rgba(0, 0, 0, 0.125);
-  --color-bg-translucent: rgba(204, 201, 198, 0.66);
   --color-bg-section: rgba(204, 201, 198, 0.33);
   --color-bg-section-opaque: hsl(30, 6%, 93%);
   --color-bg-section-light: rgba(158, 152, 148, 0.15);
   --color-bg-section-light-opaque: hsl(30, 7%, 88%);
+  --color-bg-popup-header: hsl(0, 0%, 50%);
   --color-text: rgba(0, 0, 0, 1);
   --color-text-darker: rgba(40, 40, 40, 1);
   --color-text-gray: rgba(80, 80, 80, 0.75);
@@ -175,13 +182,13 @@
   --color-notice-brown: hsl(35, 50%, 60%);
 
   /* Links */
-  --color-hyperlink: hsl(220, 100%, 60%);
-  --color-hyperlink-visited: hsl(280, 70%, 50%);
-  --color-hyperlink-new: hsl(0, 100%, 45%);
-  --color-hyperlink-new-visited: hsl(15, 100%, 33%);
+  --color-hyperlink: hsl(220, 100%, 40%);
+  --color-hyperlink-visited: hsl(280, 70%, 40%);
+  --color-hyperlink-new: hsl(0, 100%, 40%);
+  --color-hyperlink-new-visited: hsl(25, 100%, 35%);
   /* Hover */
-  --color-hyperlink-hover: hsl(220, 100%, 70%);
-  --color-hyperlink-visited-hover: hsl(290, 85%, 55%);
+  --color-hyperlink-hover: hsl(220, 100%, 55%);
+  --color-hyperlink-visited-hover: hsl(280, 70%, 55%);
   --color-hyperlink-new-hover: hsl(0, 100%, 70%);
   --color-hyperlink-new-visited-hover: hsl(15, 100%, 50%);
 
@@ -204,45 +211,4 @@
 
   /* Background Image */
   --nt-image: url(../skins.tgui.styles/images/bg-nanotrasen-light.svg);
-}
-
-/**
- * Временные костыли для тем
- * Сделано для того, чтобы если системная тема светлая,
- * человек мог выбрать тёмную на сайте, и наоборот.
- *
- * Будет сделано нормально когда портирую префы с Citizen
- */
-.tgui-light {
-  :root& {
-    .light-theme();
-    .light-palette();
-  }
-}
-
-.tgui-light {
-  @media (prefers-color-scheme: light) {
-    :root& {
-      .dark-theme();
-      .dark-palette();
-    }
-  }
-}
-
-:not(.tgui-light) {
-  @media (prefers-color-scheme: dark) {
-    :root& {
-      .dark-theme();
-      .dark-palette();
-    }
-  }
-}
-
-:not(.tgui-light) {
-  @media (prefers-color-scheme: light) {
-    :root& {
-      .light-theme();
-      .light-palette();
-    }
-  }
 }

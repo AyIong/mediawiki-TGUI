@@ -1,5 +1,4 @@
 @import '../variables.less';
-@import '../mixins.less';
 @import 'mediawiki.mixins.less';
 @import 'mediawiki.ui/variables.less';
 
@@ -16,18 +15,12 @@
   justify-content: flex-end;
   flex-shrink: 1;
   font-size: @font-size-user-links;
+  margin-right: 1em;
+  min-width: 10%;
 
   .mw-ui-button {
-    // FIXME: Overrides mw-ui-button's `display: inline-block` property so that
-    // the text in the button is vertically centered. `.mw-ui-button` sets a
-    // min-height to the button, but should also vertically center the
-    // button's children.
     display: flex;
     align-items: center;
-  }
-
-  .mw-list-item {
-    margin: 0;
   }
 }
 
@@ -38,7 +31,6 @@
   .tgui-menu-content {
     left: auto;
     right: 0;
-    min-width: 215px;
   }
 }
 
@@ -81,14 +73,4 @@
   a:after {
     content: '@{msg-parentheses-end}';
   }
-}
-
-// Login link.
-.tgui-user-menu-login {
-  border-bottom: var(--border-classic);
-}
-
-// Logout link
-.tgui-user-menu-logout {
-  border-top: var(--border-classic);
 }

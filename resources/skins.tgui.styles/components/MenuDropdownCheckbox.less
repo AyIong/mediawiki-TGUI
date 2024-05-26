@@ -10,7 +10,6 @@
  */
 .tgui-menu-dropdown {
   position: relative;
-  margin-right: 1em;
   transition: background-color var(--transition-time);
 
   &:hover {
@@ -27,7 +26,7 @@
     position: absolute;
     overflow: hidden;
     opacity: 0;
-    min-width: 11em;
+    min-width: 160px;
     height: unset;
     padding: 0.5em;
     background-color: var(--color-bg);
@@ -36,7 +35,10 @@
     border-radius: var(--border-radius-small);
     box-shadow: var(--box-shadow-medium);
     transform: translate(0, 0);
-    transition: all var(--transition-time) ease-in-out;
+    transition:
+      transform var(--transition-time) ease-in-out,
+      opacity var(--transition-time) ease-in-out,
+      visibility var(--transition-time) ease-in-out;
     z-index: @z-index-menu;
   }
 
@@ -65,7 +67,7 @@
     visibility: visible;
     opacity: 1;
     height: auto;
-    transform: translate(0, 1em);
+    transform: translate(0, 0.75em);
   }
 
   :not(:checked) > & {

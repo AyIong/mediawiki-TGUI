@@ -1,4 +1,5 @@
 @import '../variables.less';
+@import '../mixins.less';
 
 // Makes a column span entire page
 .mixin-column-full-width() {
@@ -14,17 +15,14 @@
 
 .mw-page-container-inner {
   min-height: 100vh;
-  background: var(--nt-image);
-  background-size: 40%;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center;
+  .tgui-background();
 }
 
 @media (min-width: @min-width-desktop) {
   .mw-page-container-inner {
     display: grid;
     grid-template: ~'min-content min-content min-content 1fr min-content / @{width-sidebar-px} minmax(0, 1fr)';
+    grid-template-columns: 185px 0;
     grid-template-areas:
       'header header header'
       'sidebar gutter content'
