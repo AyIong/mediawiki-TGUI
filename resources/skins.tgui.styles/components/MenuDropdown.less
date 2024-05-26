@@ -28,7 +28,7 @@
     min-height: 32px;
     align-items: center;
     white-space: nowrap;
-    padding: 0 0.5em;
+    padding: 0 0.75em 0 0.5em;
     background-color: var(--color-primary);
     color: var(--color-white) !important;
     border-radius: var(--border-radius-small);
@@ -65,13 +65,22 @@
   }
 }
 
-.tgui-user-menu-login,
+.separator() {
+  content: '';
+  display: block;
+  height: 0.1em;
+  margin: 0.5em 0;
+  background: var(--color-border);
+}
+
 .tgui-user-menu-logout {
   &:before {
-    content: '';
-    display: block;
-    height: 0.1em;
-    margin: 0.5em 0;
-    background: var(--color-border);
+    .separator();
+  }
+}
+
+.tgui-user-menu-login {
+  &:after {
+    .separator();
   }
 }
