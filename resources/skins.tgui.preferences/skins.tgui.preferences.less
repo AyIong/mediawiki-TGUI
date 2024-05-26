@@ -48,12 +48,12 @@
 
   &-panel {
     .tgui-background();
-    visibility: hidden;
     position: absolute;
+    visibility: hidden;
     overflow: hidden;
     opacity: 0;
     right: 0;
-    min-width: 175px;
+    min-width: 200px;
     background-color: var(--color-bg);
     color: var(--color-text);
     border: var(--border-classic);
@@ -88,6 +88,17 @@
 
   > div:not(:nth-child(1)) {
     margin-top: 0.5em;
+
+    form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+      grid-column-gap: 0.5em;
+
+      .tgui-client-prefs-radio {
+        margin: 0;
+      }
+    }
   }
 
   .tgui-menu {

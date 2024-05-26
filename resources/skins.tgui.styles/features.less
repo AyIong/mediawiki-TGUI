@@ -33,9 +33,12 @@
 
 /* Blur */
 .disable-blur() {
-  --nt-image: none;
   --blur-default: none;
   --color-bg-light: var(--color-bg-light-opaque);
+
+  .mw-page-container-inner {
+    background-image: none !important;
+  }
 }
 
 .tgui-feature-blur-clientpref-disabled {
