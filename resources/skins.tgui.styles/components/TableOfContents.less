@@ -25,8 +25,7 @@
   backdrop-filter: var(--blur-important);
   transition:
     transform var(--transition-time),
-    max-height var(--transition-time),
-    scrollbar-color var(--transition-time);
+    max-height var(--transition-time);
   z-index: @z-index-header;
 
   .tgui-toc-collapsed & {
@@ -57,17 +56,15 @@
   }
 
   .sidebar-toc-contents-container {
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     scrollbar-width: thin;
     scrollbar-gutter: stable;
-    scrollbar-color: transparent transparent;
+    scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
     height: 100%;
     padding-left: 1em;
-    transition: scrollbar-color var(--transition-time);
 
     &:hover {
-      scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
+      overflow-y: auto;
     }
   }
 

@@ -1,18 +1,4 @@
 /* Themes */
-.skin-theme-clientpref-night {
-  :root& {
-    .dark-theme();
-    .dark-palette();
-  }
-}
-
-.skin-theme-clientpref-day {
-  :root& {
-    .light-theme();
-    .light-palette();
-  }
-}
-
 .skin-theme-clientpref-os {
   @media (prefers-color-scheme: dark) {
     :root& {
@@ -28,6 +14,20 @@
       .light-theme();
       .light-palette();
     }
+  }
+}
+
+.skin-theme-clientpref-night {
+  :root& {
+    .dark-theme();
+    .dark-palette();
+  }
+}
+
+.skin-theme-clientpref-day {
+  :root& {
+    .light-theme();
+    .light-palette();
   }
 }
 

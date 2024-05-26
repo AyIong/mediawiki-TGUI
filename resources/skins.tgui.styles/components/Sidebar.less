@@ -14,24 +14,22 @@
 
 .mw-sidebar {
   position: fixed;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   padding-top: 0.75em;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
-  scrollbar-color: transparent transparent;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
   height: @height-sidebar-toc-hidden;
   background-color: var(--color-bg-section);
   color: var(--color-text);
   backdrop-filter: var(--blur-important);
   transition:
     transform var(--transition-time),
-    height var(--transition-time),
-    scrollbar-color var(--transition-time);
+    height var(--transition-time);
   z-index: @z-index-header;
 
   &:hover {
-    scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
+    overflow-y: auto;
   }
 
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
