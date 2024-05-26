@@ -272,7 +272,10 @@
         "tgui-theme-exclusion-notice",
         "tgui-feature-blur-name",
         "tgui-feature-blur-enabled-label",
-        "tgui-feature-blur-disabled-label"
+        "tgui-feature-blur-disabled-label",
+        "tgui-feature-reduced-motion-name",
+        "tgui-feature-reduced-motion-enabled-label",
+        "tgui-feature-reduced-motion-disabled-label"
       ],
       "dependencies": ["mediawiki.storage", "mediawiki.util"],
       "targets": ["desktop", "mobile"]

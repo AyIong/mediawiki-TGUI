@@ -70,6 +70,10 @@
   "tgui-theme-exclusion-notice": "Ця сторінка завжди відображається у світлому режимі.",
 
   "tgui-feature-blur-name": "Ефекти розмиття",
-  "tgui-feature-blur-enabled-label": "Включені",
-  "tgui-feature-blur-disabled-label": "Вымкнуті"
+  "tgui-feature-blur-enabled-label": "Увімкнені",
+  "tgui-feature-blur-disabled-label": "Вимкнені",
+
+  "tgui-feature-reduced-motion-name": "Зменшений рух",
+  "tgui-feature-reduced-motion-enabled-label": "Увімкнено",
+  "tgui-feature-reduced-motion-disabled-label": "Вимкнено"
 }

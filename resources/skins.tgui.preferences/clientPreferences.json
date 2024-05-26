@@ -6,5 +6,9 @@
   "tgui-feature-blur": {
     "options": ["enabled", "disabled"],
     "preferenceKey": "tgui-blur"
+  },
+  "tgui-feature-reduced-motion": {
+    "options": ["enabled", "disabled"],
+    "preferenceKey": "tgui-motion"
   }
 }

@@ -54,5 +54,9 @@
 
   "tgui-feature-blur-name": "Blur Effects",
   "tgui-feature-blur-enabled-label": "Enabled",
-  "tgui-feature-blur-disabled-label": "Disabled"
+  "tgui-feature-blur-disabled-label": "Disabled",
+
+  "tgui-feature-reduced-motion-name": "Reduced Motion",
+  "tgui-feature-reduced-motion-enabled-label": "Enabled",
+  "tgui-feature-reduced-motion-disabled-label": "Disabled"
 }

@@ -83,5 +83,9 @@
 
   "tgui-feature-blur-name": "Эффекты размытия",
   "tgui-feature-blur-enabled-label": "Включены",
-  "tgui-feature-blur-disabled-label": "Выключены"
+  "tgui-feature-blur-disabled-label": "Отключены",
+
+  "tgui-feature-reduced-motion-name": "Пониженное движение",
+  "tgui-feature-reduced-motion-enabled-label": "Включено",
+  "tgui-feature-reduced-motion-disabled-label": "Отключено"
 }

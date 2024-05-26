@@ -667,15 +667,6 @@ class SkinTGUI extends SkinMustache {
 
 		// Clientprefs feature handling
 		$this->addClientPrefFeature( 'tgui-feature-blur', 'enabled' );
-
-		// Collapsible sections
-		// Load in content pages
-		if ( $title !== null && $title->isContentPage() ) {
-			// Since we merged the sections module into core styles and scripts to reduce RL modules
-			// The style is now activated through the class below
-			if ( $this->getConfigValue( 'TGUIEnableCollapsibleSections' ) === true ) {
-				$options['bodyClasses'][] = 'tgui-sections-enabled';
-			}
-		}
+		$this->addClientPrefFeature( 'tgui-feature-reduced-motion', 'disabled' );
 	}
 }
