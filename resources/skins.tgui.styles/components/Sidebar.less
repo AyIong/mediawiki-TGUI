@@ -24,7 +24,10 @@
   background-color: var(--color-bg-section);
   color: var(--color-text);
   backdrop-filter: var(--blur-important);
-  transition: all var(--transition-time);
+  transition:
+    transform var(--transition-time),
+    height var(--transition-time),
+    scrollbar-color var(--transition-time);
   z-index: @z-index-header;
 
   &:hover {

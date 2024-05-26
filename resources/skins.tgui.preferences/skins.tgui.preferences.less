@@ -59,7 +59,10 @@
     color: var(--color-text);
     border: var(--border-classic);
     box-shadow: var(--box-shadow-medium);
-    transition: all var(--transition-time) ease-in-out;
+    transition:
+      transform var(--transition-time) ease-in-out,
+      opacity var(--transition-time) ease-in-out,
+      visibility var(--transition-time) ease-in-out;
     z-index: 10;
 
     &.tgui-pref-panel--active {
