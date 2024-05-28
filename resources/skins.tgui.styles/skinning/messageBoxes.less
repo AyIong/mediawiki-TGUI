@@ -5,7 +5,7 @@
   word-wrap: break-word;
   padding: 0.33em 0.5em;
   margin: 0.5em 0 0.5em 0;
-  color: var(--color-white) !important;
+  color: var(--color-white);
   background-color: var(--color-notice);
   background-image: repeating-linear-gradient(
     -45deg,
@@ -19,7 +19,6 @@
     margin: 0;
   }
 
-  // Used in MobileFrontend/Nearby extensions
   h2 {
     color: inherit;
     display: block;
@@ -28,7 +27,10 @@
     font-weight: bold;
   }
 
-  // Formerly provided by mw-warning-with-logexcerpt, now available for all messageboxes.
+  strong {
+    color: var(--color-white);
+  }
+
   .mw-logevent-loglines li {
     font-size: 90%;
   }
@@ -38,13 +40,16 @@
   background-color: var(--color-notice-red);
 }
 
-.mw-message-box-warning,
-#editpage-copywarn {
+.mw-message-box-warning {
   background-color: var(--color-notice-blue);
 }
 
 .mw-message-box-success {
   background-color: var(--color-notice-green);
+}
+
+#editpage-copywarn {
+  background-color: var(--color-notice-brown);
 }
 
 .mw-continue-editing a {
