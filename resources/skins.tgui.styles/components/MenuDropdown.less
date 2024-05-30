@@ -65,22 +65,13 @@
   }
 }
 
-.separator() {
-  content: '';
-  display: block;
-  height: 0.1em;
-  margin: 0.5em 0;
-  background: var(--color-border);
-}
-
+.tgui-user-menu-login,
 .tgui-user-menu-logout {
   &:before {
-    .separator();
-  }
-}
-
-.tgui-user-menu-login {
-  &:after {
-    .separator();
+    content: '';
+    display: block;
+    height: 0.1em;
+    margin: 0.5em 0;
+    background: var(--color-border);
   }
 }

@@ -12,9 +12,17 @@
 
 /* Classic Tabs */
 .tabs-tabbox {
+  display: flow-root;
+
+  * {
+    backdrop-filter: none; // Disable advanced blur for anything inside
+  }
+
   .tabs-label {
+    text-align: center;
+    min-width: 3em;
     margin: 0 !important;
-    padding: 0.2em 0.75em;
+    padding: 0.25em 0.75em 0.2em 0.75em;
     background-color: transparent;
     color: var(--color-text-translucent);
     border-width: 0 0 2px 0;
