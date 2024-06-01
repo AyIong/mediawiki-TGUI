@@ -1,5 +1,5 @@
 #mw-panel.collapsible-nav {
-  .portal {
+  .portal:not(.first) {
     .tgui-menu-heading {
       cursor: pointer;
 
@@ -29,8 +29,9 @@
     }
 
     .tgui-menu-content {
-      background-image: none !important;
-      display: none;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height var(--transition-time);
     }
 
     /* First */
