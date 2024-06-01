@@ -8,6 +8,7 @@ const LINK_CLASS = "sidebar-toc-link";
 const TOGGLE_CLASS = "sidebar-toc-toggle";
 const TOC_COLLAPSED_CLASS = "tgui-toc-collapsed";
 const TOC_ID = "mw-panel-toc";
+const TOC_PREFERENCE_NAME = "TGUI-ToC-Collapsed";
 /**
  * TableOfContents Mustache templates
  */
@@ -317,6 +318,8 @@ module.exports = function tableOfContents(props) {
     showHideTocElement.forEach(function (btn) {
       btn.addEventListener("click", () => {
         document.body.classList.toggle(TOC_COLLAPSED_CLASS);
+        const isCollapsed = document.body.classList.contains(TOC_COLLAPSED_CLASS);
+        localStorage.setItem(TOC_PREFERENCE_NAME, isCollapsed.toString());
         props.onToggleCollapse();
       });
     });

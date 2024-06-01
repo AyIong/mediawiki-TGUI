@@ -1,8 +1,3 @@
-/**
- * JavaScript enhancement to persist the sidebar state for logged-in users.
- *
- */
-
 var SIDEBAR_BUTTON_ID = "mw-sidebar-button";
 var SIDEBAR_CHECKBOX_ID = "mw-sidebar-checkbox";
 var SIDEBAR_PREFERENCE_NAME = "TGUI-SidebarVisible";
