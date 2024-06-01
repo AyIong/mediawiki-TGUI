@@ -1,0 +1,6 @@
+{
+  "scripts": [
+    "/skins/TGUI/resources/skins.tgui.scripts/inline.js",
+    "/skins/TGUI/resources/skins.tgui.scripts/sidebarPersistence.js"
+  ]
+}

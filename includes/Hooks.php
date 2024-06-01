@@ -40,30 +40,30 @@ class Hooks implements
 	use GetConfigTrait;
 
 	/**
-	 * Adds the inline theme switcher script to the page
+	 * Adds inline scripts to the page
 	 *
 	 * @param OutputPage $out
 	 * @param Skin $skin
 	 */
 	public function onBeforePageDisplay( $out, $skin ): void {
-		// It's better to exit before any additional check
 		if ( $skin->getSkinName() !== 'tgui' ) {
 			return;
 		}
 
-		if ( $this->getConfigValue( 'TGUIEnablePreferences', $out ) === true ) {
-			// Inline theme switcher script
-			$script = file_get_contents( MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/inline.js' );
-			$script = Html::inlineScript( $script );
-			$script = RL\ResourceLoader::filter( 'minify-js', $script );
-			$out->addHeadItem( 'skin.tgui.inline', $script );
-		}
+		$scriptPaths = json_decode(file_get_contents(MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/scripts.json'), true);
 
-		// Sidebar persistence script
-		$sidebarPersistenceScript = file_get_contents( MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/sidebarPersistence.js' );
-		$sidebarPersistenceScript = Html::inlineScript( $sidebarPersistenceScript );
-		$sidebarPersistenceScript = RL\ResourceLoader::filter( 'minify-js', $sidebarPersistenceScript );
-		$out->addHeadItem( 'skin.tgui.sidebarPersistence', $sidebarPersistenceScript );
+		if (isset($scriptPaths['scripts']) && is_array($scriptPaths['scripts'])) {
+			foreach ($scriptPaths['scripts'] as $scriptPath) {
+				if ($scriptPath === '/skins/TGUI/resources/skins.tgui.scripts/inline.js' && !$this->getConfigValue('TGUIEnablePreferences', $out)) {
+					continue;
+				}
+
+				$script = file_get_contents(MW_INSTALL_PATH . $scriptPath);
+				$script = Html::inlineScript($script);
+				$script = RL\ResourceLoader::filter('minify-js', $script);
+				$out->addHeadItem('skin.tgui.' . basename($scriptPath, '.js'), $script);
+			}
+		}
 	}
 
 	/**
