@@ -243,7 +243,6 @@
         "resources/skins.tgui.js/checkbox.js",
         "resources/skins.tgui.js/collapsiblePortlets.js",
         "resources/skins.tgui.js/dropdownMenus.js",
-        "resources/skins.tgui.js/sidebarPersistence.js",
         "resources/skins.tgui.js/languageButton.js",
         "resources/skins.tgui.js/purgeButton.js",
         "resources/skins.tgui.js/searchLoader.js"

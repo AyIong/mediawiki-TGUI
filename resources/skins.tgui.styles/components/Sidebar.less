@@ -23,9 +23,6 @@
   background-color: var(--color-bg-section);
   color: var(--color-text);
   backdrop-filter: var(--blur-important);
-  transition:
-    transform var(--transition-time),
-    height var(--transition-time);
   z-index: @z-index-header;
 
   &:hover {
@@ -42,6 +39,12 @@
 
   &:not(:has(+ .sidebar-toc)) {
     height: @height-sidebar-default !important;
+  }
+
+  .tgui-animations-ready & {
+    transition:
+      transform var(--transition-time),
+      height var(--transition-time);
   }
 }
 

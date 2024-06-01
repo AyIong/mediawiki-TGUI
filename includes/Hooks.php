@@ -52,11 +52,18 @@ class Hooks implements
 		}
 
 		if ( $this->getConfigValue( 'TGUIEnablePreferences', $out ) === true ) {
+			// Inline theme switcher script
 			$script = file_get_contents( MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/inline.js' );
 			$script = Html::inlineScript( $script );
 			$script = RL\ResourceLoader::filter( 'minify-js', $script );
 			$out->addHeadItem( 'skin.tgui.inline', $script );
 		}
+
+		// Sidebar persistence script
+		$sidebarPersistenceScript = file_get_contents( MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/sidebarPersistence.js' );
+		$sidebarPersistenceScript = Html::inlineScript( $sidebarPersistenceScript );
+		$sidebarPersistenceScript = RL\ResourceLoader::filter( 'minify-js', $sidebarPersistenceScript );
+		$out->addHeadItem( 'skin.tgui.sidebarPersistence', $sidebarPersistenceScript );
 	}
 
 	/**

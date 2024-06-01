@@ -1,7 +1,6 @@
 var languageButton = require("./languageButton.js"),
   initSearchLoader = require("./searchLoader.js").initSearchLoader,
   dropdownMenus = require("./dropdownMenus.js").dropdownMenus,
-  sidebarPersistence = require("./sidebarPersistence.js"),
   checkbox = require("./checkbox.js"),
   collapsiblePortlets = require("./collapsiblePortlets.js"),
   purgeButton = require("./purgeButton.js");
@@ -49,7 +48,6 @@ function main(window) {
 
   enableCssAnimations(window.document);
   collapsiblePortlets();
-  sidebarPersistence.init();
   checkbox.init(window.document);
   initSearchLoader(document);
   languageButton();
