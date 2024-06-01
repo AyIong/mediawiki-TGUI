@@ -241,7 +241,6 @@
           "callback": "MediaWiki\\Skins\\TGUI\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
         },
         "resources/skins.tgui.js/checkbox.js",
-        "resources/skins.tgui.js/collapsiblePortlets.js",
         "resources/skins.tgui.js/dropdownMenus.js",
         "resources/skins.tgui.js/languageButton.js",
         "resources/skins.tgui.js/purgeButton.js",
