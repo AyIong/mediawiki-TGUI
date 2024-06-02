@@ -76,7 +76,7 @@
   "tgui-purge-button-label": "Очистить кэш",
   "tgui-purge-button-title": "Очистить кэш страницы [F4]",
 
-  "tgui-theme-name": "Цвет",
+  "tgui-theme-name": "Тема",
   "tgui-theme-description": "Изменить тему оформления вики",
   "tgui-theme-day-label": "Светлая",
   "tgui-theme-night-label": "Тёмная",
@@ -97,6 +97,7 @@
   "tgui-feature-reduced-motion-disabled-label": "Отключено",
 
   "tgui-feature-darkened-images-name": "Затемнение изображений",
-  "tgui-feature-darkened-images-enabled-label": "Включено",
-  "tgui-feature-darkened-images-disabled-label": "Отключено"
+  "tgui-feature-darkened-images-disabled-label": "Отключено",
+  "tgui-feature-darkened-images-light-label": "Лёгкое",
+  "tgui-feature-darkened-images-medium-label": "Среднее"
 }

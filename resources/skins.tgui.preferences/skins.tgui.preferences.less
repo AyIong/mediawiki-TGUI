@@ -93,6 +93,10 @@
       display: block;
     }
   }
+
+  > div form {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* Grid for prefs */
@@ -123,7 +127,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     'Blur Theme'
-    'Motion Link-Shadows'
+    'Link-Shadows Motion'
     'Darkened-Images Darkened-Images';
 
   .skin-theme-clientpref-day & {

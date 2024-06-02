@@ -281,8 +281,9 @@
         "tgui-feature-reduced-motion-enabled-label",
         "tgui-feature-reduced-motion-disabled-label",
         "tgui-feature-darkened-images-name",
-        "tgui-feature-darkened-images-enabled-label",
-        "tgui-feature-darkened-images-disabled-label"
+        "tgui-feature-darkened-images-disabled-label",
+        "tgui-feature-darkened-images-light-label",
+        "tgui-feature-darkened-images-medium-label"
       ],
       "dependencies": ["mediawiki.storage", "mediawiki.util"],
       "targets": ["desktop", "mobile"]
