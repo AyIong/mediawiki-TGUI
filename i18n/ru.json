@@ -86,6 +86,7 @@
   "tgui-feature-blur-name": "Эффекты размытия",
   "tgui-feature-blur-enabled-label": "Включены",
   "tgui-feature-blur-disabled-label": "Отключены",
+  "tgui-feature-blur-full-label": "Без фона",
 
   "tgui-feature-link-shadows-name": "Тени под ссылками",
   "tgui-feature-link-shadows-enabled-label": "Включены",

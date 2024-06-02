@@ -33,29 +33,34 @@
 
 /* Blur */
 .disable-blur() {
-  --blur-default: none;
-  --color-bg-light: var(--color-bg-light-opaque);
-
-  .mw-page-container-inner {
-    background-image: none !important;
-  }
-}
-
-.tgui-feature-blur-clientpref-disabled {
   :root& {
-    .disable-blur();
+    --blur-default: none;
+    --color-bg-light: var(--color-bg-light-opaque);
   }
 
   @media (prefers-color-scheme: light) {
     :root& {
-      .disable-blur();
+      --blur-default: none;
+      --color-bg-light: var(--color-bg-light-opaque);
     }
   }
 
   @media (prefers-color-scheme: dark) {
     :root& {
-      .disable-blur();
+      --blur-default: none;
+      --color-bg-light: var(--color-bg-light-opaque);
     }
+  }
+}
+
+.tgui-feature-blur-clientpref-disabled {
+  .disable-blur();
+}
+
+.tgui-feature-blur-clientpref-full {
+  .disable-blur();
+  .mw-page-container-inner {
+    background-image: none !important;
   }
 }
 

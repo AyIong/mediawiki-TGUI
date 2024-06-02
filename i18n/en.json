@@ -57,6 +57,7 @@
   "tgui-feature-blur-name": "Blur Effects",
   "tgui-feature-blur-enabled-label": "Enabled",
   "tgui-feature-blur-disabled-label": "Disabled",
+  "tgui-feature-blur-full-label": "Without Background",
 
   "tgui-feature-link-shadows-name": "Link Shadows",
   "tgui-feature-link-shadows-enabled-label": "Enabled",

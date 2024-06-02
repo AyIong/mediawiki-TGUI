@@ -81,14 +81,66 @@
   }
 }
 
+#skin-client-prefs-tgui-feature-darkened-images {
+  display: none;
+
+  .skin-theme-clientpref-night & {
+    display: block;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .skin-theme-clientpref-os & {
+      display: block;
+    }
+  }
+}
+
+/* Grid for prefs */
+#skin-client-prefs-skin-theme {
+  grid-area: Theme;
+}
+
+#skin-client-prefs-tgui-feature-blur {
+  grid-area: Blur;
+}
+
+#skin-client-prefs-tgui-feature-link-shadows {
+  grid-area: Link-Shadows;
+}
+
+#skin-client-prefs-tgui-feature-reduced-motion {
+  grid-area: Motion;
+}
+
+#skin-client-prefs-tgui-feature-darkened-images {
+  grid-area: Darkened-Images;
+}
+
 .tgui-client-prefs {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-gap: 0.5em;
   padding: 0 0.5em 0.5em 0.5em;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'Blur Theme'
+    'Motion Link-Shadows'
+    'Darkened-Images Darkened-Images';
 
-  > div:not(:nth-child(1)) {
-    margin-top: 0.5em;
+  .skin-theme-clientpref-day & {
+    grid-template-areas:
+      'Blur Theme'
+      'Motion Link-Shadows';
+  }
 
+  @media (prefers-color-scheme: light) {
+    .skin-theme-clientpref-os & {
+      grid-template-areas:
+        'Blur Theme'
+        'Motion Link-Shadows';
+    }
+  }
+
+  > div:not(:nth-child(-n + 2)) {
     form {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -160,20 +212,6 @@
       &:hover {
         background-color: var(--color-primary-light);
       }
-    }
-  }
-}
-
-#skin-client-prefs-tgui-feature-darkened-images {
-  display: none;
-
-  .skin-theme-clientpref-night & {
-    display: block;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .skin-theme-clientpref-os & {
-      display: block;
     }
   }
 }
