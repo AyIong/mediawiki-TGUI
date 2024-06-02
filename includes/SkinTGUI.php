@@ -667,6 +667,7 @@ class SkinTGUI extends SkinMustache {
 
 		// Clientprefs feature handling
 		$this->addClientPrefFeature( 'tgui-feature-blur', 'enabled' );
+		$this->addClientPrefFeature( 'tgui-feature-link-shadows', 'enabled' );
 		$this->addClientPrefFeature( 'tgui-feature-reduced-motion', 'disabled' );
 		$this->addClientPrefFeature( 'tgui-feature-darkened-images', 'disabled' );
 	}

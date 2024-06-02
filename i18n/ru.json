@@ -87,6 +87,10 @@
   "tgui-feature-blur-enabled-label": "Включены",
   "tgui-feature-blur-disabled-label": "Отключены",
 
+  "tgui-feature-link-shadows-name": "Тени под ссылками",
+  "tgui-feature-link-shadows-enabled-label": "Включены",
+  "tgui-feature-link-shadows-disabled-label": "Выключены",
+
   "tgui-feature-reduced-motion-name": "Пониженное движение",
   "tgui-feature-reduced-motion-enabled-label": "Включено",
   "tgui-feature-reduced-motion-disabled-label": "Отключено",

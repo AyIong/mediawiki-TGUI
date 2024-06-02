@@ -59,6 +59,32 @@
   }
 }
 
+/* Link Shadows */
+.disable-link-shadows() {
+  --hyperlink-shadow: none;
+  --hyperlink-shadow-new: none;
+  --hyperlink-shadow-hover: none;
+  --hyperlink-shadow-new-hover: none;
+}
+
+.tgui-feature-link-shadows-clientpref-disabled {
+  :root& {
+    .disable-link-shadows();
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root& {
+      .disable-link-shadows();
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root& {
+      .disable-link-shadows();
+    }
+  }
+}
+
 /* Reduced Motion */
 .tgui-feature-reduced-motion-clientpref-enabled {
   :root& {

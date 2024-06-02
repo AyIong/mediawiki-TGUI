@@ -7,6 +7,10 @@
     "options": ["enabled", "disabled"],
     "preferenceKey": "tgui-blur"
   },
+  "tgui-feature-link-shadows": {
+    "options": ["enabled", "disabled"],
+    "preferenceKey": "tgui-link-shadows"
+  },
   "tgui-feature-reduced-motion": {
     "options": ["enabled", "disabled"],
     "preferenceKey": "tgui-motion"

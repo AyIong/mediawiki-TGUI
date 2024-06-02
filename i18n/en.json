@@ -58,6 +58,10 @@
   "tgui-feature-blur-enabled-label": "Enabled",
   "tgui-feature-blur-disabled-label": "Disabled",
 
+  "tgui-feature-link-shadows-name": "Link Shadows",
+  "tgui-feature-link-shadows-enabled-label": "Enabled",
+  "tgui-feature-link-shadows-disabled-label": "Disabled",
+
   "tgui-feature-reduced-motion-name": "Reduced Motion",
   "tgui-feature-reduced-motion-enabled-label": "Enabled",
   "tgui-feature-reduced-motion-disabled-label": "Disabled",
