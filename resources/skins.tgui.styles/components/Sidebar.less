@@ -5,10 +5,15 @@
 .tgui-sidebar-container {
   display: flex;
   flex-direction: column;
-  position: sticky;
+  position: fixed;
   top: 66px;
   height: @height-sidebar;
   z-index: @z-index-header;
+  width: @width-sidebar-px;
+
+  @media (min-width: @min-width-desktop-wide) {
+    width: @width-sidebar-px-wide;
+  }
 }
 
 .mw-sidebar {
@@ -20,6 +25,7 @@
   scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
   background-color: var(--color-bg-section);
   color: var(--color-text);
+  backdrop-filter: var(--blur-important);
 
   &:hover {
     overflow-y: auto;
@@ -27,21 +33,10 @@
 
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
     transform: translateX(-25em);
-    backdrop-filter: var(--blur-important);
   }
 
   .tgui-animations-ready & {
     transition: transform var(--transition-time);
-  }
-}
-
-.mw-sidebar,
-.sidebar-toc,
-.sidebar-toc:after {
-  width: @width-sidebar-px;
-
-  @media (min-width: @min-width-desktop-wide) {
-    width: @width-sidebar-px-wide;
   }
 }
 
