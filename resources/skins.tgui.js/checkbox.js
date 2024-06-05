@@ -134,7 +134,7 @@ function init(document) {
   initMainMenu(
     document.getElementById("mw-sidebar-checkbox"),
     document.getElementById("mw-sidebar-button"),
-    document.getElementById("mw-navigation"),
+    document.getElementById("tgui-sidebar-container"),
   );
 
   initCollapsedToc(

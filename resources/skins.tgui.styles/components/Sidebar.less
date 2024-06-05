@@ -2,27 +2,24 @@
 @import '../layouts/screen.less';
 @import 'checkboxHack.less';
 
-.mw-sidebar,
-.sidebar-toc,
-.sidebar-toc:after {
-  width: @width-sidebar-px;
-
-  @media (min-width: @min-width-desktop-wide) {
-    width: @width-sidebar-px-wide;
-  }
+.tgui-sidebar-container {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 66px;
+  height: @height-sidebar;
+  z-index: @z-index-header;
 }
 
 .mw-sidebar {
-  position: fixed;
+  flex: 1;
+  position: sticky;
   overflow: hidden;
-  padding-top: 0.75em;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
   scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
-  height: @height-sidebar-toc-hidden;
   background-color: var(--color-bg-section);
   color: var(--color-text);
-  z-index: @z-index-header;
 
   &:hover {
     overflow-y: auto;
@@ -33,26 +30,23 @@
     backdrop-filter: var(--blur-important);
   }
 
-  body:not(.tgui-toc-collapsed) & {
-    height: @height-sidebar-toc;
-  }
-
-  &:not(:has(+ .sidebar-toc)) {
-    height: @height-sidebar-default !important;
-  }
-
   .tgui-animations-ready & {
-    transition:
-      transform var(--transition-time),
-      height var(--transition-time);
+    transition: transform var(--transition-time);
+  }
+}
+
+.mw-sidebar,
+.sidebar-toc,
+.sidebar-toc:after {
+  width: @width-sidebar-px;
+
+  @media (min-width: @min-width-desktop-wide) {
+    width: @width-sidebar-px-wide;
   }
 }
 
 .mw-sidebar-action {
-  // Styles for SidebarAction template.
   .mw-sidebar-action-item {
-    // Align with the portal heading/links
-    // `.portal` + `.portal .body`
     margin-top: 4px;
     margin-bottom: 4px;
 
@@ -70,7 +64,6 @@
       }
     }
 
-    // T295555 style overrides for temporary language switch alert (can be removed later ).
     .tgui-language-sidebar-alert {
       padding: 0.75em;
     }

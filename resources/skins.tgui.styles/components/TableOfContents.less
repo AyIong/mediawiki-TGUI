@@ -12,31 +12,28 @@
 }
 
 .sidebar-toc {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
+  position: sticky;
   bottom: 0;
-  height: @height-toc-full;
-  max-height: 25em;
+  height: 50%;
   box-sizing: border-box;
   background-color: var(--color-bg-section);
   border-top: var(--border-classic);
   box-shadow: 0px -25px 20px -20px var(--color-bg);
-  z-index: @z-index-header;
+  backdrop-filter: var(--blur-important);
 
   .tgui-animations-ready & {
     transition:
-      transform var(--transition-time),
-      max-height var(--transition-time);
+      height var(--transition-time),
+      transform var(--transition-time);
   }
 
   .tgui-toc-collapsed & {
-    max-height: 2em !important;
+    height: 2em !important;
     overflow: hidden;
   }
 
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
-    max-height: 100vh;
+    height: 100%;
     border-top: 1px solid transparent;
     box-shadow: none;
   }
