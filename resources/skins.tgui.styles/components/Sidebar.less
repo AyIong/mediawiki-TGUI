@@ -22,7 +22,6 @@
   height: @height-sidebar-toc-hidden;
   background-color: var(--color-bg-section);
   color: var(--color-text);
-  backdrop-filter: var(--blur-important);
   z-index: @z-index-header;
 
   &:hover {
@@ -31,6 +30,7 @@
 
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
     transform: translateX(-25em);
+    backdrop-filter: var(--blur-important);
   }
 
   body:not(.tgui-toc-collapsed) & {
