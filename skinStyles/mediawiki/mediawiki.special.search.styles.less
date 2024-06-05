@@ -96,9 +96,10 @@
       margin: 0.5em 0.25em;
       text-decoration: none;
       background-color: var(--color-primary);
-      color: var(--color-white);
+      color: var(--color-white) !important;
       border-radius: var(--border-radius-small);
       transition: background-color var(--transition-time);
+      text-decoration: none !important;
 
       &:hover {
         background-color: var(--color-primary-light);
@@ -110,6 +111,7 @@
       pointer-events: none;
       background-color: var(--color-green);
       transition: background-color var(--transition-time);
+      text-decoration: none !important;
     }
   }
 }
