@@ -3,13 +3,11 @@ a,
 .mw-parser-output a.external {
   text-decoration: none !important;
   color: var(--color-hyperlink);
-  text-shadow: var(--hyperlink-shadow);
   transition: color var(--transition-time);
 
   &:hover,
   &:focus {
     color: var(--color-hyperlink-hover);
-    text-shadow: var(--hyperlink-shadow-hover);
   }
 
   &:visited {
@@ -45,10 +43,6 @@ a.new:visited {
 
 a:not([href]) {
   cursor: pointer;
-}
-
-a * {
-  text-shadow: none;
 }
 
 a:lang(ar),
