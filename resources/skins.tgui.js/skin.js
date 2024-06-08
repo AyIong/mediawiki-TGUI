@@ -16,6 +16,29 @@ function enableCssAnimations(document) {
 }
 
 /**
+ * Add a class to indicate that sticky header is active
+ *
+ * @param {Document} document
+ * @return {void}
+ */
+function initStickyHeader(document) {
+  const scrollObserver = require("./scrollObserver.js");
+
+  // Detect scroll direction and add the right class
+  scrollObserver.initDirectionObserver(
+    () => {
+      document.body.classList.remove("tgui-scroll--up");
+      document.body.classList.add("tgui-scroll--down");
+    },
+    () => {
+      document.body.classList.remove("tgui-scroll--down");
+      document.body.classList.add("tgui-scroll--up");
+    },
+    10,
+  );
+}
+
+/**
  * Register service worker
  *
  * @return {void}
@@ -46,6 +69,7 @@ function main(window) {
   const config = require("./config.json");
 
   enableCssAnimations(window.document);
+  initStickyHeader(window.document);
   checkbox.init(window.document);
   initSearchLoader(document);
   languageButton();

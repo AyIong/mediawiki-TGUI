@@ -7,9 +7,9 @@
     "options": ["enabled", "disabled", "full"],
     "preferenceKey": "tgui-blur"
   },
-  "tgui-feature-link-shadows": {
+  "tgui-feature-sticky-header": {
     "options": ["enabled", "disabled"],
-    "preferenceKey": "tgui-link-shadows"
+    "preferenceKey": "tgui-sticky-header"
   },
   "tgui-feature-reduced-motion": {
     "options": ["enabled", "disabled"],

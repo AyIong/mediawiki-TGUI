@@ -10,6 +10,9 @@
   height: @height-sidebar;
   z-index: @z-index-header;
   width: @width-sidebar-px;
+  transition:
+    top var(--transition-time),
+    height var(--transition-time);
 
   @media (min-width: @min-width-desktop-wide) {
     width: @width-sidebar-px-wide;

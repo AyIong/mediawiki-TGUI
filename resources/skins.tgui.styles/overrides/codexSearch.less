@@ -138,9 +138,12 @@
     box-shadow: none !important;
     background-color: var(--color-bg-section-light);
     color: var(--color-text-darker);
-    border: var(--border-classic) !important;
-    border-left: 0;
-    transition: all var(--transition-time);
+    border-width: 1px 1px 1px 0;
+    border-style: solid;
+    border-color: var(--color-border) !important;
+    transition:
+      background-color var(--transition-time),
+      color var(--transition-time);
 
     &:hover {
       background-color: var(--color-bg-hover);
