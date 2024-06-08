@@ -7,16 +7,21 @@
   .sidebar-toc {
     max-height: 0;
   }
+
+  &:root {
+    --blur-default: none; // With blur, visual editor pretty laggy
+    --color-bg-light: var(--color-bg-light-opaque);
+  }
 }
 
 .skin-tgui {
   .ve-ui-toolbar {
     > .oo-ui-toolbar-bar {
-      background-color: var(--color-bg-section-light);
+      background-color: var(--color-bg-section-blur);
       color: var(--color-text);
       border-color: var(--color-border) !important;
       box-shadow: none !important;
-      backdrop-filter: var(--blur-default);
+      backdrop-filter: var(--blur-important);
 
       .oo-ui-toolbar-bar {
         background-color: var(--color-bg-section-light);
@@ -26,6 +31,8 @@
       .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle {
         color: var(--color-text-darker);
         border: 0 !important;
+        box-shadow: 0 !important;
+        outline: 0 !important;
 
         &:hover {
           background-color: var(--color-bg-hover);
@@ -40,10 +47,14 @@
         background-color: var(--color-bg-focus) !important;
         color: var(--color-text) !important;
         border: 0 !important;
+        box-shadow: 0 !important;
+        outline: 0 !important;
       }
 
       a.oo-ui-tool-link {
         border: 0 !important;
+        box-shadow: 0 !important;
+        outline: 0 !important;
 
         &:hover {
           background-color: var(--color-bg-hover);
