@@ -29,32 +29,46 @@
 }
 
 /* Collapsible table toggle */
-table {
+.skin-tgui {
   .mw-collapsible-toggle {
     display: block;
-    padding: 0.2em;
-    margin-left: 0.75em;
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background: none no-repeat transparent;
     border-radius: var(--border-radius-small);
-    transition: background-color var(--transition-time);
+    transition: transform var(--transition-time) background-color var(--transition-time);
+
+    &:before {
+      content: '';
+      display: block;
+      width: 1em;
+      height: 1.2em;
+      background: url(../skins.tgui.styles/images/arrow-down.svg) no-repeat transparent center;
+      transition: transform var(--transition-time);
+      filter: var(--invert-icon);
+    }
+
+    &[aria-expanded='true']:before {
+      transform: rotate(180deg);
+    }
+
+    &:after,
+    .mw-collapsible-text {
+      display: none;
+    }
+  }
+
+  .wikitable .mw-collapsible-toggle {
+    padding: 0.2em;
+    margin: 0 0.25em;
+    background-color: var(--color-primary);
 
     &:hover {
       background-color: var(--color-primary-light);
     }
 
-    &:after,
     &:before {
-      content: '' !important;
       width: 1.2em;
       height: 1.2em;
-    }
-
-    &:before {
-      display: block;
-      background: url(../skins.tgui.styles/images/arrow-down.svg);
-      transition: transform var(--transition-time);
-      filter: var(--invert-button-icon);
+      filter: var(--invert-icon);
     }
 
     &[aria-expanded='true']:before {
