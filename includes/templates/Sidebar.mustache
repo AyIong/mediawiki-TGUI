@@ -11,11 +11,8 @@
 
 <nav id="mw-panel" class="mw-sidebar" aria-label="{{msg-tgui-site-nav-label}}" role="navigation">
 	{{#data-portlets-first}}{{>Menu}}{{/data-portlets-first}}
-	{{#data-emphasized-sidebar-action}}{{>SidebarAction}}{{/data-emphasized-sidebar-action}}
 	{{#array-portlets-rest}}{{>Menu}}{{/array-portlets-rest}}
 	{{^is-language-in-content}}
 	{{#data-portlets.data-languages}}{{>Menu}}{{/data-portlets.data-languages}}
 	{{/is-language-in-content}}
-	{{! T295555 Add language switch alert message temporarily (to be removed). }}
-	{{#data-tgui-language-switch-alert}}{{>SidebarAction}}{{/data-tgui-language-switch-alert}}
 </nav>
