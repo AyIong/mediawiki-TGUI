@@ -36,6 +36,10 @@ html:not(.tgui-animations-ready) * {
   transition: none !important;
 }
 
+html {
+  scroll-padding-top: 4.25em;
+}
+
 html,
 body {
   scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
@@ -172,4 +176,19 @@ body {
 
 .tgui-blur-important {
   backdrop-filter: var(--blur-important);
+}
+
+@media (min-width: @min-width-breakpoint-tablet) {
+  // Delay scroll animation won't happen on load
+  // Use it only for larger viewport as it is very costly
+  // on mobile devices
+  html.tgui-animations-ready {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (max-width: @max-width-mobile) {
+  iframe {
+    width: 100%;
+  }
 }

@@ -27,9 +27,6 @@
  * `props.onIntersection` callback will be fired with the corresponding section
  * as a param.
  *
- * Because sectionObserver uses a scroll event listener (in combination with
- * IntersectionObserver), the changes are throttled to a default maximum rate of
- * 200ms so that the main thread is not excessively blocked.
  * IntersectionObserver is used to asynchronously calculate the positions of the
  * observed tags off the main thread and in a manner that does not cause
  * expensive forced synchronous layouts.
@@ -37,15 +34,8 @@
  * @param {SectionObserverProps} props
  * @return {SectionObserver}
  */
-module.exports = function sectionObserver(props) {
-  props = Object.assign(
-    {
-      topMargin: 0,
-      throttleMs: 200,
-      onIntersection: () => {},
-    },
-    props,
-  );
+function sectionObserver(props) {
+  const { topMargin = 0, onIntersection = () => {} } = props;
 
   let /** @type {boolean} */ inThrottle = false;
   let /** @type {HTMLElement | undefined} */ current;
@@ -53,7 +43,6 @@ module.exports = function sectionObserver(props) {
   const observer = new IntersectionObserver((entries) => {
     let /** @type {IntersectionObserverEntry | undefined} */ closestNegativeEntry;
     let /** @type {IntersectionObserverEntry | undefined} */ closestPositiveEntry;
-    const topMargin = /** @type {number} */ (props.topMargin);
 
     entries.forEach((entry) => {
       const top = entry.boundingClientRect.top - topMargin;
@@ -80,7 +69,7 @@ module.exports = function sectionObserver(props) {
 
     // If the intersection is new, fire the `onIntersection` callback.
     if (current !== closestTag) {
-      props.onIntersection(closestTag);
+      onIntersection(closestTag);
     }
     current = closestTag;
 
@@ -109,10 +98,10 @@ module.exports = function sectionObserver(props) {
     if (!inThrottle) {
       inThrottle = true;
 
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         calcIntersection();
         inThrottle = false;
-      }, props.throttleMs);
+      });
     }
   }
 
@@ -175,4 +164,8 @@ module.exports = function sectionObserver(props) {
     unmount,
     setElements,
   };
+}
+
+module.exports = {
+  init: sectionObserver,
 };

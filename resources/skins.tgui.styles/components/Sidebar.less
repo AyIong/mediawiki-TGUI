@@ -45,25 +45,32 @@
 @media (max-width: @max-width-mobile) {
   .tgui-sidebar-container {
     width: 100%;
-    max-height: 70vh;
-    top: 65px;
-    border-bottom: var(--border-classic);
-    box-shadow: var(--box-shadow-medium);
+    max-height: 85vh;
+    top: 0;
     transform: translateY(-100%) !important;
-    visibility: hidden !important;
+    transition: transform var(--transition-time);
     z-index: ~'calc(@{z-index-header} - 1)';
 
     #mw-sidebar-checkbox-mobile:checked ~ & {
       transform: translateY(0%) !important;
+      box-shadow: var(--box-shadow-medium);
+    }
+
+    .tgui-blur-important {
+      backdrop-filter: none;
+    }
+
+    .mw-sidebar {
+      overflow-y: auto;
+      margin-top: 65px;
       visibility: visible !important;
+      background-color: var(--color-bg-section-opaque);
+      transform: translateX(0%) !important;
+      transition: margin var(--transition-time);
     }
   }
 
-  .tgui-scroll--down .tgui-sidebar-container {
-    top: 0;
-  }
-
-  .mw-sidebar {
-    overflow-y: auto;
+  .tgui-scroll--down .mw-sidebar {
+    margin-top: 0;
   }
 }

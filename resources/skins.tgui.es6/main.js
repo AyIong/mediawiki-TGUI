@@ -1,6 +1,6 @@
 // Enable TGUI features limited to ES6 browse
 const searchToggle = require("./searchToggle.js"),
-  initSectionObserver = require("./sectionObserver.js"),
+  initSectionObserver = require("./sectionObserver.js").init,
   initTableOfContents = require("./tableOfContents.js"),
   deferUntilFrame = require("./deferUntilFrame.js"),
   TOC_ID = "mw-panel-toc",
@@ -74,26 +74,26 @@ const main = () => {
       sectionObserver.pause();
       tableOfContents.expandSection(id);
       tableOfContents.changeActiveSection(id);
-      deferUntilFrame(() => sectionObserver.resume(), 3);
+      deferUntilFrame(() => sectionObserver.resume(), 150);
     },
     onToggleClick: (id) => {
       tableOfContents.toggleExpandSection(id);
     },
     onToggleCollapse: updateTocStatus,
   });
+
   const headingSelector = ["h1", "h2", "h3", "h4", "h5", "h6"].map((tag) => `.mw-parser-output > ${tag}`).join(",");
+  const computedStyle = window.getComputedStyle(document.documentElement);
+  const scrollPaddingTop = computedStyle.getPropertyValue("scroll-padding-top");
+  const topMargin = Number(scrollPaddingTop.slice(0, -2)) + 20;
+  const getTopMargin = () => topMargin;
   const sectionObserver = initSectionObserver({
     elements: bodyContent.querySelectorAll(`${headingSelector}, .mw-body-content`),
+    topMargin: getTopMargin(),
     onIntersection: getHeadingIntersectionHandler(tableOfContents.changeActiveSection),
   });
 
-  const checkWindowSize = () => {
-    if (window.innerWidth < 999) {
-      document.body.classList.add("tgui-toc-collapsed");
-      updateTocStatus();
-    }
-  };
-  checkWindowSize();
+  updateTocStatus();
 };
 
 module.exports = {

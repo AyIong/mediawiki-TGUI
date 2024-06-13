@@ -43,6 +43,7 @@
 
   .sidebar-toc-contents-container {
     overflow: hidden;
+    overscroll-behavior: contain;
     scrollbar-width: thin;
     scrollbar-gutter: stable;
     scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
@@ -147,6 +148,23 @@
     .tgui-toc-collapsed & {
       transform: rotate(180deg);
     }
+  }
+}
+
+@media (max-width: @max-width-mobile) {
+  .sidebar-toc {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+
+    .sidebar-toc-contents-container {
+      overflow: auto;
+      padding-right: 0.75em;
+    }
+  }
+
+  .tgui-scroll--down .sidebar-toc {
+    transform: translateY(100%);
   }
 }
 
