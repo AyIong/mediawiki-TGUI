@@ -19,7 +19,7 @@
     color: var(--color-text-darker);
     background-color: var(--color-bg-section-light);
     border-bottom: 2px solid var(--color-primary);
-    font-size: @font-size-nav-main-heading;
+    font-size: 0.75em;
     font-weight: bold;
   }
 
@@ -32,7 +32,7 @@
     }
 
     li {
-      font-size: @font-size-nav-main-body;
+      font-size: 0.75em;
       line-height: @line-height-nav;
       word-wrap: break-word;
       margin: 0 0.5em 0.5em 0.5em;
@@ -55,6 +55,20 @@
         color: var(--color-white);
         text-shadow: none;
       }
+    }
+  }
+}
+
+@media (max-width: @max-width-mobile) {
+  .tgui-menu-portal {
+    margin: 0.5em;
+
+    .tgui-menu-heading {
+      font-size: 1.1em;
+    }
+
+    .tgui-menu-content li {
+      font-size: 1.1em;
     }
   }
 }

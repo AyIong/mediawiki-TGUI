@@ -56,17 +56,20 @@
   }
 }
 
-@media (max-width: @min-width-desktop-wide) {
-  #mw-sidebar-checkbox:checked {
-    & ~ .mw-footer-container {
-      margin-left: @width-sidebar-px;
-    }
-  }
-}
-
 @media (min-width: @min-width-desktop-wide) {
   .mw-page-container-inner {
     grid-template-columns: 245px 0;
+  }
+}
+
+@media (max-width: @max-width-mobile) {
+  .mw-content-container {
+    margin: ~'calc(1em + 66px)' 0.75em 0.75em 0.75em;
+    transition: margin var(--transition-time);
+  }
+
+  .tgui-scroll--down .mw-content-container {
+    margin: 0.75em;
   }
 }
 

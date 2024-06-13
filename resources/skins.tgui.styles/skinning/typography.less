@@ -48,6 +48,10 @@ pre,
       background-color: var(--color-primary-light);
     }
   }
+
+  &:before {
+    content: '' !important;
+  }
 }
 
 .mw-editsection-bracket,
@@ -128,6 +132,22 @@ pre,
 
     > :last-child {
       margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: @max-width-mobile) {
+  .tgui-body {
+    & h1,
+    &-content h1 {
+      font-size: ~'calc(@{font-size-heading-1} - 0.15em)';
+    }
+  }
+
+  .mw-body {
+    & h1,
+    &-content h1 {
+      font-size: ~'calc(@{font-size-heading-1} - 0.15em)';
     }
   }
 }

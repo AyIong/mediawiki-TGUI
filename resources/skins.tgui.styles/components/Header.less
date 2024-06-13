@@ -11,7 +11,6 @@
   align-items: center;
   background-color: var(--color-bg-section-blur);
   color: var(--color-text);
-  transition: transform var(--transition-time);
   backdrop-filter: var(--blur-important);
   z-index: @z-index-header;
 
@@ -65,44 +64,15 @@
   &-content {
     flex-grow: 1;
   }
+}
 
-  /**
-	 * Toggles the visibility of the search box at lower resolutions.
-	 */
-  @media (max-width: @max-width-tablet) {
-    &.tgui-header-search-toggled {
-      #mw-sidebar-button,
-      .mw-logo,
-      .search-toggle {
-        display: none;
-      }
+@media (max-width: @max-width-mobile) {
+  .mw-header {
+    position: fixed;
+    transition: transform var(--transition-time);
+  }
 
-      .tgui-search-box-collapses > div {
-        display: block;
-      }
-
-      .tgui-search-box {
-        position: relative;
-        margin-left: 0.5em;
-        margin-right: 1em;
-
-        // Override default max width at lower resolutions
-        > div {
-          max-width: none;
-        }
-      }
-
-      // Make the menu below the search input wider, to match the width of the input+button
-      // rather than just the width of the input
-      .cdx-search-input__input-wrapper {
-        position: static;
-      }
-
-      // Since the end button's corner is now right above the menu's corner, don't use a
-      // rounded corner here (T310525)
-      .cdx-typeahead-search--expanded .cdx-search-input__end-button {
-        border-bottom-right-radius: 0;
-      }
-    }
+  .tgui-scroll--down .mw-header {
+    transform: translateY(-100%);
   }
 }

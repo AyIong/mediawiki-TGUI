@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 66px;
+  bottom: 0;
   height: @height-sidebar;
   z-index: @z-index-header;
   width: @width-sidebar-px;
@@ -15,12 +15,8 @@
   }
 
   @{selector-main-menu-closed} ~ & {
-    transform: translateX(calc(-1 * @width-sidebar-px));
+    transform: translateX(-100%);
     visibility: hidden;
-
-    @media (min-width: @min-width-desktop-wide) {
-      transform: translateX(calc(-1 * @width-sidebar-px-wide));
-    }
   }
 
   .tgui-animations-ready & {
@@ -32,6 +28,7 @@
   flex: 1;
   position: sticky;
   overflow: hidden;
+  overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-gutter: stable;
   scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
@@ -40,6 +37,29 @@
   backdrop-filter: var(--blur-important);
 
   &:hover {
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: @max-width-mobile) {
+  .tgui-sidebar-container {
+    width: 100%;
+    max-height: 70vh;
+    top: 65px;
+    border-bottom: var(--border-classic);
+    box-shadow: var(--box-shadow-medium);
+    z-index: ~'calc(@{z-index-header} - 1)';
+
+    @{selector-main-menu-closed} ~ & {
+      transform: translateY(-100%);
+    }
+  }
+
+  .tgui-scroll--down .tgui-sidebar-container {
+    top: 0;
+  }
+
+  .mw-sidebar {
     overflow-y: auto;
   }
 }

@@ -1,12 +1,6 @@
 @import '../variables.less';
 
 /* Footer */
-#mw-sidebar-checkbox:checked {
-  & ~ .mw-footer-container {
-    margin-left: 245px;
-  }
-}
-
 .mw-footer-container {
   display: flex;
   flex-direction: column;
@@ -22,6 +16,30 @@
     margin: 0;
     padding: 0.5em 0;
     font-size: @font-size-footer;
+  }
+}
+
+@media (min-width: @min-width-desktop-wide) {
+  #mw-sidebar-checkbox:checked {
+    & ~ .mw-footer-container {
+      margin-left: @width-sidebar-px-wide;
+    }
+  }
+}
+
+@media (max-width: @min-width-desktop-wide) {
+  #mw-sidebar-checkbox:checked {
+    & ~ .mw-footer-container {
+      margin-left: @width-sidebar-px;
+    }
+  }
+}
+
+@media (max-width: @max-width-mobile) {
+  #mw-sidebar-checkbox:checked {
+    & ~ .mw-footer-container {
+      margin-left: 0;
+    }
   }
 }
 
