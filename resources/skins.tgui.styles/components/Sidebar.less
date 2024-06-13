@@ -4,25 +4,22 @@
 .tgui-sidebar-container {
   display: flex;
   flex-direction: column;
+  pointer-events: none;
   position: fixed;
   bottom: 0;
   height: @height-sidebar;
   z-index: @z-index-header;
   width: @width-sidebar-px;
-  transition: all var(--transition-time);
+  transition: width var(--transition-time);
 
   @media (min-width: @min-width-desktop-wide) {
     width: @width-sidebar-px-wide;
-  }
-
-  @{selector-main-menu-closed} ~ & {
-    transform: translateX(-100%);
-    visibility: hidden;
   }
 }
 
 .mw-sidebar {
   flex: 1;
+  pointer-events: auto;
   position: sticky;
   overflow: hidden;
   overscroll-behavior: contain;
@@ -31,9 +28,17 @@
   scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
   background-color: var(--color-bg-section-blur);
   color: var(--color-text);
+  transition:
+    transform var(--transition-time),
+    visibility var(--transition-time);
 
   &:hover {
     overflow-y: auto;
+  }
+
+  @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
+    transform: translateX(-100%);
+    visibility: hidden;
   }
 }
 
