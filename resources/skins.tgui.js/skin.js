@@ -2,11 +2,11 @@ var languageButton = require("./languageButton.js"),
   initSearchLoader = require("./searchLoader.js").initSearchLoader,
   dropdownMenus = require("./dropdownMenus.js").dropdownMenus,
   checkbox = require("./checkbox.js"),
+  tables = require("./tables.js"),
   purgeButton = require("./purgeButton.js");
 
 /**
- * Wait for first paint before calling this function.
- * (see T234570#5779890, T246419).
+ * Don't play CSS animations, until page visible
  *
  * @param {Document} document
  * @return {void}
@@ -62,6 +62,19 @@ function registerServiceWorker() {
 }
 
 /**
+ * Initialize scripts related to wiki page content
+ *
+ * @param {HTMLElement} bodyContent
+ * @return {void}
+ */
+function initBodyContent(bodyContent) {
+  const tables = require("./tables.js");
+
+  // Table enhancements
+  tables.init(bodyContent);
+}
+
+/**
  * @param {Window} window
  * @return {void}
  */
@@ -75,6 +88,12 @@ function main(window) {
   languageButton();
   dropdownMenus();
   purgeButton();
+
+  mw.hook("wikipage.content").add(function (content) {
+    // content is a jQuery object
+    // note that this refers to .mw-body-content, not #bodyContent
+    initBodyContent(content[0]);
+  });
 
   // Preference module
   if (config.wgTGUIEnablePreferences === true && typeof document.createElement("div").prepend === "function") {
