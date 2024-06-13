@@ -22,17 +22,9 @@
     }
   }
 
-  .tgui-more-collapsible-item {
-    display: block;
-
-    @media (min-width: @min-width-tablet) {
-      display: none;
-    }
-  }
-
   // Make sure pcactions is displayed (even if .emptyPortlet present)
   .tgui-has-collapsible-items {
-    @media (max-width: @max-width-mobile) {
+    @media (min-width: @max-width-mobile) {
       display: block;
     }
   }

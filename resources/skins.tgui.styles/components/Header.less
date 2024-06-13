@@ -11,10 +11,10 @@
   align-items: center;
   background-color: var(--color-bg-section-blur);
   color: var(--color-text);
-  backdrop-filter: var(--blur-important);
   z-index: @z-index-header;
 
-  #mw-sidebar-button {
+  #mw-sidebar-button,
+  #mw-sidebar-button-mobile {
     margin-right: 0.75em;
     transition: background-color var(--transition-time);
 
@@ -34,9 +34,26 @@
       opacity: 0.67;
       background-image: url(../skins.tgui.styles/images/angles-left-solid.svg);
       transition: opacity var(--transition-time);
+    }
+  }
 
+  #mw-sidebar-button {
+    &:before {
       @{selector-main-menu-closed} ~ & {
         background-image: url(../skins.tgui.styles/images/menu.svg);
+      }
+    }
+  }
+
+  #mw-sidebar-button-mobile {
+    display: none;
+
+    &:before {
+      transform: rotate(90deg);
+
+      #mw-sidebar-checkbox-mobile:not(:checked) ~ & {
+        background-image: url(../skins.tgui.styles/images/menu.svg);
+        transform: rotate(0);
       }
     }
   }
@@ -70,6 +87,14 @@
   .mw-header {
     position: fixed;
     transition: transform var(--transition-time);
+
+    #mw-sidebar-button {
+      display: none;
+    }
+
+    #mw-sidebar-button-mobile {
+      display: inline-block;
+    }
   }
 
   .tgui-scroll--down .mw-header {

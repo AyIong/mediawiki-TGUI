@@ -19,7 +19,6 @@ function setupOverflowState(element) {
       }
 
       const currentPosition = Math.ceil(element.parentNode.scrollLeft);
-      element.parentNode.classList.add("tgui-blur");
 
       if (currentPosition <= 0) {
         // At the start

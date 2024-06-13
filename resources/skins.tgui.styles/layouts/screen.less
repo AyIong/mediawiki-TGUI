@@ -32,6 +32,10 @@ body {
   color: var(--color-text-darker);
 }
 
+html:not(.tgui-animations-ready) * {
+  transition: none !important;
+}
+
 html,
 body {
   scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
@@ -150,4 +154,22 @@ body {
   margin-left: auto;
   margin-right: auto;
   min-width: @min-width-supported;
+}
+
+.tgui-blur,
+.tgui-blur-important {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.tgui-blur {
+  backdrop-filter: var(--blur-default);
+}
+
+.tgui-blur-important {
+  backdrop-filter: var(--blur-important);
 }

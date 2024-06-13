@@ -35,8 +35,13 @@
 			id="mw-sidebar-checkbox"
 			class="mw-checkbox-hack-checkbox"
 			{{#sidebar-visible}}checked{{/sidebar-visible}}>
+		<input
+			type="checkbox"
+			id="mw-sidebar-checkbox-mobile"
+			class="mw-checkbox-hack-checkbox">
 		{{>Header}}
 		<div class="tgui-sidebar-container">
+			<div class="tgui-blur-important"></div>
 			{{#data-portlets-sidebar}}{{>Sidebar}}{{/data-portlets-sidebar}}
 			{{#data-toc}}{{>TableOfContents}}{{/data-toc}}
 		</div>
