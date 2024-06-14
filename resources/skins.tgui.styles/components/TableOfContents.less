@@ -27,7 +27,7 @@
   }
 
   .sidebar-toc-header {
-    padding: 0.33em 0 0.33em 0.5em;
+    padding: 0.33em 0.5em;
     border-bottom: 2px solid var(--color-primary);
   }
 
@@ -125,7 +125,6 @@
   display: block;
   cursor: pointer;
   padding: 0.2em;
-  margin: 0 0.5em 0 0;
   background-color: var(--color-primary);
   color: var(--color-white);
   border-radius: var(--border-radius-small);
@@ -154,16 +153,45 @@
 @media (max-width: @max-width-mobile) {
   .sidebar-toc {
     position: fixed;
-    width: 100%;
     bottom: 0;
+    width: 100%;
+
+    .tgui-toc-collapsed & {
+      height: 3em !important;
+    }
+
+    .sidebar-toc-header {
+      padding: 0.5em;
+
+      .sidebar-toc-title {
+        font-size: 1.25em;
+
+        .tgui-toc-collapse-button {
+          padding: 0.5em;
+
+          &:before {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
 
     .sidebar-toc-contents-container {
       overflow: auto;
       padding-right: 0.75em;
     }
+
+    .sidebar-toc-text {
+      padding: 0.5em 0;
+    }
+
+    .sidebar-toc-list-item a {
+      font-size: 1em;
+    }
   }
 
-  .tgui-scroll--down .sidebar-toc {
+  .tgui-scroll--down.tgui-toc-collapsed .sidebar-toc {
     transform: translateY(100%);
   }
 }

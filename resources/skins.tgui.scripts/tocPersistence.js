@@ -21,6 +21,9 @@ function moveElement() {
   const mediaQuery = window.matchMedia("(max-width: 719px)"); // @max-width-mobile LESS var;
 
   function handleMediaChange(e) {
+    if (!toc) {
+      return;
+    }
     if (e.matches) {
       newContainer.appendChild(toc);
     } else {
