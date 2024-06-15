@@ -18,22 +18,27 @@
 }
 
 .mw-sidebar {
-  flex: 1;
+  display: flex;
   pointer-events: auto;
   position: sticky;
   overflow: hidden;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-gutter: stable;
-  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
   background-color: var(--color-bg-section-blur);
   color: var(--color-text);
   transition:
     transform var(--transition-time),
     visibility var(--transition-time);
 
-  &:hover {
-    overflow-y: auto;
+  .mw-sidebar-content {
+    flex: 1;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-gutter: stable;
+    scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-base);
+
+    &:hover {
+      overflow-y: auto;
+    }
   }
 
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
@@ -56,17 +61,14 @@
       box-shadow: var(--box-shadow-medium);
     }
 
-    .tgui-blur-important {
-      backdrop-filter: none;
-    }
-
     .mw-sidebar {
-      overflow-y: auto;
       margin-top: 65px;
       visibility: visible !important;
-      background-color: var(--color-bg-section-opaque);
-      transform: translateX(0%) !important;
-      transition: margin var(--transition-time);
+
+      .mw-sidebar-content {
+        overflow-y: auto;
+        transform: translateX(0%) !important;
+      }
     }
   }
 }

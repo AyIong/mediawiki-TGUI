@@ -6,20 +6,18 @@
 
       &:before {
         content: '';
-        position: absolute;
-        left: 1.2em;
+        display: inline-block;
         background-image: url(../skins.tgui.styles/images/arrow-down.svg);
         background-repeat: no-repeat;
         width: 10px;
         height: 10px;
         filter: var(--invert-icon);
-        transform: rotate(0deg) translate(0, 1px);
+        transform: rotate(0deg) translateX(-2px);
         transition: transform var(--transition-time);
 
         @media (max-width: @max-width-mobile) {
           width: 16px;
           height: 15px;
-          left: 0.85em;
         }
       }
 
@@ -30,7 +28,7 @@
 
     &.collapsed {
       .tgui-menu-heading:before {
-        transform: rotate(-90deg) translate(-1px, 0px);
+        transform: rotate(-90deg) translateY(-2px);
       }
     }
 
