@@ -18,21 +18,21 @@
     @media (max-width: @max-width-mobile) {
       &:not(.emptyPortlet) {
         position: fixed;
-        top: 65px;
+        top: 0;
         right: 0;
         padding: 0.5em;
         background-color: var(--color-bg-section-blur);
         backdrop-filter: var(--blur-default);
-        transform: translateY(0%);
+        transform: translateY(-100%);
         transition:
           transform var(--transition-time),
           top var(--transition-time);
         z-index: 2;
       }
 
-      .tgui-scroll--down &:not(.emptyPortlet) {
-        top: 0;
-        transform: translateY(-100%);
+      .tgui-scroll--up &:not(.emptyPortlet) {
+        top: 65px;
+        transform: translateY(0%);
       }
 
       #ca-ve-edit {
