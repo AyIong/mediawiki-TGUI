@@ -64,6 +64,7 @@ function setupOverflowState(element) {
  */
 function wrapTable(table) {
   const wrapper = document.createElement("div");
+  const blur = document.createElement("div");
 
   // Some classes should be inherited from the table
   // For example, float helper classes like floatleft and floatright
@@ -79,9 +80,11 @@ function wrapTable(table) {
   };
 
   wrapper.classList.add("tgui-table-wrapper");
+  blur.classList.add("tgui-blur");
   inheritTableClass();
   table.parentNode.insertBefore(wrapper, table);
   wrapper.appendChild(table);
+  table.appendChild(blur);
 
   setupOverflowState(table);
 }

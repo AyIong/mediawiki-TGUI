@@ -10,10 +10,10 @@
 }}
 
 <nav id="mw-panel" class="mw-sidebar" aria-label="{{msg-tgui-site-nav-label}}" role="navigation">
-	<div class="tgui-blur-important"></div>
 	{{#data-portlets-first}}{{>Menu}}{{/data-portlets-first}}
 	{{#array-portlets-rest}}{{>Menu}}{{/array-portlets-rest}}
 	{{^is-language-in-content}}
 	{{#data-portlets.data-languages}}{{>Menu}}{{/data-portlets.data-languages}}
 	{{/is-language-in-content}}
+	<div class="tgui-blur-important"></div>
 </nav>

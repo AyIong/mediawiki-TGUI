@@ -84,3 +84,24 @@ div.tleft {
 div.tright {
   margin: 0 0 0.75em 0.75em;
 }
+
+@media (max-width: @max-width-mobile) {
+  div.thumbinner {
+    width: auto !important;
+    margin: 0.75em 0 !important;
+
+    img {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  div.tleft,
+  div.tright,
+  div.floatleft,
+  table.floatleft,
+  div.floatright,
+  table.floatright {
+    margin: 0 !important;
+  }
+}
