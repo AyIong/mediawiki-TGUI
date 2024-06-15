@@ -13,19 +13,35 @@
   }
 
   .mw-portlet-views {
-    display: none;
+    display: block;
 
-    @media (min-width: @min-width-tablet) {
+    @media (max-width: @max-width-mobile) {
       &:not(.emptyPortlet) {
-        display: block;
+        position: fixed;
+        top: 65px;
+        right: 0;
+        padding: 0.5em;
+        background-color: var(--color-bg-section-blur);
+        backdrop-filter: var(--blur-default);
+        transform: translateY(0%);
+        transition:
+          transform var(--transition-time),
+          top var(--transition-time);
+        z-index: 2;
+      }
+
+      .tgui-scroll--down &:not(.emptyPortlet) {
+        top: 0;
+        transform: translateY(-100%);
+      }
+
+      #ca-ve-edit {
+        display: none;
       }
     }
   }
 
-  // Make sure pcactions is displayed (even if .emptyPortlet present)
   .tgui-has-collapsible-items {
-    @media (min-width: @max-width-mobile) {
-      display: block;
-    }
+    display: block;
   }
 }

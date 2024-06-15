@@ -24,10 +24,6 @@
   img {
     width: 100%;
   }
-
-  @media (max-width: @min-width-tablet) {
-    display: none;
-  }
 }
 
 // Note for 3rd parties where no wgLogos['wordmark'] is defined
@@ -42,4 +38,10 @@
   // For browsers which do not support flexbox.
   display: block;
   margin: 5px auto 0;
+}
+
+@media (max-width: @max-width-mobile) {
+  .mw-logo-container {
+    display: none;
+  }
 }
