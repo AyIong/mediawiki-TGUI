@@ -106,7 +106,5 @@ function setMaxHeightForContent() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  requestAnimationFrame(setMaxHeightForContent);
-  requestAnimationFrame(collapsiblePortlets);
-});
+requestAnimationFrame(setMaxHeightForContent);
+requestAnimationFrame(collapsiblePortlets);
