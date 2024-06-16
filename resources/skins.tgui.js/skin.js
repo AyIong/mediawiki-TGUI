@@ -2,7 +2,6 @@ var languageButton = require("./languageButton.js"),
   initSearchLoader = require("./searchLoader.js").initSearchLoader,
   dropdownMenus = require("./dropdownMenus.js").dropdownMenus,
   checkbox = require("./checkbox.js"),
-  tables = require("./tables.js"),
   purgeButton = require("./purgeButton.js");
 
 /**
