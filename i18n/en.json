@@ -59,10 +59,6 @@
   "tgui-feature-blur-disabled-label": "Disabled",
   "tgui-feature-blur-full-label": "Without Background",
 
-  "tgui-feature-sticky-header-name": "Sticky Header",
-  "tgui-feature-sticky-header-enabled-label": "Enabled",
-  "tgui-feature-sticky-header-disabled-label": "Disabled",
-
   "tgui-feature-reduced-motion-name": "Reduced Motion",
   "tgui-feature-reduced-motion-enabled-label": "Enabled",
   "tgui-feature-reduced-motion-disabled-label": "Disabled",

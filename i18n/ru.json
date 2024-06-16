@@ -88,10 +88,6 @@
   "tgui-feature-blur-disabled-label": "Отключены",
   "tgui-feature-blur-full-label": "Без фона",
 
-  "tgui-feature-sticky-header-name": "Липкий заголовок",
-  "tgui-feature-sticky-header-enabled-label": "Включено",
-  "tgui-feature-sticky-header-disabled-label": "Отключено",
-
   "tgui-feature-reduced-motion-name": "Пониженное движение",
   "tgui-feature-reduced-motion-enabled-label": "Включено",
   "tgui-feature-reduced-motion-disabled-label": "Отключено",

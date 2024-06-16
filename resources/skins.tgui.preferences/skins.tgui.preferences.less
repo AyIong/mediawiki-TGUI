@@ -108,10 +108,6 @@
   grid-area: Blur;
 }
 
-#skin-client-prefs-tgui-feature-link-shadows {
-  grid-area: Link-Shadows;
-}
-
 #skin-client-prefs-tgui-feature-reduced-motion {
   grid-area: Motion;
 }
@@ -127,20 +123,20 @@
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
     'Blur Theme'
-    'Link-Shadows Motion'
+    'Motion Motion'
     'Darkened-Images Darkened-Images';
 
   .skin-theme-clientpref-day & {
     grid-template-areas:
       'Blur Theme'
-      'Link-Shadows Motion';
+      'Motion Motion';
   }
 
   @media (prefers-color-scheme: light) {
     .skin-theme-clientpref-os & {
       grid-template-areas:
         'Blur Theme'
-        'Link-Shadows Motion';
+        'Motion Motion';
     }
   }
 
