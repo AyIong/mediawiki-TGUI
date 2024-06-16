@@ -35,5 +35,5 @@ function moveElement() {
   mediaQuery.addEventListener("change", handleMediaChange);
 }
 
-document.addEventListener("DOMContentLoaded", restoreTOCState);
+requestAnimationFrame(restoreTOCState);
 document.addEventListener("DOMContentLoaded", moveElement);

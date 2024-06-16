@@ -1,6 +1,6 @@
-var SIDEBAR_BUTTON_ID = "mw-sidebar-button";
-var SIDEBAR_CHECKBOX_ID = "mw-sidebar-checkbox";
-var SIDEBAR_PREFERENCE_NAME = "TGUI-SidebarVisible";
+const SIDEBAR_BUTTON_ID = "mw-sidebar-button";
+const SIDEBAR_CHECKBOX_ID = "mw-sidebar-checkbox";
+const SIDEBAR_PREFERENCE_NAME = "TGUI-SidebarVisible";
 
 function restoreSidebarState() {
   // Check if the key exists in localStorage, if not, set it to true
@@ -8,8 +8,8 @@ function restoreSidebarState() {
     localStorage.setItem(SIDEBAR_PREFERENCE_NAME, "true");
   }
 
-  var sidebarVisible = localStorage.getItem(SIDEBAR_PREFERENCE_NAME) === "true";
-  var checkbox = document.getElementById(SIDEBAR_CHECKBOX_ID);
+  const sidebarVisible = localStorage.getItem(SIDEBAR_PREFERENCE_NAME) === "true";
+  const checkbox = document.getElementById(SIDEBAR_CHECKBOX_ID);
   if (checkbox) {
     checkbox.checked = sidebarVisible;
     window.dispatchEvent(new Event("resize"));
@@ -29,9 +29,16 @@ function bindSidebarClickEvent(checkbox, button) {
   }
 }
 
-function init() {
-  var checkbox = document.getElementById(SIDEBAR_CHECKBOX_ID);
-  var button = document.getElementById(SIDEBAR_BUTTON_ID);
+async function waitForElement(selector) {
+  while (document.getElementById(selector) === null) {
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+  }
+  return document.getElementById(selector);
+}
+
+async function init() {
+  const checkbox = await waitForElement(SIDEBAR_CHECKBOX_ID);
+  const button = await waitForElement(SIDEBAR_BUTTON_ID);
 
   if (checkbox && button) {
     bindSidebarClickEvent(checkbox, button);
@@ -39,4 +46,4 @@ function init() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", init);
+requestAnimationFrame(init);

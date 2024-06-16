@@ -19,7 +19,7 @@
 
 .mw-sidebar {
   display: flex;
-  flex-grow: 1;
+  flex: 1;
   pointer-events: auto;
   position: sticky;
   overflow: hidden;
@@ -42,6 +42,7 @@
     }
   }
 
+  .sidebar-visible &,
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
     transform: translateX(-100%);
     visibility: hidden;

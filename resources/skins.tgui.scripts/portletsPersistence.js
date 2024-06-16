@@ -107,6 +107,6 @@ function setMaxHeightForContent() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  setMaxHeightForContent();
-  collapsiblePortlets();
+  requestAnimationFrame(setMaxHeightForContent);
+  requestAnimationFrame(collapsiblePortlets);
 });
