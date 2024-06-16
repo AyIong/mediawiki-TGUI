@@ -24,24 +24,7 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const CONFIG_KEY_DEFAULT_SIDEBAR_VISIBLE_FOR_AUTHORISED_USER =
-		'TGUIDefaultSidebarVisibleForAuthorisedUser';
-
-	/**
-	 * @var string
-	 */
-	public const CONFIG_KEY_DEFAULT_SIDEBAR_VISIBLE_FOR_ANONYMOUS_USER =
-		'TGUIDefaultSidebarVisibleForAnonymousUser';
-
-	/**
-	 * @var string
-	 */
 	public const PREF_KEY_SKIN = 'skin';
-
-	/**
-	 * @var string
-	 */
-	public const PREF_KEY_SIDEBAR_VISIBLE = 'TGUISidebarVisible';
 
 	// These are used in the Feature Management System.
 	/**

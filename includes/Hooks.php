@@ -8,7 +8,6 @@ use IContextSource;
 use MediaWiki\Hook\MakeGlobalVariablesScriptHook;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Preferences\Hook\GetPreferencesHook;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Skins\TGUI\GetConfigTrait;
 use MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteModulePagesHook;
@@ -31,7 +30,6 @@ use User;
  */
 class Hooks implements
 	BeforePageDisplayHook,
-	GetPreferencesHook,
 	MakeGlobalVariablesScriptHook,
 	ResourceLoaderSiteModulePagesHook,
 	ResourceLoaderSiteStylesModulePagesHook,
@@ -496,25 +494,6 @@ class Hooks implements
 		if ( $skin === Constants::SKIN_NAME ) {
 			$pages['MediaWiki:TGUI.js'] = [ 'type' => 'script' ];
 		}
-	}
-
-	/**
-	 * Adds the persistent sidebar hidden API preference.
-	 *
-	 * @param User $user User whose preferences are being modified.
-	 * @param array[] &$prefs Preferences description array, to be fed to a HTMLForm object.
-	 */
-	public function onGetPreferences( $user, &$prefs ): void {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$tguiPrefs = [
-			Constants::PREF_KEY_SIDEBAR_VISIBLE => [
-				'type' => 'api',
-				'default' => $config->get(
-					Constants::CONFIG_KEY_DEFAULT_SIDEBAR_VISIBLE_FOR_AUTHORISED_USER
-				),
-			],
-		];
-		$prefs += $tguiPrefs;
 	}
 
 	/**

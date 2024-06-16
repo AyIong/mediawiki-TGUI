@@ -93,7 +93,6 @@
   },
   "Hooks": {
     "BeforePageDisplay": "TGUIHooks",
-    "GetPreferences": "TGUIHooks",
     "MakeGlobalVariablesScript": "TGUIHooks",
     "ResourceLoaderSiteModulePages": "TGUIHooks",
     "ResourceLoaderSiteStylesModulePages": "TGUIHooks",
@@ -347,12 +346,6 @@
         "showThumbnail": true,
         "showDescription": true
       }
-    },
-    "DefaultSidebarVisibleForAuthorisedUser": {
-      "value": true
-    },
-    "DefaultSidebarVisibleForAnonymousUser": {
-      "value": true
     },
     "TableOfContentsBeginning": {
       "value": true,

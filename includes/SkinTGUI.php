@@ -292,35 +292,6 @@ class SkinTGUI extends SkinMustache {
 	}
 
 	/**
-	 * Determines wheather the initial state of sidebar is visible on not
-	 *
-	 * @return bool
-	 */
-	private function isSidebarVisible() {
-		$skin = $this->getSkin();
-		if ( $skin->getUser()->isRegistered() ) {
-			$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
-			$userPrefSidebarState = $userOptionsLookup->getOption(
-				$skin->getUser(),
-				Constants::PREF_KEY_SIDEBAR_VISIBLE
-			);
-
-			$defaultLoggedinSidebarState = $this->getConfig()->get(
-				Constants::CONFIG_KEY_DEFAULT_SIDEBAR_VISIBLE_FOR_AUTHORISED_USER
-			);
-
-			// If the sidebar user preference has been set, return that value,
-			// if not, then the default sidebar state for logged-in users.
-			return ( $userPrefSidebarState !== null )
-				? (bool)$userPrefSidebarState
-				: $defaultLoggedinSidebarState;
-		}
-		return $this->getConfig()->get(
-			Constants::CONFIG_KEY_DEFAULT_SIDEBAR_VISIBLE_FOR_ANONYMOUS_USER
-		);
-	}
-
-	/**
 	 * Get the ULS button label, accounting for the number of available
 	 * languages.
 	 *
@@ -618,7 +589,6 @@ class SkinTGUI extends SkinMustache {
 		$parentData = $this->decoratePortletsData( parent::getTemplateData() );
 		$commonSkinData = array_merge( $parentData, [
 			'input-location' => $this->getSearchBoxInputLocation(),
-			'sidebar-visible' => $this->isSidebarVisible(),
 			'data-search-box' => $this->getSearchData(
 				$parentData['data-search-box'],
 				false,
