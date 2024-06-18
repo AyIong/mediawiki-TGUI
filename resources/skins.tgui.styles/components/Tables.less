@@ -9,6 +9,11 @@ table {
 // JS-enhanced responsive table
 .tgui-table-wrapper {
   overflow-x: auto;
+
+  &.tgui-overflow--left,
+  &.tgui-overflow--right {
+    backdrop-filter: var(--blur-default);
+  }
 }
 
 // TODO: Move this out of tables styles when this is used by more stuff
