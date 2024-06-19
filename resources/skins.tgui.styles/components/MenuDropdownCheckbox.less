@@ -39,7 +39,7 @@
       transform var(--transition-time) ease-in-out,
       opacity var(--transition-time) ease-in-out,
       visibility var(--transition-time) ease-in-out;
-    z-index: @z-index-menu;
+    z-index: var(--index-overlay);
   }
 
   // Dropdown <ul> element.
@@ -59,7 +59,7 @@
   width: 100%;
   height: 100%;
   opacity: 0;
-  z-index: @z-index-menu-checkbox;
+  z-index: var(--index-fore);
   transition: transform var(--transition-time);
 
   // Hide and show menu content based off checked status.

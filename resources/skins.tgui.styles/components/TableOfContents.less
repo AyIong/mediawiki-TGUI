@@ -14,6 +14,7 @@
   transition:
     height var(--transition-time),
     transform var(--transition-time);
+  z-index: var(--index-static);
 
   .tgui-toc-collapsed & {
     height: 2em !important;
@@ -155,6 +156,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: var(--index-element);
 
     .tgui-toc-collapsed & {
       height: 2.65em !important;
@@ -181,7 +183,7 @@
     }
 
     .sidebar-toc-text {
-      padding: 0.5em 0;
+      padding: 0.4em 0;
     }
 
     .sidebar-toc-list-item a {

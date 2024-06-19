@@ -8,9 +8,9 @@
   position: fixed;
   bottom: 0;
   height: @height-sidebar;
-  z-index: @z-index-header;
   width: @width-sidebar-px;
   transition: width var(--transition-time);
+  z-index: var(--index-fore);
 
   @media (min-width: @min-width-desktop-wide) {
     width: @width-sidebar-px-wide;
@@ -28,6 +28,7 @@
   transition:
     transform var(--transition-time),
     visibility var(--transition-time);
+  z-index: var(--index-static);
 
   .mw-sidebar-content {
     flex: 1;
@@ -55,8 +56,9 @@
     max-height: 70vh;
     top: 0;
     transform: translateY(-100%) !important;
-    transition: transform var(--transition-time);
-    z-index: ~'calc(@{z-index-header} - 1)';
+    transition:
+      transform var(--transition-time),
+      visibility var(--transition-time);
 
     #mw-sidebar-checkbox-mobile:checked ~ & {
       transform: translateY(0%) !important;
@@ -64,9 +66,14 @@
     }
 
     .mw-sidebar {
+      visibility: hidden !important;
       margin-top: 65px;
       transform: translateX(0%) !important;
-      visibility: visible !important;
+      z-index: var(--index-overlay);
+
+      #mw-sidebar-checkbox-mobile:checked ~ & {
+        visibility: visible !important;
+      }
 
       .mw-sidebar-content {
         overflow-y: auto;
