@@ -36,12 +36,14 @@
   :root& {
     --blur-default: none;
     --color-bg-light: var(--color-bg-light-opaque);
+    --color-bg-section-blur-default: var(--color-bg-section-opaque);
   }
 
   @media (prefers-color-scheme: light) {
     :root& {
       --blur-default: none;
       --color-bg-light: var(--color-bg-light-opaque);
+      --color-bg-section-blur-default: var(--color-bg-section-opaque);
     }
   }
 
@@ -49,6 +51,7 @@
     :root& {
       --blur-default: none;
       --color-bg-light: var(--color-bg-light-opaque);
+      --color-bg-section-blur-default: var(--color-bg-section-opaque);
     }
   }
 }
@@ -61,30 +64,6 @@
   .disable-blur();
   .mw-page-container-inner {
     background-image: none !important;
-  }
-}
-
-/* Link Shadows */
-.disable-link-shadows() {
-  --hyperlink-shadow-new: none;
-  --hyperlink-shadow-new-hover: none;
-}
-
-.tgui-feature-link-shadows-clientpref-disabled {
-  :root& {
-    .disable-link-shadows();
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root& {
-      .disable-link-shadows();
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root& {
-      .disable-link-shadows();
-    }
   }
 }
 
