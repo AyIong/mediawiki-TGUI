@@ -32,12 +32,16 @@ body {
   color: var(--color-text-darker);
 }
 
-html:not(.tgui-animations-ready) * {
-  transition: none !important;
-}
-
 html {
   scroll-padding-top: 4.25em;
+
+  &.search-focus {
+    scroll-padding-top: 0 !important;
+  }
+
+  &:not(.tgui-animations-ready) * {
+    transition: none !important;
+  }
 }
 
 html,
