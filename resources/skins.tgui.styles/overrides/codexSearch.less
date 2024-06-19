@@ -195,6 +195,22 @@
 
   .tgui-typeahead-search--active {
   }
+
+  .cdx-typeahead-search__menu-message,
+  .cdx-typeahead-search__search-footer {
+    color: var(--color-text-darker);
+  }
+
+  .cdx-menu__progress-bar {
+    top: unset;
+    bottom: 0;
+    border-radius: var(--border-radius-medium);
+
+    div {
+      background-color: var(--color-primary);
+      animation-timing-function: cubic-bezier(0, -0.5, 1, 1.5);
+    }
+  }
 }
 
 @media (max-width: @max-width-mobile) {
