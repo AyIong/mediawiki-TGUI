@@ -33,6 +33,12 @@
     border-radius: unset;
   }
 
+  .cdx-typeahead-search--expanded .cdx-search-input__input-wrapper .cdx-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1, 0.99999);
+  }
+
   .cdx-search-input__input-wrapper {
     margin: 0;
 
@@ -96,12 +102,6 @@
           border: 0;
         }
       }
-    }
-
-    .cdx-typeahead-search--expanded .cdx-search-input__input-wrapper .cdx-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: scale(1, 0.99999);
     }
 
     .cdx-text-input {
@@ -191,6 +191,9 @@
       background-color: var(--color-bg-focus);
       color: var(--color-text);
     }
+  }
+
+  .tgui-typeahead-search--active {
   }
 }
 
