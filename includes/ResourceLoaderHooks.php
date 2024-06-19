@@ -73,7 +73,7 @@ class ResourceLoaderHooks {
 	 * @param Config $config
 	 * @return array<string,mixed>
 	 */
-	public static function getVectorSearchResourceLoaderConfig(
+	public static function getTGUISearchResourceLoaderConfig(
 		RL\Context $context,
 		Config $config
 	): array {
