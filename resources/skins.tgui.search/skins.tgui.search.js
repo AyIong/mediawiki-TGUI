@@ -9,21 +9,23 @@ const Vue = require("vue"),
  * @return {void}
  */
 function initApp(searchBox) {
-  const searchForm = searchBox.querySelector(".tgui-search-box-form"),
+  const searchForm = searchBox.querySelector(".cdx-search-input"),
     titleInput = /** @type {HTMLInputElement|null} */ (searchBox.querySelector("input[name=title]")),
-    search = /** @type {HTMLInputElement|null} */ (searchBox.querySelector('input[name="search"]')),
-    searchPageTitle = titleInput && titleInput.value;
+    search = /** @type {HTMLInputElement|null} */ (searchBox.querySelector("input[name=search]")),
+    searchPageTitle = titleInput && titleInput.value,
+    searchContainer = searchBox.querySelector(".tgui-typeahead-search-container");
 
   if (!searchForm || !search || !titleInput) {
     throw new Error("Attempted to create Vue search element from an incompatible element.");
   }
 
-  // @ts-ignore
+  // @ts-ignore MediaWiki-specific function
   Vue.createMwApp(
     App,
-    $.extend(
+    Object.assign(
       {
         id: searchForm.id,
+        autocapitalizeValue: search.getAttribute("autocapitalize"),
         autofocusInput: search === document.activeElement,
         action: searchForm.getAttribute("action"),
         searchAccessKey: search.getAttribute("accessKey"),
@@ -36,17 +38,13 @@ function initApp(searchBox) {
       },
       config,
     ),
-  ).mount(searchForm.parentNode);
+  ).mount(searchContainer);
 }
 /**
  * @param {Document} document
  * @return {void}
  */
 function main(document) {
-  const searchBoxes = document.querySelectorAll(".tgui-search-box");
-
-  searchBoxes.forEach((searchBox) => {
-    initApp(searchBox);
-  });
+  document.querySelectorAll(".tgui-search-box").forEach(initApp);
 }
 main(document);

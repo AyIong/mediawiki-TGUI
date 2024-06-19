@@ -331,9 +331,9 @@
       "descriptionmsg": "tgui-config-themedefault",
       "public": true
     },
-    "SearchHost": {
+    "SearchApiUrl": {
       "value": "",
-      "description": "Override default search API. Can be used with $wgDisableTextSearch and $wgSearchForwardUrl to mimic user experience on production."
+      "description": "To override the default search API, set this to the URL to rest.php on another wiki. Can be used with $wgDisableTextSearch and $wgSearchForwardUrl to mimic user experience on production."
     },
     "UseIconWatch": {
       "value": true

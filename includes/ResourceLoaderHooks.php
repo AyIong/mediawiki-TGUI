@@ -46,8 +46,7 @@ class ResourceLoaderHooks {
 		Config $config
 	) {
 		return [
-			'wgTGUIEnablePreferences' => $config->get( 'TGUIEnablePreferences' ),
-			'TGUISearchHost' => $config->get( 'TGUISearchHost' ),
+			'wgTGUIEnablePreferences' => $config->get( 'TGUIEnablePreferences' )
 		];
 	}
 
@@ -67,23 +66,27 @@ class ResourceLoaderHooks {
 	}
 
 	/**
-	 * Passes config variables to skins.tgui.search ResourceLoader module.
+	 * Generates config variables for skins.tgui.search Resource Loader module (defined in
+	 * skin.json).
+	 *
 	 * @param RL\Context $context
 	 * @param Config $config
-	 * @return array
+	 * @return array<string,mixed>
 	 */
-	public static function getTGUISearchResourceLoaderConfig(
+	public static function getVectorSearchResourceLoaderConfig(
 		RL\Context $context,
 		Config $config
-	) {
-		return [
-			'wgTGUISearchGateway' => $config->get( 'TGUISearchGateway' ),
-			'wgTGUISearchDescriptionSource' => $config->get( 'TGUISearchDescriptionSource' ),
-			'wgTGUIMaxSearchResults' => $config->get( 'TGUIMaxSearchResults' ),
-			'wgScript' => $config->get( MainConfigNames::Script ),
-			'wgScriptPath' => $config->get( MainConfigNames::ScriptPath ),
-			'wgSearchSuggestCacheExpiry' => $config->get( MainConfigNames::SearchSuggestCacheExpiry ),
-			'isMediaSearchExtensionEnabled' => ExtensionRegistry::getInstance()->isLoaded( 'MediaSearch' ),
+	): array {
+		$tguiSearchConfig = [
+			'highlightQuery' =>
+				TGUIServices::getLanguageService()->canWordsBeSplitSafely( $context->getLanguage() )
 		];
+
+		MediaWikiServices::getInstance()->getHookContainer()->run(
+			'TGUISearchResourceLoaderConfig',
+			[ &$tguiSearchConfig ]
+		);
+
+		return array_merge( $config->get( 'TGUIWvuiSearchOptions' ), $tguiSearchConfig );
 	}
 }
