@@ -91,9 +91,7 @@ function initPanel(event) {
   // Attach panel after button
   event.currentTarget.parentNode.insertBefore(panel, event.currentTarget.nextSibling);
 
-  togglePanel();
   event.currentTarget.addEventListener("click", togglePanel);
-  event.currentTarget.removeEventListener("click", initPanel);
 
   const clientPreferenceSelector = "#tgui-client-prefs";
   const clientPreferenceExists = document.querySelectorAll(clientPreferenceSelector).length > 0;
@@ -193,7 +191,7 @@ function initPref(window) {
       container.prepend(button);
       headerTools.prepend(container);
 
-      button.addEventListener("click", initPanel, { once: true });
+      initPanel({ currentTarget: button });
     }
   } else {
     // eslint-disable-next-line no-console

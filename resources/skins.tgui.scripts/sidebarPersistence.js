@@ -29,13 +29,6 @@ function bindSidebarClickEvent(checkbox, button) {
   }
 }
 
-async function waitForElement(selector) {
-  while (document.getElementById(selector) === null) {
-    await new Promise((resolve) => requestAnimationFrame(resolve));
-  }
-  return document.getElementById(selector);
-}
-
 async function init() {
   const checkbox = await waitForElement(SIDEBAR_CHECKBOX_ID);
   const button = await waitForElement(SIDEBAR_BUTTON_ID);
