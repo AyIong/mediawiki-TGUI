@@ -50,6 +50,21 @@
   }
 }
 
+@media (max-width: @max-width-tablet) {
+  .tgui-sidebar-container {
+    width: @width-sidebar-px-wide;
+  }
+
+  .mw-sidebar {
+    transform: translateX(-100%) !important;
+
+    #mw-sidebar-checkbox-mobile:checked ~ .tgui-sidebar-container & {
+      visibility: visible !important;
+      transform: translateX(0%) !important;
+    }
+  }
+}
+
 @media (max-width: @max-width-mobile) {
   .tgui-sidebar-container {
     width: 100%;
