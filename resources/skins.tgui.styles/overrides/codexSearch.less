@@ -14,6 +14,11 @@
       max-width: 75%;
       flex-grow: 1;
 
+      @media (max-width: @max-width-mobile) {
+        max-width: 100%;
+        margin: 0 0.75em;
+      }
+
       div form {
         display: flex;
 
@@ -37,6 +42,11 @@
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+
+    @media (max-width: @max-width-mobile) {
+      transition-property: backdrop-filter, transform, opacity, visibility;
+      transition-duration: var(--transition-time);
+    }
   }
 
   .cdx-search-input__input-wrapper {
@@ -61,6 +71,10 @@
       transition-property: backdrop-filter, transform, opacity, visibility;
       transition-duration: var(--transition-time);
       z-index: var(--index-low);
+
+      @media (max-width: @max-width-mobile) {
+        transition: none;
+      }
 
       .cdx-menu-item {
         margin: 0.5em;
@@ -118,6 +132,10 @@
           border-radius: var(--border-radius-small) 0 0 var(--border-radius-small);
           transition: all var(--transition-time);
 
+          @media (max-width: @max-width-mobile) {
+            border-radius: var(--border-radius-small);
+          }
+
           .mixin-placeholder( {
 			  color: var(--color-text-translucent);
 			  opacity: 0.67;
@@ -164,6 +182,7 @@
   }
 
   .cdx-button {
+    cursor: pointer;
     font-size: inherit;
     font-weight: 700;
     margin: 0;
@@ -193,9 +212,6 @@
     }
   }
 
-  .tgui-typeahead-search--active {
-  }
-
   .cdx-typeahead-search__menu-message,
   .cdx-typeahead-search__search-footer {
     color: var(--color-text-darker);
@@ -214,4 +230,9 @@
 }
 
 @media (max-width: @max-width-mobile) {
+  .client-js .tgui-search-box-vue {
+    .cdx-button {
+      display: none;
+    }
+  }
 }
