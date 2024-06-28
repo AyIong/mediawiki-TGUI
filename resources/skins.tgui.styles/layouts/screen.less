@@ -177,6 +177,16 @@ body {
   backdrop-filter: var(--blur-important);
 }
 
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+::-moz-selection {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
 @media (min-width: @min-width-breakpoint-tablet) {
   // Delay scroll animation won't happen on load
   // Use it only for larger viewport as it is very costly
