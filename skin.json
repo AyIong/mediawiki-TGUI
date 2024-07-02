@@ -332,6 +332,12 @@
       "descriptionmsg": "tgui-config-themedefault",
       "public": true
     },
+    "Tooltips": {
+      "value": ["tooltiptext", "tooltiptext2", "tooltiptable"],
+      "description": "Defines tooltip content css classes.",
+      "descriptionmsg": "tgui-config-tooltips",
+      "public": true
+    },
     "SearchApiUrl": {
       "value": "",
       "description": "To override the default search API, set this to the URL to rest.php on another wiki. Can be used with $wgDisableTextSearch and $wgSearchForwardUrl to mimic user experience on production."

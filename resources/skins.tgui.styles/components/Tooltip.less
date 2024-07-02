@@ -5,7 +5,8 @@
 }
 
 .tooltiptext,
-.tooltiptext2 {
+.tooltiptext2,
+.tooltiptable {
   display: inline;
   position: absolute;
   visibility: hidden;
@@ -23,10 +24,19 @@
   z-index: var(--index-medium);
 }
 
-.tooltip:hover > .tooltiptext,
-.tooltip:hover > .tooltiptext2 {
-  visibility: visible;
-  opacity: 1;
-  box-shadow: var(--box-shadow-big);
-  transition-delay: 0s;
+.tooltiptable {
+  width: unset;
+  background-color: var(--cult-opaque);
+  border: 1px solid var(--cult-light);
+}
+
+.tooltip:hover {
+  > .tooltiptext,
+  > .tooltiptext2,
+  > .tooltiptable {
+    visibility: visible;
+    opacity: 1;
+    box-shadow: var(--box-shadow-big);
+    transition-delay: 0s;
+  }
 }

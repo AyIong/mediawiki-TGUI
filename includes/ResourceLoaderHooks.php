@@ -46,7 +46,8 @@ class ResourceLoaderHooks {
 		Config $config
 	) {
 		return [
-			'wgTGUIEnablePreferences' => $config->get( 'TGUIEnablePreferences' )
+			'wgTGUIEnablePreferences' => $config->get( 'TGUIEnablePreferences' ),
+			'wgTGUITooltips' => $config->get( 'TGUITooltips' )
 		];
 	}
 

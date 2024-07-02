@@ -1,3 +1,5 @@
+const config = require("./config.json");
+
 /**
  * Initialize tooltips using Popper.js
  *
@@ -31,12 +33,25 @@ function init(bodyContent) {
     });
   }
 
-  document.querySelectorAll(".tooltip").forEach(function (tooltip) {
-    const tooltipText = tooltip.querySelector(".tooltiptext, .tooltiptext2");
-    let popperInstance = null;
+  const tooltipElements = document.querySelectorAll(".tooltip");
+  if (!tooltipElements.length) {
+    return;
+  }
 
-    if (tooltipText && !popperInstance) {
-      popperInstance = createPopperInstance(tooltip, tooltipText);
+  const tooltipText = config.wgTGUITooltips;
+  if (!tooltipText || !Array.isArray(tooltipText)) {
+    mw.log.error("[TGUI] Invalid or missing $wgTGUITooltips. Cannot use PopperJS for Tooltips.");
+    return;
+  }
+
+  const contentClasses = tooltipText.map((className) => `.${className}`).join(", ");
+
+  tooltipElements.forEach((tooltip) => {
+    const tooltipContent = tooltip.querySelector(contentClasses);
+
+    let popperInstance = null;
+    if (tooltipContent && !popperInstance) {
+      popperInstance = createPopperInstance(tooltip, tooltipContent);
     }
 
     function show() {
