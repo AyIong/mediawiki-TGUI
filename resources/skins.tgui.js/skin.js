@@ -68,9 +68,13 @@ function registerServiceWorker() {
  */
 function initBodyContent(bodyContent) {
   const tables = require("./tables.js");
+  const tooltips = require("./tooltips.js");
 
   // Table enhancements
   tables.init(bodyContent);
+
+  // PopperJS Tooltips
+  tooltips.init(bodyContent);
 }
 
 /**

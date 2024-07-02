@@ -12,13 +12,12 @@
   opacity: 0;
   width: 250px;
   padding: 0.75em;
-  margin-top: 0.75em;
   text-align: left;
   background-color: var(--color-bg);
   color: var(--color-text);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-small);
-  transition-property: margin, opacity, visibility, box-shadow;
+  transition-property: opacity, visibility, box-shadow;
   transition-duration: var(--transition-time);
   transition-delay: var(--transition-delay);
   z-index: var(--index-medium);
@@ -28,7 +27,6 @@
 .tooltip:hover > .tooltiptext2 {
   visibility: visible;
   opacity: 1;
-  margin-top: 1.75em;
   box-shadow: var(--box-shadow-big);
   transition-delay: 0s;
 }

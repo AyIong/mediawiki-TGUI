@@ -48,6 +48,8 @@ class Hooks implements
 			return;
 		}
 
+		$out->addHeadItem('popperjs', '<script src="https://unpkg.com/@popperjs/core@2"></script>');
+
 		$scriptPaths = json_decode(file_get_contents(MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/scripts.json'), true);
 
 		if (isset($scriptPaths['scripts']) && is_array($scriptPaths['scripts'])) {
