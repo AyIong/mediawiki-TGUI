@@ -21,6 +21,15 @@
 
     &[aria-expanded='true'] {
       background-color: var(--color-bg-focus);
+
+      span::before {
+        transform: rotate(180deg);
+      }
+    }
+
+    span::before {
+      transform: rotate(0deg);
+      transition: transform var(--transition-time);
     }
   }
 

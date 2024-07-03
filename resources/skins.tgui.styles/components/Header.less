@@ -28,12 +28,19 @@
 
     &:active {
       background-color: var(--color-bg-focus);
+
+      &:before {
+        transform: scale(0.75);
+      }
     }
 
     &:before {
       opacity: 0.67;
+      transform: scale(1);
       background-image: url(../skins.tgui.styles/images/angles-left-solid.svg);
-      transition: opacity var(--transition-time);
+      transition:
+        opacity var(--transition-time),
+        transform var(--transition-time);
     }
   }
 
