@@ -40,8 +40,8 @@
   --color-grey-light: rgba(136, 136, 136, 1);
   --color-primary-light: rgba(119, 148, 187, 1);
   --color-label-light: rgba(145, 166, 192, 1);
-  --color-black-hover: rgb(30, 30, 30);
-  --color-white-hover: rgba(225, 225, 225, 1);
+  --color-black-light: rgb(30, 30, 30);
+  --color-white-light: rgba(225, 225, 225, 1);
   --color-gray-light: var(--color-grey-light);
 
   /* Font sizes */
@@ -65,7 +65,7 @@
   --opacity-icon-base-active: 1;
 
   /* Border Radius */
-  --border-radius-small: 0.3rem;
+  --border-radius-small: 0.275rem;
   --border-radius-medium: ~'calc( var(--border-radius-small) * 2)';
   --border-radius-large: ~'calc( var(--border-radius-small) * 4)';
   --border-radius-round: 9999px;
@@ -103,24 +103,35 @@
 .dark-theme() {
   /* Base Colors */
   --color-bg: hsl(0, 0%, 15%);
-  --color-bg-light: hsla(0, 0%, 15%, 0.66);
-  --color-bg-light-opaque: hsl(0, 0%, 14%);
   --color-bg-hover: rgba(255, 255, 255, 0.075);
   --color-bg-focus: rgba(255, 255, 255, 0.125);
-  --color-bg-section: rgba(0, 0, 0, 0.33);
-  --color-bg-section-blur: hsla(0, 0%, 8.55%, 0.85);
-  --color-bg-section-blur-default: var(--color-bg-section-blur);
-  --color-bg-section-opaque: hsl(0, 0%, 10%);
-  --color-bg-section-light: rgba(125, 125, 125, 0.075);
-  --color-bg-section-light-opaque: hsl(0, 0%, 12.5%);
-  --color-bg-popup-header: hsl(0, 0%, 20%);
+
+  --color-base: rgba(0, 0, 0, 0.33);
+  --color-base-blur: var(--color-base-blur-important);
+  --color-base-blur-important: hsla(0, 0%, 8.55%, 0.85);
+  --color-base-fill: hsl(0, 0%, 9.75%);
+
+  --color-second: rgba(125, 125, 125, 0.075);
+  --color-second-blur: var(--color-second-blur);
+  --color-second-blur-important: hsla(0, 0%, 13%, 0.85);
+  --color-second-fill: hsl(0, 0%, 12.5%);
+
+  --color-popup-header: hsl(0, 0%, 20%);
+
   --color-text: rgba(255, 255, 255, 1);
   --color-text-darker: rgba(220, 220, 220, 1);
   --color-text-gray: rgba(185, 185, 185, 0.75);
   --color-text-translucent: rgba(255, 255, 255, 0.5);
+
   --color-border: rgba(255, 255, 255, 0.1);
   --color-border-input: rgba(128, 181, 255, 1);
   --color-border-input-focus: var(--color-blue);
+
+  /* Deprecated */
+  --color-bg-section: var(--color-base);
+  --color-bg-section-opaque: var(--color-base-fill);
+  --color-bg-section-light: var(--color-second);
+  --color-bg-section-light-opaque: var(--color-second-fill);
 
   /* Scrollbar */
   --color-scrollbar-base: hsl(0, 0%, 10%);
@@ -143,7 +154,6 @@
   --color-hyperlink-visited-hover: hsl(270, 100%, 75%);
   --color-hyperlink-new-hover: hsl(350, 100%, 75%);
   --color-hyperlink-new-visited-hover: hsl(25, 100%, 75%);
-
   /* Links Shadow */
   --hyperlink-shadow-new: hsl(0, 100%, 35%) 0px 0px 0.5em;
   --hyperlink-shadow-new-hover: hsl(0, 100%, 50%) 0px 0px 0.5em;
@@ -151,14 +161,14 @@
   /* Invert */
   --invert-icon: invert(0.9);
   --invert-button-icon: invert(1);
-  --invert-logo: brightness(5) hue-rotate(25deg) opacity(0.8);
+  --invert-logo: brightness(5) hue-rotate(25deg) opacity(0.8); // Only for TG wiki
 
-  /* Shadow */
+  /* Shadows */
   --box-shadow-small: 0px 15px 20px 0px rgba(0, 0, 0, 0.75);
   --box-shadow-medium: 0px 25px 30px 5px rgba(0, 0, 0, 0.75);
   --box-shadow-big: 0px 0px 35px 5px rgba(0, 0, 0, 0.75);
 
-  /* Template Shadow */
+  /* Template Shadows */
   --shadow-template--small: 0px 0px 10px rgba(0, 0, 0, 0.25);
   --shadow-template--medium: 0px 0px 10px rgba(0, 0, 0, 0.5);
   --shadow-template--large: 0px 0px 15px rgba(0, 0, 0, 0.5);
@@ -174,24 +184,35 @@
 .light-theme() {
   /* Base Colors - Light */
   --color-bg: hsl(0, 0%, 100%);
-  --color-bg-light: hsla(30, 5%, 80%, 0.66);
-  --color-bg-light-opaque: hsl(35, 5%, 82.5%);
   --color-bg-hover: rgba(0, 0, 0, 0.075);
   --color-bg-focus: rgba(0, 0, 0, 0.125);
-  --color-bg-section: rgba(204, 201, 198, 0.33);
-  --color-bg-section-blur: hsla(30, 5%, 92.5%, 0.85);
-  --color-bg-section-blur-default: var(--color-bg-section-blur);
-  --color-bg-section-opaque: hsl(30, 6%, 93%);
-  --color-bg-section-light: rgba(158, 152, 148, 0.15);
-  --color-bg-section-light-opaque: hsl(30, 7%, 88%);
-  --color-bg-popup-header: hsl(0, 0%, 50%);
+
+  --color-base: rgba(204, 201, 198, 0.33);
+  --color-base-blur: var(--color-base-blur-important);
+  --color-base-blur-important: hsla(30, 5%, 92.5%, 0.85);
+  --color-base-fill: hsl(30, 6%, 93%);
+
+  --color-second: hsla(25, 5%, 60%, 0.15);
+  --color-second-blur: var(--color-second-blur);
+  --color-second-blur-important: hsla(25, 5%, 87.75%, 0.85);
+  --color-second-fill: hsl(25, 5%, 88.75%);
+
+  --color-popup-header: hsl(0, 0%, 50%);
+
   --color-text: rgba(0, 0, 0, 1);
   --color-text-darker: rgba(40, 40, 40, 1);
   --color-text-gray: rgba(80, 80, 80, 0.75);
   --color-text-translucent: rgba(0, 0, 0, 0.5);
+
   --color-border: rgba(0, 0, 0, 0.1);
   --color-border-input: rgba(128, 181, 255, 1);
   --color-border-input-focus: var(--color-blue);
+
+  /* Deprecated */
+  --color-bg-section: var(--color-base);
+  --color-bg-section-opaque: var(--color-base-fill);
+  --color-bg-section-light: var(--color-second);
+  --color-bg-section-light-opaque: var(--color-second-fill);
 
   /* Scrollbar - Light */
   --color-scrollbar-base: hsl(30, 6%, 93%);
@@ -214,7 +235,6 @@
   --color-hyperlink-visited-hover: hsl(290, 70%, 50%);
   --color-hyperlink-new-hover: hsl(0, 100%, 45%);
   --color-hyperlink-new-visited-hover: hsl(35, 100%, 45%);
-
   /* Links Shadow */
   --hyperlink-shadow-new: hsl(0, 100%, 75%) 0px 0px 0.5em;
   --hyperlink-shadow-new-hover: hsl(0, 100%, 75%) 0px 0px 0.5em;

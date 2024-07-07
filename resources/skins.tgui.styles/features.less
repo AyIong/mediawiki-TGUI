@@ -35,23 +35,23 @@
 .disable-blur() {
   :root& {
     --blur-default: none;
-    --color-bg-light: var(--color-bg-light-opaque);
-    --color-bg-section-blur-default: var(--color-bg-section-opaque);
+    --color-base-blur: var(--color-base-fill);
+    --color-second-blur: var(--color-second-fill);
   }
 
   @media (prefers-color-scheme: light) {
     :root& {
       --blur-default: none;
-      --color-bg-light: var(--color-bg-light-opaque);
-      --color-bg-section-blur-default: var(--color-bg-section-opaque);
+      --color-base-blur: var(--color-base-fill);
+      --color-second-blur: var(--color-second-fill);
     }
   }
 
   @media (prefers-color-scheme: dark) {
     :root& {
       --blur-default: none;
-      --color-bg-light: var(--color-bg-light-opaque);
-      --color-bg-section-blur-default: var(--color-bg-section-opaque);
+      --color-base-blur: var(--color-base-fill);
+      --color-second-blur: var(--color-second-fill);
     }
   }
 }
