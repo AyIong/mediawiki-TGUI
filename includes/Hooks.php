@@ -48,7 +48,8 @@ class Hooks implements
 			return;
 		}
 
-		$out->addHeadItem('popperjs', '<script src="https://unpkg.com/@popperjs/core@2"></script>');
+		$out->addHeadItem('floating-ui-core', '<script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.4"></script>');
+		$out->addHeadItem('floating-ui-dom', '<script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.7"></script>');
 
 		$scriptPaths = json_decode(file_get_contents(MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/scripts.json'), true);
 

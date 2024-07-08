@@ -1,35 +1,24 @@
 const config = require("./config.json");
 
 /**
- * Initialize tooltips using Popper.js
+ * Initialize tooltips using Floating UI
  *
  * @param {HTMLElement} bodyContent
  * @return {void}
  */
 function init(bodyContent) {
-  function createPopperInstance(reference, popperElement) {
-    return Popper.createPopper(reference, popperElement, {
+  const { computePosition, offset, flip, shift, autoUpdate } = window.FloatingUIDOM;
+
+  function createFloatingInstance(reference, floatingElement) {
+    return computePosition(reference, floatingElement, {
       placement: "bottom-start",
-      modifiers: [
-        {
-          name: "preventOverflow",
-          options: {
-            boundariesElement: "scrollParent",
-            padding: 12,
-          },
-        },
-        {
-          name: "flip",
-          options: {
-            boundariesElement: "scrollParent",
-            flipVariations: true,
-          },
-        },
-        {
-          name: "eventListeners",
-          enabled: false,
-        },
-      ],
+      middleware: [offset(-9), flip(), shift({ padding: 9 })],
+    }).then(({ x, y, strategy }) => {
+      Object.assign(floatingElement.style, {
+        left: `${x}px`,
+        top: `${y}px`,
+        position: strategy,
+      });
     });
   }
 
@@ -40,7 +29,7 @@ function init(bodyContent) {
 
   const tooltipText = config.wgTGUITooltips;
   if (!tooltipText || !Array.isArray(tooltipText)) {
-    mw.log.error("[TGUI] Invalid or missing $wgTGUITooltips. Cannot use PopperJS for Tooltips.");
+    mw.log.error("[TGUI] Invalid or missing $wgTGUITooltips. Cannot use Floating UI for Tooltips.");
     return;
   }
 
@@ -49,37 +38,35 @@ function init(bodyContent) {
   tooltipElements.forEach((tooltip) => {
     const tooltipContent = tooltip.querySelector(contentClasses);
 
-    let popperInstance = null;
-    if (tooltipContent && !popperInstance) {
-      popperInstance = createPopperInstance(tooltip, tooltipContent);
+    if (tooltipContent) {
+      createFloatingInstance(tooltip, tooltipContent);
+
+      let cleanup = null;
+      function show() {
+        createFloatingInstance(tooltip, tooltipContent);
+        cleanup = autoUpdate(tooltip, tooltipContent, () => {
+          createFloatingInstance(tooltip, tooltipContent);
+        });
+      }
+
+      function hide() {
+        if (cleanup) {
+          cleanup();
+          cleanup = null;
+        }
+      }
+
+      const showEvents = ["mouseenter", "focus"];
+      const hideEvents = ["mouseleave", "blur"];
+
+      showEvents.forEach((event) => {
+        tooltip.addEventListener(event, show);
+      });
+
+      hideEvents.forEach((event) => {
+        tooltip.addEventListener(event, hide);
+      });
     }
-
-    function show() {
-      popperInstance.setOptions((options) => ({
-        ...options,
-        modifiers: [...options.modifiers, { name: "eventListeners", enabled: true }],
-      }));
-    }
-
-    function hide() {
-      popperInstance.setOptions((options) => ({
-        ...options,
-        modifiers: [...options.modifiers, { name: "eventListeners", enabled: false }],
-      }));
-
-      popperInstance.update();
-    }
-
-    const showEvents = ["mouseenter", "focus"];
-    const hideEvents = ["mouseleave", "blur"];
-
-    showEvents.forEach((event) => {
-      tooltip.addEventListener(event, show);
-    });
-
-    hideEvents.forEach((event) => {
-      tooltip.addEventListener(event, hide);
-    });
   });
 }
 
