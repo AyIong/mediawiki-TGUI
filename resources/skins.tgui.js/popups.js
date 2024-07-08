@@ -14,12 +14,18 @@ function init(bodyContent) {
   }
 
   popupElements.forEach((popup) => {
+    const popupText = popup.getAttribute("data-popup-text");
+    if (!popupText) {
+      return;
+    }
+
     let popupContent = null;
+    popup.style.cursor = "help";
 
     function createPopupContent() {
       popupContent = document.createElement("div");
       popupContent.classList.add("popup-content");
-      popupContent.textContent = popup.getAttribute("data-popup-text");
+      popupContent.textContent = popupText;
       document.body.appendChild(popupContent);
     }
 
