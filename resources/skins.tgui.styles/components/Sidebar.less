@@ -35,6 +35,12 @@
     visibility var(--transition-time);
   z-index: var(--index-static);
 
+  @media (min-width: @min-width-desktop) {
+    .tgui-blur-important {
+      backdrop-filter: none;
+    }
+  }
+
   .mw-sidebar-content {
     flex: 1;
     overflow: hidden;
