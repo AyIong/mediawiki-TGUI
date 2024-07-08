@@ -1,3 +1,4 @@
+// @ts-nocheck
 const config = require("./config.json");
 
 /**
@@ -8,6 +9,18 @@ const config = require("./config.json");
  */
 function init(bodyContent) {
   const { computePosition, offset, flip, shift, autoUpdate } = window.FloatingUIDOM;
+  const tooltipElements = document.querySelectorAll(".tooltip");
+
+  if (!tooltipElements.length) {
+    return;
+  }
+
+  const tooltipText = config.wgTGUITooltips;
+
+  if (!tooltipText || !Array.isArray(tooltipText)) {
+    mw.log.error("[TGUI] Invalid or missing $wgTGUITooltips. Cannot use Floating UI for Tooltips.");
+    return;
+  }
 
   function createFloatingInstance(reference, floatingElement) {
     return computePosition(reference, floatingElement, {
@@ -20,17 +33,6 @@ function init(bodyContent) {
         position: strategy,
       });
     });
-  }
-
-  const tooltipElements = document.querySelectorAll(".tooltip");
-  if (!tooltipElements.length) {
-    return;
-  }
-
-  const tooltipText = config.wgTGUITooltips;
-  if (!tooltipText || !Array.isArray(tooltipText)) {
-    mw.log.error("[TGUI] Invalid or missing $wgTGUITooltips. Cannot use Floating UI for Tooltips.");
-    return;
   }
 
   const contentClasses = tooltipText.map((className) => `.${className}`).join(", ");

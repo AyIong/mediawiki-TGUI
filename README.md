@@ -12,6 +12,17 @@ Also ported preferences from [Citizen](https://github.com/StarCitizenTools/media
 
 Made by someone not versed in php, so it just works
 
+## Features
+Skin has integrated [Floating UI](https://floating-ui.com/) through CDN.
+
+It is used for tooltips, whose classes you can set via config, but the main class of the tooltip element itself, aka text or any other element to be hovered over, is always the same: `.tooltip`, take this into account if you make a tooltip template for MediaWiki.
+
+It is also used for alternative tooltips, smaller ones - Popup. It always has the same class: `.popup`.
+An example template for MediaWiki is attached below:
+`<span class='popup' data-popup-text="{{{2}}}">{{{1}}}</span>`
+
+The templates is already styled, so no additional steps are required.
+
 ## Installation
 Download all these files into a folder named "TGUI"
 

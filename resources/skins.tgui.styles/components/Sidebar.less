@@ -5,12 +5,17 @@
   display: flex;
   flex-direction: column;
   pointer-events: none;
+  overflow: hidden;
   position: fixed;
   bottom: 0;
   height: @height-sidebar;
   width: @width-sidebar-px;
   transition: width var(--transition-time);
   z-index: var(--index-fore);
+
+  @{selector-main-menu-closed} ~ & {
+    overflow: unset;
+  }
 
   @media (min-width: @min-width-desktop-wide) {
     width: @width-sidebar-px-wide;
@@ -23,7 +28,7 @@
   pointer-events: auto;
   position: sticky;
   overflow: hidden;
-  background-color: var(--color-base-blur-important);
+  background-color: var(--color-base-fill);
   color: var(--color-text);
   transition:
     transform var(--transition-time),
@@ -57,6 +62,7 @@
 
   .mw-sidebar {
     visibility: hidden !important;
+    background-color: var(--color-base-blur-important);
     transform: translateX(-100%) !important;
 
     #mw-sidebar-checkbox-mobile:checked ~ .tgui-sidebar-container & {

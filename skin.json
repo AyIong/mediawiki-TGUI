@@ -245,7 +245,8 @@
         "resources/skins.tgui.js/searchLoader.js",
         "resources/skins.tgui.js/scrollObserver.js",
         "resources/skins.tgui.js/tables.js",
-        "resources/skins.tgui.js/tooltips.js"
+        "resources/skins.tgui.js/tooltips.js",
+        "resources/skins.tgui.js/popups.js"
       ],
       "dependencies": ["skins.tgui.icons.js", "mediawiki.page.ready", "mediawiki.util"],
       "messages": ["tgui-search-loader", "tgui-purge-button-label", "tgui-purge-button-title"]

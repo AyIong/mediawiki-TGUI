@@ -1,0 +1,19 @@
+.popup {
+  cursor: help;
+  color: var(--color-text);
+  text-decoration: underline dotted var(--color-primary);
+  text-underline-offset: 3px;
+}
+
+.popup-content {
+  display: block;
+  pointer-events: none;
+  padding: 0.5em;
+  background-color: var(--color-base-blur);
+  color: var(--color-text-darker);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--box-shadow-big);
+  backdrop-filter: var(--blur-default);
+  z-index: 9999;
+}
