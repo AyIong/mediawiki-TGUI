@@ -16,6 +16,12 @@
     transform var(--transition-time);
   z-index: var(--index-static);
 
+  @media (min-width: @min-width-desktop) {
+    .tgui-blur-important {
+      backdrop-filter: none;
+    }
+  }
+
   .tgui-toc-collapsed & {
     height: 2em !important;
     overflow: hidden;

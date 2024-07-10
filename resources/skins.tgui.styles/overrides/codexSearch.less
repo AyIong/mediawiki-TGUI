@@ -59,6 +59,7 @@
 
     .cdx-menu {
       display: block !important;
+      overflow: auto;
       opacity: 0;
       visibility: hidden;
       box-shadow: var(--box-shadow-medium);
@@ -114,6 +115,11 @@
           padding: 0.5em 1em;
           color: var(--color-text-gray);
           border: 0;
+          transition: background-color var(--transition-time);
+
+          &:hover {
+            background-color: var(--color-second);
+          }
         }
       }
     }
