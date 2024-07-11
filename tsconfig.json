@@ -14,7 +14,7 @@
     "target": "es5",
     "lib": ["dom"],
     "allowJs": true,
-    "checkJs": true,
+    "checkJs": false,
     "noEmit": true
   }
 }

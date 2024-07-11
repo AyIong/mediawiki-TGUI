@@ -16,6 +16,7 @@ function enableCssAnimations(document) {
 
 /**
  * Add a class to indicate that sticky header is active
+ * Also add class if page on top
  *
  * @param {Document} document
  * @return {void}
@@ -32,6 +33,21 @@ function initStickyHeader(document) {
     () => {
       document.body.classList.remove("tgui-scroll--down");
       document.body.classList.add("tgui-scroll--up");
+    },
+    10,
+  );
+
+  // Detect scroll position and add the right class
+  scrollObserver.initDirectionObserver(
+    () => {
+      if (window.scrollY > 0) {
+        document.body.classList.add("tgui-off-top");
+      }
+    },
+    () => {
+      if (window.scrollY === 0) {
+        document.body.classList.remove("tgui-off-top");
+      }
     },
     10,
   );

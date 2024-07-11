@@ -11,8 +11,12 @@
   align-items: center;
   background-color: var(--color-base-blur-important);
   color: var(--color-text);
-  box-shadow: var(--shadow-template--small);
+  transition: box-shadow var(--transition-time);
   z-index: var(--index-static);
+
+  .tgui-off-top & {
+    box-shadow: var(--shadow-template--small);
+  }
 
   #mw-sidebar-button,
   #mw-sidebar-button-mobile {
