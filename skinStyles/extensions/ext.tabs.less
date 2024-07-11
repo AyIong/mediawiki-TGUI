@@ -51,6 +51,7 @@
   }
 
   .tabs-container {
+    overflow: auto;
     margin: 0;
     padding: 0.75em;
     background-color: var(--color-second);
@@ -116,7 +117,8 @@
       border: var(--border-classic);
       border-radius: 0 0 var(--border-radius-medium) var(--border-radius-medium);
       backdrop-filter: var(--blur-default);
-      transform: translateY(-24px) scale(0.95);
+      transform: scale(0.95);
+      transform-origin: top;
       transition: all var(--transition-time);
       z-index: var(--index-medium);
 
