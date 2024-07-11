@@ -117,38 +117,6 @@ body {
   float: left;
 }
 
-#right-navigation {
-  float: right;
-
-  #p-cactions {
-    margin: 0;
-    max-height: 3em;
-    font-size: 1.1em;
-    color: var(--color-text-translucent);
-    border-radius: var(--border-radius-small);
-    transition:
-      background-color var(--transition-time),
-      color var(--transition-time);
-
-    label {
-      padding: 0.4em 0.75em;
-    }
-
-    &:has(#p-cactions-checkbox:checked) {
-      background-color: var(--color-bg-focus);
-      color: var(--color-text);
-    }
-
-    .tgui-menu-content {
-      min-width: auto;
-    }
-  }
-
-  .tgui-menu-content {
-    right: 0;
-  }
-}
-
 .parsoid-body {
   padding: @padding-content;
 }

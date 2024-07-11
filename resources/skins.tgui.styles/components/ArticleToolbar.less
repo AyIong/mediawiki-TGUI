@@ -1,7 +1,5 @@
 @import '../variables.less';
 
-@border-base-ems: unit(1px / @font-size-browser / @font-size-base, em);
-
 .mw-article-toolbar-container {
   display: flex;
   justify-content: space-between;
@@ -12,36 +10,73 @@
     font-size: @font-size-tabs;
   }
 
-  .mw-portlet-views {
+  .tgui-has-collapsible-items {
     display: block;
+  }
+
+  #right-navigation {
+    float: right;
 
     @media (max-width: @max-width-mobile) {
       &:not(.emptyPortlet) {
         position: fixed;
         top: 0;
-        right: 0;
-        padding: 0.5em;
+        left: 0;
+        width: 100%;
+        visibility: hidden;
+        padding: 0.5em 0 0.25em 0.75em;
         background-color: var(--color-base-blur-important);
-        backdrop-filter: var(--blur-default);
+        border: var(--border-classic);
+        box-shadow: var(--shadow-template--small);
         transform: translateY(-100%);
-        transition:
-          transform var(--transition-time),
-          top var(--transition-time);
+        transition-property: visibility, transform, top;
+        transition-duration: var(--transition-time);
+        backdrop-filter: var(--blur-default);
         z-index: var(--index-element);
+
+        #p-views #ca-watch a {
+          margin: 0;
+        }
       }
 
       .tgui-scroll--up &:not(.emptyPortlet) {
-        top: 65px;
+        top: 66px;
+        visibility: visible;
         transform: translateY(0%);
       }
 
+      /* Hide VisualEditor button for mobiles */
       #ca-ve-edit {
         display: none;
       }
     }
-  }
 
-  .tgui-has-collapsible-items {
-    display: block;
+    #p-cactions {
+      margin: 0;
+      max-height: 3em;
+      font-size: 1.1em;
+      color: var(--color-text-translucent);
+      border-radius: var(--border-radius-small);
+      transition:
+        background-color var(--transition-time),
+        color var(--transition-time);
+
+      label {
+        padding: 0.4em 0.75em;
+      }
+
+      &:has(#p-cactions-checkbox:checked) {
+        background-color: var(--color-bg-focus);
+        color: var(--color-text);
+      }
+
+      .tgui-menu-content {
+        min-width: auto;
+      }
+
+      .tgui-menu-content {
+        right: 0;
+      }
+    }
   }
 }
