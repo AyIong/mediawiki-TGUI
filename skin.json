@@ -1,6 +1,6 @@
 {
   "name": "TGUI",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "author": [
     "Александр Кица (Aylong)",
     "[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team]",
@@ -244,7 +244,6 @@
         "resources/skins.tgui.js/purgeButton.js",
         "resources/skins.tgui.js/searchLoader.js",
         "resources/skins.tgui.js/scrollObserver.js",
-        "resources/skins.tgui.js/tables.js",
         "resources/skins.tgui.js/tooltips.js",
         "resources/skins.tgui.js/popups.js"
       ],
