@@ -12,7 +12,7 @@
  * @typedef {Object} ClientPreference
  * @property {string[]} options that are valid for this client preference
  * @property {string} preferenceKey for registered users.
- * @property {string} [type] defaults to radio. Supported: radio, switch
+ * @property {string} [type] defaults to radio. Supported: radio, switch, range
  * @property {Function} [callback] callback executed after a client preference has been modified.
  */
 
@@ -79,10 +79,10 @@ function getVisibleClientPreferences(config) {
  * @param {string} value
  * @param {Record<string,ClientPreference>} config
  */
-function toggleDocClassAndSave(featureName, value, config) {
+function toggleDocClassAndSave(featureName, value, config, slider) {
   const pref = config[featureName];
   const callback = pref.callback || (() => {});
-  clientPrefs.set(featureName, value);
+  clientPrefs.set(featureName, value, slider);
   callback();
 }
 
@@ -164,9 +164,9 @@ function appendRadioToggle(parent, featureName, value, currentValue, config) {
     input.disabled = true;
   }
 
-  const icon = document.createElement("span");
+  // const icon = document.createElement("span");
   // icon.classList.add( 'cdx-radio__icon' );
-  icon.classList.add("tgui-client-prefs-radio__icon");
+  // icon.classList.add("tgui-client-prefs-radio__icon");
   const label = makeLabelElement(featureName, value);
   // label.classList.add( 'cdx-radio__label' );
   label.classList.add("tgui-client-prefs-radio__label");
@@ -174,7 +174,7 @@ function appendRadioToggle(parent, featureName, value, currentValue, config) {
   // container.classList.add( 'cdx-radio' );
   container.classList.add("tgui-client-prefs-radio");
   container.appendChild(input);
-  container.appendChild(icon);
+  // container.appendChild(icon);
   container.appendChild(label);
   parent.appendChild(container);
   input.addEventListener("change", () => {
@@ -213,6 +213,44 @@ function appendToggleSwitch(form, featureName, labelElement, currentValue, confi
     toggleDocClassAndSave(featureName, input.checked ? "1" : "0", config);
   });
   form.appendChild(toggleSwitch);
+}
+
+/**
+ * @param {Element} parent
+ * @param {string} featureName
+ * @param {number} min
+ * @param {number} currentValue
+ * @param {number} max
+ * @param {Record<string,ClientPreference>} config
+ */
+function appendSlider(parent, featureName, min, currentValue, max, config) {
+  const input = makeInputElement("range", featureName);
+  input.classList.add("tgui-client-prefs-slider__input");
+  input.min = min;
+  input.max = max;
+  input.value = currentValue;
+
+  const label = document.createElement("label");
+  label.textContent = currentValue;
+
+  const container = document.createElement("div");
+  container.appendChild(input);
+  container.appendChild(label);
+  parent.appendChild(container);
+
+  input.addEventListener("input", () => {
+    label.textContent = input.value;
+
+    const feature = featureName;
+    document.documentElement.style.setProperty(
+      `--${feature.replace(/^tgui-feature-/, "").replace(/-slider$/, "")}`,
+      input.value,
+    );
+  });
+
+  input.addEventListener("change", () => {
+    toggleDocClassAndSave(featureName, input.value, config, true);
+  });
 }
 
 /**
@@ -266,11 +304,15 @@ function makeControl(featureName, config) {
       appendToggleSwitch(form, featureName, labelElement, currentValue, config);
       break;
     }
+    case "range": {
+      appendSlider(form, featureName, pref.min, currentValue, pref.max, config);
+      break;
+    }
     default:
       throw new Error("Unknown client preference! Only switch or radio are supported.");
   }
-  row.appendChild(form);
 
+  row.appendChild(form);
   if (isFeatureExcluded(featureName)) {
     const exclusionNotice = makeExclusionNotice(featureName);
     row.appendChild(exclusionNotice);

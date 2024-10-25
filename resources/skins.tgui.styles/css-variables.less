@@ -20,7 +20,7 @@
   --color-pink: hsl(325, 75%, 55%);
   --color-brown: hsl(25, 45%, 45%);
   --color-grey: hsl(0, 0%, 45%);
-  --color-primary: ~'hsl(var(--primary-hue), 40%, 45%)';
+  --color-primary: ~'hsl(var(--primary-hue), 37.5%, 45%)';
   --color-label: hsl(215, 20%, 55%);
   --color-black: hsl(0, 0%, 0%);
   --color-white: hsl(0, 0%, 100%);
@@ -130,8 +130,6 @@
  * Used for default dark theme
  */
 .dark-theme() {
-  --dark-lightness: 95%;
-
   /* Base Colors */
   --color-bg: hsl(0, 0%, 15%);
   --color-bg-hover: rgba(255, 255, 255, 0.075);
@@ -182,6 +180,10 @@
   /* Links Shadow */
   --hyperlink-shadow-new: hsl(0, 100%, 35%) 0px 0px 0.5em;
   --hyperlink-shadow-new-hover: hsl(0, 100%, 50%) 0px 0px 0.5em;
+
+  /* Custom HSL */
+  --dark-lightness: 95%;
+  --light-lightness: 10%;
 
   /* Invert */
   --invert-icon: invert(0.9);
@@ -259,7 +261,8 @@
   --hyperlink-shadow-new-hover: hsl(0, 100%, 75%) 0px 0px 0.5em;
 
   /* Custom HSL */
-  --dark-lightness: 25%;
+  --dark-lightness: 15%;
+  --light-lightness: 90%;
 
   /* Invert */
   --invert-icon: invert(0.1);

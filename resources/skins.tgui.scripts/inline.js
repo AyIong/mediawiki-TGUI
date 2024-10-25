@@ -21,6 +21,12 @@ window.clientPrefs = () => {
         "$1" + pref + "$2",
       );
 
+      if (pref.includes("-slider")) {
+        const variableName = `--${pref.replace(/^tgui-feature-(.*?)-slider-clientpref-.*$/, "$1")}`;
+        const value = pref.match(/-clientpref-(\w+)$/)[1];
+        document.documentElement.style.setProperty(variableName, value);
+      }
+
       // Legacy support
       if (pref.startsWith("skin-theme-clientpref-")) {
         const CLIENTPREFS_THEME_MAP = {

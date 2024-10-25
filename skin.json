@@ -282,7 +282,8 @@
         "tgui-feature-darkened-images-name",
         "tgui-feature-darkened-images-disabled-label",
         "tgui-feature-darkened-images-light-label",
-        "tgui-feature-darkened-images-medium-label"
+        "tgui-feature-darkened-images-medium-label",
+        "tgui-feature-primary-hue-slider-name"
       ],
       "dependencies": ["mediawiki.storage", "mediawiki.util"],
       "targets": ["desktop", "mobile"]

@@ -95,5 +95,7 @@
   "tgui-feature-darkened-images-name": "Затемнение изображений",
   "tgui-feature-darkened-images-disabled-label": "Отключено",
   "tgui-feature-darkened-images-light-label": "Лёгкое",
-  "tgui-feature-darkened-images-medium-label": "Среднее"
+  "tgui-feature-darkened-images-medium-label": "Среднее",
+
+  "tgui-feature-primary-hue-slider-name": "Акцентный цвет"
 }

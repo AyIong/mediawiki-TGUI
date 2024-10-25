@@ -66,5 +66,7 @@
   "tgui-feature-darkened-images-name": "Darkened Images",
   "tgui-feature-darkened-images-disabled-label": "Disabled",
   "tgui-feature-darkened-images-light-label": "Light",
-  "tgui-feature-darkened-images-medium-label": "Medium"
+  "tgui-feature-darkened-images-medium-label": "Medium",
+
+  "tgui-feature-primary-hue-slider-name": "Accent Color"
 }

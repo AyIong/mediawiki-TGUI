@@ -71,22 +71,25 @@ function clientPrefs() {
      *   uses a forbidden character or the feature is not recognised
      *   e.g. a matching class was not defined on the HTML document element.
      */
-    set: function (feature, value) {
+    set: function (feature, value, slider) {
       if (!isValidFeatureName(feature) || !isValidFeatureValue(value)) {
         return false;
       }
-      const currentValue = this.get(feature);
 
-      const oldFeatureClass = feature + CLIENTPREF_SUFFIX + currentValue;
-      const newFeatureClass = feature + CLIENTPREF_SUFFIX + value;
-      // The following classes are removed here:
-      // * feature-name-clientpref-<old-feature-value>
-      // * e.g. vector-font-size--clientpref-small
-      document.documentElement.classList.remove(oldFeatureClass);
-      // The following classes are added here:
-      // * feature-name-clientpref-<feature-value>
-      // * e.g. vector-font-size--clientpref-xlarge
-      document.documentElement.classList.add(newFeatureClass);
+      const currentValue = this.get(feature);
+      if (slider) {
+        document.documentElement.style.setProperty(
+          `--${feature.replace(/^tgui-feature-/, "").replace(/-slider$/, "")}`,
+          value,
+        );
+      } else {
+        const oldFeatureClass = feature + CLIENTPREF_SUFFIX + currentValue;
+        const newFeatureClass = feature + CLIENTPREF_SUFFIX + value;
+
+        document.documentElement.classList.remove(oldFeatureClass);
+        document.documentElement.classList.add(newFeatureClass);
+      }
+
       saveClientPrefs(feature, value);
       return true;
     },

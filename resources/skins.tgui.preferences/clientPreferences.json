@@ -7,10 +7,6 @@
     "options": ["enabled", "disabled", "full"],
     "preferenceKey": "tgui-blur"
   },
-  "tgui-feature-sticky-header": {
-    "options": ["enabled", "disabled"],
-    "preferenceKey": "tgui-sticky-header"
-  },
   "tgui-feature-reduced-motion": {
     "options": ["enabled", "disabled"],
     "preferenceKey": "tgui-motion"
@@ -18,5 +14,12 @@
   "tgui-feature-darkened-images": {
     "options": ["disabled", "light", "medium"],
     "preferenceKey": "tgui-darkened-images"
+  },
+  "tgui-feature-primary-hue-slider": {
+    "min": 0,
+    "value": 205,
+    "max": 360,
+    "type": "range",
+    "preferenceKey": "primary-hue"
   }
 }
