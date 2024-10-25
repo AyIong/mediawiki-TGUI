@@ -1,4 +1,5 @@
 @import '../../resources/skins.tgui.styles/variables.less';
+@import '../../resources/skins.tgui.styles/mixins.less';
 
 .wikiEditor-ui {
   .wikiEditor-ui-view {
@@ -139,5 +140,62 @@
         }
       }
     }
+  }
+}
+
+.skin-tgui {
+  .ext-WikiEditor- {
+    &ResizingDragBar {
+      background-color: var(--color-bg-section-light-opaque);
+
+      &-ns {
+        border-top: var(--border-classic);
+      }
+
+      span {
+        margin: 0.5em 0.1em;
+        background-color: var(--color-text-translucent);
+        transition: background-color var(--transition-time);
+      }
+
+      &:hover span {
+        background-color: var(--color-text);
+      }
+    }
+
+    &ManualWidget {
+      background-color: var(--color-second-fill);
+      color: var(--color-text-darker);
+      border-color: var(--color-border);
+      border-width: 0 0 1px 0;
+      transition: color var(--transition-time);
+
+      &:hover {
+        color: var(--color-text);
+      }
+
+      .ext-WikiEditor-realtimepreview-manual-reload {
+        color: var(--color-text);
+      }
+    }
+
+    &twopanes-TwoPaneLayout .ext-WikiEditor-twopanes-pane {
+      &1 {
+        border-right: var(--border-classic);
+      }
+
+      &2 {
+        border-left: var(--border-classic);
+      }
+    }
+
+    &realtimepreview-loadingbar div {
+      background-color: var(--color-primary);
+      animation-timing-function: ease-in-out;
+    }
+  }
+
+  .ext-WikiEditor-realtimepreview-button.oo-ui-toggleWidget-on .oo-ui-labelElement-label {
+    color: var(--color-text);
   }
 }
