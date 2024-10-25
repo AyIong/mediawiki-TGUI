@@ -59,6 +59,22 @@ input::file-selector-button {
   border: 0 !important;
 }
 
+input[type='button']:disabled {
+  .tgui-button('gray', @hover: false, @active: false);
+}
+
+button {
+  .tgui-button();
+
+  &:disabled {
+    .tgui-button('gray', @hover: false, @active: false);
+
+    &:before {
+      opacity: 0.5;
+    }
+  }
+}
+
 /* File Upload */
 input[type='file'] {
   background-color: var(--color-second);

@@ -223,7 +223,7 @@ function appendToggleSwitch(form, featureName, labelElement, currentValue, confi
  * @param {number} max
  * @param {Record<string,ClientPreference>} config
  */
-function appendSlider(parent, featureName, min, currentValue, max, config) {
+function appendSlider(parent, featureName, min, currentValue, max, defaultValue, config) {
   const input = makeInputElement("range", featureName);
   input.classList.add("tgui-client-prefs-slider__input");
   input.min = min;
@@ -233,22 +233,47 @@ function appendSlider(parent, featureName, min, currentValue, max, config) {
   const label = document.createElement("label");
   label.textContent = currentValue;
 
+  const button = document.createElement("button");
+  button.type = "button";
+
+  if (currentValue === defaultValue) {
+    button.disabled = true;
+  }
+
   const container = document.createElement("div");
+  container.classList.add("tgui-client-prefs-slider");
   container.appendChild(input);
   container.appendChild(label);
+  container.appendChild(button);
   parent.appendChild(container);
+
+  button.addEventListener("click", () => {
+    input.value = defaultValue;
+    label.textContent = defaultValue;
+    button.disabled = true;
+    document.documentElement.style.setProperty(
+      `--${featureName.replace(/^tgui-feature-/, "").replace(/-slider$/, "")}`,
+      defaultValue,
+    );
+
+    toggleDocClassAndSave(featureName, defaultValue, config, true);
+  });
 
   input.addEventListener("input", () => {
     label.textContent = input.value;
-
-    const feature = featureName;
     document.documentElement.style.setProperty(
-      `--${feature.replace(/^tgui-feature-/, "").replace(/-slider$/, "")}`,
+      `--${featureName.replace(/^tgui-feature-/, "").replace(/-slider$/, "")}`,
       input.value,
     );
   });
 
   input.addEventListener("change", () => {
+    if (input.value === defaultValue) {
+      button.disabled = true;
+    } else {
+      button.disabled = false;
+    }
+
     toggleDocClassAndSave(featureName, input.value, config, true);
   });
 }
@@ -305,7 +330,7 @@ function makeControl(featureName, config) {
       break;
     }
     case "range": {
-      appendSlider(form, featureName, pref.min, currentValue, pref.max, config);
+      appendSlider(form, featureName, pref.min, currentValue, pref.max, pref.defaultValue, config);
       break;
     }
     default:

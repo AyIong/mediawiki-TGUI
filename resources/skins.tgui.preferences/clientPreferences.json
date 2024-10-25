@@ -16,8 +16,8 @@
     "preferenceKey": "tgui-darkened-images"
   },
   "tgui-feature-primary-hue-slider": {
+    "defaultValue": "210",
     "min": 0,
-    "value": 205,
     "max": 360,
     "type": "range",
     "preferenceKey": "primary-hue"

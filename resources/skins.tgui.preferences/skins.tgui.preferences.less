@@ -233,9 +233,11 @@
   }
 
   &-slider {
+    display: flex;
+
     &__input {
+      flex: 1;
       appearance: none;
-      width: 100%;
       cursor: ew-resize;
       outline: none;
       overflow: hidden;
@@ -261,8 +263,7 @@
         pointer-events: none;
         position: absolute;
         top: 0;
-        left: 0;
-        right: 0;
+        right: 2.75rem;
         bottom: 0;
         height: 0;
         padding: 0.25em;
@@ -270,6 +271,24 @@
         font-size: 1.5em;
         color: var(--color-white);
         text-shadow: 0 0 1rem rgba(0, 0, 0, 0.75);
+      }
+
+      & ~ button {
+        width: 2rem;
+        height: 2rem;
+        margin-left: 0.5rem;
+
+        &:before {
+          content: '';
+          display: block;
+          background-image: url(../skins.tgui.styles/images/arrow-rotate-left.svg);
+          background-repeat: no-repeat;
+          background-position: center;
+          width: 1.25rem;
+          height: 1.25rem;
+          filter: var(--invert-button-icon);
+          transition: opacity var(--transition-time);
+        }
       }
     }
   }
