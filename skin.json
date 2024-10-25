@@ -244,6 +244,7 @@
         "resources/skins.tgui.js/purgeButton.js",
         "resources/skins.tgui.js/searchLoader.js",
         "resources/skins.tgui.js/scrollObserver.js",
+        "resources/skins.tgui.js/tables.js",
         "resources/skins.tgui.js/tooltips.js",
         "resources/skins.tgui.js/popups.js"
       ],

@@ -19,9 +19,12 @@ function init(bodyContent) {
       return;
     }
 
-    let popupContent = null;
-    popup.style.cursor = "help";
+    const hyperLink = popup.querySelector("a");
+    if (hyperLink) {
+      hyperLink.removeAttribute("title");
+    }
 
+    let popupContent = null;
     function createPopupContent() {
       popupContent = document.createElement("div");
       popupContent.classList.add("popup-content");
