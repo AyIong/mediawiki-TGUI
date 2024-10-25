@@ -43,17 +43,11 @@
     }
 
     li {
+      .tgui-button();
       font-size: 0.75em;
       line-height: @line-height-nav;
       word-wrap: break-word;
       margin: 0 0.5em 0.5em 0.5em;
-      background-color: var(--color-primary);
-      border-radius: var(--border-radius-small);
-      transition: background-color var(--transition-time);
-
-      &:hover {
-        background-color: var(--color-primary-light);
-      }
 
       &:last-child {
         margin-bottom: 0;
@@ -63,7 +57,6 @@
         display: inline-flex;
         width: 100%;
         padding: 0.5em 0 0.25em 0.5em;
-        color: var(--color-white);
         text-shadow: none;
       }
     }

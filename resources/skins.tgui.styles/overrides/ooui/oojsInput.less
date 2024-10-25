@@ -1,10 +1,3 @@
-.disable-borders() {
-  border: 0;
-  box-shadow: none !important;
-  outline: none !important;
-  border-radius: var(--border-radius-small) !important;
-}
-
 /* All */
 .oo-ui-labelWidget.oo-ui-inline-help {
   color: var(--color-text-gray);
@@ -28,17 +21,7 @@
     > .oo-ui-buttonElement-button,
   .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
     .disable-borders();
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    border-radius: var(--border-radius-small);
-    transition: background-color var(--transition-time) !important;
-
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: var(--color-primary-light);
-      color: var(--color-white);
-    }
+    .tgui-button(@focus: true);
   }
 
   .mw-rcfilters-ui-rclToOrFromWidget.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle,
@@ -50,15 +33,7 @@
     .oo-ui-widget-enabled.oo-ui-iconElement:not(.oo-ui-labelElement)
     > .oo-ui-buttonElement-button {
     .disable-borders();
-    background-color: transparent;
-    color: var(--color-text-darker) !important;
-
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: var(--color-bg-hover);
-      color: var(--color-text) !important;
-    }
+    .tgui-button(@transparent: true, @focus: true);
   }
 
   .oo-ui-buttonElement-framed.oo-ui-widget-disabled > .oo-ui-buttonElement-button,
@@ -74,42 +49,18 @@
   .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive
     > .oo-ui-buttonElement-button {
     .disable-borders();
-    background-color: var(--color-blue);
-    color: var(--color-white);
-
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: var(--color-blue-light);
-      color: var(--color-white);
-    }
+    .tgui-button(@color: 'blue', @focus: true);
   }
 
   .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button,
   .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
     .disable-borders();
-    background-color: var(--color-red);
-    color: var(--color-white) !important;
-
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: var(--color-red-light);
-      color: var(--color-white);
-    }
+    .tgui-button(@color: 'red', @focus: true);
   }
 
   .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button {
     .disable-borders();
-    background-color: var(--color-green);
-    color: var(--color-white);
-
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: var(--color-green-light);
-      color: var(--color-white);
-    }
+    .tgui-button(@color: 'green', @focus: true);
   }
 
   .oo-ui-buttonElement-frameless.oo-ui-labelElement:first-child {

@@ -5,45 +5,67 @@
  * Used for both themes
  */
 :root {
+  --primary-hue: 210;
+
   /* TGUI Elements Colors */
-  --color-red: rgba(219, 40, 40, 1);
-  --color-orange: rgba(240, 143, 17, 1);
-  --color-yellow: rgba(251, 214, 8, 1);
-  --color-olive: rgba(181, 204, 24, 1);
-  --color-green: rgba(91, 170, 39, 1);
-  --color-teal: rgba(0, 181, 173, 1);
-  --color-blue: rgba(33, 133, 208, 1);
-  --color-violet: rgba(100, 53, 201, 1);
-  --color-purple: rgba(163, 51, 200, 1);
-  --color-pink: rgba(224, 57, 151, 1);
-  --color-brown: rgba(165, 103, 63, 1);
-  --color-grey: rgba(118, 118, 118, 1);
-  --color-primary: rgba(73, 114, 161, 1);
-  --color-label: rgba(126, 144, 167, 1);
-  --color-black: rgba(0, 0, 0, 1);
-  --color-white: rgba(255, 255, 255, 1);
-  --color-translucent: rgba(255, 255, 255, 0.5);
+  --color-red: hsl(0, 70%, 50%);
+  --color-orange: hsl(35, 90%, 50%);
+  --color-yellow: hsl(50, 95%, 50%);
+  --color-olive: hsl(70, 80%, 45%);
+  --color-green: hsl(95, 65%, 40%);
+  --color-teal: hsl(175, 100%, 35%);
+  --color-blue: hsl(205, 75%, 50%);
+  --color-violet: hsl(260, 60%, 50%);
+  --color-purple: hsl(285, 60%, 50%);
+  --color-pink: hsl(325, 75%, 55%);
+  --color-brown: hsl(25, 45%, 45%);
+  --color-grey: hsl(0, 0%, 45%);
+  --color-primary: ~'hsl(var(--primary-hue), 40%, 45%)';
+  --color-label: hsl(215, 20%, 55%);
+  --color-black: hsl(0, 0%, 0%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-translucent: hsla(0, 0%, 100%, 0.5);
   --color-gray: var(--color-grey);
 
   /* TGUI Elements Colors (Light or Hover) */
-  --color-red-light: rgba(251, 58, 58, 1);
-  --color-orange-light: rgba(255, 163, 40, 1);
-  --color-yellow-light: rgba(255, 233, 29, 1);
-  --color-olive-light: rgba(208, 225, 37, 1);
-  --color-green-light: rgba(105, 195, 43, 1);
-  --color-teal-light: rgba(0, 209, 193, 1);
-  --color-blue-light: rgba(70, 168, 255, 1);
-  --color-violet-light: rgba(168, 68, 255, 1);
-  --color-purple-light: rgba(188, 68, 255, 1);
-  --color-pink-light: rgba(255, 79, 181, 1);
-  --color-brown-light: rgba(191, 123, 76, 1);
-  --color-grey-light: rgba(136, 136, 136, 1);
-  --color-primary-light: rgba(119, 148, 187, 1);
-  --color-label-light: rgba(145, 166, 192, 1);
-  --color-black-light: rgb(30, 30, 30);
-  --color-white-light: rgba(225, 225, 225, 1);
+  --color-red-light: hsl(0, 85%, 65%);
+  --color-orange-light: hsl(35, 100%, 60%);
+  --color-yellow-light: hsl(50, 100%, 60%);
+  --color-olive-light: hsl(70, 80%, 55%);
+  --color-green-light: hsl(95, 65%, 50%);
+  --color-teal-light: hsl(175, 100%, 45%);
+  --color-blue-light: hsl(205, 100%, 65%);
+  --color-violet-light: hsl(260, 100%, 65%);
+  --color-purple-light: hsl(285, 100%, 65%);
+  --color-pink-light: hsl(325, 100%, 65%);
+  --color-brown-light: hsl(25, 45%, 55%);
+  --color-grey-light: hsl(0, 0%, 55%);
+  --color-primary-light: ~'hsl(var(--primary-hue), 32.5%, 60%)';
+  --color-label-light: hsl(215, 30%, 70%);
+  --color-black-light: hsl(0, 0%, 15%);
+  --color-white-light: hsl(0, 0%, 85%);
   --color-gray-light: var(--color-grey-light);
 
+  /* TGUI Elements Colors (Darken orFocus/Active) */
+  --color-red-dark: hsl(0, 70%, 45%);
+  --color-orange-dark: hsl(35, 90%, 45%);
+  --color-yellow-dark: hsl(50, 95%, 45%);
+  --color-olive-dark: hsl(70, 80%, 40%);
+  --color-green-dark: hsl(95, 65%, 35%);
+  --color-teal-dark: hsl(175, 100%, 30%);
+  --color-blue-dark: hsl(205, 75%, 45%);
+  --color-violet-dark: hsl(260, 60%, 45%);
+  --color-purple-dark: hsl(285, 60%, 45%);
+  --color-pink-dark: hsl(325, 75%, 50%);
+  --color-brown-dark: hsl(25, 45%, 40%);
+  --color-grey-dark: hsl(0, 0%, 40%);
+  --color-primary-dark: ~'hsl(var(--primary-hue), 40%, 40%)';
+  --color-label-dark: hsl(215, 20%, 50%);
+  --color-white-dark: hsl(0, 0%, 75%);
+  --color-gray: var(--color-grey);
+}
+
+:root {
   /* Font sizes */
   --font-size-x-small: 0.75rem;
   --font-size-small: 0.875rem;

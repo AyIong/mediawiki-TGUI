@@ -24,20 +24,12 @@
   margin-bottom: 0.5em;
 
   a {
+    .tgui-button();
     display: flex;
     min-height: 2rem;
     align-items: center;
     white-space: nowrap;
     padding: 0 0.75em 0 0.5em;
-    background-color: var(--color-primary);
-    color: var(--color-white) !important;
-    border-radius: var(--border-radius-small);
-    text-shadow: none;
-    transition: background-color var(--transition-time);
-
-    &:hover {
-      background-color: var(--color-primary-light);
-    }
 
     span:before {
       filter: var(--invert-button-icon);

@@ -74,14 +74,8 @@
 
 .TablePager_nav {
   span {
+    .tgui-button();
     margin: 0 0.5em;
-    background-color: var(--color-primary);
-    border-radius: var(--border-radius-small);
-    transition: background-color var(--transition-time);
-
-    &:hover {
-      background-color: var(--color-primary-light);
-    }
 
     &[aria-disabled='true'] {
       background-color: var(--color-grey);

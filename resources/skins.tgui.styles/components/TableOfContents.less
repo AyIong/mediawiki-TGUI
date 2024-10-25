@@ -77,27 +77,16 @@
   }
 
   .sidebar-toc-link {
+    .tgui-button();
     display: block;
     word-break: break-word;
     padding-left: 0.5em;
     margin-bottom: 0.5em;
-    color: var(--color-white) !important;
-    background-color: var(--color-primary);
-    border-radius: var(--border-radius-small);
-    transition: all var(--transition-time);
-
-    &:hover {
-      background-color: var(--color-primary-light);
-    }
   }
 
   .sidebar-toc-list-item-active > .sidebar-toc-link {
+    .tgui-button('green');
     font-weight: bold;
-    background-color: var(--color-green);
-
-    &:hover {
-      background-color: var(--color-green-light);
-    }
   }
 
   .sidebar-toc-text {
@@ -130,18 +119,10 @@
 }
 
 .tgui-toc-collapse-button {
+  .tgui-button();
   display: block;
-  cursor: pointer;
   padding: 3px;
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  border-radius: var(--border-radius-small);
   border: 0;
-  transition: background-color var(--transition-time);
-
-  &:hover {
-    background-color: var(--color-primary-light);
-  }
 
   &:before {
     content: '';
