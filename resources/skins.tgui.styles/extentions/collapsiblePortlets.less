@@ -33,9 +33,26 @@
     }
 
     .tgui-menu-content {
+      position: relative;
       overflow: hidden;
       max-height: 0;
       transition: max-height var(--transition-time);
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-primary);
+        transform-origin: center;
+        transition: transform var(--transition-time);
+      }
+    }
+
+    &.collapsed .tgui-menu-content:before {
+      transform: scaleX(0);
     }
 
     /* First */
