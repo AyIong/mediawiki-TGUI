@@ -25,11 +25,15 @@ function init(bodyContent) {
     }
 
     let popupContent = null;
+    let hideTimeout = null;
     function createPopupContent() {
       popupContent = document.createElement("div");
       popupContent.classList.add("popup-content");
       popupContent.textContent = popupText;
       document.body.appendChild(popupContent);
+      setTimeout(() => {
+        popupContent.classList.add("visible");
+      }, 10);
     }
 
     function removePopupContent() {
@@ -43,10 +47,20 @@ function init(bodyContent) {
       if (!popupContent) {
         createPopupContent();
       }
+
+      if (hideTimeout !== null) {
+        clearTimeout(hideTimeout);
+        hideTimeout = null;
+        setTimeout(() => {
+          popupContent.classList.add("visible");
+        }, 10);
+      }
+
       updatePosition(event.clientX, event.clientY);
     }
 
     function updatePosition(clientX, clientY) {
+      if (!popupContent) return;
       const freeSpace = {
         getBoundingClientRect() {
           return {
@@ -75,7 +89,14 @@ function init(bodyContent) {
     }
 
     function hide() {
-      removePopupContent();
+      if (!popupContent) return;
+      popupContent.classList.remove("visible");
+
+      if (!hideTimeout) {
+        hideTimeout = setTimeout(() => {
+          removePopupContent();
+        }, 200);
+      }
     }
 
     popup.addEventListener("mouseenter", show);

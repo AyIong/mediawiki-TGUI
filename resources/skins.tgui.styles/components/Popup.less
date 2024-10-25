@@ -15,6 +15,17 @@
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-medium);
   box-shadow: var(--box-shadow-big);
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: top left;
+  transition:
+    transform var(--transition-time),
+    opacity var(--transition-time);
   backdrop-filter: var(--blur-default);
   z-index: 9999;
+
+  &.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
