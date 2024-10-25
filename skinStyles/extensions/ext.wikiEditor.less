@@ -40,18 +40,39 @@
           }
 
           &.current {
-            background-color: var(--color-green);
-
-            &:hover {
-              background-color: var(--color-green-light);
-            }
+            .tgui-button('green');
           }
         }
       }
 
       .sections {
+        overflow: hidden;
+        margin-bottom: -2px;
+
+        &:not(:has(.section-visible)) {
+          margin-bottom: -3px; // 3 borders
+        }
+
         .section {
-          border-top: var(--border-classic);
+          overflow: hidden;
+          display: block !important;
+          border-top: 1px solid transparent;
+          transition:
+            height var(--transition-time),
+            border var(--transition-time);
+
+          &-visible {
+            height: 13.4rem;
+            border-top: var(--border-classic);
+          }
+
+          &-hidden {
+            height: 0;
+          }
+
+          &-advanced.section-visible {
+            height: 2rem;
+          }
         }
       }
 
