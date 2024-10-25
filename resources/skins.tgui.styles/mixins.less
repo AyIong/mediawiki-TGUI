@@ -72,3 +72,21 @@
     }
   }
 }
+
+.tabs-animation(@margin: 0) {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    margin-left: @margin;
+    background-color: ~'hsla(var(--primary-hue), 100%, var(--dark-lightness))';
+    transform: scaleX(0);
+    transition: transform var(--transition-time);
+    z-index: var(--index-fore);
+  }
+}

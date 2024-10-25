@@ -49,14 +49,21 @@
     margin: 0;
     padding: 0;
     border: 0;
-    border-bottom: 2px solid transparent;
     font-weight: normal;
     border-top-left-radius: var(--border-radius-small);
     border-top-right-radius: var(--border-radius-small);
-    transition: all var(--transition-time);
+    transition:
+      background-color var(--transition-time),
+      color var(--transition-time);
+    .tabs-animation();
+
+    &:active {
+      background-color: var(--color-bg-hover);
+      color: ~'hsla(var(--primary-hue), 100%, var(--dark-lightness))' !important;
+    }
 
     .oo-ui-labelElement-label {
-      padding: 0.33em 1em 0.1em 1em;
+      padding: 0.33em 1em calc(0.1em + 2px) 1em;
       border: 0;
       transition: none;
     }
@@ -69,8 +76,11 @@
 
   .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
     background-color: var(--color-bg-focus) !important;
-    color: var(--color-text) !important;
-    border-bottom: 2px solid var(--color-text) !important;
+    color: ~'hsla(var(--primary-hue), 100%, var(--dark-lightness))' !important;
+
+    &:after {
+      transform: scale(1);
+    }
   }
 }
 

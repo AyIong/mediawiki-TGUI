@@ -1,4 +1,5 @@
 @import '../../resources/skins.tgui.styles/variables.less';
+@import '../../resources/skins.tgui.styles/mixins.less';
 
 /**
  * TGUI
@@ -19,19 +20,19 @@
   }
 
   .tabs-label {
+    user-select: none;
     text-align: center;
     min-width: 3em;
     margin: 0 !important;
-    padding: 0.25em 0.75em 0.2em 0.75em;
+    padding: 0.25em 0.75em calc(0.2em + 2px) 0.75em;
     background-color: transparent;
     color: var(--color-text-translucent);
-    border-width: 0 0 2px 0;
-    border-style: solid;
-    border-color: transparent;
+    border: 0;
     border-radius: var(--border-radius-small) var(--border-radius-small) 0 0;
     transition:
       background-color var(--transition-time),
       color var(--transition-time);
+    .tabs-animation(-0.75em);
 
     &:hover {
       background-color: var(--color-bg-hover);
@@ -39,15 +40,23 @@
 
     &:active,
     &:checked {
-      color: var(--color-text);
+      background-color: var(--color-bg-hover);
+      color: ~'hsla(var(--primary-hue), 100%, var(--dark-lightness))';
+
+      &:after {
+        transform: scaleX(0.25);
+      }
     }
   }
 
   .tabs-input:checked + .tabs-label,
   .tabs-input-0:checked + .tabs-input-1 + .tabs-label {
     background-color: var(--color-bg-focus);
-    color: var(--color-text);
-    border-color: var(--color-text);
+    color: ~'hsla(var(--primary-hue), 100%, var(--dark-lightness))';
+
+    &:after {
+      transform: scaleX(1);
+    }
   }
 
   .tabs-container {

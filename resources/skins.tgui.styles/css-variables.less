@@ -14,7 +14,7 @@
   --color-olive: hsl(70, 80%, 45%);
   --color-green: hsl(95, 65%, 40%);
   --color-teal: hsl(175, 100%, 35%);
-  --color-blue: hsl(205, 75%, 50%);
+  --color-blue: ~'hsl(var(--primary-hue), 75%, 50%)';
   --color-violet: hsl(260, 60%, 50%);
   --color-purple: hsl(285, 60%, 50%);
   --color-pink: hsl(325, 75%, 55%);
@@ -34,7 +34,7 @@
   --color-olive-light: hsl(70, 80%, 55%);
   --color-green-light: hsl(95, 65%, 50%);
   --color-teal-light: hsl(175, 100%, 45%);
-  --color-blue-light: hsl(205, 100%, 65%);
+  --color-blue-light: ~'hsl(var(--primary-hue), 100%, 65%)';
   --color-violet-light: hsl(260, 100%, 65%);
   --color-purple-light: hsl(285, 100%, 65%);
   --color-pink-light: hsl(325, 100%, 65%);
@@ -53,7 +53,7 @@
   --color-olive-dark: hsl(70, 80%, 40%);
   --color-green-dark: hsl(95, 65%, 35%);
   --color-teal-dark: hsl(175, 100%, 30%);
-  --color-blue-dark: hsl(205, 75%, 45%);
+  --color-blue-dark: ~'hsl(var(--primary-hue), 75%, 45%)';
   --color-violet-dark: hsl(260, 60%, 45%);
   --color-purple-dark: hsl(285, 60%, 45%);
   --color-pink-dark: hsl(325, 75%, 50%);
@@ -130,6 +130,8 @@
  * Used for default dark theme
  */
 .dark-theme() {
+  --dark-lightness: 95%;
+
   /* Base Colors */
   --color-bg: hsl(0, 0%, 15%);
   --color-bg-hover: rgba(255, 255, 255, 0.075);
@@ -255,6 +257,9 @@
   /* Links Shadow */
   --hyperlink-shadow-new: hsl(0, 100%, 75%) 0px 0px 0.5em;
   --hyperlink-shadow-new-hover: hsl(0, 100%, 75%) 0px 0px 0.5em;
+
+  /* Custom HSL */
+  --dark-lightness: 25%;
 
   /* Invert */
   --invert-icon: invert(0.1);

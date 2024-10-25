@@ -42,8 +42,10 @@
     > .oo-ui-tool-link,
   .oo-ui-barToolGroup-tools.oo-ui-toolGroup-disabled-tools .oo-ui-tool.oo-ui-flaggedElement-primary > .oo-ui-tool-link {
     .disable-borders();
-    background-color: var(--color-grey) !important;
-    color: var(--color-translucent) !important;
+    .tgui-button(@color: 'grey', @hover: false, @active: false);
+    * {
+      color: var(--color-translucent) !important;
+    }
   }
 
   .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive
@@ -103,6 +105,10 @@
 
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked + span {
   border-color: var(--color-blue);
+}
+
+.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:hover + span {
+  border-color: var(--color-blue-light);
 }
 
 .oo-ui-radioInputWidget [type='radio']:checked + span,

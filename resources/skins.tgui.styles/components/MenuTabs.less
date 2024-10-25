@@ -11,19 +11,28 @@
 
   .mw-list-item a {
     border-radius: var(--border-radius-small) var(--border-radius-small) 0 0;
-    padding: 0.4em 0.75em;
+    padding: 0.4em 0.75em calc(0.4em + 2px);
     max-height: 3em;
     font-size: 1.1em;
     color: var(--color-text-translucent);
     border-bottom: 2px solid transparent;
     transition: background-color var(--transition-time);
     text-shadow: none;
+    .tabs-animation(@margin: -0.75em);
   }
 
-  .mw-list-item a:focus,
   .mw-list-item a:hover {
     background-color: var(--color-bg-hover);
     color: var(--color-text-translucent);
+  }
+
+  .mw-list-item a:focus {
+    background-color: var(--color-bg-hover);
+    color: ~'hsla(var(--primary-hue), 100%, var(--dark-lightness))';
+
+    &:after {
+      transform: scaleX(0.25);
+    }
   }
 
   .mw-list-item.new a,
@@ -34,8 +43,11 @@
   .mw-list-item.selected a,
   .mw-list-item.selected a:visited {
     background-color: var(--color-bg-focus);
-    color: var(--color-text);
-    border-bottom: 2px solid var(--color-text);
+    color: ~'hsla(var(--primary-hue), 100%, var(--dark-lightness))';
+
+    &:after {
+      transform: scaleX(1);
+    }
   }
 }
 
