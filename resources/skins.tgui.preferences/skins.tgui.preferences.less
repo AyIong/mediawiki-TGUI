@@ -200,27 +200,20 @@
 
       &:checked {
         ~ .tgui-client-prefs-radio__label {
+          cursor: default;
           background-color: var(--color-green);
         }
       }
     }
 
     &__label {
-      cursor: pointer;
+      .tgui-button();
       display: flex;
       align-items: center;
       justify-content: center;
       height: 2rem;
       padding: 0 0.5em;
       font-weight: var(--font-weight-medium);
-      background-color: var(--color-primary);
-      color: var(--color-white);
-      border-radius: var(--border-radius-small);
-      transition: background-color var(--transition-time);
-
-      &:hover {
-        background-color: var(--color-primary-light);
-      }
     }
   }
 }

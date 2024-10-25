@@ -14,6 +14,7 @@
 
 .tgui-button(@color: primary, @transparent: false, @hover: true, @active: true, @focus: false) {
   cursor: default;
+  user-select: none;
   background-color: ~'var(--color-@{color})';
   color: var(--color-white) !important;
   border-radius: var(--border-radius-small);
@@ -31,38 +32,21 @@
       &:hover {
         background-color: var(--color-bg-hover);
         color: var(--color-text) !important;
-
         * {
           color: var(--color-text) !important;
         }
       }
     }
+  }
 
-    & when (@active) {
-      &:active {
-        background-color: var(--color-bg-focus);
-        box-shadow: inset 0 0 0.1em 0.1em rgba(0, 0, 0, 0.2);
+  & when (@active), (@focus) {
+    &:active {
+      background-color: var(--color-bg-focus);
+      box-shadow: inset 0 0 0.1em 0.1em rgba(0, 0, 0, 0.2);
 
-        * {
-          color: var(--color-text) !important;
-        }
+      * {
+        color: var(--color-text) !important;
       }
-    }
-
-    & when (@focus) {
-      &:active {
-        background-color: var(--color-bg-focus);
-        box-shadow: inset 0 0 0.1em 0.1em rgba(0, 0, 0, 0.2);
-
-        * {
-          color: var(--color-text) !important;
-        }
-      }
-    }
-
-    * {
-      color: var(--color-text-darker) !important;
-      transition: color var(--transition-time);
     }
   }
 
@@ -75,14 +59,7 @@
       }
     }
 
-    & when (@active) {
-      &:active {
-        background-color: ~'var(--color-@{color}-dark)';
-        box-shadow: inset 0 0 0.1em 0.1em rgba(0, 0, 0, 0.2);
-      }
-    }
-
-    & when (@focus) {
+    & when (@active), (@focus) {
       &:active {
         background-color: ~'var(--color-@{color}-dark)';
         box-shadow: inset 0 0 0.1em 0.1em rgba(0, 0, 0, 0.2);
@@ -90,6 +67,7 @@
     }
 
     * {
+      user-select: none;
       color: var(--color-white) !important;
     }
   }
