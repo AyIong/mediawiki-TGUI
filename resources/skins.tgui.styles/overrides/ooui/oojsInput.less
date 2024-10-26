@@ -103,8 +103,14 @@
     border var(--transition-time);
 }
 
+.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:hover + span,
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked + span {
   border-color: var(--color-blue);
+}
+
+.oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:active + span {
+  background-color: var(--color-border-input);
+  border-color: var(--color-border-input);
 }
 
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:hover + span {
@@ -122,7 +128,7 @@
 }
 
 /* Checkbox */
-.skin-tgui {
+.skin-tgui div {
   .oo-ui-checkboxInputWidget [type='checkbox'] + span {
     outline: 0 !important;
     box-shadow: none !important;
@@ -137,8 +143,16 @@
     border-color: var(--color-border);
   }
 
-  .oo-ui-checkboxInputWidget [type='checkbox'] + span:hover {
-    border-color: var(--color-border-input);
+  .oo-ui-checkboxInputWidget [type='checkbox']:hover + span {
+    border-color: var(--color-border-input) !important;
+  }
+
+  .oo-ui-checkboxInputWidget [type='checkbox']:active + span {
+    background-color: var(--color-border-input);
+  }
+
+  .oo-ui-checkboxInputWidget [type='checkbox']:focus + span {
+    border-color: var(--color-border);
   }
 
   .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked + span,
@@ -189,11 +203,12 @@
 }
 
 .oo-ui-menuSelectWidget {
+  overflow: hidden;
   margin: 0;
-  box-shadow: none;
   background-color: var(--color-second-blur);
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-small);
+  border: var(--border-classic);
+  border-radius: var(--border-radius-medium);
+  box-shadow: none;
   backdrop-filter: var(--blur-default);
 }
 
@@ -241,6 +256,7 @@
   background-color: var(--color-base);
   color: var(--color-text);
   border: var(--border-classic);
+  border-radius: var(--border-radius-medium);
   transition:
     background-color var(--transition-time),
     border var(--transition-time);

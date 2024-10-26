@@ -16,6 +16,7 @@ textarea {
   background-color: var(--color-base);
   color: var(--color-text);
   border: var(--border-classic);
+  border-radius: var(--border-radius-medium);
   transition: border var(--transition-time);
 
   &:hover {
@@ -43,6 +44,10 @@ textarea {
       border var(--transition-time) !important;
     border: 1px solid var(--color-violet);
   }
+}
+
+textarea {
+  border-radius: 0;
 }
 
 input:not([type='file'], [type='image'], [type='checkbox'], [type='radio'], [type='submit'], [type='range']) {
@@ -128,5 +133,31 @@ input[type='radio'] {
   &:checked {
     background-color: var(--color-bg-focus);
     border: 5px solid var(--color-border-input-focus);
+  }
+}
+
+/* Slider */
+input[type='range'] {
+  flex: 1;
+  appearance: none;
+  cursor: ew-resize;
+  outline: none;
+  overflow: hidden;
+  background-color: transparent;
+  border-radius: var(--border-radius-small);
+
+  &::-webkit-slider-runnable-track {
+    height: 2rem;
+    background: ~'hsl(var(--primary-hue), 40%, var(--light-lightness))';
+    border-radius: var(--border-radius-small);
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 0;
+    width: 0;
+    background-color: transparent;
+    box-shadow: -400px 0 0 400px var(--color-primary);
   }
 }
