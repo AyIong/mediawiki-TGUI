@@ -15,6 +15,7 @@
 .tgui-button(@color: primary, @transparent: false, @hover: true, @active: true, @focus: false) {
   cursor: default;
   user-select: none;
+  -webkit-user-drag: none;
   background: ~'var(--color-@{color})';
   color: var(--color-white);
   border-radius: var(--border-radius-small);
@@ -76,6 +77,7 @@
 
     * {
       user-select: none;
+      -webkit-user-drag: none;
       color: var(--color-white) !important;
     }
   }

@@ -1,15 +1,53 @@
+@import '../mixins.less';
+
 .skin-tgui {
   .toc,
   .toccolours {
+    position: relative;
     font-size: 95%;
     padding: 0.5em;
     margin-bottom: 0.75em;
-    background-color: var(--color-second-fill);
+    background-color: var(--color-second);
     border: var(--border-classic);
+    border-radius: var(--border-radius-medium);
+    backdrop-filter: var(--blur-default);
 
     &:last-child,
     &:last-of-type {
       margin-bottom: 0;
+    }
+
+    span[role='button'] {
+      .tgui-button();
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+
+      a {
+        display: none;
+      }
+
+      &:before {
+        display: none;
+      }
+
+      &:after {
+        content: '';
+        display: block;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-image: url(images/arrow-down.svg);
+        background-repeat: no-repeat;
+        transform: scale(0.75);
+        transition: transform var(--transition-time);
+        filter: var(--invert-button-icon);
+      }
+
+      &[aria-expanded='true']:after {
+        transform: scale(0.75) rotate(180deg);
+      }
     }
   }
 
