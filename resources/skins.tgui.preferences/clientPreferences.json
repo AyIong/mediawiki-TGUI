@@ -19,6 +19,7 @@
     "defaultValue": "210",
     "min": 0,
     "max": 360,
+    "step": 5,
     "type": "range",
     "preferenceKey": "primary-hue"
   }

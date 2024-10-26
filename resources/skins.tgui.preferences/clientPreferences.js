@@ -223,12 +223,16 @@ function appendToggleSwitch(form, featureName, labelElement, currentValue, confi
  * @param {number} max
  * @param {Record<string,ClientPreference>} config
  */
-function appendSlider(parent, featureName, min, currentValue, max, defaultValue, config) {
+function appendSlider(parent, featureName, min, currentValue, max, defaultValue, step, config) {
   const input = makeInputElement("range", featureName);
   input.classList.add("tgui-client-prefs-slider__input");
   input.min = min;
   input.max = max;
   input.value = currentValue;
+
+  if (step) {
+    input.step = step;
+  }
 
   const label = document.createElement("label");
   label.textContent = currentValue;
@@ -330,7 +334,7 @@ function makeControl(featureName, config) {
       break;
     }
     case "range": {
-      appendSlider(form, featureName, pref.min, currentValue, pref.max, pref.defaultValue, config);
+      appendSlider(form, featureName, pref.min, currentValue, pref.max, pref.defaultValue, pref.step, config);
       break;
     }
     default:
