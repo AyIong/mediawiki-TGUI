@@ -3,6 +3,7 @@
 .skin-tgui {
   .toc,
   .toccolours {
+    overflow: hidden;
     position: relative;
     font-size: 95%;
     padding: 0.5em;
@@ -45,9 +46,30 @@
         filter: var(--invert-button-icon);
       }
 
-      &[aria-expanded='true']:after {
-        transform: scale(0.75) rotate(180deg);
+      &[aria-expanded='true'] {
+        &:after {
+          transform: scale(0.75) rotate(180deg);
+        }
+
+        ~ .mw-collapsible-content {
+          height: 100%;
+          opacity: 1;
+          transform: translateY(0);
+          transition-duration: var(--transition-time);
+        }
       }
+    }
+
+    .mw-collapsible-content {
+      display: block !important;
+      height: 0;
+      opacity: 0;
+      transform: translateY(-1rem);
+      transition-property: opacity, transform;
+    }
+
+    * {
+      backdrop-filter: none !important;
     }
   }
 
