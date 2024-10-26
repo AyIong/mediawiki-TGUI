@@ -101,5 +101,9 @@ async function setMaxHeightForContent() {
   });
 }
 
-requestAnimationFrame(setMaxHeightForContent);
-requestAnimationFrame(init);
+async function main() {
+  await setMaxHeightForContent();
+  await init();
+}
+
+requestAnimationFrame(main);
