@@ -169,85 +169,87 @@
 }
 
 /* Dropdown */
-.oo-ui-dropdownWidget-handle,
-.oo-ui-dropdownInputWidget select,
-.oo-ui-dropdownInputWidget.oo-ui-widget-enabled,
-.oo-ui-dropdownInputWidget.oo-ui-widget-enabled select,
-.oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:hover,
-.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  background-color: var(--color-primary) !important;
-  color: var(--color-white) !important;
-  border-radius: var(--border-radius-small) !important;
-  transition: background-color var(--transition-time) !important;
-}
+.skin-tgui {
+  .oo-ui-dropdownWidget-handle,
+  .oo-ui-dropdownInputWidget select,
+  .oo-ui-dropdownInputWidget.oo-ui-widget-enabled,
+  .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select,
+  .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:hover,
+  .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: var(--color-primary) !important;
+    color: var(--color-white) !important;
+    border-radius: var(--border-radius-small) !important;
+    transition: background-color var(--transition-time) !important;
+  }
 
-.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:hover,
-.oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:active,
-.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle,
-.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle:hover,
-.oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle:active {
-  background-color: var(--color-primary-light) !important;
-  color: var(--color-white) !important;
-}
+  .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:hover,
+  .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:active,
+  .oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle,
+  .oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle:hover,
+  .oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle:active {
+    background-color: var(--color-primary-light) !important;
+    color: var(--color-white) !important;
+  }
 
-.oo-ui-dropdownInputWidget.oo-ui-widget-disabled,
-.oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
-  text-shadow: none;
-  background-color: var(--color-grey);
-  color: var(--color-translucent);
-  border-radius: var(--border-radius-small) !important;
-  transition: background-color var(--transition-time);
-}
+  .oo-ui-dropdownInputWidget.oo-ui-widget-disabled,
+  .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
+    text-shadow: none;
+    background-color: var(--color-grey);
+    color: var(--color-translucent);
+    border-radius: var(--border-radius-small) !important;
+    transition: background-color var(--transition-time);
+  }
 
-.oo-ui-menuSelectWidget {
-  overflow: hidden;
-  margin: 0;
-  background-color: var(--color-second-blur);
-  border: var(--border-classic);
-  border-radius: var(--border-radius-medium);
-  box-shadow: none;
-  backdrop-filter: var(--blur-default);
-}
+  .oo-ui-menuSelectWidget {
+    overflow: hidden;
+    margin: 0;
+    background-color: var(--color-second-blur);
+    border: var(--border-classic);
+    border-radius: var(--border-radius-medium);
+    box-shadow: none;
+    backdrop-filter: var(--blur-default);
+  }
 
-.oo-ui-menuOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget {
-  color: var(--color-text-darker) !important;
-  transition: background-color var(--transition-time);
-}
+  .oo-ui-menuOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget {
+    color: var(--color-text-darker) !important;
+    transition: background-color var(--transition-time);
+  }
 
-.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected,
-.oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted {
-  background-color: var(--color-bg-focus) !important;
-}
+  .oo-ui-menuOptionWidget.oo-ui-optionWidget-selected,
+  .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted {
+    background-color: var(--color-bg-focus) !important;
+  }
 
-.oo-ui-menuOptionWidget.oo-ui-optionWidget:hover {
-  background-color: var(--color-bg-hover);
-}
+  .oo-ui-menuOptionWidget.oo-ui-optionWidget:hover {
+    background-color: var(--color-bg-hover);
+  }
 
-.oo-ui-dropdownInputWidget option {
-  background-color: var(--color-bg);
-  color: var(--color-text-darker) !important;
-}
+  .oo-ui-dropdownInputWidget option {
+    background-color: var(--color-bg);
+    color: var(--color-text-darker) !important;
+  }
 
-.oo-ui-dropdownInputWidget option:hover {
-  background-color: var(--color-grey-light);
-}
+  .oo-ui-dropdownInputWidget option:hover {
+    background-color: var(--color-grey-light);
+  }
 
-:not(.oo-ui-buttonElement-button, .oo-ui-dropdownWidget).oo-ui-indicator-down {
-  background-image: url(../skins.tgui.styles/images/arrow-down.svg);
-}
+  :not(.oo-ui-buttonElement-button, .oo-ui-dropdownWidget).oo-ui-indicator-down {
+    background-image: url(../skins.tgui.styles/images/arrow-down.svg);
+  }
 
-.oo-ui-buttonElement-button .oo-ui-indicator-down {
-  background-image: url(../skins.tgui.styles/images/angle-right-solid.svg);
-  transform: rotate(90deg) !important;
-}
-
-.oo-ui-dropdownWidget {
-  .oo-ui-indicator-down {
+  .oo-ui-buttonElement-button .oo-ui-indicator-down {
     background-image: url(../skins.tgui.styles/images/angle-right-solid.svg);
-    transform: rotate(90deg);
+    transform: rotate(90deg) !important;
+  }
+
+  .oo-ui-dropdownWidget {
+    .oo-ui-indicator-down {
+      background-image: url(../skins.tgui.styles/images/angle-right-solid.svg);
+      transform: rotate(90deg);
+    }
   }
 }
 
@@ -269,6 +271,10 @@
   &:active {
     border: var(--border-classic-input-focus) !important;
   }
+}
+
+.mw-rcfilters-ui-cell .oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input {
+  border-radius: 0;
 }
 
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-inputWidget-input {

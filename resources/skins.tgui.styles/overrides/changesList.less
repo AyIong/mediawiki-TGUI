@@ -3,8 +3,10 @@
     word-break: break-word;
   }
 
-  .mw-changeslist table.mw-enhanced-rc {
-    backdrop-filter: none;
+  .mw-changeslist * {
+    margin-left: 0 !important;
+    background-color: transparent;
+    backdrop-filter: none !important;
   }
 
   .mw-enhancedchanges-arrow-space {
@@ -81,4 +83,16 @@
 
 .mw-plusminus-pos {
   color: var(--color-green);
+}
+
+.hlist ul {
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+
+  & li {
+    display: block;
+    padding: 0 0.5em;
+    .tgui-button();
+  }
 }
