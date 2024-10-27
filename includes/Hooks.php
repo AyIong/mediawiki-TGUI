@@ -358,7 +358,7 @@ class Hooks implements
 			self::makeMenuItemCollapsible( $item );
 		}
 		if ( $hasButton ) {
-			self::appendClassToItem( $item[ $buttonClassProp ], [ 'mw-ui-button', 'mw-ui-quiet' ] );
+			self::appendClassToItem( $item[ $buttonClassProp ], [ 'mw-ui-button' ] );
 		}
 		if ( $icon ) {
 			if ( $hideText ) {

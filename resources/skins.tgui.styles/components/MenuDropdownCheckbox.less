@@ -17,8 +17,10 @@
     background-color: var(--color-bg-hover);
   }
 
-  &[aria-expanded='true'] {
+  &[aria-expanded='true'],
+  &:has(input[type='checkbox']:checked) {
     background-color: var(--color-bg-focus);
+    color: var(--color-text);
   }
 
   // Dropdown menu container. Hidden by default until checkbox is checked.

@@ -70,22 +70,20 @@
 
     input[type='checkbox']:hover + &,
     &:hover {
-      background-color: transparent;
+      background-color: var(--color-bg-hover);
       color: var(--color-text-darker);
-    }
-
-    input[type='checkbox']:focus + &,
-    &:focus {
-      color: var(--color-text);
-      border-color: transparent;
-      box-shadow: none;
     }
 
     input[type='checkbox']:active + &,
     &:active {
-      background-color: var(--color-bg-hover);
+      background-color: var(--color-bg-focus);
       color: var(--color-text);
       border-color: transparent;
+    }
+
+    input[type='checkbox']:focus + &,
+    &:focus {
+      all: unset;
     }
 
     &:disabled,
