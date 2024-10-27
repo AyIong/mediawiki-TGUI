@@ -53,6 +53,11 @@ function togglePanel() {
   const toggle = document.getElementById(CLASS + "-toggle"),
     panel = document.getElementById(CLASS + "-panel");
 
+  if (!localStorage.getItem("prefChecked")) {
+    localStorage.setItem("prefChecked", "true");
+    toggle.classList.remove(CLASS + "-notice");
+  }
+
   if (!panel.classList.contains(CLASS_PANEL_ACTIVE)) {
     panel.classList.add(CLASS_PANEL_ACTIVE);
     toggle.setAttribute("aria-expanded", true);
@@ -186,6 +191,10 @@ function initPref(window) {
       button.setAttribute("aria-label", mw.message("preferences").text());
       button.setAttribute("aria-controls", CLASS + "-panel");
       button.setAttribute("aria-expanded", false);
+      if (!localStorage.getItem("prefChecked")) {
+        button.classList.add(CLASS + "-notice");
+      }
+
       icon.classList.add("tgui-icon", "tgui-icon-settings");
       button.prepend(icon);
       container.prepend(button);
