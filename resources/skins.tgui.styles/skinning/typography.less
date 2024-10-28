@@ -16,6 +16,14 @@ body {
   font-family: @font-family-sans;
 }
 
+*:before,
+*:after {
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  color: var(--color-text);
+}
+
 strong {
   color: var(--color-text);
 }

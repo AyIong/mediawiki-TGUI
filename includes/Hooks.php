@@ -65,6 +65,11 @@ class Hooks implements
 				$out->addHeadItem('skin.tgui.' . basename($scriptPath, '.js'), $script);
 			}
 		}
+
+		$out->addLink([
+            'rel' => 'stylesheet',
+            'href' => '/skins/TGUI/resources/skins.tgui.styles/font-awesome/css/all.min.css'
+        ]);
 	}
 
 	/**

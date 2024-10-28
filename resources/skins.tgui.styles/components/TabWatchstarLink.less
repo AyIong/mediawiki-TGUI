@@ -1,46 +1,45 @@
 .tgui-menu-tabs {
   .mw-watchlink.icon a {
     overflow: hidden;
-    margin: 0 0.5em;
+    margin: 0 0.33rem;
     text-indent: -99999px;
     color: transparent;
 
     &:before {
       content: '';
-      display: block;
-      background-repeat: no-repeat;
-      background-position: center;
-      width: 1em;
-      height: 1em;
-      filter: var(--invert-icon);
-      transform: scale(1.2);
+      width: 1rem;
+      height: 1rem;
+      text-indent: 0;
+      font: var(--fa-font-solid);
+      transform: translateY(0.1rem);
     }
   }
 
   #ca-unwatch.icon a:before {
-    background-image: url(../skins.tgui.styles/images/star-solid.svg);
+    content: '\f005';
   }
 
   #ca-unwatch.mw-watchlink-temp.icon a:before {
-    background-image: url(../skins.tgui.styles/images/star-half-stroke.svg);
+    content: '\f5c0';
   }
 
   #ca-watch.icon a:before {
-    background-image: url(../skins.tgui.styles/images/star-regular.svg);
+    content: '\f005';
+    font: var(--fa-font-regular);
   }
 
   #ca-unwatch.icon a:hover:before,
   #ca-unwatch.icon a:focus:before {
-    background-image: url(../skins.tgui.styles/images/star-half-stroke.svg);
+    content: '\f5c0';
   }
 
   #ca-unwatch.mw-watchlink-temp.icon a:hover:before,
   #ca-unwatch.mw-watchlink-temp.icon a:focus:before {
-    background-image: url(../skins.tgui.styles/images/star-half-stroke.svg);
+    content: '\f5c0';
   }
 
   #ca-watch.icon a:hover:before,
   #ca-watch.icon a:focus:before {
-    background-image: url(../skins.tgui.styles/images/star-half-stroke.svg);
+    content: '\f5c0';
   }
 }
