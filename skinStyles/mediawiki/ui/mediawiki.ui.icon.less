@@ -1,0 +1,62 @@
+.mw-ui-icon {
+  &:before {
+    background-image: none !important; // Uncomment after replacing all default mediawiki icons
+    align-content: center;
+    text-align: center;
+    font: var(--fa-font-solid);
+    font-size: 1.25em;
+    line-height: 1em;
+    min-width: 1em;
+    min-height: 1em;
+    transition:
+      opacity var(--transition-time),
+      transform var(--transition-time);
+  }
+
+  &-small:before {
+    font-size: 1em;
+  }
+}
+
+.mw-ui-icon-wikimedia- {
+  &userAvatar:before {
+    content: '\f007';
+  }
+
+  &userAdd:before {
+    content: '\f234';
+    transform: scale(0.8) translateX(-0.15rem);
+  }
+
+  &userTalk:before {
+    content: '\f4ad';
+  }
+
+  &userContributions:before {
+    content: '\e43c';
+  }
+
+  &settings:before {
+    content: '\f013';
+  }
+
+  &watchlist:before {
+    content: '\f03a';
+  }
+
+  &logOut:before {
+    content: '\f08b';
+  }
+
+  &logIn:before {
+    content: '\f090';
+  }
+
+  &expand:before {
+    content: '\f078';
+  }
+
+  &ellipsis:before {
+    content: '\f141';
+  }
+}

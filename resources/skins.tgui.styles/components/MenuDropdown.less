@@ -1,20 +1,6 @@
 @import '../variables.less';
+@import '../mixins.less';
 @import 'mediawiki.mixins.less';
-
-.mw-interlanguage-selector {
-  display: flex;
-
-  &:after {
-    content: '';
-    margin-left: 0.33em;
-    background: url(../skins.tgui.styles/images/arrow-down.svg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    width: unit(13 / @font-size-tabs / @font-size-browser, em);
-    height: unit(13 / @font-size-tabs / @font-size-browser, em);
-    filter: var(--invert-icon);
-  }
-}
 
 //non-standard dropdown menu item.
 .tgui-user-menu-logout,
@@ -33,7 +19,8 @@
     text-shadow: none;
 
     span:before {
-      filter: var(--invert-button-icon);
+      background-image: none;
+      color: var(--color-white);
     }
   }
 

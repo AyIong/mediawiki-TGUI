@@ -26,15 +26,16 @@ div.thumbinner {
 }
 
 .magnify a {
-  display: block;
+  display: inline-block;
   user-select: none;
-  background-image: url(../skins.tgui.styles/images/magnifying-glass-plus-solid.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 16px;
-  height: 16px;
-  color: transparent;
-  filter: var(--invert-icon);
+  color: var(--color-text-darker);
+
+  &:before {
+    content: '\f00e';
+    font: var(--fa-font-solid);
+    width: 1em;
+    height: 1em;
+  }
 }
 
 .mw-content-ltr .magnify {

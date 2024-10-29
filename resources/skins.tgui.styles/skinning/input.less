@@ -1,3 +1,5 @@
+@import '../mixins.less';
+
 /* Shared betwen all inputs */
 input,
 button,
@@ -16,8 +18,12 @@ textarea {
   background-color: var(--color-base);
   color: var(--color-text);
   border: var(--border-classic);
-  border-radius: var(--border-radius-medium);
+  border-radius: var(--border-radius-small);
   transition: border var(--transition-time);
+
+  &:not(:disabled) {
+    transition: border var(--transition-time);
+  }
 
   &:hover {
     border: var(--border-classic-input);

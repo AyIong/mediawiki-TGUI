@@ -46,8 +46,8 @@
 
 #tgui-pref {
   &-toggle {
+    padding: 0;
     cursor: pointer;
-    padding: 1.1em;
     background-color: transparent;
     transition: background-color var(--transition-time);
 
@@ -58,36 +58,47 @@
     &[aria-expanded='true'] {
       background-color: var(--color-bg-focus);
 
-      span::before {
+      span:before {
         transform: rotate(180deg);
       }
     }
 
-    span::before {
+    span:before {
       transform: rotate(0deg);
       transition: transform var(--transition-time);
     }
   }
 
   &-header {
-    height: 1.75rem;
-    font-size: 1.1em;
-    align-content: center;
-    background-color: var(--color-popup-header);
-    color: var(--color-white);
-    border-bottom: 1px solid var(--color-base-fill);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 2rem;
+    font-size: 0.95rem;
+    font-family: Verdana, Arial, sans-serif;
+    background-color: var(--color-bg-focus);
+    color: var(--color-text-semi-translucent);
+    border-bottom: 1px solid var(--color-second-fill);
+    box-shadow: var(--shadow-template--small);
 
     &:before {
+      content: '\f06e';
+      font: var(--fa-font-solid);
+      color: var(--color-green);
+      padding: 0 0.66rem;
+      font-size: 1.33rem;
+    }
+
+    &:after {
       content: '';
-      display: inline-block;
-      background-image: url(../skins.tgui.styles/images/eye-solid.svg);
-      background-repeat: no-repeat;
-      background-position: center;
-      width: 1rem;
-      height: 0.8em;
-      margin: 0 1em 0 0.75em;
-      transform: scale(1.6) translateY(0.05em);
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: var(--color-base-fill);
+      z-index: -1;
     }
   }
 
@@ -299,36 +310,35 @@
         width: 2rem;
         height: 2rem;
         margin-left: 0.5rem;
-
-        &:before {
-          content: '';
-          display: block;
-          background-image: url(../skins.tgui.styles/images/arrow-rotate-left.svg);
-          background-repeat: no-repeat;
-          background-position: center;
-          width: 1.25rem;
-          height: 1.25rem;
-          filter: var(--invert-button-icon);
-          transition: opacity var(--transition-time);
-        }
       }
     }
   }
 }
 
-.tgui-icon::before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-width: 1.25em;
-  min-height: 1.25em;
-  background-repeat: no-repeat;
-  background-size: 1.25em 1.25em;
-  background-position: center;
-  filter: var(--invert-icon);
+.tgui-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.75rem;
+  width: 2.75rem;
+  border: 1px solid transparent;
+
+  &:before {
+    font: var(--fa-font-solid);
+    font-size: 1.25rem;
+    line-height: 1.25em;
+    color: var(--color-text-darker) !important;
+  }
+
+  &_white:before {
+    color: var(--color-white) !important;
+  }
 }
 
-.tgui-icon-settings::before {
-  background-image: url(../skins.tgui.styles/images/gear-solid.svg);
+.tgui-icon-settings:before {
+  content: '\f013';
+}
+
+.tgui-icon-reset:before {
+  content: '\f0e2';
 }

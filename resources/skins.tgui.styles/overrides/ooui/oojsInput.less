@@ -1,3 +1,5 @@
+@import '../../mixins.less';
+
 /* All */
 .oo-ui-labelWidget.oo-ui-inline-help {
   color: var(--color-text-gray);
@@ -43,6 +45,7 @@
   .oo-ui-barToolGroup-tools.oo-ui-toolGroup-disabled-tools .oo-ui-tool.oo-ui-flaggedElement-primary > .oo-ui-tool-link {
     .disable-borders();
     .tgui-button(@color: 'grey', @hover: false, @active: false);
+
     * {
       color: var(--color-translucent) !important;
     }
@@ -77,14 +80,6 @@
   .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:last-child .oo-ui-buttonElement-button {
     border-bottom-right-radius: var(--border-radius-small) !important;
     border-top-right-radius: var(--border-radius-small) !important;
-  }
-
-  .oo-ui-icon-edit {
-    background-image: url(../skins.tgui.styles/images/pen-to-square.svg) !important;
-  }
-
-  .oo-ui-icon-calendar {
-    background-image: url(../skins.tgui.styles/images/calendar-days.svg) !important;
   }
 }
 
@@ -135,7 +130,12 @@
     background-color: var(--color-second);
     border-color: var(--color-border);
     border-radius: var(--border-radius-small);
-    filter: none !important;
+
+    &:before {
+      opacity: 0;
+      font-size: 1.1em;
+      color: var(--color-white);
+    }
   }
 
   .oo-ui-checkboxInputWidget [type='checkbox']:disabled + span {
@@ -159,12 +159,20 @@
   .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:indeterminate + span {
     background-color: var(--color-blue);
     border-color: var(--color-blue);
+
+    &:before {
+      opacity: 1;
+    }
   }
 
   .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked + span:hover,
   .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:indeterminate + span:hover {
     background-color: var(--color-border-input);
     border-color: var(--color-border-input);
+
+    &:before {
+      opacity: 1;
+    }
   }
 }
 
@@ -183,6 +191,10 @@
     color: var(--color-white) !important;
     border-radius: var(--border-radius-small) !important;
     transition: background-color var(--transition-time) !important;
+
+    &:before {
+      color: var(--color-white) !important;
+    }
   }
 
   .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:hover,
@@ -192,6 +204,10 @@
   .oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle:active {
     background-color: var(--color-primary-light) !important;
     color: var(--color-white) !important;
+
+    &:before {
+      color: var(--color-white) !important;
+    }
   }
 
   .oo-ui-dropdownInputWidget.oo-ui-widget-disabled,
@@ -201,6 +217,10 @@
     color: var(--color-translucent);
     border-radius: var(--border-radius-small) !important;
     transition: background-color var(--transition-time);
+
+    &:before {
+      color: var(--color-translucent);
+    }
   }
 
   .oo-ui-menuSelectWidget {
@@ -216,6 +236,10 @@
   .oo-ui-menuOptionWidget.oo-ui-widget-enabled.oo-ui-optionWidget {
     color: var(--color-text-darker) !important;
     transition: background-color var(--transition-time);
+
+    &:before {
+      color: var(--color-text-darker);
+    }
   }
 
   .oo-ui-menuOptionWidget.oo-ui-optionWidget-selected,
@@ -236,19 +260,10 @@
     background-color: var(--color-grey-light);
   }
 
-  :not(.oo-ui-buttonElement-button, .oo-ui-dropdownWidget).oo-ui-indicator-down {
-    background-image: url(../skins.tgui.styles/images/arrow-down.svg);
-  }
-
-  .oo-ui-buttonElement-button .oo-ui-indicator-down {
-    background-image: url(../skins.tgui.styles/images/angle-right-solid.svg);
-    transform: rotate(90deg) !important;
-  }
-
   .oo-ui-dropdownWidget {
     .oo-ui-indicator-down {
-      background-image: url(../skins.tgui.styles/images/angle-right-solid.svg);
-      transform: rotate(90deg);
+      background-image: none;
+      color: var(--color-white);
     }
   }
 }
@@ -258,7 +273,7 @@
   background-color: var(--color-base);
   color: var(--color-text);
   border: var(--border-classic);
-  border-radius: var(--border-radius-medium);
+  border-radius: var(--border-radius-small);
   transition:
     background-color var(--transition-time),
     border var(--transition-time);
@@ -289,26 +304,6 @@
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid .oo-ui-inputWidget-input,
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid .oo-ui-inputWidget-input:hover {
   border-color: var(--color-red);
-}
-
-.oo-ui-icon-search,
-.mw-ui-icon-search:before {
-  pointer-events: none;
-  background-image: url(../skins.tgui.styles/images/magnifying-glass-solid.svg);
-  transition: opacity var(--transition-time);
-  filter: var(--invert-icon);
-}
-
-.oo-ui-indicator-required {
-  pointer-events: none;
-  background-image: url(../skins.tgui.styles/images/asterisk-solid.svg);
-  filter: var(--invert-icon);
-}
-
-.oo-ui-indicator-clear {
-  width: 16px;
-  background-image: url(../skins.tgui.styles/images/circle-xmark.svg);
-  filter: var(--invert-icon);
 }
 
 /* Multiselect */
@@ -364,6 +359,18 @@ div .oo-ui-fieldLayout-body .oo-ui-fieldLayout-field {
         background-color var(--transition-time);
     }
   }
+}
+
+.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined
+  .oo-ui-tagItemWidget.oo-ui-widget-enabled {
+  background-color: var(--color-second) !important;
+  color: var(--color-text-darker);
+  border: var(--border-classic);
+  border-radius: var(--border-radius-small);
+}
+
+.oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button:hover {
+  background-color: transparent !important;
 }
 
 /* Calendar */

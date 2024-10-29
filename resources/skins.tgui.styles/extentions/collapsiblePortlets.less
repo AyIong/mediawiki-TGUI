@@ -3,21 +3,17 @@
     .tgui-menu-heading {
       cursor: pointer;
       user-select: none;
+      padding: 0.5em 0.75em 0.4em 0.33em;
 
       &:before {
-        content: '';
-        display: inline-block;
-        background-image: url(../skins.tgui.styles/images/arrow-down.svg);
-        background-repeat: no-repeat;
-        width: 10px;
-        height: 10px;
-        filter: var(--invert-icon);
-        transform: rotate(0deg) translateX(-2px);
+        content: '\f078';
+        font: var(--fa-font-solid);
+        width: 1rem;
+        transform: rotate(0deg) scale(0.75) translateX(0.1rem);
         transition: transform var(--transition-time);
 
         @media (max-width: @max-width-mobile) {
-          width: 16px;
-          height: 15px;
+          text-indent: -0.25em;
         }
       }
 
@@ -28,7 +24,7 @@
 
     &.collapsed {
       .tgui-menu-heading:before {
-        transform: rotate(-90deg) translateY(-2px);
+        transform: rotate(-90deg) scale(0.75) translateX(0.2rem);
       }
     }
 
@@ -40,8 +36,7 @@
     }
 
     &.collapsed .tgui-menu-content:before {
-      transform: scaleX(0);
-      opacity: 0;
+      transform: scale(0);
     }
 
     /* First */

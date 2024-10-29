@@ -25,18 +25,19 @@
         a {
           .tgui-button();
           height: auto;
-          padding: 0.2em 0.5em 0.25em 1.5em;
+          padding: 0.25rem 0.5rem 0.25rem 0.33rem;
           line-height: var(--font-size-medium);
-          text-shadow: none;
 
           &:before {
-            content: '';
-            background: url(/skins/TGUI/resources/skins.tgui.styles/images/arrow-down.svg) center no-repeat;
-            background-size: 14px;
-            width: 22px;
-            height: 22px;
+            display: inline-block;
+            position: relative;
+            background: none;
+            content: '\f078';
+            font: var(--fa-font-solid);
+            width: 1em;
+            height: 1em;
+            margin-right: 0.25em;
             transition: transform var(--transition-time);
-            filter: var(--invert-button-icon);
           }
 
           &.current {
@@ -101,12 +102,13 @@
             color: var(--color-text);
 
             &:after {
-              background: url(/skins/TGUI/resources/skins.tgui.styles/images/arrow-down.svg) center no-repeat;
+              background: none;
+              align-content: center;
+              content: '\f078';
+              font: var(--fa-font-solid);
               right: 6px;
               width: 1rem;
               height: 2rem;
-              filter: var(--invert-icon);
-              transform: scale(0.9);
             }
           }
         }

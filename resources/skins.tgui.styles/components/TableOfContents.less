@@ -1,4 +1,5 @@
 @import '../variables.less';
+@import '../mixins.less';
 
 .sidebar-toc {
   display: flex;
@@ -69,16 +70,15 @@
   }
 
   .sidebar-toc-toggle {
-    // For no-js users, toggling is disabled and icon is hidden
-    display: none;
+    .tgui-button(@transparent: true);
     position: absolute;
     cursor: pointer;
-    top: 0; // visually center icon
-    left: -2em;
-    width: 1.75em;
-    height: 1.75em;
+    top: 0.1rem;
+    left: -1.4rem;
+    width: 1.25rem;
+    height: 1.25rem;
     font-size: 0.75em;
-    transition: var(--transition-time);
+    transition: transform var(--transition-time);
   }
 
   .sidebar-toc-link {
@@ -126,17 +126,17 @@
 .tgui-toc-collapse-button {
   .tgui-button();
   display: block;
-  padding: 3px;
+  padding: 0;
   border: 0;
 
   &:before {
-    content: '';
-    display: block;
-    background: url(../skins.tgui.styles/images/arrow-down.svg);
-    width: 13px;
-    height: 13px;
+    content: '\f078';
+    align-content: center;
+    font: var(--fa-font-solid);
+    width: 0.95em;
+    height: 0.95em;
+    padding: 0.2rem;
     transition: transform var(--transition-time);
-    filter: var(--invert-button-icon);
 
     .tgui-toc-collapsed & {
       transform: rotate(180deg);
@@ -162,11 +162,10 @@
         font-weight: bold;
 
         .tgui-toc-collapse-button {
-          padding: 0.3em;
-
           &:before {
-            width: 16px;
-            height: 16px;
+            font-size: 1.1em;
+            width: 1.2em;
+            height: 1.2em;
           }
         }
       }
@@ -205,15 +204,15 @@
     display: block;
   }
 
-  .sidebar-toc-level-1.sidebar-toc-list-item-expanded .sidebar-toc-toggle {
+  .sidebar-toc-level-1.sidebar-toc-list-item-expanded .sidebar-toc-toggle:before {
     transform: rotate(0deg);
   }
 }
 
-.client-js body.ltr .sidebar-toc .sidebar-toc-toggle {
+.client-js body.ltr .sidebar-toc .sidebar-toc-toggle:before {
   transform: rotate(-90deg);
 }
 
-.client-js body.rtl .sidebar-toc .sidebar-toc-toggle {
+.client-js body.rtl .sidebar-toc .sidebar-toc-toggle:before {
   transform: rotate(90deg);
 }

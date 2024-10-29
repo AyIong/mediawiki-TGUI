@@ -1,7 +1,20 @@
 .redirectText {
   font-size: 140%;
+
+  li {
+    padding-left: 0 !important;
+    background: none !important;
+
+    &:before {
+      font: var(--fa-font-solid);
+      content: '\f148';
+      padding: 0 1em;
+      transform: rotate(90deg);
+    }
+  }
 }
 
 .redirectMsg p {
   margin: 0;
+  padding: 0;
 }

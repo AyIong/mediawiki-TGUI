@@ -314,34 +314,6 @@ class SkinTGUI extends SkinMustache {
 	}
 
 	/**
-	 * Creates portlet data for the ULS button in the header
-	 *
-	 * @return array
-	 */
-	private function getULSPortletData() {
-		$numLanguages = count( $this->getLanguagesCached() );
-
-		$languageButtonData = [
-			'id' => 'p-lang-btn',
-			'label' => $this->getULSLabels()['label'],
-			'aria-label' => $this->getULSLabels()['aria-label'],
-			// ext.uls.interface attaches click handler to this selector.
-			'checkbox-class' => ' mw-interlanguage-selector ',
-			'icon' => 'language-progressive',
-			'button' => true,
-			'heading-class' => self::CLASS_PROGRESSIVE . ' mw-portlet-lang-heading-' . strval( $numLanguages ),
-		];
-
-		// Adds class to hide language button
-		// Temporary solution to T287206, can be removed when ULS dialog includes interwiki links
-		if ( $this->shouldHideLanguages() ) {
-			$languageButtonData['class'] = ' mw-portlet-empty';
-		}
-
-		return $languageButtonData;
-	}
-
-	/**
 	 * Creates portlet data for the user menu dropdown
 	 *
 	 * @param array $portletData

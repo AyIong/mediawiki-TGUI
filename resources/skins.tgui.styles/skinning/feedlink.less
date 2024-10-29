@@ -1,8 +1,12 @@
 a.feedlink {
-  background-image: linear-gradient(transparent, transparent), url(images/rss-solid.svg);
-  background-position: center left;
-  background-repeat: no-repeat;
-  background-size: 1.5em 1.5em;
-  padding-left: 1.75em !important;
-  margin-left: 0.25em;
+  background-image: none;
+  padding: 0;
+
+  &:before {
+    content: '\f09e';
+    font: var(--fa-font-solid);
+    margin-right: 0.5em;
+    width: 1em;
+    transform: scale(1.33);
+  }
 }

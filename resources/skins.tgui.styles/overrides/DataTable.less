@@ -1,3 +1,5 @@
+@import '../mixins.less';
+
 /**
  * mw-datatable styles used by TablePager.
  * These were previously available through legacy.less and are still imported there.
@@ -35,13 +37,12 @@
  * in MediaWiki (used e.g. on Special:ListFiles).
  */
 .mixin-data-table-arrow() {
-  display: inline-block;
-  content: '';
-  background-image: url(../skins.tgui.styles/images/arrow-down.svg);
-  background-repeat: no-repeat;
-  width: 14px;
-  height: 14px;
-  filter: var(--invert-icon);
+  content: '\f078';
+  font: var(--fa-font-solid);
+  width: 1em;
+  height: 1em;
+  margin-right: 0.25em;
+  color: var(--color-text-darker);
 }
 
 .mw-datatable {
@@ -58,7 +59,7 @@
 
     &:before {
       .mixin-data-table-arrow();
-      transform: translate(-2px, 2px) rotate(180deg);
+      transform: rotate(180deg);
     }
   }
 
@@ -67,52 +68,68 @@
 
     &:before {
       .mixin-data-table-arrow();
-      transform: translate(-2px, 2px);
     }
   }
 }
 
-.TablePager_nav {
-  span {
-    .tgui-button();
-    margin: 0 0.5em;
+.TablePager {
+  &_nav {
+    margin: 0.75em;
 
-    &[aria-disabled='true'] {
-      background-color: var(--color-grey);
+    span {
+      .tgui-button();
+      margin-right: 0.5em !important;
+
+      &:last-child {
+        margin-right: 0 !important;
+      }
+
+      &[aria-disabled='true'] {
+        .tgui-button(@color: 'grey', @hover: false, @active: false);
+        color: var(--color-text-translucent) !important;
+
+        * {
+          color: var(--color-text-translucent) !important;
+        }
+      }
+
+      * {
+        margin-right: 0 !important;
+        background: none !important;
+      }
+
+      a {
+        padding-left: 0.5em !important;
+        padding-right: 0.5em !important;
+      }
     }
   }
 
-  span[aria-disabled='true'] .oo-ui-labelElement-label {
-    background-color: transparent;
-    color: var(--color-translucent);
+  &-button-first a .oo-ui-labelElement-label:before {
+    content: '\f100';
+    font: var(--fa-font-solid);
+    margin: 0 0.5rem 0 0.25rem;
+    transform: scale(1.5);
   }
 
-  span {
-    .oo-ui-labelElement-label {
-      background-color: transparent;
-      color: var(--color-white);
-    }
+  &-button-prev a .oo-ui-labelElement-label:before {
+    content: '\f104';
+    font: var(--fa-font-solid);
+    margin: 0 0.5rem 0 0.25rem;
+    transform: scale(1.5);
+  }
 
-    .oo-ui-icon-first {
-      background-color: transparent;
-      background-image: url(../skins.tgui.styles/images/angles-left-solid.svg);
-    }
+  &-button-next a .oo-ui-labelElement-label:after {
+    content: '\f105';
+    font: var(--fa-font-solid);
+    margin: 0 0.25rem 0 0.5rem;
+    transform: scale(1.5);
+  }
 
-    .oo-ui-icon-previous {
-      background-color: transparent;
-      background-image: url(../skins.tgui.styles/images/angle-left-solid.svg);
-      transform: scale(0.65) !important;
-    }
-
-    .oo-ui-icon-next {
-      background-color: transparent;
-      background-image: url(../skins.tgui.styles/images/angle-right-solid.svg);
-      transform: scale(0.65) !important;
-    }
-
-    .oo-ui-icon-last {
-      background-color: transparent;
-      background-image: url(../skins.tgui.styles/images/angles-right-solid.svg);
-    }
+  &-button-last a .oo-ui-labelElement-label:after {
+    content: '\f101';
+    font: var(--fa-font-solid);
+    margin: 0 0.25rem 0 0.5rem;
+    transform: scale(1.5);
   }
 }

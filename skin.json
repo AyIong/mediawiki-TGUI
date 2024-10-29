@@ -240,7 +240,6 @@
         },
         "resources/skins.tgui.js/checkbox.js",
         "resources/skins.tgui.js/dropdownMenus.js",
-        "resources/skins.tgui.js/languageButton.js",
         "resources/skins.tgui.js/purgeButton.js",
         "resources/skins.tgui.js/searchLoader.js",
         "resources/skins.tgui.js/scrollObserver.js",
@@ -293,7 +292,6 @@
       "targets": ["desktop", "mobile"]
     }
   },
-
   "ResourceFileModulePaths": {
     "localBasePath": "",
     "remoteSkinPath": "TGUI"
@@ -313,7 +311,8 @@
       "+mediawiki.notification": "skinStyles/mediawiki/mediawiki.notification.less",
       "+mediawiki.page.gallery.styles": "skinStyles/mediawiki/mediawiki.page.gallery.styles.less",
       "+mediawiki.special.search.styles": "skinStyles/mediawiki/mediawiki.special.search.styles.less",
-      "+mediawiki.ui.button": "skinStyles/mediawiki/mediawiki.ui.button.less",
+      "+mediawiki.ui.button": "skinStyles/mediawiki/ui/mediawiki.ui.button.less",
+      "+mediawiki.ui.icon": "skinStyles/mediawiki/ui/mediawiki.ui.icon.less",
       "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
       "+mediawiki.action.view.filepage": "skinStyles/mediawiki.action.view.filepage.less",
       "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",

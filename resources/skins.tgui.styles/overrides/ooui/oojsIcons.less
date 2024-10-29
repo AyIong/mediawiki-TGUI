@@ -1,90 +1,300 @@
-/* Button Icons */
-.oo-ui-buttonElement.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator,
-.oo-ui-buttonElement-framed.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-  filter: var(--invert-button-icon);
-}
+.skin-tgui {
+  .oo-ui-iconWidget,
+  .oo-ui-iconElement-icon,
+  .oo-ui-indicatorElement-indicator {
+    background-image: none !important; // Disables OOUI icons to replace with FontAwesome
+    text-indent: 0;
 
-.mw-ui-icon-settings-progressive:before {
-  filter: none !important;
-}
+    &:before {
+      align-content: center;
+      font: var(--fa-font-solid);
+      font-size: 1.4em;
+      height: 100%;
+      width: 100%;
+      text-indent: 0;
+      text-align: center;
+      color: var(--color-text-darker);
+    }
 
-.oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon,
-.oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator,
-.oo-ui-tool.oo-ui-widget-enabled .oo-ui-iconElement-icon,
-.oo-ui-buttonElement-frameless.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon,
-.oo-ui-toolGroup.oo-ui-widget-disabled:not(.oo-ui-flaggedElement-primary) .oo-ui-indicatorElement-indicator,
-.oo-ui-toolGroup.oo-ui-widget-disabled:not(.oo-ui-flaggedElement-primary) .oo-ui-iconElement-icon,
-.oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools .oo-ui-tool.oo-ui-widget-disabled .oo-ui-iconElement-icon,
-.oo-ui-barToolGroup-tools.oo-ui-toolGroup-disabled-tools .oo-ui-tool .oo-ui-iconElement-icon,
-.oo-ui-listToolGroup-tools .oo-ui-tool.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator,
-.oo-ui-listToolGroup-tools .oo-ui-tool.oo-ui-widget-disabled .oo-ui-iconElement-icon,
-.oo-ui-iconWidget,
-.skin-tgui .oo-ui-fieldsetLayout.oo-ui-iconElement > .oo-ui-fieldsetLayout-header .oo-ui-iconElement-icon,
-.skin-tgui .oo-ui-icon-reload,
-.skin-tgui .mw-ui-icon-reload:before {
-  filter: var(--invert-icon);
-}
+    &.oo-ui-image-progressive {
+      background-image: none !important; // Disables OOUI progressive icons to replace with FontAwesome
+      text-indent: 0;
 
-.oo-ui-icon-checkAll {
-  background-image: url(../skins.tgui.styles/images/check-double.svg) !important;
-}
+      &:before {
+        color: var(--color-primary-light) !important;
 
-.oo-ui-icon-highlight {
-  background-image: url(../skins.tgui.styles/images/highlighter.svg) !important;
-}
+        :hover & {
+          color: var(--color-primary-light) !important;
+        }
+      }
+    }
+  }
 
-.oo-ui-icon-play {
-  background-image: url(../skins.tgui.styles/images/play.svg) !important;
-  transform: scale(0.8) !important;
-}
+  .oo-ui-indicatorElement-indicator:before {
+    font-size: 1.2em;
+  }
 
-.oo-ui-icon-stop {
-  background-image: url(../skins.tgui.styles/images/stop.svg) !important;
-  transform: scale(0.8) !important;
-}
+  .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator:before {
+    font-size: 1em;
+  }
 
-/* Input Icons */
-.oo-ui-textInputWidget.oo-ui-iconElement > .oo-ui-iconElement-icon {
-  filter: var(--invert-icon);
-}
+  .oo-ui-icon- {
+    &bookmark:before {
+      content: '\f02e';
+    }
 
-/* Dropdown Icons */
-.oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
-  filter: var(--invert-button-icon);
-}
+    &trash:before {
+      content: '\f1f8';
+    }
 
-/* Common UI Icons */
-.oo-ui-icon-collapse {
-  background-image: url(../skins.tgui.styles/images/arrow-down.svg) !important;
-  transform: translate(10px, 10px);
-  filter: var(--invert-icon);
-}
+    &article:before {
+      content: '\f15c';
+    }
 
-.oo-ui-icon-expand {
-  background-image: url(../skins.tgui.styles/images/arrow-down.svg) !important;
-  transform: translate(10px, 10px) rotate(-90deg);
-  filter: var(--invert-icon);
-}
+    &tag:before {
+      content: '\f02b';
+    }
 
-.oo-ui-popupWidget-head > .oo-ui-iconElement-icon,
-.oo-ui-decoratedOptionWidget .oo-ui-iconElement-icon {
-  filter: var(--invert-icon);
-}
+    &settings:before {
+      content: '\f013';
+    }
 
-.oo-ui-icon-puzzle,
-.mw-ui-icon-puzzle:before {
-  background-image: url(../skins.tgui.styles/images/puzzle.svg) !important;
-  filter: var(--invert-icon);
-}
+    &play:before {
+      content: '\f04b';
+    }
 
-.oo-ui-icon-help,
-.mw-ui-icon-help:before {
-  background-image: url(../skins.tgui.styles/images/question.svg) !important;
-  transform: scale(0.75) !important;
-}
+    &stop:before {
+      content: '\f04d';
+    }
 
-.oo-ui-icon-wikimedia-expand,
-.mw-ui-icon-wikimedia-expand:before {
-  background-image: url(../skins.tgui.styles/images/arrow-down.svg) !important;
-  filter: var(--invert-icon);
+    &menu:before {
+      content: '\f0c9';
+    }
+
+    &highlight:before {
+      content: '\f591';
+    }
+
+    &history:before {
+      content: '\f1da';
+    }
+
+    &helpNotice:before {
+      content: '\f059';
+    }
+
+    &previous:before {
+      content: '\f053';
+    }
+
+    &search:before,
+    &articleSearch:before {
+      content: '\f002';
+      font-size: 1.2em;
+    }
+
+    &check:before {
+      content: '\f00c';
+    }
+
+    &close:before {
+      content: '\f00d';
+    }
+
+    &articleRedirect:before {
+      content: '\f277';
+    }
+
+    &edit:before {
+      content: '\f044';
+    }
+
+    &bold:before {
+      content: '\f032';
+    }
+
+    &italic:before {
+      content: '\f033';
+    }
+
+    &link:before {
+      content: '\f0c1';
+    }
+
+    &image:before {
+      content: '\f03e';
+    }
+
+    &imageGallery:before {
+      content: '\f302';
+    }
+
+    &reference:before {
+      content: '\e0bb';
+    }
+
+    &references:before {
+      content: '\f02d';
+    }
+
+    &listBullet:before {
+      content: '\f0ca';
+    }
+
+    &listNumbered:before {
+      content: '\f0cb';
+    }
+
+    &noWikiText:before {
+      content: '\f121';
+    }
+
+    &newline:before {
+      content: '\f3be';
+    }
+
+    &bigger:before {
+      content: '\f031';
+    }
+
+    &smaller:before {
+      content: '\f031';
+      font-size: 1em;
+    }
+
+    &superscript:before {
+      content: '\f12b';
+    }
+
+    &subscript:before {
+      content: '\f12c';
+    }
+
+    &table:before {
+      content: '\f0ce';
+    }
+
+    &eye:before {
+      content: '\f06e';
+      font-size: 1rem;
+    }
+
+    &wikiText:before {
+      content: '\f121';
+      font-size: 1rem;
+    }
+
+    &undo:before {
+      content: '\f0e2';
+    }
+
+    &redo:before {
+      content: '\f01e';
+    }
+
+    &textStyle:before {
+      content: '\f031';
+    }
+
+    &cancel:before {
+      content: '\f05e';
+    }
+
+    &expand:before {
+      content: '\f078';
+    }
+
+    &collapse:before {
+      content: '\f077';
+    }
+
+    &strikethrough:before {
+      content: '\f0cc';
+    }
+
+    &code:before {
+      content: '\f121';
+      font-size: 1rem;
+    }
+
+    &underline:before {
+      content: '\f0cd';
+    }
+
+    &language:before,
+    &textLanguage:before {
+      content: '\f0ac';
+    }
+
+    &specialCharacter:before {
+      content: '\40';
+    }
+
+    &outdent:before {
+      content: '\f03b';
+    }
+
+    &indent:before {
+      content: '\f03c';
+    }
+
+    &puzzle:before {
+      content: '\f12e';
+    }
+
+    &notice:before,
+    &info:before {
+      content: '\f05a';
+    }
+
+    &help:before {
+      content: '\3f';
+    }
+
+    &alert:before {
+      content: '\f071';
+    }
+
+    &signature:before {
+      content: '\f5b7';
+    }
+
+    &keyboard:before {
+      content: '\f11c';
+    }
+
+    &speechBubble:before {
+      content: '\f27a';
+    }
+
+    &window:before {
+      content: '\f2d0';
+    }
+
+    &pageSettings:before {
+      content: '\f1de';
+    }
+
+    &textDirRTL:before {
+      content: '\f30a';
+    }
+
+    &calendar:before {
+      content: '\f073';
+    }
+  }
+
+  .oo-ui-indicator- {
+    &down:before {
+      content: '\f078';
+    }
+
+    &required:before {
+      content: '\2a';
+    }
+
+    &clear:before {
+      content: '\f057';
+    }
+  }
 }

@@ -40,19 +40,15 @@
     }
 
     &:before {
+      content: '\f100';
       opacity: 0.67;
-      transform: scale(1);
-      background-image: url(../skins.tgui.styles/images/angles-left-solid.svg);
-      transition:
-        opacity var(--transition-time),
-        transform var(--transition-time);
     }
   }
 
   #mw-sidebar-button {
     &:before {
       @{selector-main-menu-closed} ~ & {
-        background-image: url(../skins.tgui.styles/images/menu.svg);
+        content: '\f0c9';
       }
     }
   }
@@ -68,7 +64,7 @@
       }
 
       #mw-sidebar-checkbox-mobile:not(:checked) ~ & {
-        background-image: url(../skins.tgui.styles/images/menu.svg);
+        content: '\f0c9';
         transform: rotate(0);
       }
     }

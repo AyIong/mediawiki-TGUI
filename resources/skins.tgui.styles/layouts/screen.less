@@ -39,8 +39,9 @@ html {
     scroll-padding-top: 0 !important;
   }
 
-  &:not(.tgui-animations-ready) * {
-    transition: none !important;
+  &:not(.tgui-animations-ready) {
+    --transition-time: 0s !important;
+    --transition-time-fast: 0s !important;
   }
 }
 
@@ -69,13 +70,13 @@ body {
   }
 }
 
-.mw-ui-icon-element::before {
-  filter: var(--invert-icon);
-}
-
 .skin-tgui {
   .mw-ui-icon-element {
     border-radius: var(--border-radius-small);
+
+    &:before {
+      color: var(--color-text-darker);
+    }
   }
 
   .mw-ui-icon-element:not(.disabled):hover {
@@ -84,8 +85,8 @@ body {
 }
 
 .mw-body-content {
-  padding: 0 0.75em 0.75em 0.75em;
-  margin-top: 1em;
+  padding: 0 0.75em 0.75em;
+  margin-top: 0.75em;
 }
 
 /* Main column */

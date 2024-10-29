@@ -96,29 +96,42 @@ a.mw-selflink:visited {
 .link-audio,
 .link-video,
 .link-document {
-  background-position: center right;
-  background-repeat: no-repeat;
-  background-size: 0.85em;
-  padding-right: 1em;
+  background-image: none;
+
+  &:after {
+    content: '';
+    font: var(--fa-font-solid);
+    margin-left: 0.25em;
+    color: var(--color-hyperlink);
+  }
 }
+
 .mw-parser-output a.external {
-  background-image: url(images/external-link.svg);
+  &:after {
+    content: '\f08e';
+  }
 }
 
 .mw-parser-output a.external[href^='mailto:'],
 .link-mailto {
-  background-image: url(images/mail.svg);
+  &:after {
+    content: '\f0e0';
+  }
 }
 
 .mw-parser-output a.external[ href^='ftp://' ],
 .link-ftp {
-  background-image: url(images/file.svg);
+  &:after {
+    content: '\f802';
+  }
 }
 
 .mw-parser-output a.external[ href^='irc://' ],
 .mw-parser-output a.external[ href^='ircs://' ],
 .link-irc {
-  background-image: url(images/comment.svg);
+  &:after {
+    content: '\f075';
+  }
 }
 
 .mw-parser-output a.external[href$='.ogg'],
@@ -134,7 +147,9 @@ a.mw-selflink:visited {
 .mw-parser-output a.external[href$='.wma'],
 .mw-parser-output a.external[href$='.WMA'],
 .link-audio {
-  background-image: url(images/music.svg);
+  &:after {
+    content: '\f028';
+  }
 }
 
 .mw-parser-output a.external[href$='.ogm'],
@@ -145,8 +160,12 @@ a.mw-selflink:visited {
 .mw-parser-output a.external[href$='.MPEG'],
 .mw-parser-output a.external[href$='.mpg'],
 .mw-parser-output a.external[href$='.MPG'],
+.mw-parser-output a.external[href$='.mp4'],
+.mw-parser-output a.external[href$='.MP4'],
 .link-video {
-  background-image: url(images/video.svg);
+  &:after {
+    content: '\f03d';
+  }
 }
 
 .mw-parser-output a.external[href$='.pdf'],
@@ -156,5 +175,7 @@ a.mw-selflink:visited {
 .mw-parser-output a.external[href*='.pdf?'],
 .mw-parser-output a.external[href*='.PDF?'],
 .link-document {
-  background-image: url(images/file-pdf.svg);
+  &:after {
+    content: '\f1c1';
+  }
 }

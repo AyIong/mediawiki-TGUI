@@ -14,6 +14,8 @@
     max-width: 100%;
 
     li {
+      display: flex;
+      flex-direction: column;
       flex: 1 0 30rem;
       list-style: none;
       padding: 0;
@@ -31,16 +33,23 @@
       }
     }
 
-    .mw-search-result-heading {
-      border-bottom: 2px solid var(--color-primary);
+    .mw-search-result {
+      * {
+        backdrop-filter: none !important;
+      }
 
-      a {
-        display: flex;
-        padding: 0.1em 0.75em;
+      &-heading {
+        border-bottom: 2px solid var(--color-primary);
+
+        a {
+          display: flex;
+          padding: 0.1em 0.75em;
+        }
       }
     }
 
     .searchresult {
+      flex: 1;
       padding: 0.5em;
 
       .searchmatch {
@@ -77,14 +86,17 @@
 
 .mw-body .mw-search-nonefound {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
-  margin: 1em;
-  background-image: url(/skins/TGUI/resources/skins.tgui.styles/images/face-frown-regular.svg);
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: 150px;
-  height: 200px;
+  margin: 2rem 0;
+
+  &:before {
+    content: '\f119';
+    font: var(--fa-font-regular);
+    font-size: 10rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
 }
 
 .mw-search-visualclear {

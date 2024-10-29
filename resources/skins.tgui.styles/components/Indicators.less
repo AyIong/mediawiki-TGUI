@@ -1,4 +1,5 @@
 @import '../variables.less';
+@import '../mixins.less';
 
 .mw-indicators {
   font-size: @font-size-base;
@@ -15,5 +16,15 @@
 }
 
 #mw-indicator-mw-helplink a {
-  background-image: url(../skins.tgui.styles/images/circle-question-solid.svg);
+  background-image: none;
+  padding: 0;
+
+  &:before {
+    content: '\f059';
+    font: var(--fa-font-regular);
+    width: 1.2rem;
+    margin-right: 0.33rem;
+    color: var(--color-white);
+    transform: scale(1.33) translateX(0.15rem);
+  }
 }

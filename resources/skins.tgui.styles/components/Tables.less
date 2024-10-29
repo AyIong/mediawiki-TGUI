@@ -1,3 +1,5 @@
+@import '../mixins.less';
+
 /* Tables */
 table {
   position: relative;
@@ -43,13 +45,12 @@ table {
     transition: transform var(--transition-time) background-color var(--transition-time);
 
     &:before {
-      content: '';
-      display: block;
-      width: 1em;
+      content: '\f078';
+      font: var(--fa-font-solid);
+      align-content: center;
+      width: 1.2em;
       height: 1.2em;
-      background: url(../skins.tgui.styles/images/arrow-down.svg) no-repeat transparent center;
       transition: transform var(--transition-time);
-      filter: var(--invert-icon);
     }
 
     &[aria-expanded='true']:before {
@@ -64,7 +65,7 @@ table {
 
   .wikitable .mw-collapsible-toggle {
     .tgui-button();
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     padding: 0.2em;
     margin: 0 0.25em;
@@ -72,7 +73,6 @@ table {
     &:before {
       width: 1.2em;
       height: 1.2em;
-      filter: var(--invert-button-icon);
     }
 
     &[aria-expanded='true']:before {

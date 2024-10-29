@@ -1,5 +1,4 @@
-var languageButton = require("./languageButton.js"),
-  initSearchLoader = require("./searchLoader.js").initSearchLoader,
+var initSearchLoader = require("./searchLoader.js").initSearchLoader,
   dropdownMenus = require("./dropdownMenus.js").dropdownMenus,
   checkbox = require("./checkbox.js"),
   purgeButton = require("./purgeButton.js");
@@ -108,7 +107,6 @@ function main(window) {
   initStickyHeader(window.document);
   checkbox.init(window.document);
   initSearchLoader(document);
-  languageButton();
   dropdownMenus();
   purgeButton();
 
