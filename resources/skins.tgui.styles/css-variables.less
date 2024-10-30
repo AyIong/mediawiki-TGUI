@@ -8,19 +8,20 @@
   --primary-hue: 210;
 
   /* TGUI Elements Colors */
+  --color-primary: ~'hsl(var(--primary-hue), 37.5%, 45%)';
+  --color-secondary: ~'hsl(var(--primary-hue), 57.5%, 50%)';
   --color-red: hsl(0, 70%, 50%);
   --color-orange: hsl(35, 90%, 50%);
   --color-yellow: hsl(50, 95%, 50%);
   --color-olive: hsl(70, 80%, 45%);
   --color-green: hsl(95, 65%, 40%);
   --color-teal: hsl(175, 100%, 35%);
-  --color-blue: ~'hsl(var(--primary-hue), 70%, 52.5%)';
+  --color-blue: hsl(205, 70%, 45%);
   --color-violet: hsl(260, 60%, 50%);
   --color-purple: hsl(285, 60%, 50%);
   --color-pink: hsl(325, 75%, 55%);
   --color-brown: hsl(25, 45%, 45%);
   --color-grey: hsl(0, 0%, 45%);
-  --color-primary: ~'hsl(var(--primary-hue), 37.5%, 45%)';
   --color-label: hsl(215, 20%, 55%);
   --color-black: hsl(0, 0%, 0%);
   --color-white: hsl(0, 0%, 100%);
@@ -28,38 +29,40 @@
   --color-gray: var(--color-grey);
 
   /* TGUI Elements Colors (Light or Hover) */
+  --color-primary-light: ~'hsl(var(--primary-hue), 32.5%, 60%)';
+  --color-secondary-light: ~'hsl(var(--primary-hue), 100%, 60%)';
   --color-red-light: hsl(0, 85%, 65%);
   --color-orange-light: hsl(35, 100%, 60%);
   --color-yellow-light: hsl(50, 100%, 60%);
   --color-olive-light: hsl(70, 80%, 55%);
   --color-green-light: hsl(95, 65%, 50%);
   --color-teal-light: hsl(175, 100%, 45%);
-  --color-blue-light: ~'hsl(var(--primary-hue), 100%, 60%)';
+  --color-blue-light: hsl(205, 100%, 65%);
   --color-violet-light: hsl(260, 100%, 65%);
   --color-purple-light: hsl(285, 100%, 65%);
   --color-pink-light: hsl(325, 100%, 65%);
   --color-brown-light: hsl(25, 45%, 55%);
   --color-grey-light: hsl(0, 0%, 55%);
-  --color-primary-light: ~'hsl(var(--primary-hue), 32.5%, 60%)';
   --color-label-light: hsl(215, 30%, 70%);
   --color-black-light: hsl(0, 0%, 15%);
   --color-white-light: hsl(0, 0%, 85%);
   --color-gray-light: var(--color-grey-light);
 
   /* TGUI Elements Colors (Darken orFocus/Active) */
+  --color-primary-dark: ~'hsl(var(--primary-hue), 40%, 40%)';
+  --color-secondary-dark: ~'hsl(var(--primary-hue), 70%, 40%)';
   --color-red-dark: hsl(0, 70%, 45%);
   --color-orange-dark: hsl(35, 90%, 45%);
   --color-yellow-dark: hsl(50, 95%, 45%);
   --color-olive-dark: hsl(70, 80%, 40%);
   --color-green-dark: hsl(95, 65%, 35%);
   --color-teal-dark: hsl(175, 100%, 30%);
-  --color-blue-dark: ~'hsl(var(--primary-hue), 70%, 40%)';
+  --color-blue-dark: hsl(205, 100%, 35%);
   --color-violet-dark: hsl(260, 60%, 45%);
   --color-purple-dark: hsl(285, 60%, 45%);
   --color-pink-dark: hsl(325, 75%, 50%);
   --color-brown-dark: hsl(25, 45%, 40%);
   --color-grey-dark: hsl(0, 0%, 40%);
-  --color-primary-dark: ~'hsl(var(--primary-hue), 40%, 40%)';
   --color-label-dark: hsl(215, 20%, 50%);
   --color-white-dark: hsl(0, 0%, 75%);
   --color-gray: var(--color-grey);
@@ -153,7 +156,7 @@
 
   --color-border: rgba(255, 255, 255, 0.1);
   --color-border-input: ~'hsl(var(--primary-hue), 35%, 50%)';
-  --color-border-input-focus: ~'hsl(var(--primary-hue), 75%, 60%)';
+  --color-border-input-focus: var(--color-secondary);
 
   /* Scrollbar */
   --color-scrollbar-base: hsl(0, 0%, 10%);
@@ -231,7 +234,7 @@
 
   --color-border: rgba(0, 0, 0, 0.1);
   --color-border-input: ~'hsl(var(--primary-hue), 75%, 75%)';
-  --color-border-input-focus: ~'hsl(var(--primary-hue), 100%, 50%)';
+  --color-border-input-focus: var(--color-secondary);
 
   /* Scrollbar - Light */
   --color-scrollbar-base: hsl(30, 6%, 93%);

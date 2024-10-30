@@ -54,7 +54,7 @@
   .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive
     > .oo-ui-buttonElement-button {
     .disable-borders();
-    .tgui-button(@color: 'blue', @focus: true);
+    .tgui-button(@color: 'secondary', @focus: true);
   }
 
   .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button,
@@ -100,7 +100,7 @@
 
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:hover + span,
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked + span {
-  border-color: var(--color-blue);
+  border-color: var(--color-secondary);
 }
 
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:active + span {
@@ -109,7 +109,7 @@
 }
 
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:hover + span {
-  border-color: var(--color-blue-light);
+  border-color: var(--color-secondary-light);
 }
 
 .oo-ui-radioInputWidget [type='radio']:checked + span,
@@ -157,8 +157,8 @@
 
   .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked + span,
   .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:indeterminate + span {
-    background-color: var(--color-blue);
-    border-color: var(--color-blue);
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
 
     &:before {
       opacity: 1;
