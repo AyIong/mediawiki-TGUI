@@ -155,8 +155,8 @@
   --color-text-semi-translucent: rgba(255, 255, 255, 0.75);
 
   --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-input: ~'hsl(var(--primary-hue), 35%, 50%)';
-  --color-border-input-focus: var(--color-secondary);
+  --color-border-input: ~'hsla(var(--primary-hue), 100%, calc(var(--primary-lightness) + 25%), 0.5)';
+  --color-border-input-focus: ~'hsl(var(--primary-hue), 100%, calc(var(--primary-lightness) + 15%))';
 
   /* Scrollbar */
   --color-scrollbar-base: hsl(0, 0%, 10%);
@@ -234,8 +234,8 @@
   --color-text-semi-translucent: rgba(0, 0, 0, 0.75);
 
   --color-border: rgba(0, 0, 0, 0.1);
-  --color-border-input: ~'hsl(var(--primary-hue), 75%, 75%)';
-  --color-border-input-focus: var(--color-secondary);
+  --color-border-input: ~'hsl(var(--primary-hue), 100%, calc(var(--primary-lightness) + 10%))';
+  --color-border-input-focus: ~'hsl(var(--primary-hue), 100%, var(--primary-lightness))';
 
   /* Scrollbar - Light */
   --color-scrollbar-base: hsl(30, 6%, 93%);
