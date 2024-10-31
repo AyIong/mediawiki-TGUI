@@ -82,7 +82,9 @@ const main = () => {
     onToggleCollapse: updateTocStatus,
   });
 
-  const headingSelector = ["h1", "h2", "h3", "h4", "h5", "h6"].map((tag) => `.mw-parser-output > ${tag}`).join(",");
+  const headingSelector = ["h1", "h2", "h3", "h4", "h5", "h6", "div", "span"]
+    .map((tag) => `.mw-parser-output > ${tag}`)
+    .join(",");
   const computedStyle = window.getComputedStyle(document.documentElement);
   const scrollPaddingTop = computedStyle.getPropertyValue("scroll-padding-top");
   const topMargin = Number(scrollPaddingTop.slice(0, -2)) + 20;

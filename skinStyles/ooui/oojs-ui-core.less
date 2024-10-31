@@ -1,4 +1,162 @@
+/**
+ * TGUI
+ *
+ * SkinStyles for MediaWiki
+ * Module: oojs-ui-core
+ * Version: REL1_39
+ *
+ * Date: 15-05-2024
+ */
+
 .skin-tgui {
+  .oo-ui-panelLayout-framed {
+    background-color: var(--color-second);
+    border: var(--border-classic);
+    border-radius: var(--border-radius-medium);
+    backdrop-filter: var(--blur-default);
+  }
+
+  .oo-ui-fieldsetLayout {
+    padding: 0.75em;
+    border: var(--border-classic);
+    border-radius: var(--border-radius-medium);
+
+    &.oo-ui-iconElement > .oo-ui-fieldsetLayout-header .oo-ui-iconElement-icon {
+      margin-top: 0.75em;
+    }
+  }
+
+  .oo-ui-panelLayout-padded {
+    padding: 0;
+    border: 0;
+  }
+
+  .oo-ui-windowManager-modal {
+    > .oo-ui-dialog {
+      background-color: var(--color-base);
+      transition: opacity ease-out var(--transition-time);
+
+      .oo-ui-window-frame {
+        background-color: var(--color-second-blur) !important;
+        border: var(--border-classic) !important;
+        border-radius: var(--border-radius-medium) !important;
+        box-shadow: var(--box-shadow-big) !important;
+        backdrop-filter: var(--blur-important);
+      }
+    }
+
+    .oo-ui-messageDialog-title {
+      color: var(--color-text);
+    }
+
+    .oo-ui-messageDialog-message {
+      color: var(--color-text-darker);
+    }
+  }
+
+  .oo-ui-processDialog-content .oo-ui-window-head,
+  .oo-ui-processDialog-content .oo-ui-window-foot {
+    outline: none !important ;
+  }
+
+  .oo-ui-processDialog-content .oo-ui-window-head {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .oo-ui-messageDialog-content > .oo-ui-window-foot {
+    outline: 0 !important;
+  }
+
+  .oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget {
+    border: 0;
+  }
+
+  .oo-ui-clippableElement-clippable.oo-ui-popupWidget-body {
+    color: var(--color-text-darker);
+  }
+
+  .oo-ui-menuToolGroup {
+    border-color: var(--color-border);
+  }
+
+  .oo-ui-popupToolGroup-tools {
+    margin: 0;
+    background-color: var(--color-bg);
+    border: var(--border-classic);
+    box-shadow: var(--box-shadow-medium);
+  }
+
+  .oo-ui-listToolGroup-tools .oo-ui-tool.oo-ui-widget-enabled {
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .oo-ui-listToolGroup-tools .oo-ui-tool-active.oo-ui-widget-enabled .oo-ui-tool-link .oo-ui-tool-title {
+    color: var(--color-text) !important;
+  }
+
+  .oo-ui-menuToolGroup-tools .oo-ui-tool.oo-ui-tool-active {
+    background-color: transparent;
+  }
+
+  .oo-ui-bookletLayout > .oo-ui-menuLayout-menu {
+    border-right: var(--border-classic);
+  }
+
+  .oo-ui-panelLayout .oo-ui-tabSelectWidget-framed {
+    padding: 0.5em;
+    padding-bottom: 0;
+  }
+
+  .oo-ui-selectFileWidget-dropTarget {
+    background-color: var(--color-second) !important;
+    border: var(--border-classic) !important;
+    border-radius: var(--border-radius-medium);
+
+    &:hover {
+      border: var(--border-classic-input) !important;
+    }
+  }
+
+  .oo-ui-windowManager-modal-active {
+    overflow-y: auto !important;
+    margin: 0 !important;
+  }
+
+  .oo-ui-outlineOptionWidget.oo-ui-optionWidget-highlighted {
+    background-color: var(--color-bg-hover) !important;
+    color: var(--color-text) !important;
+  }
+
+  .oo-ui-outlineOptionWidget.oo-ui-optionWidget-selected {
+    background-color: var(--color-bg-focus) !important;
+    color: var(--color-text) !important;
+  }
+
+  .oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input[readonly]:not(.oo-ui-pendingElement-pending) {
+    background-color: transparent !important;
+  }
+
+  .oo-ui-searchWidget-query {
+    border-bottom: var(--border-classic) !important;
+  }
+
+  .oo-ui-tool.oo-ui-widget-enabled > .oo-ui-tool-link:active,
+  .oo-ui-tool.oo-ui-widget-enabled.oo-ui-popupToolGroup-active > .oo-ui-tool-link,
+  .oo-ui-tool.oo-ui-widget-enabled > .oo-ui-tool-link:hover {
+    background-color: var(--color-bg-hover) !important;
+    color: var(--color-text) !important;
+  }
+
+  .oo-ui-tool.oo-ui-widget-enabled.oo-ui-tool-active > .oo-ui-tool-link {
+    background-color: var(--color-bg-focus) !important;
+    color: var(--color-text) !important;
+  }
+
+  // MARK: Icons
   .oo-ui-iconWidget,
   .oo-ui-iconElement-icon,
   .oo-ui-indicatorElement-indicator {
@@ -31,7 +189,7 @@
   }
 
   .oo-ui-indicatorElement-indicator:before {
-    font-size: 1.2em;
+    font-size: 1rem;
   }
 
   .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator:before {
@@ -223,7 +381,8 @@
 
     &language:before,
     &textLanguage:before {
-      content: '\f0ac';
+      content: '\f1ab';
+      font-size: 1.05rem;
     }
 
     &specialCharacter:before {
@@ -285,6 +444,10 @@
   }
 
   .oo-ui-indicator- {
+    &up:before {
+      content: '\f077';
+    }
+
     &down:before {
       content: '\f078';
     }

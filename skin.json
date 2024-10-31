@@ -316,7 +316,7 @@
       "+mediawiki.action.edit": "skinStyles/mediawiki.action.edit.less",
       "+mediawiki.action.view.filepage": "skinStyles/mediawiki.action.view.filepage.less",
       "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki.action.view.redirectPage.less",
-      "+oojs-ui-core.styles": "skinStyles/ooui.less"
+      "+oojs-ui-core.styles": "skinStyles/ooui/oojs-ui-core.less"
     }
   },
   "config_prefix": "wgTGUI",

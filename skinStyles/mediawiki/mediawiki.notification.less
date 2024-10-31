@@ -28,9 +28,13 @@
     transform var(--transition-time) ease-in-out;
   backdrop-filter: var(--blur-default);
 
-  .mw-notification-title {
+  &-title {
     margin-bottom: 0.5em;
     color: var(--color-text);
+  }
+
+  &-content *:before {
+    color: var(--color-green) !important;
   }
 
   &:before {
