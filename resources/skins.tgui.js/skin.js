@@ -1,6 +1,7 @@
 var initSearchLoader = require("./searchLoader.js").initSearchLoader,
   dropdownMenus = require("./dropdownMenus.js").dropdownMenus,
   checkbox = require("./checkbox.js"),
+  tooltips = require("./tooltips.js"),
   purgeButton = require("./purgeButton.js");
 
 /**
@@ -20,7 +21,7 @@ function enableCssAnimations(document) {
  * @param {Document} document
  * @return {void}
  */
-function initStickyHeader(document) {
+function registerScrollPosition(document) {
   const scrollObserver = require("./scrollObserver.js");
 
   // Detect scroll direction and add the right class
@@ -83,17 +84,17 @@ function registerServiceWorker() {
  */
 function initBodyContent(bodyContent) {
   const tables = require("./tables.js");
-  const tooltips = require("./tooltips.js");
+  const templateTooltips = require("./templateTooltips.js");
   const popups = require("./popups.js");
 
   // Table enhancements
   tables.init(bodyContent);
 
-  // Floating UI Tooltips
-  tooltips.init(bodyContent);
-
   // Floating UI Popups
   popups.init(bodyContent);
+
+  // Floating UI Tooltips for MediaWiki templates
+  templateTooltips.init(bodyContent);
 }
 
 /**
@@ -104,8 +105,9 @@ function main(window) {
   const config = require("./config.json");
 
   enableCssAnimations(window.document);
-  initStickyHeader(window.document);
+  registerScrollPosition(window.document);
   checkbox.init(window.document);
+  tooltips.init(window.document);
   initSearchLoader(document);
   dropdownMenus();
   purgeButton();

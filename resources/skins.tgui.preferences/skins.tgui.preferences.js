@@ -188,7 +188,6 @@ function initPref(window) {
       button.id = CLASS + "-toggle";
       button.classList.add(CLASS + "__button", "tgui-header__button", "tgui-button");
       button.setAttribute("title", mw.message("preferences").text());
-      button.setAttribute("aria-label", mw.message("preferences").text());
       button.setAttribute("aria-controls", CLASS + "-panel");
       button.setAttribute("aria-expanded", false);
       if (!localStorage.getItem("prefChecked")) {

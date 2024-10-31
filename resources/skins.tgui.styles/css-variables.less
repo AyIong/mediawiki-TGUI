@@ -8,7 +8,7 @@
   --primary-hue: 210;
 
   /* TGUI Elements Colors */
-  --color-primary: ~'hsl(var(--primary-hue), 37.5%, 45%)';
+  --color-primary: ~'hsl(var(--primary-hue), 37.5%, var(--primary-lightness))';
   --color-secondary: ~'hsl(var(--primary-hue), 57.5%, 50%)';
   --color-red: hsl(0, 70%, 50%);
   --color-orange: hsl(35, 90%, 50%);
@@ -29,7 +29,7 @@
   --color-gray: var(--color-grey);
 
   /* TGUI Elements Colors (Light or Hover) */
-  --color-primary-light: ~'hsl(var(--primary-hue), 32.5%, 60%)';
+  --color-primary-light: ~'hsl(var(--primary-hue), 32.5%, calc(var(--primary-lightness) + 10%))';
   --color-secondary-light: ~'hsl(var(--primary-hue), 100%, 60%)';
   --color-red-light: hsl(0, 85%, 65%);
   --color-orange-light: hsl(35, 100%, 60%);
@@ -49,7 +49,7 @@
   --color-gray-light: var(--color-grey-light);
 
   /* TGUI Elements Colors (Darken orFocus/Active) */
-  --color-primary-dark: ~'hsl(var(--primary-hue), 40%, 40%)';
+  --color-primary-dark: ~'hsl(var(--primary-hue), 40%, calc(var(--primary-lightness) - 5%))';
   --color-secondary-dark: ~'hsl(var(--primary-hue), 70%, 40%)';
   --color-red-dark: hsl(0, 70%, 45%);
   --color-orange-dark: hsl(35, 90%, 45%);
@@ -184,6 +184,7 @@
   --hyperlink-shadow-new-hover: hsl(0, 100%, 50%) 0px 0px 0.5em;
 
   /* Custom HSL */
+  --primary-lightness: 45%;
   --dark-lightness: 95%;
   --light-lightness: 15%;
 
@@ -230,7 +231,7 @@
   --color-text-darker: rgba(40, 40, 40, 1);
   --color-text-gray: rgba(80, 80, 80, 0.75);
   --color-text-translucent: rgba(0, 0, 0, 0.5);
-  --color-text-semi-translucent: rgba(0, 0, 0, 0.5);
+  --color-text-semi-translucent: rgba(0, 0, 0, 0.75);
 
   --color-border: rgba(0, 0, 0, 0.1);
   --color-border-input: ~'hsl(var(--primary-hue), 75%, 75%)';
@@ -262,7 +263,8 @@
   --hyperlink-shadow-new-hover: hsl(0, 100%, 75%) 0px 0px 0.5em;
 
   /* Custom HSL */
-  --dark-lightness: 15%;
+  --primary-lightness: 55%;
+  --dark-lightness: 10%;
   --light-lightness: 90%;
 
   /* Invert */

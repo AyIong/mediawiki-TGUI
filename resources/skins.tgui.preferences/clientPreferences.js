@@ -240,6 +240,7 @@ function appendSlider(parent, featureName, min, currentValue, max, defaultValue,
   const button = document.createElement("button");
   button.type = "button";
   button.classList.add("tgui-icon", "tgui-icon_white", "tgui-icon-reset");
+  button.setAttribute("title", mw.message("tgui-reset-button").text());
 
   if (currentValue === defaultValue) {
     button.disabled = true;

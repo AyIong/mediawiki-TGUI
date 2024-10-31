@@ -1,77 +1,112 @@
-// @ts-nocheck
 const config = require("./config.json");
 
-/**
- * Initialize tooltips using Floating UI
- *
- * @param {HTMLElement} bodyContent
- * @return {void}
- */
-function init(bodyContent) {
-  const { computePosition, offset, flip, shift, autoUpdate } = window.FloatingUIDOM;
-  const tooltipElements = document.querySelectorAll(".tooltip");
-
-  if (!tooltipElements.length) {
+function init(content) {
+  if (!config.wgTGUIReplaceTitleTooltips) {
     return;
   }
 
-  const tooltipText = config.wgTGUITooltips;
+  const { computePosition, offset, flip, shift, arrow } = window.FloatingUIDOM;
+  function initializeTooltips() {
+    const tooltipElements = content.querySelectorAll("[title]");
+    tooltipElements.forEach((tooltip) => {
+      if (tooltip.hasAttribute("data-tooltip-initialized")) {
+        return;
+      }
 
-  if (!tooltipText || !Array.isArray(tooltipText)) {
-    mw.log.error("[TGUI] Invalid or missing $wgTGUITooltips. Cannot use Floating UI for Tooltips.");
-    return;
-  }
+      if (tooltip.parentElement.hasAttribute("data-notitle")) {
+        tooltip.setAttribute("data-tooltip-initialized", "true");
+        tooltip.removeAttribute("title");
+        return;
+      }
 
-  function createFloatingInstance(reference, floatingElement) {
-    return computePosition(reference, floatingElement, {
-      placement: "bottom-start",
-      middleware: [offset(-9), flip(), shift({ padding: 9 })],
-    }).then(({ x, y, strategy }) => {
-      Object.assign(floatingElement.style, {
-        left: `${x}px`,
-        top: `${y}px`,
-        position: strategy,
-      });
-    });
-  }
+      const tooltipText = tooltip.getAttribute("title");
+      if (!tooltipText) {
+        return;
+      }
 
-  const contentClasses = tooltipText.map((className) => `.${className}`).join(", ");
+      tooltip.setAttribute("data-tooltip-initialized", "true");
+      tooltip.removeAttribute("title");
 
-  tooltipElements.forEach((tooltip) => {
-    const tooltipContent = tooltip.querySelector(contentClasses);
+      let tooltipContent = null;
+      let hideTimeout = null;
+      let appearTimeout = null;
 
-    if (tooltipContent) {
-      createFloatingInstance(tooltip, tooltipContent);
+      tooltip.addEventListener("mouseover", showTooltip);
+      tooltip.addEventListener("mouseleave", hideTooltip);
 
-      let cleanup = null;
-      function show() {
-        createFloatingInstance(tooltip, tooltipContent);
-        cleanup = autoUpdate(tooltip, tooltipContent, () => {
-          createFloatingInstance(tooltip, tooltipContent);
+      function showTooltip() {
+        clearTimeout(appearTimeout);
+
+        appearTimeout = setTimeout(() => {
+          if (!tooltipContent) {
+            tooltipContent = createTooltipElement(tooltipText);
+            document.body.appendChild(tooltipContent);
+          }
+          positionTooltip(tooltip, tooltipContent);
+          tooltipContent.classList.add("visible");
+        }, 750);
+      }
+
+      function hideTooltip() {
+        clearTimeout(appearTimeout);
+
+        if (!tooltipContent) return;
+
+        tooltipContent.classList.remove("visible");
+        hideTimeout = hideTimeout || setTimeout(() => removeTooltipElement(), 200);
+      }
+
+      function createTooltipElement(text) {
+        const tooltipContent = document.createElement("div");
+        tooltipContent.classList.add("tooltip-content");
+        tooltipContent.textContent = text;
+
+        const arrowEl = document.createElement("div");
+        arrowEl.classList.add("tooltip-arrow");
+        tooltipContent.appendChild(arrowEl);
+
+        return tooltipContent;
+      }
+
+      function positionTooltip(reference, floatingElement) {
+        const arrowEl = floatingElement.querySelector(".tooltip-arrow");
+        computePosition(reference, floatingElement, {
+          placement: "top",
+          middleware: [flip(), shift({ padding: 9 }), offset(9), arrow({ element: arrowEl })],
+        }).then(({ x, y, middlewareData, placement }) => {
+          Object.assign(floatingElement.style, { top: `${y}px`, left: `${x}px` });
+          positionArrow(arrowEl, middlewareData.arrow, placement);
         });
       }
 
-      function hide() {
-        if (cleanup) {
-          cleanup();
-          cleanup = null;
-        }
+      function positionArrow(arrowEl, arrowData, placement) {
+        if (!arrowData) return;
+
+        const arrowOffset = arrowEl.offsetHeight / 2;
+        const arrowPosition = { left: `${arrowData.x}px` };
+        arrowPosition[placement === "top" ? "bottom" : "top"] = `${-arrowOffset}px`;
+        Object.assign(arrowEl.style, arrowPosition);
       }
 
-      const showEvents = ["mouseenter", "focus"];
-      const hideEvents = ["mouseleave", "blur"];
+      function removeTooltipElement() {
+        if (tooltipContent) {
+          document.body.removeChild(tooltipContent);
+          tooltipContent = null;
+          hideTimeout = null;
+        }
+      }
+    });
+  }
 
-      showEvents.forEach((event) => {
-        tooltip.addEventListener(event, show);
-      });
+  initializeTooltips();
+  const observer = new MutationObserver(() => {
+    initializeTooltips();
+  });
 
-      hideEvents.forEach((event) => {
-        tooltip.addEventListener(event, hide);
-      });
-    }
+  observer.observe(content, {
+    childList: true,
+    subtree: true,
   });
 }
 
-module.exports = {
-  init: init,
-};
+module.exports = { init };

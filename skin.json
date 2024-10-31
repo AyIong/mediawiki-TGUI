@@ -245,6 +245,7 @@
         "resources/skins.tgui.js/scrollObserver.js",
         "resources/skins.tgui.js/tables.js",
         "resources/skins.tgui.js/tooltips.js",
+        "resources/skins.tgui.js/templateTooltips.js",
         "resources/skins.tgui.js/popups.js"
       ],
       "dependencies": ["skins.tgui.icons.js", "mediawiki.page.ready", "mediawiki.util"],
@@ -265,6 +266,7 @@
       ],
       "messages": [
         "preferences",
+        "tgui-reset-button",
         "tgui-theme-name",
         "tgui-theme-description",
         "tgui-theme-day-label",
@@ -337,6 +339,12 @@
       "value": ["tooltiptext", "tooltiptext2", "tooltiptable"],
       "description": "Defines tooltip content css classes.",
       "descriptionmsg": "tgui-config-tooltips",
+      "public": true
+    },
+    "ReplaceTitleTooltips": {
+      "value": true,
+      "description": "Replaces buildin browser tooltips, with Floating UI ones.",
+      "descriptionmsg": "tgui-config-title-tooltips",
       "public": true
     },
     "SearchApiUrl": {

@@ -75,6 +75,7 @@
   "tooltip-tgui-anon-user-menu-title": "Больше возможностей",
   "tgui-purge-button-label": "Очистить кэш",
   "tgui-purge-button-title": "Очистить кэш страницы [F4]",
+  "tgui-reset-button": "Сбросить",
 
   "tgui-theme-name": "Тема",
   "tgui-theme-description": "Изменить тему оформления вики",

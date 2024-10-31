@@ -46,6 +46,7 @@
   "tooltip-tgui-anon-user-menu-title": "More options",
   "tgui-purge-button-label": "Purge Cache",
   "tgui-purge-button-title": "Purge this page cache [F4]",
+  "tgui-reset-button": "Reset",
 
   "tgui-theme-name": "Color",
   "tgui-theme-description": "Change the theme of the wiki",
