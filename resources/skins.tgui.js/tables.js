@@ -19,7 +19,6 @@ function setupOverflowState(element) {
       }
 
       const currentPosition = Math.ceil(element.parentNode.scrollLeft);
-
       if (currentPosition <= 0) {
         // At the start
         element.parentNode.classList.remove("tgui-overflow--left");
@@ -70,7 +69,6 @@ function wrapTable(table) {
   // For example, float helper classes like floatleft and floatright
   const inheritTableClass = () => {
     const inheritedClasses = ["floatleft", "floatright"];
-
     inheritedClasses.forEach((inheritedClass) => {
       if (table.classList.contains(inheritedClass)) {
         wrapper.classList.add(inheritedClass);
@@ -100,7 +98,6 @@ function init(bodyContent) {
   }
 
   const tables = bodyContent.querySelectorAll("table:not( table table )");
-
   tables.forEach((table) => {
     wrapTable(table);
   });
