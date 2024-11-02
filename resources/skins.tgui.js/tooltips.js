@@ -5,6 +5,10 @@ function init(content) {
     return;
   }
 
+  if (window.matchMedia("(max-width: 719px)").matches) {
+    return;
+  }
+
   const { computePosition, offset, flip, shift, arrow } = window.FloatingUIDOM;
   function initializeTooltips() {
     const tooltipElements = content.querySelectorAll("[title]");
