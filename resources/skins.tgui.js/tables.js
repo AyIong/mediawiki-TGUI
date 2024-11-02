@@ -99,6 +99,10 @@ function init(bodyContent) {
 
   const tables = bodyContent.querySelectorAll("table:not( table table )");
   tables.forEach((table) => {
+    if (table.classList.contains("table-nowrap")) {
+      return;
+    }
+
     wrapTable(table);
   });
 }
