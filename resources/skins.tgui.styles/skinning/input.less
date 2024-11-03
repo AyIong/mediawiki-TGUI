@@ -154,21 +154,18 @@ input[type='range'] {
   background-color: transparent;
   border-radius: var(--border-radius-small);
 
-  &::-webkit-slider-runnable-track,
-  &::-moz-range-track {
+  &::-webkit-slider-runnable-track {
     height: 2rem;
     background: ~'hsl(var(--primary-hue), 40%, var(--light-lightness))';
     border-radius: var(--border-radius-small);
   }
 
-  &::-webkit-slider-thumb,
-  &::-moz-range-thumb {
+  &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     height: 0;
     width: 0;
     background-color: transparent;
-    border: none;
     box-shadow: -400px 0 0 400px var(--color-primary);
   }
 }

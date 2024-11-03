@@ -10,4 +10,22 @@
   .sidebar-toc-contents-container {
     padding-right: 0.75em;
   }
+
+  input[type='range'] {
+    &::-moz-range-track {
+      height: 2rem;
+      background: ~'hsl(var(--primary-hue), 40%, var(--light-lightness))';
+      border-radius: var(--border-radius-small);
+    }
+
+    &::-moz-range-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 0;
+      width: 0;
+      background-color: transparent;
+      border: none;
+      box-shadow: -400px 0 0 400px var(--color-primary);
+    }
+  }
 }
