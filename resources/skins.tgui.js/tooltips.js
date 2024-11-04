@@ -48,7 +48,7 @@ function init(content) {
           }
           positionTooltip(tooltip, tooltipContent);
           tooltipContent.classList.add("visible");
-        }, 750);
+        }, 1000);
       }
 
       function hideTooltip() {
