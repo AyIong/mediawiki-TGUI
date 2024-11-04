@@ -151,7 +151,14 @@
   }
 
   > div form {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0.5em;
+
+    .tgui-client-prefs-radio {
+      margin: 0;
+    }
   }
 }
 
@@ -160,12 +167,20 @@
   grid-area: Theme;
 }
 
+#skin-client-prefs-tgui-feature-theme-style {
+  grid-area: Theme-Style;
+}
+
 #skin-client-prefs-tgui-feature-blur {
   grid-area: Blur;
 }
 
 #skin-client-prefs-tgui-feature-reduced-motion {
   grid-area: Motion;
+
+  & .tgui-menu__heading {
+    font-size: 0.75rem;
+  }
 }
 
 #skin-client-prefs-tgui-feature-darkened-images {
@@ -174,10 +189,6 @@
 
 #skin-client-prefs-tgui-feature-primary-hue-slider {
   grid-area: Accent;
-
-  > div form {
-    grid-template-columns: repeat(1, 1fr);
-  }
 }
 
 .tgui-client-prefs {
@@ -185,10 +196,10 @@
   grid-gap: 0.5em;
   grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    'Blur Theme'
-    'Motion Motion'
-    'Darkened-Images Darkened-Images'
-    'Accent Accent';
+    'Theme-Style Theme'
+    'Accent Accent'
+    'Blur Motion'
+    'Darkened-Images Darkened-Images';
   padding: 0.5em;
 
   @media (max-width: @max-width-mobile) {
@@ -199,38 +210,26 @@
 
   .skin-theme-clientpref-day & {
     grid-template-areas:
-      'Blur Theme'
-      'Motion Motion'
-      'Accent Accent';
+      'Theme-Style Theme'
+      'Accent Accent'
+      'Blur Motion';
   }
 
   @media (prefers-color-scheme: light) {
     .skin-theme-clientpref-os & {
       grid-template-areas:
-        'Blur Theme'
-        'Motion Motion'
-        'Accent Accent';
-    }
-  }
-
-  > div:not(:nth-child(-n + 2)) {
-    form {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: 1fr;
-      grid-column-gap: 0.5em;
-
-      .tgui-client-prefs-radio {
-        margin: 0;
-      }
+        'Theme-Style Theme'
+        'Accent Accent'
+        'Blur Motion';
     }
   }
 
   .tgui-menu {
     &__heading {
-      padding: 0.33em;
+      height: 1.66rem;
       font-weight: bold;
       text-align: center;
+      align-content: center;
       background-color: var(--color-base);
       color: var(--color-text);
       border-bottom: 2px solid var(--color-primary);
@@ -279,6 +278,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      font-weight: bold;
       height: 2rem;
       padding: 0 0.5em;
       font-weight: var(--font-weight-medium);

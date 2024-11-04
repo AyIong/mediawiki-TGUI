@@ -31,6 +31,54 @@
   }
 }
 
+/* Theme Styles */
+.dark-ntos() {
+  --color-bg: hsl(212.5, 30.75%, 15.3%);
+  --color-base-blur: var(--color-base-blur-important);
+  --color-base-blur-important: hsla(213.75, 20%, 9%, 0.85);
+  --color-base-fill: hsl(213.75, 30.75%, 10.2%);
+  --color-scrollbar-thumb: hsl(213.75, 30.75%, 20%);
+}
+
+.light-ntos() {
+  --color-bg: hsl(212.5, 30.75%, 85%);
+  --color-base: hsla(30, 5.5%, 70%, 33%);
+  --color-base-blur: var(--color-base-blur-important);
+  --color-base-blur-important: hsla(212, 8.5%, 79.5%, 0.85);
+  --color-base-fill: hsl(212, 14.85%, 80.2%);
+  --color-scrollbar-thumb: hsl(213.75, 30.75%, 65%);
+}
+
+.skin-theme-clientpref-os {
+  &.tgui-feature-theme-style-clientpref-ntos {
+    @media (prefers-color-scheme: dark) {
+      :root& {
+        .dark-ntos();
+      }
+    }
+  }
+
+  &.tgui-feature-theme-style-clientpref-ntos {
+    @media (prefers-color-scheme: light) {
+      :root& {
+        .light-ntos();
+      }
+    }
+  }
+}
+
+.skin-theme-clientpref-night.tgui-feature-theme-style-clientpref-ntos {
+  :root& {
+    .dark-ntos();
+  }
+}
+
+.skin-theme-clientpref-day.tgui-feature-theme-style-clientpref-ntos {
+  :root& {
+    .light-ntos();
+  }
+}
+
 /* Blur */
 .disable-blur() {
   :root& {
@@ -71,6 +119,12 @@
 .tgui-feature-reduced-motion-clientpref-enabled {
   :root& {
     --transition-time: 0;
+  }
+}
+
+.tgui-feature-reduced-motion-clientpref-faster {
+  :root& {
+    --transition-time: 0.1s;
   }
 }
 

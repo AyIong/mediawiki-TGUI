@@ -48,7 +48,7 @@
   "tgui-purge-button-title": "Purge this page cache [F4]",
   "tgui-reset-button": "Reset",
 
-  "tgui-theme-name": "Color",
+  "tgui-theme-name": "Theme",
   "tgui-theme-description": "Change the theme of the wiki",
   "tgui-theme-day-label": "Light",
   "tgui-theme-night-label": "Dark",
@@ -62,12 +62,18 @@
 
   "tgui-feature-reduced-motion-name": "Reduced Motion",
   "tgui-feature-reduced-motion-enabled-label": "Enabled",
+  "tgui-feature-reduced-motion-faster-label": "Quicker",
   "tgui-feature-reduced-motion-disabled-label": "Disabled",
 
   "tgui-feature-darkened-images-name": "Darkened Images",
   "tgui-feature-darkened-images-disabled-label": "Disabled",
   "tgui-feature-darkened-images-light-label": "Light",
   "tgui-feature-darkened-images-medium-label": "Medium",
+
+  "tgui-feature-theme-style-name": "Theme Style",
+  "tgui-feature-theme-style-default-label": "Default",
+  "tgui-feature-theme-style-ntos-label": "NTOS",
+  "tgui-feature-theme-style-syndicate-label": "Syndicate",
 
   "tgui-feature-primary-hue-slider-name": "Primary Color Hue"
 }
