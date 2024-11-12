@@ -45,8 +45,9 @@
   color: var(--color-text);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-medium);
-  transform: translate(0);
-  transition-property: opacity, visibility, box-shadow, transform;
+  box-shadow: var(--box-shadow-big);
+  transform: scale(0.75);
+  transition-property: opacity, visibility, transform;
   transition-duration: var(--transition-time);
   transition-delay: var(--transition-delay);
   z-index: var(--index-medium);
@@ -64,8 +65,7 @@
   > .tooltiptable {
     visibility: visible;
     opacity: 1;
-    box-shadow: var(--box-shadow-big);
-    transform: translate(0, 0.75em);
+    transform: scale(0.99999);
     transition-delay: ~'calc( var(--transition-delay) / 2 )';
   }
 }

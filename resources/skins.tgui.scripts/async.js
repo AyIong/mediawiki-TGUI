@@ -1,13 +1,38 @@
+const maxAttempts = 20;
+const timeout = 25;
+
 async function waitForElement(selector) {
-  while (document.getElementById(selector) === null) {
-    await new Promise((resolve) => requestAnimationFrame(resolve));
+  const element = document.getElementById(selector);
+  let attempts = 0;
+
+  while (attempts < maxAttempts) {
+    if (element) {
+      console.log(`Found ${selector}`);
+      return element;
+    }
+
+    attempts++;
+    console.log(`Cannot find ${selector}. Trying again (${attempts + 1})`);
+    await new Promise((resolve) => setTimeout(resolve, timeout));
   }
-  return document.getElementById(selector);
+
+  return null;
 }
 
 async function waitForElements(selector) {
-  while (document.querySelectorAll(selector).length === 0) {
-    await new Promise((resolve) => requestAnimationFrame(resolve));
+  const element = document.querySelectorAll(selector);
+  let attempts = 0;
+
+  while (attempts < maxAttempts) {
+    if (element.length > 0) {
+      console.log(`Found ${selector.length} ${selector}`);
+      return element;
+    }
+
+    attempts++;
+    console.log(`Cannot find all ${selector}. Trying again (${attempts + 1})`);
+    await new Promise((resolve) => setTimeout(resolve, timeout));
   }
-  return document.querySelectorAll(selector);
+
+  return null;
 }

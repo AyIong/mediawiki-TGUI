@@ -23,8 +23,8 @@ function init(bodyContent) {
 
   function createFloatingInstance(reference, floatingElement) {
     return computePosition(reference, floatingElement, {
-      placement: "bottom-start",
-      middleware: [offset(-9), flip(), shift({ padding: 9 })],
+      placement: "top-start",
+      middleware: [offset(6), shift({ padding: 9 }), flip()],
     }).then(({ x, y, strategy }) => {
       Object.assign(floatingElement.style, {
         left: `${x}px`,

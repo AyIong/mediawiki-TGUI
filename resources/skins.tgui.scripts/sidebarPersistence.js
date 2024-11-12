@@ -30,8 +30,10 @@ function bindSidebarClickEvent(checkbox, button) {
 }
 
 async function init() {
-  const checkbox = await waitForElement(SIDEBAR_CHECKBOX_ID);
-  const button = await waitForElement(SIDEBAR_BUTTON_ID);
+  const [checkbox, button] = await Promise.all([
+    waitForElement(SIDEBAR_CHECKBOX_ID),
+    waitForElement(SIDEBAR_BUTTON_ID),
+  ]);
 
   if (checkbox && button) {
     bindSidebarClickEvent(checkbox, button);
