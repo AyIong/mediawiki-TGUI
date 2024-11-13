@@ -42,6 +42,10 @@ function init(content) {
         clearTimeout(appearTimeout);
 
         appearTimeout = setTimeout(() => {
+          if (!tooltip.parentNode) {
+            return;
+          }
+
           if (!tooltipContent) {
             tooltipContent = createTooltipElement(tooltipText);
             document.body.appendChild(tooltipContent);
@@ -54,7 +58,9 @@ function init(content) {
       function hideTooltip() {
         clearTimeout(appearTimeout);
 
-        if (!tooltipContent) return;
+        if (!tooltipContent) {
+          return;
+        }
 
         tooltipContent.classList.remove("visible");
         hideTimeout = hideTimeout || setTimeout(() => removeTooltipElement(), 200);
@@ -84,7 +90,9 @@ function init(content) {
       }
 
       function positionArrow(arrowEl, arrowData, placement) {
-        if (!arrowData) return;
+        if (!arrowData) {
+          return;
+        }
 
         const arrowOffset = arrowEl.offsetHeight / 2;
         const arrowPosition = { left: `${arrowData.x}px` };
@@ -102,7 +110,6 @@ function init(content) {
     });
   }
 
-  initializeTooltips();
   const observer = new MutationObserver(() => {
     initializeTooltips();
   });
