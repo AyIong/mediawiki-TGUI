@@ -35,7 +35,6 @@ function init(bodyContent) {
   }
 
   const contentClasses = tooltipText.map((className) => `.${className}`).join(", ");
-
   tooltipElements.forEach((tooltip) => {
     const tooltipContent = tooltip.querySelector(contentClasses);
 

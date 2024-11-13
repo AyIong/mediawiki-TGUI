@@ -74,7 +74,7 @@ const main = () => {
       sectionObserver.pause();
       tableOfContents.expandSection(id);
       tableOfContents.changeActiveSection(id);
-      deferUntilFrame(() => sectionObserver.resume(), 150);
+      deferUntilFrame(() => sectionObserver.resume(), 220);
     },
     onToggleClick: (id) => {
       tableOfContents.toggleExpandSection(id);
