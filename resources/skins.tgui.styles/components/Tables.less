@@ -12,9 +12,17 @@ table {
 .tgui-table-wrapper {
   overflow-x: auto;
 
+  // Make wrapper with blur if overflow active, otherwise it won't work thanks to mask
   &.tgui-overflow--left,
   &.tgui-overflow--right {
     backdrop-filter: var(--blur-default);
+  }
+
+  // And make tables itself with blur if no overflow
+  &:not(.tgui-overflow--left):not(.tgui-overflow--right) {
+    table {
+      backdrop-filter: var(--blur-default);
+    }
   }
 }
 

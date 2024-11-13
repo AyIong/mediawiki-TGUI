@@ -63,7 +63,6 @@ function setupOverflowState(element) {
  */
 function wrapTable(table) {
   const wrapper = document.createElement("div");
-  const blur = document.createElement("div");
 
   // Some classes should be inherited from the table
   // For example, float helper classes like floatleft and floatright
@@ -78,11 +77,9 @@ function wrapTable(table) {
   };
 
   wrapper.classList.add("tgui-table-wrapper");
-  blur.classList.add("tgui-blur");
   inheritTableClass();
   table.parentNode.insertBefore(wrapper, table);
   wrapper.appendChild(table);
-  table.appendChild(blur);
 
   setupOverflowState(table);
 }
@@ -99,7 +96,9 @@ function init(bodyContent) {
 
   const tables = bodyContent.querySelectorAll("table:not( table table )");
   tables.forEach((table) => {
-    if (table.classList.contains("table-nowrap")) {
+    // TODO: Move disallowed classes to config
+    const classesToCheck = ["table-nowrap", "mw-enhanced-rc"];
+    if (classesToCheck.some((cls) => table.classList.contains(cls))) {
       return;
     }
 
