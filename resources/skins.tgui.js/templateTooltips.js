@@ -1,5 +1,5 @@
 // @ts-nocheck
-const config = require("./config.json");
+const config = require('./config.json');
 
 /**
  * Initialize tooltips for MediaWiki templates using Floating UI
@@ -9,7 +9,7 @@ const config = require("./config.json");
  */
 function init(bodyContent) {
   const { computePosition, offset, flip, shift, autoUpdate } = window.FloatingUIDOM;
-  const tooltipElements = document.querySelectorAll(".tooltip");
+  const tooltipElements = document.querySelectorAll('.tooltip');
 
   if (!tooltipElements.length) {
     return;
@@ -17,13 +17,13 @@ function init(bodyContent) {
 
   const tooltipText = config.wgTGUITooltips;
   if (!tooltipText || !Array.isArray(tooltipText)) {
-    mw.log.error("[TGUI] Invalid or missing $wgTGUITooltips. Cannot use Floating UI for Tooltips.");
+    mw.log.error('[TGUI] Invalid or missing $wgTGUITooltips. Cannot use Floating UI for Tooltips.');
     return;
   }
 
   function createFloatingInstance(reference, floatingElement) {
     return computePosition(reference, floatingElement, {
-      placement: "top-start",
+      placement: 'top-start',
       middleware: [offset(6), shift({ padding: 9 }), flip()],
     }).then(({ x, y, strategy }) => {
       Object.assign(floatingElement.style, {
@@ -34,7 +34,7 @@ function init(bodyContent) {
     });
   }
 
-  const contentClasses = tooltipText.map((className) => `.${className}`).join(", ");
+  const contentClasses = tooltipText.map((className) => `.${className}`).join(', ');
   tooltipElements.forEach((tooltip) => {
     const tooltipContent = tooltip.querySelector(contentClasses);
 
@@ -56,8 +56,8 @@ function init(bodyContent) {
         }
       }
 
-      const showEvents = ["mouseenter", "focus"];
-      const hideEvents = ["mouseleave", "blur"];
+      const showEvents = ['mouseenter', 'focus'];
+      const hideEvents = ['mouseleave', 'blur'];
 
       showEvents.forEach((event) => {
         tooltip.addEventListener(event, show);

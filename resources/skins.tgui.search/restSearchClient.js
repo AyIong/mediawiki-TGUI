@@ -1,8 +1,8 @@
 // / <reference lib="@wikimedia/types" />
 /** @module restSearchClient */
 
-const fetchJson = require("./fetch.js");
-const urlGenerator = require("./urlGenerator.js");
+const fetchJson = require('./fetch.js');
+const urlGenerator = require('./urlGenerator.js');
 
 /**
  * @typedef {Object} RestResponse
@@ -93,18 +93,18 @@ function adaptApiResponse(config, query, restResponse, showDescription) {
  * @return {SearchClient}
  */
 function restSearchClient(config) {
-  return config.get("wgTGUISearchClient", {
+  return config.get('wgTGUISearchClient', {
     /**
      * @type {fetchByTitle}
      */
     fetchByTitle: (q, limit = 10, showDescription = true) => {
-      const searchApiUrl = config.get("wgTGUISearchApiUrl", config.get("wgScriptPath") + "/rest.php");
+      const searchApiUrl = config.get('wgTGUISearchApiUrl', config.get('wgScriptPath') + '/rest.php');
       const params = { q, limit: limit.toString() };
       const search = new URLSearchParams(params);
       const url = `${searchApiUrl}/v1/search/title?${search.toString()}`;
       const result = fetchJson(url, {
         headers: {
-          accept: "application/json",
+          accept: 'application/json',
         },
       });
       const searchResponsePromise = result.fetch.then((/** @type {RestResponse} */ res) => {

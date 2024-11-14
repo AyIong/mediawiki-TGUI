@@ -34,7 +34,7 @@ function fetchJson(resource, init) {
     }),
   ).then((response) => {
     if (!response.ok) {
-      return Promise.reject("Network request failed with HTTP code " + response.status);
+      return Promise.reject('Network request failed with HTTP code ' + response.status);
     }
     return response.json();
   });

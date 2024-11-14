@@ -7,32 +7,32 @@
  */
 function init(bodyContent) {
   const { computePosition, offset, flip, shift } = window.FloatingUIDOM;
-  const popupElements = bodyContent.querySelectorAll(".popup");
+  const popupElements = bodyContent.querySelectorAll('.popup');
 
   if (!popupElements.length) {
     return;
   }
 
   popupElements.forEach((popup) => {
-    const popupText = popup.getAttribute("data-popup-text");
+    const popupText = popup.getAttribute('data-popup-text');
     if (!popupText) {
       return;
     }
 
-    const hyperLink = popup.querySelector("a");
+    const hyperLink = popup.querySelector('a');
     if (hyperLink) {
-      hyperLink.removeAttribute("title");
+      hyperLink.removeAttribute('title');
     }
 
     let popupContent = null;
     let hideTimeout = null;
     function createPopupContent() {
-      popupContent = document.createElement("div");
-      popupContent.classList.add("popup-content");
+      popupContent = document.createElement('div');
+      popupContent.classList.add('popup-content');
       popupContent.textContent = popupText;
       document.body.appendChild(popupContent);
       setTimeout(() => {
-        popupContent.classList.add("visible");
+        popupContent.classList.add('visible');
       }, 10);
     }
 
@@ -52,7 +52,7 @@ function init(bodyContent) {
         clearTimeout(hideTimeout);
         hideTimeout = null;
         setTimeout(() => {
-          popupContent.classList.add("visible");
+          popupContent.classList.add('visible');
         }, 10);
       }
 
@@ -77,7 +77,7 @@ function init(bodyContent) {
       };
 
       computePosition(freeSpace, popupContent, {
-        placement: "bottom-start",
+        placement: 'bottom-start',
         middleware: [offset({ mainAxis: 20, crossAxis: 10 }), shift({ padding: 15 }), flip()],
       }).then(({ x, y, strategy }) => {
         Object.assign(popupContent.style, {
@@ -90,7 +90,7 @@ function init(bodyContent) {
 
     function hide() {
       if (!popupContent) return;
-      popupContent.classList.remove("visible");
+      popupContent.classList.remove('visible');
 
       if (!hideTimeout) {
         hideTimeout = setTimeout(() => {
@@ -99,11 +99,11 @@ function init(bodyContent) {
       }
     }
 
-    popup.addEventListener("mouseenter", show);
-    popup.addEventListener("mousemove", (event) => {
+    popup.addEventListener('mouseenter', show);
+    popup.addEventListener('mousemove', (event) => {
       updatePosition(event.clientX, event.clientY);
     });
-    popup.addEventListener("mouseleave", hide);
+    popup.addEventListener('mouseleave', hide);
   });
 }
 

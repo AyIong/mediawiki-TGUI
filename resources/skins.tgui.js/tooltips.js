@@ -1,42 +1,42 @@
-const config = require("./config.json");
+const config = require('./config.json');
 
 function init(content) {
   if (!config.wgTGUIReplaceTitleTooltips) {
     return;
   }
 
-  if (window.matchMedia("(max-width: 719px)").matches) {
+  if (window.matchMedia('(max-width: 719px)').matches) {
     return;
   }
 
   const { computePosition, offset, flip, shift, arrow } = window.FloatingUIDOM;
   function initializeTooltips() {
-    const tooltipElements = content.querySelectorAll("[title]");
+    const tooltipElements = content.querySelectorAll('[title]');
     tooltipElements.forEach((tooltip) => {
-      if (tooltip.hasAttribute("data-tooltip-initialized")) {
+      if (tooltip.hasAttribute('data-tooltip-initialized')) {
         return;
       }
 
-      if (tooltip.parentElement.hasAttribute("data-notitle")) {
-        tooltip.setAttribute("data-tooltip-initialized", "true");
-        tooltip.removeAttribute("title");
+      if (tooltip.parentElement.hasAttribute('data-notitle')) {
+        tooltip.setAttribute('data-tooltip-initialized', 'true');
+        tooltip.removeAttribute('title');
         return;
       }
 
-      const tooltipText = tooltip.getAttribute("title");
+      const tooltipText = tooltip.getAttribute('title');
       if (!tooltipText) {
         return;
       }
 
-      tooltip.setAttribute("data-tooltip-initialized", "true");
-      tooltip.removeAttribute("title");
+      tooltip.setAttribute('data-tooltip-initialized', 'true');
+      tooltip.removeAttribute('title');
 
       let tooltipContent = null;
       let hideTimeout = null;
       let appearTimeout = null;
 
-      tooltip.addEventListener("mouseover", showTooltip);
-      tooltip.addEventListener("mouseleave", hideTooltip);
+      tooltip.addEventListener('mouseover', showTooltip);
+      tooltip.addEventListener('mouseleave', hideTooltip);
 
       function showTooltip() {
         clearTimeout(appearTimeout);
@@ -51,7 +51,7 @@ function init(content) {
             document.body.appendChild(tooltipContent);
           }
           positionTooltip(tooltip, tooltipContent);
-          tooltipContent.classList.add("visible");
+          tooltipContent.classList.add('visible');
         }, 1000);
       }
 
@@ -62,26 +62,26 @@ function init(content) {
           return;
         }
 
-        tooltipContent.classList.remove("visible");
+        tooltipContent.classList.remove('visible');
         hideTimeout = hideTimeout || setTimeout(() => removeTooltipElement(), 200);
       }
 
       function createTooltipElement(text) {
-        const tooltipContent = document.createElement("div");
-        tooltipContent.classList.add("tooltip-content");
+        const tooltipContent = document.createElement('div');
+        tooltipContent.classList.add('tooltip-content');
         tooltipContent.textContent = text;
 
-        const arrowEl = document.createElement("div");
-        arrowEl.classList.add("tooltip-arrow");
+        const arrowEl = document.createElement('div');
+        arrowEl.classList.add('tooltip-arrow');
         tooltipContent.appendChild(arrowEl);
 
         return tooltipContent;
       }
 
       function positionTooltip(reference, floatingElement) {
-        const arrowEl = floatingElement.querySelector(".tooltip-arrow");
+        const arrowEl = floatingElement.querySelector('.tooltip-arrow');
         computePosition(reference, floatingElement, {
-          placement: "top",
+          placement: 'top',
           middleware: [flip(), shift({ padding: 9 }), offset(9), arrow({ element: arrowEl })],
         }).then(({ x, y, middlewareData, placement }) => {
           Object.assign(floatingElement.style, { top: `${y}px`, left: `${x}px` });
@@ -96,7 +96,7 @@ function init(content) {
 
         const arrowOffset = arrowEl.offsetHeight / 2;
         const arrowPosition = { left: `${arrowData.x}px` };
-        arrowPosition[placement === "top" ? "bottom" : "top"] = `${-arrowOffset}px`;
+        arrowPosition[placement === 'top' ? 'bottom' : 'top'] = `${-arrowOffset}px`;
         Object.assign(arrowEl.style, arrowPosition);
       }
 

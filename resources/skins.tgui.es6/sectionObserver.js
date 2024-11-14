@@ -106,11 +106,11 @@ function sectionObserver(props) {
   }
 
   function bindScrollListener() {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
   }
 
   function unbindScrollListener() {
-    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener('scroll', handleScroll);
   }
 
   /**

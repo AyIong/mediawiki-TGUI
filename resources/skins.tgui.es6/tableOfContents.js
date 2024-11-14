@@ -1,23 +1,23 @@
 /** @module TableOfContents */
 
-const SECTION_CLASS = "sidebar-toc-list-item";
-const ACTIVE_SECTION_CLASS = "sidebar-toc-list-item-active";
-const EXPANDED_SECTION_CLASS = "sidebar-toc-list-item-expanded";
-const PARENT_SECTION_CLASS = "sidebar-toc-level-1";
-const LINK_CLASS = "sidebar-toc-link";
-const TOGGLE_CLASS = "sidebar-toc-toggle";
-const TOC_COLLAPSED_CLASS = "tgui-toc-collapsed";
-const TOC_ID = "mw-panel-toc";
-const TOC_PREFERENCE_NAME = "TGUI-ToC-Collapsed";
+const SECTION_CLASS = 'sidebar-toc-list-item';
+const ACTIVE_SECTION_CLASS = 'sidebar-toc-list-item-active';
+const EXPANDED_SECTION_CLASS = 'sidebar-toc-list-item-expanded';
+const PARENT_SECTION_CLASS = 'sidebar-toc-level-1';
+const LINK_CLASS = 'sidebar-toc-link';
+const TOGGLE_CLASS = 'sidebar-toc-toggle';
+const TOC_COLLAPSED_CLASS = 'tgui-toc-collapsed';
+const TOC_ID = 'mw-panel-toc';
+const TOC_PREFERENCE_NAME = 'TGUI-ToC-Collapsed';
 /**
  * TableOfContents Mustache templates
  */
-const templateBody = require(/** @type {string} */ ("./templates/TableOfContents.mustache"));
-const templateTocLine = require(/** @type {string} */ ("./templates/TableOfContents__line.mustache"));
+const templateBody = require(/** @type {string} */ ('./templates/TableOfContents.mustache'));
+const templateTocLine = require(/** @type {string} */ ('./templates/TableOfContents__line.mustache'));
 /**
  * TableOfContents Config object for filling mustache templates
  */
-const tableOfContentsConfig = require(/** @type {string} */ ("./tableOfContentsConfig.json"));
+const tableOfContentsConfig = require(/** @type {string} */ ('./tableOfContentsConfig.json'));
 
 /**
  * @callback onHeadingClick
@@ -163,7 +163,7 @@ module.exports = function tableOfContents(props) {
     if (link && !link.offsetParent) {
       // If active link is a hidden subsection, use active parent link
       const { parent: activeTopId } = getActiveSectionIds();
-      const parentSection = document.getElementById(activeTopId || "");
+      const parentSection = document.getElementById(activeTopId || '');
       if (parentSection) {
         link = parentSection.firstElementChild;
       } else {
@@ -185,7 +185,7 @@ module.exports = function tableOfContents(props) {
       const linkHiddenBottomValue = linkRect.bottom - Math.min(containerRect.bottom, window.innerHeight);
 
       // Respect 'prefers-reduced-motion' user preference
-      const scrollBehavior = "smooth";
+      const scrollBehavior = 'smooth';
 
       // Manually increment and decrement TOC scroll rather than using scrollToView
       // in order to account for threshold
@@ -221,7 +221,7 @@ module.exports = function tableOfContents(props) {
     const toggle = tocSection.querySelector(`.${TOGGLE_CLASS}`);
 
     if (parentSection && toggle && expandedSections.indexOf(parentSection) < 0) {
-      toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute('aria-expanded', 'true');
       parentSection.classList.add(EXPANDED_SECTION_CLASS);
       expandedSections.push(parentSection);
     }
@@ -273,7 +273,7 @@ module.exports = function tableOfContents(props) {
       const isSelected = sectionIdsToCollapse.indexOf(section.id) > -1;
       const toggle = isSelected ? section.getElementsByClassName(TOGGLE_CLASS) : undefined;
       if (isSelected && toggle && toggle.length > 0) {
-        toggle[0].setAttribute("aria-expanded", "false");
+        toggle[0].setAttribute('aria-expanded', 'false');
         section.classList.remove(EXPANDED_SECTION_CLASS);
         return false;
       }
@@ -305,7 +305,7 @@ module.exports = function tableOfContents(props) {
       const expanded = section.classList.contains(EXPANDED_SECTION_CLASS);
       const toggle = section.querySelector(`.${TOGGLE_CLASS}`);
       if (toggle) {
-        toggle.setAttribute("aria-expanded", expanded.toString());
+        toggle.setAttribute('aria-expanded', expanded.toString());
       }
     });
   }
@@ -314,9 +314,9 @@ module.exports = function tableOfContents(props) {
    * Bind event listener for clicking on show/hide Table of Contents links.
    */
   function bindCollapseToggleListeners() {
-    const showHideTocElement = document.querySelectorAll("#sidebar-toc-label button");
+    const showHideTocElement = document.querySelectorAll('#sidebar-toc-label button');
     showHideTocElement.forEach(function (btn) {
-      btn.addEventListener("click", () => {
+      btn.addEventListener('click', () => {
         document.body.classList.toggle(TOC_COLLAPSED_CLASS);
         const isCollapsed = document.body.classList.contains(TOC_COLLAPSED_CLASS);
         localStorage.setItem(TOC_PREFERENCE_NAME, isCollapsed.toString());
@@ -329,7 +329,7 @@ module.exports = function tableOfContents(props) {
    * Bind event listeners for clicking on section headings and toggle buttons.
    */
   function bindSubsectionToggleListeners() {
-    props.container.addEventListener("click", function (e) {
+    props.container.addEventListener('click', function (e) {
       if (!(e.target instanceof HTMLElement)) {
         return;
       }
@@ -365,7 +365,7 @@ module.exports = function tableOfContents(props) {
     bindSubsectionToggleListeners();
     bindCollapseToggleListeners();
 
-    mw.hook("wikipage.tableOfContents").add(reloadTableOfContents);
+    mw.hook('wikipage.tableOfContents').add(reloadTableOfContents);
   }
 
   /**
@@ -387,10 +387,10 @@ module.exports = function tableOfContents(props) {
    */
   function reloadTableOfContents(sections) {
     if (sections.length < 1) {
-      reloadPartialHTML(TOC_ID, "");
+      reloadPartialHTML(TOC_ID, '');
       return;
     }
-    mw.loader.using("mediawiki.template.mustache").then(() => {
+    mw.loader.using('mediawiki.template.mustache').then(() => {
       reloadPartialHTML(TOC_ID, getTableOfContentsHTML(sections));
       // Reexpand sections that were expanded before the table of contents was reloaded.
       reExpandSections();
@@ -415,12 +415,12 @@ module.exports = function tableOfContents(props) {
         htmlElement.outerHTML = html;
       } else {
         // IF outerHTML property access is not supported
-        const tmpContainer = document.createElement("div");
+        const tmpContainer = document.createElement('div');
         tmpContainer.innerHTML = html.trim();
         const childNode = tmpContainer.firstChild;
         if (childNode) {
-          const tmpElement = document.createElement("div");
-          tmpElement.setAttribute("id", `div-tmp-${elementId}`);
+          const tmpElement = document.createElement('div');
+          tmpElement.setAttribute('id', `div-tmp-${elementId}`);
           const parentNode = htmlElement.parentNode;
           if (parentNode) {
             parentNode.replaceChild(tmpElement, htmlElement);
@@ -449,7 +449,7 @@ module.exports = function tableOfContents(props) {
    */
   function getTableOfContentsListHtml(data) {
     // @ts-ignore
-    const mustacheCompiler = mw.template.getCompiler("mustache");
+    const mustacheCompiler = mw.template.getCompiler('mustache');
     const compiledTemplateBody = mustacheCompiler.compile(templateBody);
     const compiledTemplateTocLine = mustacheCompiler.compile(templateTocLine);
 
@@ -468,13 +468,13 @@ module.exports = function tableOfContents(props) {
    */
   function getTableOfContentsData(sections) {
     return {
-      "number-section-count": sections.length,
-      "msg-tgui-toc-heading": mw.message("tgui-toc-heading").text(),
-      "msg-tgui-toc-toggle-position-sidebar": mw.message("tgui-toc-toggle-position-sidebar").text(),
-      "msg-tgui-toc-beginning": mw.message("tgui-toc-beginning").text(),
-      "array-sections": getTableOfContentsSectionsData(sections, 1),
-      "tgui-is-collapse-sections-enabled": sections.length >= tableOfContentsConfig.TGUITableOfContentsCollapseAtCount,
-      "is-tgui-toc-beginning-enabled": tableOfContentsConfig.TGUITableOfContentsBeginning,
+      'number-section-count': sections.length,
+      'msg-tgui-toc-heading': mw.message('tgui-toc-heading').text(),
+      'msg-tgui-toc-toggle-position-sidebar': mw.message('tgui-toc-toggle-position-sidebar').text(),
+      'msg-tgui-toc-beginning': mw.message('tgui-toc-beginning').text(),
+      'array-sections': getTableOfContentsSectionsData(sections, 1),
+      'tgui-is-collapse-sections-enabled': sections.length >= tableOfContentsConfig.TGUITableOfContentsCollapseAtCount,
+      'is-tgui-toc-beginning-enabled': tableOfContentsConfig.TGUITableOfContentsBeginning,
     };
   }
 
@@ -494,9 +494,9 @@ module.exports = function tableOfContents(props) {
       const section = sections[i];
       if (section.toclevel === toclevel) {
         const childSections = getTableOfContentsSectionsData(sections.slice(i + 1), toclevel + 1);
-        section["array-sections"] = childSections;
-        section["is-top-level-section"] = toclevel === 1;
-        section["is-parent-section"] = Object.keys(childSections).length > 0;
+        section['array-sections'] = childSections;
+        section['is-top-level-section'] = toclevel === 1;
+        section['is-parent-section'] = Object.keys(childSections).length > 0;
         data.push(section);
       }
       // Child section belongs to a higher parent.

@@ -4,7 +4,7 @@
  *
  * @see https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/skins/Vector/+/refs/heads/master/includes/Constants.php
  */
-const INPUT_LOCATION_MOVED = "header-moved",
+const INPUT_LOCATION_MOVED = 'header-moved',
   // T251544: Collect search performance metrics to compare Vue search with
   // mediawiki.searchSuggest performance. Marks and Measures will only be
   // recorded on the TGUI skin and only if browser supported.
@@ -16,11 +16,11 @@ const INPUT_LOCATION_MOVED = "header-moved",
     !!performance.getEntriesByName &&
     performance.clearMarks
   ),
-  loadStartMark = "mwTGUIVueSearchLoadStart",
-  queryMark = "mwTGUIVueSearchQuery",
-  renderMark = "mwTGUIVueSearchRender",
-  queryToRenderMeasure = "mwTGUIVueSearchQueryToRender",
-  loadStartToFirstRenderMeasure = "mwTGUIVueSearchLoadStartToFirstRender";
+  loadStartMark = 'mwTGUIVueSearchLoadStart',
+  queryMark = 'mwTGUIVueSearchQuery',
+  renderMark = 'mwTGUIVueSearchRender',
+  queryToRenderMeasure = 'mwTGUIVueSearchQueryToRender',
+  loadStartToFirstRenderMeasure = 'mwTGUIVueSearchLoadStartToFirstRender';
 
 function onFetchStart() {
   if (!shouldTestSearchPerformance) {
@@ -42,8 +42,8 @@ function onFetchStart() {
  * @param {FetchEndEvent} event
  */
 function onFetchEnd(event) {
-  mw.track("mediawiki.searchSuggest", {
-    action: "impression-results",
+  mw.track('mediawiki.searchSuggest', {
+    action: 'impression-results',
     numberOfResults: event.numberOfResults,
     // resultSetType: '',
     // searchId: '',
@@ -88,8 +88,8 @@ function onFetchEnd(event) {
  * @param {SuggestionClickEvent|SearchSubmitEvent} event
  */
 function onSuggestionClick(event) {
-  mw.track("mediawiki.searchSuggest", {
-    action: "click-result",
+  mw.track('mediawiki.searchSuggest', {
+    action: 'click-result',
     numberOfResults: event.numberOfResults,
     index: event.index,
   });
@@ -108,7 +108,7 @@ function onSuggestionClick(event) {
 function getWprovFromResultIndex(index) {
   // result looks like: acrw1_0, acrw1_1, acrw1_2, etc.;
   // or acrw1_-1 for index -1 (user did not highlight an autocomplete result)
-  return "acrw1_" + index;
+  return 'acrw1_' + index;
 }
 
 /**

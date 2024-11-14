@@ -1,10 +1,10 @@
 /** @interface CheckboxHack */
 
-var checkboxHack = /** @type {CheckboxHack} */ require(/** @type {string} */ ("mediawiki.page.ready")).checkboxHack,
-  CHECKBOX_HACK_CONTAINER_SELECTOR = ".tgui-menu-dropdown",
-  CHECKBOX_HACK_CHECKBOX_SELECTOR = ".tgui-menu-checkbox",
-  CHECKBOX_HACK_BUTTON_SELECTOR = ".tgui-menu-heading",
-  CHECKBOX_HACK_TARGET_SELECTOR = ".tgui-menu-content";
+var checkboxHack = /** @type {CheckboxHack} */ require(/** @type {string} */ ('mediawiki.page.ready')).checkboxHack,
+  CHECKBOX_HACK_CONTAINER_SELECTOR = '.tgui-menu-dropdown',
+  CHECKBOX_HACK_CHECKBOX_SELECTOR = '.tgui-menu-checkbox',
+  CHECKBOX_HACK_BUTTON_SELECTOR = '.tgui-menu-heading',
+  CHECKBOX_HACK_TARGET_SELECTOR = '.tgui-menu-content';
 
 /**
  * Enhance dropdownMenu functionality and accessibility using core's checkboxHack.
@@ -38,18 +38,18 @@ function bind() {
 function createIconElement(menuElement, parentElement, id) {
   var isIconCapable =
     menuElement &&
-    menuElement.classList.contains("tgui-menu-dropdown") &&
-    !menuElement.classList.contains("tgui-menu-dropdown-noicon");
+    menuElement.classList.contains('tgui-menu-dropdown') &&
+    !menuElement.classList.contains('tgui-menu-dropdown-noicon');
 
   if (!isIconCapable || !parentElement) {
     return;
   }
 
-  var iconElement = document.createElement("span");
-  iconElement.classList.add("mw-ui-icon");
+  var iconElement = document.createElement('span');
+  iconElement.classList.add('mw-ui-icon');
 
   if (id) {
-    iconElement.classList.add("mw-ui-icon-tgui-gadget-" + id);
+    iconElement.classList.add('mw-ui-icon-tgui-gadget-' + id);
   }
 
   return iconElement;
@@ -64,23 +64,23 @@ function createIconElement(menuElement, parentElement, id) {
  * @property {string|null} id
  */
 function addPortletLinkHandler(item, data) {
-  var link = item.querySelector("a");
-  var $menu = $(item).parents(".tgui-menu");
+  var link = item.querySelector('a');
+  var $menu = $(item).parents('.tgui-menu');
   var menuElement = ($menu.length && $menu.get(0)) || null;
   var iconElement = createIconElement(menuElement, link, data.id);
 
-  if ($menu.prop("id") === "p-views") {
+  if ($menu.prop('id') === 'p-views') {
     var availableWidth =
-      $(".mw-article-toolbar-container").width() -
-      $("#p-namespaces").width() -
-      $("#p-variants").width() -
-      $("#p-views").width() -
-      $("#p-cactions").width();
-    var moreDropdown = document.querySelector("#p-cactions ul");
+      $('.mw-article-toolbar-container').width() -
+      $('#p-namespaces').width() -
+      $('#p-variants').width() -
+      $('#p-views').width() -
+      $('#p-cactions').width();
+    var moreDropdown = document.querySelector('#p-cactions ul');
     if (moreDropdown && (availableWidth < 0 || window.innerWidth < 720)) {
       moreDropdown.appendChild(item);
       // reveal if hidden
-      mw.util.showPortlet("p-cactions");
+      mw.util.showPortlet('p-cactions');
     }
   }
 
@@ -90,13 +90,13 @@ function addPortletLinkHandler(item, data) {
 }
 
 // Enhance previously added items.
-Array.prototype.forEach.call(document.querySelectorAll(".mw-list-item-js"), function (item) {
+Array.prototype.forEach.call(document.querySelectorAll('.mw-list-item-js'), function (item) {
   addPortletLinkHandler(item, {
-    id: item.getAttribute("id"),
+    id: item.getAttribute('id'),
   });
 });
 
-mw.hook("util.addPortletLink").add(addPortletLinkHandler);
+mw.hook('util.addPortletLink').add(addPortletLinkHandler);
 
 module.exports = {
   dropdownMenus: function dropdownMenus() {

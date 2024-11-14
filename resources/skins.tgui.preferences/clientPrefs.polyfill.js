@@ -4,9 +4,9 @@
  * TODO: Revisit when we move to MW 1.43 and the interface is more stable
  */
 
-const CLIENTPREF_STORAGE_NAME = "mwclientpreferences";
-const CLIENTPREF_SUFFIX = "-clientpref-";
-const CLIENTPREF_DELIMITER = ",";
+const CLIENTPREF_STORAGE_NAME = 'mwclientpreferences';
+const CLIENTPREF_SUFFIX = '-clientpref-';
+const CLIENTPREF_DELIMITER = ',';
 
 /**
  * Check if the feature name is composed of valid characters.
@@ -41,7 +41,7 @@ function isValidFeatureValue(value) {
  * @param {string} value
  */
 function saveClientPrefs(feature, value) {
-  const existingStorage = mw.storage.get(CLIENTPREF_STORAGE_NAME) || "";
+  const existingStorage = mw.storage.get(CLIENTPREF_STORAGE_NAME) || '';
   const data = {};
   existingStorage.split(CLIENTPREF_DELIMITER).forEach(function (keyValuePair) {
     const m = keyValuePair.match(/^([\w-]+)-clientpref-(\w+)$/);
@@ -79,7 +79,7 @@ function clientPrefs() {
       const currentValue = this.get(feature);
       if (slider) {
         document.documentElement.style.setProperty(
-          `--${feature.replace(/^tgui-feature-/, "").replace(/-slider$/, "")}`,
+          `--${feature.replace(/^tgui-feature-/, '').replace(/-slider$/, '')}`,
           value,
         );
       } else {
@@ -106,11 +106,11 @@ function clientPrefs() {
       const featurePrefix = feature + CLIENTPREF_SUFFIX;
       const docClass = document.documentElement.className;
       // eslint-disable-next-line security/detect-non-literal-regexp
-      const featureRegEx = new RegExp("(^| )" + mw.util.escapeRegExp(featurePrefix) + "([a-zA-Z0-9]+)( |$)");
+      const featureRegEx = new RegExp('(^| )' + mw.util.escapeRegExp(featurePrefix) + '([a-zA-Z0-9]+)( |$)');
       const match = docClass.match(featureRegEx);
 
       // check no further matches if we replaced this occurance.
-      const isAmbiguous = docClass.replace(featureRegEx, "$1$3").match(featureRegEx) !== null;
+      const isAmbiguous = docClass.replace(featureRegEx, '$1$3').match(featureRegEx) !== null;
       return !isAmbiguous && match ? match[2] : false;
     },
   };

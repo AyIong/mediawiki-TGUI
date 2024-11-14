@@ -13,24 +13,24 @@ function setupOverflowState(element) {
 
       // Break if no horizontal overflow
       if (contentWidth <= containerWidth) {
-        element.parentNode.classList.remove("tgui-overflow--left");
-        element.parentNode.classList.remove("tgui-overflow--right");
+        element.parentNode.classList.remove('tgui-overflow--left');
+        element.parentNode.classList.remove('tgui-overflow--right');
         return;
       }
 
       const currentPosition = Math.ceil(element.parentNode.scrollLeft);
       if (currentPosition <= 0) {
         // At the start
-        element.parentNode.classList.remove("tgui-overflow--left");
-        element.parentNode.classList.add("tgui-overflow--right");
+        element.parentNode.classList.remove('tgui-overflow--left');
+        element.parentNode.classList.add('tgui-overflow--right');
       } else if (currentPosition + containerWidth >= contentWidth) {
         // At the end
-        element.parentNode.classList.remove("tgui-overflow--right");
-        element.parentNode.classList.add("tgui-overflow--left");
+        element.parentNode.classList.remove('tgui-overflow--right');
+        element.parentNode.classList.add('tgui-overflow--left');
       } else {
         // At the middle
-        element.parentNode.classList.add("tgui-overflow--left");
-        element.parentNode.classList.add("tgui-overflow--right");
+        element.parentNode.classList.add('tgui-overflow--left');
+        element.parentNode.classList.add('tgui-overflow--right');
       }
     };
 
@@ -41,7 +41,7 @@ function setupOverflowState(element) {
     updateState();
 
     // Update state on element scroll
-    element.parentNode.addEventListener("scroll", () => {
+    element.parentNode.addEventListener('scroll', () => {
       window.requestAnimationFrame(updateState);
     });
   };
@@ -62,12 +62,12 @@ function setupOverflowState(element) {
  * @return {void}
  */
 function wrapTable(table) {
-  const wrapper = document.createElement("div");
+  const wrapper = document.createElement('div');
 
   // Some classes should be inherited from the table
   // For example, float helper classes like floatleft and floatright
   const inheritTableClass = () => {
-    const inheritedClasses = ["floatleft", "floatright"];
+    const inheritedClasses = ['floatleft', 'floatright'];
     inheritedClasses.forEach((inheritedClass) => {
       if (table.classList.contains(inheritedClass)) {
         wrapper.classList.add(inheritedClass);
@@ -76,7 +76,7 @@ function wrapTable(table) {
     });
   };
 
-  wrapper.classList.add("tgui-table-wrapper");
+  wrapper.classList.add('tgui-table-wrapper');
   inheritTableClass();
   table.parentNode.insertBefore(wrapper, table);
   wrapper.appendChild(table);
@@ -90,14 +90,14 @@ function wrapTable(table) {
  */
 function init(bodyContent) {
   // Don't touch nested tables since we only need to wrap the outer layer
-  if (!bodyContent.querySelector("table:not( table table )")) {
+  if (!bodyContent.querySelector('table:not( table table )')) {
     return;
   }
 
-  const tables = bodyContent.querySelectorAll("table:not( table table )");
+  const tables = bodyContent.querySelectorAll('table:not( table table )');
   tables.forEach((table) => {
     // TODO: Move disallowed classes to config
-    const classesToCheck = ["table-nowrap", "mw-enhanced-rc"];
+    const classesToCheck = ['table-nowrap', 'mw-enhanced-rc'];
     if (classesToCheck.some((cls) => table.classList.contains(cls))) {
       return;
     }

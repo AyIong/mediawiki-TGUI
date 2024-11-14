@@ -44,11 +44,16 @@ class SkinHooks implements
 			return;
 		}
 
+		// HeadScripts
 		$out->addHeadItem('floating-ui-core', '<script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.4"></script>');
 		$out->addHeadItem('floating-ui-dom', '<script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.7"></script>');
+		// FontAwesome
+		$out->addLink([
+            'rel' => 'stylesheet',
+            'href' => '/skins/TGUI/resources/skins.tgui.styles/font-awesome/css/all.min.css'
+        ]);
 
 		$scriptPaths = json_decode(file_get_contents(MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/scripts.json'), true);
-
 		if (isset($scriptPaths['scripts']) && is_array($scriptPaths['scripts'])) {
 			foreach ($scriptPaths['scripts'] as $scriptPath) {
 				if ($scriptPath === '/skins/TGUI/resources/skins.tgui.scripts/inline.js' && !$this->getConfigValue('TGUIEnablePreferences', $out)) {
@@ -61,11 +66,6 @@ class SkinHooks implements
 				$out->addHeadItem('skin.tgui.' . basename($scriptPath, '.js'), $script);
 			}
 		}
-
-		$out->addLink([
-            'rel' => 'stylesheet',
-            'href' => '/skins/TGUI/resources/skins.tgui.styles/font-awesome/css/all.min.css'
-        ]);
 	}
 
 	/**
@@ -85,7 +85,7 @@ class SkinHooks implements
 		return $result;
 	}
 
-		/**
+	/**
 	 * SkinPageReadyConfig hook handler
 	 *
 	 * Replace searchModule provided by skin.

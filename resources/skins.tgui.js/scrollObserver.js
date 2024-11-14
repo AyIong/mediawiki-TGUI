@@ -7,7 +7,7 @@
  * @return {void}
  */
 function initDirectionObserver(onScrollDown, onScrollUp, threshold) {
-  const throttle = require("mediawiki.util").throttle;
+  const throttle = require('mediawiki.util').throttle;
 
   let lastScrollTop = window.scrollY;
 
@@ -26,7 +26,7 @@ function initDirectionObserver(onScrollDown, onScrollUp, threshold) {
     lastScrollTop = scrollTop;
   };
 
-  window.addEventListener("scroll", throttle(onScroll, 250));
+  window.addEventListener('scroll', throttle(onScroll, 250));
 }
 
 /**

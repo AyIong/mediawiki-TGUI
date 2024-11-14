@@ -15,7 +15,8 @@
     "lint:i18n": "banana-checker --requireLowerCase=0 i18n/",
     "doc": "echo 'N/A'",
     "minify-svg": "svgo --config=.svgo.config.js --quiet --recursive --folder resources/",
-    "pre-commit": "[ \"${PRE_COMMIT:-1}\" -eq 0 ] || npm -s t"
+    "pre-commit": "[ \"${PRE_COMMIT:-1}\" -eq 0 ] || npm -s t",
+    "prettier": "prettier --write ."
   },
   "pre-commit": "pre-commit",
   "devDependencies": {

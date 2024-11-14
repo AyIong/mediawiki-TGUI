@@ -1,12 +1,12 @@
 // Enable TGUI features limited to ES6 browse
-const searchToggle = require("./searchToggle.js"),
-  initSectionObserver = require("./sectionObserver.js").init,
-  initTableOfContents = require("./tableOfContents.js"),
-  deferUntilFrame = require("./deferUntilFrame.js"),
-  TOC_ID = "mw-panel-toc",
-  BODY_CONTENT_ID = "bodyContent",
-  HEADLINE_SELECTOR = ".mw-headline",
-  TOC_SECTION_ID_PREFIX = "toc-";
+const searchToggle = require('./searchToggle.js'),
+  initSectionObserver = require('./sectionObserver.js').init,
+  initTableOfContents = require('./tableOfContents.js'),
+  deferUntilFrame = require('./deferUntilFrame.js'),
+  TOC_ID = 'mw-panel-toc',
+  BODY_CONTENT_ID = 'bodyContent',
+  HEADLINE_SELECTOR = '.mw-headline',
+  TOC_SECTION_ID_PREFIX = 'toc-';
 
 /**
  * @callback OnIntersection
@@ -23,7 +23,7 @@ const getHeadingIntersectionHandler = (changeActiveSection) => {
    * @param {HTMLElement} section
    */
   return (section) => {
-    const headline = section.classList.contains("mw-body-content") ? section : section.querySelector(HEADLINE_SELECTOR);
+    const headline = section.classList.contains('mw-body-content') ? section : section.querySelector(HEADLINE_SELECTOR);
     if (headline) {
       changeActiveSection(`${TOC_SECTION_ID_PREFIX}${headline.id}`);
     }
@@ -37,9 +37,9 @@ const getHeadingIntersectionHandler = (changeActiveSection) => {
  * @return {void}
  */
 const updateTocStatus = () => {
-  const tocElements = document.querySelectorAll(".sidebar-toc");
+  const tocElements = document.querySelectorAll('.sidebar-toc');
   tocElements.forEach((element) => {
-    element.classList.toggle("hidden");
+    element.classList.toggle('hidden');
   });
 };
 
@@ -49,7 +49,7 @@ const updateTocStatus = () => {
 const main = () => {
   // Initialize the search toggle for the main header only. The sticky header
   // toggle is initialized after Codex search loads.
-  const searchToggleElement = document.querySelector(".mw-header .search-toggle");
+  const searchToggleElement = document.querySelector('.mw-header .search-toggle');
   if (searchToggleElement) {
     searchToggle(searchToggleElement);
   }
@@ -57,7 +57,7 @@ const main = () => {
   // Table of contents
   const tocElement = document.getElementById(TOC_ID);
   const bodyContent = document.getElementById(BODY_CONTENT_ID);
-  const tocElementLegacy = document.getElementById("toc");
+  const tocElementLegacy = document.getElementById('toc');
 
   // Remove old ToC
   if (tocElementLegacy && tocElementLegacy.parentNode) {
@@ -82,11 +82,11 @@ const main = () => {
     onToggleCollapse: updateTocStatus,
   });
 
-  const headingSelector = ["h1", "h2", "h3", "h4", "h5", "h6", "div", "span"]
+  const headingSelector = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span']
     .map((tag) => `.mw-parser-output > ${tag}`)
-    .join(",");
+    .join(',');
   const computedStyle = window.getComputedStyle(document.documentElement);
-  const scrollPaddingTop = computedStyle.getPropertyValue("scroll-padding-top");
+  const scrollPaddingTop = computedStyle.getPropertyValue('scroll-padding-top');
   const topMargin = Number(scrollPaddingTop.slice(0, -2)) + 20;
   const getTopMargin = () => topMargin;
   const sectionObserver = initSectionObserver({

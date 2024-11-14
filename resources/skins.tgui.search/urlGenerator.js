@@ -26,7 +26,7 @@
 function urlGenerator(config) {
   // TODO: This is a placeholder for enabling customization of the URL generator.
   // wgTGUISearchUrlGenerator has not been defined as a config variable yet.
-  return config.get("wgTGUISearchUrlGenerator", {
+  return config.get('wgTGUISearchUrlGenerator', {
     /**
      * @param {RestResult|SearchResult|string} suggestion
      * @param {UrlParams} params
@@ -36,18 +36,18 @@ function urlGenerator(config) {
     generateUrl(
       suggestion,
       params = {
-        title: "Special:Search",
+        title: 'Special:Search',
       },
-      articlePath = config.get("wgScript"),
+      articlePath = config.get('wgScript'),
     ) {
-      if (typeof suggestion !== "string") {
+      if (typeof suggestion !== 'string') {
         suggestion = suggestion.title;
       } else {
         // Add `fulltext` query param to search within pages and for navigation
         // to the search results page (prevents being redirected to a certain
         // article).
         params = Object.assign({}, params, {
-          fulltext: "1",
+          fulltext: '1',
         });
       }
 

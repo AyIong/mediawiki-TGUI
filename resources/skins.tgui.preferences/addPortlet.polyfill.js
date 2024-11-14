@@ -10,32 +10,32 @@
  * @return {Element}
  */
 function addDefaultPortlet(portlet) {
-  const ul = portlet.querySelector("ul");
+  const ul = portlet.querySelector('ul');
   if (!ul) {
     return portlet;
   }
-  ul.classList.add("tgui-menu__content-list");
-  const label = portlet.querySelector("label");
+  ul.classList.add('tgui-menu__content-list');
+  const label = portlet.querySelector('label');
   if (label) {
-    const labelDiv = document.createElement("div");
-    labelDiv.classList.add("tgui-menu__heading");
-    labelDiv.innerHTML = label.textContent || "";
+    const labelDiv = document.createElement('div');
+    labelDiv.classList.add('tgui-menu__heading');
+    labelDiv.innerHTML = label.textContent || '';
     portlet.insertBefore(labelDiv, label);
     label.remove();
   }
-  let wrapper = portlet.querySelector("div:last-child");
+  let wrapper = portlet.querySelector('div:last-child');
   if (wrapper) {
     ul.remove();
     wrapper.appendChild(ul);
-    wrapper.classList.add("tgui-menu__content");
+    wrapper.classList.add('tgui-menu__content');
   } else {
-    wrapper = document.createElement("div");
-    wrapper.classList.add("tgui-menu__content");
+    wrapper = document.createElement('div');
+    wrapper.classList.add('tgui-menu__content');
     ul.remove();
     wrapper.appendChild(ul);
     portlet.appendChild(wrapper);
   }
-  portlet.classList.add("tgui-menu");
+  portlet.classList.add('tgui-menu');
   return portlet;
 }
 
@@ -56,22 +56,22 @@ function addPortlet(id, label, before) {
     return mw.util.addPortlet(id, label, before);
   }
 
-  const portlet = document.createElement("div");
+  const portlet = document.createElement('div');
   portlet.classList.add(
-    "mw-portlet",
-    "mw-portlet-" + id,
-    "emptyPortlet",
+    'mw-portlet',
+    'mw-portlet-' + id,
+    'emptyPortlet',
     // Additional class is added to allow skins to track portlets added via this mechanism.
-    "mw-portlet-js",
+    'mw-portlet-js',
   );
   portlet.id = id;
   if (label) {
-    const labelNode = document.createElement("label");
+    const labelNode = document.createElement('label');
     labelNode.textContent = label;
     portlet.appendChild(labelNode);
   }
-  const listWrapper = document.createElement("div");
-  const list = document.createElement("ul");
+  const listWrapper = document.createElement('div');
+  const list = document.createElement('ul');
   listWrapper.appendChild(list);
   portlet.appendChild(listWrapper);
   if (before) {
@@ -88,7 +88,7 @@ function addPortlet(id, label, before) {
       return null;
     }
   }
-  mw.hook("util.addPortlet").fire(portlet, before);
+  mw.hook('util.addPortlet').fire(portlet, before);
   return portlet;
 }
 

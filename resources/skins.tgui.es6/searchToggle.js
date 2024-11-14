@@ -1,6 +1,6 @@
-const HEADER_SELECTOR = "header",
-  SEARCH_BOX_SELECTOR = ".tgui-search-box",
-  SEARCH_VISIBLE_CLASS = "tgui-header-search-toggled";
+const HEADER_SELECTOR = 'header',
+  SEARCH_BOX_SELECTOR = '.tgui-search-box',
+  SEARCH_VISIBLE_CLASS = 'tgui-header-search-toggled';
 
 /**
  * Binds event handlers necessary for the searchBox to disappear when the user
@@ -22,16 +22,16 @@ function bindSearchBoxHandler(searchBox, header) {
       // can't test if the suggestion is a child of the searchBox.
       //
       // Note: The .closest API is feature detected in `initSearchToggle`.
-      !ev.target.closest(".cdx-typeahead-search .cdx-menu-item__content") &&
+      !ev.target.closest('.cdx-typeahead-search .cdx-menu-item__content') &&
       !searchBox.contains(ev.target)
     ) {
       header.classList.remove(SEARCH_VISIBLE_CLASS);
 
-      document.removeEventListener("click", clickHandler);
+      document.removeEventListener('click', clickHandler);
     }
   };
 
-  document.addEventListener("click", clickHandler);
+  document.addEventListener('click', clickHandler);
 }
 
 /**
@@ -90,7 +90,7 @@ function bindToggleClickHandler(searchBox, header, searchToggle) {
     });
   };
 
-  searchToggle.addEventListener("click", handler);
+  searchToggle.addEventListener('click', handler);
 }
 
 /**

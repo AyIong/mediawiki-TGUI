@@ -9,7 +9,7 @@
 /** @interface MediaWikiPageReadyModule */
 
 const /** @type {TGUIResourceLoaderVirtualConfig} */
-  config = require(/** @type {string} */ ("./config.json")),
+  config = require(/** @type {string} */ ('./config.json')),
   // T251544: Collect search performance metrics to compare Vue search with
   // mediawiki.searchSuggest performance.
   CAN_TEST_SEARCH = !!(
@@ -18,9 +18,9 @@ const /** @type {TGUIResourceLoaderVirtualConfig} */
     !!performance.measure &&
     performance.getEntriesByName
   ),
-  LOAD_START_MARK = "mwTGUIVueSearchLoadStart",
-  LOAD_END_MARK = "mwTGUIVueSearchLoadEnd",
-  LOAD_MEASURE = "mwTGUIVueSearchLoadStartToLoadEnd";
+  LOAD_START_MARK = 'mwTGUIVueSearchLoadStart',
+  LOAD_END_MARK = 'mwTGUIVueSearchLoadEnd',
+  LOAD_MEASURE = 'mwTGUIVueSearchLoadStartToLoadEnd';
 
 /**
  * Loads the search module via `mw.loader.using` on the element's
@@ -35,7 +35,7 @@ const /** @type {TGUIResourceLoaderVirtualConfig} */
  * @param {null|function(): void} afterLoadFn function to execute after search module loads.
  */
 function loadSearchModule(element, moduleName, startMarker, afterLoadFn) {
-  const SHOULD_TEST_SEARCH = CAN_TEST_SEARCH && moduleName === "skins.tgui.search";
+  const SHOULD_TEST_SEARCH = CAN_TEST_SEARCH && moduleName === 'skins.tgui.search';
 
   function requestSearchModule() {
     if (SHOULD_TEST_SEARCH && startMarker !== null && afterLoadFn !== null) {
@@ -44,13 +44,13 @@ function loadSearchModule(element, moduleName, startMarker, afterLoadFn) {
     } else {
       mw.loader.load(moduleName);
     }
-    element.removeEventListener("focus", requestSearchModule);
+    element.removeEventListener('focus', requestSearchModule);
   }
 
   if (document.activeElement === element) {
     requestSearchModule();
   } else {
-    element.addEventListener("focus", requestSearchModule);
+    element.addEventListener('focus', requestSearchModule);
   }
 }
 
@@ -75,11 +75,11 @@ function markLoadEnd(startMarker, endMarker, measureMarker) {
  * @param {Document} document
  */
 function initSearchLoader(document) {
-  const searchBoxes = document.querySelectorAll(".tgui-search-box");
+  const searchBoxes = document.querySelectorAll('.tgui-search-box');
 
   // Allow developers to defined $wgTGUISearchApiUrl in LocalSettings to target different APIs
   if (config.TGUISearchApiUrl) {
-    mw.config.set("wgTGUISearchApiUrl", config.TGUISearchApiUrl);
+    mw.config.set('wgTGUISearchApiUrl', config.TGUISearchApiUrl);
   }
 
   if (!searchBoxes.length) {
@@ -89,24 +89,24 @@ function initSearchLoader(document) {
   /**
    * If we are in a browser that doesn't support ES6 fall back to non-JS version.
    */
-  if (mw.loader.getState("skins.tgui.search") === null) {
-    document.body.classList.remove("skin-tgui-search-vue");
+  if (mw.loader.getState('skins.tgui.search') === null) {
+    document.body.classList.remove('skin-tgui-search-vue');
     return;
   }
 
   Array.prototype.forEach.call(searchBoxes, function (searchBox) {
-    const searchInner = searchBox.querySelector("form > div"),
+    const searchInner = searchBox.querySelector('form > div'),
       searchInput = searchBox.querySelector('input[name="search"]'),
-      isPrimarySearch = searchInput && searchInput.getAttribute("id") === "searchInput";
+      isPrimarySearch = searchInput && searchInput.getAttribute('id') === 'searchInput';
 
     if (!searchInput || !searchInner) {
       return;
     }
     // Remove tooltips while Vue search is still loading
-    searchInput.setAttribute("autocomplete", "off");
+    searchInput.setAttribute('autocomplete', 'off');
     loadSearchModule(
       searchInput,
-      "skins.tgui.search",
+      'skins.tgui.search',
       isPrimarySearch ? LOAD_START_MARK : null,
       // Note, loading Vue.js will remove the element from the DOM.
       function () {

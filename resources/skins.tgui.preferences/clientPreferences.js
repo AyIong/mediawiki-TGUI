@@ -22,8 +22,8 @@
  * @property {string} value
  */
 
-const portlets = require("./addPortlet.polyfill.js");
-const clientPrefs = require("./clientPrefs.polyfill.js")();
+const portlets = require('./addPortlet.polyfill.js');
+const clientPrefs = require('./clientPrefs.polyfill.js')();
 
 /**
  * Wrapper for mw.message to replace some message keys with tgui-specific messages. Taken from Citizen skin
@@ -35,8 +35,8 @@ const clientPrefs = require("./clientPrefs.polyfill.js")();
  * @return {string}
  */
 function getMessage(messageKey) {
-  if (messageKey.startsWith("skin-theme-")) {
-    messageKey = messageKey.replace("skin-theme-", "tgui-theme-");
+  if (messageKey.startsWith('skin-theme-')) {
+    messageKey = messageKey.replace('skin-theme-', 'tgui-theme-');
   }
   return mw.message(messageKey);
 }
@@ -49,7 +49,7 @@ function getMessage(messageKey) {
 function getClientPreferences() {
   return Array.from(document.documentElement.classList)
     .filter((className) => className.match(/-clientpref-/))
-    .map((className) => className.split("-clientpref-")[0]);
+    .map((className) => className.split('-clientpref-')[0]);
 }
 
 /**
@@ -59,7 +59,7 @@ function getClientPreferences() {
  * @return {boolean}
  */
 function isFeatureExcluded(featureName) {
-  return document.documentElement.classList.contains(featureName + "-clientpref-excluded");
+  return document.documentElement.classList.contains(featureName + '-clientpref-excluded');
 }
 
 /**
@@ -100,18 +100,18 @@ const getInputId = (featureName, value) => `skin-client-pref-${featureName}-valu
  * @return {HTMLInputElement}
  */
 function makeInputElement(type, featureName, value) {
-  const input = document.createElement("input");
+  const input = document.createElement('input');
   const name = `skin-client-pref-${featureName}-group`;
   const id = getInputId(featureName, value);
   input.name = name;
   input.id = id;
   input.type = type;
-  if (type === "checkbox") {
-    input.checked = value === "1";
+  if (type === 'checkbox') {
+    input.checked = value === '1';
   } else {
     input.value = value;
   }
-  input.setAttribute("data-event-name", id);
+  input.setAttribute('data-event-name', id);
   return input;
 }
 
@@ -121,10 +121,10 @@ function makeInputElement(type, featureName, value) {
  * @return {HTMLLabelElement}
  */
 function makeLabelElement(featureName, value) {
-  const label = document.createElement("label");
+  const label = document.createElement('label');
 
   label.textContent = getMessage(`${featureName}-${value}-label`);
-  label.setAttribute("for", getInputId(featureName, value));
+  label.setAttribute('for', getInputId(featureName, value));
   return label;
 }
 
@@ -137,10 +137,10 @@ function makeLabelElement(featureName, value) {
  * @return {HTMLElement}
  */
 function makeExclusionNotice(featureName) {
-  const p = document.createElement("p");
+  const p = document.createElement('p');
 
   const noticeMessage = getMessage(`${featureName}-exclusion-notice`);
-  p.classList.add("exclusion-notice", `${featureName}-exclusion-notice`);
+  p.classList.add('exclusion-notice', `${featureName}-exclusion-notice`);
   p.textContent = noticeMessage.text();
   return p;
 }
@@ -153,9 +153,9 @@ function makeExclusionNotice(featureName) {
  * @param {Record<string,ClientPreference>} config
  */
 function appendRadioToggle(parent, featureName, value, currentValue, config) {
-  const input = makeInputElement("radio", featureName, value);
+  const input = makeInputElement('radio', featureName, value);
   // input.classList.add( 'cdx-radio__input' );
-  input.classList.add("tgui-client-prefs-radio__input");
+  input.classList.add('tgui-client-prefs-radio__input');
   if (currentValue === value) {
     input.checked = true;
   }
@@ -169,15 +169,15 @@ function appendRadioToggle(parent, featureName, value, currentValue, config) {
   // icon.classList.add("tgui-client-prefs-radio__icon");
   const label = makeLabelElement(featureName, value);
   // label.classList.add( 'cdx-radio__label' );
-  label.classList.add("tgui-client-prefs-radio__label");
-  const container = document.createElement("div");
+  label.classList.add('tgui-client-prefs-radio__label');
+  const container = document.createElement('div');
   // container.classList.add( 'cdx-radio' );
-  container.classList.add("tgui-client-prefs-radio");
+  container.classList.add('tgui-client-prefs-radio');
   container.appendChild(input);
   // container.appendChild(icon);
   container.appendChild(label);
   parent.appendChild(container);
-  input.addEventListener("change", () => {
+  input.addEventListener('change', () => {
     toggleDocClassAndSave(featureName, value, config);
   });
 }
@@ -190,27 +190,27 @@ function appendRadioToggle(parent, featureName, value, currentValue, config) {
  * @param {Record<string,ClientPreference>} config
  */
 function appendToggleSwitch(form, featureName, labelElement, currentValue, config) {
-  const input = makeInputElement("checkbox", featureName, currentValue);
+  const input = makeInputElement('checkbox', featureName, currentValue);
   // input.classList.add( 'cdx-toggle-switch__input' );
-  input.classList.add("tgui-client-prefs-toggle-switch__input");
-  const switcher = document.createElement("span");
+  input.classList.add('tgui-client-prefs-toggle-switch__input');
+  const switcher = document.createElement('span');
   // switcher.classList.add( 'cdx-toggle-switch__switch' );
-  switcher.classList.add("tgui-client-prefs-toggle-switch__switch");
-  const grip = document.createElement("span");
+  switcher.classList.add('tgui-client-prefs-toggle-switch__switch');
+  const grip = document.createElement('span');
   // grip.classList.add( 'cdx-toggle-switch__switch__grip' );
-  grip.classList.add("tgui-client-prefs-toggle-switch__switch__grip");
+  grip.classList.add('tgui-client-prefs-toggle-switch__switch__grip');
   switcher.appendChild(grip);
   const label = labelElement || makeLabelElement(featureName, currentValue);
   // label.classList.add( 'cdx-toggle-switch__label' );
-  label.classList.add("tgui-client-prefs-toggle-switch__label");
-  const toggleSwitch = document.createElement("span");
+  label.classList.add('tgui-client-prefs-toggle-switch__label');
+  const toggleSwitch = document.createElement('span');
   // toggleSwitch.classList.add( 'cdx-toggle-switch' );
-  toggleSwitch.classList.add("tgui-client-prefs-toggle-switch");
+  toggleSwitch.classList.add('tgui-client-prefs-toggle-switch');
   toggleSwitch.appendChild(input);
   toggleSwitch.appendChild(switcher);
   toggleSwitch.appendChild(label);
-  input.addEventListener("change", () => {
-    toggleDocClassAndSave(featureName, input.checked ? "1" : "0", config);
+  input.addEventListener('change', () => {
+    toggleDocClassAndSave(featureName, input.checked ? '1' : '0', config);
   });
   form.appendChild(toggleSwitch);
 }
@@ -224,8 +224,8 @@ function appendToggleSwitch(form, featureName, labelElement, currentValue, confi
  * @param {Record<string,ClientPreference>} config
  */
 function appendSlider(parent, featureName, min, currentValue, max, defaultValue, step, config) {
-  const input = makeInputElement("range", featureName);
-  input.classList.add("tgui-client-prefs-slider__input");
+  const input = makeInputElement('range', featureName);
+  input.classList.add('tgui-client-prefs-slider__input');
   input.min = min;
   input.max = max;
   input.value = currentValue;
@@ -234,46 +234,46 @@ function appendSlider(parent, featureName, min, currentValue, max, defaultValue,
     input.step = step;
   }
 
-  const label = document.createElement("label");
+  const label = document.createElement('label');
   label.textContent = currentValue;
 
-  const button = document.createElement("button");
-  button.type = "button";
-  button.classList.add("tgui-icon", "tgui-icon_white", "tgui-icon-reset");
-  button.setAttribute("title", mw.message("tgui-reset-button").text());
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.classList.add('tgui-icon', 'tgui-icon_white', 'tgui-icon-reset');
+  button.setAttribute('title', mw.message('tgui-reset-button').text());
 
   if (currentValue === defaultValue) {
     button.disabled = true;
   }
 
-  const container = document.createElement("div");
-  container.classList.add("tgui-client-prefs-slider");
+  const container = document.createElement('div');
+  container.classList.add('tgui-client-prefs-slider');
   container.appendChild(input);
   container.appendChild(label);
   container.appendChild(button);
   parent.appendChild(container);
 
-  button.addEventListener("click", () => {
+  button.addEventListener('click', () => {
     input.value = defaultValue;
     label.textContent = defaultValue;
     button.disabled = true;
     document.documentElement.style.setProperty(
-      `--${featureName.replace(/^tgui-feature-/, "").replace(/-slider$/, "")}`,
+      `--${featureName.replace(/^tgui-feature-/, '').replace(/-slider$/, '')}`,
       defaultValue,
     );
 
     toggleDocClassAndSave(featureName, defaultValue, config, true);
   });
 
-  input.addEventListener("input", () => {
+  input.addEventListener('input', () => {
     label.textContent = input.value;
     document.documentElement.style.setProperty(
-      `--${featureName.replace(/^tgui-feature-/, "").replace(/-slider$/, "")}`,
+      `--${featureName.replace(/^tgui-feature-/, '').replace(/-slider$/, '')}`,
       input.value,
     );
   });
 
-  input.addEventListener("change", () => {
+  input.addEventListener('change', () => {
     if (input.value === defaultValue) {
       button.disabled = true;
     } else {
@@ -289,8 +289,8 @@ function appendSlider(parent, featureName, min, currentValue, max, defaultValue,
  * @return {Element}
  */
 function createRow(className) {
-  const row = document.createElement("div");
-  row.setAttribute("class", className);
+  const row = document.createElement('div');
+  row.setAttribute('class', className);
   return row;
 }
 
@@ -317,30 +317,30 @@ function makeControl(featureName, config) {
   const currentValue = clientPrefs.get(featureName);
   // The client preference was invalid. This shouldn't happen unless a gadget
   // or script has modified the documentElement.
-  if (typeof currentValue === "boolean") {
+  if (typeof currentValue === 'boolean') {
     return null;
   }
-  const row = createRow("");
-  const form = document.createElement("form");
-  const type = pref.type || "radio";
+  const row = createRow('');
+  const form = document.createElement('form');
+  const type = pref.type || 'radio';
   switch (type) {
-    case "radio":
+    case 'radio':
       pref.options.forEach((value) => {
         appendRadioToggle(form, featureName, value, currentValue, config);
       });
       break;
-    case "switch": {
-      const labelElement = document.createElement("label");
+    case 'switch': {
+      const labelElement = document.createElement('label');
       labelElement.textContent = getFeatureLabelMsg(featureName).text();
       appendToggleSwitch(form, featureName, labelElement, currentValue, config);
       break;
     }
-    case "range": {
+    case 'range': {
       appendSlider(form, featureName, pref.min, currentValue, pref.max, pref.defaultValue, pref.step, config);
       break;
     }
     default:
-      throw new Error("Unknown client preference! Only switch or radio are supported.");
+      throw new Error('Unknown client preference! Only switch or radio are supported.');
   }
 
   row.appendChild(form);
@@ -360,17 +360,17 @@ function makeClientPreference(parent, featureName, config) {
   const labelMsg = getFeatureLabelMsg(featureName);
   // If the user is not debugging messages and no language exists,
   // exit as its a hidden client preference.
-  if (!labelMsg.exists() && mw.config.get("wgUserLanguage") !== "qqx") {
+  if (!labelMsg.exists() && mw.config.get('wgUserLanguage') !== 'qqx') {
     return;
   } else {
     const id = `skin-client-prefs-${featureName}`;
     const portlet = portlets.addDefaultPortlet(portlets.addPortlet(id, labelMsg.text()));
-    const labelElement = portlet.querySelector("label");
+    const labelElement = portlet.querySelector('label');
 
     const descriptionMsg = getMessage(`${featureName}-description`);
     if (descriptionMsg.exists()) {
-      const desc = document.createElement("span");
-      desc.classList.add("skin-client-pref-description");
+      const desc = document.createElement('span');
+      desc.classList.add('skin-client-pref-description');
       desc.textContent = descriptionMsg.text();
       if (labelElement && labelElement.parentNode) {
         labelElement.appendChild(desc);
@@ -379,10 +379,10 @@ function makeClientPreference(parent, featureName, config) {
     const row = makeControl(featureName, config);
     parent.appendChild(portlet);
     if (row) {
-      const tmp = mw.util.addPortletLink(id, "", "");
+      const tmp = mw.util.addPortletLink(id, '', '');
       // create a dummy link
       if (tmp) {
-        const link = tmp.querySelector("a");
+        const link = tmp.querySelector('a');
         if (link) {
           link.replaceWith(row);
         }
@@ -428,7 +428,7 @@ function bind(clickSelector, renderSelector, config) {
     render(renderSelector, config);
     enhanced = true;
   } else {
-    chk.addEventListener("input", () => {
+    chk.addEventListener('input', () => {
       if (enhanced) {
         return;
       }

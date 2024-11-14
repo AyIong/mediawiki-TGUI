@@ -10,7 +10,7 @@
 /** @interface MwApiConstructor */
 /** @interface CheckboxHack */
 
-var checkboxHack = /** @type {CheckboxHack} */ require(/** @type {string} */ ("mediawiki.page.ready")).checkboxHack;
+var checkboxHack = /** @type {CheckboxHack} */ require(/** @type {string} */ ('mediawiki.page.ready')).checkboxHack;
 
 /**
  * Revise the button's `aria-expanded` state to match the checked state.
@@ -21,7 +21,7 @@ var checkboxHack = /** @type {CheckboxHack} */ require(/** @type {string} */ ("m
  * @ignore
  */
 function updateAriaExpanded(checkbox, button) {
-  button.setAttribute("aria-expanded", checkbox.checked.toString());
+  button.setAttribute('aria-expanded', checkbox.checked.toString());
 }
 
 /**
@@ -35,10 +35,10 @@ function updateAriaExpanded(checkbox, button) {
 function bindUpdateAriaExpandedOnInput(checkbox, button) {
   var listener = updateAriaExpanded.bind(undefined, checkbox, button);
   // Whenever the checkbox state changes, update the `aria-expanded` state.
-  checkbox.addEventListener("input", listener);
+  checkbox.addEventListener('input', listener);
 
   return function () {
-    checkbox.removeEventListener("input", listener);
+    checkbox.removeEventListener('input', listener);
   };
 }
 
@@ -51,7 +51,7 @@ function bindUpdateAriaExpandedOnInput(checkbox, button) {
  */
 function bindToggleOnSpaceEnter(button) {
   function isEnterOrSpace(/** @type {KeyboardEvent} */ event) {
-    return event.key === " " || event.key === "Enter";
+    return event.key === ' ' || event.key === 'Enter';
   }
 
   function onKeydown(/** @type {KeyboardEvent} */ event) {
@@ -80,12 +80,12 @@ function bindToggleOnSpaceEnter(button) {
     button.click();
   }
 
-  button.addEventListener("keydown", onKeydown);
-  button.addEventListener("keyup", onKeyup);
+  button.addEventListener('keydown', onKeydown);
+  button.addEventListener('keyup', onKeyup);
 
   return function () {
-    button.removeEventListener("keydown", onKeydown);
-    button.removeEventListener("keyup", onKeyup);
+    button.removeEventListener('keydown', onKeydown);
+    button.removeEventListener('keyup', onKeyup);
   };
 }
 
@@ -132,15 +132,15 @@ function initCollapsedToc(checkbox, button, target) {
  */
 function init(document) {
   initMainMenu(
-    document.getElementById("mw-sidebar-checkbox"),
-    document.getElementById("mw-sidebar-button"),
-    document.getElementById("tgui-sidebar-container"),
+    document.getElementById('mw-sidebar-checkbox'),
+    document.getElementById('mw-sidebar-button'),
+    document.getElementById('tgui-sidebar-container'),
   );
 
   initCollapsedToc(
-    document.getElementById("tgui-toc-collapsed-checkbox"),
-    document.getElementById("tgui-toc-collapsed-button"),
-    document.getElementById("mw-panel-toc"),
+    document.getElementById('tgui-toc-collapsed-checkbox'),
+    document.getElementById('tgui-toc-collapsed-button'),
+    document.getElementById('mw-panel-toc'),
   );
 }
 
