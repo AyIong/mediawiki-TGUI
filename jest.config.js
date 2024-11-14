@@ -3,7 +3,7 @@
 
 module.exports = {
   moduleNameMapper: {
-    "^./templates/(.*).mustache": "<rootDir>/includes/templates/$1.mustache",
+    "^./templates/(.*).mustache": "<rootDir>/templates/$1.mustache",
   },
 
   // Automatically clear mock calls and instances between every test

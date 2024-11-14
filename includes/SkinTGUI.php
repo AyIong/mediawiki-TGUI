@@ -14,8 +14,11 @@ use Title;
 use User;
 
 class SkinTGUI extends SkinMustache {
+	use GetConfigTrait;
+
 	/** @var null|array for caching purposes */
 	private $languages;
+
 	/** @var int */
 	private const MENU_TYPE_DEFAULT = 0;
 	/** @var int */
@@ -25,21 +28,6 @@ class SkinTGUI extends SkinMustache {
 	private const MENU_TYPE_PORTAL = 3;
 	private const SEARCH_SHOW_THUMBNAIL_CLASS = 'tgui-search-box-show-thumbnail';
 	private const SEARCH_AUTO_EXPAND_WIDTH_CLASS = 'tgui-search-box-auto-expand-width';
-	private const CLASS_PROGRESSIVE = 'mw-ui-progressive';
-
-	/**
-	 * T243281: Code used to track clicks to opt-out link.
-	 *
-	 * The "vct" substring is used to describe the newest "TGUI" (non-legacy)
-	 * feature. The "w" describes the web platform. The "1" describes the version
-	 * of the feature.
-	 *
-	 * @see https://wikitech.wikimedia.org/wiki/Provenance
-	 * @var string
-	 */
-	private const OPT_OUT_LINK_TRACKING_CODE = 'vctw1';
-
-	use GetConfigTrait;
 
 	/**
 	 * Overrides template, styles and scripts module
@@ -57,32 +45,14 @@ class SkinTGUI extends SkinMustache {
 	}
 
 	/**
-	 * Calls getLanguages with caching.
-	 * @return array
+	 * Ensure onSkinTemplateNavigation runs after all SkinTemplateNavigation hooks
+	 *
+	 * @param SkinTemplate $skin The skin template object.
+	 * @param array &$content_navigation The content navigation array.
 	 */
-	protected function getLanguagesCached(): array {
-		if ( $this->languages === null ) {
-			$this->languages = $this->getLanguages();
-		}
-		return $this->languages;
-	}
-
-	/**
-	 * This should be upstreamed to the Skin class in core once the logic is finalized.
-	 * Returns false if the page is a special page without any languages, or if an action
-	 * other than view is being used.
-	 * @return bool
-	 */
-	private function canHaveLanguages(): bool {
-		if ( $this->getContext()->getActionName() !== 'view' ) {
-			return false;
-		}
-		$title = $this->getTitle();
-		// Defensive programming - if a special page has added languages explicitly, best to show it.
-		if ( $title && $title->isSpecialPage() && empty( $this->getLanguagesCached() ) ) {
-			return false;
-		}
-		return true;
+	protected function runOnSkinTemplateNavigationHooks( SkinTemplate $skin, &$content_navigation ) {
+		parent::runOnSkinTemplateNavigationHooks( $skin, $content_navigation );
+		Hooks::onSkinTemplateNavigation( $skin, $content_navigation );
 	}
 
 	/**
@@ -206,23 +176,6 @@ class SkinTGUI extends SkinMustache {
 	}
 
 	/**
-	 * @inheritDoc
-	 */
-	protected function runOnSkinTemplateNavigationHooks( SkinTemplate $skin, &$content_navigation ) {
-		parent::runOnSkinTemplateNavigationHooks( $skin, $content_navigation );
-		Hooks::onSkinTemplateNavigation( $skin, $content_navigation );
-	}
-
-	/**
-	 * Check whether ULS is enabled
-	 *
-	 * @return bool
-	 */
-	private function isULSExtensionEnabled(): bool {
-		return ExtensionRegistry::getInstance()->isLoaded( 'UniversalLanguageSelector' );
-	}
-
-	/**
 	 * Annotates search box with TGUI-specific information
 	 *
 	 * @param array $searchBoxData
@@ -289,28 +242,6 @@ class SkinTGUI extends SkinMustache {
 	 */
 	private function doesSearchHaveThumbnails(): bool {
 		return $this->getConfig()->get( 'TGUIWvuiSearchOptions' )['showThumbnail'];
-	}
-
-	/**
-	 * Get the ULS button label, accounting for the number of available
-	 * languages.
-	 *
-	 * @return array
-	 */
-	private function getULSLabels(): array {
-		$numLanguages = count( $this->getLanguagesCached() );
-
-		if ( $numLanguages === 0 ) {
-			return [
-				'label' => $this->msg( 'tgui-no-language-button-label' )->text(),
-				'aria-label' => $this->msg( 'tgui-no-language-button-aria-label' )->text()
-			];
-		} else {
-			return [
-				'label' => $this->msg( 'tgui-language-button-label' )->numParams( $numLanguages )->escaped(),
-				'aria-label' => $this->msg( 'tgui-language-button-aria-label' )->numParams( $numLanguages )->escaped()
-			];
-		}
 	}
 
 	/**
@@ -471,85 +402,6 @@ class SkinTGUI extends SkinMustache {
 			'is-dropdown' => $type === self::MENU_TYPE_DROPDOWN,
 			'is-portal' => $type === self::MENU_TYPE_PORTAL,
 		];
-	}
-
-	/**
-	 * Determines if the Table of Contents should be visible.
-	 * TOC is visible on main namespaces except for the Main Page.
-	 *
-	 * @internal
-	 * @return bool
-	 */
-	public function isTableOfContentsVisibleInSidebar(): bool {
-		$title = $this->getTitle();
-
-		if (
-			!$title ||
-			$title->isMainPage()
-		) {
-			return false;
-		}
-
-		if ( $this->isTOCABTestEnabled() ) {
-			return $title->getArticleID() !== 0;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Annotates table of contents data with TGUI-specific information.
-	 *
-	 * In tableOfContents.js we have tableOfContents::getTableOfContentsSectionsData(),
-	 * that yields the same result as this function, please make sure to keep them in sync.
-	 *
-	 * @param array $tocData
-	 * @return array
-	 */
-	private function getTocData( array $tocData ): array {
-		// If the table of contents has no items, we won't output it.
-		// empty array is interpreted by Mustache as falsey.
-		if ( empty( $tocData ) || empty( $tocData[ 'array-sections' ] ) ) {
-			return [];
-		}
-
-		// Populate button labels for collapsible TOC sections
-		foreach ( $tocData[ 'array-sections' ] as &$section ) {
-			if ( $section['is-top-level-section'] && $section['is-parent-section'] ) {
-				$section['tgui-button-label'] =
-					$this->msg( 'tgui-toc-toggle-button-label', $section['line'] )->text();
-			}
-		}
-
-		return array_merge( $tocData, [
-			'is-tgui-toc-beginning-enabled' => $this->getConfig()->get(
-				'TGUITableOfContentsBeginning'
-			),
-			'tgui-is-collapse-sections-enabled' =>
-				$tocData[ 'number-section-count'] >= $this->getConfig()->get(
-					'TGUITableOfContentsCollapseAtCount'
-				)
-		] );
-	}
-
-	/**
-	 * Merges the `view-overflow` menu into the `action` menu.
-	 * This ensures that the previous state of the menu e.g. emptyPortlet class
-	 * is preserved.
-	 * @param array $data
-	 * @return array
-	 */
-	private function mergeViewOverflowIntoActions( $data ) {
-		$portlets = $data['data-portlets'];
-		$actions = $portlets['data-actions'];
-		$overflow = $portlets['data-views-overflow'];
-		// if the views overflow menu is not empty, then signal that the more menu despite
-		// being initially empty now has collapsible items.
-		if ( !$overflow['is-empty'] ) {
-			$data['data-portlets']['data-actions']['class'] .= ' tgui-has-collapsible-items';
-		}
-		$data['data-portlets']['data-actions']['html-items'] = $overflow['html-items'] . $actions['html-items'];
-		return $data;
 	}
 
 	/**

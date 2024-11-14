@@ -20,7 +20,7 @@
       "args": [
         {
           "name": "tgui",
-          "templateDirectory": "includes/templates",
+          "templateDirectory": "templates",
           "template": "skin",
           "responsive": true,
           "link": {
@@ -100,12 +100,6 @@
   },
   "@note": "When modifying skins.tgui.styles definition, make sure the installer still works",
   "ResourceModules": {
-    "skins.tgui.user": {
-      "class": "MediaWiki\\Skins\\TGUI\\ResourceLoader\\TGUIResourceLoaderUserModule"
-    },
-    "skins.tgui.user.styles": {
-      "class": "MediaWiki\\Skins\\TGUI\\ResourceLoader\\TGUIResourceLoaderUserStylesModule"
-    },
     "skins.tgui.search": {
       "es6": true,
       "dependencies": ["mediawiki.Uri", "mediawiki.util", "@wikimedia/codex-search"],
@@ -212,12 +206,12 @@
         },
         {
           "name": "resources/skins.tgui.es6/templates/TableOfContents.mustache",
-          "file": "includes/templates/TableOfContents.mustache",
+          "file": "templates/TableOfContents.mustache",
           "type": "text"
         },
         {
           "name": "resources/skins.tgui.es6/templates/TableOfContents__line.mustache",
-          "file": "includes/templates/TableOfContents__line.mustache",
+          "file": "templates/TableOfContents__line.mustache",
           "type": "text"
         }
       ],
