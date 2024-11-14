@@ -52,7 +52,7 @@ class SkinTGUI extends SkinMustache {
 	 */
 	protected function runOnSkinTemplateNavigationHooks( SkinTemplate $skin, &$content_navigation ) {
 		parent::runOnSkinTemplateNavigationHooks( $skin, $content_navigation );
-		Hooks::onSkinTemplateNavigation( $skin, $content_navigation );
+		Hooks\SkinHooks::onSkinTemplateNavigation( $skin, $content_navigation );
 	}
 
 	/**
@@ -72,7 +72,7 @@ class SkinTGUI extends SkinMustache {
 			'icon' => $isDropdownItem ? $createAccountData['icon'] : null,
 			'button' => !$isDropdownItem,
 		] );
-		$createAccountData = Hooks::updateLinkData( $createAccountData );
+		$createAccountData = Hooks\SkinHooks::updateLinkData( $createAccountData );
 		return $this->makeLink( 'create-account', $createAccountData );
 	}
 
@@ -95,7 +95,7 @@ class SkinTGUI extends SkinMustache {
 		$loginLinkData = array_merge( $this->buildLoginData( $returnto, $useCombinedLoginLink ), [
 			'class' => [ 'tgui-menu-content-item', 'tgui-menu-content-item-login' ],
 		] );
-		$loginLinkData = Hooks::updateLinkData( $loginLinkData );
+		$loginLinkData = Hooks\SkinHooks::updateLinkData( $loginLinkData );
 		$templateData = [
 			'htmlCreateAccount' => $this->getCreateAccountHTML( $returnto, true ),
 			'htmlLogin' => $this->makeLink( 'login', $loginLinkData ),
@@ -133,7 +133,7 @@ class SkinTGUI extends SkinMustache {
 		$logoutLinkData = array_merge( $this->buildLogoutLinkData(), [
 			'class' => [ 'tgui-menu-content-item', 'tgui-menu-content-item-logout' ],
 		] );
-		$logoutLinkData = Hooks::updateLinkData( $logoutLinkData );
+		$logoutLinkData = Hooks\SkinHooks::updateLinkData( $logoutLinkData );
 
 		$templateParser = $this->getTemplateParser();
 		return $templateParser->processTemplate( 'UserLinks__logout', [
@@ -161,7 +161,7 @@ class SkinTGUI extends SkinMustache {
 				// T317789: The `anontalk` and `anoncontribs` links will not be added to
 				// the menu if `$wgGroupPermissions['*']['edit']` === false which can
 				// leave the menu empty due to our removal of other user menu items in
-				// `Hooks::updateUserLinksDropdownItems`. In this case, we do not want
+				// `Hooks\SkinHooks::updateUserLinksDropdownItems`. In this case, we do not want
 				// to render the anon "learn more" link.
 				!$userMenuData['is-empty']
 			);
@@ -225,16 +225,6 @@ class SkinTGUI extends SkinMustache {
 	}
 
 	/**
-	 * Gets the value of the "input-location" parameter for the SearchBox Mustache template.
-	 *
-	 * @return string Either `Constants::SEARCH_BOX_INPUT_LOCATION_DEFAULT` or
-	 *  `Constants::SEARCH_BOX_INPUT_LOCATION_MOVED`
-	 */
-	private function getSearchBoxInputLocation(): string {
-		return Constants::SEARCH_BOX_INPUT_LOCATION_MOVED;
-	}
-
-	/**
 	 * Returns `true` if Vue search is enabled to show thumbnails and `false` otherwise.
 	 * Note this is only relevant for Vue search experience (not legacy search).
 	 *
@@ -253,7 +243,7 @@ class SkinTGUI extends SkinMustache {
 	private function getUserMenuPortletData( $portletData ) {
 		// T317789: Core can undesirably add an 'emptyPortlet' class that hides the
 		// user menu. This is a result of us manually removing items from the menu
-		// in Hooks::updateUserLinksDropdownItems which can make
+		// in Hooks\SkinHooks::updateUserLinksDropdownItems which can make
 		// SkinTemplate::getPortletData apply the `emptyPortlet` class if there are
 		// no menu items. Since we subsequently add menu items in
 		// SkinTGUI::getUserLinksTemplateData, the `emptyPortlet` class is
@@ -307,7 +297,7 @@ class SkinTGUI extends SkinMustache {
 			$portletData['heading-class'] = '';
 		}
 		if ( $type === self::MENU_TYPE_DROPDOWN ) {
-			$portletData = Hooks::updateDropdownMenuData( $portletData );
+			$portletData = Hooks\SkinHooks::updateDropdownMenuData( $portletData );
 		}
 
 		$portletData['class'] = trim( $portletData['class'] );
@@ -412,7 +402,6 @@ class SkinTGUI extends SkinMustache {
 
 		$parentData = $this->decoratePortletsData( parent::getTemplateData() );
 		$commonSkinData = array_merge( $parentData, [
-			'input-location' => $this->getSearchBoxInputLocation(),
 			'data-search-box' => $this->getSearchData(
 				$parentData['data-search-box'],
 				false,

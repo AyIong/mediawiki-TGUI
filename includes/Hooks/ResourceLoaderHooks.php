@@ -23,7 +23,7 @@
 
 declare( strict_types=1 );
 
-namespace MediaWiki\Skins\TGUI;
+namespace MediaWiki\Skins\TGUI\Hooks;
 
 use Config;
 use ExtensionRegistry;

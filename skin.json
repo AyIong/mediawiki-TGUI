@@ -87,16 +87,13 @@
     "tgui": "GlobalVarConfig::newInstance"
   },
   "HookHandlers": {
-    "TGUIHooks": {
-      "class": "MediaWiki\\Skins\\TGUI\\Hooks"
+    "SkinHooks": {
+      "class": "MediaWiki\\Skins\\TGUI\\Hooks\\SkinHooks"
     }
   },
   "Hooks": {
-    "BeforePageDisplay": "TGUIHooks",
-    "MakeGlobalVariablesScript": "TGUIHooks",
-    "ResourceLoaderSiteModulePages": "TGUIHooks",
-    "ResourceLoaderSiteStylesModulePages": "TGUIHooks",
-    "SkinPageReadyConfig": "TGUIHooks"
+    "BeforePageDisplay": "SkinHooks",
+    "SkinPageReadyConfig": "SkinHooks"
   },
   "@note": "When modifying skins.tgui.styles definition, make sure the installer still works",
   "ResourceModules": {
@@ -112,7 +109,7 @@
         "resources/skins.tgui.search/App.vue",
         {
           "name": "resources/skins.tgui.search/config.json",
-          "callback": "MediaWiki\\Skins\\TGUI\\Hooks::getTGUISearchResourceLoaderConfig"
+          "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\SkinHooks::getTGUISearchResourceLoaderConfig"
         }
       ],
       "messages": ["searchbutton", "searchresults", "tgui-searchsuggest-containing"]
@@ -198,7 +195,7 @@
         "resources/skins.tgui.es6/deferUntilFrame.js",
         {
           "name": "resources/skins.tgui.es6/config.json",
-          "callback": "MediaWiki\\Skins\\TGUI\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
+          "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
         },
         {
           "name": "resources/skins.tgui.es6/tableOfContentsConfig.json",
@@ -230,7 +227,7 @@
         "resources/skins.tgui.js/skin.js",
         {
           "name": "resources/skins.tgui.js/config.json",
-          "callback": "MediaWiki\\Skins\\TGUI\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
+          "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
         },
         "resources/skins.tgui.js/checkbox.js",
         "resources/skins.tgui.js/dropdownMenus.js",
@@ -251,7 +248,7 @@
         "resources/skins.tgui.preferences/skins.tgui.preferences.js",
         {
           "name": "resources/skins.tgui.preferences/config.json",
-          "callback": "MediaWiki\\Skins\\TGUI\\ResourceLoaderHooks::getTGUIPreferencesResourceLoaderConfig"
+          "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\ResourceLoaderHooks::getTGUIPreferencesResourceLoaderConfig"
         },
         "resources/skins.tgui.preferences/addPortlet.polyfill.js",
         "resources/skins.tgui.preferences/clientPreferences.js",

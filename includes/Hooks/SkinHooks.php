@@ -1,17 +1,16 @@
 <?php
 
-namespace MediaWiki\Skins\TGUI;
+declare( strict_types=1 );
+
+namespace MediaWiki\Skins\TGUI\Hooks;
 
 use Config;
 use Html;
 use IContextSource;
-use MediaWiki\Hook\MakeGlobalVariablesScriptHook;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Skins\TGUI\GetConfigTrait;
-use MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteModulePagesHook;
-use MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteStylesModulePagesHook;
 use MediaWiki\Skins\Hook\SkinPageReadyConfigHook;
 use OutputPage;
 use RuntimeException;
@@ -28,11 +27,8 @@ use User;
  * @package TGUI
  * @internal
  */
-class Hooks implements
+class SkinHooks implements
 	BeforePageDisplayHook,
-	MakeGlobalVariablesScriptHook,
-	ResourceLoaderSiteModulePagesHook,
-	ResourceLoaderSiteStylesModulePagesHook,
 	SkinPageReadyConfigHook
 {
 	use GetConfigTrait;
@@ -73,16 +69,6 @@ class Hooks implements
 	}
 
 	/**
-	 * Checks if the current skin is a variant of TGUI
-	 *
-	 * @param string $skinName
-	 * @return bool
-	 */
-	private static function isTGUISkin( string $skinName ): bool {
-		return ($skinName === Constants::SKIN_NAME);
-	}
-
-		/**
 	 * Generates config variables for skins.tgui.search Resource Loader module (defined in
 	 * skin.json).
 	 *
@@ -99,33 +85,23 @@ class Hooks implements
 		return $result;
 	}
 
-	/**
+		/**
 	 * SkinPageReadyConfig hook handler
 	 *
 	 * Replace searchModule provided by skin.
 	 *
-	 * @since 1.35
+	 * @since 1.36
 	 * @param RL\Context $context
 	 * @param mixed[] &$config Associative array of configurable options
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onSkinPageReadyConfig(
-		RL\Context $context,
-		array &$config
-	): void {
+	public function onSkinPageReadyConfig( $context, array &$config ): void {
 		// It's better to exit before any additional check
-		if ( !self::isTGUISkin( $context->getSkin() ) ) {
+		if ( $context->getSkin() !== 'tgui' ) {
 			return;
 		}
 
 		// Tell the `mediawiki.page.ready` module not to wire up search.
-		// This allows us to use the new Vue implementation.
-		// Context has no knowledge of legacy / modern TGUI
-		// and from its point of view they are the same thing.
-		// Please see the modules `skins.tgui.js` and `skins.tgui.legacy.js`
-		// for the wire up of search.
-		// The related method self::getTGUIResourceLoaderConfig handles which
-		// search to load.
 		$config['search'] = false;
 	}
 
@@ -478,50 +454,5 @@ class Hooks implements
 
 		self::updateUserLinksItems( $sk, $content_navigation );
 		self::createMoreOverflowMenu( $content_navigation );
-	}
-
-	/**
-	 * Adds MediaWiki:TGUI.css as the skin style that controls classic TGUI.
-	 *
-	 * @param string $skin
-	 * @param array &$pages
-	 */
-	public function onResourceLoaderSiteStylesModulePages( $skin, &$pages ): void {
-		if ( $skin === Constants::SKIN_NAME ) {
-			$pages['MediaWiki:TGUI.css'] = [ 'type' => 'style' ];
-		}
-	}
-
-	/**
-	 * Adds MediaWiki:TGUI.css as the skin style that controls classic TGUI.
-	 *
-	 * @param string $skin
-	 * @param array &$pages
-	 */
-	public function onResourceLoaderSiteModulePages( $skin, &$pages ): void {
-		if ( $skin === Constants::SKIN_NAME ) {
-			$pages['MediaWiki:TGUI.js'] = [ 'type' => 'script' ];
-		}
-	}
-
-	/**
-	 * NOTE: Please use ResourceLoaderGetConfigVars hook instead if possible
-	 * for adding config to the page.
-	 * Adds config variables to JS that depend on current page/request.
-	 *
-	 * Adds a config flag that can disable saving the TGUISidebarVisible
-	 * user preference when the sidebar menu icon is clicked.
-	 *
-	 * @param array &$vars Array of variables to be added into the output.
-	 * @param OutputPage $out OutputPage instance calling the hook
-	 */
-	public function onMakeGlobalVariablesScript( &$vars, $out ): void {
-		$skin = $out->getSkin();
-		$skinName = $skin->getSkinName();
-		if ( !self::isTGUISkin( $skinName ) ) {
-			return;
-		}
-		$config = $out->getConfig();
-		$user = $out->getUser();
 	}
 }

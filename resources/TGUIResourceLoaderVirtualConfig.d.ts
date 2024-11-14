@@ -1,4 +1,4 @@
-/** See TGUI\Hooks::getTGUIResourceLoaderConfig */
+/** See TGUI\Hooks\SkinHooks::getTGUIResourceLoaderConfig */
 interface TGUIResourceLoaderVirtualConfig {
   wgTGUISearchApiUrl: string;
 }
