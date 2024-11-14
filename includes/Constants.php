@@ -19,11 +19,6 @@ final class Constants {
 	/**
 	 * @var string
 	 */
-	public const SERVICE_FEATURE_MANAGER = 'TGUI.FeatureManager';
-
-	/**
-	 * @var string
-	 */
 	public const PREF_KEY_SKIN = 'skin';
 
 	// These are used in the Feature Management System.
