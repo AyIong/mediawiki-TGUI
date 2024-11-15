@@ -1,0 +1,21 @@
+.mw-logo {
+	position: relative;
+}
+
+.mw-logo-icon {
+	background-color: var(--color-bg-hover);
+	border: var(--border-classic);
+	border-radius: var(--border-radius-round);
+}
+
+.mw-logo:before {
+	content: '';
+	position: absolute;
+	background: url('../images/santa-hat.png') no-repeat;
+	background-size: 3.9rem;
+	height: 4rem;
+	width: 4rem;
+	left: -0.6rem;
+	top: -1rem;
+	z-index: 5;
+}

@@ -8,6 +8,13 @@
       }
     },
     {
+      "files": "*.css",
+      "options": {
+        "singleQuote": true,
+        "useTabs": true
+      }
+    },
+    {
       "files": "*.js",
       "options": {
         "singleQuote": true

@@ -6,6 +6,7 @@ namespace MediaWiki\Skins\TGUI\Hooks;
 
 use Config;
 use Html;
+use DateTime;
 use IContextSource;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\MediaWikiServices;
@@ -44,7 +45,7 @@ class SkinHooks implements
 			return;
 		}
 
-		// HeadScripts
+		// CDN
 		$out->addHeadItem('floating-ui-core', '<script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.4"></script>');
 		$out->addHeadItem('floating-ui-dom', '<script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.7"></script>');
 		// FontAwesome
@@ -53,6 +54,7 @@ class SkinHooks implements
             'href' => '/skins/TGUI/resources/skins.tgui.styles/font-awesome/css/all.min.css'
         ]);
 
+		// HeadScripts
 		$scriptPaths = json_decode(file_get_contents(MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/scripts.json'), true);
 		if (isset($scriptPaths['scripts']) && is_array($scriptPaths['scripts'])) {
 			foreach ($scriptPaths['scripts'] as $scriptPath) {
@@ -64,6 +66,32 @@ class SkinHooks implements
 				$script = Html::inlineScript($script);
 				$script = RL\ResourceLoader::filter('minify-js', $script);
 				$out->addHeadItem('skin.tgui.' . basename($scriptPath, '.js'), $script);
+			}
+		}
+
+		// Holidays system
+		$currentDate = new DateTime();
+		$holidaysPath = MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.holidays/holidays.json';
+		$holidays = json_decode(file_get_contents($holidaysPath), true);
+
+		foreach ($holidays as $holiday) {
+			$start = DateTime::createFromFormat('j-n', $holiday['start']['day'] . '-' . $holiday['start']['month']);
+			$end = DateTime::createFromFormat('j-n', $holiday['end']['day'] . '-' . $holiday['end']['month']);
+
+			if (($start <= $currentDate && $currentDate <= $end) || ($start->format('m') > $end->format('m') && ($currentDate >= $start || $currentDate <= $end))) {
+				$cssPath = "/skins/TGUI/resources/skins.tgui.holidays/styles/{$holiday['name']}.css";
+				$jsPath = "/skins/TGUI/resources/skins.tgui.holidays/scripts/{$holiday['name']}.js";
+
+				if (file_exists(MW_INSTALL_PATH . $cssPath)) {
+					$out->addLink([
+						'rel' => 'stylesheet',
+						'href' => $cssPath
+					]);
+				}
+
+				if (file_exists(MW_INSTALL_PATH . $jsPath)) {
+					$out->addHeadItem("skin.tgui.holiday.{$holiday['name']}", "<script src=\"$jsPath\"></script>");
+				}
 			}
 		}
 	}

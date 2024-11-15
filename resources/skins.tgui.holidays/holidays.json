@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Winter",
+    "start": {
+      "day": 1,
+      "month": 12
+    },
+    "end": {
+      "day": 1,
+      "month": 3
+    }
+  },
+  {
+    "name": "New Year",
+    "start": {
+      "day": 24,
+      "month": 12
+    },
+    "end": {
+      "day": 8,
+      "month": 1
+    }
+  }
+]
