@@ -70,6 +70,12 @@ class SkinHooks implements
 		}
 
 		// Holidays system
+		if ($this->getConfigValue('TGUIEnableHolidays', $out)) {
+			self::checkHolidays($out);
+		}
+	}
+
+	public function checkHolidays($out) {
 		$currentDate = new DateTime();
 		$holidaysPath = MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.holidays/holidays.json';
 		$holidays = json_decode(file_get_contents($holidaysPath), true);

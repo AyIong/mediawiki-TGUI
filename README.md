@@ -56,6 +56,7 @@ Skin has a few configurations, you can use them if your wiki is not ready to use
 | $wgTGUIThemeDefault | The default skin theme | `auto` - automatically switches between dark and light, depending on the theme of the device <br> `dark` and `light` <br> | `auto` |
 | $wgTGUITooltips | Defines tooltip content css classes. | List of css classes. Extend with $wgTGUITooltips[] = 'my_class'; | `["tooltiptext", "tooltiptext2", "tooltiptable"]` |
 | $wgTGUIReplaceTitleTooltips | Replacing of buildin browser tooltips with Floating UI custom ones. | `true` - enable <br> `false` - disable | `true` |
+| $wgTGUIEnableHolidays | Enables or disable holidays styles and scripts. | `true` - enable <br> `false` - disable | `true` |
 
 ## Licensing
 This is protected under GDL 2.0+ so you're free to take and use this and modify it to whatever the hell you want. Just credit the author and follow the license.

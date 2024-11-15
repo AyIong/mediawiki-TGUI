@@ -292,6 +292,12 @@
       "descriptionmsg": "tgui-config-title-tooltips",
       "public": true
     },
+    "EnableHolidays": {
+      "value": true,
+      "description": "Enables or disable holidays styles and scripts.",
+      "descriptionmsg": "tgui-config-enableholidays",
+      "public": true
+    },
     "SearchApiUrl": {
       "value": "",
       "description": "To override the default search API, set this to the URL to rest.php on another wiki. Can be used with $wgDisableTextSearch and $wgSearchForwardUrl to mimic user experience on production."
