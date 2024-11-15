@@ -1,13 +1,13 @@
 {
   "name": "TGUI",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "author": [
     "Александр Кица (Aylong)",
     "[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team]",
-    "Original [https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
+    "[https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
   ],
   "url": "https://www.youtube.com/watch?v=JDQBvN1GATw",
-  "namemsg": "tgui-specialversion-name",
+  "namemsg": "skinname-tgui",
   "descriptionmsg": "tgui-skin-desc",
   "license-name": "GPL-2.0-or-later",
   "type": "skin",
@@ -20,15 +20,12 @@
       "args": [
         {
           "name": "tgui",
-          "templateDirectory": "templates",
-          "template": "skin",
           "responsive": true,
           "link": {
             "text-wrapper": {
               "tag": "span"
             }
           },
-          "bodyClasses": ["skin-tgui", "skin-tgui-search-vue"],
           "menus": [
             "user-interface-preferences",
             "user-page",
@@ -39,33 +36,18 @@
             "variants",
             "associated-pages"
           ],
-          "scripts": ["skins.tgui.user", "skins.tgui.js", "skins.tgui.es6"],
-          "styles": [
-            "mediawiki.ui.button",
-            "skins.tgui.styles",
-            "skins.tgui.user.styles",
-            "skins.tgui.icons",
-            "mediawiki.ui.icon"
-          ],
+          "scripts": ["skins.tgui.js", "skins.tgui.es6"],
+          "styles": ["mediawiki.ui.icon", "mediawiki.ui.button", "skins.tgui.styles", "skins.tgui.icons"],
           "messages": [
-            "tooltip-p-logo",
-            "tgui-action-toggle-sidebar",
-            "tgui-main-menu-tooltip",
-            "tgui-jumptosearch",
-            "tgui-jumptocontent",
-            "tgui-toc-beginning",
-            "tgui-toc-heading",
-            "tgui-toc-menu-tooltip",
-            "tgui-article-tools-nav-label",
-            "tgui-site-nav-label",
             "search",
             "searchbutton",
             "searcharticle",
             "searchsuggest-search",
-            "sitesubtitle",
             "sitetitle",
             "tagline",
-            "personaltools"
+            "personaltools",
+            "tgui-toc-beginning",
+            "tgui-toc-heading"
           ]
         }
       ]
@@ -80,12 +62,6 @@
   "AutoloadNamespaces": {
     "MediaWiki\\Skins\\TGUI\\": "includes/"
   },
-  "TestAutoloadNamespaces": {
-    "MediaWiki\\Skins\\TGUI\\Tests\\": "tests/phpunit/"
-  },
-  "ConfigRegistry": {
-    "tgui": "GlobalVarConfig::newInstance"
-  },
   "HookHandlers": {
     "SkinHooks": {
       "class": "MediaWiki\\Skins\\TGUI\\Hooks\\SkinHooks"
@@ -95,25 +71,7 @@
     "BeforePageDisplay": "SkinHooks",
     "SkinPageReadyConfig": "SkinHooks"
   },
-  "@note": "When modifying skins.tgui.styles definition, make sure the installer still works",
   "ResourceModules": {
-    "skins.tgui.search": {
-      "es6": true,
-      "dependencies": ["mediawiki.Uri", "mediawiki.util", "@wikimedia/codex-search"],
-      "packageFiles": [
-        "resources/skins.tgui.search/skins.tgui.search.js",
-        "resources/skins.tgui.search/instrumentation.js",
-        "resources/skins.tgui.search/fetch.js",
-        "resources/skins.tgui.search/restSearchClient.js",
-        "resources/skins.tgui.search/urlGenerator.js",
-        "resources/skins.tgui.search/App.vue",
-        {
-          "name": "resources/skins.tgui.search/config.json",
-          "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\SkinHooks::getTGUISearchResourceLoaderConfig"
-        }
-      ],
-      "messages": ["searchbutton", "searchresults", "tgui-searchsuggest-containing"]
-    },
     "skins.tgui.styles": {
       "class": "MediaWiki\\ResourceLoader\\SkinModule",
       "features": {
@@ -125,20 +83,14 @@
         "i18n-headings": true
       },
       "targets": ["desktop", "mobile"],
-      "styles": ["resources/skins.tgui.styles/core-skin.less"],
-      "lessMessages": ["parentheses-start", "parentheses-end", "brackets-start", "brackets-end"]
+      "styles": ["resources/skins.tgui.styles/core-skin.less"]
     },
-    "skins.tgui.icons.js": {
-      "selectorWithVariant": ".mw-ui-icon-wikimedia-{name}-{variant}:before",
+    "skins.tgui.icons": {
       "selectorWithoutVariant": ".mw-ui-icon-wikimedia-{name}:before",
       "useDataURI": false,
+      "defaultColor": "#000",
       "class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
-      "variants": {
-        "progressive": {
-          "color": "#000",
-          "global": true
-        }
-      },
+      "variants": {},
       "icons": [
         "article",
         "edit",
@@ -149,21 +101,7 @@
         "speechBubbleAdd",
         "star",
         "unStar",
-        "wikiText"
-      ]
-    },
-    "skins.tgui.icons": {
-      "selectorWithVariant": ".mw-ui-icon-wikimedia-{name}-{variant}:before",
-      "selectorWithoutVariant": ".mw-ui-icon-wikimedia-{name}:before",
-      "useDataURI": false,
-      "class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
-      "variants": {
-        "progressive": {
-          "color": "#000",
-          "global": true
-        }
-      },
-      "icons": [
+        "wikiText",
         "language",
         "ellipsis",
         "userAvatar",
@@ -214,7 +152,6 @@
       ],
       "dependencies": [
         "mediawiki.user",
-        "skins.tgui.icons.js",
         "mediawiki.page.ready",
         "mediawiki.page.watch.ajax",
         "mediawiki.util",
@@ -239,7 +176,7 @@
         "resources/skins.tgui.js/templateTooltips.js",
         "resources/skins.tgui.js/popups.js"
       ],
-      "dependencies": ["skins.tgui.icons.js", "mediawiki.page.ready", "mediawiki.util"],
+      "dependencies": ["mediawiki.page.ready", "mediawiki.util"],
       "messages": ["tgui-search-loader", "tgui-purge-button-label", "tgui-purge-button-title"]
     },
     "skins.tgui.preferences": {
@@ -283,6 +220,23 @@
     "skins.tgui.serviceWorker": {
       "scripts": ["resources/skins.tgui.serviceWorker/sw.js"],
       "targets": ["desktop", "mobile"]
+    },
+    "skins.tgui.search": {
+      "es6": true,
+      "dependencies": ["mediawiki.Uri", "mediawiki.util", "@wikimedia/codex-search"],
+      "packageFiles": [
+        "resources/skins.tgui.search/skins.tgui.search.js",
+        "resources/skins.tgui.search/instrumentation.js",
+        "resources/skins.tgui.search/fetch.js",
+        "resources/skins.tgui.search/restSearchClient.js",
+        "resources/skins.tgui.search/urlGenerator.js",
+        "resources/skins.tgui.search/App.vue",
+        {
+          "name": "resources/skins.tgui.search/config.json",
+          "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\SkinHooks::getTGUISearchResourceLoaderConfig"
+        }
+      ],
+      "messages": ["searchbutton", "searchresults", "tgui-searchsuggest-containing"]
     }
   },
   "ResourceFileModulePaths": {
@@ -334,7 +288,7 @@
     },
     "ReplaceTitleTooltips": {
       "value": true,
-      "description": "Replaces buildin browser tooltips, with Floating UI ones.",
+      "description": "Replaces buildin browser tooltips, with FloatingUI ones.",
       "descriptionmsg": "tgui-config-title-tooltips",
       "public": true
     },

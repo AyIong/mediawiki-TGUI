@@ -1,7 +1,6 @@
 {{!
 	LogoDefinition logo
 	string link-mainpage link to the main page (from SkinMustache in core)
-	string msg-sitesubtitle the contents of the sitesubtitle message key
 }}
 <a href="{{link-mainpage}}" class="mw-logo">
 	{{#icon}}
@@ -18,9 +17,7 @@
 		<strong class="mw-logo-wordmark">{{msg-sitetitle}}</strong>
 		{{/wordmark}}
 		{{#tagline}}
-		<img class="mw-logo-tagline"
-			alt="{{msg-sitesubtitle}}"
-			src="{{src}}" width="{{width}}" height="{{height}}" style="{{style}}">
+		<img class="mw-logo-tagline" src="{{src}}" width="{{width}}" height="{{height}}" style="{{style}}">
 		{{/tagline}}
 	</span>
 </a>
