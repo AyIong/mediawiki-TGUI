@@ -112,12 +112,6 @@ function getWprovFromResultIndex(index) {
 }
 
 /**
- * @typedef {Object} SearchResultPartial
- * @property {string} title
- * @property {string} [url]
- */
-
-/**
  * Return a new list of search results,
  * with the `wprov` parameter added to each result's url (if any).
  *
@@ -135,13 +129,6 @@ function addWprovToSearchResultUrls(results, offset) {
     return result;
   });
 }
-
-/**
- * @typedef {Object} Instrumentation
- * @property {Object} listeners
- * @property {Function} getWprovFromResultIndex
- * @property {Function} addWprovToSearchResultUrls
- */
 
 /**
  * @type {Instrumentation}
