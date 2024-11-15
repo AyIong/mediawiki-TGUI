@@ -20,5 +20,16 @@
       "day": 8,
       "month": 1
     }
+  },
+  {
+    "name": "AFD",
+    "start": {
+      "day": 1,
+      "month": 4
+    },
+    "end": {
+      "day": 2,
+      "month": 4
+    }
   }
 ]
