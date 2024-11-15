@@ -14,6 +14,26 @@
   transition: box-shadow var(--transition-time);
   z-index: var(--index-static);
 
+  &:before,
+  &:after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    height: 100%;
+    background-color: var(--color-base-fill);
+    z-index: -1;
+  }
+
+  &:after {
+    left: 0;
+    width: 0.75rem;
+  }
+
+  &:before {
+    right: 0;
+    width: 0.75rem;
+  }
+
   .tgui-off-top & {
     box-shadow: var(--shadow-template--small);
   }
