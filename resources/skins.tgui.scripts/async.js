@@ -1,5 +1,5 @@
 const maxAttempts = 20;
-const timeout = 25;
+const timeout = 10;
 
 async function waitForElement(selector) {
   let attempts = 0;
