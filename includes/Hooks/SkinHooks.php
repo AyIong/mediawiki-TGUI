@@ -57,16 +57,19 @@ class SkinHooks implements
 		// HeadScripts
 		$scriptPaths = json_decode(file_get_contents(MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/scripts.json'), true);
 		if (isset($scriptPaths['scripts']) && is_array($scriptPaths['scripts'])) {
+			$allScripts = '';
+
 			foreach ($scriptPaths['scripts'] as $scriptPath) {
 				if ($scriptPath === '/skins/TGUI/resources/skins.tgui.scripts/inline.js' && !$this->getConfigValue('TGUIEnablePreferences', $out)) {
 					continue;
 				}
 
 				$script = file_get_contents(MW_INSTALL_PATH . $scriptPath);
-				$script = Html::inlineScript($script);
 				$script = RL\ResourceLoader::filter('minify-js', $script);
-				$out->addHeadItem('skin.tgui.' . basename($scriptPath, '.js'), $script);
+				$allScripts .= $script;
 			}
+
+			$out->addHeadItem('skin.tgui.scripts', Html::inlineScript($allScripts));
 		}
 
 		// Holidays system

@@ -1,4 +1,4 @@
-async function init() {
+async function initPortlets() {
   const panel = await waitForElement('mw-panel');
   if (!panel) return;
   panel.classList.add('collapsible-nav');
@@ -103,7 +103,7 @@ async function setMaxHeightForContent() {
 
 async function main() {
   await setMaxHeightForContent();
-  await init();
+  await initPortlets();
 }
 
 requestAnimationFrame(main);

@@ -7,12 +7,12 @@ async function waitForElement(selector) {
 
   while (attempts < maxAttempts) {
     if (element) {
-      console.log(`Found ${selector}`);
+      // console.log(`Found ${selector}`);
       return element;
     }
 
     attempts++;
-    console.log(`Cannot find ${selector}. Trying again (${attempts + 1})`);
+    console.warn(`Cannot find ${selector}. Trying again (${attempts + 1})`);
     await new Promise((resolve) => setTimeout(resolve, timeout));
   }
 
@@ -25,12 +25,12 @@ async function waitForElements(selector) {
 
   while (attempts < maxAttempts) {
     if (element.length > 0) {
-      console.log(`Found ${selector.length} ${selector}`);
+      // console.log(`Found ${selector.length} ${selector}`);
       return element;
     }
 
     attempts++;
-    console.log(`Cannot find all ${selector}. Trying again (${attempts + 1})`);
+    console.warn(`Cannot find all ${selector}. Trying again (${attempts + 1})`);
     await new Promise((resolve) => setTimeout(resolve, timeout));
   }
 

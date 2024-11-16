@@ -29,7 +29,7 @@ function bindSidebarClickEvent(checkbox, button) {
   }
 }
 
-async function init() {
+async function initSidebar() {
   const [checkbox, button] = await Promise.all([
     waitForElement(SIDEBAR_CHECKBOX_ID),
     waitForElement(SIDEBAR_BUTTON_ID),
@@ -41,4 +41,4 @@ async function init() {
   }
 }
 
-requestAnimationFrame(init);
+requestAnimationFrame(initSidebar);
