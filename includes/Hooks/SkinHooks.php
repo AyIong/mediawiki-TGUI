@@ -89,14 +89,17 @@ class SkinHooks implements
 				$jsPath = "/skins/TGUI/resources/skins.tgui.holidays/scripts/{$holiday['name']}.js";
 
 				if (file_exists(MW_INSTALL_PATH . $cssPath)) {
-					$out->addLink([
-						'rel' => 'stylesheet',
-						'href' => $cssPath
-					]);
+					$style = file_get_contents(MW_INSTALL_PATH . $cssPath);
+					$style = Html::inlineStyle($style);
+					$style = RL\ResourceLoader::filter('minify-css', $style);
+					$out->addHeadItem('skin.tgui.holiday.' . $holiday['name'], $style);
 				}
 
 				if (file_exists(MW_INSTALL_PATH . $jsPath)) {
-					$out->addHeadItem("skin.tgui.holiday.{$holiday['name']}", "<script src=\"$jsPath\"></script>");
+					$script = file_get_contents(MW_INSTALL_PATH . $jsPath);
+					$script = Html::inlineScript($script);
+					$script = RL\ResourceLoader::filter('minify-js', $script);
+					$out->addHeadItem('skin.tgui.holiday.' . $holiday['name'], $script);
 				}
 			}
 		}
