@@ -2,10 +2,10 @@ const maxAttempts = 20;
 const timeout = 25;
 
 async function waitForElement(selector) {
-  const element = document.getElementById(selector);
   let attempts = 0;
 
   while (attempts < maxAttempts) {
+    const element = document.getElementById(selector);
     if (element) {
       // console.log(`Found ${selector}`);
       return element;
@@ -20,10 +20,10 @@ async function waitForElement(selector) {
 }
 
 async function waitForElements(selector) {
-  const element = document.querySelectorAll(selector);
   let attempts = 0;
 
   while (attempts < maxAttempts) {
+    const element = document.querySelectorAll(selector);
     if (element.length > 0) {
       // console.log(`Found ${selector.length} ${selector}`);
       return element;
