@@ -1,5 +1,5 @@
-const SIDEBAR_BUTTON_ID = 'mw-sidebar-button';
-const SIDEBAR_CHECKBOX_ID = 'mw-sidebar-checkbox';
+const SIDEBAR_BUTTON_ID = 'tgui-sidebar-button';
+const SIDEBAR_CHECKBOX_ID = 'tgui-sidebar-checkbox';
 const SIDEBAR_PREFERENCE_NAME = 'TGUI-SidebarVisible';
 
 function restoreSidebarState() {

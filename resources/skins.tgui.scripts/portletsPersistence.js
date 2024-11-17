@@ -1,5 +1,5 @@
 async function initPortlets() {
-  const panel = await waitForElement('mw-panel');
+  const panel = await waitForElement('tgui-panel');
   if (!panel) return;
   panel.classList.add('collapsible-nav');
 
@@ -77,7 +77,7 @@ function toggleMenu(menu) {
 }
 
 function handleEvents() {
-  const panel = document.getElementById('mw-panel');
+  const panel = document.getElementById('tgui-panel');
   if (!panel) return;
 
   panel.addEventListener('click', function (event) {

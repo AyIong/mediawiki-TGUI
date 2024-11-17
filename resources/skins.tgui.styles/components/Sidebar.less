@@ -22,7 +22,7 @@
   }
 }
 
-.mw-sidebar {
+.tgui-sidebar {
   display: flex;
   flex: 1;
   pointer-events: auto;
@@ -41,7 +41,7 @@
     }
   }
 
-  .mw-sidebar-content {
+  .tgui-sidebar-content {
     flex: 1;
     overflow: hidden;
     overscroll-behavior: contain;
@@ -66,12 +66,12 @@
     width: @width-sidebar-px-wide;
   }
 
-  .mw-sidebar {
+  .tgui-sidebar {
     visibility: hidden !important;
     background-color: var(--color-base-blur-important);
     transform: translateX(-100%) !important;
 
-    #mw-sidebar-checkbox-mobile:checked ~ .tgui-sidebar-container & {
+    #tgui-sidebar-checkbox-mobile:checked ~ .tgui-sidebar-container & {
       visibility: visible !important;
       transform: translateX(0%) !important;
     }
@@ -89,23 +89,23 @@
       visibility var(--transition-time);
     z-index: var(--index-overlay);
 
-    #mw-sidebar-checkbox-mobile:checked ~ & {
+    #tgui-sidebar-checkbox-mobile:checked ~ & {
       transform: translateY(0%) !important;
       box-shadow: var(--box-shadow-medium);
     }
 
-    .mw-sidebar {
+    .tgui-sidebar {
       visibility: hidden !important;
       margin-top: 66px;
       border-bottom: var(--border-classic);
       transform: translateX(0%) !important;
       z-index: var(--index-overlay);
 
-      #mw-sidebar-checkbox-mobile:checked ~ & {
+      #tgui-sidebar-checkbox-mobile:checked ~ & {
         visibility: visible !important;
       }
 
-      .mw-sidebar-content {
+      .tgui-sidebar-content {
         overflow-y: auto;
         transform: translateX(0%) !important;
       }
