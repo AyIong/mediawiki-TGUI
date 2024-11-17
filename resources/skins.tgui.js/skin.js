@@ -1,6 +1,5 @@
 var initSearchLoader = require('./searchLoader.js').initSearchLoader,
   dropdownMenus = require('./dropdownMenus.js').dropdownMenus,
-  checkbox = require('./checkbox.js'),
   tooltips = require('./tooltips.js'),
   purgeButton = require('./purgeButton.js');
 
@@ -106,7 +105,6 @@ function main(window) {
 
   enableCssAnimations(window.document);
   registerScrollPosition(window.document);
-  checkbox.init(window.document);
   tooltips.init(window.document);
   initSearchLoader(document);
   dropdownMenus();

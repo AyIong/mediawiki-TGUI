@@ -166,7 +166,6 @@
           "name": "resources/skins.tgui.js/config.json",
           "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
         },
-        "resources/skins.tgui.js/checkbox.js",
         "resources/skins.tgui.js/dropdownMenus.js",
         "resources/skins.tgui.js/purgeButton.js",
         "resources/skins.tgui.js/searchLoader.js",

@@ -17,8 +17,6 @@
 	MenuDefinition data-portlets.data-views
 	MenuDefinition data-portlets.data-actions
 	object data-search-box. See SearchBox.mustache for documentation.
-	boolean sidebar-visible For users that want to see the sidebar on initial render, this should be
-	  true.
 	object data-portlets-sidebar. See Sidebar.mustache for documentation.
 	object data-footer for footer template partial. see Footer.mustache for documentation.
 }}
@@ -29,8 +27,7 @@
 		<input
 			type="checkbox"
 			id="mw-sidebar-checkbox"
-			class="mw-checkbox-hack-checkbox"
-			{{#sidebar-visible}}checked{{/sidebar-visible}}>
+			class="mw-checkbox-hack-checkbox">
 		<input
 			type="checkbox"
 			id="mw-sidebar-checkbox-mobile"
