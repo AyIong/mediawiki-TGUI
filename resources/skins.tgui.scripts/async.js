@@ -1,38 +1,51 @@
-const maxAttempts = 20;
-const timeout = 5;
+const timeout = 2000; // 2 Seconds
 
 async function waitForElement(selector) {
-  let attempts = 0;
-
-  while (attempts < maxAttempts) {
+  return new Promise((resolve) => {
     const element = document.getElementById(selector);
     if (element) {
-      // console.log(`Found ${selector}`);
-      return element;
+      return resolve(element);
     }
 
-    attempts++;
-    console.warn(`Cannot find ${selector}. Trying again (${attempts + 1})`);
-    await new Promise((resolve) => setTimeout(resolve, timeout));
-  }
+    const observer = new MutationObserver(() => {
+      const element = document.getElementById(selector);
+      if (element) {
+        observer.disconnect();
+        clearTimeout(timer);
+        resolve(element);
+      }
+    });
 
-  return null;
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    const timer = setTimeout(() => {
+      observer.disconnect();
+      console.error(`Element ${selector} not found within timeout`);
+    }, timeout);
+  });
 }
 
 async function waitForElements(selector) {
-  let attempts = 0;
-
-  while (attempts < maxAttempts) {
-    const element = document.querySelectorAll(selector);
-    if (element.length > 0) {
-      // console.log(`Found ${selector.length} ${selector}`);
-      return element;
+  return new Promise((resolve) => {
+    const elements = document.querySelectorAll(selector);
+    if (elements.length > 0) {
+      return resolve(elements);
     }
 
-    attempts++;
-    console.warn(`Cannot find all ${selector}. Trying again (${attempts + 1})`);
-    await new Promise((resolve) => setTimeout(resolve, timeout));
-  }
+    const observer = new MutationObserver(() => {
+      const elements = document.querySelectorAll(selector);
+      if (elements.length > 0) {
+        observer.disconnect();
+        clearTimeout(timer);
+        resolve(elements);
+      }
+    });
 
-  return null;
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    const timer = setTimeout(() => {
+      observer.disconnect();
+      console.error(`Elements ${selector} not found within timeout`);
+    }, timeout);
+  });
 }
