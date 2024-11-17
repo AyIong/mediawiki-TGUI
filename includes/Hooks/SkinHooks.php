@@ -45,9 +45,6 @@ class SkinHooks implements
 			return;
 		}
 
-		// CDN
-		$out->addHeadItem('floating-ui-core', '<script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.4"></script>');
-		$out->addHeadItem('floating-ui-dom', '<script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.7"></script>');
 		// FontAwesome
 		$out->addLink([
             'rel' => 'stylesheet',
