@@ -1,0 +1,19 @@
+{{!
+	string msg-tgui-usermenu-toggle The label used by the user menu button.
+}}
+<div class="tgui-userMenu tgui-header__item tgui-dropdown">
+	<details class="tgui-dropdown-details">
+		<summary
+			class="tgui-dropdown-summary"
+			title="{{msg-tgui-usermenu-toggle}}"
+			aria-details="tgui-userMenu__card">
+			<span class="tgui-ui-icon mw-ui-icon-wikimedia-userAvatar"></span>
+			<span>{{msg-tgui-usermenu-toggle}}</span>
+		</summary>
+	</details>
+	<div id="tgui-userMenu__card" class="tgui-menu__card">
+		{{#data-user-info}}{{>UserInfo}}{{/data-user-info}}
+		{{#data-portlets.data-user-interface-preferences}}{{>Menu}}{{/data-portlets.data-user-interface-preferences}}
+		{{#data-portlets.data-user-menu}}{{>Menu}}{{/data-portlets.data-user-menu}}
+	</div>
+</div>
