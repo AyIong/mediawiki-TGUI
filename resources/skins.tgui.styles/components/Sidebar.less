@@ -61,23 +61,6 @@
   }
 }
 
-@media (max-width: @max-width-tablet) {
-  .tgui-sidebar-container {
-    width: @width-sidebar-px-wide;
-  }
-
-  .tgui-sidebar {
-    visibility: hidden !important;
-    background-color: var(--color-base-blur-important);
-    transform: translateX(-100%) !important;
-
-    #tgui-sidebar-checkbox-mobile:checked ~ .tgui-sidebar-container & {
-      visibility: visible !important;
-      transform: translateX(0%) !important;
-    }
-  }
-}
-
 @media (max-width: @max-width-mobile) {
   .tgui-sidebar-container {
     width: 100%;
@@ -89,7 +72,7 @@
       visibility var(--transition-time);
     z-index: var(--index-overlay);
 
-    #tgui-sidebar-checkbox-mobile:checked ~ & {
+    #tgui-sidebar-checkbox:checked ~ & {
       transform: translateY(0%) !important;
       box-shadow: var(--box-shadow-medium);
     }
@@ -101,7 +84,7 @@
       transform: translateX(0%) !important;
       z-index: var(--index-overlay);
 
-      #tgui-sidebar-checkbox-mobile:checked ~ & {
+      #tgui-sidebar-checkbox:checked ~ & {
         visibility: visible !important;
       }
 
@@ -109,6 +92,27 @@
         overflow-y: auto;
         transform: translateX(0%) !important;
       }
+    }
+  }
+}
+
+@media (max-width: @max-width-tablet) {
+  .tgui-sidebar-container {
+    width: @width-sidebar-px-wide;
+
+    .tgui-sidebar-content .tgui-menu-portal {
+      margin: 0.5em;
+    }
+  }
+
+  .tgui-sidebar {
+    visibility: hidden !important;
+    background-color: var(--color-base-blur-important);
+    transform: translateX(-100%) !important;
+
+    #tgui-sidebar-checkbox:checked ~ .tgui-sidebar-container & {
+      visibility: visible !important;
+      transform: translateX(0%) !important;
     }
   }
 }

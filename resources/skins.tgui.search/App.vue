@@ -254,8 +254,6 @@ module.exports = exports = defineComponent({
     },
   },
   mounted() {
-    this.addFocusClass();
-
     if (this.autofocusInput) {
       this.$refs.searchForm.focus();
       nextTick(() => {

@@ -1,28 +1,19 @@
-<header class="mw-header">
-<div class="tgui-blur-important"></div>
+<header class="mw-header tgui-header">
 	<div class="mw-header-aside">
-	<label
-		id="tgui-sidebar-button"
-		class="mw-checkbox-hack-button mw-ui-icon mw-ui-button mw-ui-icon-element"
-		for="tgui-sidebar-checkbox"
-		role="button"
-		aria-controls="tgui-panel"
-		data-event-name="ui.sidebar"
-		tabindex="0">
-	</label>
-	<label
-		id="tgui-sidebar-button-mobile"
-		class="mw-checkbox-hack-button mw-ui-icon mw-ui-button mw-ui-icon-element"
-		for="tgui-sidebar-checkbox-mobile"
-		role="button"
-		aria-controls="tgui-panel"
-		data-event-name="ui.sidebar"
-		tabindex="0">
-	</label>
-	{{#data-logos}}{{>Logo}}{{/data-logos}}
+		<label
+			id="tgui-sidebar-button"
+			class="mw-checkbox-hack-button mw-ui-icon mw-ui-button mw-ui-icon-element"
+			for="tgui-sidebar-checkbox"
+			role="button"
+			aria-controls="tgui-panel"
+			data-event-name="ui.sidebar"
+			tabindex="0">
+		</label>
+		{{#data-logos}}{{>Logo}}{{/data-logos}}
 	</div>
 	<div class="mw-header-content">
-	{{#data-search-box}}{{>SearchBox}}{{/data-search-box}}
-	{{#data-tgui-user-links}}{{>UserLinks}}{{/data-tgui-user-links}}
+		{{#data-search-box}}{{>SearchBox}}{{/data-search-box}}
+		{{#data-tgui-user-links}}{{>UserLinks}}{{/data-tgui-user-links}}
 	</div>
+	<div class="tgui-blur-important"></div>
 </header>

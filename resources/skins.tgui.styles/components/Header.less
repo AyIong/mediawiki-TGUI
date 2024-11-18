@@ -18,8 +18,7 @@
     box-shadow: var(--shadow-template--small);
   }
 
-  #tgui-sidebar-button,
-  #tgui-sidebar-button-mobile {
+  #tgui-sidebar-button {
     margin-right: 0.5em;
     transition: background-color var(--transition-time);
 
@@ -53,23 +52,6 @@
     }
   }
 
-  #tgui-sidebar-button-mobile {
-    display: none;
-
-    &:before {
-      transform: rotate(90deg);
-
-      @media (min-width: @min-width-tablet) {
-        transform: rotate(0);
-      }
-
-      #tgui-sidebar-checkbox-mobile:not(:checked) ~ & {
-        content: '\f0c9';
-        transform: rotate(0);
-      }
-    }
-  }
-
   &-aside,
   &-content {
     display: flex;
@@ -95,24 +77,12 @@
   }
 }
 
-@media (max-width: @max-width-tablet) {
-  .mw-header {
-    #tgui-sidebar-button {
-      display: none;
-    }
-
-    #tgui-sidebar-button-mobile {
-      display: inline-block;
-    }
-  }
-}
-
 @media (max-width: @max-width-mobile) {
   .mw-header {
     position: fixed;
     border-bottom: var(--border-classic);
 
-    #tgui-sidebar-checkbox-mobile:checked ~ & {
+    #tgui-sidebar-checkbox:checked ~ & {
       box-shadow: var(--shadow-template--small);
     }
 

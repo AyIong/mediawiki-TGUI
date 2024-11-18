@@ -16,17 +16,17 @@ function restoreSidebarState() {
   }
 }
 
-function saveSidebarState(checkbox) {
-  localStorage.setItem(SIDEBAR_PREFERENCE_NAME, checkbox.checked ? 'true' : 'false');
-  window.dispatchEvent(new Event('resize'));
-}
-
 function bindSidebarClickEvent(checkbox, button) {
   if (checkbox instanceof HTMLInputElement && button) {
     checkbox.addEventListener('input', function () {
       saveSidebarState(checkbox);
     });
   }
+}
+
+function saveSidebarState(checkbox) {
+  localStorage.setItem(SIDEBAR_PREFERENCE_NAME, checkbox.checked ? 'true' : 'false');
+  window.dispatchEvent(new Event('resize'));
 }
 
 async function initSidebar() {
@@ -41,4 +41,6 @@ async function initSidebar() {
   }
 }
 
-requestAnimationFrame(initSidebar);
+if (window.matchMedia('(min-width: 1000px)').matches) {
+  requestAnimationFrame(initSidebar);
+}
