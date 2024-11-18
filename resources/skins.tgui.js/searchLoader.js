@@ -44,14 +44,9 @@ function loadSearchModule(element, moduleName, startMarker, afterLoadFn) {
     } else {
       mw.loader.load(moduleName);
     }
-    element.removeEventListener('focus', requestSearchModule);
   }
 
-  if (document.activeElement === element) {
-    requestSearchModule();
-  } else {
-    element.addEventListener('focus', requestSearchModule);
-  }
+  requestSearchModule();
 }
 
 /**

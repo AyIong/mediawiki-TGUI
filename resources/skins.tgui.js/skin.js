@@ -1,8 +1,3 @@
-var initSearchLoader = require('./searchLoader.js').initSearchLoader,
-  dropdownMenus = require('./dropdownMenus.js').dropdownMenus,
-  tooltips = require('./tooltips.js'),
-  purgeButton = require('./purgeButton.js');
-
 /**
  * Don't play CSS animations, until page visible
  *
@@ -82,9 +77,9 @@ function registerServiceWorker() {
  * @return {void}
  */
 function initBodyContent(bodyContent) {
-  const tables = require('./tables.js');
-  const templateTooltips = require('./templateTooltips.js');
-  const popups = require('./popups.js');
+  const tables = require('./tables.js'),
+    popups = require('./popups.js'),
+    templateTooltips = require('./templateTooltips.js');
 
   // Table enhancements
   tables.init(bodyContent);
@@ -101,7 +96,11 @@ function initBodyContent(bodyContent) {
  * @return {void}
  */
 function main(window) {
-  const config = require('./config.json');
+  const config = require('./config.json'),
+    initSearchLoader = require('./searchLoader.js').initSearchLoader,
+    dropdownMenus = require('./dropdownMenus.js').dropdownMenus,
+    tooltips = require('./tooltips.js'),
+    purgeButton = require('./purgeButton.js');
 
   enableCssAnimations(window.document);
   registerScrollPosition(window.document);
