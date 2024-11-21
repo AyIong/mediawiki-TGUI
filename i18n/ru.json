@@ -69,6 +69,7 @@
   "tgui-purge-button-title": "Очистить кэш страницы [F4]",
   "tgui-reset-button": "Сбросить",
 
+  "tgui-preferences": "Параметры",
   "tgui-theme-name": "Тема",
   "tgui-theme-description": "Изменить тему оформления вики",
   "tgui-theme-day-label": "Светлая",

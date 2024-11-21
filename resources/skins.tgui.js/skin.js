@@ -98,7 +98,7 @@ function initBodyContent(bodyContent) {
 function main(window) {
   const config = require('./config.json'),
     initSearchLoader = require('./searchLoader.js').initSearchLoader,
-    dropdownMenus = require('./dropdownMenus.js').dropdownMenus,
+    dropdown = require('./dropdown.js'),
     tooltips = require('./tooltips.js'),
     purgeButton = require('./purgeButton.js');
 
@@ -106,7 +106,7 @@ function main(window) {
   registerScrollPosition(window.document);
   tooltips.init(window.document);
   initSearchLoader(document);
-  dropdownMenus();
+  dropdown.init();
   purgeButton();
 
   mw.hook('wikipage.content').add(function (content) {

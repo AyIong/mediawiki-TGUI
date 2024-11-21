@@ -40,6 +40,7 @@
   "tgui-purge-button-title": "Purge this page cache [F4]",
   "tgui-reset-button": "Reset",
 
+  "tgui-preferences": "Preferences",
   "tgui-theme-name": "Color",
   "tgui-theme-description": "Change the theme of the wiki",
   "tgui-theme-day-label": "Light",

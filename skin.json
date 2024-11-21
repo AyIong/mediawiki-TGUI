@@ -47,7 +47,8 @@
             "tagline",
             "personaltools",
             "tgui-toc-beginning",
-            "tgui-toc-heading"
+            "tgui-toc-heading",
+            "tgui-preferences"
           ]
         }
       ]
@@ -166,7 +167,7 @@
           "name": "resources/skins.tgui.js/config.json",
           "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
         },
-        "resources/skins.tgui.js/dropdownMenus.js",
+        "resources/skins.tgui.js/dropdown.js",
         "resources/skins.tgui.js/purgeButton.js",
         "resources/skins.tgui.js/searchLoader.js",
         "resources/skins.tgui.js/scrollObserver.js",

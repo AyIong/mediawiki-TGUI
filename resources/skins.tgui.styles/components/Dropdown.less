@@ -1,0 +1,53 @@
+@import '../mixins.less';
+
+.tgui-dropdown {
+  &-summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 46px;
+    height: 46px;
+    border-radius: var(--border-radius-small);
+    transition: background-color var(--transition-time);
+
+    &:hover {
+      background-color: var(--color-bg-hover);
+    }
+
+    &:active {
+      background-color: var(--color-bg-focus);
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  .tgui-window {
+    .tgui-window();
+    opacity: 0;
+    visibility: hidden;
+    margin-top: 0.75rem;
+    transform: scale(0.9);
+    transform-origin: top;
+  }
+
+  &-details {
+    position: relative;
+
+    &[open] {
+      + .tgui-window {
+        visibility: visible;
+        opacity: 1;
+        height: auto;
+        transform: scale(1);
+      }
+
+      > .tgui-dropdown-summary {
+        background-color: var(--color-bg-focus);
+      }
+    }
+  }
+}

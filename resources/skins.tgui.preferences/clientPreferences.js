@@ -53,16 +53,6 @@ function getClientPreferences() {
 }
 
 /**
- * Check if the feature is excluded from the current page.
- *
- * @param {string} featureName
- * @return {boolean}
- */
-function isFeatureExcluded(featureName) {
-  return document.documentElement.classList.contains(featureName + '-clientpref-excluded');
-}
-
-/**
  * Get the list of client preferences that are active on the page and not hidden.
  *
  * @param {Record<string,ClientPreference>} config
@@ -129,23 +119,6 @@ function makeLabelElement(featureName, value) {
 }
 
 /**
- * Create an element that informs users that a feature is not functional
- * on a given page. This message is hidden by default and made visible in
- * CSS if a specific exclusion class exists.
- *
- * @param {string} featureName
- * @return {HTMLElement}
- */
-function makeExclusionNotice(featureName) {
-  const p = document.createElement('p');
-
-  const noticeMessage = getMessage(`${featureName}-exclusion-notice`);
-  p.classList.add('exclusion-notice', `${featureName}-exclusion-notice`);
-  p.textContent = noticeMessage.text();
-  return p;
-}
-
-/**
  * @param {Element} parent
  * @param {string} featureName
  * @param {string} value
@@ -158,10 +131,6 @@ function appendRadioToggle(parent, featureName, value, currentValue, config) {
   input.classList.add('tgui-client-prefs-radio__input');
   if (currentValue === value) {
     input.checked = true;
-  }
-
-  if (isFeatureExcluded(featureName)) {
-    input.disabled = true;
   }
 
   // const icon = document.createElement("span");
@@ -239,7 +208,7 @@ function appendSlider(parent, featureName, min, currentValue, max, defaultValue,
 
   const button = document.createElement('button');
   button.type = 'button';
-  button.classList.add('tgui-icon', 'tgui-icon_white', 'tgui-icon-reset');
+  button.classList.add('tgui-icon', 'tgui-icon__white', 'tgui-icon-reset');
   button.setAttribute('title', mw.message('tgui-reset-button').text());
 
   if (currentValue === defaultValue) {
@@ -320,7 +289,6 @@ function makeControl(featureName, config) {
   if (typeof currentValue === 'boolean') {
     return null;
   }
-  const row = createRow('');
   const form = document.createElement('form');
   const type = pref.type || 'radio';
   switch (type) {
@@ -342,13 +310,7 @@ function makeControl(featureName, config) {
     default:
       throw new Error('Unknown client preference! Only switch or radio are supported.');
   }
-
-  row.appendChild(form);
-  if (isFeatureExcluded(featureName)) {
-    const exclusionNotice = makeExclusionNotice(featureName);
-    row.appendChild(exclusionNotice);
-  }
-  return row;
+  return form;
 }
 
 /**
