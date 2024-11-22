@@ -471,25 +471,70 @@ class SkinHooks implements
 	}
 
 	/**
-	 * Upgrades TGUI's watch action to a watchstar.
-	 * This is invoked inside SkinTGUI, not via skin registration, as skin hooks
-	 * are not guaranteed to run last.
-	 * This can possibly be revised based on the outcome of T287622.
+	 * Modify navigation links
 	 *
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/SkinTemplateNavigation
-	 * @param SkinTemplate $sk
-	 * @param array &$content_navigation
+	 * TODO: Update to a proper hook when T287622 is resolved
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/SkinTemplateNavigation::Universal
+	 * @param SkinTemplate $sktemplate
+	 * @param array &$links
 	 */
-	public static function onSkinTemplateNavigation( $sk, &$content_navigation ) {
-		$title = $sk->getRelevantTitle();
-		if (
-			$sk->getConfig()->get( 'TGUIUseIconWatch' ) &&
-			$title && $title->canExist()
-		) {
-			self::updateActionsMenu( $content_navigation );
+	public static function onSkinTemplateNavigation( $sktemplate, &$links ) {
+		// Be extra safe because it might be active on other skins with caching
+		if ( $sktemplate->getSkinName() !== 'tgui' ) {
+			return;
 		}
 
-		self::updateUserLinksItems( $sk, $content_navigation );
-		self::createMoreOverflowMenu( $content_navigation );
+		if ( isset( $links['user-menu'] ) ) {
+			self::updateUserMenu( $sktemplate, $links );
+		}
+	}
+
+	/**
+	 * Update user menu
+	 *
+	 * @internal used inside Hooks\SkinHooks::onSkinTemplateNavigation
+	 * @param SkinTemplate $sktemplate
+	 * @param array &$links
+	 */
+	private static function updateUserMenu( $sktemplate, &$links ) {
+		$user = $sktemplate->getUser();
+		$isRegistered = $user->isRegistered();
+		$isTemp = $user->isTemp();
+
+		if ( $isTemp ) {
+			// Remove temporary user page text from user menu and recreate it in user info
+			unset( $links['user-menu']['tmpuserpage'] );
+			// Remove links as they are added to the bottom of user menu later
+			// unset( $links['user-menu']['logout'] );
+		} elseif ( $isRegistered ) {
+			// Remove user page link from user menu and recreate it in user info
+			unset( $links['user-menu']['userpage'] );
+		} else {
+			// Remove anon user page text from user menu and recreate it in user info
+			unset( $links['user-menu']['anonuserpage'] );
+		}
+
+		self::addIconsToMenuItems( $links, 'user-menu' );
+	}
+
+	/**
+	 * Add the HTML needed for icons to menu items
+	 *
+	 * @param array &$links
+	 * @param string $menu identifier
+	 */
+	private static function addIconsToMenuItems( &$links, $menu ) {
+		// Loop through each menu to check/append its link classes.
+		foreach ( $links[$menu] as $key => $item ) {
+			$icon = $item['icon'] ?? '';
+
+			if ( $icon ) {
+				// Html::makeLink will pass this through rawElement
+				// Avoid using mw-ui-icon in case its styles get loaded
+				// Sometimes extension includes the "wikimedia-" part in the icon key (e.g. ULS),
+				// so we apply both classes just to be safe
+				$links[$menu][$key]['link-html'] = '<span class="tgui-icon tgui-icon-' . $icon .'"></span>';
+			}
+		}
 	}
 }

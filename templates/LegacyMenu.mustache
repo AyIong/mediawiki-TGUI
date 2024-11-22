@@ -16,23 +16,23 @@
 	<label
 		id="{{id}}-label"
 		{{#aria-label}} aria-label="{{.}}"{{/aria-label}}
-		class="tgui-menu-heading{{#heading-class}} {{.}}{{/heading-class}}"
+		class="tgui-menu__heading{{#heading-class}} {{.}}{{/heading-class}}"
 	>
-		{{{html-tgui-heading-icon}}}<span class="tgui-menu-heading-label">{{label}}</span>
+		{{{html-tgui-heading-icon}}}<span class="tgui-menu__heading-label">{{label}}</span>
 	</label>
 	{{/is-dropdown}}
 	{{^is-dropdown}}
 	<h3
 		id="{{id}}-label"
 		{{#aria-label}} aria-label="{{.}}"{{/aria-label}}
-		class="tgui-menu-heading{{#heading-class}} {{.}}{{/heading-class}}"
+		class="tgui-menu__heading{{#heading-class}} {{.}}{{/heading-class}}"
 	>
-		{{{html-tgui-heading-icon}}}<span class="tgui-menu-heading-label">{{label}}</span>
+		{{{html-tgui-heading-icon}}}<span class="tgui-menu__heading-label">{{label}}</span>
 	</h3>
 	{{/is-dropdown}}
-	<div class="tgui-menu-content">
+	<div class="tgui-menu__content">
 		{{{html-before-portal}}}
-		<ul class="tgui-menu-content-list">{{{html-items}}}</ul>
+		<ul class="tgui-menu__content-list">{{{html-items}}}</ul>
 		{{{html-after-portal}}}
 	</div>
 </nav>

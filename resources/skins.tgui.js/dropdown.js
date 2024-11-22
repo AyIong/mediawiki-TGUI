@@ -105,6 +105,7 @@ class Dropdown {
     }
 
     const links = this.target.querySelectorAll('.mw-list-item > a[accesskey]');
+    /*
     links.forEach((link) => {
       const keyhintText =
         window.jQuery.fn.updateTooltipAccessKeys.getAccessKeyPrefix() + link.getAttribute('accesskey');
@@ -117,7 +118,7 @@ class Dropdown {
       // @see https://www.mediawiki.org/wiki/Help:Keyboard_shortcuts
       keyhint.innerText = keyhintText.replace(/-/g, ' ');
       link.append(keyhint);
-    });
+    });*/
   }
 
   init() {

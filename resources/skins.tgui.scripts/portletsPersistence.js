@@ -1,39 +1,37 @@
 async function initPortlets() {
   const panel = await waitForElement('tgui-panel');
-  if (!panel) return;
-  panel.classList.add('collapsible-nav');
+  if (!panel) {
+    return;
+  }
 
-  const first = panel.querySelector('.portal:not(.persistent)');
+  const panelContent = panel.querySelector('.tgui-sidebar-content');
+  const first = panelContent.querySelector('.tgui-menu');
   first.classList.add('first');
-  first.classList.remove('collapsible-nav');
 
-  const menus = panel.querySelectorAll('.portal:not(.persistent)');
+  const menus = panelContent.querySelectorAll('.tgui-menu:not(.first)');
   menus.forEach(function (menu, index) {
-    const id = menu.id;
     let state;
-    if (index !== 0) {
-      state = localStorage.getItem('TGUI' + '-nav-' + id);
-      if (state === null) {
-        localStorage.setItem('TGUI' + '-nav-' + id, JSON.stringify(true));
-        state = true;
-      } else {
-        state = JSON.parse(state);
-      }
-    } else {
+    const id = menu.id;
+
+    state = localStorage.getItem('TGUI' + '-nav-' + id);
+    if (state === null) {
+      localStorage.setItem('TGUI' + '-nav-' + id, JSON.stringify(true));
       state = true;
+    } else {
+      state = JSON.parse(state);
     }
 
-    if (state === true || (state === null && menu === menus[0]) || (state === null && id === 'p-lang')) {
+    if (state === true || state === null) {
       menu.classList.add('expanded');
       menu.classList.remove('collapsed');
 
-      const content = menu.querySelector('.tgui-menu-content');
+      const content = menu.querySelector('.tgui-menu__content');
       const height = content.getAttribute('max-height');
       if (content) {
         content.style.maxHeight = height;
       }
 
-      const anchor = menu.querySelector('.tgui-menu-heading > a');
+      const anchor = menu.querySelector('.tgui-menu__heading');
       if (anchor) {
         anchor.setAttribute('aria-pressed', 'true');
         anchor.setAttribute('aria-expanded', 'true');
@@ -42,7 +40,7 @@ async function initPortlets() {
       menu.classList.add('collapsed');
       menu.classList.remove('expanded');
 
-      const anchor = menu.querySelector('.tgui-menu-heading > a');
+      const anchor = menu.querySelector('.tgui-menu__heading');
       if (anchor) {
         anchor.setAttribute('aria-pressed', 'false');
         anchor.setAttribute('aria-expanded', 'false');
@@ -54,7 +52,7 @@ async function initPortlets() {
 
 function toggleMenu(menu) {
   const isCollapsed = menu.classList.contains('collapsed');
-  const content = menu.querySelector('.tgui-menu-content');
+  const content = menu.querySelector('.tgui-menu__content');
 
   menu.classList.toggle('expanded');
   menu.classList.toggle('collapsed');
@@ -69,7 +67,7 @@ function toggleMenu(menu) {
     }
   }
 
-  const anchor = menu.querySelector('.tgui-menu-heading > a');
+  const anchor = menu.querySelector('.tgui-menu__heading');
   if (anchor) {
     anchor.setAttribute('aria-pressed', isCollapsed ? 'false' : 'true');
     anchor.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
@@ -82,7 +80,7 @@ function handleEvents() {
 
   panel.addEventListener('click', function (event) {
     const target = event.target;
-    const heading = target.closest('.tgui-menu-heading');
+    const heading = target.closest('.tgui-menu__heading');
     if (heading) {
       const menu = heading.parentElement;
       if (!menu.classList.contains('first')) {
@@ -94,7 +92,12 @@ function handleEvents() {
 }
 
 async function setMaxHeightForContent() {
-  const menus = await waitForElements('.tgui-menu-content');
+  const panel = await waitForElement('tgui-panel');
+  if (!panel) {
+    return;
+  }
+
+  const menus = await waitForElements('.tgui-menu__content', panel);
   menus.forEach(function (menu) {
     const height = menu.scrollHeight + 'px';
     menu.setAttribute('max-height', height);

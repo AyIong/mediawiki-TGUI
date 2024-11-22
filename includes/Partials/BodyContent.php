@@ -199,7 +199,7 @@ final class BodyContent extends Partial {
 
 		// prepend indicator - this avoids a reflow by creating a placeholder for a toggling indicator
 		$indicator = $doc->createElement( 'span' );
-		$indicator->setAttribute( 'class', 'tgui-section-indicator tgui-ui-icon mw-ui-icon-wikimedia-collapse' );
+		$indicator->setAttribute( 'class', 'tgui-section-indicator tgui-icon mw-ui-icon-wikimedia-collapse' );
 		$heading->insertBefore( $indicator, $heading->firstChild );
 	}
 

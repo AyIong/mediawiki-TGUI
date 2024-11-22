@@ -1,6 +1,10 @@
 <?php
 namespace MediaWiki\Skins\TGUI;
 
+use MediaWiki\Skins\TGUI\Components\TGUIComponentPageHeading;
+use MediaWiki\Skins\TGUI\Components\TGUIComponentPageTools;
+use MediaWiki\Skins\TGUI\Components\TGUIComponentUserInfo;
+use MediaWiki\Skins\TGUI\Partials\BodyContent;
 use MediaWiki\Skins\TGUI\Partials\Metadata;
 use MediaWiki\Skins\TGUI\Partials\Theme;
 use ExtensionRegistry;
@@ -56,123 +60,65 @@ class SkinTGUI extends SkinMustache {
 	}
 
 	/**
-	 * Returns HTML for the create account link inside the anon user links
-	 * @param string[] $returnto array of query strings used to build the login link
-	 * @param bool $isDropdownItem Set true for create account link inside the user menu dropdown
-	 *  which includes icon classes and is not styled like a button
-	 * @return string
+	 * @inheritDoc
 	 */
-	private function getCreateAccountHTML( $returnto, $isDropdownItem ) {
-		$createAccountData = $this->buildCreateAccountData( $returnto );
-		$createAccountData = array_merge( $createAccountData, [
-			'class' => $isDropdownItem ? [
-				'tgui-menu-content-item',
-			] : '',
-			'collapsible' => true,
-			'icon' => $isDropdownItem ? $createAccountData['icon'] : null,
-			'button' => !$isDropdownItem,
-		] );
-		$createAccountData = Hooks\SkinHooks::updateLinkData( $createAccountData );
-		return $this->makeLink( 'create-account', $createAccountData );
-	}
+	public function getTemplateData(): array {
+		$parentData = parent::getTemplateData();
 
-	/**
-	 * Returns HTML for the create account button, login button and learn more link inside the anon user menu
-	 * @param string[] $returnto array of query strings used to build the login link
-	 * @param bool $useCombinedLoginLink if a combined login/signup link will be used
-	 * @param bool $isTempUser
-	 * @param bool $includeLearnMoreLink Pass `true` to include the learn more
-	 * link in the menu for anon users. This param will be inert for temp users.
-	 * @return string
-	 */
-	private function getAnonMenuBeforePortletHTML(
-		$returnto,
-		$useCombinedLoginLink,
-		$isTempUser,
-		$includeLearnMoreLink
-	) {
-		$templateParser = $this->getTemplateParser();
-		$loginLinkData = array_merge( $this->buildLoginData( $returnto, $useCombinedLoginLink ), [
-			'class' => [ 'tgui-menu-content-item', 'tgui-menu-content-item-login' ],
-		] );
-		$loginLinkData = Hooks\SkinHooks::updateLinkData( $loginLinkData );
-		$templateData = [
-			'htmlCreateAccount' => $this->getCreateAccountHTML( $returnto, true ),
-			'htmlLogin' => $this->makeLink( 'login', $loginLinkData ),
-			'data-anon-editor' => []
+		$config = $this->getConfig();
+		$localizer = $this->getContext();
+		$out = $this->getOutput();
+		$title = $this->getTitle();
+		$user = $this->getUser();
+		$pageLang = $title->getPageLanguage();
+		$isRegistered = $user->isRegistered();
+		$isTemp = $user->isTemp();
+
+		$bodycontent = new BodyContent( $this );
+
+		$components = [
+			'data-page-heading' => new TGUIComponentPageHeading(
+				$localizer,
+				$out,
+				$pageLang,
+				$title,
+				$parentData['html-title-heading'],
+				$user
+			),
+			'data-page-tools' => new TGUIComponentPageTools(
+				$config,
+				$localizer,
+				$title,
+				$user,
+				$parentData['data-portlets-sidebar'],
+				// These portlets can be unindexed
+				$parentData['data-portlets']['data-variants'] ?? []
+			),
+			'data-user-info' => new TGUIComponentUserInfo(
+				$isRegistered,
+				$isTemp,
+				$localizer,
+				$title,
+				$user,
+				$parentData['data-portlets']['data-user-page']
+			),
 		];
 
-		$templateName = $isTempUser ? 'UserLinks__templogin' : 'UserLinks__login';
-
-		if ( !$isTempUser && $includeLearnMoreLink ) {
-			try {
-				$learnMoreLinkData = [
-					'text' => $this->msg( 'tgui-anon-user-menu-pages-learn' )->text(),
-					'href' => Title::newFromText( $this->msg( 'tgui-intro-page' )->text() )->getLocalURL(),
-					'aria-label' => $this->msg( 'tgui-anon-user-menu-pages-label' )->text(),
-				];
-
-				$templateData['data-anon-editor'] = [
-					'htmlLearnMoreLink' => $this->makeLink( '', $learnMoreLinkData ),
-					'msgLearnMore' => $this->msg( 'tgui-anon-user-menu-pages' )
-				];
-			} catch ( MalformedTitleException $e ) {
-				// ignore (T340220)
+		foreach ( $components as $key => $component ) {
+			// Array of components or null values.
+			if ( $component ) {
+				$parentData[$key] = $component->getTemplateData();
 			}
 		}
 
-		return $templateParser->processTemplate( $templateName, $templateData );
-	}
+		// HACK: So that we can use Icon.mustache in Header__logo.mustache
+		$parentData['data-logos']['icon-home'] = 'home';
 
-	/**
-	 * Returns HTML for the logout button that should be placed in the user (personal) menu
-	 * after the menu itself.
-	 * @return string
-	 */
-	private function getLogoutHTML() {
-		$logoutLinkData = array_merge( $this->buildLogoutLinkData(), [
-			'class' => [ 'tgui-menu-content-item', 'tgui-menu-content-item-logout' ],
+		return array_merge( $parentData, [
+			// Booleans
+			'toc-enabled' => !empty( $parentData['data-toc'] ),
+			'html-body-content--formatted' => $bodycontent->decorateBodyContent( $parentData['html-body-content'] )
 		] );
-		$logoutLinkData = Hooks\SkinHooks::updateLinkData( $logoutLinkData );
-
-		$templateParser = $this->getTemplateParser();
-		return $templateParser->processTemplate( 'UserLinks__logout', [
-			'htmlLogout' => $this->makeLink( 'logout', $logoutLinkData )
-		] );
-	}
-
-	/**
-	 * Returns template data for UserLinks.mustache
-	 * @param array $menuData existing menu template data to be transformed and copied for UserLinks
-	 * @param User $user the context user
-	 * @return array
-	 */
-	private function getUserLinksTemplateData( $menuData, $user ): array {
-		$isAnon = !$user->isRegistered();
-		$isTempUser = $user->isTemp();
-		$returnto = $this->getReturnToParam();
-		$useCombinedLoginLink = $this->useCombinedLoginLink();
-		$userMenuData = $menuData[ 'data-user-menu' ];
-		if ( $isAnon || $isTempUser ) {
-			$userMenuData[ 'html-before-portal' ] .= $this->getAnonMenuBeforePortletHTML(
-				$returnto,
-				$useCombinedLoginLink,
-				$isTempUser,
-				// T317789: The `anontalk` and `anoncontribs` links will not be added to
-				// the menu if `$wgGroupPermissions['*']['edit']` === false which can
-				// leave the menu empty due to our removal of other user menu items in
-				// `Hooks\SkinHooks::updateUserLinksDropdownItems`. In this case, we do not want
-				// to render the anon "learn more" link.
-				!$userMenuData['is-empty']
-			);
-		} else {
-			// Appending as to not override data potentially set by the onSkinAfterPortlet hook.
-			$userMenuData[ 'html-after-portal' ] .= $this->getLogoutHTML();
-		}
-
-		return [
-			'data-user-menu' => $userMenuData
-		];
 	}
 
 	/**
@@ -232,46 +178,6 @@ class SkinTGUI extends SkinMustache {
 	 */
 	private function doesSearchHaveThumbnails(): bool {
 		return $this->getConfig()->get( 'TGUIWvuiSearchOptions' )['showThumbnail'];
-	}
-
-	/**
-	 * Creates portlet data for the user menu dropdown
-	 *
-	 * @param array $portletData
-	 * @return array
-	 */
-	private function getUserMenuPortletData( $portletData ) {
-		// T317789: Core can undesirably add an 'emptyPortlet' class that hides the
-		// user menu. This is a result of us manually removing items from the menu
-		// in Hooks\SkinHooks::updateUserLinksDropdownItems which can make
-		// SkinTemplate::getPortletData apply the `emptyPortlet` class if there are
-		// no menu items. Since we subsequently add menu items in
-		// SkinTGUI::getUserLinksTemplateData, the `emptyPortlet` class is
-		// innaccurate. This is why we add the desired classes, `mw-portlet` and
-		// `mw-portlet-personal` here instead. This can potentially be removed upon
-		// completion of T319356.
-		//
-		// Also, add target class to apply different icon to personal menu dropdown for logged in users.
-		$portletData['class'] = 'mw-portlet mw-portlet-personal tgui-user-menu';
-		$portletData['class'] .= $this->loggedin ?
-			' tgui-user-menu-logged-in' :
-			' tgui-user-menu-logged-out';
-		if ( $this->getUser()->isTemp() ) {
-			$icon = 'userAnonymous';
-		} elseif ( $this->loggedin ) {
-			$icon = 'userAvatar';
-		} else {
-			$icon = 'ellipsis';
-			// T287494 We use tooltip messages to provide title attributes on hover over certain menu icons.
-			// For modern TGUI, the "tooltip-p-personal" key is set to "User menu" which is appropriate for
-			// the user icon (dropdown indicator for user links menu) for logged-in users.
-			// This overrides the tooltip for the user links menu icon which is an ellipsis for anonymous users.
-			$portletData['html-tooltip'] = Linker::tooltip( 'tgui-anon-user-menu-title' );
-		}
-		$portletData['icon'] = $icon;
-		$portletData['button'] = true;
-		$portletData['text-hidden'] = true;
-		return $portletData;
 	}
 
 	/**
@@ -366,10 +272,6 @@ class SkinTGUI extends SkinMustache {
 				break;
 		}
 
-		if ( $key === 'data-user-menu' ) {
-			$portletData = $this->getUserMenuPortletData( $portletData );
-		}
-
 		// Special casing for Variant to change label to selected.
 		// Hopefully we can revisit and possibly remove this code when the language switcher is moved.
 		if ( $key === 'data-variants' ) {
@@ -392,32 +294,6 @@ class SkinTGUI extends SkinMustache {
 			'is-dropdown' => $type === self::MENU_TYPE_DROPDOWN,
 			'is-portal' => $type === self::MENU_TYPE_PORTAL,
 		];
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getTemplateData(): array {
-		$skin = $this;
-
-		$parentData = $this->decoratePortletsData( parent::getTemplateData() );
-		$commonSkinData = array_merge( $parentData, [
-			'data-search-box' => $this->getSearchData(
-				$parentData['data-search-box'],
-				false,
-				false,
-				'tgui-sticky-search-form',
-				false
-			)
-		] );
-
-		$user = $skin->getUser();
-		$commonSkinData['data-tgui-user-links'] = $this->getUserLinksTemplateData(
-			$commonSkinData['data-portlets'],
-			$user
-		);
-
-		return $commonSkinData;
 	}
 
 	/**

@@ -48,6 +48,8 @@
             "personaltools",
             "tgui-toc-beginning",
             "tgui-toc-heading",
+            "tgui-usermenu",
+            "tgui-actions-more-toggle",
             "tgui-preferences"
           ]
         }
@@ -296,6 +298,12 @@
       "value": true,
       "description": "Enables or disable holidays styles and scripts.",
       "descriptionmsg": "tgui-config-enableholidays",
+      "public": true
+    },
+    "ShowPageTools": {
+      "value": true,
+      "description": "Page tools visibility condition",
+      "descriptionmsg": "tgui-config-showpagetools",
       "public": true
     },
     "SearchApiUrl": {

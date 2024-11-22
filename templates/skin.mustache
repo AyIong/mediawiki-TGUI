@@ -37,10 +37,8 @@
 		<div class="mw-content-container">
 			{{! `role` is unnecessary but kept to support selectors in any gadgets or user styles. }}
 			<main id="content" class="mw-body" role="main">
-				{{>ContentHeader}}
-				{{>ArticleToolbar}}
+				{{>PageHeader}}
 				<div id="bodyContent" class="tgui-body" data-mw-ve-target-container>
-					{{>ContentSubheader}}
 					{{#html-subtitle}}<div id="contentSub"{{{html-user-language-attributes}}}>{{{.}}}</div>{{/html-subtitle}}
 					{{#html-undelete-link}}<div id="contentSub2">{{{.}}}</div>{{/html-undelete-link}}
 					{{{html-user-message}}}

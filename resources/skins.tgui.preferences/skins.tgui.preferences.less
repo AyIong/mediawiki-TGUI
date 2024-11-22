@@ -34,11 +34,16 @@
   }
 }
 
-.tgui-dropdown-summary span:before {
-  transition: transform var(--transition-time);
+.tgui-dropdown-summary[aria-details='tgui-preferences'] {
+  width: 46px;
+  height: 46px;
 
-  details[open] & {
-    transform: rotate(180deg);
+  span:before {
+    transition: transform var(--transition-time);
+
+    details[open] & {
+      transform: rotate(180deg);
+    }
   }
 }
 
@@ -145,9 +150,9 @@
           pointer-events: none;
           position: absolute;
           left: 0.2em;
-          padding: 0.25em;
+          padding: 0.3em;
           font-weight: bold;
-          font-size: 1.5em;
+          font-size: 1.33em;
           color: var(--color-white);
           text-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.75);
         }

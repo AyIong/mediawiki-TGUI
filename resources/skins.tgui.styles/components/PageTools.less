@@ -1,0 +1,85 @@
+@import '../variables.less';
+
+.page-actions {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5em 0.5em 0;
+
+  li {
+    margin: 0;
+  }
+
+  &__right {
+    display: flex;
+
+    .tgui-dropdown {
+      position: relative;
+
+      details summary {
+        height: calc(1.75rem + 2px);
+      }
+
+      .tgui-window {
+        right: 0;
+        transform-origin: top right;
+      }
+    }
+  }
+
+  .tgui-menu {
+    &__heading {
+      display: none;
+    }
+
+    &__content {
+      ul {
+        display: flex;
+      }
+    }
+  }
+
+  .mw-list-item {
+    .tabs-animation(@margin: 0);
+    user-select: none;
+    color: var(--color-text-translucent);
+    border-radius: var(--border-radius-small) var(--border-radius-small) 0 0;
+    transition: background-color var(--transition-time);
+
+    &:hover,
+    &:focus-within {
+      background-color: var(--color-bg-hover);
+    }
+
+    &:focus-within {
+      color: ~'hsla(var(--primary-hue), 100%, var(--dark-lightness))';
+
+      &:after {
+        transform: scaleX(0.25);
+      }
+    }
+
+    &.selected {
+      pointer-events: none; // You are already here, so you don't need any actions on it
+      background-color: var(--color-bg-focus);
+      color: ~'hsla(var(--primary-hue), 100%, var(--dark-lightness))';
+
+      &:after {
+        transform: scaleX(1);
+      }
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      height: 1.75rem;
+      font-size: 0.9rem;
+      padding: 0 0.66rem;
+      color: inherit;
+      border-bottom: 2px solid transparent;
+    }
+
+    &.new a {
+      color: var(--color-hyperlink-new);
+    }
+  }
+}

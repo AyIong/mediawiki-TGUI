@@ -1,19 +1,21 @@
 {{!
-	string msg-tgui-usermenu-toggle The label used by the user menu button.
+	string msg-tgui-usermenu The label used by the user menu button.
 }}
-<div class="tgui-userMenu tgui-header__item tgui-dropdown">
-	<details class="tgui-dropdown-details">
+<div class="tgui-dropdown tgui-userMenu">
+	<details id="tgui-userMenu-details" class="tgui-dropdown-details">
 		<summary
 			class="tgui-dropdown-summary"
-			title="{{msg-tgui-usermenu-toggle}}"
+			title="{{msg-tgui-usermenu}}"
 			aria-details="tgui-userMenu__card">
-			<span class="tgui-ui-icon mw-ui-icon-wikimedia-userAvatar"></span>
-			<span>{{msg-tgui-usermenu-toggle}}</span>
+			<span class="tgui-icon tgui-icon-user"></span>
 		</summary>
 	</details>
-	<div id="tgui-userMenu__card" class="tgui-menu__card">
-		{{#data-user-info}}{{>UserInfo}}{{/data-user-info}}
-		{{#data-portlets.data-user-interface-preferences}}{{>Menu}}{{/data-portlets.data-user-interface-preferences}}
-		{{#data-portlets.data-user-menu}}{{>Menu}}{{/data-portlets.data-user-menu}}
+	<div id="tgui-userMenu" class="tgui-window">
+		<div id="tgui-userMenu__header" class="tgui-window__header">{{msg-tgui-usermenu}}</div>
+		<div id="tgui-userMenu__content" class="tgui-window__content">
+			{{#data-user-info}}{{>UserInfo}}{{/data-user-info}}
+			{{#data-portlets.data-user-interface-preferences}}{{>Menu}}{{/data-portlets.data-user-interface-preferences}}
+			{{#data-portlets.data-user-menu}}{{>Menu}}{{/data-portlets.data-user-menu}}
+		</div>
 	</div>
 </div>

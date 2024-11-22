@@ -1,0 +1,19 @@
+<div class="page-actions-more page-actions__item tgui-dropdown">
+	<details class="tgui-dropdown-details">
+		<summary
+			class="tgui-dropdown-summary"
+			title="{{msg-tgui-actions-more-toggle}}"
+			aria-details="page-actions-more__card">
+			<span class="tgui-icon tgui-icon-ellipsis"></span>
+		</summary>
+	</details>
+	<aside id="page-actions-more__card" class="tgui-window">
+		<div id="tgui-actions-more__header" class="tgui-window__header">{{msg-tgui-actions-more-toggle}}</div>
+		<div id="tgui-actions-more__content" class="tgui-window__content">
+			{{#is-visible}}
+			{{#data-portlets.data-actions}}{{>Menu}}{{/data-portlets.data-actions}}
+			{{/is-visible}}
+			{{#data-article-tools}}{{>Menu}}{{/data-article-tools}}
+		</div>
+	</aside>
+</div>

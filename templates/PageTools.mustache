@@ -1,0 +1,18 @@
+{{!
+	object data-page-views
+	object data-page-associated-pages
+	object data-page-actions
+}}
+<div class="page-actions">
+	<div class="page-actions__left">
+		{{#is-visible}}
+			{{#data-portlets.data-associated-pages}}{{>Menu}}{{/data-portlets.data-associated-pages}}
+		{{/is-visible}}
+	</div>
+	<div class="page-actions__right">
+		{{#is-visible}}
+			{{#data-portlets.data-views}}{{>Menu}}{{/data-portlets.data-views}}
+		{{/is-visible}}
+		{{#has-overflow}}{{>PageTools__more}}{{/has-overflow}}
+	</div>
+</div>
