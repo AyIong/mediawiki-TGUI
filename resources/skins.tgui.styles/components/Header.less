@@ -1,106 +1,89 @@
 @import '../variables.less';
 @import 'mediawiki.mixins.less';
 
-.mw-header {
-  display: flex;
+.tgui-header {
   position: sticky;
   top: 0;
-  min-height: var(--header-height);
-  width: 100%;
-  flex-wrap: nowrap;
-  align-items: center;
   background-color: var(--color-base-blur-important);
-  color: var(--color-text);
-  transition: box-shadow var(--transition-time);
   z-index: var(--index-static);
+  transition: box-shadow var(--transition-time);
 
   .tgui-off-top & {
     box-shadow: var(--shadow-template--small);
   }
 
-  .tgui-header__content {
+  .tgui-dropdown-summary {
+    width: var(--header-button-height);
+    height: var(--header-button-height);
+  }
+
+  &-content {
     display: flex;
-    width: 100%;
-    margin: 0 0.5rem;
-  }
+    align-items: center;
+    padding: var(--header-padding);
+    height: var(--header-height);
 
-  #tgui-sidebar-button {
-    margin-right: 0.5em;
-    transition: background-color var(--transition-time);
-
-    &:hover {
-      background-color: var(--color-bg-hover);
-
-      &:before {
-        opacity: 1;
-      }
+    &__left {
+      display: flex;
+      align-items: center;
     }
 
-    &:active {
-      background-color: var(--color-bg-focus);
-
-      &:before {
-        transform: scale(0.75);
-      }
+    &__middle {
+      flex: 1;
     }
 
-    &:before {
-      content: '\f100';
-      opacity: 0.67;
+    &__right {
+      display: flex;
+      gap: 0.25em;
     }
   }
 
-  #tgui-sidebar-button {
+  #tgui-sidebar-button .tgui-icon {
     &:before {
       @{selector-main-menu-closed} ~ & {
         content: '\f0c9';
       }
     }
   }
+}
 
-  &-aside,
-  &-content {
-    display: flex;
-    align-items: center;
-  }
-
-  &-aside {
-    float: left;
-    min-width: 15%;
-
-    @media (min-width: @min-width-desktop-wide) {
-      min-width: 15%;
-    }
-
-    @media (max-width: @min-width-tablet) {
-      min-width: unset;
+#tgui-sidebar-button {
+  .tgui-icon {
+    &:before {
+      content: '\f100';
+      opacity: 0.67;
+      transition-property: opacity, transform;
+      transition-duration: var(--transition-time);
     }
   }
 
-  &-content {
-    flex-grow: 1;
+  &:hover .tgui-icon:before {
+    opacity: 1;
+  }
+
+  &:active .tgui-icon:before {
+    transform: scale(0.75);
   }
 }
 
 @media (max-width: @max-width-mobile) {
-  .mw-header {
+  .tgui-header {
     position: fixed;
+    width: 100%;
     border-bottom: var(--border-classic);
 
     #tgui-sidebar-checkbox:checked ~ & {
       box-shadow: var(--shadow-template--small);
     }
 
-    .mw-logo-icon {
-      width: 2.75em;
-      height: 2.75em;
-      margin-right: 0.5em;
+    #tgui-sidebar-button .tgui-icon:before {
+      content: '\f102';
     }
   }
 
   .search-focus {
-    .mw-header-aside,
-    .tgui-user-links {
+    .tgui-header-content__left,
+    .tgui-header-content__right {
       display: none;
     }
   }

@@ -10,7 +10,7 @@
   font-size: 0.875em;
 
   > div {
-    max-width: 75%;
+    max-width: 66%;
     flex-grow: 1;
 
     @media (max-width: @max-width-mobile) {
@@ -220,6 +220,10 @@
     &:focus {
       background-color: var(--color-bg-focus);
       color: var(--color-text) !important;
+    }
+
+    @media (max-width: @max-width-mobile) {
+      display: none !important;
     }
   }
 

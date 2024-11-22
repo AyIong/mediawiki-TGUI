@@ -1,21 +1,17 @@
-<header class="mw-header tgui-header">
-	<div class="tgui-header__content">
-		<div class="mw-header-aside">
-			<label
-				id="tgui-sidebar-button"
-				class="mw-checkbox-hack-button mw-ui-icon mw-ui-button mw-ui-icon-element"
-				for="tgui-sidebar-checkbox"
-				role="button"
-				aria-controls="tgui-panel"
-				data-event-name="ui.sidebar"
-				tabindex="0">
+<header class="tgui-header mw-header">
+	<div class="tgui-header-content">
+		<div class="tgui-header-content__left">
+			<label id="tgui-sidebar-button" class="tgui-dropdown-summary" for="tgui-sidebar-checkbox">
+				<span class="tgui-icon"></span>
 			</label>
 			{{#data-logos}}{{>Logo}}{{/data-logos}}
 		</div>
-		<div class="mw-header-content">
+		<div class="tgui-header-content__middle">
 			{{#data-search-box}}{{>SearchBox}}{{/data-search-box}}
-			{{>Preferences}}
+		</div>
+		<div class="tgui-header-content__right">
 			{{#data-portlets.data-notifications}}{{>Menu}}{{/data-portlets.data-notifications}}
+			{{>Preferences}}
 			{{>UserMenu}}
 		</div>
 	</div>
