@@ -70,10 +70,7 @@
   "tgui-reset-button": "Сбросить",
   "tgui-actions-more-toggle": "Дополнительные действия",
   "tgui-usermenu": "Персональное меню",
-  "tgui-sitestats-articles-label": "статей",
-  "tgui-sitestats-images-label": "файлов",
-  "tgui-sitestats-users-label": "пользователей",
-  "tgui-sitestats-edits-label": "правок",
+  "tgui-sitestats-edits-label": "Правки",
 
   "tgui-preferences": "Параметры",
   "tgui-theme-name": "Тема",

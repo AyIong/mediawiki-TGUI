@@ -1,20 +1,22 @@
 <div class="tgui-userInfo">
-	<div class="tgui-userInfo-title">
-		{{#title}}<div>{{.}}</div>{{/title}}
-		{{#data-user-page}}{{>Menu}}{{/data-user-page}}
-	</div>
-	<div class="tgui-userInfo-text">
-		{{#text}}<div>{{.}}</div>{{/text}}
+	<div class="tgui-userInfo-user">
+		<div class="tgui-userInfo-user__page">
+			{{#title}}<div>{{.}}</div>{{/title}}
+			{{#data-user-page}}{{>Menu}}{{/data-user-page}}
+		</div>
 		{{#data-user-groups}}
+		<div class="tgui-userInfo-user__groups">
+			{{#text}}<div>{{.}}</div>{{/text}}
 			<ul class="tgui-userInfo-usergroups">
-					{{#array-list-items}}{{>MenuListItem}}{{/array-list-items}}
+				{{#array-list-items}}{{>MenuListItem}}{{/array-list-items}}
 			</ul>
+		</div>
 		{{/data-user-groups}}
 	</div>
 	{{#data-user-edit}}
-		<div class="tgui-userInfo-edits">
-			<div class="tgui-userInfo-edits-count">{{count}}</div>
-			<div class="tgui-userInfo-edits-label">{{label}}</div>
-		</div>
+	<div class="tgui-userInfo-edits">
+		<div class="tgui-userInfo-edits__heading">{{label}}</div>
+		<div class="tgui-userInfo-edits__content">{{count}}</div>
+	</div>
 	{{/data-user-edit}}
 </div>

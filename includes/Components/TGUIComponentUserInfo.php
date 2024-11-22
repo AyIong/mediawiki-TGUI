@@ -173,11 +173,6 @@ class TGUIComponentUserInfo implements TGUIComponent {
 			} else {
 				$data['data-user-groups'] = $this->getUserGroups();
 			}
-		} else {
-			$data = [
-				'title' => $localizer->msg( 'notloggedin' ),
-				'text' => $localizer->msg( 'tgui-user-info-text-anon' )
-			];
 		}
 
 		return $data;

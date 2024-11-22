@@ -77,6 +77,24 @@
   }
 }
 
+.tgui-section() {
+  flex: 1 0 9rem;
+  background-color: var(--color-base);
+
+  &__heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    height: 1.75rem;
+    border-bottom: 2px solid var(--color-primary);
+  }
+
+  &__content {
+    padding: 0.5em;
+  }
+}
+
 .tgui-button(@color: primary, @transparent: false, @hover: true, @active: true, @focus: false) {
   cursor: default;
   user-select: none;

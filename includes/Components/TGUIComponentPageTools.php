@@ -31,9 +31,6 @@ class TGUIComponentPageTools implements TGUIComponent {
 	private $sidebarData;
 
 	/** @var array */
-	private $languagesData;
-
-	/** @var array */
 	private $variantsData;
 
 	/**
@@ -42,7 +39,6 @@ class TGUIComponentPageTools implements TGUIComponent {
 	 * @param Title $title
 	 * @param UserIdentity $user
 	 * @param array $sidebarData
-	 * @param array $languagesData
 	 * @param array $variantsData
 	 */
 	public function __construct(
