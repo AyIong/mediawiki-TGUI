@@ -34,13 +34,20 @@ function purgePageCache() {
  * Function to add purge button to the p-captions menu
  */
 function addPurgeButton() {
+  const actionsMenu = document.getElementById('p-cactions');
+  if (!actionsMenu) {
+    return;
+  }
+
   const purgeListItem = document.createElement('li');
   const purgeButton = document.createElement('a');
   const purgeButtonLabel = document.createElement('span');
+  const purgeButtonIcon = document.createElement('span');
 
   purgeListItem.id = 'ca-purge';
   purgeListItem.className = 'mw-list-item';
   purgeButton.href = '#';
+  purgeButtonIcon.classList.add('tgui-icon', 'tgui-icon-eraser');
   purgeButtonLabel.textContent = mw.message('tgui-purge-button-label').text();
   purgeButtonLabel.setAttribute('title', mw.message('tgui-purge-button-title').text());
 
@@ -48,9 +55,10 @@ function addPurgeButton() {
   document.addEventListener('keydown', catchPurgeEvent);
 
   purgeListItem.appendChild(purgeButton);
+  purgeButton.appendChild(purgeButtonIcon);
   purgeButton.appendChild(purgeButtonLabel);
 
-  const parentElement = document.getElementById('p-cactions').getElementsByTagName('ul')[0];
+  const parentElement = actionsMenu.getElementsByTagName('ul')[0];
   parentElement.appendChild(purgeListItem);
 }
 

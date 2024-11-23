@@ -68,12 +68,6 @@
   &__content {
     position: relative;
     padding: 0.5em;
-
-    @media (max-width: @max-width-mobile) {
-      overflow: auto;
-      max-height: 24.5rem;
-      scrollbar-width: thin;
-    }
   }
 }
 
@@ -104,12 +98,11 @@
   border-radius: var(--border-radius-small);
   transition:
     background var(--transition-time),
-    box-shadow var(--transition-time),
-    color var(--transition-time) !important;
+    box-shadow var(--transition-time) !important;
 
   & when (@transparent) {
     background: transparent;
-    color: var(--color-text-darker) !important;
+    color: var(--color-text-translucent) !important;
 
     & when (@hover) {
       cursor: pointer;

@@ -27,61 +27,22 @@ class TGUIComponentPageTools implements TGUIComponent {
 	/** @var UserIdentity */
 	private $user;
 
-	/** @var array */
-	private $sidebarData;
-
-	/** @var array */
-	private $variantsData;
-
 	/**
 	 * @param Config $config
 	 * @param MessageLocalizer $localizer
 	 * @param Title $title
 	 * @param UserIdentity $user
-	 * @param array $sidebarData
-	 * @param array $variantsData
 	 */
 	public function __construct(
 		Config $config,
 		MessageLocalizer $localizer,
 		Title $title,
 		UserIdentity $user,
-		array $sidebarData,
-		array $variantsData
 	) {
 		$this->config = $config;
 		$this->localizer = $localizer;
 		$this->title = $title;
 		$this->user = $user;
-		$this->sidebarData = $sidebarData;
-		$this->variantsData = $variantsData;
-	}
-
-	/**
-	 * Extract article tools from sidebar and return the data
-	 *
-	 * The reason we do this is because:
-	 * 1. We removed some site-wide tools from the toolbar in Drawer.php,
-	 * 	  now we just want the leftovers
-	 * 2. Toolbox is not currently avaliable as data-portlet, have to wait
-	 *    till Desktop Improvements
-	 *
-	 * @return array
-	 */
-	private function getArticleToolsData(): array {
-		$data = [
-			'is-empty' => true,
-		];
-
-		foreach ( $this->sidebarData['array-portlets-rest'] as $portlet ) {
-			if ( $portlet['id'] === 'p-tb' ) {
-				$data = $portlet;
-				$data['is-empty'] = false;
-				break;
-			}
-		}
-
-		return $data;
 	}
 
 	/**
@@ -124,18 +85,8 @@ class TGUIComponentPageTools implements TGUIComponent {
 	 * @inheritDoc
 	 */
 	public function getTemplateData(): array {
-		$articleTools = $this->getArticleToolsData();
-
 		return [
-			'data-article-tools' => $articleTools,
 			'is-visible' => $this->shouldShowPageTools(),
-			// There are edge cases where the menu is completely empty
-			'has-overflow' => (bool)$articleTools,
-			/*
-			 * FIXME: ULS does not trigger for some reason, disabling it for now
-			 * 'is-uls-ready' => $this->shouldShowULS( $variantsData ),
-			 */
-			'is-uls-ready' => false
 		];
 	}
 }

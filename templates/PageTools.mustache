@@ -5,14 +5,14 @@
 }}
 <div class="page-actions">
 	<div class="page-actions__left">
-		{{#is-visible}}
 			{{#data-portlets.data-associated-pages}}{{>Menu}}{{/data-portlets.data-associated-pages}}
-		{{/is-visible}}
 	</div>
 	<div class="page-actions__right">
 		{{#is-visible}}
 			{{#data-portlets.data-views}}{{>Menu}}{{/data-portlets.data-views}}
+			{{^data-portlets.data-actions.is-empty}}
+				{{#data-portlets.data-actions}}{{>PageTools__more}}{{/data-portlets.data-actions}}
+			{{/data-portlets.data-actions.is-empty}}
 		{{/is-visible}}
-		{{#has-overflow}}{{>PageTools__more}}{{/has-overflow}}
 	</div>
 </div>

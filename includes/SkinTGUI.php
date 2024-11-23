@@ -89,10 +89,7 @@ class SkinTGUI extends SkinMustache {
 				$config,
 				$localizer,
 				$title,
-				$user,
-				$parentData['data-portlets-sidebar'],
-				// These portlets can be unindexed
-				$parentData['data-portlets']['data-variants'] ?? []
+				$user
 			),
 			'data-user-info' => new TGUIComponentUserInfo(
 				$isRegistered,

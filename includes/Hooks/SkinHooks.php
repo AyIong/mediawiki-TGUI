@@ -143,31 +143,6 @@ class SkinHooks implements
 	}
 
 	/**
-	 * Transforms watch item inside the action navigation menu
-	 *
-	 * @param array &$content_navigation
-	 */
-	private static function updateActionsMenu( &$content_navigation ) {
-		$key = null;
-		if ( isset( $content_navigation['actions']['watch'] ) ) {
-			$key = 'watch';
-		}
-		if ( isset( $content_navigation['actions']['unwatch'] ) ) {
-			$key = 'unwatch';
-		}
-
-		// Promote watch link from actions to views and add an icon
-		if ( $key !== null ) {
-			self::appendClassToItem(
-				$content_navigation['actions'][$key]['class'],
-				[ 'icon' ]
-			);
-			$content_navigation['views'][$key] = $content_navigation['actions'][$key];
-			unset( $content_navigation['actions'][$key] );
-		}
-	}
-
-	/**
 	 * Adds class to a property
 	 *
 	 * @param array &$item to update
@@ -195,282 +170,6 @@ class SkinHooks implements
 	}
 
 	/**
-	 * Updates personal navigation menu (user links) dropdown for modern TGUI:
-	 *  - Adds icons
-	 *  - Makes user page and watchlist collapsible
-	 *
-	 * @param SkinTemplate $sk
-	 * @param array &$content_navigation
-	 */
-	private static function updateUserLinksDropdownItems( $sk, &$content_navigation ) {
-		// For logged-in users in modern TGUI, rearrange some links in the personal toolbar.
-		$user = $sk->getUser();
-		$isTemp = $user->isTemp();
-		$isRegistered = $user->isRegistered();
-		if ( $isTemp ) {
-			if ( isset( $content_navigation['user-page']['tmpuserpage'] ) ) {
-				$content_navigation['user-page']['tmpuserpage']['collapsible'] = true;
-				$content_navigation['user-page']['tmpuserpage'] =
-					self::updateMenuItemData( $content_navigation['user-page']['tmpuserpage'] );
-			}
-			if ( isset( $content_navigation['user-menu']['tmpuserpage'] ) ) {
-				$content_navigation['user-menu']['tmpuserpage']['collapsible'] = true;
-				$content_navigation['user-menu']['tmpuserpage'] =
-					self::updateMenuItemData( $content_navigation['user-menu']['tmpuserpage'] );
-			}
-		} elseif ( $isRegistered ) {
-			// Remove user page from personal menu dropdown for logged in use
-			$content_navigation['user-menu']['userpage']['collapsible'] = true;
-			// watchlist may be disabled if $wgGroupPermissions['*']['viewmywatchlist'] = false;
-			// See [[phab:T299671]]
-			if ( isset( $content_navigation['user-menu']['watchlist'] ) ) {
-				$content_navigation['user-menu']['watchlist']['collapsible'] = true;
-			}
-			// Remove logout link from user-menu and recreate it in SkinTGUI,
-			unset( $content_navigation['user-menu']['logout'] );
-		}
-
-		if ( $isRegistered ) {
-			// Prefix user link items with associated icon.
-			// Don't show icons for anon menu items (besides login and create account).
-			// Loop through each menu to check/append its link classes.
-			self::updateMenuItems( $content_navigation, 'user-menu' );
-		} else {
-			// Remove "Not logged in" from personal menu dropdown for anon users.
-			unset( $content_navigation['user-menu']['anonuserpage'] );
-		}
-
-		if ( !$isRegistered || $isTemp ) {
-			// "Create account" link is handled manually by TGUI
-			unset( $content_navigation['user-menu']['createaccount'] );
-			// "Login" link is handled manually by TGUI
-			unset( $content_navigation['user-menu']['login'] );
-			// Remove duplicate "Login" link added by SkinTemplate::buildPersonalUrls if group read permissions
-			// are set to false.
-			unset( $content_navigation['user-menu']['login-private'] );
-		}
-	}
-
-	/**
-	 * Populates 'tgui-user-menu-overflow' bucket for modern TGUI with modified personal navigation (user links)
-	 * menu items, including 'notification', 'user-interface-preferences', 'user-page', 'tgui-user-menu-overflow'
-	 *
-	 * @param SkinTemplate $sk
-	 * @param array &$content_navigation
-	 */
-	private static function updateUserLinksOverflowItems( $sk, &$content_navigation ) {
-		$overflow = 'tgui-user-menu-overflow';
-		$content_navigation[$overflow] = [];
-
-		// Logged in and logged out overflow items
-		if ( isset( $content_navigation['user-interface-preferences']['uls'] ) ) {
-			$content_navigation[$overflow]['uls'] = array_merge(
-				$content_navigation['user-interface-preferences']['uls'], [
-				'collapsible' => true,
-			] );
-		}
-
-		// Logged in overflow items
-		if ( isset( $content_navigation['user-page']['userpage'] ) ) {
-			$content_navigation[$overflow]['userpage'] = array_merge(
-				$content_navigation['user-page']['userpage'], [
-				// T312157: Style the userpage link as a blue link rather than a quiet button.
-				'button' => false,
-				'collapsible' => true,
-				// Remove icon
-				'icon' => '',
-			] );
-		}
-		if ( isset( $content_navigation['notifications'] ) ) {
-			foreach ( $content_navigation['notifications'] as $key => $data ) {
-				$content_navigation[$overflow][$key] = $data;
-			}
-		}
-		if ( isset( $content_navigation['user-menu']['watchlist'] ) ) {
-			$content_navigation[$overflow]['watchlist'] = array_merge(
-				$content_navigation['user-menu']['watchlist'], [
-				'id' => 'pt-watchlist-2',
-				'button' => true,
-				'collapsible' => true,
-				'text-hidden' => true,
-			] );
-		}
-
-		// Anon/temp overflow items
-		$user = $sk->getUser();
-		$isTemp = $user->isTemp();
-		$isRegistered = $user->isRegistered();
-		$isCreateAccountAllowed = ( !$isRegistered || $isTemp );
-		if ( isset( $content_navigation['user-menu']['createaccount'] ) && $isCreateAccountAllowed ) {
-			$content_navigation[$overflow]['createaccount'] = array_merge(
-				$content_navigation['user-menu']['createaccount'], [
-				'id' => 'pt-createaccount-2',
-				// T312157: Style the userpage link as a blue link rather than a quiet button.
-				'button' => false,
-				'collapsible' => true,
-				// Remove icon
-				'icon' => '',
-			] );
-		}
-
-		self::updateMenuItems( $content_navigation, $overflow );
-	}
-
-	/**
-	 * Updates personal navigation menu (user links) for modern TGUI wherein user page, create account and login links
-	 * are removed from the dropdown to be handled separately. In legacy TGUI, the custom "user-page" bucket is
-	 * removed to preserve existing behavior.
-	 *
-	 * @param SkinTemplate $sk
-	 * @param array &$content_navigation
-	 */
-	private static function updateUserLinksItems( $sk, &$content_navigation ) {
-		$skinName = $sk->getSkinName();
-		self::updateUserLinksOverflowItems( $sk, $content_navigation );
-		self::updateUserLinksDropdownItems( $sk, $content_navigation );
-	}
-
-	/**
-	 * Modifies list item to make it collapsible.
-	 *
-	 * @param array &$item
-	 * @param string $prefix defaults to user-links-
-	 */
-	private static function makeMenuItemCollapsible( array &$item, string $prefix = 'user-links-' ) {
-		$COLLAPSE_MENU_ITEM_CLASS = $prefix . 'collapsible-item';
-		self::appendClassToItem( $item[ 'class' ], $COLLAPSE_MENU_ITEM_CLASS );
-	}
-
-	/**
-	 * Make an icon
-	 *
-	 * @internal for use inside TGUI skin.
-	 * @param string $name
-	 * @return string of HTML
-	 */
-	public static function makeIcon( $name ) {
-		// Html::makeLink will pass this through rawElement
-		return '<span class="mw-ui-icon mw-ui-icon-' . $name . ' mw-ui-icon-wikimedia-' . $name . '"></span>';
-	}
-
-	/**
-	 * Update template data to include classes and html that handle buttons, icons, and collapsible items.
-	 *
-	 * @internal for use inside TGUI skin.
-	 * @param array $item data to update
-	 * @param string $buttonClassProp property to append button classes
-	 * @param string $iconHtmlProp property to set icon HTML
-	 * @return array $item Updated data
-	 */
-	private static function updateItemData( $item, $buttonClassProp, $iconHtmlProp ) {
-		$hasButton = $item['button'] ?? false;
-		$hideText = $item['text-hidden'] ?? false;
-		$isCollapsible = $item['collapsible'] ?? false;
-		$icon = $item['icon'] ?? '';
-		unset( $item['button'] );
-		unset( $item['icon'] );
-		unset( $item['text-hidden'] );
-		unset( $item['collapsible'] );
-
-		if ( $isCollapsible ) {
-			self::makeMenuItemCollapsible( $item );
-		}
-		if ( $hasButton ) {
-			self::appendClassToItem( $item[ $buttonClassProp ], [ 'mw-ui-button' ] );
-		}
-		if ( $icon ) {
-			if ( $hideText ) {
-				$iconElementClasses = [ 'mw-ui-icon', 'mw-ui-icon-element',
-					// Some extensions declare icons without the wikimedia- prefix. e.g. Echo
-					'mw-ui-icon-' . $icon,
-					// FIXME: Some icon names are prefixed with `wikimedia-`.
-					// We should seek to remove all these instances.
-					'mw-ui-icon-wikimedia-' . $icon
-				];
-				self::appendClassToItem( $item[ $buttonClassProp ], $iconElementClasses );
-			} else {
-				$item[ $iconHtmlProp ] = self::makeIcon( $icon );
-			}
-		}
-		return $item;
-	}
-
-	/**
-	 * Updates template data for TGUI dropdown menus.
-	 *
-	 * @param array $item Menu data to update
-	 * @return array $item Updated menu data
-	 */
-	public static function updateDropdownMenuData( $item ) {
-		$buttonClassProp = 'heading-class';
-		$iconHtmlProp = 'html-tgui-heading-icon';
-		return self::updateItemData( $item, $buttonClassProp, $iconHtmlProp );
-	}
-
-	/**
-	 * Updates template data for TGUI link items.
-	 *
-	 * @param array $item link data to update
-	 * @return array $item Updated link data
-	 */
-	public static function updateLinkData( $item ) {
-		$buttonClassProp = 'class';
-		$iconHtmlProp = 'link-html';
-		return self::updateItemData( $item, $buttonClassProp, $iconHtmlProp );
-	}
-
-	/**
-	 * Updates template data for TGUI menu items.
-	 *
-	 * @param array $item menu item data to update
-	 * @return array $item Updated menu item data
-	 */
-	public static function updateMenuItemData( $item ) {
-		$buttonClassProp = 'link-class';
-		$iconHtmlProp = 'link-html';
-		return self::updateItemData( $item, $buttonClassProp, $iconHtmlProp );
-	}
-
-	/**
-	 * Updates user interface preferences for modern TGUI to upgrade icon/button menu items.
-	 *
-	 * @param array &$content_navigation
-	 * @param string $menu identifier
-	 */
-	private static function updateMenuItems( &$content_navigation, $menu ) {
-		foreach ( $content_navigation[$menu] as $key => $item ) {
-			$content_navigation[$menu][$key] = self::updateMenuItemData( $item );
-		}
-	}
-
-	/**
-	 * TGUI only:
-	 * Creates an additional menu that will be injected inside the more (cactions)
-	 * dropdown menu. This menu is a clone of `views` and this menu will only be
-	 * shown at low resolutions (when the `views` menu is hidden).
-	 *
-	 * An additional menu is used instead of adding to the existing cactions menu
-	 * so that the emptyPortlet logic for that menu is preserved and the cactions menu
-	 * is not shown at large resolutions when empty (e.g. all items including collapsed
-	 * items are hidden).
-	 *
-	 * @param array &$content_navigation
-	 */
-	private static function createMoreOverflowMenu( &$content_navigation ) {
-		$clonedViews = [];
-		foreach ( array_keys( $content_navigation['views'] ?? [] ) as $key ) {
-			$newItem = $content_navigation['views'][$key];
-			self::makeMenuItemCollapsible(
-				$newItem,
-				'tgui-more-'
-			);
-			$clonedViews['more-' . $key] = $newItem;
-		}
-		// Inject collapsible menu items ahead of existing actions.
-		$content_navigation['views-overflow'] = $clonedViews;
-	}
-
-	/**
 	 * Modify navigation links
 	 *
 	 * TODO: Update to a proper hook when T287622 is resolved
@@ -484,9 +183,39 @@ class SkinHooks implements
 			return;
 		}
 
+		if ( isset( $links['actions'] ) ) {
+			self::updateActionsMenu( $links );
+		}
+
 		if ( isset( $links['user-menu'] ) ) {
 			self::updateUserMenu( $sktemplate, $links );
 		}
+	}
+
+		/**
+	 * Update actions menu items
+	 *
+	 * @internal used inside Hooks\SkinHooks::onSkinTemplateNavigation
+	 * @param array &$links
+	 */
+	private static function updateActionsMenu( &$links ) {
+		// Most icons are not mapped yet in the actions menu
+		$iconMap = [
+			'delete' => 'trash',
+			'move' => 'move',
+			'protect' => 'lock',
+			'unprotect' => 'unLock',
+			// Extension:Purge
+			// Extension:SemanticMediaWiki
+			'purge' => 'reload',
+			// Extension:Cargo
+			'cargo-purge'  => 'reload',
+			// Extension:DiscussionTools
+			'dt-page-subscribe' => 'bell'
+		];
+
+		self::mapIconsToMenuItems( $links, 'actions', $iconMap );
+		self::addIconsToMenuItems( $links, 'actions' );
 	}
 
 	/**
@@ -515,6 +244,21 @@ class SkinHooks implements
 		}
 
 		self::addIconsToMenuItems( $links, 'user-menu' );
+	}
+
+	/**
+	 * Set the icon parameter of the menu item based on the mapping
+	 *
+	 * @param array &$links
+	 * @param string $menu identifier
+	 * @param array $map icon mapping
+	 */
+	private static function mapIconsToMenuItems( &$links, $menu, $map ) {
+		foreach ( $map as $key => $icon ) {
+			if ( isset( $links[$menu][$key] ) ) {
+				$links[$menu][$key]['icon'] ??= $icon;
+			}
+		}
 	}
 
 	/**

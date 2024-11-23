@@ -3,17 +3,14 @@
 		<summary
 			class="tgui-dropdown-summary"
 			title="{{msg-tgui-actions-more-toggle}}"
-			aria-details="page-actions-more__card">
+			aria-details="page-actions-more">
 			<span class="tgui-icon tgui-icon-ellipsis"></span>
 		</summary>
 	</details>
-	<aside id="page-actions-more__card" class="tgui-window">
-		<div id="tgui-actions-more__header" class="tgui-window__header">{{msg-tgui-actions-more-toggle}}</div>
-		<div id="tgui-actions-more__content" class="tgui-window__content">
-			{{#is-visible}}
+	<aside id="page-actions-more" class="tgui-window">
+		<div id="page-actions-more__header" class="tgui-window__header">{{msg-tgui-actions-more-toggle}}</div>
+		<div id="page-actions-more__content" class="tgui-window__content">
 			{{#data-portlets.data-actions}}{{>Menu}}{{/data-portlets.data-actions}}
-			{{#data-article-tools}}{{>Menu}}{{/data-article-tools}}
-			{{/is-visible}}
 		</div>
 	</aside>
 </div>
