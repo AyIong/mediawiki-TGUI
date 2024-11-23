@@ -50,12 +50,6 @@
   flex-direction: row-reverse;
   gap: 0.5em;
 
-  @media (max-width: @max-width-mobile) {
-    overflow: auto;
-    max-height: 25.25rem;
-    scrollbar-width: thin;
-  }
-
   .tgui-menu {
     .tgui-section();
 
@@ -146,6 +140,18 @@
           margin-left: 0.5rem;
         }
       }
+    }
+  }
+}
+
+@media (max-width: @max-width-mobile) {
+  #tgui-preferences {
+    width: calc(100vw - 1.5rem); // Screen width - right x2
+
+    &__content {
+      overflow: auto;
+      max-height: 25.75rem;
+      scrollbar-width: thin;
     }
   }
 }
