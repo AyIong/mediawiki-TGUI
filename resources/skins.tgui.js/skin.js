@@ -5,7 +5,20 @@
  * @return {void}
  */
 function enableCssAnimations(document) {
-  document.documentElement.classList.add('tgui-animations-ready');
+  if (document.visibilityState === 'visible') {
+    // User on page. Enable animations
+    document.documentElement.classList.add('tgui-animations-ready');
+  } else {
+    // User not on page. Wait until he's open page and enable animations
+    document.addEventListener('visibilitychange', onVisibilityChange);
+  }
+
+  function onVisibilityChange() {
+    if (document.visibilityState === 'visible') {
+      document.documentElement.classList.add('tgui-animations-ready');
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+    }
+  }
 }
 
 /**
