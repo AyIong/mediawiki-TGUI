@@ -8,14 +8,20 @@
   position: sticky;
   bottom: 0;
   height: 50%;
+  width: @width-sidebar-px;
   box-sizing: border-box;
   background-color: var(--color-base-fill);
   border-top: var(--border-classic);
   box-shadow: var(--shadow-template--large);
   transition:
     height var(--transition-time),
+    width var(--transition-time),
     transform var(--transition-time);
   z-index: var(--index-static);
+
+  @media (min-width: @min-width-desktop-wide) {
+    width: @width-sidebar-px-wide;
+  }
 
   @media (min-width: @min-width-desktop) {
     .tgui-blur-important {
@@ -24,6 +30,7 @@
   }
 
   .tgui-toc-collapsed & {
+    position: fixed;
     height: 2em !important;
     overflow: hidden;
     box-shadow: var(--shadow-template--small) !important;

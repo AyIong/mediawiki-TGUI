@@ -1,0 +1,38 @@
+@import '../variables.less';
+@import '../mixins.less';
+
+.tgui-page {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .tgui-background();
+
+    &-inner {
+      display: flex;
+      flex: 1;
+    }
+  }
+
+  &-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+
+    .mw-body {
+      margin: 0.75rem;
+
+      @media (max-width: @max-width-mobile) {
+        margin-top: ~'calc(var(--header-height) + 0.75rem + var(--header-padding) * 2)';
+      }
+    }
+  }
+}
+
+@{selector-sidebar-no-toc-sidebar-closed},
+@{selector-sidebar-no-toc-sidebar-disabled} {
+  & ~ .tgui-sidebar-container {
+    flex: 0;
+  }
+}

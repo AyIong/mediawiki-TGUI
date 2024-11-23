@@ -4,21 +4,19 @@
 .tgui-sidebar-container {
   display: flex;
   flex-direction: column;
+  flex-basis: @width-sidebar-px;
   pointer-events: none;
   overflow: hidden;
-  position: fixed;
-  bottom: 0;
+  position: sticky;
+  top: ~'calc(var(--header-height) + var(--header-padding) * 2)';
   height: var(--sidebar-height);
-  width: @width-sidebar-px;
-  transition: width var(--transition-time);
+  transition:
+    width var(--transition-time),
+    flex-basis var(--transition-time);
   z-index: var(--index-static);
 
-  @{selector-main-menu-closed} ~ & {
-    overflow: unset;
-  }
-
   @media (min-width: @min-width-desktop-wide) {
-    width: @width-sidebar-px-wide;
+    flex-basis: @width-sidebar-px-wide;
   }
 }
 
@@ -30,9 +28,7 @@
   overflow: hidden;
   background-color: var(--color-base-fill);
   color: var(--color-text);
-  transition:
-    transform var(--transition-time),
-    visibility var(--transition-time);
+  transition: visibility var(--transition-time);
   z-index: var(--index-static);
 
   @media (min-width: @min-width-desktop) {
@@ -43,6 +39,7 @@
 
   .tgui-sidebar-content {
     flex: 1;
+    white-space: nowrap;
     overflow: hidden;
     overscroll-behavior: contain;
     scrollbar-width: thin;
@@ -56,7 +53,6 @@
 
   .sidebar-visible &,
   @{selector-main-menu-closed} ~ .tgui-sidebar-container & {
-    transform: translateX(-100%);
     visibility: hidden;
   }
 }
@@ -71,38 +67,36 @@
   }
 
   .tgui-sidebar {
-    visibility: hidden !important;
+    visibility: hidden;
     background-color: var(--color-base-blur-important);
-    transform: translateX(-100%) !important;
 
     #tgui-sidebar-checkbox:checked ~ .tgui-sidebar-container & {
-      visibility: visible !important;
-      transform: translateX(0%) !important;
+      visibility: visible;
     }
   }
 }
 
 @media (max-width: @max-width-mobile) {
   .tgui-sidebar-container {
+    position: fixed;
     width: 100%;
     max-height: 70vh;
     top: 0;
-    transform: translateY(-100%) !important;
+    transform: translateY(-100%);
     transition:
       transform var(--transition-time),
       visibility var(--transition-time);
     z-index: var(--index-overlay);
 
     #tgui-sidebar-checkbox:checked ~ & {
-      transform: translateY(0%) !important;
+      transform: translateY(0%);
       box-shadow: var(--box-shadow-medium);
     }
 
     .tgui-sidebar {
       visibility: hidden !important;
-      margin-top: 66px;
+      margin-top: ~'calc(var(--header-height) + var(--header-padding) * 2)';
       border-bottom: var(--border-classic);
-      transform: translateX(0%) !important;
       z-index: var(--index-overlay);
 
       #tgui-sidebar-checkbox:checked ~ & {
@@ -111,7 +105,6 @@
 
       .tgui-sidebar-content {
         overflow-y: auto;
-        transform: translateX(0%) !important;
       }
     }
   }

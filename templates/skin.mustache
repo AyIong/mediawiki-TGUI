@@ -1,41 +1,22 @@
 {{!
-	Indicator[] array-indicators wiki-defined badges such as "good article",
-		"featured article". An empty array if none are defined.
-	string html-title
-	bool is-article
 	string html-subtitle
 	string html-undelete-link
-	string html-newtalk
 	string html-body-content
 	string html-categories
 	string html-after-content
-	LogoOptions data-logos
-	object data-portlets
-	MenuDefinition data-portlets.data-personal
-	MenuDefinition data-portlets.data-namespaces
-	MenuDefinition data-portlets.data-variants
-	MenuDefinition data-portlets.data-views
-	MenuDefinition data-portlets.data-actions
-	object data-search-box. See SearchBox.mustache for documentation.
 	object data-portlets-sidebar. See Sidebar.mustache for documentation.
 	object data-footer for footer template partial. see Footer.mustache for documentation.
 }}
-<div class="mw-page-container">
-	<span id="top-page"></span>
-	<a class="mw-jump-link" href="#content">{{msg-tgui-jumptocontent}}</a>
-	<div class="mw-page-container-inner">
-		<input
-			type="checkbox"
-			id="tgui-sidebar-checkbox"
-			class="mw-checkbox-hack-checkbox">
-		{{>Header}}
-		<div class="tgui-sidebar-container">
+<div class="tgui-page-container">
+	{{>Header}}
+	<div class="tgui-page-container-inner">
+		<input type="checkbox" id="tgui-sidebar-checkbox" class="mw-checkbox-hack-checkbox">
+		<input type="checkbox" id="tgui-toc-collapsed-checkbox" class="mw-checkbox-hack-checkbox">
+		<aside class="tgui-sidebar-container">
 			{{#data-portlets-sidebar}}{{>Sidebar}}{{/data-portlets-sidebar}}
 			{{#data-toc}}{{>TableOfContents}}{{/data-toc}}
-		</div>
-		<input type="checkbox" id="tgui-toc-collapsed-checkbox" class="mw-checkbox-hack-checkbox">
-		<div class="mw-content-container">
-			{{! `role` is unnecessary but kept to support selectors in any gadgets or user styles. }}
+		</aside>
+		<div id="bodyContent" class="tgui-page-content-container">
 			<main id="content" class="mw-body" role="main">
 				{{>PageHeader}}
 				<div id="bodyContent" class="tgui-body" data-mw-ve-target-container>
@@ -45,14 +26,11 @@
 					{{{html-body-content}}}
 					{{{html-categories}}}
 				</div>
-				{{#is-language-in-content-bottom}}
-				{{#data-portlets.data-languages}}{{>Menu}}{{/data-portlets.data-languages}}
-				{{/is-language-in-content-bottom}}
 			</main>
 			{{{html-after-content}}}
+			<div class="mw-footer-container">
+				{{#data-footer}}{{>Footer}}{{/data-footer}}
+			</div>
 		</div>
-		<div class="mw-footer-container">
-			{{#data-footer}}{{>Footer}}{{/data-footer}}
-		</div>
-	</div> {{! END mw-page-container-inner }}
-</div> {{! END mw-page-container }}
+	</div>
+</div>

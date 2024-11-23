@@ -16,14 +16,15 @@ function restoreTOCState() {
 
 // Move ToC for mobile devices
 function moveElement() {
-  const toc = document.querySelector('.sidebar-toc');
-  const newContainer = document.querySelector('.mw-page-container-inner');
+  const toc = document.getElementById('tgui-toc');
+  const newContainer = document.getElementById('bodyContent');
   const mediaQuery = window.matchMedia('(max-width: 719px)'); // @max-width-mobile LESS var;
 
   function handleMediaChange(e) {
     if (!toc) {
       return;
     }
+
     if (e.matches) {
       newContainer.appendChild(toc);
     } else {
