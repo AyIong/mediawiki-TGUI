@@ -68,9 +68,9 @@
   "tgui-purge-button-label": "Очистить кэш",
   "tgui-purge-button-title": "Очистить кэш страницы [F4]",
   "tgui-reset-button": "Сбросить",
-  "tgui-actions-more-toggle": "Доп. действия",
   "tgui-usermenu": "Персональное меню",
   "tgui-sitestats-edits-label": "Правки",
+  "tgui-actions-more-toggle": "Доп. действия",
 
   "tgui-preferences": "Параметры",
   "tgui-theme-name": "Тема",
