@@ -1,27 +1,45 @@
+// Adopted from Vector 2022
 /** @module TableOfContents */
 
-const SECTION_CLASS = 'sidebar-toc-list-item';
-const ACTIVE_SECTION_CLASS = 'sidebar-toc-list-item-active';
-const EXPANDED_SECTION_CLASS = 'sidebar-toc-list-item-expanded';
-const PARENT_SECTION_CLASS = 'sidebar-toc-level-1';
-const LINK_CLASS = 'sidebar-toc-link';
-const TOGGLE_CLASS = 'sidebar-toc-toggle';
-const TOC_COLLAPSED_CLASS = 'tgui-toc-collapsed';
-const TOC_ID = 'tgui-panel-toc';
-const TOC_PREFERENCE_NAME = 'TGUI-ToC-Collapsed';
 /**
  * TableOfContents Mustache templates
  */
-const templateBody = require(/** @type {string} */ ('./templates/TableOfContents.mustache'));
+const templateTocContents = require(/** @type {string} */ ('./templates/TableOfContents__list.mustache'));
 const templateTocLine = require(/** @type {string} */ ('./templates/TableOfContents__line.mustache'));
 /**
  * TableOfContents Config object for filling mustache templates
  */
 const tableOfContentsConfig = require(/** @type {string} */ ('./tableOfContentsConfig.json'));
+const deferUntilFrame = require('./deferUntilFrame.js');
+
+const SECTION_ID_PREFIX = 'toc-';
+const SECTION_CLASS = 'sidebar-toc-list-item';
+const ACTIVE_SECTION_CLASS = 'sidebar-toc-list-item--active';
+const EXPANDED_SECTION_CLASS = 'sidebar-toc-list-item--expanded';
+const TOP_SECTION_CLASS = 'sidebar-toc-level-1';
+const ACTIVE_TOP_SECTION_CLASS = 'sidebar-toc-level-1--active';
+const LINK_CLASS = 'sidebar-toc-link';
+const TOGGLE_CLASS = 'sidebar-toc-toggle';
+const TOC_CONTENTS_ID = 'mw-panel-toc-list';
+const TOC_COLLAPSED_CLASS = 'tgui-toc-collapsed';
+const TOC_PREFERENCE_NAME = 'TGUI-ToC-Collapsed';
 
 /**
+ * Fired when the user clicks a toc link. Note that this callback takes
+ * precedence over the onHashChange callback. The onHashChange callback will not
+ * be called when the user clicks a toc link.
+ *
  * @callback onHeadingClick
  * @param {string} id The id of the clicked list item.
+ */
+
+/**
+ * Fired when the page's hash fragment has changed. Note that if the user clicks
+ * a link inside the TOC, the `onHeadingClick` callback will fire instead of the
+ * `onHashChange` callback to avoid redundant behavior.
+ *
+ * @callback onHashChange
+ * @param {string} id The id of the list item that corresponds to the hash change event.
  */
 
 /**
@@ -30,15 +48,24 @@ const tableOfContentsConfig = require(/** @type {string} */ ('./tableOfContentsC
  */
 
 /**
- * @callback onToggleCollapse
+ * @callback onTogglePinned
+ */
+
+/**
+ * @callback tableOfContents
+ * @param {TableOfContentsProps} props
+ * @return {TableOfContents}
  */
 
 /**
  * @typedef {Object} TableOfContentsProps
  * @property {HTMLElement} container The container element for the table of contents.
  * @property {onHeadingClick} onHeadingClick Called when an arrow is clicked.
- * @property {onToggleClick} onToggleClick Called when a list item is clicked.
+ * @property {onHashChange} onHashChange Called when a hash change event
+ * matches the id of a LINK_CLASS anchor element.
+ * @property {onToggleClick} [onToggleClick] Called when an arrow is clicked.
  * @property {onToggleCollapse} onToggleCollapse Called when collapse toggle buttons are clicked.
+ * @property {onTogglePinned} onTogglePinned Called when pinned toggle buttons are clicked.
  */
 
 /**
@@ -58,13 +85,8 @@ const tableOfContentsConfig = require(/** @type {string} */ ('./tableOfContentsC
 
 /**
  * @typedef {Object} SectionsListData
- * @property {boolean} is-tgui-toc-beginning-enabled
  * @property {Section[]} array-sections
  * @property {boolean} tgui-is-collapse-sections-enabled
- * @property {string} msg-tgui-toc-heading
- * @property {number} number-section-count
- * @property {string} msg-tgui-toc-beginning
- * @property {string} msg-tgui-toc-toggle-position-sidebar
  */
 
 /**
@@ -103,10 +125,17 @@ module.exports = function tableOfContents(props) {
   }
 
   /**
+   * Does the user prefer reduced motion?
+   *
+   * @return {boolean}
+   */
+  const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /**
    * Sets an `ACTIVE_SECTION_CLASS` on the element with an id that matches `id`.
-   * If the element is not a top level heading (e.g. element with the
-   * `PARENT_SECTION_CLASS`), the top level heading will also have the
-   * `ACTIVE_SECTION_CLASS`;
+   * Sets an `ACTIVE_TOP_SECTION_CLASS` on the top level heading (e.g. element with the
+   * `TOP_SECTION_CLASS`).
+   * If the element is a top level heading, the element will have both classes.
    *
    * @param {string} id The id of the element to be activated in the Table of Contents.
    */
@@ -118,17 +147,14 @@ module.exports = function tableOfContents(props) {
       return;
     }
 
-    const topSection = /** @type {HTMLElement} */ (selectedTocSection.closest(`.${PARENT_SECTION_CLASS}`));
-
-    if (selectedTocSection === topSection) {
-      activeTopSection = topSection;
-      activeTopSection.classList.add(ACTIVE_SECTION_CLASS);
-    } else {
-      activeTopSection = topSection;
-      activeSubSection = selectedTocSection;
-      activeTopSection.classList.add(ACTIVE_SECTION_CLASS);
-      activeSubSection.classList.add(ACTIVE_SECTION_CLASS);
+    // Assign the active top and sub sections, apply classes
+    activeTopSection = /** @type {HTMLElement|undefined} */ (selectedTocSection.closest(`.${TOP_SECTION_CLASS}`));
+    if (activeTopSection) {
+      // T328089 Sometimes activeTopSection is null
+      activeTopSection.classList.add(ACTIVE_TOP_SECTION_CLASS, EXPANDED_SECTION_CLASS);
     }
+    activeSubSection = selectedTocSection;
+    activeSubSection.classList.add(ACTIVE_SECTION_CLASS);
   }
 
   /**
@@ -141,7 +167,7 @@ module.exports = function tableOfContents(props) {
       activeSubSection = undefined;
     }
     if (activeTopSection) {
-      activeTopSection.classList.remove(ACTIVE_SECTION_CLASS);
+      activeTopSection.classList.remove(ACTIVE_TOP_SECTION_CLASS, EXPANDED_SECTION_CLASS);
       activeTopSection = undefined;
     }
   }
@@ -158,14 +184,13 @@ module.exports = function tableOfContents(props) {
     }
 
     // Get currently visible active link
-    let link = section.firstElementChild;
-    // @ts-ignore
+    let link = /** @type {HTMLElement|null} */ (section.firstElementChild);
     if (link && !link.offsetParent) {
       // If active link is a hidden subsection, use active parent link
       const { parent: activeTopId } = getActiveSectionIds();
       const parentSection = document.getElementById(activeTopId || '');
       if (parentSection) {
-        link = parentSection.firstElementChild;
+        link = /** @type {HTMLElement|null} */ (parentSection.firstElementChild);
       } else {
         link = null;
       }
@@ -185,7 +210,7 @@ module.exports = function tableOfContents(props) {
       const linkHiddenBottomValue = linkRect.bottom - Math.min(containerRect.bottom, window.innerHeight);
 
       // Respect 'prefers-reduced-motion' user preference
-      const scrollBehavior = 'smooth';
+      const scrollBehavior = prefersReducedMotion() ? 'smooth' : undefined;
 
       // Manually increment and decrement TOC scroll rather than using scrollToView
       // in order to account for threshold
@@ -217,13 +242,13 @@ module.exports = function tableOfContents(props) {
       return;
     }
 
-    const parentSection = /** @type {HTMLElement} */ (tocSection.closest(`.${PARENT_SECTION_CLASS}`));
-    const toggle = tocSection.querySelector(`.${TOGGLE_CLASS}`);
+    const topSection = /** @type {HTMLElement} */ (tocSection.closest(`.${TOP_SECTION_CLASS}`));
+    const toggle = topSection.querySelector(`.${TOGGLE_CLASS}`);
 
-    if (parentSection && toggle && expandedSections.indexOf(parentSection) < 0) {
+    if (topSection && toggle && expandedSections.indexOf(topSection) < 0) {
       toggle.setAttribute('aria-expanded', 'true');
-      parentSection.classList.add(EXPANDED_SECTION_CLASS);
-      expandedSections.push(parentSection);
+      topSection.classList.add(EXPANDED_SECTION_CLASS);
+      expandedSections.push(topSection);
     }
   }
 
@@ -237,7 +262,6 @@ module.exports = function tableOfContents(props) {
   }
 
   /**
-   *
    * @param {string} id
    */
   function changeActiveSection(id) {
@@ -258,7 +282,7 @@ module.exports = function tableOfContents(props) {
    */
   function isTopLevelSection(id) {
     const section = document.getElementById(id);
-    return !!section && section.classList.contains(PARENT_SECTION_CLASS);
+    return !!section && section.classList.contains(TOP_SECTION_CLASS);
   }
 
   /**
@@ -269,7 +293,7 @@ module.exports = function tableOfContents(props) {
    */
   function collapseSections(selectedIds) {
     const sectionIdsToCollapse = selectedIds || getExpandedSectionIds();
-    expandedSections = expandedSections.filter(function (section) {
+    expandedSections = expandedSections.filter((section) => {
       const isSelected = sectionIdsToCollapse.indexOf(section.id) > -1;
       const toggle = isSelected ? section.getElementsByClassName(TOGGLE_CLASS) : undefined;
       if (isSelected && toggle && toggle.length > 0) {
@@ -300,7 +324,7 @@ module.exports = function tableOfContents(props) {
    * Set aria-expanded attribute for all toggle buttons.
    */
   function initializeExpandedStatus() {
-    const parentSections = props.container.querySelectorAll(`.${PARENT_SECTION_CLASS}`);
+    const parentSections = props.container.querySelectorAll(`.${TOP_SECTION_CLASS}`);
     parentSections.forEach((section) => {
       const expanded = section.classList.contains(EXPANDED_SECTION_CLASS);
       const toggle = section.querySelector(`.${TOGGLE_CLASS}`);
@@ -326,10 +350,58 @@ module.exports = function tableOfContents(props) {
   }
 
   /**
+   * Event handler for hash change event.
+   */
+  function handleHashChange() {
+    const hash = location.hash.slice(1);
+    const listItem = mw.util.getTargetFromFragment(`${SECTION_ID_PREFIX}${hash}`);
+
+    if (!listItem) {
+      return;
+    }
+
+    expandSection(listItem.id);
+    changeActiveSection(listItem.id);
+
+    props.onHashChange(listItem.id);
+  }
+
+  /**
+   * Bind event listener for hash change events that match the hash of
+   * LINK_CLASS.
+   *
+   * Note that if the user clicks a link inside the TOC, the onHeadingClick
+   * callback will fire instead of the onHashChange callback, since it takes
+   * precedence.
+   */
+  function bindHashChangeListener() {
+    window.addEventListener('hashchange', handleHashChange);
+  }
+
+  /**
+   * Unbinds event listener for hash change events.
+   */
+  function unbindHashChangeListener() {
+    window.removeEventListener('hashchange', handleHashChange);
+  }
+
+  /**
+   * Bind event listener for clicking on show/hide Table of Contents links.
+   */
+  function bindPinnedToggleListeners() {
+    const toggleButtons = document.querySelectorAll('.tgui-toc-pinnable-header button');
+    toggleButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        props.onTogglePinned();
+      });
+    });
+  }
+
+  /**
    * Bind event listeners for clicking on section headings and toggle buttons.
    */
   function bindSubsectionToggleListeners() {
-    props.container.addEventListener('click', function (e) {
+    props.container.addEventListener('click', (e) => {
       if (!(e.target instanceof HTMLElement)) {
         return;
       }
@@ -340,12 +412,27 @@ module.exports = function tableOfContents(props) {
         // In case section link contains HTML,
         // test if click occurs on any child elements.
         if (e.target.closest(`.${LINK_CLASS}`)) {
+          // Temporarily unbind the hash change listener to avoid redundant
+          // behavior caused by firing both the onHeadingClick callback and the
+          // onHashChange callback. Instead, only fire the onHeadingClick
+          // callback.
+          unbindHashChangeListener();
+
+          expandSection(tocSection.id);
+          changeActiveSection(tocSection.id);
           props.onHeadingClick(tocSection.id);
+
+          deferUntilFrame(() => {
+            bindHashChangeListener();
+          }, 3);
         }
         // Toggle button does not contain child elements,
         // so classList check will suffice.
-        if (e.target.classList.contains(TOGGLE_CLASS)) {
-          props.onToggleClick(tocSection.id);
+        if (e.target.closest(`.${TOGGLE_CLASS}`)) {
+          toggleExpandSection(tocSection.id);
+          if (props.onToggleClick) {
+            props.onToggleClick(tocSection.id);
+          }
         }
       }
     });
@@ -363,9 +450,9 @@ module.exports = function tableOfContents(props) {
 
     // Bind event listeners.
     bindSubsectionToggleListeners();
+    bindPinnedToggleListeners();
+    bindHashChangeListener();
     bindCollapseToggleListeners();
-
-    mw.hook('wikipage.tableOfContents').add(reloadTableOfContents);
   }
 
   /**
@@ -384,18 +471,34 @@ module.exports = function tableOfContents(props) {
    * Reloads the table of contents from saved data
    *
    * @param {Section[]} sections
+   * @return {Promise<any>}
    */
   function reloadTableOfContents(sections) {
     if (sections.length < 1) {
-      reloadPartialHTML(TOC_ID, '');
-      return;
+      reloadPartialHTML(TOC_CONTENTS_ID, '');
+      return Promise.resolve([]);
     }
-    mw.loader.using('mediawiki.template.mustache').then(() => {
-      reloadPartialHTML(TOC_ID, getTableOfContentsHTML(sections));
-      // Reexpand sections that were expanded before the table of contents was reloaded.
-      reExpandSections();
-      // Initialize Collapse toggle buttons
-      bindCollapseToggleListeners();
+    const load = () =>
+      mw.loader.using('mediawiki.template.mustache').then(() => {
+        const { parent: activeParentId, child: activeChildId } = getActiveSectionIds();
+        reloadPartialHTML(TOC_CONTENTS_ID, getTableOfContentsHTML(sections));
+        // Reexpand sections that were expanded before the table of contents was reloaded.
+        reExpandSections();
+        // Initialize Collapse toggle buttons
+        bindCollapseToggleListeners();
+        // reActivate the active sections
+        deactivateSections();
+        if (activeParentId) {
+          activateSection(activeParentId);
+        }
+        if (activeChildId) {
+          activateSection(activeChildId);
+        }
+      });
+    return new Promise((resolve) => {
+      load().then(() => {
+        resolve(sections);
+      });
     });
   }
 
@@ -404,30 +507,11 @@ module.exports = function tableOfContents(props) {
    *
    * @param {string} elementId
    * @param {string} html
-   * @param {boolean} setInnerHTML
    */
-  function reloadPartialHTML(elementId, html, setInnerHTML = true) {
+  function reloadPartialHTML(elementId, html) {
     const htmlElement = document.getElementById(elementId);
-    if (htmlElement) {
-      if (setInnerHTML) {
-        htmlElement.innerHTML = html;
-      } else if (htmlElement.outerHTML) {
-        htmlElement.outerHTML = html;
-      } else {
-        // IF outerHTML property access is not supported
-        const tmpContainer = document.createElement('div');
-        tmpContainer.innerHTML = html.trim();
-        const childNode = tmpContainer.firstChild;
-        if (childNode) {
-          const tmpElement = document.createElement('div');
-          tmpElement.setAttribute('id', `div-tmp-${elementId}`);
-          const parentNode = htmlElement.parentNode;
-          if (parentNode) {
-            parentNode.replaceChild(tmpElement, htmlElement);
-            parentNode.replaceChild(childNode, tmpElement);
-          }
-        }
-      }
+    if (htmlElement && html) {
+      htmlElement.innerHTML = html;
     }
   }
 
@@ -448,18 +532,17 @@ module.exports = function tableOfContents(props) {
    * @return {string}
    */
   function getTableOfContentsListHtml(data) {
-    // @ts-ignore
     const mustacheCompiler = mw.template.getCompiler('mustache');
-    const compiledTemplateBody = mustacheCompiler.compile(templateBody);
-    const compiledTemplateTocLine = mustacheCompiler.compile(templateTocLine);
+    const compiledTemplateTocContents = mustacheCompiler.compile(templateTocContents);
 
     // Identifier 'TableOfContents__line' is not in camel case
     // (template name is 'TableOfContents__line')
     const partials = {
-      TableOfContents__line: compiledTemplateTocLine, // eslint-disable-line camelcase
+      // eslint-disable-next-line camelcase
+      TableOfContents__line: mustacheCompiler.compile(templateTocLine),
     };
 
-    return compiledTemplateBody.render(data, partials).html();
+    return compiledTemplateTocContents.render(data, partials).html();
   }
 
   /**
@@ -467,22 +550,23 @@ module.exports = function tableOfContents(props) {
    * @return {SectionsListData}
    */
   function getTableOfContentsData(sections) {
+    const tableOfContentsLevel1Sections = getTableOfContentsSectionsData(sections, 1);
     return {
-      'number-section-count': sections.length,
-      'msg-tgui-toc-heading': mw.message('tgui-toc-heading').text(),
-      'msg-tgui-toc-toggle-position-sidebar': mw.message('tgui-toc-toggle-position-sidebar').text(),
-      'msg-tgui-toc-beginning': mw.message('tgui-toc-beginning').text(),
-      'array-sections': getTableOfContentsSectionsData(sections, 1),
-      'tgui-is-collapse-sections-enabled': sections.length >= tableOfContentsConfig.TGUITableOfContentsCollapseAtCount,
-      'is-tgui-toc-beginning-enabled': tableOfContentsConfig.TGUITableOfContentsBeginning,
+      'array-sections': tableOfContentsLevel1Sections,
+      'tgui-is-collapse-sections-enabled':
+        tableOfContentsLevel1Sections.length > 3 &&
+        sections.length >= tableOfContentsConfig.TGUITableOfContentsCollapseAtCount,
     };
   }
 
   /**
    * Prepares the data for rendering the table of contents,
    * nesting child sections within their parent sections.
-   * This shoul yield the same result as the php function SkinTGUI::getTocData(),
+   * This should yield the same result as the php function
+   * TGUIComponentTableOfContents::getTemplateData(),
    * please make sure to keep them in sync.
+   *
+   * TODO: TGUIComponentTableOfContents is not implemented as we need to support MW 1.39
    *
    * @param {Section[]} sections
    * @param {number} toclevel
@@ -509,23 +593,40 @@ module.exports = function tableOfContents(props) {
     return data;
   }
 
+  /**
+   * Cleans up the hash change event listener to prevent memory leaks. This
+   * should be called when the table of contents is permanently no longer
+   * needed.
+   *
+   * @ignore
+   */
+  function unmount() {
+    unbindHashChangeListener();
+  }
+
   initialize();
 
   /**
    * @typedef {Object} TableOfContents
+   * @property {reloadTableOfContents} reloadTableOfContents
    * @property {changeActiveSection} changeActiveSection
    * @property {expandSection} expandSection
    * @property {toggleExpandSection} toggleExpandSection
+   * @property {unmount} unmount
    * @property {string} ACTIVE_SECTION_CLASS
+   * @property {string} ACTIVE_TOP_SECTION_CLASS
    * @property {string} EXPANDED_SECTION_CLASS
    * @property {string} LINK_CLASS
    * @property {string} TOGGLE_CLASS
    */
   return {
+    reloadTableOfContents,
     expandSection,
     changeActiveSection,
     toggleExpandSection,
+    unmount,
     ACTIVE_SECTION_CLASS,
+    ACTIVE_TOP_SECTION_CLASS,
     EXPANDED_SECTION_CLASS,
     LINK_CLASS,
     TOGGLE_CLASS,

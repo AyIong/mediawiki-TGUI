@@ -30,8 +30,10 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text-darker);
 
-  * {
-    -webkit-tap-highlight-color: transparent;
+  @media (max-width: @max-width-breakpoint-tablet) {
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
   }
 }
 

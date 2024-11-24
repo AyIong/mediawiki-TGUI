@@ -122,42 +122,6 @@
         "listBullet"
       ]
     },
-    "skins.tgui.es6": {
-      "es6": true,
-      "packageFiles": [
-        "resources/skins.tgui.es6/main.js",
-        "resources/skins.tgui.es6/searchToggle.js",
-        "resources/skins.tgui.es6/tableOfContents.js",
-        "resources/skins.tgui.es6/sectionObserver.js",
-        "resources/skins.tgui.es6/deferUntilFrame.js",
-        {
-          "name": "resources/skins.tgui.es6/config.json",
-          "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
-        },
-        {
-          "name": "resources/skins.tgui.es6/tableOfContentsConfig.json",
-          "config": ["TGUITableOfContentsCollapseAtCount", "TGUITableOfContentsBeginning"]
-        },
-        {
-          "name": "resources/skins.tgui.es6/templates/TableOfContents.mustache",
-          "file": "templates/TableOfContents.mustache",
-          "type": "text"
-        },
-        {
-          "name": "resources/skins.tgui.es6/templates/TableOfContents__line.mustache",
-          "file": "templates/TableOfContents__line.mustache",
-          "type": "text"
-        }
-      ],
-      "dependencies": [
-        "mediawiki.user",
-        "mediawiki.page.ready",
-        "mediawiki.page.watch.ajax",
-        "mediawiki.util",
-        "mediawiki.experiments"
-      ],
-      "messages": ["tgui-toc-beginning", "tgui-toc-heading"]
-    },
     "skins.tgui.js": {
       "packageFiles": [
         "resources/skins.tgui.js/skin.js",
@@ -165,17 +129,48 @@
           "name": "resources/skins.tgui.js/config.json",
           "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
         },
+        "resources/skins.tgui.js/tableOfContents.js",
+        "resources/skins.tgui.js/deferUntilFrame.js",
         "resources/skins.tgui.js/dropdown.js",
+        "resources/skins.tgui.js/tables.js",
         "resources/skins.tgui.js/purgeButton.js",
         "resources/skins.tgui.js/searchLoader.js",
+        "resources/skins.tgui.js/resizeObserver.js",
         "resources/skins.tgui.js/scrollObserver.js",
-        "resources/skins.tgui.js/tables.js",
+        "resources/skins.tgui.js/sectionObserver.js",
+        "resources/skins.tgui.js/setupObservers.js",
         "resources/skins.tgui.js/tooltips.js",
         "resources/skins.tgui.js/templateTooltips.js",
-        "resources/skins.tgui.js/popups.js"
+        "resources/skins.tgui.js/popups.js",
+        {
+          "name": "resources/skins.tgui.js/tableOfContentsConfig.json",
+          "config": ["TGUITableOfContentsCollapseAtCount", "TGUITableOfContentsBeginning"]
+        },
+        {
+          "name": "resources/skins.tgui.js/templates/TableOfContents.mustache",
+          "file": "templates/TableOfContents.mustache",
+          "type": "text"
+        },
+        {
+          "name": "resources/skins.tgui.js/templates/TableOfContents__list.mustache",
+          "file": "templates/TableOfContents__list.mustache",
+          "type": "text"
+        },
+        {
+          "name": "resources/skins.tgui.js/templates/TableOfContents__line.mustache",
+          "file": "templates/TableOfContents__line.mustache",
+          "type": "text"
+        }
+      ],
+      "messages": [
+        "tgui-search-loader",
+        "tgui-purge-button-label",
+        "tgui-purge-button-title",
+        "tgui-toc-beginning",
+        "tgui-toc-heading"
       ],
       "dependencies": ["mediawiki.page.ready", "mediawiki.util"],
-      "messages": ["tgui-search-loader", "tgui-purge-button-label", "tgui-purge-button-title"]
+      "targets": ["desktop", "mobile"]
     },
     "skins.tgui.preferences": {
       "styles": ["resources/skins.tgui.preferences/skins.tgui.preferences.less"],

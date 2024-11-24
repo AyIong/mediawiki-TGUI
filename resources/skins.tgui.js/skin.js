@@ -1,59 +1,12 @@
 /**
- * Don't play CSS animations, until page visible
- *
- * @param {Document} document
  * @return {void}
  */
-function enableCssAnimations(document) {
+function deferredTasks() {
+  const setupObservers = require('./setupObservers.js');
+
+  setupObservers.main();
   document.documentElement.classList.add('tgui-animations-ready');
-}
-
-/**
- * Add a class to indicate that sticky header is active
- * Also add class if page on top
- *
- * @param {Document} document
- * @return {void}
- */
-function registerScrollPosition(document) {
-  const scrollObserver = require('./scrollObserver.js'),
-    SCROLL_UP_CLASS = 'tgui-scroll--up',
-    SCROLL_DOWN_CLASS = 'tgui-scroll--down',
-    OFF_TOP_CLASS = 'tgui-off-top';
-
-  // Detect scroll direction and add the right class
-  scrollObserver.initDirectionObserver(
-    () => {
-      if (document.body.classList.contains(SCROLL_UP_CLASS)) {
-        document.body.classList.remove(SCROLL_UP_CLASS);
-        document.body.classList.add(SCROLL_DOWN_CLASS);
-      }
-
-      if (!document.body.classList.contains(OFF_TOP_CLASS) && window.scrollY > 0) {
-        document.body.classList.add(OFF_TOP_CLASS);
-        document.body.classList.add(SCROLL_DOWN_CLASS);
-      }
-    },
-    () => {
-      if (document.body.classList.contains(SCROLL_DOWN_CLASS)) {
-        document.body.classList.remove(SCROLL_DOWN_CLASS);
-        document.body.classList.add(SCROLL_UP_CLASS);
-      }
-
-      if (window.scrollY === 0 && document.body.classList.contains(OFF_TOP_CLASS)) {
-        document.body.classList.remove(OFF_TOP_CLASS);
-        document.body.classList.add(SCROLL_UP_CLASS);
-      }
-    },
-    10,
-  );
-
-  // Detect scroll position and add the right class
-  scrollObserver.initDirectionObserver(
-    () => {},
-    () => {},
-    10,
-  );
+  registerServiceWorker();
 }
 
 /**
@@ -93,10 +46,8 @@ function initBodyContent(bodyContent) {
 
   // Table enhancements
   tables.init(bodyContent);
-
   // Floating UI Popups
   popups.init(bodyContent);
-
   // Floating UI Tooltips for MediaWiki templates
   templateTooltips.init(bodyContent);
 }
@@ -112,65 +63,32 @@ function main(window) {
     tooltips = require('./tooltips.js'),
     purgeButton = require('./purgeButton.js');
 
-  enableCssAnimations(window.document);
-  registerScrollPosition(window.document);
   tooltips.init(window.document);
   initSearchLoader(document);
   dropdown.init();
   purgeButton();
 
-  mw.hook('wikipage.content').add(function (content) {
+  mw.hook('wikipage.content').add((content) => {
     // content is a jQuery object
     // note that this refers to .mw-body-content, not #bodyContent
     initBodyContent(content[0]);
   });
 
   // Preference module
-  if (config.wgTGUIEnablePreferences === true && typeof document.createElement('div').prepend === 'function') {
+  if (config.wgTGUIEnablePreferences === true) {
     mw.loader.load('skins.tgui.preferences');
   }
-}
 
-registerServiceWorker();
-
-/**
- * @param {Window} window
- * @return {void}
- */
-function init(window) {
-  var now = mw.now();
-  mw.loader.using('ext.eventLogging').then(function () {
-    if (
-      mw.eventLog &&
-      mw.eventLog.eventInSample(100 /* 1 in 100 */) &&
-      window.performance &&
-      window.performance.timing &&
-      window.performance.timing.navigationStart
-    ) {
-      mw.track('timing.TGUI.ready', now - window.performance.timing.navigationStart); // milliseconds
-    }
-  });
-}
-
-init(window);
-
-function initAfterEs6Module() {
-  mw.loader.using('skins.tgui.es6').then(
-    function () {
-      require(/** @type {string} */ ('skins.tgui.es6')).main();
-      main(window);
-    },
-    function () {
-      main(window);
-    },
-  );
+  // Defer non-essential tasks
+  // eslint-disable-next-line compat/compat
+  requestIdleCallback(deferredTasks, { timeout: 3000 });
 }
 
 if (document.readyState === 'interactive' || document.readyState === 'complete') {
-  initAfterEs6Module();
+  main(window);
 } else {
   // This is needed when document.readyState === 'loading'.
   document.addEventListener('DOMContentLoaded', function () {
-    initAfterEs6Module();
+    main(window);
   });
 }

@@ -8,7 +8,7 @@ function restoreTOCState() {
 
   const checkWindowSize = () => {
     if (window.innerWidth < 999) {
-      document.body.classList.add('tgui-toc-collapsed');
+      document.body.classList.add(TOC_COLLAPSED_CLASS);
     }
   };
   checkWindowSize();

@@ -6,28 +6,38 @@
  * @param {number} threshold minimum scrolled px to trigger the function
  * @return {void}
  */
-function initDirectionObserver(onScrollDown, onScrollUp, threshold) {
-  const throttle = require('mediawiki.util').throttle;
-
-  let lastScrollTop = window.scrollY;
+function initDirectionObserver(onScrollDown, onScrollUp, threshold = 0) {
+  let lastScrollPosition = 0;
+  let lastScrollDirection = '';
 
   const onScroll = () => {
-    const scrollTop = window.scrollY;
+    const currentScrollPosition = window.scrollY;
+    const scrollDiff = currentScrollPosition - lastScrollPosition;
 
-    if (Math.abs(scrollTop - lastScrollTop) < threshold) {
+    if (Math.abs(scrollDiff) < threshold) {
       return;
     }
 
-    if (scrollTop > lastScrollTop) {
+    if (scrollDiff > 0 && lastScrollDirection !== 'down') {
+      lastScrollDirection = 'down';
       onScrollDown();
-    } else {
+    } else if (scrollDiff < 0 && lastScrollDirection !== 'up') {
+      lastScrollDirection = 'up';
       onScrollUp();
     }
-    lastScrollTop = scrollTop;
+    lastScrollPosition = currentScrollPosition <= 0 ? 0 : currentScrollPosition;
   };
 
-  window.addEventListener('scroll', throttle(onScroll, 250));
+  return {
+    resume: () => {
+      window.addEventListener('scroll', mw.util.throttle(onScroll, 100));
+    },
+    pause: () => {
+      window.removeEventListener('scroll', mw.util.throttle(onScroll, 100));
+    },
+  };
 }
+
 /**
  * Create an observer for showing/hiding feature and for firing scroll event hooks.
  *
@@ -48,6 +58,6 @@ function initScrollObserver(show, hide) {
 }
 
 module.exports = {
-  initScrollObserver,
   initDirectionObserver,
+  initScrollObserver,
 };
