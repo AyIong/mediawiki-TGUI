@@ -36,7 +36,7 @@
             "variants",
             "associated-pages"
           ],
-          "scripts": ["skins.tgui.js", "skins.tgui.es6"],
+          "scripts": ["skins.tgui.js"],
           "styles": ["mediawiki.ui.icon", "mediawiki.ui.button", "skins.tgui.styles", "skins.tgui.icons"],
           "messages": [
             "search",
