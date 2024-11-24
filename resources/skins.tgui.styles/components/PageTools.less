@@ -54,7 +54,6 @@
     }
 
     &.selected {
-      pointer-events: none; // You are already here, so you don't need any actions on it
       background-color: var(--color-bg-focus);
       color: ~'hsla(var(--primary-hue), 100%, var(--dark-lightness))';
 
@@ -82,7 +81,7 @@
 @media (max-width: @max-width-mobile) {
   .page-actions {
     position: fixed;
-    content-visibility: hidden;
+    visibility: hidden;
     top: ~'calc(var(--header-height) + var(--header-padding) * 2)';
     left: 0;
     margin: 0;
@@ -91,13 +90,31 @@
     background-color: var(--color-base-blur-important);
     border-bottom: var(--border-classic);
     transform: translateY(-100%);
-    transition: transform var(--transition-time);
+    transition:
+      transform var(--transition-time),
+      visibility var(--transition-time);
     backdrop-filter: var(--blur-important);
     z-index: var(--index-element);
 
-    .tgui-scroll--up.tgui-below-page-title & {
-      content-visibility: visible;
+    .tgui-scroll--up.tgui-off-top & {
+      visibility: visible;
       transform: translateY(0%);
+    }
+
+    .mw-list-item {
+      border-radius: var(--border-radius-small);
+
+      &:after {
+        transform: scaleX(0) !important;
+      }
+
+      a {
+        border-bottom: 0;
+      }
+    }
+
+    &__right .tgui-dropdown details summary {
+      height: 1.75rem;
     }
 
     #ca-ve-edit,

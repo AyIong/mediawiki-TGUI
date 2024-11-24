@@ -14,7 +14,7 @@ const scrollObserver = require('./scrollObserver.js'),
     .join(', '),
   SCROLL_UP_CLASS = 'tgui-scroll--up',
   SCROLL_DOWN_CLASS = 'tgui-scroll--down',
-  PAGE_TITLE_INTERSECTION_CLASS = 'tgui-below-page-title';
+  SCROLL_OFFTOP_CLASS = 'tgui-off-top';
 
 /**
  * @ignore
@@ -180,45 +180,27 @@ const main = () => {
   // Table of contents
   const tocElement = document.getElementById(TOC_ID);
   const bodyContent = document.getElementById(BODY_CONTENT_ID);
-
   const tableOfContents = setupTableOfContents(tocElement, bodyContent, initSectionObserver);
-
-  const intersection = document.getElementById('tgui-page-header-sentinel');
 
   const scrollDirectionObserver = scrollObserver.initDirectionObserver(
     () => {
       document.body.classList.remove(SCROLL_UP_CLASS);
       document.body.classList.add(SCROLL_DOWN_CLASS);
+
+      if (window.scrollY > 0) {
+        document.body.classList.add(SCROLL_OFFTOP_CLASS);
+      }
     },
     () => {
       document.body.classList.remove(SCROLL_DOWN_CLASS);
       document.body.classList.add(SCROLL_UP_CLASS);
+
+      if (window.scrollY === 0) {
+        document.body.classList.remove(SCROLL_OFFTOP_CLASS);
+      }
     },
     10,
   );
-
-  const resumeStickyHeader = () => {
-    if (document.body.classList.contains(PAGE_TITLE_INTERSECTION_CLASS)) {
-      scrollDirectionObserver.resume();
-    }
-  };
-
-  const pauseStickyHeader = () => {
-    scrollDirectionObserver.pause();
-  };
-
-  const pageHeaderObserver = scrollObserver.initScrollObserver(
-    () => {
-      document.body.classList.add(PAGE_TITLE_INTERSECTION_CLASS);
-      resumeStickyHeader();
-    },
-    () => {
-      document.body.classList.remove(PAGE_TITLE_INTERSECTION_CLASS);
-      pauseStickyHeader();
-    },
-  );
-
-  pageHeaderObserver.observe(intersection);
 };
 
 module.exports = {

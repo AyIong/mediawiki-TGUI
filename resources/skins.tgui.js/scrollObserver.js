@@ -6,36 +6,27 @@
  * @param {number} threshold minimum scrolled px to trigger the function
  * @return {void}
  */
-function initDirectionObserver(onScrollDown, onScrollUp, threshold = 0) {
-  let lastScrollPosition = 0;
-  let lastScrollDirection = '';
+function initDirectionObserver(onScrollDown, onScrollUp, threshold) {
+  const throttle = require('mediawiki.util').throttle;
+
+  let lastScrollTop = window.scrollY;
 
   const onScroll = () => {
-    const currentScrollPosition = window.scrollY;
-    const scrollDiff = currentScrollPosition - lastScrollPosition;
+    const scrollTop = window.scrollY;
 
-    if (Math.abs(scrollDiff) < threshold) {
+    if (Math.abs(scrollTop - lastScrollTop) < threshold) {
       return;
     }
 
-    if (scrollDiff > 0 && lastScrollDirection !== 'down') {
-      lastScrollDirection = 'down';
+    if (scrollTop > lastScrollTop) {
       onScrollDown();
-    } else if (scrollDiff < 0 && lastScrollDirection !== 'up') {
-      lastScrollDirection = 'up';
+    } else {
       onScrollUp();
     }
-    lastScrollPosition = currentScrollPosition <= 0 ? 0 : currentScrollPosition;
+    lastScrollTop = scrollTop;
   };
 
-  return {
-    resume: () => {
-      window.addEventListener('scroll', mw.util.throttle(onScroll, 100));
-    },
-    pause: () => {
-      window.removeEventListener('scroll', mw.util.throttle(onScroll, 100));
-    },
-  };
+  window.addEventListener('scroll', throttle(onScroll, 250));
 }
 
 /**
