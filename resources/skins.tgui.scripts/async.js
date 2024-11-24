@@ -16,7 +16,7 @@ async function waitForElement(selector) {
       }
     });
 
-    observer.observe(document.body, { childList: true, subtree: true });
+    observer.observe(document, { childList: true, subtree: true });
 
     const timer = setTimeout(() => {
       observer.disconnect();
@@ -41,7 +41,7 @@ async function waitForElements(selector, element = document) {
       }
     });
 
-    observer.observe(document.body, { childList: true, subtree: true });
+    observer.observe(document, { childList: true, subtree: true });
 
     const timer = setTimeout(() => {
       observer.disconnect();
