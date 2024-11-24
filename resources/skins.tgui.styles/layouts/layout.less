@@ -11,6 +11,10 @@
     &-inner {
       display: flex;
       flex: 1;
+
+      @media (max-width: @max-width-mobile) {
+        display: block;
+      }
     }
   }
 
@@ -19,6 +23,10 @@
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
+
+    @media (max-width: @max-width-mobile) {
+      height: 100vh;
+    }
 
     .mw-body {
       margin: 0.75rem;
