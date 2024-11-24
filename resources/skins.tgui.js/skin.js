@@ -5,20 +5,7 @@
  * @return {void}
  */
 function enableCssAnimations(document) {
-  if (document.visibilityState === 'visible') {
-    // User on page. Enable animations
-    document.documentElement.classList.add('tgui-animations-ready');
-  } else {
-    // User not on page. Wait until he's open page and enable animations
-    document.addEventListener('visibilitychange', onVisibilityChange);
-  }
-
-  function onVisibilityChange() {
-    if (document.visibilityState === 'visible') {
-      document.documentElement.classList.add('tgui-animations-ready');
-      document.removeEventListener('visibilitychange', onVisibilityChange);
-    }
-  }
+  document.documentElement.classList.add('tgui-animations-ready');
 }
 
 /**
@@ -29,33 +16,42 @@ function enableCssAnimations(document) {
  * @return {void}
  */
 function registerScrollPosition(document) {
-  const scrollObserver = require('./scrollObserver.js');
+  const scrollObserver = require('./scrollObserver.js'),
+    SCROLL_UP_CLASS = 'tgui-scroll--up',
+    SCROLL_DOWN_CLASS = 'tgui-scroll--down',
+    OFF_TOP_CLASS = 'tgui-off-top';
 
   // Detect scroll direction and add the right class
   scrollObserver.initDirectionObserver(
     () => {
-      document.body.classList.remove('tgui-scroll--up');
-      document.body.classList.add('tgui-scroll--down');
+      if (document.body.classList.contains(SCROLL_UP_CLASS)) {
+        document.body.classList.remove(SCROLL_UP_CLASS);
+        document.body.classList.add(SCROLL_DOWN_CLASS);
+      }
+
+      if (!document.body.classList.contains(OFF_TOP_CLASS) && window.scrollY > 0) {
+        document.body.classList.add(OFF_TOP_CLASS);
+        document.body.classList.add(SCROLL_DOWN_CLASS);
+      }
     },
     () => {
-      document.body.classList.remove('tgui-scroll--down');
-      document.body.classList.add('tgui-scroll--up');
+      if (document.body.classList.contains(SCROLL_DOWN_CLASS)) {
+        document.body.classList.remove(SCROLL_DOWN_CLASS);
+        document.body.classList.add(SCROLL_UP_CLASS);
+      }
+
+      if (window.scrollY === 0 && document.body.classList.contains(OFF_TOP_CLASS)) {
+        document.body.classList.remove(OFF_TOP_CLASS);
+        document.body.classList.add(SCROLL_UP_CLASS);
+      }
     },
     10,
   );
 
   // Detect scroll position and add the right class
   scrollObserver.initDirectionObserver(
-    () => {
-      if (window.scrollY > 0) {
-        document.body.classList.add('tgui-off-top');
-      }
-    },
-    () => {
-      if (window.scrollY === 0) {
-        document.body.classList.remove('tgui-off-top');
-      }
-    },
+    () => {},
+    () => {},
     10,
   );
 }
@@ -67,19 +63,20 @@ function registerScrollPosition(document) {
  */
 function registerServiceWorker() {
   const scriptPath = mw.config.get('wgScriptPath');
-
   // Only allow serviceWorker when the scriptPath is at root because of its scope
   // I can't figure out how to add the Service-Worker-Allowed HTTP header
   // to change the default scope
-  if (scriptPath === '') {
-    if ('serviceWorker' in navigator) {
-      const SW_MODULE_NAME = 'skins.tgui.serviceWorker',
-        version = mw.loader.moduleRegistry[SW_MODULE_NAME].version,
-        // HACK: Faking a RL link
-        swUrl =
-          scriptPath + '/load.php?modules=' + SW_MODULE_NAME + '&only=scripts&raw=true&skin=tgui&version=' + version;
-      navigator.serviceWorker.register(swUrl, { scope: '/' });
-    }
+  if (scriptPath !== '') {
+    return;
+  }
+
+  if ('serviceWorker' in navigator) {
+    const SW_MODULE_NAME = 'skins.tgui.serviceWorker',
+      version = mw.loader.moduleRegistry[SW_MODULE_NAME].version,
+      // HACK: Faking a RL link
+      swUrl =
+        scriptPath + '/load.php?modules=' + SW_MODULE_NAME + '&only=scripts&raw=true&skin=tgui&version=' + version;
+    navigator.serviceWorker.register(swUrl, { scope: '/' });
   }
 }
 

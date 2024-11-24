@@ -99,11 +99,6 @@
   --blur-default: saturate(150%) blur(24px);
   --blur-important: saturate(150%) blur(24px);
 
-  /* Transition */
-  --transition-time: 0.2s;
-  --transition-time-fast: ~'calc( var(--transition-time) / 2)';
-  --transition-delay: ~'calc( var(--transition-time) * 2)';
-
   /* Height */
   --header-height: 3.25rem;
   --header-button-height: ~'calc(var(--header-height) - var(--header-padding) * 0.66)';
@@ -134,6 +129,13 @@
   --color-bg-section-opaque: var(--color-base-fill);
   --color-bg-section-light: var(--color-second);
   --color-bg-section-light-opaque: var(--color-second-fill);
+}
+
+/* Animations */
+.tgui-animations-ready {
+  --transition-time: 0.2s;
+  --transition-time-fast: ~'calc( var(--transition-time) / 2)';
+  --transition-delay: ~'calc( var(--transition-time) * 2)';
 }
 
 /**
