@@ -45,7 +45,7 @@ function addPurgeButton() {
   const purgeButtonIcon = document.createElement('span');
 
   purgeListItem.id = 'ca-purge';
-  purgeListItem.className = 'mw-list-item';
+  purgeListItem.classList.add('mw-list-item');
   purgeButton.href = '#';
   purgeButtonIcon.classList.add('tgui-icon', 'tgui-icon-eraser');
   purgeButtonLabel.textContent = mw.message('tgui-purge-button-label').text();

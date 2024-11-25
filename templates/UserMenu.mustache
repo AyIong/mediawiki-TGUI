@@ -13,6 +13,7 @@
 	<div id="tgui-userMenu" class="tgui-window">
 		<div id="tgui-userMenu__header" class="tgui-window__header">{{msg-tgui-usermenu}}</div>
 		<div id="tgui-userMenu__content" class="tgui-window__content">
+			{{>BackgroundImage}}
 			{{#data-user-info}}{{>UserInfo}}{{/data-user-info}}
 			{{#data-portlets.data-user-interface-preferences}}{{>Menu}}{{/data-portlets.data-user-interface-preferences}}
 			{{#data-portlets.data-user-menu}}{{>Menu}}{{/data-portlets.data-user-menu}}
