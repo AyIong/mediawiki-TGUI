@@ -12,10 +12,9 @@
 	content: '';
 	position: absolute;
 	background: url('/skins/TGUI/resources/skins.tgui.holidays/images/santa-hat.png') no-repeat;
-	background-size: 3.9rem;
+	background-size: 3.8rem;
 	height: 4rem;
 	width: 4rem;
-	left: -0.6rem;
 	top: -1rem;
 	z-index: 5;
 }
