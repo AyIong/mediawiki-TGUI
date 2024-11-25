@@ -4,22 +4,25 @@
 [![forthebadge](https://forthebadge.com/images/badges/works-on-my-machine-1.svg)](http://forthebadge.com)
 
 ## About
-Requires MediaWiki >= 1.39.0 < 1.40.0
+Requires MediaWiki >= 1.39.4 < 1.40.0
 
 Based on the MediaWiki [Vector](https://www.mediawiki.org/wiki/Skin:Vector/2022) skin, inspired by the TGUI from SS13, which was originally made for [/tg/station](https://github.com/tgstation/tgstation)
 
-Also ported preferences from [Citizen](https://github.com/StarCitizenTools/mediawiki-skins-Citizen) skin
+Also ported preferences and some neat stuff from [Citizen](https://github.com/StarCitizenTools/mediawiki-skins-Citizen) skin
 
-Made by someone not versed in php, so it just works
+Made by someone not versed in php, so it just works (except Citizen and original Vector code)
 
 ## Features
-Skin has integrated [Floating UI](https://floating-ui.com/) through CDN.
+Skin has integrated [FloatingUI](https://floating-ui.com/) for tooltips and popups, selfhosted (~20kb).
+Also integrated [FontAwesome](https://fontawesome.com/), also selfhosted (~150kb).
 
-It is used for tooltips, whose classes you can set via config, but the main class of the tooltip element itself, aka text or any other element to be hovered over, is always the same: `.tooltip`, take this into account if you make a tooltip template for MediaWiki.
+FloatingUI is used for tooltips, whose classes you can set via config, but the main class of the tooltip element itself, aka text or any other element to be hovered over, is always the same: `.tooltip`, take this into account if you make a tooltip template for MediaWiki.
 
-It is also used for alternative tooltips, smaller ones - Popup. It always has the same class: `.popup`.
+Also used for alternative tooltips, smaller ones - Popup. It always has the same class: `.popup`.
 An example template for MediaWiki is attached below:
 `<span class='popup' data-popup-text="{{{2}}}">{{{1}}}</span>`
+
+AND, for replacement of default browser tooltips, can be disabled via config.
 
 The templates is already styled, so no additional steps are required.
 
