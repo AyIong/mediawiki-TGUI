@@ -32,7 +32,7 @@
     ]
   },
   "skinname-tgui": "TGUI",
-  "tgui-skin-desc": "Основанная на Vector, вдохновлённая [https://www.youtube.com/watch?v=QL8ASZOvvS8 SS13] TGUI, тема оформления для MediaWiki. <br> Включает в себя как тёмный, так и светлый режимы.",
+  "tgui-skin-desc": "Основанная на [https://www.mediawiki.org/wiki/Skin:Vector Vector], вдохновлённая [https://www.youtube.com/watch?v=QL8ASZOvvS8 SS13] TGUI, тема оформления для MediaWiki. <br> Включает в себя как тёмный, так и светлый режимы. <br> Отдельное спасибо всем разработчикам [https://www.mediawiki.org/wiki/Skin:Citizen Citizen] скина, за возможность использовать их код.",
   "tgui.css": "/* Весь CSS будет отсюда будет загружен пользователям темы оформления «TGUI» */",
   "tgui.js": "/* Любой код JavaScript отсюда будет загружаться пользователям темы оформления «TGUI» */",
   "tgui-languages": "Языки",

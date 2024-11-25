@@ -3,7 +3,7 @@
     "authors": []
   },
   "skinname-tgui": "TGUI",
-  "tgui-skin-desc": "Based on Vector, inspired by [https://www.youtube.com/watch?v=QL8ASZOvvS8 SS13] TGUI, skin for MediaWiki. <br> Includes dark and light themes.",
+  "tgui-skin-desc": "Based on [https://www.mediawiki.org/wiki/Skin:Vector Vector], inspired by [https://www.youtube.com/watch?v=QL8ASZOvvS8 SS13] TGUI, skin for MediaWiki. <br> Includes dark and light themes. <br> Special thanks to all the developers of the [https://www.mediawiki.org/wiki/Skin:Citizen Citizen] skin, for the opportunity to use their code.",
   "tgui.css": "/* All CSS here will be loaded for users of the TGUI skin */",
   "tgui.js": "/* All JavaScript here will be loaded for users of the TGUI skin */",
   "tgui-languages": "Languages",

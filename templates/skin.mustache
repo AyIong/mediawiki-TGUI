@@ -7,12 +7,11 @@
 	object data-portlets-sidebar. See Sidebar.mustache for documentation.
 	object data-footer for footer template partial. see Footer.mustache for documentation.
 }}
-{{>BackgroundImage}}
 <div class="tgui-page-container">
+	<input type="checkbox" id="tgui-sidebar-checkbox" class="mw-checkbox-hack-checkbox">
+	<input type="checkbox" id="tgui-toc-collapsed-checkbox" class="mw-checkbox-hack-checkbox">
 	{{>Header}}
 	<div class="tgui-page-container-inner">
-		<input type="checkbox" id="tgui-sidebar-checkbox" class="mw-checkbox-hack-checkbox">
-		<input type="checkbox" id="tgui-toc-collapsed-checkbox" class="mw-checkbox-hack-checkbox">
 		<aside class="tgui-sidebar-container">
 			{{#data-portlets-sidebar}}{{>Sidebar}}{{/data-portlets-sidebar}}
 			{{#data-toc}}{{>TableOfContents}}{{/data-toc}}
@@ -34,4 +33,5 @@
 			</div>
 		</div>
 	</div>
+	{{>BackgroundImage}}
 </div>

@@ -1,11 +1,7 @@
 {
   "name": "TGUI",
-  "version": "1.5.3",
-  "author": [
-    "Александр Кица (Aylong)",
-    "[https://www.mediawiki.org/wiki/Readers/Web/Team Readers Web Team]",
-    "[https://www.mediawiki.org/wiki/Skin:Vector Vector] Skin authors"
-  ],
+  "version": "2.0.0",
+  "author": ["[https://github.com/AyIong Aylong]"],
   "url": "https://www.youtube.com/watch?v=JDQBvN1GATw",
   "namemsg": "skinname-tgui",
   "descriptionmsg": "tgui-skin-desc",

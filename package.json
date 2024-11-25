@@ -1,7 +1,7 @@
 {
   "name": "tgui",
   "private": true,
-  "version": "1.5.3-mediawiki",
+  "version": "2.0.0-mediawiki",
   "scripts": {
     "test": "npm -s run lint && tsc && npm run test:unit",
     "test:unit": "jest --silent",

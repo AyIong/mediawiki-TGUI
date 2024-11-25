@@ -20,7 +20,7 @@
     ]
   },
   "skinname-tgui": "TGUI",
-  "tgui-skin-desc": "Заснована на Vector, натхненна [https://www.youtube.com/watch?v=QL8ASZOvvS8 SS13] TGUI, тема оформлення MediaWiki. <br> Включає як темний, так і світлий режими.",
+  "tgui-skin-desc": "Заснована на [https://www.mediawiki.org/wiki/Skin:Vector Vector], натхненна [https://www.youtube.com/watch?v=QL8ASZOvvS8 SS13] TGUI, тема оформлення MediaWiki. <br> Включає як темний, так і світлий режими. <br> Окреме дякую всім розробникам [https://www.mediawiki.org/wiki/Skin:Citizen Citizen] скіна, за можливість використовувати їхній код.",
   "tgui.css": "/* Увесь CSS-код буде завантажений в темі оформлення TGUI */",
   "tgui.js": "/* Увесь тут код JavaScript буде завантажений для всіх користувачів, що використовують векторну тему оформлення */",
   "tgui-languages": "Мови",
