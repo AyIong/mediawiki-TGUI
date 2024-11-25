@@ -27,7 +27,7 @@ namespace MediaWiki\Skins\TGUI\Partials;
 
 use MediaWiki\Skins\TGUI\GetConfigTrait;
 use MediaWiki\Skins\TGUI\SkinTGUI;
-use Title;
+use MediaWiki\Title\Title;
 use OutputPage;
 
 /**

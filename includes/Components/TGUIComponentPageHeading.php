@@ -5,7 +5,7 @@ declare( strict_types=1 );
 namespace MediaWiki\Skins\TGUI\Components;
 
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use MWTimestamp;

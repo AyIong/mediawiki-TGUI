@@ -6,7 +6,7 @@ namespace MediaWiki\Skins\TGUI\Components;
 
 use MalformedTitleException;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 
