@@ -7,7 +7,7 @@ namespace MediaWiki\Skins\TGUI\Components;
 use Config;
 use Exception;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Title\Title;
+use Title;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 
