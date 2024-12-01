@@ -48,6 +48,7 @@ class ResourceLoaderHooks {
 		return [
 			'wgTGUIEnablePreferences' => $config->get( 'TGUIEnablePreferences' ),
 			'wgTGUITooltips' => $config->get( 'TGUITooltips' ),
+			'wgTGUIDropdowns' => $config->get( 'TGUIDropdowns' ),
 			'wgTGUIReplaceTitleTooltips' => $config->get( 'TGUIReplaceTitleTooltips' ),
 			'wgTGUIEnableHolidays' => $config->get( 'TGUIEnableHolidays' )
 		];

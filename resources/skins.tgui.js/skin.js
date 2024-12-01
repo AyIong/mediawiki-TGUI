@@ -42,7 +42,8 @@ function registerServiceWorker() {
 function initBodyContent(bodyContent) {
   const tables = require('./tables.js'),
     popups = require('./popups.js'),
-    templateTooltips = require('./templateTooltips.js');
+    templateTooltips = require('./templateTooltips.js'),
+    floatingDropdown = require('./floatingDropdown.js');
 
   // Table enhancements
   tables.init(bodyContent);
@@ -50,6 +51,8 @@ function initBodyContent(bodyContent) {
   popups.init(bodyContent);
   // Floating UI Tooltips for MediaWiki templates
   templateTooltips.init(bodyContent);
+  // Floating UI Dropdowns for MediaWiki templates
+  floatingDropdown.init(bodyContent);
 }
 
 /**
