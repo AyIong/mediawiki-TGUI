@@ -25,45 +25,47 @@ function init(bodyContent) {
   dropdownElements.forEach((dropdown) => {
     const content = dropdown.querySelector(contentClasses);
 
-    if (content) {
-      let cleanup = null;
-      let isFocused = false;
-      const position = dropdown.getAttribute('data-position');
+    if (!content) {
+      return;
+    }
+
+    let cleanup = null;
+    let isFocused = false;
+    const position = dropdown.getAttribute('data-position');
+
+    createFloatingInstance(dropdown, content, position);
+
+    function toggle() {
+      if (isFocused) {
+        hide();
+      } else {
+        show();
+      }
+    }
+
+    function show() {
+      isFocused = true;
 
       createFloatingInstance(dropdown, content, position);
-
-      function toggle() {
-        if (isFocused) {
-          hide();
-        } else {
-          show();
-        }
-      }
-
-      function show() {
-        isFocused = true;
-
+      cleanup = autoUpdate(dropdown, content, () => {
         createFloatingInstance(dropdown, content, position);
-        cleanup = autoUpdate(dropdown, content, () => {
-          createFloatingInstance(dropdown, content, position);
-        });
+      });
 
-        content.classList.add('visible');
-      }
-
-      function hide() {
-        isFocused = false;
-
-        if (cleanup) {
-          cleanup();
-          cleanup = null;
-        }
-
-        content.classList.remove('visible');
-      }
-
-      dropdown.addEventListener('mouseup', toggle);
+      content.classList.add('visible');
     }
+
+    function hide() {
+      isFocused = false;
+
+      if (cleanup) {
+        cleanup();
+        cleanup = null;
+      }
+
+      content.classList.remove('visible');
+    }
+
+    dropdown.addEventListener('mouseup', toggle);
 
     function createFloatingInstance(reference, floatingElement, position) {
       const dropdownPosition = position ? position : 'bottom';

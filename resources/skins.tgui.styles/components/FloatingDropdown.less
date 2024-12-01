@@ -2,6 +2,10 @@
   position: relative;
   user-select: none;
   cursor: pointer;
+  text-align: center;
+  margin: 0.25em;
+  font-weight: bold;
+  border-radius: var(--border-radius-small);
 
   &[data-position='top'] {
     .floating-dropdown--content {
@@ -24,8 +28,9 @@
   }
 
   .dropdown-fill {
-    .absolute-fill();
-    transition: background-color var(--transition-time);
+    border-radius: var(--border-radius-small);
+    transition-property: background-color, color;
+    transition-duration: var(--transition-time);
   }
 
   &:hover .dropdown-fill {
@@ -37,7 +42,7 @@
     visibility: hidden;
     opacity: 0;
     transform: scale(0.75);
-    transition-property: opacity, visibility, transform, top, bottom;
+    transition-property: opacity, visibility, transform;
     transition-duration: var(--transition-time);
     z-index: var(--index-medium);
 
@@ -48,6 +53,7 @@
 
       ~ .dropdown-fill {
         background-color: var(--color-green);
+        color: var(--color-white);
       }
     }
 
@@ -60,6 +66,7 @@
 
   &--contains {
     overflow: auto;
+    font-weight: normal;
     line-height: 1.3;
     max-height: 50vh;
     padding: 0.25rem 0.5rem;
