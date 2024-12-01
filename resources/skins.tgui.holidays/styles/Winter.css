@@ -29,3 +29,13 @@ body:before {
 	filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5)) brightness(0.75);
 	z-index: -999;
 }
+
+.skin-theme-clientpref-night body:before {
+	filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5)) brightness(0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+	.skin-theme-clientpref-os body:before {
+		filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5)) brightness(0.5);
+	}
+}
