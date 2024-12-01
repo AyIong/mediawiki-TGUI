@@ -66,6 +66,9 @@ function init(bodyContent) {
     }
 
     dropdown.addEventListener('mouseup', toggle);
+    content.addEventListener('mouseup', (event) => {
+      event.stopPropagation();
+    });
 
     function createFloatingInstance(reference, floatingElement, position) {
       const dropdownPosition = position ? position : 'bottom';

@@ -24,43 +24,57 @@ function init(bodyContent) {
       hyperLink.removeAttribute('title');
     }
 
-    let popupContent = null;
+    let popupContentElement = null;
     let hideTimeout = null;
-    function createPopupContent() {
-      popupContent = document.createElement('div');
-      popupContent.classList.add('popup-content');
-      popupContent.textContent = popupText;
-      document.body.appendChild(popupContent);
+    function createPopupContentElement() {
+      popupContentElement = document.createElement('div');
+      popupContentElement.classList.add('popup-content');
+      popupContentElement.textContent = popupText;
+      document.body.appendChild(popupContentElement);
       setTimeout(() => {
-        popupContent.classList.add('visible');
+        popupContentElement.classList.add('visible');
       }, 10);
     }
 
-    function removePopupContent() {
-      if (popupContent) {
-        document.body.removeChild(popupContent);
-        popupContent = null;
+    function removePopupContentElement() {
+      if (popupContentElement) {
+        document.body.removeChild(popupContentElement);
+        popupContentElement = null;
       }
     }
 
     function show(event) {
-      if (!popupContent) {
-        createPopupContent();
+      if (!popupContentElement) {
+        createPopupContentElement();
       }
 
       if (hideTimeout !== null) {
         clearTimeout(hideTimeout);
         hideTimeout = null;
         setTimeout(() => {
-          popupContent.classList.add('visible');
+          popupContentElement.classList.add('visible');
         }, 10);
       }
 
       updatePosition(event.clientX, event.clientY);
     }
 
+    function hide() {
+      if (!popupContentElement) return;
+      popupContentElement.classList.remove('visible');
+
+      if (!hideTimeout) {
+        hideTimeout = setTimeout(() => {
+          removePopupContentElement();
+        }, 200);
+      }
+    }
+
     function updatePosition(clientX, clientY) {
-      if (!popupContent) return;
+      if (!popupContentElement) {
+        return;
+      }
+
       const freeSpace = {
         getBoundingClientRect() {
           return {
@@ -76,27 +90,16 @@ function init(bodyContent) {
         },
       };
 
-      computePosition(freeSpace, popupContent, {
+      computePosition(freeSpace, popupContentElement, {
         placement: 'bottom-start',
         middleware: [offset({ mainAxis: 20, crossAxis: 10 }), shift({ padding: 15 }), flip()],
       }).then(({ x, y, strategy }) => {
-        Object.assign(popupContent.style, {
+        Object.assign(popupContentElement.style, {
           left: `${x}px`,
           top: `${y}px`,
           position: strategy,
         });
       });
-    }
-
-    function hide() {
-      if (!popupContent) return;
-      popupContent.classList.remove('visible');
-
-      if (!hideTimeout) {
-        hideTimeout = setTimeout(() => {
-          removePopupContent();
-        }, 200);
-      }
     }
 
     popup.addEventListener('mouseenter', show);

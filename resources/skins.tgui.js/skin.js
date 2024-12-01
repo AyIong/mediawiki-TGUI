@@ -41,16 +41,16 @@ function registerServiceWorker() {
  */
 function initBodyContent(bodyContent) {
   const tables = require('./tables.js'),
-    popups = require('./popups.js'),
-    templateTooltips = require('./templateTooltips.js'),
+    floatingPopups = require('./floatingPopups.js'),
+    floatingTooltips = require('./floatingTooltips.js'),
     floatingDropdown = require('./floatingDropdown.js');
 
   // Table enhancements
   tables.init(bodyContent);
   // Floating UI Popups
-  popups.init(bodyContent);
+  floatingPopups.init(bodyContent);
   // Floating UI Tooltips for MediaWiki templates
-  templateTooltips.init(bodyContent);
+  floatingTooltips.init(bodyContent);
   // Floating UI Dropdowns for MediaWiki templates
   floatingDropdown.init(bodyContent);
 }
@@ -63,10 +63,10 @@ function main(window) {
   const config = require('./config.json'),
     initSearchLoader = require('./searchLoader.js').initSearchLoader,
     dropdown = require('./dropdown.js'),
-    tooltips = require('./tooltips.js'),
+    floatingTitles = require('./floatingTitles.js'),
     purgeButton = require('./purgeButton.js');
 
-  tooltips.init(window.document);
+  floatingTitles.init(window.document);
   initSearchLoader(document);
   dropdown.init();
   purgeButton();
