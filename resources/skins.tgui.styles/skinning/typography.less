@@ -99,7 +99,7 @@ pre,
   h5,
   h6 {
     margin-top: 0.25em;
-    margin-bottom: -0.25em;
+    margin-bottom: 0em;
     line-height: @line-height-base;
   }
 
@@ -123,14 +123,6 @@ pre,
     font-size: @font-size-reset; // Reset.
   }
 
-  p {
-    white-space: break-spaces;
-
-    br {
-      display: none; // Kill it, cause we use break-spaces
-    }
-  }
-
   blockquote {
     border-left: 2px solid var(--color-label);
     padding: 0.5em 1em;
@@ -146,7 +138,8 @@ pre,
 }
 
 /* Lists */
-.skin-tgui .tgui-body {
+.skin-tgui .mw-content-ltr,
+.skin-tgui .mw-content-rtl {
   ul,
   ol {
     margin: 0 0 0 1.5rem;
