@@ -13,6 +13,11 @@
     border-radius: var(--border-radius-medium);
     backdrop-filter: var(--blur-default);
 
+    &:first-child,
+    &:first-of-type {
+      margin-top: 0.75em;
+    }
+
     &:last-child,
     &:last-of-type {
       margin-bottom: 0;
@@ -22,9 +27,9 @@
       display: block !important;
       overflow: hidden;
       height: 0;
-      opacity: 0;
-      transform: translateY(-1rem);
-      transition-property: opacity, transform;
+      transform: scale(0.9);
+      transform-origin: top;
+      transition-property: transform;
     }
 
     * {
