@@ -98,13 +98,21 @@
             color: var(--color-text) !important;
           }
 
-          .cdx-menu-item__thumbnail .cdx-thumbnail__placeholder {
-            background-color: var(--color-second);
-            border: 1px solid transparent;
-            border-radius: var(--border-radius-small);
+          .cdx-menu-item__thumbnail .cdx-thumbnail {
+            &__placeholder {
+              background-color: var(--color-second);
+              border: 1px solid transparent;
+              border-radius: var(--border-radius-small);
 
-            .cdx-thumbnail__placeholder__icon {
-              color: var(--color-primary);
+              .cdx-thumbnail__placeholder__icon {
+                color: var(--color-primary);
+              }
+            }
+
+            &__image {
+              background-color: var(--color-second);
+              border: 1px solid transparent;
+              border-radius: var(--border-radius-small);
             }
           }
         }
