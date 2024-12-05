@@ -88,6 +88,19 @@ button {
   }
 }
 
+span[role='button'] {
+  .tgui-collapsible-toggle();
+
+  &[aria-expanded='true'] {
+    ~ .mw-collapsible-content {
+      height: 100%;
+      opacity: 1;
+      transform: translateY(0);
+      transition-duration: var(--transition-time);
+    }
+  }
+}
+
 /* File Upload */
 input[type='file'] {
   background-color: var(--color-second);

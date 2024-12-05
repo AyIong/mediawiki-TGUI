@@ -46,51 +46,17 @@ table {
 
 /* Collapsible table toggle */
 .skin-tgui {
-  table .mw-collapsible-toggle {
-    display: block;
-    background: none no-repeat transparent;
-    border-radius: var(--border-radius-small);
-    transition: transform var(--transition-time) background-color var(--transition-time);
+  table {
+    &:not(.wikitable) .mw-collapsible-toggle {
+      background-color: transparent;
 
-    &:before {
-      content: '\f078';
-      font: var(--fa-font-solid);
-      align-content: center;
-      text-align: center;
-      width: 1.2em;
-      height: 1.2em;
-      transition: transform var(--transition-time);
+      &:before {
+        color: var(--color-text);
+      }
     }
 
-    &[aria-expanded='true']:before {
-      transform: rotate(180deg);
-    }
-
-    &:after,
-    .mw-collapsible-text {
-      display: none;
-    }
-  }
-
-  .wikitable .mw-collapsible-toggle {
-    .tgui-button();
-    display: inline-flex;
-    justify-content: center;
-    padding: 0.2em;
-    margin: 0 0.25em;
-    box-shadow: var(--shadow-template--small);
-
-    &:before {
-      width: 1.2em;
-      height: 1.2em;
-    }
-
-    &[aria-expanded='true']:before {
-      transform: rotate(180deg);
-    }
-
-    a {
-      display: none;
+    .mw-collapsible-toggle {
+      .tgui-collapsible-toggle();
     }
   }
 }

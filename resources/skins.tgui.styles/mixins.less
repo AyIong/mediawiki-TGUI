@@ -211,3 +211,35 @@
       opacity var(--transition-time);
   }
 }
+
+.tgui-collapsible-toggle() {
+  .tgui-button();
+  display: inline-flex;
+  justify-content: center;
+  padding: 0.2em;
+  margin: 0 0.25em;
+  box-shadow: var(--shadow-template--small);
+
+  a {
+    display: none;
+  }
+
+  &:before {
+    content: '\f078';
+    font: var(--fa-font-solid);
+    align-content: center;
+    text-align: center;
+    width: 1.2em;
+    height: 1.2em;
+    transition: transform var(--transition-time);
+  }
+
+  &:after,
+  .mw-collapsible-text {
+    display: none;
+  }
+
+  &[aria-expanded='true']:before {
+    transform: rotate(180deg);
+  }
+}
