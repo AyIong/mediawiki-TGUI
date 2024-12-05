@@ -11,6 +11,10 @@
     "options": ["enabled", "disabled"],
     "preferenceKey": "tgui-motion"
   },
+  "tgui-feature-holidays": {
+    "options": ["enabled", "disabled"],
+    "preferenceKey": "tgui-holidays"
+  },
   "tgui-feature-darkened-images": {
     "options": ["disabled", "light", "medium"],
     "preferenceKey": "tgui-darkened-images"

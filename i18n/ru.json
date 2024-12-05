@@ -89,6 +89,10 @@
   "tgui-feature-reduced-motion-enabled-label": "Включено",
   "tgui-feature-reduced-motion-disabled-label": "Отключено",
 
+  "tgui-feature-holidays-name": "Праздничное оформление",
+  "tgui-feature-holidays-enabled-label": "Включено",
+  "tgui-feature-holidays-disabled-label": "Отключено",
+
   "tgui-feature-darkened-images-name": "Затемнение изображений",
   "tgui-feature-darkened-images-disabled-label": "Отключено",
   "tgui-feature-darkened-images-light-label": "Лёгкое",

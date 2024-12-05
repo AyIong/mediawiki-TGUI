@@ -73,7 +73,8 @@
   // Preference personal layout
   #skin-client-prefs-tgui-feature {
     &-reduced-motion,
-    &-darkened-images {
+    &-darkened-images,
+    &-holidays {
       form {
         flex-direction: row;
 
@@ -81,6 +82,14 @@
           flex: 1;
         }
       }
+    }
+  }
+
+  #skin-client-prefs-tgui-feature-holidays {
+    display: none;
+
+    .tgui-holiday-active & {
+      display: block;
     }
   }
 

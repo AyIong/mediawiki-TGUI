@@ -85,6 +85,7 @@ class SkinHooks implements
 			$end = DateTime::createFromFormat('j-n', $holiday['end']['day'] . '-' . $holiday['end']['month']);
 
 			if (($start <= $currentDate && $currentDate <= $end) || ($start->format('m') > $end->format('m') && ($currentDate >= $start || $currentDate <= $end))) {
+				$out->addHtmlClasses('tgui-holiday-active');
 				$cssPath = "/skins/TGUI/resources/skins.tgui.holidays/styles/{$holiday['name']}.css";
 				$jsPath = "/skins/TGUI/resources/skins.tgui.holidays/scripts/{$holiday['name']}.js";
 

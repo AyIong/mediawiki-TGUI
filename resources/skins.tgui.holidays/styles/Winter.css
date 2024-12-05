@@ -14,7 +14,7 @@
 	}
 }
 
-body:before {
+.tgui-feature-holidays-clientpref-enabled body:before {
 	content: '';
 	position: fixed;
 	top: 0;
@@ -30,12 +30,12 @@ body:before {
 	z-index: -999;
 }
 
-.skin-theme-clientpref-night body:before {
+.tgui-feature-holidays-clientpref-enabled.skin-theme-clientpref-night body:before {
 	filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5)) brightness(0.5);
 }
 
 @media (prefers-color-scheme: dark) {
-	.skin-theme-clientpref-os body:before {
+	.tgui-feature-holidays-clientpref-enabled.skin-theme-clientpref-os body:before {
 		filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5)) brightness(0.5);
 	}
 }

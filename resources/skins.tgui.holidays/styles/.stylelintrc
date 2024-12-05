@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "function-parentheses-space-inside": null,
+    "declaration-colon-space-after": null,
+    "value-list-comma-newline-after": null
+  }
+}
