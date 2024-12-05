@@ -141,6 +141,39 @@ pre,
   }
 }
 
+/* Lists */
+.skin-tgui .tgui-body {
+  ul,
+  ol {
+    margin: 0 0 0 1.5rem;
+    padding: 0;
+
+    li {
+      margin: 0;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 0 1rem;
+    }
+  }
+
+  ol ol {
+    list-style: upper-latin;
+
+    ol {
+      list-style: lower-latin;
+    }
+  }
+
+  p {
+    + ul,
+    + ol {
+      margin-top: -0.5em;
+    }
+  }
+}
+
 @media (max-width: @max-width-mobile) {
   .tgui-body {
     & h1,
