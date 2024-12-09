@@ -1,27 +1,25 @@
 @import '../variables.less';
 @import '../mixins.less';
 
+.tgui-toc-container {
+  .tgui-sidebar-container();
+
+  @{selector-toc-closed} ~ .tgui-page-container-inner & {
+    flex-basis: 0;
+  }
+}
+
 .sidebar-toc {
   display: flex;
   flex-direction: column;
+  flex: 1;
   pointer-events: auto;
   position: sticky;
-  bottom: 0;
-  height: 50%;
-  width: @width-sidebar-px;
-  box-sizing: border-box;
+  overflow: hidden;
   background-color: var(--color-base-fill);
-  border-top: var(--border-classic);
-  box-shadow: var(--shadow-template--large);
-  transition:
-    height var(--transition-time),
-    width var(--transition-time),
-    transform var(--transition-time);
-  z-index: var(--index-static);
-
-  @media (min-width: @min-width-desktop-wide) {
-    width: @width-sidebar-px-wide;
-  }
+  color: var(--color-text);
+  transition: visibility var(--transition-time);
+  z-index: var(--index-overlay);
 
   @media (min-width: @min-width-desktop) {
     .tgui-blur-important {
@@ -30,21 +28,10 @@
   }
 
   .tgui-toc-collapsed & {
-    position: fixed;
-    height: 2em !important;
-    overflow: hidden;
-    box-shadow: var(--shadow-template--small) !important;
-
     .sidebar-toc-header:before {
       opacity: 0;
       transform: scaleX(0);
     }
-  }
-
-  @{selector-main-menu-closed} ~ .tgui-page-container-inner .tgui-sidebar-container & {
-    height: 100%;
-    border-top: 1px solid transparent;
-    box-shadow: none;
   }
 
   .sidebar-toc-header {

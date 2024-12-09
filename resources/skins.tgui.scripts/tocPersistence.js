@@ -1,5 +1,13 @@
 const TOC_COLLAPSED_CLASS = 'tgui-toc-collapsed';
 const isCollapsed = localStorage.getItem('TGUI-ToC-Collapsed');
+const tocID = 'tgui-toc';
+
+async function waitToC() {
+  const tocReady = await waitForElement(tocID);
+  if (tocReady) {
+    restoreTOCState();
+  }
+}
 
 function restoreTOCState() {
   if (isCollapsed === 'true') {
@@ -16,7 +24,6 @@ function restoreTOCState() {
 
 // Move ToC for mobile devices
 function moveElement() {
-  const toc = document.getElementById('tgui-toc');
   const newContainer = document.getElementById('bodyContent');
   const mediaQuery = window.matchMedia('(max-width: 719px)'); // @max-width-mobile LESS var;
 
@@ -36,5 +43,5 @@ function moveElement() {
   mediaQuery.addEventListener('change', handleMediaChange);
 }
 
-restoreTOCState();
+waitToC();
 document.addEventListener('DOMContentLoaded', moveElement);

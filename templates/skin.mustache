@@ -9,12 +9,11 @@
 }}
 <div class="tgui-page-container">
 	<input type="checkbox" id="tgui-sidebar-checkbox" class="mw-checkbox-hack-checkbox">
-	<input type="checkbox" id="tgui-toc-collapsed-checkbox" class="mw-checkbox-hack-checkbox">
+	<input type="checkbox" id="tgui-toc-checkbox" class="mw-checkbox-hack-checkbox">
 	{{>Header}}
 	<div class="tgui-page-container-inner">
 		<aside class="tgui-sidebar-container">
 			{{#data-portlets-sidebar}}{{>Sidebar}}{{/data-portlets-sidebar}}
-			{{#data-toc}}{{>TableOfContents}}{{/data-toc}}
 		</aside>
 		<div id="bodyContent" class="tgui-page-content-container">
 			<main id="content" class="mw-body" role="main">
@@ -32,6 +31,9 @@
 				{{#data-footer}}{{>Footer}}{{/data-footer}}
 			</div>
 		</div>
+		<aside class="tgui-toc-container">
+			{{#data-toc}}{{>TableOfContents}}{{/data-toc}}
+		</aside>
 	</div>
 	{{>BackgroundImage}}
 </div>

@@ -21,8 +21,6 @@ const ACTIVE_TOP_SECTION_CLASS = 'sidebar-toc-level-1--active';
 const LINK_CLASS = 'sidebar-toc-link';
 const TOGGLE_CLASS = 'sidebar-toc-toggle';
 const TOC_CONTENTS_ID = 'mw-panel-toc-list';
-const TOC_COLLAPSED_CLASS = 'tgui-toc-collapsed';
-const TOC_PREFERENCE_NAME = 'TGUI-ToC-Collapsed';
 
 /**
  * Fired when the user clicks a toc link. Note that this callback takes
@@ -335,21 +333,6 @@ module.exports = function tableOfContents(props) {
   }
 
   /**
-   * Bind event listener for clicking on show/hide Table of Contents links.
-   */
-  function bindCollapseToggleListeners() {
-    const showHideTocElement = document.querySelectorAll('#sidebar-toc-label button');
-    showHideTocElement.forEach(function (btn) {
-      btn.addEventListener('click', () => {
-        document.body.classList.toggle(TOC_COLLAPSED_CLASS);
-        const isCollapsed = document.body.classList.contains(TOC_COLLAPSED_CLASS);
-        localStorage.setItem(TOC_PREFERENCE_NAME, isCollapsed.toString());
-        props.onToggleCollapse();
-      });
-    });
-  }
-
-  /**
    * Event handler for hash change event.
    */
   function handleHashChange() {
@@ -452,7 +435,6 @@ module.exports = function tableOfContents(props) {
     bindSubsectionToggleListeners();
     bindPinnedToggleListeners();
     bindHashChangeListener();
-    bindCollapseToggleListeners();
   }
 
   /**
@@ -484,8 +466,6 @@ module.exports = function tableOfContents(props) {
         reloadPartialHTML(TOC_CONTENTS_ID, getTableOfContentsHTML(sections));
         // Reexpand sections that were expanded before the table of contents was reloaded.
         reExpandSections();
-        // Initialize Collapse toggle buttons
-        bindCollapseToggleListeners();
         // reActivate the active sections
         deactivateSections();
         if (activeParentId) {
@@ -582,11 +562,6 @@ module.exports = function tableOfContents(props) {
         section['is-top-level-section'] = toclevel === 1;
         section['is-parent-section'] = Object.keys(childSections).length > 0;
         data.push(section);
-      }
-      // Child section belongs to a higher parent.
-      if (section.toclevel < toclevel) {
-        document.body.classList.add(TOC_COLLAPSED_CLASS);
-        return data;
       }
     }
 

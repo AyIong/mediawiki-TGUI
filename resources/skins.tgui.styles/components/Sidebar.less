@@ -2,21 +2,10 @@
 @import 'checkboxHack.less';
 
 .tgui-sidebar-container {
-  display: flex;
-  flex-direction: column;
-  flex-basis: @width-sidebar-px;
-  pointer-events: none;
-  overflow: hidden;
-  position: sticky;
-  top: ~'calc(var(--header-height) + var(--header-padding) * 2)';
-  height: var(--sidebar-height);
-  transition:
-    width var(--transition-time),
-    flex-basis var(--transition-time);
-  z-index: var(--index-static);
+  .tgui-sidebar-container();
 
-  @media (min-width: @min-width-desktop-wide) {
-    flex-basis: @width-sidebar-px-wide;
+  @{selector-main-menu-closed} ~ .tgui-page-container-inner & {
+    flex-basis: 0;
   }
 }
 
@@ -29,7 +18,7 @@
   background-color: var(--color-base-fill);
   color: var(--color-text);
   transition: visibility var(--transition-time);
-  z-index: var(--index-static);
+  z-index: var(--index-overlay);
 
   @media (min-width: @min-width-desktop) {
     .tgui-blur-important {
@@ -50,11 +39,6 @@
       overflow-y: auto;
     }
   }
-
-  .sidebar-visible &,
-  @{selector-main-menu-closed} ~ .tgui-page-container-inner .tgui-sidebar-container & {
-    visibility: hidden;
-  }
 }
 
 @media (max-width: @max-width-tablet) {
@@ -67,12 +51,7 @@
   }
 
   .tgui-sidebar {
-    visibility: hidden;
     background-color: var(--color-base-blur-important);
-
-    @{selector-main-menu-open} ~ .tgui-page-container-inner .tgui-sidebar-container & {
-      visibility: visible;
-    }
   }
 }
 
