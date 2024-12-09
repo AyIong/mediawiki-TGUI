@@ -109,4 +109,4 @@ async function main() {
   await initPortlets();
 }
 
-requestAnimationFrame(main);
+main();
