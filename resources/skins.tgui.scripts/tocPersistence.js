@@ -1,5 +1,13 @@
 const TOC_COLLAPSED_CLASS = 'tgui-toc-collapsed';
 const isCollapsed = localStorage.getItem('TGUI-ToC-Collapsed');
+const tocID = 'tgui-toc';
+
+async function waitToC() {
+  const tocReady = await waitForElement(tocID, true);
+  if (tocReady) {
+    restoreTOCState();
+  }
+}
 
 function restoreTOCState() {
   if (isCollapsed === 'true') {
@@ -36,5 +44,5 @@ function moveElement() {
   mediaQuery.addEventListener('change', handleMediaChange);
 }
 
-restoreTOCState();
+waitToC();
 document.addEventListener('DOMContentLoaded', moveElement);

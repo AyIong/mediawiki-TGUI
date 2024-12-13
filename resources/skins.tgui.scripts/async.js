@@ -1,6 +1,6 @@
 const timeout = 2000; // 2 Seconds
 
-async function waitForElement(selector) {
+async function waitForElement(selector, optional = false) {
   return new Promise((resolve, reject) => {
     const element = document.getElementById(selector);
     if (element) {
@@ -8,11 +8,11 @@ async function waitForElement(selector) {
     }
 
     const observer = new MutationObserver(() => {
-      const element = document.getElementById(selector);
-      if (element) {
+      const foundElement = document.getElementById(selector);
+      if (foundElement) {
         observer.disconnect();
         clearTimeout(timer);
-        resolve(element);
+        resolve(foundElement);
       }
     });
 
@@ -20,6 +20,11 @@ async function waitForElement(selector) {
 
     const timer = setTimeout(() => {
       observer.disconnect();
+      if (optional) {
+        resolve(null);
+        return;
+      }
+
       reject(new Error(`Element ${selector} not found within timeout`));
     }, timeout);
   });
@@ -33,11 +38,11 @@ async function waitForElements(selector, element = document) {
     }
 
     const observer = new MutationObserver(() => {
-      const elements = element.querySelectorAll(selector);
-      if (elements.length > 0) {
+      const foundElements = element.querySelectorAll(selector);
+      if (foundElements.length > 0) {
         observer.disconnect();
         clearTimeout(timer);
-        resolve(elements);
+        resolve(foundElements);
       }
     });
 
