@@ -210,7 +210,7 @@ module.exports = function tableOfContents(props) {
       const linkHiddenBottomValue = linkRect.bottom - Math.min(containerRect.bottom, window.innerHeight);
 
       // Respect 'prefers-reduced-motion' user preference
-      const scrollBehavior = prefersReducedMotion() ? 'smooth' : undefined;
+      const scrollBehavior = prefersReducedMotion() ? undefined : 'smooth';
 
       // Manually increment and decrement TOC scroll rather than using scrollToView
       // in order to account for threshold

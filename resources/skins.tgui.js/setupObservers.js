@@ -87,7 +87,7 @@ const setupTableOfContents = (tocElement, bodyContent, initSectionObserverFn) =>
     deferUntilFrame(() => {
       // eslint-disable-next-line no-use-before-define
       sectionObserver.resume();
-    }, 3);
+    }, 150);
   };
 
   /**
