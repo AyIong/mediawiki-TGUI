@@ -133,9 +133,13 @@
 
 /* Animations */
 .tgui-animations-ready {
+  /* Timing */
   --transition-time: 0.2s;
   --transition-time-fast: ~'calc( var(--transition-time) / 2)';
   --transition-delay: ~'calc( var(--transition-time) * 2)';
+
+  /* Linear */
+  --linear-bounce: linear(0 0%, 0.5 25%, 1.25 50%, 0.75 75%, 1 100%);
 }
 
 /**
