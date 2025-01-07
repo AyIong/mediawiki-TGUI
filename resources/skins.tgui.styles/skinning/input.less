@@ -65,8 +65,7 @@ input:not([type='file'], [type='image'], [type='checkbox'], [type='radio'], [typ
 
 /* Buttons */
 input[type='submit'],
-input[type='button'],
-input::file-selector-button {
+input[type='button'] {
   .tgui-button();
   padding: 0.25em 0.5em;
   border: 0 !important;
@@ -101,10 +100,26 @@ button {
 }
 
 /* File Upload */
+input::file-selector-button {
+  display: none;
+}
+
 input[type='file'] {
-  background-color: var(--color-second);
+  cursor: pointer;
+  width: 100%;
+  padding: 1.33rem 0;
+  text-align-last: center;
+  background-color: ~'hsla(var(--primary-hue), 35%, var(--primary-lightness), 0.25)';
   color: var(--color-text-darker);
   border: var(--border-classic);
+  border-radius: var(--border-radius-medium);
+  transition-property: background-color, border;
+  transition-duration: var(--transition-time);
+
+  &:hover {
+    background-color: ~'hsla(var(--primary-hue), 35%, var(--primary-lightness), 0.5)';
+    border-color: var(--color-border-input);
+  }
 }
 
 /* Dropdowns (Select) */
