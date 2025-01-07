@@ -88,9 +88,8 @@
   background: ~'var(--color-@{color})';
   color: var(--color-white) !important;
   border-radius: var(--border-radius-small);
-  transition:
-    background var(--transition-time),
-    box-shadow var(--transition-time) !important;
+  transition-property: background, box-shadow;
+  transition-duration: var(--transition-time);
 
   & when (@transparent) {
     background: transparent;
@@ -117,6 +116,7 @@
       &:active {
         background: var(--color-bg-focus);
         box-shadow: inset 0 0 0.1em 0.1em rgba(0, 0, 0, 0.2) !important;
+        transition-duration: 0s;
 
         * {
           color: var(--color-text) !important;
@@ -143,6 +143,7 @@
       &:active {
         background: ~'var(--color-@{color}-dark)';
         box-shadow: inset 0 0 0.1em 0.1em rgba(0, 0, 0, 0.2) !important;
+        transition-duration: 0s;
       }
     }
 
