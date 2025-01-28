@@ -1,4 +1,4 @@
-@import 'mediawiki.ui/variables.less';
+@import 'mediawiki.skin.variables.less';
 
 /**
  * TGUI
@@ -12,18 +12,15 @@
  * - Override MW skin default variables: mediawiki.less/mediawiki.skin.variables.less
  */
 
-/* Imports */
-/**
- * MediaWiki mixins
- * @see https://github.com/wikimedia/mediawiki/blob/master/resources/src/mediawiki.less/mediawiki.mixins.less
- */
-@import 'mediawiki.mixins';
-/**
- * MediaWiki skin variables
- * mediawiki.less/mediawiki.skin.variables.less
- * @see https://github.com/wikimedia/mediawiki/blob/master/resources/src/mediawiki.less/mediawiki.skin.defaults.less
- */
-@import 'mediawiki.skin.variables.less';
+
+/* == Media query breakpoints == */
+@min-width-mobile: @width-breakpoint-mobile; // Above 320px
+@max-width-mobile: @width-breakpoint-tablet - 1px; // Below 719px
+@min-width-tablet: @width-breakpoint-tablet; // Above 720px
+@max-width-tablet: @width-breakpoint-desktop - 1px; // Below 999px
+@min-width-desktop: @width-breakpoint-desktop; // Above 1000px
+@max-width-desktop: @width-breakpoint-desktop-wide - 1px; // Below 1199px
+@min-width-desktop-wide: @width-breakpoint-desktop-wide; // Above 1200px
 
 /* == Spacing == */
 @space-unit: 1rem;

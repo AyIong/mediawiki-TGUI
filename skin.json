@@ -1,6 +1,6 @@
 {
   "name": "TGUI",
-  "version": "2.0.7",
+  "version": "3.0.0",
   "author": ["[https://github.com/AyIong Aylong]"],
   "url": "https://www.youtube.com/watch?v=JDQBvN1GATw",
   "namemsg": "skinname-tgui",
@@ -8,7 +8,7 @@
   "license-name": "GPL-2.0-or-later",
   "type": "skin",
   "requires": {
-    "MediaWiki": ">= 1.39.4"
+    "MediaWiki": ">= 1.43.0"
   },
   "ValidSkinNames": {
     "tgui": {
@@ -78,7 +78,6 @@
         "interface-edit-section-links": true,
         "interface-user-message": true,
         "i18n-ordered-lists": true,
-        "i18n-all-lists-margins": true,
         "i18n-headings": true
       },
       "targets": ["desktop", "mobile"],
