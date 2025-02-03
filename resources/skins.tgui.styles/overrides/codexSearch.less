@@ -104,7 +104,7 @@
               border: 1px solid transparent;
               border-radius: var(--border-radius-small);
 
-              .cdx-thumbnail__placeholder__icon {
+              .cdx-thumbnail__placeholder__icon--vue {
                 color: var(--color-primary);
               }
             }
@@ -127,8 +127,13 @@
 
           &:hover {
             background-color: var(--color-second);
+            color: var(--color-text-gray);
           }
         }
+      }
+
+      &--has-footer .cdx-menu-item:last-of-type:not(:first-of-type) {
+        border: none;
       }
     }
 
@@ -174,7 +179,7 @@
       }
     }
 
-    .cdx-text-input__icon {
+    .cdx-text-input__icon-vue {
       display: inline-flex;
       justify-content: center;
       align-items: center;

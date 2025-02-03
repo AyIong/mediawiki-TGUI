@@ -41,7 +41,7 @@
 </template>
 
 <script>
-const { CdxTypeaheadSearch } = require("@wikimedia/codex-search"),
+const { CdxTypeaheadSearch } = mw.loader.require("skins.tgui.search.codex.scripts"),
   { defineComponent, nextTick } = require("vue"),
   client = require("./restSearchClient.js"),
   restClient = client(mw.config),
@@ -157,14 +157,6 @@ module.exports = exports = defineComponent({
     },
   },
   methods: {
-    addFocusClass() {
-      document.documentElement.classList.add("search-focus");
-    },
-
-    delFocusClass() {
-      document.documentElement.classList.remove("search-focus");
-    },
-
     /**
      * Fetch suggestions when new input is received.
      *
@@ -245,12 +237,10 @@ module.exports = exports = defineComponent({
 
     onFocus() {
       this.isFocused = true;
-      this.addFocusClass();
     },
 
     onBlur() {
       this.isFocused = false;
-      this.delFocusClass();
     },
   },
   mounted() {

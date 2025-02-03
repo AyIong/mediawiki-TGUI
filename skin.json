@@ -10,6 +10,11 @@
   "requires": {
     "MediaWiki": ">= 1.43.0"
   },
+  "attributes": {
+    "DarkMode": {
+      "Disabled": ["tgui"]
+    }
+  },
   "ValidSkinNames": {
     "tgui": {
       "class": "MediaWiki\\Skins\\TGUI\\SkinTGUI",
@@ -17,6 +22,8 @@
         {
           "name": "tgui",
           "responsive": true,
+          "wrapSiteNotice": true,
+          "toc": false,
           "link": {
             "text-wrapper": {
               "tag": "span"
@@ -24,7 +31,6 @@
           },
           "menus": [
             "user-interface-preferences",
-            "user-page",
             "user-menu",
             "notifications",
             "views",
@@ -32,8 +38,8 @@
             "variants",
             "associated-pages"
           ],
-          "scripts": ["skins.tgui.js"],
-          "styles": ["mediawiki.ui.icon", "mediawiki.ui.button", "skins.tgui.styles", "skins.tgui.icons"],
+          "scripts": ["skins.tgui.scripts"],
+          "styles": ["skins.tgui.styles", "skins.tgui.icons"],
           "messages": [
             "search",
             "searchbutton",
@@ -42,7 +48,6 @@
             "sitetitle",
             "tagline",
             "personaltools",
-            "tgui-toc-beginning",
             "tgui-toc-heading",
             "tgui-usermenu",
             "tgui-actions-more-toggle",
@@ -78,95 +83,82 @@
         "interface-edit-section-links": true,
         "interface-user-message": true,
         "i18n-ordered-lists": true,
-        "i18n-headings": true
+        "i18n-headings": true,
+        "toc": false
       },
-      "targets": ["desktop", "mobile"],
       "styles": ["resources/skins.tgui.styles/core-skin.less"]
     },
-    "skins.tgui.icons": {
-      "selectorWithoutVariant": ".mw-ui-icon-wikimedia-{name}:before",
-      "useDataURI": false,
-      "defaultColor": "#000",
-      "class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
-      "variants": {},
-      "icons": [
-        "article",
-        "edit",
-        "editLock",
-        "history",
-        "speechBubbles",
-        "speechBubbleAdd",
-        "wikiText",
-        "language",
-        "ellipsis",
-        "userAvatar",
-        "userAdd",
-        "userAnonymous",
-        "userTalk",
-        "sandbox",
-        "search",
-        "settings",
-        "labFlask",
-        "watchlist",
-        "userContributions",
-        "logIn",
-        "logOut",
-        "imageGallery",
-        "userGroup",
-        "expand",
-        "listBullet"
-      ]
-    },
-    "skins.tgui.js": {
+    "skins.tgui.scripts": {
       "packageFiles": [
-        "resources/skins.tgui.js/skin.js",
+        "resources/skins.tgui.scripts/skin.js",
         {
-          "name": "resources/skins.tgui.js/config.json",
+          "name": "resources/skins.tgui.scripts/config.json",
           "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
         },
-        "resources/skins.tgui.js/deferUntilFrame.js",
-        "resources/skins.tgui.js/dropdown.js",
-        "resources/skins.tgui.js/floatingDropdown.js",
-        "resources/skins.tgui.js/floatingPopups.js",
-        "resources/skins.tgui.js/floatingTitles.js",
-        "resources/skins.tgui.js/floatingTooltips.js",
-        "resources/skins.tgui.js/purgeButton.js",
-        "resources/skins.tgui.js/resizeObserver.js",
-        "resources/skins.tgui.js/scrollObserver.js",
-        "resources/skins.tgui.js/searchLoader.js",
-        "resources/skins.tgui.js/sectionObserver.js",
-        "resources/skins.tgui.js/setupObservers.js",
-        "resources/skins.tgui.js/tableOfContents.js",
-        "resources/skins.tgui.js/tables.js",
+        "resources/skins.tgui.scripts/deferUntilFrame.js",
+        "resources/skins.tgui.scripts/dropdown.js",
+        "resources/skins.tgui.scripts/floatingDropdown.js",
+        "resources/skins.tgui.scripts/floatingPopups.js",
+        "resources/skins.tgui.scripts/floatingTitles.js",
+        "resources/skins.tgui.scripts/floatingTooltips.js",
+        "resources/skins.tgui.scripts/purgeButton.js",
+        "resources/skins.tgui.scripts/resizeObserver.js",
+        "resources/skins.tgui.scripts/scrollObserver.js",
+        "resources/skins.tgui.scripts/searchLoader.js",
+        "resources/skins.tgui.scripts/sectionObserver.js",
+        "resources/skins.tgui.scripts/setupObservers.js",
+        "resources/skins.tgui.scripts/tableOfContents.js",
+        "resources/skins.tgui.scripts/tables.js",
         {
-          "name": "resources/skins.tgui.js/tableOfContentsConfig.json",
-          "config": ["TGUITableOfContentsCollapseAtCount", "TGUITableOfContentsBeginning"]
+          "name": "resources/skins.tgui.scripts/tableOfContentsConfig.json",
+          "config": ["TGUITableOfContentsCollapseAtCount"]
         },
         {
-          "name": "resources/skins.tgui.js/templates/TableOfContents.mustache",
+          "name": "resources/skins.tgui.scripts/templates/TableOfContents.mustache",
           "file": "templates/TableOfContents.mustache",
           "type": "text"
         },
         {
-          "name": "resources/skins.tgui.js/templates/TableOfContents__list.mustache",
+          "name": "resources/skins.tgui.scripts/templates/TableOfContents__list.mustache",
           "file": "templates/TableOfContents__list.mustache",
           "type": "text"
         },
         {
-          "name": "resources/skins.tgui.js/templates/TableOfContents__line.mustache",
+          "name": "resources/skins.tgui.scripts/templates/TableOfContents__line.mustache",
           "file": "templates/TableOfContents__line.mustache",
           "type": "text"
         }
       ],
-      "messages": [
-        "tgui-search-loader",
-        "tgui-purge-button-label",
-        "tgui-purge-button-title",
-        "tgui-toc-beginning",
-        "tgui-toc-heading"
+      "messages": ["tgui-search-loader", "tgui-purge-button-label", "tgui-purge-button-title"],
+      "dependencies": ["mediawiki.page.ready", "mediawiki.util"]
+    },
+    "skins.tgui.search.codex.styles": {
+      "class": "MediaWiki\\ResourceLoader\\CodexModule",
+      "codexStyleOnly": false,
+      "codexComponents": ["CdxTypeaheadSearch", "CdxSearchInput", "CdxButton", "CdxRadio", "CdxMessage"]
+    },
+    "skins.tgui.search.codex.scripts": {
+      "dependencies": ["skins.tgui.search.codex.styles"],
+      "class": "MediaWiki\\ResourceLoader\\CodexModule",
+      "codexScriptOnly": true,
+      "codexComponents": ["CdxTypeaheadSearch"]
+    },
+    "skins.tgui.search": {
+      "es6": true,
+      "packageFiles": [
+        "resources/skins.tgui.search/skins.tgui.search.js",
+        "resources/skins.tgui.search/instrumentation.js",
+        "resources/skins.tgui.search/fetch.js",
+        "resources/skins.tgui.search/restSearchClient.js",
+        "resources/skins.tgui.search/urlGenerator.js",
+        "resources/skins.tgui.search/App.vue",
+        {
+          "name": "resources/skins.tgui.search/config.json",
+          "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\SkinHooks::getTGUISearchResourceLoaderConfig"
+        }
       ],
-      "dependencies": ["mediawiki.page.ready", "mediawiki.util"],
-      "targets": ["desktop", "mobile"]
+      "dependencies": ["web2017-polyfills", "mediawiki.util", "skins.tgui.search.codex.scripts"],
+      "messages": ["searchbutton", "searchresults", "tgui-searchsuggest-containing"]
     },
     "skins.tgui.preferences": {
       "styles": ["resources/skins.tgui.preferences/skins.tgui.preferences.less"],
@@ -206,29 +198,45 @@
         "tgui-feature-darkened-images-medium-label",
         "tgui-feature-primary-hue-slider-name"
       ],
-      "dependencies": ["mediawiki.storage", "mediawiki.util"],
-      "targets": ["desktop", "mobile"]
+      "dependencies": ["mediawiki.storage", "mediawiki.util"]
     },
     "skins.tgui.serviceWorker": {
-      "scripts": ["resources/skins.tgui.serviceWorker/sw.js"],
-      "targets": ["desktop", "mobile"]
+      "scripts": ["resources/skins.tgui.serviceWorker/sw.js"]
     },
-    "skins.tgui.search": {
-      "es6": true,
-      "dependencies": ["mediawiki.Uri", "mediawiki.util", "@wikimedia/codex-search"],
-      "packageFiles": [
-        "resources/skins.tgui.search/skins.tgui.search.js",
-        "resources/skins.tgui.search/instrumentation.js",
-        "resources/skins.tgui.search/fetch.js",
-        "resources/skins.tgui.search/restSearchClient.js",
-        "resources/skins.tgui.search/urlGenerator.js",
-        "resources/skins.tgui.search/App.vue",
-        {
-          "name": "resources/skins.tgui.search/config.json",
-          "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\SkinHooks::getTGUISearchResourceLoaderConfig"
-        }
-      ],
-      "messages": ["searchbutton", "searchresults", "tgui-searchsuggest-containing"]
+    "skins.tgui.icons": {
+      "selectorWithoutVariant": ".mw-ui-icon-wikimedia-{name}:before",
+      "useDataURI": false,
+      "defaultColor": "#000",
+      "class": "MediaWiki\\ResourceLoader\\OOUIIconPackModule",
+      "useMaskImage": true,
+      "variants": {},
+      "icons": [
+        "article",
+        "edit",
+        "editLock",
+        "history",
+        "speechBubbles",
+        "speechBubbleAdd",
+        "wikiText",
+        "language",
+        "ellipsis",
+        "userAvatar",
+        "userAdd",
+        "userAnonymous",
+        "userTalk",
+        "sandbox",
+        "search",
+        "settings",
+        "labFlask",
+        "watchlist",
+        "userContributions",
+        "logIn",
+        "logOut",
+        "imageGallery",
+        "userGroup",
+        "expand",
+        "listBullet"
+      ]
     }
   },
   "ResourceFileModulePaths": {
@@ -314,10 +322,6 @@
         "showThumbnail": true,
         "showDescription": true
       }
-    },
-    "TableOfContentsBeginning": {
-      "value": true,
-      "description": "@var boolean Temporary feature flag that controls link to beginning of article."
     },
     "TableOfContentsCollapseAtCount": {
       "value": 20,

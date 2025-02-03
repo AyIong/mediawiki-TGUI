@@ -52,12 +52,12 @@ class SkinHooks implements
         ]);
 
 		// HeadScripts
-		$scriptPaths = json_decode(file_get_contents(MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.scripts/scripts.json'), true);
+		$scriptPaths = json_decode(file_get_contents(MW_INSTALL_PATH . '/skins/TGUI/resources/skins.tgui.inline/scripts.json'), true);
 		if (isset($scriptPaths['scripts']) && is_array($scriptPaths['scripts'])) {
 			$allScripts = '';
 
 			foreach ($scriptPaths['scripts'] as $scriptPath) {
-				if ($scriptPath === '/skins/TGUI/resources/skins.tgui.scripts/inline.js' && !$this->getConfigValue('TGUIEnablePreferences', $out)) {
+				if ($scriptPath === '/skins/TGUI/resources/skins.tgui.inline/inline.js' && !$this->getConfigValue('TGUIEnablePreferences', $out)) {
 					continue;
 				}
 

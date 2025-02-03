@@ -1,0 +1,10 @@
+{
+  "scripts": [
+    "/skins/TGUI/resources/skins.tgui.inline/async.js",
+    "/skins/TGUI/resources/skins.tgui.inline/inline.js",
+    "/skins/TGUI/resources/skins.tgui.inline/sidebarPersistence.js",
+    "/skins/TGUI/resources/skins.tgui.inline/portletsPersistence.js",
+    "/skins/TGUI/resources/skins.tgui.inline/tocPersistence.js",
+    "/skins/TGUI/resources/skins.tgui.inline/floatingUI.min.js"
+  ]
+}

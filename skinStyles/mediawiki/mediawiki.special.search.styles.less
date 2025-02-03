@@ -5,67 +5,80 @@
 .searchresults {
   display: flex;
   flex-direction: column;
+  margin: 0;
 
-  .mw-search-results {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75em;
-    margin: 1em 0;
-    max-width: 100%;
-
-    li {
-      display: flex;
-      flex-direction: column;
-      flex: 1 0 30rem;
-      list-style: none;
-      padding: 0;
-      background-color: var(--color-second);
-      border: var(--border-classic);
-      border-radius: var(--border-radius-medium);
-      backdrop-filter: var(--blur-default);
-
-      @media (max-width: @max-width-mobile) {
-        flex: 1 0 100%;
-      }
-
-      a {
-        font-size: 114%;
-      }
+  .mw-search {
+    &-pager-top .mw-pager-navigation-bar {
+      display: none;
     }
 
-    .mw-search-result {
-      * {
-        backdrop-filter: none !important;
-      }
+    &-results-container {
+      width: unset;
+    }
 
-      &-heading {
-        border-bottom: 2px solid var(--color-primary);
+    &-results {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75em;
+      margin: 1em 0 !important;
+      max-width: 100%;
+
+      li {
+        display: flex;
+        flex-direction: column;
+        flex: 1 0 30rem;
+        list-style: none;
+        padding: 0;
+        background-color: var(--color-second);
+        border: var(--border-classic);
+        border-radius: var(--border-radius-medium);
+        backdrop-filter: var(--blur-default);
+
+        @media (max-width: @max-width-mobile) {
+          flex: 1 0 100%;
+        }
 
         a {
-          display: flex;
-          padding: 0.1em 0.75em;
+          font-size: 114%;
         }
       }
-    }
 
-    .searchresult {
-      flex: 1;
-      padding: 0.5em;
+      .mw-search-result {
+        margin: 0;
 
-      .searchmatch {
-        font-weight: bold;
-        color: var(--color-text);
+        * {
+          backdrop-filter: none !important;
+        }
+
+        &-heading {
+          border-bottom: 2px solid var(--color-primary);
+
+          a {
+            display: flex;
+            padding: 0.1em 0.75em;
+          }
+        }
       }
 
-      .mw-search-exists {
-        margin-bottom: 1em;
-      }
-    }
+      .searchresult {
+        flex: 1;
+        padding: 0.5em;
 
-    .mw-search-result-data {
-      font-size: 90%;
-      padding: 0.5em 0.5em 0 0.5em;
-      color: var(--color-text-gray);
+        .searchmatch {
+          font-weight: bold;
+          color: var(--color-text);
+        }
+
+        .mw-search-exists {
+          margin-bottom: 1em;
+        }
+      }
+
+      .mw-search-result-data {
+        font-size: 90%;
+        padding: 0.5em 0.5em 0 0.5em;
+        color: var(--color-text-gray);
+      }
     }
   }
 }
@@ -78,10 +91,6 @@
   * {
     backdrop-filter: none;
   }
-}
-
-.searchresults {
-  margin: 0;
 }
 
 .mw-body .mw-search-nonefound {
@@ -103,40 +112,45 @@
   clear: both;
 }
 
-.mw-search-profile-tabs {
-  background-color: var(--color-second);
-  margin-top: 1em;
-  border: var(--border-classic);
-  border-radius: var(--border-radius-medium);
+.mw-search-form-wrapper {
+  margin-bottom: 0;
 
-  .search-types {
-    float: left;
-    padding-left: 0.25em;
+  .mw-search-profile-tabs {
+    max-width: unset;
+    background-color: var(--color-second);
+    margin-top: 1em;
+    border: var(--border-classic);
+    border-radius: var(--border-radius-medium);
 
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    li {
+    .search-types {
       float: left;
-      margin: 0;
-      padding: 0;
-    }
+      padding-left: 0.25em;
 
-    a {
-      .tgui-button();
-      display: block;
-      padding: 0 0.5em;
-      margin: 0.5em 0.25em;
-    }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
 
-    .current a {
-      cursor: default;
-      pointer-events: none;
-      background-color: var(--color-green);
-      transition: background-color var(--transition-time);
+      li {
+        float: left;
+        margin: 0;
+        padding: 0;
+      }
+
+      a {
+        .tgui-button();
+        display: block;
+        padding: 0 0.5em;
+        margin: 0.5em 0.25em;
+      }
+
+      .current a {
+        cursor: default;
+        pointer-events: none;
+        background-color: var(--color-green);
+        transition: background-color var(--transition-time);
+      }
     }
   }
 }

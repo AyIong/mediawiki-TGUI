@@ -4,6 +4,9 @@ async function initPortlets() {
     return;
   }
 
+  // We need calculate height of the sections before restore it
+  await setMaxHeightForContent(panel);
+
   const panelContent = panel.querySelector('.tgui-sidebar-content');
   const first = panelContent.querySelector('.tgui-menu');
   first.classList.add('first');
@@ -91,12 +94,7 @@ function handleEvents() {
   });
 }
 
-async function setMaxHeightForContent() {
-  const panel = await waitForElement('tgui-panel');
-  if (!panel) {
-    return;
-  }
-
+async function setMaxHeightForContent(panel) {
   const menus = await waitForElements('.tgui-menu__content', panel);
   menus.forEach(function (menu) {
     const height = menu.scrollHeight + 'px';
@@ -105,7 +103,6 @@ async function setMaxHeightForContent() {
 }
 
 async function main() {
-  await setMaxHeightForContent();
   await initPortlets();
 }
 

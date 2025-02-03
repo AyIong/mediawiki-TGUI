@@ -44,6 +44,7 @@ function adaptApiResponse(config, query, restResponse, showDescription) {
         value: page.id || -(index + 1),
         label: page.title,
         key: page.key,
+        title: page.title,
         description: showDescription ? page.description : undefined,
         url: urlGeneratorInstance.generateUrl(page),
         thumbnail: thumbnail
@@ -106,9 +107,9 @@ function restSearchClient(config) {
           accept: 'application/json',
         },
       });
-      const searchResponsePromise = result.fetch.then((/** @type {RestResponse} */ res) => {
-        return adaptApiResponse(config, q, res, showDescription);
-      });
+      const searchResponsePromise = result.fetch.then((/** @type {RestResponse} */ res) =>
+        adaptApiResponse(config, q, res, showDescription),
+      );
       return {
         abort: result.abort,
         fetch: searchResponsePromise,
