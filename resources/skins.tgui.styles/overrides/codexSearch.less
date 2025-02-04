@@ -84,6 +84,11 @@
           background-color: var(--color-bg-hover);
         }
 
+        &:active {
+          background-color: var(--color-second);
+          box-shadow: inset var(--shadow-template--small);
+        }
+
         &:last-child {
           margin: 0;
           background-color: transparent;
@@ -120,14 +125,14 @@
         }
 
         .cdx-typeahead-search__search-footer {
-          padding: 0.5em 1em;
-          color: var(--color-text-gray);
+          align-items: normal;
+          padding: 0.5em 1em 0.66em;
+          color: var(--color-text-gray) !important;
           border: 0;
           transition: background-color var(--transition-time);
 
           &:hover {
             background-color: var(--color-second);
-            color: var(--color-text-gray);
           }
         }
       }

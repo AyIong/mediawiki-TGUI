@@ -134,8 +134,8 @@ class TGUIComponentUserInfo implements TGUIComponent {
 		if ( !empty( $realname ) ) {
 			$username = htmlspecialchars( $user->getName(), ENT_QUOTES );
 			$innerHtml = <<<HTML
-				<span id="pt-userpage-realname">$realname</span>
 				<span id="pt-userpage-username">$username</span>
+				<span id="pt-userpage-realname">aka $realname</span>
 			HTML;
 			// Dirty but it works
 			$htmlItems = str_replace(

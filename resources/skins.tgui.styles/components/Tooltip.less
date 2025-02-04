@@ -14,7 +14,7 @@
   transition:
     opacity var(--transition-time),
     transform var(--transition-time) var(--linear-bounce);
-  z-index: var(--index-max);
+  z-index: 999999; // Mediawiki has index 10000 soo...
 
   &.visible {
     opacity: 1;
