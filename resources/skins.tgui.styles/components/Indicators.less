@@ -16,9 +16,6 @@
 }
 
 #mw-indicator-mw-helplink a {
-  background-image: none;
-  padding: 0;
-
   &:before {
     content: '\f059';
     font: var(--fa-font-regular);
@@ -26,5 +23,9 @@
     margin-right: 0.33rem;
     color: var(--color-white);
     transform: scale(1.33) translateX(0.15rem);
+  }
+
+  .mw-helplink-icon {
+    display: none;
   }
 }

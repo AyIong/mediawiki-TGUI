@@ -1,0 +1,181 @@
+@import '../../../resources/skins.tgui.styles/mixins.less';
+
+.skin-tgui {
+  #preferences {
+    filter: none;
+  }
+
+  .mw-prefs-tabs-wrapper.oo-ui-panelLayout-framed,
+  .mw-prefs-tabs > .oo-ui-menuLayout-content > .oo-ui-indexLayout-stackLayout > .oo-ui-tabPanelLayout {
+    border: 0;
+    border-radius: 0;
+  }
+
+  .oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
+    padding: 1em;
+    background-color: transparent !important;
+    border: var(--border-classic) !important;
+    backdrop-filter: var(--blur-default);
+
+    &[aria-hidden='true'] {
+      border: none !important;
+    }
+  }
+
+  /* Tab Selector */
+  #preferences {
+    .oo-ui-panelLayout-padded {
+      overflow: hidden;
+      padding: 1em 1em;
+      background-color: var(--color-second);
+      border: var(--border-classic);
+      border-radius: var(--border-radius-medium);
+
+      &:not(:first-child) {
+        margin-top: 1em;
+      }
+    }
+
+    .oo-ui-panelLayout .oo-ui-tabSelectWidget-framed {
+      padding: 0;
+
+      .oo-ui-tabOptionWidget.oo-ui-widget-enabled {
+        .oo-ui-labelElement-label {
+          padding: 0.33em 1em ~'calc(0.33em + 2px)';
+        }
+      }
+    }
+
+    /* Buttons sticky footer */
+    .mw-htmlform-submit-buttons {
+      box-shadow: none;
+      padding: 0.75em;
+      margin: 0;
+      background-color: var(--color-base-blur);
+      border-top: var(--border-classic);
+      backdrop-filter: var(--blur-default);
+    }
+  }
+
+  .oo-ui-panelLayout .oo-ui-tabSelectWidget-framed {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+
+    .oo-ui-tabOptionWidget.oo-ui-widget-enabled {
+      color: var(--color-text-translucent);
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-weight: normal;
+      border-top-left-radius: var(--border-radius-small);
+      border-top-right-radius: var(--border-radius-small);
+      transition:
+        background-color var(--transition-time),
+        color var(--transition-time);
+      .tabs-animation();
+
+      &:active {
+        background-color: var(--color-bg-hover);
+        color: ~'hsla(var(--primary-hue), 100%, var(--dark-lightness))' !important;
+      }
+
+      .oo-ui-labelElement-label {
+        padding: 0.33em 1em ~'calc(0.1em + 2px)' 1em;
+        border: 0;
+        transition: none;
+      }
+
+      &:hover {
+        background-color: var(--color-bg-hover);
+        color: var(--color-text-translucent);
+      }
+    }
+
+    .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
+      background-color: var(--color-bg-focus) !important;
+      color: ~'hsla(var(--primary-hue), 100%, var(--dark-lightness))' !important;
+
+      &:after {
+        transform: scale(1);
+      }
+    }
+  }
+
+  /* Override OOUI styles */
+  #preferences div div div fieldset {
+    padding: 0;
+    border: 0;
+
+    legend {
+      position: relative;
+      max-width: unset;
+      margin: -1em -1em 1em;
+      background-color: transparent !important;
+
+      .oo-ui-labelElement-label {
+        margin: 0;
+        padding: 0.5em 0.75em calc(0.5em - 2px);
+        color: var(--color-text);
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        width: 100%;
+        transform: scaleX(2);
+        background-color: var(--color-primary);
+      }
+    }
+  }
+
+  .mw-prefs-tabs-wrapper.oo-ui-layout.oo-ui-panelLayout.oo-ui-panelLayout-framed {
+    background-color: transparent;
+    border: 0;
+  }
+
+  /* Search results */
+  .mw-prefs-search-matched {
+    &.oo-ui-panelLayout-framed {
+      margin-bottom: 1em !important;
+      border-radius: var(--border-radius-medium) !important;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    fieldset {
+      .oo-ui-fieldsetLayout-group .oo-ui-widget .mw-prefs-search-matched {
+        margin: 1em;
+        padding: 0 !important;
+      }
+
+      legend {
+        padding: 0.5em !important;
+
+        &.oo-ui-fieldsetLayout-header {
+          margin: 0 0 1em !important;
+        }
+
+        .oo-ui-labelElement-label {
+          padding: 0 0.25em !important;
+        }
+
+        &:after {
+          transform: scaleX(1) !important;
+        }
+      }
+    }
+
+    .mw-prefs-search-highlight {
+      background: transparent !important;
+      outline: 1px solid var(--color-secondary-light) !important;
+      outline-offset: 3px !important;
+      border-radius: var(--border-radius-small) !important;
+    }
+  }
+}
