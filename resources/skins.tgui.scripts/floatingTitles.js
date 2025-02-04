@@ -85,6 +85,7 @@ function init(content) {
           middleware: [flip(), shift({ padding: 9 }), offset(9), arrow({ element: arrowEl })],
         }).then(({ x, y, middlewareData, placement }) => {
           Object.assign(floatingElement.style, { top: `${y}px`, left: `${x}px` });
+          floatingElement.setAttribute('data-position', placement);
           positionArrow(arrowEl, middlewareData.arrow, placement);
         });
       }

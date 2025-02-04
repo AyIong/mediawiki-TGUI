@@ -5,22 +5,31 @@
   opacity: 0;
   font-size: 0.8rem;
   padding: 0.25rem 0.5rem;
-  background-color: ~'hsl(var(--primary-hue), 40%, var(--primary-lightness))';
+  background-color: var(--color-secondary);
   color: var(--color-white);
   border-radius: var(--border-radius-small);
   box-shadow: var(--shadow-template--medium);
-  transition: opacity var(--transition-time);
+  transform: scale(0.75);
+  transform-origin: top;
+  transition:
+    opacity var(--transition-time),
+    transform var(--transition-time) var(--linear-bounce);
   z-index: var(--index-max);
 
   &.visible {
     opacity: 1;
+    transform: scale(1);
+  }
+
+  &[data-position='top'] {
+    transform-origin: bottom;
   }
 
   .tooltip-arrow {
     position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: ~'hsl(var(--primary-hue), 40%, var(--primary-lightness))';
+    width: 0.75em;
+    height: 0.75em;
+    background-color: var(--color-secondary);
     transform: rotate(45deg);
   }
 }
