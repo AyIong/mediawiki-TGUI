@@ -157,6 +157,14 @@ module.exports = exports = defineComponent({
     },
   },
   methods: {
+    addFocusClass() {
+      document.documentElement.classList.add("search-focus");
+    },
+
+    delFocusClass() {
+      document.documentElement.classList.remove("search-focus");
+    },
+
     /**
      * Fetch suggestions when new input is received.
      *
@@ -237,10 +245,12 @@ module.exports = exports = defineComponent({
 
     onFocus() {
       this.isFocused = true;
+      this.addFocusClass();
     },
 
     onBlur() {
       this.isFocused = false;
+      this.delFocusClass();
     },
   },
   mounted() {
