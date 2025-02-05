@@ -33,7 +33,6 @@ async function initPortlets() {
     const content = menu.querySelector('.tgui-menu__content');
     const initialHeight = content.scrollHeight + 'px';
     content.setAttribute('data-height', initialHeight);
-    console.log(`Setted initial height for menu ${content.id}: ${initialHeight}`);
 
     // Set menu state
     if (state === true) {
