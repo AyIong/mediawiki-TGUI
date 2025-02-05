@@ -133,16 +133,11 @@
 .tgui-toc-collapse-button {
   .tgui-button();
   display: block;
+  width: 1.25rem;
   padding: 0;
   border: 0;
 
   &:before {
-    content: '\f078';
-    align-content: center;
-    font: var(--fa-font-solid);
-    width: 0.95em;
-    height: 0.95em;
-    padding: 0.2rem;
     transition: transform var(--transition-time);
 
     .tgui-toc-collapsed & {
@@ -209,6 +204,10 @@
 
   .sidebar-toc-toggle {
     display: block;
+
+    &:before {
+      transition: transform var(--transition-time);
+    }
   }
 
   .sidebar-toc-level-1.sidebar-toc-list-item--expanded .sidebar-toc-toggle:before {
