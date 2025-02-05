@@ -1,21 +1,26 @@
+/**
+ * Initializes portlets by setting menu states and heights based on saved preferences.
+ * Waits for the 'tgui-panel' element before proceeding. Assigns the 'first' class
+ * to the first menu and retrieves menus that aren't the first. For each menu, retrieves
+ * its state from localStorage, setting it to true if not found. Sets the initial
+ * max height for each menu content and applies the saved state by collapsing or expanding
+ * the menu. Binds events to toggle the menu state on interaction.
+ */
 async function initPortlets() {
   const panel = await waitForElement('tgui-panel');
   if (!panel) {
     return;
   }
 
-  // We need calculate height of the sections before restore it
-  await setMaxHeightForContent(panel);
-
   const panelContent = panel.querySelector('.tgui-sidebar-content');
-  const first = panelContent.querySelector('.tgui-menu');
-  first.classList.add('first');
+  panelContent.querySelector('.tgui-menu').classList.add('first');
 
   const menus = panelContent.querySelectorAll('.tgui-menu:not(.first)');
   menus.forEach(function (menu, index) {
     let state;
     const id = menu.id;
-
+    // Get current portlets states from localStorage
+    // If none is found, set it to true
     state = localStorage.getItem('TGUI' + '-nav-' + id);
     if (state === null) {
       localStorage.setItem('TGUI' + '-nav-' + id, JSON.stringify(true));
@@ -24,82 +29,75 @@ async function initPortlets() {
       state = JSON.parse(state);
     }
 
-    if (state === true || state === null) {
-      menu.classList.add('expanded');
+    // Set initial max height for every menu content
+    const content = menu.querySelector('.tgui-menu__content');
+    const initialHeight = content.scrollHeight + 'px';
+    content.setAttribute('data-height', initialHeight);
+    console.log(`Setted initial height for menu ${content.id}: ${initialHeight}`);
+
+    // Set menu state
+    if (state === true) {
       menu.classList.remove('collapsed');
 
-      const content = menu.querySelector('.tgui-menu__content');
-      const height = content.getAttribute('max-height');
       if (content) {
-        content.style.maxHeight = height;
-      }
-
-      const anchor = menu.querySelector('.tgui-menu__heading');
-      if (anchor) {
-        anchor.setAttribute('aria-pressed', 'true');
-        anchor.setAttribute('aria-expanded', 'true');
+        content.style.maxHeight = initialHeight;
       }
     } else {
       menu.classList.add('collapsed');
-      menu.classList.remove('expanded');
 
-      const anchor = menu.querySelector('.tgui-menu__heading');
-      if (anchor) {
-        anchor.setAttribute('aria-pressed', 'false');
-        anchor.setAttribute('aria-expanded', 'false');
+      if (content) {
+        content.style.maxHeight = 0;
       }
     }
+
+    const anchor = menu.querySelector('.tgui-menu__heading');
+    handleEvents(menu, anchor, content);
   });
-  handleEvents();
 }
 
-function toggleMenu(menu) {
-  const isCollapsed = menu.classList.contains('collapsed');
-  const content = menu.querySelector('.tgui-menu__content');
+/**
+ * Attaches a click event listener to the anchor element within the menu.
+ * Toggles the visibility of the menu content when the anchor is clicked.
+ *
+ * @param {HTMLElement} menu - The menu element containing the anchor and content.
+ * @param {HTMLElement} anchor - The clickable heading element of the menu.
+ * @param {HTMLElement} content - The content element whose visibility is toggled.
+ */
+function handleEvents(menu, anchor, content) {
+  if (!menu || !content || !anchor) {
+    return;
+  }
 
-  menu.classList.toggle('expanded');
+  anchor.addEventListener('click', function (event) {
+    toggleMenu(menu, content);
+    event.preventDefault();
+  });
+}
+
+/**
+ * Toggles the visibility of the given menu content.
+ *
+ * If the menu is collapsed, it sets the max-height of the content to the
+ * value of the data-height attribute, otherwise it sets it to 0.
+ *
+ * @param {HTMLElement} menu - The menu element containing the content.
+ * @param {HTMLElement} content - The content element whose visibility is toggled.
+ */
+function toggleMenu(menu, content) {
+  if (!menu || !content) {
+    return;
+  }
+
+  const isCollapsed = menu.classList.contains('collapsed');
   menu.classList.toggle('collapsed');
   localStorage.setItem('TGUI' + '-nav-' + menu.id, JSON.stringify(isCollapsed));
 
-  const height = content.getAttribute('max-height');
-  if (content) {
-    if (isCollapsed) {
-      content.style.maxHeight = height;
-    } else {
-      content.style.maxHeight = '0';
-    }
+  const height = content.getAttribute('data-height');
+  if (isCollapsed) {
+    content.style.maxHeight = height;
+  } else {
+    content.style.maxHeight = '0';
   }
-
-  const anchor = menu.querySelector('.tgui-menu__heading');
-  if (anchor) {
-    anchor.setAttribute('aria-pressed', isCollapsed ? 'false' : 'true');
-    anchor.setAttribute('aria-expanded', isCollapsed ? 'false' : 'true');
-  }
-}
-
-function handleEvents() {
-  const panel = document.getElementById('tgui-panel');
-  if (!panel) return;
-
-  panel.addEventListener('click', function (event) {
-    const target = event.target;
-    const heading = target.closest('.tgui-menu__heading');
-    if (heading) {
-      const menu = heading.parentElement;
-      if (!menu.classList.contains('first')) {
-        toggleMenu(menu);
-        event.preventDefault();
-      }
-    }
-  });
-}
-
-async function setMaxHeightForContent(panel) {
-  const menus = await waitForElements('.tgui-menu__content', panel);
-  menus.forEach(function (menu) {
-    const height = menu.scrollHeight + 'px';
-    menu.setAttribute('max-height', height);
-  });
 }
 
 async function main() {
