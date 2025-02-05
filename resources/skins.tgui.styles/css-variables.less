@@ -6,6 +6,11 @@
  */
 :root {
   --primary-hue: 210;
+  --background-gradient: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-bg) 98%, white) 0%,
+    color-mix(in srgb, var(--color-bg) 98%, black) 100%
+  );
 
   /* TGUI Elements Colors */
   --color-primary: ~'hsl(var(--primary-hue), 37.5%, var(--primary-lightness))';
