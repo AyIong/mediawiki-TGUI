@@ -2,6 +2,7 @@
 namespace MediaWiki\Skins\TGUI;
 
 use MediaWiki\Skins\TGUI\Components\TGUIComponentPageHeading;
+use MediaWiki\Skins\TGUI\Components\TGUIComponentPageSidebar;
 use MediaWiki\Skins\TGUI\Components\TGUIComponentPageTools;
 use MediaWiki\Skins\TGUI\Components\TGUIComponentUserInfo;
 use MediaWiki\Skins\TGUI\Partials\BodyContent;
@@ -77,6 +78,7 @@ class SkinTGUI extends SkinMustache {
 		$bodycontent = new BodyContent( $this );
 
 		$components = [
+			'data-main-menu' => new TGUIComponentPageSidebar( $parentData['data-portlets-sidebar'] ),
 			'data-page-heading' => new TGUIComponentPageHeading(
 				$localizer,
 				$out,
@@ -175,122 +177,6 @@ class SkinTGUI extends SkinMustache {
 	 */
 	private function doesSearchHaveThumbnails(): bool {
 		return $this->getConfig()->get( 'TGUIWvuiSearchOptions' )['showThumbnail'];
-	}
-
-	/**
-	 * Helper for applying TGUI menu classes to portlets
-	 *
-	 * @param array $portletData returned by SkinMustache to decorate
-	 * @param int $type representing one of the menu types (see MENU_TYPE_* constants)
-	 * @return array modified version of portletData input
-	 */
-	private function updatePortletClasses(
-		array $portletData,
-		int $type = self::MENU_TYPE_DEFAULT
-	) {
-		$extraClasses = [
-			self::MENU_TYPE_DROPDOWN => 'tgui-menu-dropdown',
-			self::MENU_TYPE_TABS => 'tgui-menu-tabs',
-			self::MENU_TYPE_PORTAL => 'tgui-menu-portal portal',
-			self::MENU_TYPE_DEFAULT => '',
-		];
-		$portletData['class'] .= ' ' . $extraClasses[$type];
-
-		if ( !isset( $portletData['heading-class'] ) ) {
-			$portletData['heading-class'] = '';
-		}
-		if ( $type === self::MENU_TYPE_DROPDOWN ) {
-			$portletData = Hooks\SkinHooks::updateDropdownMenuData( $portletData );
-		}
-
-		$portletData['class'] = trim( $portletData['class'] );
-		$portletData['heading-class'] = trim( $portletData['heading-class'] );
-		return $portletData;
-	}
-
-	/**
-	 * Performs updates to all portlets.
-	 *
-	 * @param array $data
-	 * @return array
-	 */
-	private function decoratePortletsData( array $data ) {
-		foreach ( $data['data-portlets'] as $key => $pData ) {
-			$data['data-portlets'][$key] = $this->decoratePortletData(
-				$key,
-				$pData
-			);
-		}
-		$sidebar = $data['data-portlets-sidebar'];
-		$sidebar['data-portlets-first'] = $this->decoratePortletData(
-			'navigation', $sidebar['data-portlets-first']
-		);
-		$rest = $sidebar['array-portlets-rest'];
-		foreach ( $rest as $key => $pData ) {
-			$rest[$key] = $this->decoratePortletData(
-				$pData['id'], $pData
-			);
-		}
-		$sidebar['array-portlets-rest'] = $rest;
-		$data['data-portlets-sidebar'] = $sidebar;
-		return $data;
-	}
-
-	/**
-	 * Performs the following updates to portlet data:
-	 * - Adds concept of menu types
-	 * - Marks the selected variant in the variant portlet
-	 * - modifies tooltips of personal and user-menu portlets
-	 * @param string $key
-	 * @param array $portletData
-	 * @return array
-	 */
-	private function decoratePortletData(
-		string $key,
-		array $portletData
-	): array {
-		switch ( $key ) {
-			case 'data-user-menu':
-			case 'data-actions':
-			case 'data-variants':
-			case 'data-sticky-header-toc':
-				$type = self::MENU_TYPE_DROPDOWN;
-				break;
-			case 'data-views':
-			case 'data-associated-pages':
-			case 'data-namespaces':
-				$type = self::MENU_TYPE_TABS;
-				break;
-			case 'data-notifications':
-			case 'data-personal':
-			case 'data-user-page':
-			default:
-				$type = self::MENU_TYPE_PORTAL;
-				break;
-		}
-
-		// Special casing for Variant to change label to selected.
-		// Hopefully we can revisit and possibly remove this code when the language switcher is moved.
-		if ( $key === 'data-variants' ) {
-			$languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
-			$pageLang = $this->getTitle()->getPageLanguage();
-			$converter = $languageConverterFactory->getLanguageConverter( $pageLang );
-			$portletData['label'] = $pageLang->getVariantname(
-				$converter->getPreferredVariant()
-			);
-			// T289523 Add aria-label data to the language variant switcher.
-			$portletData['aria-label'] = $this->msg( 'tgui-language-variant-switcher-label' );
-		}
-
-		$portletData = $this->updatePortletClasses(
-			$portletData,
-			$type
-		);
-
-		return $portletData + [
-			'is-dropdown' => $type === self::MENU_TYPE_DROPDOWN,
-			'is-portal' => $type === self::MENU_TYPE_PORTAL,
-		];
 	}
 
 	/**

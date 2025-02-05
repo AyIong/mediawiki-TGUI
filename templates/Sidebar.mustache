@@ -1,14 +1,3 @@
-{{!
-	@typedef object emphasized-sidebar-action
-	@prop string href
-	@prop string text
-
-	string html-logo-attributes for site logo. Must be used inside tag e.g. `class="logo" lang="en-gb"`
-	MenuDefinition data-portlets-first
-	MenuDefinition[] array-portlets-rest
-	emphasized-sidebar-action data-emphasized-sidebar-action For displaying an emphasized action in the sidebar.
-}}
-
 <nav id="tgui-panel" class="tgui-sidebar" role="navigation">
 	<div class="tgui-sidebar-content">
 		{{#data-portlets-first}}{{>Menu}}{{/data-portlets-first}}
