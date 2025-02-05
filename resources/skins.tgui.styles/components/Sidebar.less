@@ -4,7 +4,7 @@
 .tgui-sidebar-container {
   display: flex;
   flex-direction: column;
-  flex-basis: @width-sidebar-px;
+  flex-basis: var(--sidebar-width);
   pointer-events: none;
   overflow: hidden;
   position: sticky;
@@ -16,7 +16,7 @@
   z-index: var(--index-static);
 
   @media (min-width: @min-width-desktop-wide) {
-    flex-basis: @width-sidebar-px-wide;
+    --sidebar-width: var(--sidebar-width-wide);
   }
 }
 
@@ -59,7 +59,7 @@
 
 @media (max-width: @max-width-tablet) {
   .tgui-sidebar-container {
-    width: @width-sidebar-px-wide;
+    width: var(--sidebar-width-wide);
 
     .tgui-sidebar-content .tgui-menu {
       margin: 0.5em;

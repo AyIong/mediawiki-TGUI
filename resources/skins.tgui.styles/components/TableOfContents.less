@@ -8,7 +8,7 @@
   position: sticky;
   bottom: 0;
   height: 50%;
-  width: @width-sidebar-px;
+  width: var(--sidebar-width);
   box-sizing: border-box;
   background-color: var(--color-base-fill);
   border-top: var(--border-classic);
@@ -20,7 +20,7 @@
   z-index: var(--index-static);
 
   @media (min-width: @min-width-desktop-wide) {
-    width: @width-sidebar-px-wide;
+    width: var(--sidebar-width-wide);
   }
 
   @media (min-width: @min-width-desktop) {
