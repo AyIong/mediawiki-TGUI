@@ -7,6 +7,20 @@ function deferredTasks() {
   setupObservers.main();
   document.documentElement.classList.add('tgui-animations-ready');
   registerServiceWorker();
+
+  window.addEventListener(
+    'beforeunload',
+    () => {
+      // Set up loading indicator
+      document.documentElement.classList.add('tgui-loading');
+    },
+    false,
+  );
+
+  // Remove loading indicator once the page is unloaded/hidden
+  window.addEventListener('pagehide', () => {
+    document.documentElement.classList.remove('tgui-loading');
+  });
 }
 
 /**
