@@ -87,7 +87,7 @@ button {
   }
 }
 
-.skin-tgui .mw-collapsible-toggle {
+.skin-tgui .mw-collapsible-toggle:not(legend) {
   .tgui-collapsible-toggle();
 
   &[aria-expanded='true'] {
@@ -168,7 +168,7 @@ input[type='radio'] {
   }
 
   &:checked {
-    background-color: var(--color-bg-focus);
+    background-color: var(--color-base-fill);
     border: 5px solid var(--color-border-input-focus);
   }
 }
