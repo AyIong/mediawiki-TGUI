@@ -8,6 +8,7 @@ use Config;
 use Html;
 use DateTime;
 use IContextSource;
+use MediaWiki\Hook\SkinBuildSidebarHook;
 use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader as RL;
@@ -30,6 +31,7 @@ use User;
  */
 class SkinHooks implements
 	BeforePageDisplayHook,
+	SkinBuildSidebarHook,
 	SkinPageReadyConfigHook
 {
 	use GetConfigTrait;
@@ -103,6 +105,29 @@ class SkinHooks implements
 					$out->addHeadItem('skin.tgui.holiday.' . $holiday['name'], $script);
 				}
 			}
+		}
+	}
+
+	/**
+	 * Modify sidebar links
+	 * Allow to add FA icons to it
+	 *
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/SkinBuildSidebar
+	 * @param Skin $skin
+	 * @param array &$bar
+	 */
+	public function onSkinBuildSidebar( $skin, &$bar ): void {
+		foreach ( $bar as $section => &$links ) {
+			if ( is_array( $links ) ) {
+				foreach ( $links as &$link ) {
+					if ( isset($link['text']) && strpos($link['text'], '::') !== false ) {
+						[$label, $icon] = explode('::', $link['text'], 2);
+						$link['text'] = trim($label);
+						$link['icon'] = trim($icon);
+					}
+				}
+			}
+			self::addIconsToMenuItems( $bar, $section, true );
 		}
 	}
 
@@ -268,7 +293,7 @@ class SkinHooks implements
 	 * @param array &$links
 	 * @param string $menu identifier
 	 */
-	private static function addIconsToMenuItems( &$links, $menu ) {
+	private static function addIconsToMenuItems( &$links, $menu, $fontAwesome = false ) {
 		// Loop through each menu to check/append its link classes.
 		foreach ( $links[$menu] as $key => $item ) {
 			$icon = $item['icon'] ?? '';
@@ -278,7 +303,7 @@ class SkinHooks implements
 				// Avoid using mw-ui-icon in case its styles get loaded
 				// Sometimes extension includes the "wikimedia-" part in the icon key (e.g. ULS),
 				// so we apply both classes just to be safe
-				$links[$menu][$key]['link-html'] = '<span class="tgui-icon tgui-icon-' . $icon .'"></span>';
+				$links[$menu][$key]['link-html'] = $fontAwesome ? '<i class="fa fa-' . $icon .'"></i>' : '<span class="tgui-icon tgui-icon-' . $icon .'"></span>';
 			}
 		}
 	}

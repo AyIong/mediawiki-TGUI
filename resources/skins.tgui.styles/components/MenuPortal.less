@@ -23,7 +23,7 @@
       }
 
       .tgui-menu__content ul {
-        padding: 0.5em 0;
+        padding: 0.5rem 0.4rem;
       }
     }
 
@@ -43,26 +43,31 @@
       background-color: var(--color-second);
 
       ul {
+        display: flex;
+        flex-direction: column;
         list-style: none;
-        padding: ~'calc(0.5em + 2px)' 0 0.5em;
+        gap: 0.33rem;
+        padding: ~'calc(0.5rem + 2px)' 0.4rem 0.5rem;
       }
 
       li {
         .tgui-button();
+        word-wrap: break-word;
         font-size: 0.75em;
         line-height: @line-height-nav;
-        word-wrap: break-word;
-        margin: 0 0.5em 0.5em 0.5em;
-
-        &:last-child {
-          margin-bottom: 0;
-        }
+        margin: 0;
 
         a {
           display: inline-flex;
           width: 100%;
-          padding: 0.5em 0 0.25em 0.5em;
-          text-shadow: none;
+          height: 1.9em;
+          line-height: 2px;
+          padding: 0 0.33rem;
+          align-items: center;
+
+          i {
+            width: 1.5em;
+          }
         }
       }
     }

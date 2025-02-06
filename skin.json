@@ -73,6 +73,7 @@
   },
   "Hooks": {
     "BeforePageDisplay": "SkinHooks",
+    "SkinBuildSidebar": "SkinHooks",
     "SkinPageReadyConfig": "SkinHooks"
   },
   "ResourceModules": {
