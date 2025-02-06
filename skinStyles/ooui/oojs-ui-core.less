@@ -312,7 +312,13 @@
       content: '\f121';
     }
 
-    &newline:before {
+    &markup:before {
+      content: '\f121';
+      font-size: 1.2em;
+    }
+
+    &newline:before,
+    &wrapping:before {
       content: '\f3be';
     }
 
@@ -453,6 +459,14 @@
 
     &success:before {
       content: '\f00c';
+    }
+
+    &pilcrow:before {
+      content: '\f1dd';
+    }
+
+    &gotoLine:before {
+      content: '\f124';
     }
   }
 
