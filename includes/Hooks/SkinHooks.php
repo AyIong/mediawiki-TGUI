@@ -125,6 +125,10 @@ class SkinHooks implements
 						$link['text'] = trim($label);
 						$link['icon'] = trim($icon);
 					}
+
+					if ( isset($link['id']) && strpos($link['id'], '-::') !== false ) {
+						$link['id'] = trim(explode('-::', $link['id'], 3)[0]);
+					}
 				}
 			}
 			self::addIconsToMenuItems( $bar, $section, true );
