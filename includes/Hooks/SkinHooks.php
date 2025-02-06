@@ -117,6 +117,11 @@ class SkinHooks implements
 	 * @param array &$bar
 	 */
 	public function onSkinBuildSidebar( $skin, &$bar ): void {
+		// Be extra safe because it might be active on other skins with caching
+		if ( $skin->getSkinName() !== 'tgui' || !$bar ) {
+			return;
+		}
+
 		foreach ( $bar as $section => &$links ) {
 			if ( is_array( $links ) ) {
 				foreach ( $links as &$link ) {
