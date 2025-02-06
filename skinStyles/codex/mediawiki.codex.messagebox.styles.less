@@ -1,0 +1,63 @@
+.skin-tgui {
+  .cdx-message {
+    overflow: hidden;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    padding: 0.33em 0.5em;
+    margin: 0.5em 0 0.5em 0;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      var(--color-dark) 10px,
+      var(--color-dark) 20px
+    );
+    background-color: var(--color-notice);
+    color: var(--color-text);
+    border: none;
+    border-radius: var(--border-radius-medium);
+
+    &--warning {
+      background-color: var(--color-notice-blue);
+
+      .cdx-message__icon:before {
+        content: '\f071';
+      }
+    }
+
+    &--error {
+      background-color: var(--color-notice-red);
+
+      .cdx-message__icon:before {
+        content: '\f06a';
+      }
+    }
+
+    &--success {
+      background-color: var(--color-notice-green);
+
+      .cdx-message__icon:before {
+        content: '\f058';
+      }
+    }
+
+    p {
+      margin: 0 0 0.5em;
+    }
+
+    strong {
+      color: var(--color-text);
+    }
+  }
+
+  .cdx-message__icon {
+    background-color: transparent !important;
+    mask-image: none !important;
+
+    &:before {
+      font: var(--fa-font-solid);
+      font-size: 1.25rem;
+      line-height: 1.25em;
+    }
+  }
+}
