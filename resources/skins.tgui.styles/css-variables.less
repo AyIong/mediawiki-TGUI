@@ -130,12 +130,6 @@
   --border-classic: 1px solid var(--color-border);
   --border-classic-input: 1px solid var(--color-border-input);
   --border-classic-input-focus: 1px solid var(--color-border-input-focus);
-
-  /* Deprecated. Don't use it! */
-  --color-bg-section: var(--color-base);
-  --color-bg-section-opaque: var(--color-base-fill);
-  --color-bg-section-light: var(--color-second);
-  --color-bg-section-light-opaque: var(--color-second-fill);
 }
 
 /* Animations */
@@ -159,10 +153,10 @@
   --color-bg-hover: rgba(255, 255, 255, 0.075);
   --color-bg-focus: rgba(255, 255, 255, 0.125);
 
-  --color-base: rgba(0, 0, 0, 0.33);
-  --color-base-blur: var(--color-base-blur-important);
-  --color-base-blur-important: hsla(0, 0%, 8.55%, 0.85);
-  --color-base-fill: hsl(0, 0%, 9.75%);
+  --color-primal: rgba(0, 0, 0, 0.33);
+  --color-primal-blur: var(--color-primal-blur-important);
+  --color-primal-blur-important: hsla(0, 0%, 8.55%, 0.85);
+  --color-primal-fill: hsl(0, 0%, 9.75%);
 
   --color-second: rgba(125, 125, 125, 0.075);
   --color-second-blur: var(--color-second-blur-important);
@@ -182,7 +176,7 @@
   --color-dark: rgba(0, 0, 0, 0.15);
 
   /* Scrollbar */
-  --color-scrollbar-base: var(--color-base-fill);
+  --color-scrollbar-base: var(--color-primal-fill);
   --color-scrollbar-thumb: hsl(0, 0%, 20%);
 
   /* Notices */
@@ -244,10 +238,10 @@
   --color-bg-hover: rgba(0, 0, 0, 0.075);
   --color-bg-focus: rgba(0, 0, 0, 0.125);
 
-  --color-base: rgba(204, 201, 198, 0.33);
-  --color-base-blur: var(--color-base-blur-important);
-  --color-base-blur-important: hsla(30, 5%, 92.5%, 0.85);
-  --color-base-fill: hsl(30, 6%, 93%);
+  --color-primal: rgba(204, 201, 198, 0.33);
+  --color-primal-blur: var(--color-primal-blur-important);
+  --color-primal-blur-important: hsla(30, 5%, 92.5%, 0.85);
+  --color-primal-fill: hsl(30, 6%, 93%);
 
   --color-second: hsla(25, 5%, 60%, 0.15);
   --color-second-blur: var(--color-second-blur-important);
@@ -267,7 +261,7 @@
   --color-dark: rgba(0, 0, 0, 0.05);
 
   /* Scrollbar - Light */
-  --color-scrollbar-base: var(--color-base-fill);
+  --color-scrollbar-base: var(--color-primal-fill);
   --color-scrollbar-thumb: hsl(30, 1%, 70%);
 
   /* Notices */

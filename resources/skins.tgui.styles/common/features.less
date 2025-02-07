@@ -35,14 +35,14 @@
 .disable-blur() {
   :root& {
     --blur-default: none;
-    --color-base-blur: var(--color-base-fill);
+    --color-primal-blur: var(--color-primal-fill);
     --color-second-blur: var(--color-second-fill);
   }
 
   @media (prefers-color-scheme: light) {
     :root& {
       --blur-default: none;
-      --color-base-blur: var(--color-base-fill);
+      --color-primal-blur: var(--color-primal-fill);
       --color-second-blur: var(--color-second-fill);
     }
   }
@@ -50,7 +50,7 @@
   @media (prefers-color-scheme: dark) {
     :root& {
       --blur-default: none;
-      --color-base-blur: var(--color-base-fill);
+      --color-primal-blur: var(--color-primal-fill);
       --color-second-blur: var(--color-second-fill);
     }
   }

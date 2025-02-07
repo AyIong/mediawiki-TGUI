@@ -1,0 +1,102 @@
+/**
+ * Codex Design Tokens v1.20.1
+ * Design System for Wikimedia
+ * See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
+ */
+
+:root {
+  /* Ready Colors */
+  --color-base: var(--color-text-darker);
+  --color-base--hover: var(--color-text);
+  --color-subtle: var(--color-text-gray);
+
+  --background-color-base: var(--color-second);
+  --border-color-base: var(--color-border);
+
+  --background-color-backdrop-light: var(--color-primal-blur);
+
+  /* WiP Colors */
+  --color-emphasized: var(--color-text);
+  --background-color-neutral-subtle: var(--color-primal-fill);
+
+  --background-color-interactive: var(--color-second);
+  --background-color-interactive--hover: var(--color-bg-hover);
+  --background-color-interactive--active: var(--color-bg-focus);
+  --background-color-interactive-subtle: var(--color-second);
+  --background-color-interactive-subtle--hover: var(--color-bg-hover);
+  --background-color-interactive-subtle--active: var(--color-bg-focus);
+  --background-color-progressive-subtle: var(--color-second);
+  --background-color-progressive-subtle--hover: var(--color-bg-hover);
+  --background-color-progressive-subtle--active: var(--color-bg-focus);
+  --background-color-destructive-subtle: var(--color-second);
+  --background-color-destructive-subtle--hover: var(--color-bg-hover);
+  --background-color-destructive-subtle--active: var(--color-bg-focus);
+  --background-color-error-subtle: var(--color-second);
+  --background-color-error-subtle--hover: var(--color-bg-hover);
+  --background-color-error-subtle--active: var(--color-bg-focus);
+
+  --background-color-progressive: var(--color-secondary);
+  --background-color-progressive--hover: var(--color-secondary-light);
+  --background-color-progressive--active: var(--color-secondary-dark);
+  --background-color-progressive--focus: var(--color-secondary-dark);
+  --color-progressive: var(--color-secondary);
+  --color-progressive--hover: var(--color-secondary-light);
+  --color-progressive--active: var(--color-secondary-dark);
+  --color-progressive--focus: var(--color-secondary-dark);
+
+  --background-color-destructive: var(--color-red);
+  --background-color-destructive--hover: var(--color-red-light);
+  --background-color-destructive--active: var(--color-red-dark);
+  --background-color-destructive--focus: var(--color-red-dark);
+  --color-destructive: var(--color-red);
+  --color-destructive--hover: var(--color-red-light);
+  --color-destructive--active: var(--color-red-dark);
+  --color-destructive--focus: var(--color-red-dark);
+
+  --background-color-error: var(--color-red);
+  --background-color-error--hover: var(--color-red-light);
+  --background-color-error--active: var(--color-red-dark);
+  --color-error: var(--color-red);
+  --color-error--hover: var(--color-red-light);
+  --color-error--active: var(--color-red-dark);
+
+  --background-color-disabled: var(--color-gray);
+  --background-color-disabled-subtle: var(--color-gray);
+  --color-disabled: var(--color-gray);
+  --color-disabled-emphasized: var(--color-gray);
+  --border-color-disabled: var(--color-gray);
+
+  --border-color-progressive: var(--color-secondary);
+  --border-color-progressive--hover: var(--color-secondary-light);
+  --border-color-progressive--active: var(--color-border-input-focus);
+  --border-color-progressive--focus: var(--color-border-input-focus);
+
+  --border-color-interactive: color-mix(in srgb, var(--color-primal-fill), var(--color-text) 15%);
+  --border-color-interactive--hover: color-mix(in srgb, var(--color-primal-fill), var(--color-text) 17.5%);
+  --border-color-interactive--active: color-mix(in srgb, var(--color-primal-fill), var(--color-text) 20%);
+  --border-color-input--hover: var(--color-border-input);
+
+  --box-shadow-color-progressive--active: #233566;
+  --box-shadow-color-progressive--focus: var(--color-secondary);
+  --box-shadow-color-progressive-selected: var(--color-secondary);
+  --box-shadow-color-progressive-selected--hover: var(--color-secondary-light);
+  --box-shadow-color-progressive-selected--active: var(--color-secondary-dark);
+  --box-shadow-color-inverted: transparent;
+
+  /* 'Visited' color. In combination with progressive. Used for default links. */
+  --color-visited: var(--color-hyperlink);
+  --color-visited--hover: var(--color-hyperlink-hover);
+  --color-visited--active: var(--color-hyperlink-hover);
+  /* Red link 'Visited' color. Used for visited red links. */
+  --color-destructive--visited: var(--color-hyperlink-visited);
+  --color-destructive--visited--hover: var(--color-hyperlink-visited-hover);
+  --color-destructive--visited--active: var(--color-hyperlink-visited-hover);
+  /* Red ('new') Link color and states */
+  --color-link-red: var(--color-hyperlink-new);
+  --color-link-red--hover: var(--color-hyperlink-new-hover);
+  --color-link-red--active: var(--color-hyperlink-new-hover);
+  --color-link-red--focus: var(--color-hyperlink-new-hover);
+  --color-link-red--visited: var(--color-hyperlink-new-visited);
+  --color-link-red--visited--hover: var(--color-hyperlink-new-visited-hover);
+  --color-link-red--visited--active: var(--color-hyperlink-new-visited-hover);
+}
