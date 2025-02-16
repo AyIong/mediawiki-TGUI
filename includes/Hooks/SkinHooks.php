@@ -125,14 +125,14 @@ class SkinHooks implements
 		foreach ( $bar as $section => &$links ) {
 			if ( is_array( $links ) ) {
 				foreach ( $links as &$link ) {
-					if ( isset($link['text']) && strpos($link['text'], '::') !== false ) {
-						[$label, $icon] = explode('::', $link['text'], 2);
+					if ( isset($link['text']) && strpos($link['text'], ' :: ') !== false ) {
+						[$label, $icon] = explode(' :: ', $link['text'], 4);
 						$link['text'] = trim($label);
 						$link['icon'] = trim($icon);
 					}
 
-					if ( isset($link['id']) && strpos($link['id'], '-::') !== false ) {
-						$link['id'] = trim(explode('-::', $link['id'], 3)[0]);
+					if ( isset($link['id']) && strpos($link['id'], '-::-') !== false ) {
+						$link['id'] = trim(explode('-::-', $link['id'], 4)[0]);
 					}
 				}
 			}

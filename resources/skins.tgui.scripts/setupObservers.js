@@ -195,7 +195,7 @@ const main = () => {
       document.body.classList.remove(SCROLL_DOWN_CLASS);
       document.body.classList.add(SCROLL_UP_CLASS);
 
-      if (window.scrollY === 0) {
+      if (window.scrollY < 10) {
         document.body.classList.remove(SCROLL_OFFTOP_CLASS);
       }
     },

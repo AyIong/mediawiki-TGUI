@@ -34,8 +34,8 @@
 
 #footer-places {
   display: flex;
-  align-items: center;
-  margin-bottom: 0;
+  flex-wrap: wrap;
+  align-items: flex-end;
 
   #footer-places-links {
     display: flex;
@@ -43,16 +43,22 @@
     flex-wrap: wrap;
     flex-grow: 1;
     margin: 0;
+    gap: 0.5em;
 
     li {
-      margin-right: 1em;
-      line-height: @line-height-footer-buttons;
+      margin: 0;
 
       a {
         .tgui-button();
         padding: 0.5em 0.75em;
         text-wrap: nowrap;
       }
+    }
+  }
+
+  @media (max-width: @max-width-mobile) {
+    li {
+      margin-top: 0.5em;
     }
   }
 }
