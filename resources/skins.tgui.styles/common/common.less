@@ -149,13 +149,11 @@ body {
   z-index: var(--index-base);
 }
 
+// Creates a fitted container with blur
 .tgui-blur,
 .tgui-blur-important {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   z-index: var(--index-lower);
 }
 
@@ -165,6 +163,18 @@ body {
 
 .tgui-blur-important {
   backdrop-filter: var(--blur-important);
+}
+
+/**
+ * Creates a fitted container with base background color.
+ * Usefull if you don't want to use blur, but want to mix colors.
+ * Container must be relative.
+ */
+.tgui-background:before {
+  background: var(--color-primal-fill);
+  position: absolute;
+  inset: 0;
+  z-index: var(--index-low);
 }
 
 ::selection {
