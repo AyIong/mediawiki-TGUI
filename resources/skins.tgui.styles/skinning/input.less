@@ -183,6 +183,10 @@ input[type='range'] {
   background-color: transparent;
   border-radius: var(--border-radius-small);
 
+  &:hover::-webkit-slider-thumb {
+    box-shadow: -400px 0 0 400px var(--color-secondary);
+  }
+
   &::-webkit-slider-runnable-track {
     height: 2rem;
     background: ~'hsl(var(--primary-hue), 40%, var(--primary-lightness--soft))';
@@ -196,5 +200,6 @@ input[type='range'] {
     width: 0;
     background-color: transparent;
     box-shadow: -400px 0 0 400px var(--color-primary);
+    transition: box-shadow var(--transition-time);
   }
 }

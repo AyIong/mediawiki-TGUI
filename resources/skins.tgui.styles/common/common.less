@@ -168,13 +168,16 @@ body {
 /**
  * Creates a fitted container with base background color.
  * Usefull if you don't want to use blur, but want to mix colors.
- * Container must be relative.
  */
-.tgui-background:before {
-  background: var(--color-primal-fill);
-  position: absolute;
-  inset: 0;
-  z-index: var(--index-low);
+.tgui-background {
+  position: relative;
+
+  &:before {
+    background: var(--color-primal-fill);
+    position: absolute;
+    inset: 0;
+    z-index: var(--index-low);
+  }
 }
 
 ::selection {
