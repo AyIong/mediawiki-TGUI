@@ -95,14 +95,14 @@ class SkinHooks implements
 					$style = file_get_contents(MW_INSTALL_PATH . $cssPath);
 					$style = Html::inlineStyle($style);
 					$style = RL\ResourceLoader::filter('minify-css', $style);
-					$out->addHeadItem('skin.tgui.holiday.' . $holiday['name'], $style);
+					$out->addHeadItem('skin.tgui.holiday.' . $holiday['name'] . 'style', $style);
 				}
 
 				if (file_exists(MW_INSTALL_PATH . $jsPath)) {
 					$script = file_get_contents(MW_INSTALL_PATH . $jsPath);
 					$script = Html::inlineScript($script);
 					$script = RL\ResourceLoader::filter('minify-js', $script);
-					$out->addHeadItem('skin.tgui.holiday.' . $holiday['name'], $script);
+					$out->addHeadItem('skin.tgui.holiday.' . $holiday['name'] . 'script', $script);
 				}
 			}
 		}
