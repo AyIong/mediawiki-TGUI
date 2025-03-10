@@ -29,7 +29,7 @@
   }
 }
 
-// MARK: Theme styles
+// MARK: Styles - NTOS
 .dark-ntos() {
   --color-bg: hsl(212.5, 30.75%, 15.3%);
   --color-primal-blur: hsla(213.75, 20%, 9%, 0.85);
@@ -65,6 +65,45 @@
 .skin-theme-clientpref-day.tgui-feature-theme-style-clientpref-ntos {
   :root& {
     .light-ntos();
+  }
+}
+
+// MARK: Styles - Paradise
+.dark-paradise() {
+  --color-bg: hsl(340, 50%, 14.5%);
+  --color-primal-blur: hsla(342, 50%, 9%, 0.85);
+  --color-primal-fill: hsl(337.78, 50%, 9.75%);
+}
+
+.light-paradise() {
+  --color-primal: hsla(340, 50%, 80%, 0.33);
+  --color-primal-blur: hsla(340, 50%, 92.5%, 0.85);
+  --color-primal-fill: hsl(339, 52%, 94%);
+}
+
+.skin-theme-clientpref-os.tgui-feature-theme-style-clientpref-paradise {
+  @media (prefers-color-scheme: dark) {
+    :root& {
+      .dark-paradise();
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root& {
+      .light-paradise();
+    }
+  }
+}
+
+.skin-theme-clientpref-night.tgui-feature-theme-style-clientpref-paradise {
+  :root& {
+    .dark-paradise();
+  }
+}
+
+.skin-theme-clientpref-day.tgui-feature-theme-style-clientpref-paradise {
+  :root& {
+    .light-paradise();
   }
 }
 
