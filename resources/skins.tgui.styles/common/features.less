@@ -113,17 +113,18 @@
     --blur-default: none;
   }
 
-  @media (prefers-color-scheme: light) {
+  @media (prefers-color-scheme: light), (prefers-color-scheme: dark) {
     :root& {
-      --color-primal-blur: var(--color-primal-fill);
-      --color-second-blur: var(--color-second-fill);
+      --color-primal-blur: var(--color-primal-fill) !important;
+      --color-second-blur: var(--color-second-fill) !important;
     }
   }
 
-  @media (prefers-color-scheme: dark) {
+  .skin-theme-clientpref-day,
+  .skin-theme-clientpref-night {
     :root& {
-      --color-primal-blur: var(--color-primal-fill);
-      --color-second-blur: var(--color-second-fill);
+      --color-primal-blur: var(--color-primal-fill) !important;
+      --color-second-blur: var(--color-second-fill) !important;
     }
   }
 }
