@@ -157,9 +157,9 @@
   --color-primal-fill: var(--color-primal-immutable);
   --color-primal-immutable: hsl(0, 0%, 9.75%);
 
-  --color-second: rgba(125, 125, 125, 0.075);
-  --color-second-blur: hsla(0, 0%, 13%, 0.85);
-  --color-second-fill: hsl(0, 0%, 12.5%);
+  --color-second: ~'color-mix(in srgb, hsla(0, 0%, 100%,0.04), var(--color-primal-fill) 30%)';
+  --color-second-blur: ~'color-mix(in srgb, hsla(0, 0%, 100%, 0.2), var(--color-primal-fill) 85%)';
+  --color-second-fill: ~'color-mix(in srgb, var(--color-primal-fill), white 3%)';
 
   --color-text: hsl(0, 0%, 100%);
   --color-text-darker: ~'hsl(var(--primary-hue), 12.5%, 85%)';
@@ -175,7 +175,7 @@
 
   /* Scrollbar */
   --color-scrollbar-base: var(--color-primal-fill);
-  --color-scrollbar-thumb: ~'color-mix(in srgb, var(--color-scrollbar-base), white 25%)';
+  --color-scrollbar-thumb: ~'color-mix(in oklch, var(--color-scrollbar-base), white 20%)';
 
   /* Notices */
   --color-notice: hsl(0, 0%, 40%);
@@ -236,14 +236,14 @@
   --color-bg-hover: rgba(0, 0, 0, 0.075);
   --color-bg-focus: rgba(0, 0, 0, 0.125);
 
-  --color-primal: rgba(204, 201, 198, 0.33);
-  --color-primal-blur: hsla(30, 5%, 92.5%, 0.85);
+  --color-primal: hsla(30, 7.5%, 80%, 0.33);
+  --color-primal-blur: hsla(30, 7.5%, 92.5%, 0.85);
   --color-primal-fill: var(--color-primal-immutable);
-  --color-primal-immutable: hsl(30, 6%, 93%);
+  --color-primal-immutable: hsl(20, 9%, 94%);
 
-  --color-second: hsla(25, 5%, 60%, 0.15);
-  --color-second-blur: hsla(25, 5%, 87.75%, 0.85);
-  --color-second-fill: hsl(25, 5%, 88.75%);
+  --color-second: ~'color-mix(in srgb, hsla(0,0%,0%,0.07), var(--color-primal-fill) 33%)';
+  --color-second-blur: ~'color-mix(in srgb,hsla(0,0%,5%,0.33),var(--color-primal-fill) 85%)';
+  --color-second-fill: ~'color-mix(in srgb, var(--color-primal-fill), black 4.5%)';
 
   --color-text: hsl(0, 0%, 0%);
   --color-text-darker: ~'hsl(var(--primary-hue), 25%, 15%)';
@@ -259,7 +259,7 @@
 
   /* Scrollbar - Light */
   --color-scrollbar-base: var(--color-primal-fill);
-  --color-scrollbar-thumb: ~'color-mix(in srgb, var(--color-scrollbar-base), black 25%)';
+  --color-scrollbar-thumb: ~'color-mix(in oklch, var(--color-scrollbar-base), black 20%)';
 
   /* Notices */
   --color-notice: hsl(0, 0%, 60%);

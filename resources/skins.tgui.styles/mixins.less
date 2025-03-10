@@ -34,7 +34,7 @@
     height: 2rem;
     font-size: 0.95rem;
     font-family: Verdana, Arial, sans-serif;
-    background-color: var(--color-bg-focus);
+    background-color: color-mix(in hsl, var(--color-primal-fill), white 12.5%);
     color: var(--color-text-semi-translucent);
     border-bottom: 1px solid var(--color-second-fill);
     box-shadow: var(--shadow-template--small);
@@ -45,12 +45,6 @@
       color: var(--color-green);
       padding: 0 0.66rem;
       font-size: 1.45em;
-    }
-
-    &:after {
-      .absolute-fill();
-      background-color: var(--color-primal-fill);
-      z-index: -1;
     }
   }
 

@@ -6,9 +6,7 @@
       .dark-palette();
     }
   }
-}
 
-.skin-theme-clientpref-os {
   @media (prefers-color-scheme: light) {
     :root& {
       .light-theme();
@@ -28,6 +26,45 @@
   :root& {
     .light-theme();
     .light-palette();
+  }
+}
+
+// MARK: Theme styles
+.dark-ntos() {
+  --color-bg: hsl(212.5, 30.75%, 15.3%);
+  --color-primal-blur: hsla(213.75, 20%, 9%, 0.85);
+  --color-primal-fill: hsl(213.75, 30.75%, 10.2%);
+}
+
+.light-ntos() {
+  --color-primal: hsla(213.75, 50%, 80%, 0.33);
+  --color-primal-blur: hsla(213.75, 50%, 92.5%, 0.85);
+  --color-primal-fill: hsl(215, 52%, 94%);
+}
+
+.skin-theme-clientpref-os.tgui-feature-theme-style-clientpref-ntos {
+  @media (prefers-color-scheme: dark) {
+    :root& {
+      .dark-ntos();
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root& {
+      .light-ntos();
+    }
+  }
+}
+
+.skin-theme-clientpref-night.tgui-feature-theme-style-clientpref-ntos {
+  :root& {
+    .dark-ntos();
+  }
+}
+
+.skin-theme-clientpref-day.tgui-feature-theme-style-clientpref-ntos {
+  :root& {
+    .light-ntos();
   }
 }
 

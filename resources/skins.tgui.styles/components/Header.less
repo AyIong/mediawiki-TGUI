@@ -5,8 +5,9 @@
   position: sticky;
   top: 0;
   background-color: var(--color-primal-blur);
-  z-index: var(--index-static);
+  backdrop-filter: var(--blur-default);
   transition: box-shadow var(--transition-time);
+  z-index: var(--index-static);
 
   .tgui-off-top & {
     box-shadow: var(--shadow-template--small);
