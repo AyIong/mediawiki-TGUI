@@ -37,7 +37,7 @@ const CLIENTPREFS_THEME_MAP = [
 final class Theme extends Partial {
 
 	/**
-	 * Sets the corresponding theme class on the <html> element
+	 * Sets the corresponding theme and theme style classes on the <html> element
 	 * If the theme is set to auto, the theme switcher script will be added
 	 *
 	 * @param array &$options
@@ -48,12 +48,15 @@ final class Theme extends Partial {
 		// Set theme to site theme
 		$theme = $this->getConfigValue( 'TGUIThemeDefault' ) ?? 'auto';
 
-		// Legacy class to be deprecated
-		$out->addHtmlClasses( 'skin-tgui-' . $theme );
-
 		// Add HTML class based on theme set
 		if ( CLIENTPREFS_THEME_MAP[ $theme ] ) {
 			$out->addHtmlClasses( 'skin-theme-clientpref-' . CLIENTPREFS_THEME_MAP[ $theme ] );
 		}
+
+		// Set theme style
+		$themeStyle = $this->getConfigValue( 'TGUIThemeStyleDefault' ) ?? 'default';
+
+		// Add HTML class based on setted theme style
+		$out->addHtmlClasses( 'tgui-feature-theme-style-clientpref-' . $themeStyle );
 	}
 }

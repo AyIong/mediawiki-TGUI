@@ -284,6 +284,12 @@
       "descriptionmsg": "tgui-config-themedefault",
       "public": true
     },
+    "ThemeStyleDefault": {
+      "value": "default",
+      "description": "Default theme style of the skin. Valid values are 'default', 'ntos' and 'paradise'.",
+      "descriptionmsg": "tgui-config-themestyledefault",
+      "public": true
+    },
     "Tooltips": {
       "value": ["tooltiptext", "tooltiptext2", "tooltiptable"],
       "description": "Defines tooltip content css classes.",

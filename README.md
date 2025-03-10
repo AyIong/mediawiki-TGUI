@@ -57,6 +57,7 @@ Skin has a few configurations, you can use them if your wiki is not ready to use
 | - | - | - | - |
 | $wgTGUIEnablePreferences | Gives users the ability to customise the skin to their liking | `true` - enable <br> `false` - disable | `true` |
 | $wgTGUIThemeDefault | The default skin theme | `auto` - automatically switches between dark and light, depending on the theme of the device <br> `dark` and `light` <br> | `auto` |
+| $wgTGUIThemeStyleDefault | The default skin theme style | `default` - classic TGUI style <br> `ntos` - blue TGUI style <br> `paradise` - crimson style <br> | `default` |
 | $wgTGUITooltips | Defines tooltip content css classes. | List of css classes. Extend with $wgTGUITooltips[] = 'my_class'; | `["tooltiptext", "tooltiptext2", "tooltiptable"]` |
 | $wgTGUIReplaceTitleTooltips | Replacing of buildin browser tooltips with Floating UI custom ones. | `true` - enable <br> `false` - disable | `true` |
 | $wgTGUIEnableHolidays | Enables or disable holidays styles and scripts. | `true` - enable <br> `false` - disable | `true` |
