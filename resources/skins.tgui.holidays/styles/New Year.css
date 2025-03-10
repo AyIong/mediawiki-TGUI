@@ -11,7 +11,7 @@
 .mw-logo:before {
 	content: '';
 	position: absolute;
-	background: url('/skins/TGUI/resources/skins.tgui.holidays/images/santa-hat.png') no-repeat;
+	background: url('/skins/TGUI/resources/skins.tgui.holidays/assets/santa-hat.png') no-repeat;
 	background-size: 60px;
 	inset: 0;
 	top: -10px;

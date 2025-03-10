@@ -1,4 +1,7 @@
 html * {
 	font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', Arial, sans-serif;
-	transition: background-color 0.2s;
+	transition:
+		background-color 0.2s,
+		border-color 0.2s,
+		background 0.2s;
 }
