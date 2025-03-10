@@ -51,7 +51,7 @@
   --color-white-light: hsl(0, 0%, 85%);
   --color-gray-light: var(--color-grey-light);
 
-  /* TGUI Elements Colors (Darken orFocus/Active) */
+  /* TGUI Elements Colors (Darker or Focus/Active) */
   --color-primary-dark: ~'hsl(var(--primary-hue), 40%, calc(var(--primary-lightness) - 10%))';
   --color-secondary-dark: ~'hsl(var(--primary-hue), 70%, 40%)';
   --color-red-dark: hsl(0, 70%, 45%);
@@ -100,7 +100,6 @@
 
   /* Blur */
   --blur-default: saturate(150%) blur(24px);
-  --blur-important: saturate(150%) blur(24px);
 
   /* Height */
   --header-height: 3.25rem;
@@ -154,14 +153,12 @@
   --color-bg-focus: rgba(255, 255, 255, 0.125);
 
   --color-primal: rgba(0, 0, 0, 0.33);
-  --color-primal-blur: var(--color-primal-blur-important);
-  --color-primal-blur-important: hsla(0, 0%, 8.55%, 0.85);
+  --color-primal-blur: hsla(0, 0%, 8.55%, 0.85);
   --color-primal-fill: var(--color-primal-immutable);
   --color-primal-immutable: hsl(0, 0%, 9.75%);
 
   --color-second: rgba(125, 125, 125, 0.075);
-  --color-second-blur: var(--color-second-blur-important);
-  --color-second-blur-important: hsla(0, 0%, 13%, 0.85);
+  --color-second-blur: hsla(0, 0%, 13%, 0.85);
   --color-second-fill: hsl(0, 0%, 12.5%);
 
   --color-text: hsl(0, 0%, 100%);
@@ -240,21 +237,19 @@
   --color-bg-focus: rgba(0, 0, 0, 0.125);
 
   --color-primal: rgba(204, 201, 198, 0.33);
-  --color-primal-blur: var(--color-primal-blur-important);
-  --color-primal-blur-important: hsla(30, 5%, 92.5%, 0.85);
+  --color-primal-blur: hsla(30, 5%, 92.5%, 0.85);
   --color-primal-fill: var(--color-primal-immutable);
   --color-primal-immutable: hsl(30, 6%, 93%);
 
   --color-second: hsla(25, 5%, 60%, 0.15);
-  --color-second-blur: var(--color-second-blur-important);
-  --color-second-blur-important: hsla(25, 5%, 87.75%, 0.85);
+  --color-second-blur: hsla(25, 5%, 87.75%, 0.85);
   --color-second-fill: hsl(25, 5%, 88.75%);
 
   --color-text: hsl(0, 0%, 0%);
   --color-text-darker: ~'hsl(var(--primary-hue), 25%, 15%)';
   --color-text-gray: ~'hsl(var(--primary-hue), 10%, 50%)';
-  --color-text-translucent: rgba(0, 0, 0, 0.5);
-  --color-text-semi-translucent: rgba(0, 0, 0, 0.75);
+  --color-text-translucent: hsla(0, 0%, 0%, 0.5);
+  --color-text-semi-translucent: hsla(0, 0%, 0%, 0.75);
 
   --color-border: rgba(0, 0, 0, 0.1);
   --color-border-input: ~'hsl(var(--primary-hue), 100%, calc(var(--primary-lightness) + 10%))';

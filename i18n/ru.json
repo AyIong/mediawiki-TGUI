@@ -77,12 +77,15 @@
   "tgui-theme-day-label": "Светлая",
   "tgui-theme-night-label": "Тёмная",
   "tgui-theme-os-label": "Авто",
-  "tgui-theme-exclusion-notice": "Эта страница всегда отображается в светлом режиме.",
+
+  "tgui-feature-theme-style-name": "Стиль темы",
+  "tgui-feature-theme-style-default-label": "Классический",
+  "tgui-feature-theme-style-ntos-label": "NTOS",
+  "tgui-feature-theme-style-paradise-label": "Paradise",
 
   "tgui-feature-blur-name": "Эффекты размытия",
   "tgui-feature-blur-enabled-label": "Включены",
   "tgui-feature-blur-disabled-label": "Отключены",
-  "tgui-feature-blur-full-label": "Без фона",
 
   "tgui-feature-reduced-motion-name": "Пониженное движение",
   "tgui-feature-reduced-motion-enabled-label": "Включено",

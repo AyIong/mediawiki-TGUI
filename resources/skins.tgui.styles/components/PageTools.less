@@ -87,13 +87,13 @@
     margin: 0;
     padding: 0.33em;
     width: ~'calc(100% - 0.66em)'; // 1em for padding
-    background-color: var(--color-primal-blur-important);
+    background-color: var(--color-primal-blur);
     border-bottom: var(--border-classic);
     transform: translateY(-100%);
     transition:
       transform var(--transition-time),
       visibility var(--transition-time);
-    backdrop-filter: var(--blur-important);
+    backdrop-filter: var(--blur-default);
     z-index: var(--index-element);
 
     .tgui-scroll--up.tgui-off-top & {

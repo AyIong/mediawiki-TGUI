@@ -1,4 +1,4 @@
-/* Themes */
+// MARK: Themes
 .skin-theme-clientpref-os {
   @media (prefers-color-scheme: dark) {
     :root& {
@@ -31,17 +31,14 @@
   }
 }
 
-/* Blur */
-.disable-blur() {
+// MARK: Blur
+.tgui-feature-blur-clientpref-disabled {
   :root& {
     --blur-default: none;
-    --color-primal-blur: var(--color-primal-fill);
-    --color-second-blur: var(--color-second-fill);
   }
 
   @media (prefers-color-scheme: light) {
     :root& {
-      --blur-default: none;
       --color-primal-blur: var(--color-primal-fill);
       --color-second-blur: var(--color-second-fill);
     }
@@ -49,34 +46,13 @@
 
   @media (prefers-color-scheme: dark) {
     :root& {
-      --blur-default: none;
       --color-primal-blur: var(--color-primal-fill);
       --color-second-blur: var(--color-second-fill);
     }
   }
 }
 
-.tgui-feature-blur-clientpref-disabled {
-  .disable-blur();
-}
-
-.tgui-feature-blur-clientpref-full {
-  .disable-blur();
-
-  .nanotrasen-background {
-    position: unset;
-    display: none;
-  }
-}
-
-/* Reduced Motion */
-.tgui-feature-reduced-motion-clientpref-enabled {
-  :root& {
-    --transition-time: 0;
-  }
-}
-
-/* Darkened Images */
+// MARK: Darkened Images
 .tgui-feature-darkened-images-clientpref-light {
   html,
   body {
@@ -112,5 +88,12 @@
         }
       }
     }
+  }
+}
+
+// MARK: Reduced Motion
+.tgui-feature-reduced-motion-clientpref-enabled {
+  :root& {
+    --transition-time: 0;
   }
 }

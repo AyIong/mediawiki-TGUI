@@ -63,12 +63,15 @@
   "tgui-theme-day-label": "Світла",
   "tgui-theme-night-label": "Темна",
   "tgui-theme-os-label": "Авто",
-  "tgui-theme-exclusion-notice": "Ця сторінка завжди відображається у світлому режимі.",
+
+  "tgui-feature-theme-style-name": "Стиль теми",
+  "tgui-feature-theme-style-default-label": "Класичний",
+  "tgui-feature-theme-style-ntos-label": "NTOS",
+  "tgui-feature-theme-style-paradise-label": "Paradise",
 
   "tgui-feature-blur-name": "Ефекти розмиття",
   "tgui-feature-blur-enabled-label": "Увімкнені",
   "tgui-feature-blur-disabled-label": "Вимкнені",
-  "tgui-feature-blur-full-label": "Без фону",
 
   "tgui-feature-reduced-motion-name": "Зменшений рух",
   "tgui-feature-reduced-motion-enabled-label": "Увімкнено",

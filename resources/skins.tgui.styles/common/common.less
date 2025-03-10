@@ -150,19 +150,11 @@ body {
 }
 
 // Creates a fitted container with blur
-.tgui-blur,
-.tgui-blur-important {
+.tgui-blur {
   position: absolute;
   inset: 0;
-  z-index: var(--index-lower);
-}
-
-.tgui-blur {
   backdrop-filter: var(--blur-default);
-}
-
-.tgui-blur-important {
-  backdrop-filter: var(--blur-important);
+  z-index: var(--index-lower);
 }
 
 /**

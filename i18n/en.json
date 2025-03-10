@@ -43,17 +43,20 @@
   "tgui-actions-more-toggle": "More actions",
 
   "tgui-preferences": "Preferences",
-  "tgui-theme-name": "Color",
+  "tgui-theme-name": "Theme",
   "tgui-theme-description": "Change the theme of the wiki",
   "tgui-theme-day-label": "Light",
   "tgui-theme-night-label": "Dark",
   "tgui-theme-os-label": "Auto",
-  "tgui-theme-exclusion-notice": "This page is always in light mode.",
+
+  "tgui-feature-theme-style-name": "Theme style",
+  "tgui-feature-theme-style-default-label": "Classic",
+  "tgui-feature-theme-style-ntos-label": "NTOS",
+  "tgui-feature-theme-style-paradise-label": "Paradise",
 
   "tgui-feature-blur-name": "Blur Effects",
   "tgui-feature-blur-enabled-label": "Enabled",
   "tgui-feature-blur-disabled-label": "Disabled",
-  "tgui-feature-blur-full-label": "Without Background",
 
   "tgui-feature-reduced-motion-name": "Reduced Motion",
   "tgui-feature-reduced-motion-enabled-label": "Enabled",

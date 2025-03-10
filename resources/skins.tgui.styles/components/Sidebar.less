@@ -31,7 +31,7 @@
   z-index: var(--index-static);
 
   @media (min-width: @min-width-desktop) {
-    .tgui-blur-important {
+    .tgui-blur {
       backdrop-filter: none;
     }
   }
@@ -67,7 +67,7 @@
 
   .tgui-sidebar {
     visibility: hidden;
-    background-color: var(--color-primal-blur-important);
+    background-color: var(--color-primal-blur);
 
     @{selector-main-menu-open} ~ .tgui-page-container-inner .tgui-sidebar-container & {
       visibility: visible;

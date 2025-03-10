@@ -3,8 +3,12 @@
     "options": ["day", "night", "os"],
     "preferenceKey": "tgui-theme"
   },
+  "tgui-feature-theme-style": {
+    "options": ["default", "ntos", "paradise"],
+    "preferenceKey": "tgui-theme-style"
+  },
   "tgui-feature-blur": {
-    "options": ["enabled", "disabled", "full"],
+    "options": ["enabled", "disabled"],
     "preferenceKey": "tgui-blur"
   },
   "tgui-feature-reduced-motion": {
