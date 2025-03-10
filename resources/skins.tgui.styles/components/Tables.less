@@ -4,26 +4,13 @@
 table {
   position: relative;
   font-size: 100%;
-  background-color: var(--color-second);
+  background-color: var(--color-second-fill);
   border-color: var(--color-border);
 }
 
 // JS-enhanced responsive table
 .tgui-table-wrapper {
   overflow-x: auto;
-
-  // Make wrapper with blur if overflow active, otherwise it won't work thanks to mask
-  &.tgui-overflow--left,
-  &.tgui-overflow--right {
-    backdrop-filter: var(--blur-default);
-  }
-
-  // And make tables itself with blur if no overflow
-  &:not(.tgui-overflow--left):not(.tgui-overflow--right) {
-    table {
-      backdrop-filter: var(--blur-default);
-    }
-  }
 }
 
 // TODO: Move this out of tables styles when this is used by more stuff

@@ -156,7 +156,8 @@
   --color-primal: rgba(0, 0, 0, 0.33);
   --color-primal-blur: var(--color-primal-blur-important);
   --color-primal-blur-important: hsla(0, 0%, 8.55%, 0.85);
-  --color-primal-fill: hsl(0, 0%, 9.75%);
+  --color-primal-fill: var(--color-primal-immutable);
+  --color-primal-immutable: hsl(0, 0%, 9.75%);
 
   --color-second: rgba(125, 125, 125, 0.075);
   --color-second-blur: var(--color-second-blur-important);
@@ -177,7 +178,7 @@
 
   /* Scrollbar */
   --color-scrollbar-base: var(--color-primal-fill);
-  --color-scrollbar-thumb: hsl(0, 0%, 20%);
+  --color-scrollbar-thumb: ~'color-mix(in srgb, var(--color-scrollbar-base), white 25%)';
 
   /* Notices */
   --color-notice: hsl(0, 0%, 40%);
@@ -241,7 +242,8 @@
   --color-primal: rgba(204, 201, 198, 0.33);
   --color-primal-blur: var(--color-primal-blur-important);
   --color-primal-blur-important: hsla(30, 5%, 92.5%, 0.85);
-  --color-primal-fill: hsl(30, 6%, 93%);
+  --color-primal-fill: var(--color-primal-immutable);
+  --color-primal-immutable: hsl(30, 6%, 93%);
 
   --color-second: hsla(25, 5%, 60%, 0.15);
   --color-second-blur: var(--color-second-blur-important);
@@ -262,7 +264,7 @@
 
   /* Scrollbar - Light */
   --color-scrollbar-base: var(--color-primal-fill);
-  --color-scrollbar-thumb: hsl(30, 1%, 70%);
+  --color-scrollbar-thumb: ~'color-mix(in srgb, var(--color-scrollbar-base), black 25%)';
 
   /* Notices */
   --color-notice: hsl(0, 0%, 60%);

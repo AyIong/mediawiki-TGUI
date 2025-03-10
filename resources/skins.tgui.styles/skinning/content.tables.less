@@ -3,14 +3,18 @@
  * Keep in sync with content.tables-print.less.
  */
 .wikitable {
-  margin: 0.1em 0;
-  background-color: var(--color-second);
+  margin: 0.5em 0;
+  background-color: var(--color-second-fill);
   color: var(--color-text-darker);
   border: var(--border-classic);
   border-radius: var(--border-radius-medium);
   border-spacing: 0;
   word-break: normal;
   table-layout: auto;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 
   @media (max-width: @max-width-mobile) {
     width: 100% !important;
@@ -20,21 +24,17 @@
     border-color: inherit !important;
   }
 
-  table {
-    backdrop-filter: none !important;
-  }
-
   > caption {
-    white-space: nowrap;
     font-weight: bold;
-    max-width: 90%;
+    line-height: 1rem;
+    max-width: ~'calc(90% - 1em)';
     margin: 0 auto;
-    padding: 0.25em 1em;
-    background-color: var(--color-second);
+    padding: 0.33em 0.5em;
+    background-color: var(--color-second-fill);
     border: var(--border-classic);
     border-bottom: 0;
     border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
-    box-shadow: inset 0px -0.5em 0.5em -0.5em rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0px -0.25em 0.5em -0.5em rgba(0, 0, 0, 5);
   }
 
   th {
@@ -81,6 +81,11 @@
         border-right: 0;
       }
     }
+  }
+
+  thead tr:last-of-type th {
+    vertical-align: middle;
+    border-bottom: var(--border-classic);
   }
 
   thead tr:first-of-type,
