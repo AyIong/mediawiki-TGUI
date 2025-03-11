@@ -3,23 +3,20 @@
 /* Hell file. But it looks fine */
 .skin-tgui {
   .ui-widget-content {
-    background-size: 50%;
-    background-attachment: unset;
     border: 0;
-    background-color: var(--color-bg);
+    background: var(--color-bg);
     color: var(--color-text);
 
     .ui-widget-header {
-      position: relative;
       display: flex;
-      flex-direction: row;
       align-items: center;
-      cursor: default !important;
+      position: relative;
+      height: 2rem;
       padding: 0;
-      background: none;
-      background-color: var(--color-bg-focus);
+      font-family: Verdana, Arial, sans-serif;
+      background: color-mix(in hsl, var(--color-primal-fill), white 12.5%);
       color: var(--color-text-semi-translucent);
-      border: 0;
+      border: none;
       border-bottom: 1px solid var(--color-second-fill);
       box-shadow: var(--shadow-template--small);
 
@@ -95,8 +92,8 @@
     content: '\f06e';
     font: var(--fa-font-solid);
     color: var(--color-green);
-    margin: 0.35rem 0.75rem;
-    font-size: 1.33rem;
+    margin: 0 0.66rem;
+    font-size: 1.25em;
   }
 
   .wikiEditor-toolbar-dialog .ui-dialog-content {
