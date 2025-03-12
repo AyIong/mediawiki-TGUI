@@ -1,0 +1,130 @@
+.skin-tgui {
+  .CodeMirror {
+    &-gutters {
+      background-color: var(--color-second-fill);
+      border-color: var(--color-border);
+    }
+  }
+
+  .cm {
+    &-mw {
+      &-matchingbracket {
+        background-color: var(--color-bg-focus);
+        box-shadow: inset 0 0 1px 1px var(--color-border);
+      }
+
+      &-pagename {
+        text-decoration: none;
+      }
+
+      // Links
+      &-link,
+      &-link-tosection,
+      &-link-pagename,
+      &-link-bracket,
+      &-link-delimiter,
+      &-extlink,
+      &-free-extlink,
+      &-extlink-protocol,
+      &-free-extlink-protocol,
+      &-extlink-bracket {
+        color: var(--color-hyperlink) !important;
+      }
+
+      // HTML
+      &-exttag-name,
+      &-htmltag-name,
+      &-html-entity,
+      &-mnemonic {
+        color: var(--color-red-light);
+      }
+
+      &-exttag-attribute,
+      &-htmltag-attribute {
+        color: ~'color-mix(in hsl, var(--color-violet-light), var(--color-text) 30%)';
+      }
+
+      &-exttag-bracket,
+      &-htmltag-bracket {
+        color: var(--color-pink);
+      }
+
+      &-comment {
+        color: var(--color-text-gray);
+      }
+
+      // Templates
+      &-template {
+        color: var(--color-text) !important;
+
+        &-name {
+          color: var(--color-brown) !important;
+        }
+
+        &-argument-name {
+          color: var(--color-brown-light) !important;
+        }
+
+        &-bracket,
+        &-delimiter {
+          color: var(--color-brown-dark) !important;
+        }
+      }
+
+      // ParserFunctions
+      &-parserfunction-name {
+        color: var(--color-pink);
+      }
+
+      &-parserfunction-bracket {
+        color: var(--color-pink-light);
+      }
+
+      &-parserfunction-delimiter {
+        color: var(--color-pink-dark);
+      }
+
+      // Tables
+      &-table-definition {
+        color: ~'color-mix(in hsl, var(--color-orange-light), var(--color-text) 30%)' !important;
+      }
+
+      &-table-delimiter {
+        color: var(--color-orange-dark) !important;
+      }
+
+      &-table-bracket {
+        color: ~'color-mix(in hsl, var(--color-orange-dark), var(--color-red-dark) 25%)' !important;
+      }
+
+      // WikiText
+      &-list,
+      &-indenting,
+      &-apostrophes-bold,
+      &-apostrophes-italic,
+      &-section-header {
+        color: var(--color-olive-dark) !important;
+      }
+
+      // Other
+      &-skipformatting {
+        background-color: var(--color-primary) !important;
+      }
+
+      &-doubleUnderscore,
+      &-double-underscore,
+      &-signature,
+      &-hr {
+        background-color: var(--color-second) !important;
+        color: var(--color-secondary) !important;
+        border: var(--border-classic);
+      }
+    }
+  }
+
+  .wikiEditor-ui {
+    .CodeMirror {
+      padding: 0;
+    }
+  }
+}
