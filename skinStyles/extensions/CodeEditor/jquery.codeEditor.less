@@ -1,0 +1,31 @@
+.codeEditor-status {
+  position: relative;
+  width: auto;
+  padding: 0.2rem 0;
+  color: var(--color-text);
+  background-color: var(--color-second-fill);
+  border-top-color: var(--color-border);
+
+  // HACK: Add resize indicator
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 5rem;
+    height: 0.25rem;
+    margin: 0.25rem auto;
+    background: var(--color-border);
+    border-radius: var(--border-radius-round);
+  }
+
+  &-worker,
+  &-line,
+  &-message {
+    padding: 0 0.5em;
+  }
+
+  &-message {
+    color: var(--color-text-darker);
+    border-color: var(--color-border);
+  }
+}

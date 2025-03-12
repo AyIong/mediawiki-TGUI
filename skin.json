@@ -257,6 +257,8 @@
       "+ext.visualEditor": "skinStyles/extensions/ext.visualEditor.less",
       "+ext.visualEditor.base": "skinStyles/extensions/ext.visualEditor.less",
       "+ext.CodeMirror.lib": "skinStyles/extensions/ext.CodeMirror.lib.less",
+      "+ext.codeEditor.ace": "skinStyles/extensions/CodeEditor/ext.codeEditor.ace.less",
+      "+jquery.codeEditor": "skinStyles/extensions/CodeEditor/jquery.codeEditor.less",
       "+jquery.tablesorter.styles": "skinStyles/jQuery/jquery.tablesorter.styles.less",
       "+mediawiki.notification": "skinStyles/mediawiki/mediawiki.notification.less",
       "+mediawiki.page.gallery.styles": "skinStyles/mediawiki/mediawiki.page.gallery.styles.less",

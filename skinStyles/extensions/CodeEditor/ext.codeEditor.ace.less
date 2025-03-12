@@ -1,0 +1,77 @@
+.skin-tgui {
+  .ace {
+    &-monokai {
+      background-color: transparent;
+      color: var(--color-text);
+
+      .ace {
+        &_gutter {
+          background-color: var(--color-second);
+
+          &-active-line {
+            background-color: var(--color-bg-hover);
+          }
+        }
+
+        &_marker-layer .ace_active-line {
+          background-color: var(--color-second);
+        }
+      }
+    }
+
+    &_print-margin {
+      background-color: var(--color-border);
+    }
+
+    &_gutter-cell {
+      color: var(--color-text-gray);
+    }
+  }
+
+  .ace-monokai {
+    .ace {
+      &_comment {
+        color: var(--color-text-gray);
+      }
+
+      &_variable {
+        color: ~'color-mix(in hsl, var(--color-green-dark), var(--color-text) 30%)';
+      }
+
+      &_paren {
+        color: ~'color-mix(in hsl,var(--color-blue),var(--color-text) 33%)';
+      }
+
+      &_punctuation {
+        color: ~'color-mix(in hsl, var(--color-teal-light), var(--color-text) 50%)';
+      }
+
+      &_numeric,
+      &_constant {
+        color: ~'color-mix(in hsl, var(--color-orange-dark), var(--color-text) 15%)';
+      }
+
+      &_keyword {
+        color: var(--color-red-light);
+      }
+
+      &_string {
+        color: ~'color-mix(in hsl, var(--color-violet-dark), var(--color-text) 33%)';
+      }
+
+      &_support {
+        &.ace_type {
+          color: ~'color-mix(in hsl, var(--color-blue-dark), var(--color-text) 35%)';
+        }
+
+        &.ace_constant {
+          color: ~'color-mix(in hsl, var(--color-orange-dark), var(--color-text) 15%)';
+        }
+
+        &.ace_function {
+          color: ~'color-mix(in hsl, var(--color-blue-dark), var(--color-text) 33%)';
+        }
+      }
+    }
+  }
+}
