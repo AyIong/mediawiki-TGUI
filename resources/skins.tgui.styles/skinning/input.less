@@ -40,17 +40,22 @@ textarea {
     opacity: 0.5;
   }
 
-  &:autofill,
-  &:autofill:focus {
-    /**
-    * Tricky hack from StackOverflow
-    * https://stackoverflow.com/questions/61083813/how-to-avoid-internal-autofill-selected-style-to-be-applied
-    */
-    transition:
-      background-color 0s 600000s,
-      color 0s 600000s,
-      border var(--transition-time) !important;
-    border: 1px solid var(--color-violet);
+  &[type='password'] {
+    @supports selector(::-webkit-scrollbar) {
+      -webkit-text-fill-color: var(--color-text) !important;
+      box-shadow:
+        inset 0 0 0 999px var(--color-second),
+        inset 0 0 0 999px var(--color-second-fill) !important;
+      border: 1px solid var(--color-violet-dark) !important;
+    }
+
+    &:hover {
+      border: 1px solid var(--color-violet-light) !important;
+    }
+
+    &:focus {
+      border: 1px solid var(--color-purple-light) !important;
+    }
   }
 }
 
