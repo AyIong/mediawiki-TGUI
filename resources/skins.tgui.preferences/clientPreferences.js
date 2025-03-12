@@ -71,8 +71,9 @@ function getVisibleClientPreferences(config) {
  */
 function toggleDocClassAndSave(featureName, value, config, slider) {
   const pref = config[featureName];
+  const category = config[featureName].category;
   const callback = pref.callback || (() => {});
-  clientPrefs.set(featureName, value, slider);
+  clientPrefs.set(featureName, value, category, slider);
   callback();
 }
 
@@ -283,12 +284,14 @@ function makeControl(featureName, config) {
   if (!pref) {
     return null;
   }
+
   const currentValue = clientPrefs.get(featureName);
   // The client preference was invalid. This shouldn't happen unless a gadget
   // or script has modified the documentElement.
   if (typeof currentValue === 'boolean') {
     return null;
   }
+
   const form = document.createElement('form');
   const type = pref.type || 'radio';
   switch (type) {
@@ -353,6 +356,46 @@ function makeClientPreference(parent, featureName, config) {
   }
 }
 
+function makeClientPreferencesTabs(parent, config, visiblePreferences) {
+  const tabsContainer = document.createElement('div');
+  tabsContainer.className = 'tgui-preferences__tabs';
+  parent.appendChild(tabsContainer);
+
+  let tabsCount = 0;
+  visiblePreferences.forEach((pref) => {
+    let existingTab = document.getElementById(`tgui-preferences__${config[pref].category}`);
+    if (!existingTab) {
+      existingTab = document.createElement('div');
+      existingTab.id = `tgui-preferences__${config[pref].category}`;
+      existingTab.classList.add(
+        'tgui-preferences__tab-content',
+        `${tabsCount === 0 && 'tgui-preferences__tab-content--active'}`,
+      );
+      parent.appendChild(existingTab);
+
+      const tabButton = document.createElement('div');
+      tabButton.id = `tgui-preferences__tab-${config[pref].category}`;
+      tabButton.classList.add('tgui-preferences__tab', `${tabsCount === 0 && 'tgui-preferences__tab--active'}`);
+      tabButton.textContent = getFeatureLabelMsg(`tgui-preferences-${config[pref].category}-tab`).text();
+      tabButton.addEventListener('click', () => {
+        document.querySelectorAll('.tgui-preferences__tab-content--active').forEach((tab) => {
+          tab.classList.remove('tgui-preferences__tab-content--active');
+        });
+        existingTab.classList.add('tgui-preferences__tab-content--active');
+
+        document.querySelectorAll('.tgui-preferences__tab--active').forEach((button) => {
+          button.classList.remove('tgui-preferences__tab--active');
+        });
+        tabButton.classList.add('tgui-preferences__tab--active');
+      });
+      tabsContainer.appendChild(tabButton);
+      tabsCount++;
+    }
+
+    const prefPortlet = document.getElementById(`skin-client-prefs-${pref}`);
+    existingTab.appendChild(prefPortlet);
+  });
+}
 /**
  * Fills the client side preference dropdown with controls.
  *
@@ -366,9 +409,11 @@ function render(selector, config) {
     return Promise.reject();
   }
   return new Promise((resolve) => {
-    getVisibleClientPreferences(config).forEach((pref) => {
+    const visiblePreferences = getVisibleClientPreferences(config);
+    visiblePreferences.forEach((pref) => {
       makeClientPreference(node, pref, config);
     });
+    makeClientPreferencesTabs(node, config, visiblePreferences);
     mw.requestIdleCallback(() => {
       resolve(node);
     });

@@ -72,6 +72,9 @@
   "tgui-actions-more-toggle": "Доп. действия",
 
   "tgui-preferences": "Параметры",
+  "tgui-preferences-appearance-tab-name": "Внешний вид",
+  "tgui-preferences-accessibility-tab-name": "Доступность",
+
   "tgui-theme-name": "Тема",
   "tgui-theme-description": "Изменить тему оформления вики",
   "tgui-theme-day-label": "Светлая",

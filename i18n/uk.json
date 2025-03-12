@@ -58,6 +58,9 @@
   "tgui-usermenu": "Меню користувача",
 
   "tgui-preferences": "Налаштування",
+  "tgui-preferences-appearance-tab-name": "Зовнішній вигляд",
+  "tgui-preferences-accessibility-tab-name": "Доступність",
+
   "tgui-theme-name": "Колір",
   "tgui-theme-description": "Змінити тему оформлення вікі",
   "tgui-theme-day-label": "Світла",

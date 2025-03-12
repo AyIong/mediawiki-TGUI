@@ -176,6 +176,8 @@
       ],
       "messages": [
         "preferences",
+        "tgui-preferences-appearance-tab-name",
+        "tgui-preferences-accessibility-tab-name",
         "tgui-reset-button",
         "tgui-theme-name",
         "tgui-theme-description",

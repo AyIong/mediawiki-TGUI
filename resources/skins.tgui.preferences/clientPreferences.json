@@ -1,27 +1,13 @@
 {
   "skin-theme": {
     "options": ["day", "night", "os"],
-    "preferenceKey": "tgui-theme"
+    "preferenceKey": "tgui-theme",
+    "category": "appearance"
   },
   "tgui-feature-theme-style": {
     "options": ["default", "ntos", "paradise"],
-    "preferenceKey": "tgui-theme-style"
-  },
-  "tgui-feature-blur": {
-    "options": ["enabled", "disabled"],
-    "preferenceKey": "tgui-blur"
-  },
-  "tgui-feature-reduced-motion": {
-    "options": ["enabled", "disabled"],
-    "preferenceKey": "tgui-motion"
-  },
-  "tgui-feature-holidays": {
-    "options": ["enabled", "disabled"],
-    "preferenceKey": "tgui-holidays"
-  },
-  "tgui-feature-darkened-images": {
-    "options": ["disabled", "light", "medium"],
-    "preferenceKey": "tgui-darkened-images"
+    "preferenceKey": "tgui-theme-style",
+    "category": "appearance"
   },
   "tgui-feature-primary-hue-slider": {
     "defaultValue": "210",
@@ -29,6 +15,27 @@
     "max": 360,
     "step": 5,
     "type": "range",
-    "preferenceKey": "primary-hue"
+    "preferenceKey": "primary-hue",
+    "category": "appearance"
+  },
+  "tgui-feature-blur": {
+    "options": ["enabled", "disabled"],
+    "preferenceKey": "tgui-blur",
+    "category": "accessibility"
+  },
+  "tgui-feature-reduced-motion": {
+    "options": ["enabled", "disabled"],
+    "preferenceKey": "tgui-motion",
+    "category": "accessibility"
+  },
+  "tgui-feature-holidays": {
+    "options": ["enabled", "disabled"],
+    "preferenceKey": "tgui-holidays",
+    "category": "accessibility"
+  },
+  "tgui-feature-darkened-images": {
+    "options": ["disabled", "light", "medium"],
+    "preferenceKey": "tgui-darkened-images",
+    "category": "accessibility"
   }
 }

@@ -43,6 +43,9 @@
   "tgui-actions-more-toggle": "More actions",
 
   "tgui-preferences": "Preferences",
+  "tgui-preferences-appearance-tab-name": "Appearance",
+  "tgui-preferences-accessibility-tab-name": "Accessibility",
+
   "tgui-theme-name": "Theme",
   "tgui-theme-description": "Change the theme of the wiki",
   "tgui-theme-day-label": "Light",

@@ -67,12 +67,13 @@ function clientPrefs() {
      * @memberof mw.user.clientPrefs
      * @param {string} feature
      * @param {string} value
+     * @param {string} category
      * @return {boolean} True if feature was stored successfully, false if the value
      *   uses a forbidden character or the feature is not recognised
      *   e.g. a matching class was not defined on the HTML document element.
      */
-    set: function (feature, value, slider) {
-      if (!isValidFeatureName(feature) || !isValidFeatureValue(value)) {
+    set: function (feature, value, category, slider) {
+      if (!isValidFeatureName(feature) || !isValidFeatureValue(value) || !isValidFeatureName(category)) {
         return false;
       }
 
