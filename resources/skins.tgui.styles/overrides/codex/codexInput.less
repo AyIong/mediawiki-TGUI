@@ -1,0 +1,71 @@
+.cdx-button-color(@color: primary, @transparent: false) {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: var(--border-radius-small);
+  transition:
+    background-color var(--transition-time),
+    box-shadow var(--transition-time);
+
+  & when not (@transparent) {
+    background-color: ~'var(--color-@{color})';
+    color: var(--color-text);
+
+    &:hover {
+      background-color: ~'var(--color-@{color}-light)';
+    }
+
+    &:active {
+      background-color: ~'var(--color-@{color}-dark)';
+      box-shadow: inset 0 0 0.1em 0.1em rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  & when (@transparent) {
+    background-color: transparent;
+
+    &:hover {
+      background-color: var(--color-bg-hover);
+    }
+
+    &:active {
+      background-color: var(--color-bg-focus);
+      box-shadow: inset 0 0 0.1em 0.1em rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &:active {
+    transition: none;
+  }
+
+  &:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+// MARK: Buttons
+.skin-tgui {
+  .cdx-button {
+    .cdx-button-color();
+
+    &.cdx-button {
+      &--action-progressive {
+        .cdx-button-color('blue') !important;
+      }
+
+      &--fake-button {
+        .cdx-button-color('gray');
+
+        &--enabled {
+          .cdx-button-color(@transparent: true);
+        }
+      }
+
+      &#mw-createaccount-join {
+        .cdx-button-color('green') !important;
+      }
+    }
+  }
+}
