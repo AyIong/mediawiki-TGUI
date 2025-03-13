@@ -66,13 +66,18 @@
       background-color var(--transition-time),
       color var(--transition-time);
 
+    &:before {
+      font: var(--fa-font-solid);
+      margin-right: 0.5em;
+    }
+
     &:hover {
       background-color: var(--color-bg-hover);
     }
 
     &--active {
       cursor: default;
-      background-color: var(--color-bg-hover);
+      background-color: var(--color-bg-focus);
       color: ~'hsla(var(--primary-hue), 100%, var(--primary-lightness--text))';
 
       &:after {
@@ -90,6 +95,16 @@
         display: flex;
       }
     }
+  }
+}
+
+#tgui-preferences__tab {
+  &-appearance:before {
+    content: '\f53f';
+  }
+
+  &-accessibility:before {
+    content: '\f29a';
   }
 }
 
