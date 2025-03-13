@@ -8,12 +8,27 @@
   .mw-changeslist table {
     margin-left: 0 !important;
     background-color: transparent;
-    backdrop-filter: none !important;
   }
 
-  .mw-enhancedchanges-arrow-space {
-    width: 1.5em;
-    margin-left: 0.25em;
+  .mw-enhancedchanges-arrow {
+    position: relative;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    background-color: transparent !important;
+    outline: none !important;
+
+    &:before {
+      content: '\f0dd';
+      font: var(--fa-font-solid);
+      position: absolute;
+      inset: 0;
+      text-align: center;
+      color: var(--color-text);
+    }
+  }
+
+  .mw-enhanced-rc {
+    padding-left: 0.5em !important;
   }
 
   #pagehistory {

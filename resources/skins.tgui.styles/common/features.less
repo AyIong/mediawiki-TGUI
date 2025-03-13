@@ -109,12 +109,9 @@
 
 // MARK: Blur
 .tgui-feature-blur-clientpref-disabled {
-  :root& {
-    --blur-default: none;
-  }
-
   @media (prefers-color-scheme: light), (prefers-color-scheme: dark) {
     :root& {
+      --blur-default: none;
       --color-primal-blur: var(--color-primal-fill) !important;
       --color-second-blur: var(--color-second-fill) !important;
     }
@@ -123,6 +120,7 @@
   .skin-theme-clientpref-day,
   .skin-theme-clientpref-night {
     :root& {
+      --blur-default: none;
       --color-primal-blur: var(--color-primal-fill) !important;
       --color-second-blur: var(--color-second-fill) !important;
     }
