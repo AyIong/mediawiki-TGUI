@@ -138,11 +138,6 @@
     }
   }
 
-  .oo-ui-checkboxInputWidget [type='checkbox']:disabled + span {
-    background-color: var(--color-grey);
-    border-color: var(--color-border);
-  }
-
   .oo-ui-checkboxInputWidget [type='checkbox']:hover + span {
     border-color: var(--color-border-input) !important;
   }
@@ -153,6 +148,11 @@
 
   .oo-ui-checkboxInputWidget [type='checkbox']:focus + span {
     border-color: var(--color-border);
+  }
+
+  .oo-ui-checkboxInputWidget [type='checkbox']:disabled + span {
+    background-color: var(--color-grey) !important;
+    border-color: var(--color-border) !important;
   }
 
   .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked + span,
