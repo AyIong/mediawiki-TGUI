@@ -1,0 +1,58 @@
+@import '../../resources/skins.tgui.styles/mixins.less';
+
+.skin-tgui {
+  .tabber {
+    &__header {
+      margin: 0 0.75rem -2px;
+      box-shadow: none;
+    }
+
+    &__tab {
+      font-weight: normal;
+      padding: 0.25em 0.75em ~'calc(0.2em + 2px)' 0.75em;
+      color: var(--color-text-translucent);
+      border-radius: var(--border-radius-small) var(--border-radius-small) 0 0;
+      transition:
+        background-color var(--transition-time),
+        color var(--transition-time);
+      .tabs-animation(-0.75em);
+
+      &:hover {
+        background-color: var(--color-bg-hover);
+        color: var(--color-text-translucent);
+        box-shadow: none;
+      }
+
+      &:active {
+        background-color: var(--color-bg-hover);
+        color: ~'hsla(var(--primary-hue), 100%, var(--primary-lightness--text))';
+
+        &:after {
+          transform: scaleX(0.25);
+        }
+      }
+
+      &[aria-selected='true'],
+      &[aria-selected='true']:visited {
+        background-color: var(--color-bg-focus);
+        color: ~'hsla(var(--primary-hue), 100%, var(--primary-lightness--text))';
+        box-shadow: none;
+
+        &:after {
+          transform: scaleX(1);
+        }
+      }
+    }
+
+    &__panel {
+      padding: 0.5rem;
+    }
+
+    &__section {
+      background-color: var(--color-second-fill);
+      border: var(--border-classic);
+      border-top: 2px solid var(--color-border);
+      border-radius: var(--border-radius-medium);
+    }
+  }
+}

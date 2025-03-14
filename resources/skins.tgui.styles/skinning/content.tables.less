@@ -16,6 +16,11 @@
     margin-bottom: 0;
   }
 
+  table,
+  .wikitable {
+    background-color: var(--color-second);
+  }
+
   @media (max-width: @max-width-mobile) {
     width: 100% !important;
   }
@@ -30,7 +35,7 @@
     max-width: ~'calc(90% - 1em)';
     margin: 0 auto;
     padding: 0.33em 0.5em;
-    background-color: var(--color-second-fill);
+    background-color: inherit;
     border: var(--border-classic);
     border-bottom: 0;
     border-radius: var(--border-radius-medium) var(--border-radius-medium) 0 0;
