@@ -1,45 +1,34 @@
 {
   "name": "mediawiki/tgui-skin",
   "type": "mediawiki-skin",
-  "description": "Modern version of the MonoBook skin",
+  "description": "TGUI like skin for MediaWiki",
   "keywords": [
     "wiki",
     "MediaWiki",
     "skin"
   ],
-  "homepage": "https://www.mediawiki.org/wiki/Skin:TGUI",
+  "homepage": "https://github.com/AyIong/mediawiki-TGUI",
   "license": "GPL-2.0-or-later",
   "authors": [
     {
-      "name": "Trevor Parscal"
-    },
-    {
-      "name": "Roan Kattouw"
+      "name": "Aylong"
     }
   ],
   "support": {
-    "wiki": "https://www.mediawiki.org/wiki/Skin:TGUI",
-    "forum": "https://www.mediawiki.org/wiki/Skin_talk:TGUI",
-    "source": "http://gerrit.wikimedia.org/g/mediawiki/skins/TGUI",
-    "irc": "irc://irc.libera.chat/mediawiki"
+    "source": "https://github.com/AyIong/mediawiki-TGUI"
   },
   "require": {
     "composer/installers": ">1.0.12"
   },
   "extra": {
-    "branch-alias": {
-      "dev-master": "1.x-dev"
-    },
     "installer-name": "TGUI"
   },
   "require-dev": {
-    "johnkary/phpunit-speedtrap": "^3.1",
-    "mediawiki/mediawiki-codesniffer": "39.0.0",
-    "mediawiki/mediawiki-phan-config": "0.11.1",
-    "mediawiki/minus-x": "1.1.1",
+    "mediawiki/mediawiki-codesniffer": "45.0.0",
+    "mediawiki/mediawiki-phan-config": "0.14.0",
+    "mediawiki/minus-x": "1.1.3",
     "php-parallel-lint/php-console-highlighter": "1.0.0",
-    "php-parallel-lint/php-parallel-lint": "1.3.2",
-    "phpunit/phpunit": "^8.5"
+    "php-parallel-lint/php-parallel-lint": "1.4.0"
   },
   "scripts": {
     "fix": [
@@ -57,7 +46,8 @@
   },
   "config": {
     "allow-plugins": {
-      "composer/installers": true
+      "composer/installers": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
     }
   }
 }
