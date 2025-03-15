@@ -36,9 +36,14 @@ figure[typeof~='mw:File/Frameless'] {
 figure[typeof~='mw:File/Thumb'],
 figure[typeof~='mw:File/Frame'] {
   display: table;
-  margin: 0.5em auto 1em auto;
-  font-size: var(--font-size-x-small);
+  font-size: 95%;
+  font-weight: 300;
   text-align: center;
+  margin: 0.5em auto 1em auto;
+  padding: 0.5em;
+  background-color: var(--color-second);
+  border: var(--border-classic);
+  border-radius: var(--border-radius-small);
 
   > a:first-child,
   > span:first-child {
@@ -55,51 +60,58 @@ figure[typeof~='mw:File/Frame'] {
 
   > figcaption {
     display: table-caption;
-    // Sync with rounded corner
-    padding-inline: var(--border-radius-medium);
-    color: var(--color-text);
-    letter-spacing: 0.025em;
+    max-width: 85%;
+    margin: 0 auto;
+    line-height: 1.2em;
     caption-side: bottom;
+    background-color: var(--color-second);
+    color: var(--color-text);
+    border: var(--border-classic);
+    border-top: none;
+    border-radius: 0 0 var(--border-radius-small) var(--border-radius-small);
 
     &:not(:empty) {
-      margin-top: 0.5rem;
+      padding: 0.25em;
     }
+  }
+
+  .mw-file-element {
+    border: var(--border-classic);
   }
 }
 
 /**
  * Inline media items
- * img is needed for 1.39 compat, change to .mw-file-element later
  */
-.mw-valign-middle img {
+.mw-valign-middle .mw-file-element {
   vertical-align: middle;
 }
 
-.mw-valign-baseline img {
+.mw-valign-baseline .mw-file-element {
   vertical-align: baseline;
 }
 
-.mw-valign-sub img {
+.mw-valign-sub .mw-file-element {
   vertical-align: sub;
 }
 
-.mw-valign-super img {
+.mw-valign-super .mw-file-element {
   vertical-align: super;
 }
 
-.mw-valign-top img {
+.mw-valign-top .mw-file-element {
   vertical-align: top;
 }
 
-.mw-valign-text-top img {
+.mw-valign-text-top .mw-file-element {
   vertical-align: text-top;
 }
 
-.mw-valign-bottom img {
+.mw-valign-bottom .mw-file-element {
   vertical-align: bottom;
 }
 
-.mw-valign-text-bottom img {
+.mw-valign-text-bottom .mw-file-element {
   vertical-align: text-bottom;
 }
 
@@ -107,10 +119,6 @@ figure[typeof~='mw:File/Frame'] {
 @media (min-width: @min-width-breakpoint-tablet) {
   figure[typeof~='mw:File/Thumb'],
   figure[typeof~='mw:File/Frame'] {
-    > figcaption {
-      text-align: start;
-    }
-
     // When float is not explicitly set
     .mw-content-ltr & {
       /* @noflip */
@@ -118,7 +126,7 @@ figure[typeof~='mw:File/Frame'] {
       /* @noflip */
       clear: right;
       /* @noflip */
-      margin-left: 1rem;
+      margin: 0 0 0.75em 0.75em;
     }
 
     .mw-content-rtl & {
@@ -127,7 +135,7 @@ figure[typeof~='mw:File/Frame'] {
       /* @noflip */
       clear: left;
       /* @noflip */
-      margin-right: 1rem;
+      margin: 0 0.75em 0 0.75em;
     }
   }
 
