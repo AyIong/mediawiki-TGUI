@@ -77,6 +77,9 @@ figure[typeof~='mw:File/Frame'] {
 
   .mw-file-element {
     border: var(--border-classic);
+    // Just in case if image is too large. We don't need horizontal scrollbar
+    max-width: 100%;
+    height: 100%;
   }
 }
 
