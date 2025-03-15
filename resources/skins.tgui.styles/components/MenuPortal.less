@@ -52,22 +52,22 @@
 
       li {
         .tgui-button();
-        word-wrap: break-word;
-        font-size: 0.75em;
-        line-height: @line-height-nav;
         margin: 0;
+        padding: 0 0.33rem;
+        font-size: 0.75em;
 
         a {
-          display: inline-flex;
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          align-content: center;
           width: 100%;
           height: 1.9em;
           line-height: 2px;
-          padding: 0 0.33rem;
-          align-items: center;
 
           i {
             width: 1.25em;
-            margin-right: 0.25em;
             text-align: center;
           }
         }
