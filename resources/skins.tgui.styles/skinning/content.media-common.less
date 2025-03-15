@@ -41,7 +41,7 @@ figure[typeof~='mw:File/Frame'] {
   text-align: center;
   margin: 0.5em auto 1em auto;
   padding: 0.5em;
-  background-color: var(--color-second);
+  background-color: var(--color-second-fill);
   border: var(--border-classic);
   border-radius: var(--border-radius-small);
 
@@ -64,7 +64,7 @@ figure[typeof~='mw:File/Frame'] {
     margin: 0 auto;
     line-height: 1.2em;
     caption-side: bottom;
-    background-color: var(--color-second);
+    background-color: var(--color-second-fill);
     color: var(--color-text);
     border: var(--border-classic);
     border-top: none;
@@ -72,6 +72,8 @@ figure[typeof~='mw:File/Frame'] {
 
     &:not(:empty) {
       padding: 0.25em;
+      transform: ~'translateY(calc(-0.25em - 2px))';
+      mask-image: linear-gradient(to bottom, transparent calc(0.25em + 1px), black calc(0.25em + 1px));
     }
   }
 
