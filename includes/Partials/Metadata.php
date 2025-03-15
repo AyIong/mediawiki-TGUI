@@ -37,36 +37,5 @@ final class Metadata extends Partial {
 	public function addMetadata() {
 		// Theme color
 		$this->out->addMeta( 'theme-color', $this->getConfigValue( 'TGUIThemeColor' ) ?? '' );
-
-		// Generate webapp manifest
-		$this->addManifest();
-	}
-
-	/**
-	 * Adds the manifest if:
-	 * * Enabled in 'TGUIEnableManifest'
-	 * * User has read access (i.e. not a private wiki)
-	 * Manifest link will be empty if wfExpandUrl throws an exception.
-	 */
-	private function addManifest() {
-		if (
-			$this->getConfigValue( 'TGUIEnableManifest' ) !== true ||
-			$this->getConfigValue( MainConfigNames::GroupPermissions )['*']['read'] !== true
-		) {
-			return;
-		}
-
-		try {
-			$href = MediaWikiServices::getInstance()->getUrlUtils()
-				->expand( wfAppendQuery( wfScript( 'api' ),
-					[ 'action' => 'webapp-manifest' ] ), PROTO_RELATIVE );
-		} catch ( Exception $e ) {
-			$href = '';
-		}
-
-		$this->out->addLink( [
-			'rel' => 'manifest',
-			'href' => $href,
-		] );
 	}
 }
