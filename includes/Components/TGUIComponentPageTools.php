@@ -4,8 +4,8 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Skins\TGUI\Components;
 
-use Config;
 use Exception;
+use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;

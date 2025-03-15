@@ -4,22 +4,17 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Skins\TGUI\Hooks;
 
-use Config;
-use Html;
 use DateTime;
-use IContextSource;
-use MediaWiki\Hook\SkinBuildSidebarHook;
+use MediaWiki\Config\Config;
+use MediaWiki\Html\Html;
 use MediaWiki\Hook\BeforePageDisplayHook;
+use MediaWiki\Hook\SkinBuildSidebarHook;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\ResourceLoader as RL;
-use MediaWiki\Skins\TGUI\GetConfigTrait;
 use MediaWiki\Skins\Hook\SkinPageReadyConfigHook;
-use OutputPage;
-use RuntimeException;
-use Skin;
-use SkinTemplate;
-use Title;
-use User;
+use MediaWiki\Skins\TGUI\GetConfigTrait;
+use MediaWiki\Title\Title;
 
 /**
  * Presentation hook handlers for TGUI skin.

@@ -4,72 +4,40 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Skins\TGUI\Components;
 
-use MalformedTitleException;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserIdentity;
+use MediaWiki\User\User;
 use MessageLocalizer;
 
 /**
  * TGUIComponentUserInfo component
  */
 class TGUIComponentUserInfo implements TGUIComponent {
-	/** @var bool */
-	private $isRegistered;
 
-	/** @var bool */
-	private $isTemp;
-
-	/** @var MessageLocalizer */
-	private $localizer;
-
-	/** @var Title */
-	private $title;
-
-	/** @var UserIdentity */
-	private $user;
-
-	/** @var array */
-	private $userPageData;
-
-	/**
-	 * @param bool $isRegistered
-	 * @param bool $isTemp
-	 * @param MessageLocalizer $localizer
-	 * @param Title $title
-	 * @param UserIdentity $user
-	 * @param array $userPageData
-	 */
 	public function __construct(
-		bool $isRegistered,
-		bool $isTemp,
-		MessageLocalizer $localizer,
-		Title $title,
-		UserIdentity $user,
-		array $userPageData
+		private bool $isRegistered,
+		private bool $isTemp,
+		private MediaWikiServices $services,
+		private MessageLocalizer $localizer,
+		private Title $title,
+		private User $user,
+		private array $userPageData,
 	) {
-		$this->isRegistered = $isRegistered;
-		$this->isTemp = $isTemp;
-		$this->localizer = $localizer;
-		$this->title = $title;
-		$this->user = $user;
-		$this->userPageData = $userPageData;
 	}
 
 	/**
 	 * Get the user edit count
-	 *
-	 * @return array|null
 	 */
 	private function getUserEditCount(): ?array {
 		// Return user edits
-		$edits = MediaWikiServices::getInstance()->getUserEditTracker()->getUserEditCount( $this->user );
+		$edits = $this->services->getUserEditTracker()->getUserEditCount( $this->user );
 
-		if ( empty( $edits ) ) {
+		if ( !$edits ) {
 			return null;
 		}
 
-		$edits = (string)number_format( $edits, 0 );
+		$edits = number_format( $edits, 0 );
 		$label = $this->localizer->msg( 'tgui-sitestats-edits-label' )->text();
 
 		return [
@@ -80,13 +48,11 @@ class TGUIComponentUserInfo implements TGUIComponent {
 
 	/**
 	 * Build the template data for the user groups
-	 *
-	 * @return array|null
 	 */
 	private function getUserGroups(): ?array {
-		$groups = MediaWikiServices::getInstance()->getUserGroupManager()->getUserGroups( $this->user );
+		$groups = $this->services->getUserGroupManager()->getUserGroups( $this->user );
 
-		if ( empty( $groups ) ) {
+		if ( !$groups ) {
 			return null;
 		}
 
@@ -122,8 +88,6 @@ class TGUIComponentUserInfo implements TGUIComponent {
 
 	/**
 	 * Build the template data for the user page menu
-	 *
-	 * @return array
 	 */
 	private function getUserPage(): array {
 		$user = $this->user;
@@ -131,7 +95,7 @@ class TGUIComponentUserInfo implements TGUIComponent {
 
 		$htmlItems = $userPageData['html-items'];
 		$realname = htmlspecialchars( $user->getRealName(), ENT_QUOTES );
-		if ( !empty( $realname ) ) {
+		if ( $realname !== '' ) {
 			$username = htmlspecialchars( $user->getName(), ENT_QUOTES );
 			$innerHtml = <<<HTML
 				<span id="pt-userpage-username">$username</span>
@@ -173,6 +137,11 @@ class TGUIComponentUserInfo implements TGUIComponent {
 			} else {
 				$data['data-user-groups'] = $this->getUserGroups();
 			}
+		} else {
+			$data = [
+				'title' => $localizer->msg( 'notloggedin' ),
+				'text' => $localizer->msg( 'tgui-user-info-text-anon' )
+			];
 		}
 
 		return $data;

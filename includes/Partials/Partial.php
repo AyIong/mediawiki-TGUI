@@ -25,10 +25,10 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Skins\TGUI\Partials;
 
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Skins\TGUI\GetConfigTrait;
 use MediaWiki\Skins\TGUI\SkinTGUI;
 use MediaWiki\Title\Title;
-use OutputPage;
 
 /**
  * The base class for all skin partials

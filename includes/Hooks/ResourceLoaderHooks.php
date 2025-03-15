@@ -25,9 +25,9 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Skins\TGUI\Hooks;
 
-use Config;
-use ExtensionRegistry;
+use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader as RL;
 
 /**

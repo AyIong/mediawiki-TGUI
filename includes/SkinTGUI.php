@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Skins\TGUI;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Skins\TGUI\Components\TGUIComponentPageHeading;
 use MediaWiki\Skins\TGUI\Components\TGUIComponentPageSidebar;
 use MediaWiki\Skins\TGUI\Components\TGUIComponentPageTools;
@@ -8,15 +9,8 @@ use MediaWiki\Skins\TGUI\Components\TGUIComponentUserInfo;
 use MediaWiki\Skins\TGUI\Partials\BodyContent;
 use MediaWiki\Skins\TGUI\Partials\Metadata;
 use MediaWiki\Skins\TGUI\Partials\Theme;
-use ExtensionRegistry;
-use Html;
-use Linker;
-use MediaWiki\MediaWikiServices;
 use SkinMustache;
 use SkinTemplate;
-use SpecialPage;
-use Title;
-use User;
 
 class SkinTGUI extends SkinMustache {
 	use GetConfigTrait;
@@ -72,6 +66,8 @@ class SkinTGUI extends SkinMustache {
 		$title = $this->getTitle();
 		$user = $this->getUser();
 		$pageLang = $title->getPageLanguage();
+		$services = MediaWikiServices::getInstance();
+
 		$isRegistered = $user->isRegistered();
 		$isTemp = $user->isTemp();
 
@@ -80,12 +76,12 @@ class SkinTGUI extends SkinMustache {
 		$components = [
 			'data-main-menu' => new TGUIComponentPageSidebar( $parentData['data-portlets-sidebar'] ),
 			'data-page-heading' => new TGUIComponentPageHeading(
+				$services,
 				$localizer,
 				$out,
 				$pageLang,
 				$title,
-				$parentData['html-title-heading'],
-				$user
+				$parentData['html-title-heading']
 			),
 			'data-page-tools' => new TGUIComponentPageTools(
 				$config,
@@ -96,6 +92,7 @@ class SkinTGUI extends SkinMustache {
 			'data-user-info' => new TGUIComponentUserInfo(
 				$isRegistered,
 				$isTemp,
+				$services,
 				$localizer,
 				$title,
 				$user,
