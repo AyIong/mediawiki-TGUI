@@ -45,7 +45,7 @@ class SkinHooks implements
 		// FontAwesome
 		$out->addLink([
             'rel' => 'stylesheet',
-            'href' => '/skins/TGUI/resources/skins.tgui.styles/font-awesome/css/all.min.css'
+            'href' => '/skins/TGUI/resources/skins.tgui.styles/fonts/FontAwesome.css'
         ]);
 
 		// HeadScripts
