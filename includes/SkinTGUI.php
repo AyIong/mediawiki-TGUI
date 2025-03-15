@@ -111,7 +111,7 @@ class SkinTGUI extends SkinMustache {
 		$parentData['data-logos']['icon-home'] = 'home';
 
 		// TGUI Background logo
-		$parentData['wgTGUIBackground'] = $GLOBALS['wgTGUIBackground'] ?? "/skins/TGUI/resources/assets/nanotrasen.svg";
+		$parentData['wgTGUIBackground'] = $GLOBALS['wgTGUIBackground'] ?? "/skins/TGUI/resources/skins.tgui.styles/images/nanotrasen.svg";
 
 		return array_merge( $parentData, [
 			// Booleans
