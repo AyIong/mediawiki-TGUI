@@ -14,7 +14,7 @@ html {
 
 html,
 body {
-  font-family: @font-family-sans;
+  font-family: var(--font-family-base);
 }
 
 *:before,
@@ -37,7 +37,6 @@ pre,
 /* Use unscoped selector to allow edit sections outside of .mw-body-content and .tgui-body (T160269) */
 .mw-editsection,
 .mw-editsection-like {
-  font-family: @font-family-sans;
   vertical-align: middle !important;
 
   @media (max-width: @max-width-mobile) {
@@ -116,7 +115,6 @@ pre,
   }
 
   .toc h2 {
-    font-family: @font-family-sans;
     font-size: @font-size-reset; // Reset.
   }
 
