@@ -78,7 +78,7 @@
   }
 }
 
-.tgui-button(@color: primary, @transparent: false, @hover: true, @active: true, @focus: false) {
+.tgui-button(@color: primary, @transparent: false, @hover: true, @active: true, @focus: false, @disabled: false) {
   user-select: none;
   -webkit-user-drag: none;
   background: ~'var(--color-@{color})';
@@ -86,6 +86,11 @@
   border-radius: var(--border-radius-small);
   transition-property: background, box-shadow;
   transition-duration: var(--transition-time);
+
+  & when (@disabled) {
+    pointer-events: none;
+    opacity: 0.66;
+  }
 
   & when (@transparent) {
     background: transparent;

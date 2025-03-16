@@ -1,6 +1,6 @@
 {
   "name": "TGUI",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "author": ["[https://github.com/AyIong Aylong]"],
   "url": "https://www.youtube.com/watch?v=JDQBvN1GATw",
   "namemsg": "skinname-tgui",
@@ -272,6 +272,7 @@
       "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki/mediawiki.action.view.redirectPage.less",
       "+mediawiki.notification": "skinStyles/mediawiki/mediawiki.notification.less",
       "+mediawiki.page.gallery.styles": "skinStyles/mediawiki/mediawiki.page.gallery.styles.less",
+      "+mediawiki.pager.styles": "skinStyles/mediawiki/mediawiki.pager.styles.less",
       "+mediawiki.rcfilters.filters.ui": "skinStyles/mediawiki/mediawiki.rcfilters.filters.ui.less",
       "+mediawiki.codex.messagebox.styles": "skinStyles/codex/mediawiki.codex.messagebox.styles.less",
       "+oojs-ui-core.styles": "skinStyles/ooui/oojs-ui-core.less"

@@ -59,14 +59,14 @@ input[type='button'] {
 }
 
 input[type='button']:disabled {
-  .tgui-button('gray', @hover: false, @active: false);
+  .tgui-button(@disabled: true);
 }
 
 button {
   .tgui-button();
 
   &:disabled {
-    .tgui-button('gray', @hover: false, @active: false);
+    .tgui-button(@disabled: true);
 
     &:before {
       opacity: 0.5;
