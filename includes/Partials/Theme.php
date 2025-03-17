@@ -47,16 +47,12 @@ final class Theme extends Partial {
 
 		// Set theme to site theme
 		$theme = $this->getConfigValue( 'TGUIThemeDefault' ) ?? 'auto';
+		$themeStyle = $this->getConfigValue( 'TGUIThemeStyleDefault' ) ?? 'default';
 
 		// Add HTML class based on theme set
 		if ( CLIENTPREFS_THEME_MAP[ $theme ] ) {
 			$out->addHtmlClasses( 'skin-theme-clientpref-' . CLIENTPREFS_THEME_MAP[ $theme ] );
 		}
-
-		// Set theme style
-		$themeStyle = $this->getConfigValue( 'TGUIThemeStyleDefault' ) ?? 'default';
-
-		// Add HTML class based on setted theme style
-		$out->addHtmlClasses( 'tgui-feature-theme-style-clientpref-' . $themeStyle );
+		$out->addHtmlClasses( 'skin-theme-style-clientpref-' . $themeStyle );
 	}
 }

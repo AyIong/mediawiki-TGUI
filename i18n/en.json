@@ -52,10 +52,10 @@
   "tgui-theme-night-label": "Dark",
   "tgui-theme-os-label": "Auto",
 
-  "tgui-feature-theme-style-name": "Theme style",
-  "tgui-feature-theme-style-default-label": "Classic",
-  "tgui-feature-theme-style-ntos-label": "NTOS",
-  "tgui-feature-theme-style-paradise-label": "Paradise",
+  "tgui-theme-style-name": "Theme style",
+  "tgui-theme-style-default-label": "Classic",
+  "tgui-theme-style-ntos-label": "NTOS",
+  "tgui-theme-style-paradise-label": "Paradise",
 
   "tgui-feature-blur-name": "Blur Effects",
   "tgui-feature-blur-enabled-label": "Enabled",

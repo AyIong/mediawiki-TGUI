@@ -67,10 +67,10 @@
   "tgui-theme-night-label": "Темна",
   "tgui-theme-os-label": "Авто",
 
-  "tgui-feature-theme-style-name": "Стиль теми",
-  "tgui-feature-theme-style-default-label": "Класичний",
-  "tgui-feature-theme-style-ntos-label": "NTOS",
-  "tgui-feature-theme-style-paradise-label": "Paradise",
+  "tgui-theme-style-name": "Стиль теми",
+  "tgui-theme-style-default-label": "Класичний",
+  "tgui-theme-style-ntos-label": "NTOS",
+  "tgui-theme-style-paradise-label": "Paradise",
 
   "tgui-feature-blur-name": "Ефекти розмиття",
   "tgui-feature-blur-enabled-label": "Увімкнені",

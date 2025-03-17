@@ -4,7 +4,7 @@
     "preferenceKey": "tgui-theme",
     "category": "appearance"
   },
-  "tgui-feature-theme-style": {
+  "skin-theme-style": {
     "options": ["default", "ntos", "paradise"],
     "preferenceKey": "tgui-theme-style",
     "category": "appearance"
