@@ -298,6 +298,12 @@
       "descriptionmsg": "tgui-config-themestyledefault",
       "public": true
     },
+    "ThemeColor": {
+      "value": "#191919",
+      "description": "The theme color defined in the meta tag",
+      "descriptionmsg": "tgui-config-themecolor",
+      "public": true
+    },
     "Tooltips": {
       "value": ["tooltiptext", "tooltiptext2", "tooltiptable"],
       "description": "Defines tooltip content css classes.",
