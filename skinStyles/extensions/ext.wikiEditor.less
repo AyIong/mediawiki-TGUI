@@ -66,22 +66,18 @@
         .section {
           overflow: hidden;
           display: block !important;
+          height: auto;
           border-top: 1px solid transparent;
           transition:
             height var(--transition-time),
             border var(--transition-time);
 
           &-visible {
-            height: 13.4rem;
             border-top: var(--border-classic);
           }
 
           &-hidden {
-            height: 0;
-          }
-
-          &-advanced.section-visible {
-            height: 2rem;
+            height: 0px;
           }
         }
       }
