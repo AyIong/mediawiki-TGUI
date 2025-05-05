@@ -35,8 +35,14 @@
   "tgui-anon-user-menu-pages-label": "Learn more about editing",
   "tgui-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Discussion]]",
   "tooltip-tgui-anon-user-menu-title": "More options",
+
   "tgui-purge-button-label": "Purge Cache",
   "tgui-purge-button-title": "Purge this page cache [F4]",
+
+  "tgui-clipboard-tooltip": "Copy content to clipboard",
+  "tgui-clipboard-success": "Content copied to clipboard!",
+  "tgui-clipboard-failure": "Failed to copy content to clipboard.",
+
   "tgui-reset-button": "Reset",
   "tgui-usermenu": "User Menu",
   "tgui-sitestats-edits-label": "Edits",

@@ -216,10 +216,10 @@
 
 .tgui-collapsible-toggle() {
   .tgui-button();
-  display: inline-flex;
-  justify-content: center;
-  padding: 0.2em;
-  margin: 0 0.25em;
+  display: inline-block;
+  min-width: 1.667em;
+  height: 1.667em;
+  margin-left: 0.25em;
   box-shadow: var(--shadow-template--small);
 
   a {
@@ -231,8 +231,6 @@
     font: var(--fa-font-solid);
     align-content: center;
     text-align: center;
-    width: 1.2em;
-    height: 1.2em;
     transition: transform var(--transition-time);
   }
 

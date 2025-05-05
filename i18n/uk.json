@@ -52,10 +52,18 @@
   "tgui-anon-user-menu-pages-label": "Дізнатися більше про редагування",
   "tgui-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Обговорення]]",
   "tooltip-tgui-anon-user-menu-title": "Більше опцій",
+
   "tgui-purge-button-label": "Очистити кеш",
   "tgui-purge-button-title": "Очистити кеш сторінки [F4]",
+
+  "tgui-clipboard-tooltip": "Копіювати вміст у буфер обміну",
+  "tgui-clipboard-success": "Вміст скопійований у буфер обміну!",
+  "tgui-clipboard-failure": "Не вдалося скопіювати вміст у буфер обміну.",
+
   "tgui-reset-button": "Скинути",
   "tgui-usermenu": "Меню користувача",
+  "tgui-sitestats-edits-label": "Редагувань",
+  "tgui-actions-more-toggle": "Більше опцій",
 
   "tgui-preferences": "Налаштування",
   "tgui-preferences-appearance-tab-name": "Зовнішній вигляд",

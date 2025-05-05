@@ -96,6 +96,7 @@
           "name": "resources/skins.tgui.scripts/config.json",
           "callback": "MediaWiki\\Skins\\TGUI\\Hooks\\ResourceLoaderHooks::getTGUIResourceLoaderConfig"
         },
+        "resources/skins.tgui.scripts/clipboardCopy.js",
         "resources/skins.tgui.scripts/deferUntilFrame.js",
         "resources/skins.tgui.scripts/dropdown.js",
         "resources/skins.tgui.scripts/floatingDropdown.js",
@@ -130,7 +131,14 @@
           "type": "text"
         }
       ],
-      "messages": ["tgui-search-loader", "tgui-purge-button-label", "tgui-purge-button-title"],
+      "messages": [
+        "tgui-search-loader",
+        "tgui-purge-button-label",
+        "tgui-purge-button-title",
+        "tgui-clipboard-tooltip",
+        "tgui-clipboard-success",
+        "tgui-clipboard-failure"
+      ],
       "dependencies": ["mediawiki.page.ready", "mediawiki.util"]
     },
     "skins.tgui.search.codex.styles": {

@@ -55,12 +55,15 @@ function registerServiceWorker() {
  */
 function initBodyContent(bodyContent) {
   const tables = require('./tables.js'),
+    clipboardCopy = require('./clipboardCopy.js'),
     floatingPopups = require('./floatingPopups.js'),
     floatingTooltips = require('./floatingTooltips.js'),
     floatingDropdown = require('./floatingDropdown.js');
 
   // Table enhancements
   tables.init(bodyContent);
+  // MW collapsible enhancement for clipboard copying
+  clipboardCopy.init(bodyContent);
   // Floating UI Popups
   floatingPopups.init(bodyContent);
   // Floating UI Tooltips for MediaWiki templates

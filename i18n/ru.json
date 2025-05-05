@@ -64,8 +64,14 @@
   "tgui-anon-user-menu-pages-label": "Подробнее о редактировании",
   "tgui-prefs-talkpage": "[[mw:Talk:Reading/Web/Desktop_Improvements|Обсуждение]]",
   "tooltip-tgui-anon-user-menu-title": "Больше возможностей",
+
   "tgui-purge-button-label": "Очистить кэш",
   "tgui-purge-button-title": "Очистить кэш страницы [F4]",
+
+  "tgui-clipboard-tooltip": "Скопировать содержимое в буфер обмена",
+  "tgui-clipboard-success": "Содержимое скопировано в буфер обмена!",
+  "tgui-clipboard-failure": "Не удалось скопировать содержимое в буфер обмена.",
+
   "tgui-reset-button": "Сбросить",
   "tgui-usermenu": "Персональное меню",
   "tgui-sitestats-edits-label": "Правки",

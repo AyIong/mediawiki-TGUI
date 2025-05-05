@@ -17,10 +17,10 @@
 
 .mw-notification {
   overflow: hidden;
-  padding: 1em;
-  background-color: var(--color-second-blur);
+  padding: 0.75rem;
+  background-color: var(--color-second-blur) !important;
   color: var(--color-text-darker);
-  border: var(--border-classic);
+  border: var(--border-classic) !important;
   box-shadow: var(--box-shadow-small);
   border-radius: var(--border-radius-medium);
   transition:
@@ -51,5 +51,23 @@
     height: 0.25em;
     background-color: var(--color-primary);
     animation: 5s delay linear 1;
+  }
+
+  &.mw-notification-type {
+    &-success:before {
+      background-color: var(--color-green);
+    }
+
+    &-error:before {
+      background-color: var(--color-red);
+    }
+
+    &-info:before {
+      background-color: var(--color-blue);
+    }
+
+    &-warn:before {
+      background-color: var(--color-yellow);
+    }
   }
 }
