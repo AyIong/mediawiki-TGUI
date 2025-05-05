@@ -57,7 +57,7 @@
 
     .cdx-menu {
       display: block !important;
-      overflow: auto;
+      overflow: hidden auto;
       opacity: 0;
       visibility: hidden;
       box-shadow: var(--box-shadow-medium);
@@ -137,8 +137,13 @@
         }
       }
 
-      &--has-footer .cdx-menu-item:last-of-type:not(:first-of-type) {
-        border: none;
+      &--has-footer .cdx-menu-item:last-of-type {
+        margin: 0 !important;
+        background-color: transparent !important;
+
+        &:not(:first-of-type) {
+          border: none;
+        }
       }
     }
 

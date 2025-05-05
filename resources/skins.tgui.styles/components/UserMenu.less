@@ -15,6 +15,22 @@
       &__page {
         flex: 1;
 
+        > div {
+          align-content: center;
+          padding: 0.33em 0.5em;
+          height: auto !important;
+          background-color: var(--color-notice-blue);
+          background-image: var(--notice-stripes);
+          border-radius: var(--border-radius-medium);
+
+          &:before {
+            content: '\f071';
+            font: var(--fa-font-solid);
+            display: inline-block;
+            margin-right: 0.33rem;
+          }
+        }
+
         *:not(span) {
           height: 100%;
         }

@@ -1,0 +1,63 @@
+/*
+ * TGUI
+ *
+ * Module: mediawiki.skinning.content.thumbnails-common
+ * Version: REL1_39
+ *
+ * Date: 23-07-2023
+ */
+
+/* @noflip */
+.floatleft,
+.floatright {
+  margin: 0;
+}
+
+/* @noflip */
+div.tleft,
+div.tright {
+  margin: 0.5rem 0;
+}
+
+.thumbcaption {
+  margin-top: 0.5rem;
+  text-align: center;
+  letter-spacing: 0.025em;
+}
+
+div.thumbinner {
+  // Avoid overflow
+  max-width: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+  // We use the same font size for both caption and inner
+  font-size: 0.75rem;
+  text-align: center;
+
+  > a {
+    overflow-wrap: break-word;
+  }
+}
+
+// Do not float content in mobile view
+@media (min-width: @min-width-breakpoint-tablet) {
+  /* @noflip */
+  div.tright,
+  .floatright {
+    float: right;
+    clear: right;
+    margin-left: 0.75rem;
+  }
+
+  /* @noflip */
+  div.tleft,
+  .floatleft {
+    float: left;
+    clear: left;
+    margin-right: 0.75rem;
+  }
+
+  .thumbcaption {
+    text-align: start;
+  }
+}
