@@ -196,6 +196,7 @@ class SkinTGUI extends SkinMustache {
 	 * @param array &$options
 	 */
 	private function buildSkinFeatures( array &$options ) {
+		$config = $this->getConfig();
 		$title = $this->getOutput()->getTitle();
 
 		$metadata = new Metadata( $this );
@@ -213,5 +214,15 @@ class SkinTGUI extends SkinMustache {
 		$this->addClientPrefFeature( 'tgui-feature-holidays', 'enabled' );
 		$this->addClientPrefFeature( 'tgui-feature-darkened-images', 'light' );
 		$this->addClientPrefFeature( 'tgui-feature-primary-hue-slider', '210' );
+
+		if ( $title !== null ) {
+			// Collapsible sections
+			if (
+				$config->get( 'TGUIEnableCollapsibleSections' ) === true &&
+				$title->isContentPage()
+			) {
+				$options['bodyClasses'][] = 'tgui-sections-enabled';
+			}
+		}
 	}
 }

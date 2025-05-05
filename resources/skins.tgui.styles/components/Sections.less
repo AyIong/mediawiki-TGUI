@@ -1,0 +1,44 @@
+.tgui-sections-enabled {
+  .tgui-section {
+    overflow: hidden;
+    content-visibility: visible;
+    transition: height var(--transition-time);
+
+    &[hidden] {
+      height: 0;
+    }
+
+    &-heading {
+      cursor: pointer;
+      user-select: none;
+      gap: 0.5rem;
+    }
+
+    &-indicator {
+      transition: transform var(--transition-time);
+
+      &:before {
+        content: '\f078';
+        font: var(--fa-font-solid);
+        font-size: 1cap;
+      }
+    }
+  }
+}
+
+.tgui-section {
+  &-heading {
+    display: flex;
+    align-items: center;
+
+    .mw-headline {
+      flex-grow: 1;
+    }
+
+    &:has(+ .tgui-section[hidden]) {
+      .tgui-section-indicator {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+}

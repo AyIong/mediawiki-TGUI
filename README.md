@@ -61,6 +61,7 @@ Skin has a few configurations, you can use them if your wiki is not ready to use
 | $wgTGUIThemeColor | The theme color defined in the meta tag. | HEX colors | `#191919` |
 | $wgTGUITooltips | Defines tooltip content css classes. | List of css classes. Extend with $wgTGUITooltips[] = 'my_class'; | `["tooltiptext", "tooltiptext2", "tooltiptable"]` |
 | $wgTGUIReplaceTitleTooltips | Replacing of buildin browser tooltips with Floating UI custom ones. | `true` - enable <br> `false` - disable | `true` |
+| $wgTGUIEnableCollapsibleSections | Enables or disable collapsible sections on content pages. | `true` - enable <br> `false` - disable | `true` |
 | $wgTGUIEnableHolidays | Enables or disable holidays styles and scripts. | `true` - enable <br> `false` - disable | `true` |
 | $wgTGUIBackground | Path to custom background SVG. | Need a path, like on favicon. | `nanotrasen.svg` |
 

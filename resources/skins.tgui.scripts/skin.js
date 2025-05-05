@@ -54,12 +54,15 @@ function registerServiceWorker() {
  * @return {void}
  */
 function initBodyContent(bodyContent) {
-  const tables = require('./tables.js'),
+  const sections = require('./sections.js'),
+    tables = require('./tables.js'),
     clipboardCopy = require('./clipboardCopy.js'),
     floatingPopups = require('./floatingPopups.js'),
     floatingTooltips = require('./floatingTooltips.js'),
     floatingDropdown = require('./floatingDropdown.js');
 
+  // Collapsable sections
+  sections.init(bodyContent);
   // Table enhancements
   tables.init(bodyContent);
   // MW collapsible enhancement for clipboard copying

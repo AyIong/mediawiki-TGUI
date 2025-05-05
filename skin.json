@@ -108,6 +108,7 @@
         "resources/skins.tgui.scripts/scrollObserver.js",
         "resources/skins.tgui.scripts/searchLoader.js",
         "resources/skins.tgui.scripts/sectionObserver.js",
+        "resources/skins.tgui.scripts/sections.js",
         "resources/skins.tgui.scripts/setupObservers.js",
         "resources/skins.tgui.scripts/tableOfContents.js",
         "resources/skins.tgui.scripts/tables.js",
@@ -328,6 +329,12 @@
       "value": true,
       "description": "Replaces buildin browser tooltips, with FloatingUI ones.",
       "descriptionmsg": "tgui-config-title-tooltips",
+      "public": true
+    },
+    "EnableCollapsibleSections": {
+      "value": true,
+      "description": "Enables or disable collapsible sections on content pages",
+      "descriptionmsg": "tgui-config-enablecollapsiblesections",
       "public": true
     },
     "EnableHolidays": {
