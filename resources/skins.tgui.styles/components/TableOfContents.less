@@ -13,10 +13,8 @@
   background-color: var(--color-primal-fill);
   border-top: var(--border-classic);
   box-shadow: var(--shadow-template--large);
-  transition:
-    height var(--transition-time),
-    width var(--transition-time),
-    transform var(--transition-time);
+  transition-property: height, width, transform, position;
+  transition-duration: var(--transition-time);
   z-index: var(--index-static);
 
   @media (min-width: @min-width-desktop-wide) {
@@ -29,8 +27,12 @@
     }
   }
 
-  .tgui-toc-collapsed & {
+  @{selector-main-menu-closed} ~ .tgui-page-container-inner .tgui-sidebar-container & {
     position: fixed;
+    max-height: calc(100vh - var(--header-height) - var(--header-padding) * 2);
+  }
+
+  .tgui-toc-collapsed & {
     height: 2em !important;
     overflow: hidden;
     box-shadow: var(--shadow-template--small) !important;
