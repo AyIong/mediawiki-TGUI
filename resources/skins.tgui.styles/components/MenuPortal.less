@@ -95,7 +95,7 @@
       }
 
       .tgui-menu__content {
-        transition: max-height var(--transition-time);
+        transition: height var(--transition-time);
         .border-animation(@top: true);
       }
 
@@ -104,8 +104,12 @@
           transform: rotate(-90deg) scale(0.75);
         }
 
-        .tgui-menu__content:before {
-          transform: scale(0);
+        .tgui-menu__content {
+          height: 0;
+
+          &:before {
+            transform: scale(0);
+          }
         }
       }
     }
