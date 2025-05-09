@@ -22,11 +22,10 @@ function init(bodyContent) {
   }
 
   const contentClasses = dropdownContent.map((className) => `.${className}`).join(', ');
-  dropdownElements.forEach((dropdown) => {
+  for (const dropdown of dropdownElements) {
     const content = dropdown.querySelector(contentClasses);
-
     if (!content) {
-      return;
+      continue;
     }
 
     let cleanup = null;
@@ -95,7 +94,7 @@ function init(bodyContent) {
         });
       });
     }
-  });
+  }
 }
 
 module.exports = {

@@ -16,13 +16,12 @@ async function initPortlets() {
   panelContent.querySelector('.tgui-menu').classList.add('first');
 
   const menus = panelContent.querySelectorAll('.tgui-menu:not(.first)');
-  menus.forEach((menu) => {
-    let openState;
+  for (const menu of menus) {
     const id = menu.id;
+    const openState = localStorage.getItem(`TGUI-nav-${id}`);
 
     // Get current portlets state from localStorage
     // If none is found, set it to true
-    openState = localStorage.getItem(`TGUI-nav-${id}`);
     if (openState === null || openState === undefined) {
       localStorage.setItem(`TGUI-nav-${id}`, 'true');
       state = 'true';
@@ -37,7 +36,7 @@ async function initPortlets() {
 
     const anchor = menu.querySelector('.tgui-menu__heading');
     handleEvents(menu, anchor);
-  });
+  }
 }
 
 /**
@@ -51,7 +50,7 @@ function handleEvents(menu, anchor) {
     return;
   }
 
-  anchor.addEventListener('click', function (event) {
+  anchor.addEventListener('click', (event) => {
     event.preventDefault();
     toggleMenu(menu);
   });

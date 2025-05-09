@@ -1,6 +1,6 @@
 <?php
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI\Components;
 
@@ -31,7 +31,7 @@ class TGUIComponentLink implements TGUIComponent {
 	 * @param null|string $accessKeyHint will be used to derive HTML attributes such as title, accesskey
 	 *   and aria-label ("$accessKeyHint-label")
 	 */
-	public function __construct( string $href, string $text, $icon = null, $localizer = null, $accessKeyHint = null ) {
+	public function __construct(string $href, string $text, $icon = null, $localizer = null, $accessKeyHint = null) {
 		$this->href = $href;
 		$this->text = $text;
 		$this->icon = $icon;
@@ -46,10 +46,10 @@ class TGUIComponentLink implements TGUIComponent {
 		$localizer = $this->localizer;
 		$accessKeyHint = $this->accessKeyHint;
 		$additionalAttributes = [];
-		if ( $localizer ) {
-			$msg = $localizer->msg( $accessKeyHint . '-label' );
-			if ( $msg->exists() ) {
-				$additionalAttributes[ 'aria-label' ] = $msg->text();
+		if ($localizer) {
+			$msg = $localizer->msg($accessKeyHint . '-label');
+			if ($msg->exists()) {
+				$additionalAttributes['aria-label'] = $msg->text();
 			}
 		}
 		return [
@@ -59,17 +59,13 @@ class TGUIComponentLink implements TGUIComponent {
 			'array-attributes' => [
 				[
 					'key' => 'href',
-					'value' => $this->href
-				]
+					'value' => $this->href,
+				],
 			],
-			'html-attributes' => $localizer && $accessKeyHint ? Html::expandAttributes(
-				Linker::tooltipAndAccesskeyAttribs(
-					$accessKeyHint,
-					[],
-					[],
-					$localizer
-				) + $additionalAttributes
-			) : '',
+			'html-attributes' =>
+				$localizer && $accessKeyHint
+					? Html::expandAttributes(Linker::tooltipAndAccesskeyAttribs($accessKeyHint, [], [], $localizer) + $additionalAttributes)
+					: '',
 		];
 	}
 }

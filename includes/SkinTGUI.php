@@ -33,14 +33,14 @@ class SkinTGUI extends SkinMustache {
 	 *
 	 * @inheritDoc
 	 */
-	public function __construct( $options = [] ) {
-		if ( !isset( $options['name'] ) ) {
+	public function __construct($options = []) {
+		if (!isset($options['name'])) {
 			$options['name'] = 'tgui';
 		}
 
 		// Add skin-specific features
-		$this->buildSkinFeatures( $options );
-		parent::__construct( $options );
+		$this->buildSkinFeatures($options);
+		parent::__construct($options);
 	}
 
 	/**
@@ -49,9 +49,9 @@ class SkinTGUI extends SkinMustache {
 	 * @param SkinTemplate $skin The skin template object.
 	 * @param array &$content_navigation The content navigation array.
 	 */
-	protected function runOnSkinTemplateNavigationHooks( SkinTemplate $skin, &$content_navigation ) {
-		parent::runOnSkinTemplateNavigationHooks( $skin, $content_navigation );
-		Hooks\SkinHooks::onSkinTemplateNavigation( $skin, $content_navigation );
+	protected function runOnSkinTemplateNavigationHooks(SkinTemplate $skin, &$content_navigation) {
+		parent::runOnSkinTemplateNavigationHooks($skin, $content_navigation);
+		Hooks\SkinHooks::onSkinTemplateNavigation($skin, $content_navigation);
 	}
 
 	/**
@@ -71,10 +71,10 @@ class SkinTGUI extends SkinMustache {
 		$isRegistered = $user->isRegistered();
 		$isTemp = $user->isTemp();
 
-		$bodycontent = new BodyContent( $this );
+		$bodycontent = new BodyContent($this);
 
 		$components = [
-			'data-main-menu' => new TGUIComponentPageSidebar( $parentData['data-portlets-sidebar'] ),
+			'data-main-menu' => new TGUIComponentPageSidebar($parentData['data-portlets-sidebar']),
 			'data-page-heading' => new TGUIComponentPageHeading(
 				$services,
 				$localizer,
@@ -83,12 +83,7 @@ class SkinTGUI extends SkinMustache {
 				$title,
 				$parentData['html-title-heading']
 			),
-			'data-page-tools' => new TGUIComponentPageTools(
-				$config,
-				$localizer,
-				$title,
-				$user
-			),
+			'data-page-tools' => new TGUIComponentPageTools($config, $localizer, $title, $user),
 			'data-user-info' => new TGUIComponentUserInfo(
 				$isRegistered,
 				$isTemp,
@@ -100,9 +95,9 @@ class SkinTGUI extends SkinMustache {
 			),
 		];
 
-		foreach ( $components as $key => $component ) {
+		foreach ($components as $key => $component) {
 			// Array of components or null values.
-			if ( $component ) {
+			if ($component) {
 				$parentData[$key] = $component->getTemplateData();
 			}
 		}
@@ -111,13 +106,13 @@ class SkinTGUI extends SkinMustache {
 		$parentData['data-logos']['icon-home'] = 'home';
 
 		// TGUI Background logo
-		$parentData['wgTGUIBackground'] = $GLOBALS['wgTGUIBackground'] ?? "/skins/TGUI/resources/skins.tgui.styles/images/nanotrasen.svg";
+		$parentData['wgTGUIBackground'] = $GLOBALS['wgTGUIBackground'] ?? '/skins/TGUI/resources/skins.tgui.styles/images/nanotrasen.svg';
 
-		return array_merge( $parentData, [
+		return array_merge($parentData, [
 			// Booleans
-			'toc-enabled' => !empty( $parentData['data-toc'] ),
-			'html-body-content--formatted' => $bodycontent->decorateBodyContent( $parentData['html-body-content'] )
-		] );
+			'toc-enabled' => !empty($parentData['data-toc']),
+			'html-body-content--formatted' => $bodycontent->decorateBodyContent($parentData['html-body-content']),
+		]);
 	}
 
 	/**
@@ -139,17 +134,16 @@ class SkinTGUI extends SkinMustache {
 	) {
 		$searchClass = 'tgui-search-box-vue ';
 
-		if ( $isCollapsible ) {
+		if ($isCollapsible) {
 			$searchClass .= ' tgui-search-box-collapses ';
 		}
 
-		if ( $this->doesSearchHaveThumbnails() ) {
-			$searchClass .= ' ' . self::SEARCH_SHOW_THUMBNAIL_CLASS .
-				( $autoExpandWidth ? ' ' . self::SEARCH_AUTO_EXPAND_WIDTH_CLASS : '' );
+		if ($this->doesSearchHaveThumbnails()) {
+			$searchClass .= ' ' . self::SEARCH_SHOW_THUMBNAIL_CLASS . ($autoExpandWidth ? ' ' . self::SEARCH_AUTO_EXPAND_WIDTH_CLASS : '');
 		}
 
 		// Annotate search box with a component class.
-		$searchBoxData['class'] = trim( $searchClass );
+		$searchBoxData['class'] = trim($searchClass);
 		$searchBoxData['is-collapsible'] = $isCollapsible;
 		$searchBoxData['is-primary'] = $isPrimary;
 		$searchBoxData['form-id'] = $formId;
@@ -157,14 +151,17 @@ class SkinTGUI extends SkinMustache {
 		// At lower resolutions the search input is hidden search and only the submit button is shown.
 		// It should behave like a form submit link (e.g. submit the form with no input value).
 		// We'll wire this up in a later task T284242.
-		$collapseIconAttrs = Linker::tooltipAndAccesskeyAttribs( 'search' );
-		$searchBoxData['data-collapse-icon'] = array_merge( [
-			'href' => Title::newFromText( $searchBoxData['page-title'] )->getLocalUrl(),
-			'label' => $this->msg( 'search' ),
-			'icon' => 'wikimedia-search',
-			'is-quiet' => true,
-			'class' => 'search-toggle',
-		], $collapseIconAttrs );
+		$collapseIconAttrs = Linker::tooltipAndAccesskeyAttribs('search');
+		$searchBoxData['data-collapse-icon'] = array_merge(
+			[
+				'href' => Title::newFromText($searchBoxData['page-title'])->getLocalUrl(),
+				'label' => $this->msg('search'),
+				'icon' => 'wikimedia-search',
+				'is-quiet' => true,
+				'class' => 'search-toggle',
+			],
+			$collapseIconAttrs
+		);
 
 		return $searchBoxData;
 	}
@@ -176,7 +173,7 @@ class SkinTGUI extends SkinMustache {
 	 * @return bool
 	 */
 	private function doesSearchHaveThumbnails(): bool {
-		return $this->getConfig()->get( 'TGUIWvuiSearchOptions' )['showThumbnail'];
+		return $this->getConfig()->get('TGUIWvuiSearchOptions')['showThumbnail'];
 	}
 
 	/**
@@ -186,8 +183,8 @@ class SkinTGUI extends SkinMustache {
 	 * @param string $feature
 	 * @param string $value
 	 */
-	private function addClientPrefFeature( string $feature, string $value = 'standard' ) {
-		$this->getOutput()->addHtmlClasses( $feature . '-clientpref-' . $value );
+	private function addClientPrefFeature(string $feature, string $value = 'standard') {
+		$this->getOutput()->addHtmlClasses($feature . '-clientpref-' . $value);
 	}
 
 	/**
@@ -195,32 +192,29 @@ class SkinTGUI extends SkinMustache {
 	 *
 	 * @param array &$options
 	 */
-	private function buildSkinFeatures( array &$options ) {
+	private function buildSkinFeatures(array &$options) {
 		$config = $this->getConfig();
 		$title = $this->getOutput()->getTitle();
 
-		$metadata = new Metadata( $this );
-		$skinTheme = new Theme( $this );
+		$metadata = new Metadata($this);
+		$skinTheme = new Theme($this);
 
 		// Add metadata
 		$metadata->addMetadata();
 
 		// Add theme handler
-		$skinTheme->setSkinTheme( $options );
+		$skinTheme->setSkinTheme($options);
 
 		// Clientprefs feature handling
-		$this->addClientPrefFeature( 'tgui-feature-blur', 'enabled' );
-		$this->addClientPrefFeature( 'tgui-feature-reduced-motion', 'disabled' );
-		$this->addClientPrefFeature( 'tgui-feature-holidays', 'enabled' );
-		$this->addClientPrefFeature( 'tgui-feature-darkened-images', 'light' );
-		$this->addClientPrefFeature( 'tgui-feature-primary-hue-slider', '210' );
+		$this->addClientPrefFeature('tgui-feature-blur', 'enabled');
+		$this->addClientPrefFeature('tgui-feature-reduced-motion', 'disabled');
+		$this->addClientPrefFeature('tgui-feature-holidays', 'enabled');
+		$this->addClientPrefFeature('tgui-feature-darkened-images', 'light');
+		$this->addClientPrefFeature('tgui-feature-primary-hue-slider', '210');
 
-		if ( $title !== null ) {
+		if ($title !== null) {
 			// Collapsible sections
-			if (
-				$config->get( 'TGUIEnableCollapsibleSections' ) === true &&
-				$title->isContentPage()
-			) {
+			if ($config->get('TGUIEnableCollapsibleSections') === true && $title->isContentPage()) {
 				$options['bodyClasses'][] = 'tgui-sections-enabled';
 			}
 		}

@@ -21,7 +21,7 @@
  * @ingroup Skins
  */
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI\Partials;
 
@@ -36,7 +36,6 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Services\NoSuchServiceException;
 
 final class BodyContent extends Partial {
-
 	/**
 	 * The code below is largely based on the extension MobileFrontend
 	 * All credits go to the author and contributors of the project
@@ -51,7 +50,7 @@ final class BodyContent extends Partial {
 	 * List of tags that could be considered as section headers.
 	 * @var array
 	 */
-	private $topHeadingTags = [ "h1", "h2", "h3", "h4", "h5", "h6" ];
+	private $topHeadingTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
 	/**
 	 * Helper function to decide if the page should be formatted
@@ -59,24 +58,23 @@ final class BodyContent extends Partial {
 	 * @param Title $title
 	 * @return bool
 	 */
-	private function shouldFormatPage( $title ) {
-		$shouldFormat = (
-			$this->getConfigValue( 'TGUIEnableCollapsibleSections' ) === true &&
+	private function shouldFormatPage($title) {
+		$shouldFormat =
+			$this->getConfigValue('TGUIEnableCollapsibleSections') === true &&
 			$title->canExist() &&
 			!$title->isMainPage() &&
 			$title->isContentPage() &&
-			$title->getContentModel() === CONTENT_MODEL_WIKITEXT
-		);
+			$title->getContentModel() === CONTENT_MODEL_WIKITEXT;
 
-		if ( !$shouldFormat ) {
+		if (!$shouldFormat) {
 			return false;
 		}
 
 		// Check if page is in mobile view and let MF do the formatting
 		try {
-			$mfCxt = MediaWikiServices::getInstance()->getService( 'MobileFrontend.Context' );
+			$mfCxt = MediaWikiServices::getInstance()->getService('MobileFrontend.Context');
 			return !$mfCxt->shouldDisplayMobileView();
-		} catch ( NoSuchServiceException $ex ) {
+		} catch (NoSuchServiceException $ex) {
 			// MobileFrontend not installed. Don't do anything
 		}
 
@@ -89,20 +87,20 @@ final class BodyContent extends Partial {
 	 * @param string $bodyContent HTML of the body content from core
 	 * @return string html
 	 */
-	public function decorateBodyContent( $bodyContent ) {
+	public function decorateBodyContent($bodyContent) {
 		$title = $this->title;
 
 		// Return the page if title is null
-		if ( $title === null ) {
+		if ($title === null) {
 			return $bodyContent;
 		}
 
 		// Make section and sanitize the output
-		if ( $this->shouldFormatPage( $title ) ) {
-			$formatter = new HtmlFormatter( $bodyContent );
+		if ($this->shouldFormatPage($title)) {
+			$formatter = new HtmlFormatter($bodyContent);
 			$doc = $formatter->getDoc();
 			// Make top level sections
-			$this->makeSections( $doc, $this->getTopHeadings( $doc ) );
+			$this->makeSections($doc, $this->getTopHeadings($doc));
 			$formatter->filterContent();
 			$bodyContent = $formatter->getText();
 		}
@@ -114,16 +112,16 @@ final class BodyContent extends Partial {
 	 * @param DOMNode|null $node
 	 * @return string|false Heading tag name if the node is a heading
 	 */
-	private function getHeadingName( $node ) {
-		if ( !( $node instanceof DOMElement ) ) {
+	private function getHeadingName($node) {
+		if (!($node instanceof DOMElement)) {
 			return false;
 		}
 		// We accept both kinds of nodes that can be returned by getTopHeadings():
 		// a `<h1>` to `<h6>` node, or a `<div class="mw-heading">` node wrapping it.
 		// In the future `<div class="mw-heading">` will be required (T13555).
-		if ( DOMCompat::getClassList( $node )->contains( 'mw-heading' ) ) {
-			$node = DOMCompat::querySelector( $node, implode( ',', $this->topHeadingTags ) );
-			if ( !( $node instanceof DOMElement ) ) {
+		if (DOMCompat::getClassList($node)->contains('mw-heading')) {
+			$node = DOMCompat::querySelector($node, implode(',', $this->topHeadingTags));
+			if (!($node instanceof DOMElement)) {
 				return false;
 			}
 		}
@@ -140,49 +138,49 @@ final class BodyContent extends Partial {
 	 *  In the future `<div class="mw-heading">` will be required (T13555).
 	 * @return DOMDocument
 	 */
-	private function makeSections( DOMDocument $doc, array $headingWrappers ) {
-		$xpath = new DOMXpath( $doc );
+	private function makeSections(DOMDocument $doc, array $headingWrappers) {
+		$xpath = new DOMXpath($doc);
 		$containers = $xpath->query(
 			// Equivalent of CSS attribute `~=` to support multiple classes
 			'//div[contains(concat(" ",normalize-space(@class)," ")," mw-parser-output ")][1]'
 		);
 
 		// Return if no parser output is found
-		if ( !$containers->length || $containers->item( 0 ) === null ) {
+		if (!$containers->length || $containers->item(0) === null) {
 			return $doc;
 		}
 
-		$container = $containers->item( 0 );
+		$container = $containers->item(0);
 
 		$containerChild = $container->firstChild;
-		$firstHeading = reset( $headingWrappers );
-		$firstHeadingName = $this->getHeadingName( $firstHeading );
+		$firstHeading = reset($headingWrappers);
+		$firstHeadingName = $this->getHeadingName($firstHeading);
 		$sectionNumber = 0;
-		$sectionBody = $this->createSectionBodyElement( $doc, $sectionNumber );
+		$sectionBody = $this->createSectionBodyElement($doc, $sectionNumber);
 
-		while ( $containerChild ) {
+		while ($containerChild) {
 			$node = $containerChild;
 			$containerChild = $containerChild->nextSibling;
 
 			// If we've found a top level heading, insert the previous section if
 			// necessary and clear the container div.
-			if ( $firstHeadingName && $this->getHeadingName( $node ) === $firstHeadingName ) {
-				$this->prepareHeading( $doc, $node );
+			if ($firstHeadingName && $this->getHeadingName($node) === $firstHeadingName) {
+				$this->prepareHeading($doc, $node);
 				// Insert the previous section body and reset it for the new section
-				$container->insertBefore( $sectionBody, $node );
+				$container->insertBefore($sectionBody, $node);
 
 				++$sectionNumber;
-				$sectionBody = $this->createSectionBodyElement( $doc, $sectionNumber );
+				$sectionBody = $this->createSectionBodyElement($doc, $sectionNumber);
 				continue;
 			}
 
 			// If it is not a top level heading, keep appending the nodes to the
 			// section body container.
-			$sectionBody->appendChild( $node );
+			$sectionBody->appendChild($node);
 		}
 
 		// Append the last section body.
-		$container->appendChild( $sectionBody );
+		$container->appendChild($sectionBody);
 
 		return $doc;
 	}
@@ -193,14 +191,14 @@ final class BodyContent extends Partial {
 	 * @param DOMDocument $doc
 	 * @param DOMElement $heading
 	 */
-	private function prepareHeading( DOMDocument $doc, DOMElement $heading ) {
-		$className = $heading->hasAttribute( 'class' ) ? $heading->getAttribute( 'class' ) . ' ' : '';
-		$heading->setAttribute( 'class', $className . 'tgui-section-heading' );
+	private function prepareHeading(DOMDocument $doc, DOMElement $heading) {
+		$className = $heading->hasAttribute('class') ? $heading->getAttribute('class') . ' ' : '';
+		$heading->setAttribute('class', $className . 'tgui-section-heading');
 
 		// prepend indicator - this avoids a reflow by creating a placeholder for a toggling indicator
-		$indicator = $doc->createElement( 'span' );
-		$indicator->setAttribute( 'class', 'tgui-section-indicator tgui-icon mw-ui-icon-wikimedia-collapse' );
-		$heading->insertBefore( $indicator, $heading->firstChild );
+		$indicator = $doc->createElement('span');
+		$indicator->setAttribute('class', 'tgui-section-indicator tgui-icon mw-ui-icon-wikimedia-collapse');
+		$heading->insertBefore($indicator, $heading->firstChild);
 	}
 
 	/**
@@ -211,10 +209,10 @@ final class BodyContent extends Partial {
 	 *
 	 * @return DOMElement
 	 */
-	private function createSectionBodyElement( DOMDocument $doc, $sectionNumber ) {
-		$sectionBody = $doc->createElement( 'section' );
-		$sectionBody->setAttribute( 'class', self::SECTION_CLASS );
-		$sectionBody->setAttribute( 'id', 'tgui-section-' . $sectionNumber );
+	private function createSectionBodyElement(DOMDocument $doc, $sectionNumber) {
+		$sectionBody = $doc->createElement('section');
+		$sectionBody->setAttribute('class', self::SECTION_CLASS);
+		$sectionBody->setAttribute('id', 'tgui-section-' . $sectionNumber);
 
 		return $sectionBody;
 	}
@@ -225,39 +223,38 @@ final class BodyContent extends Partial {
 	 * @param DOMDocument $doc
 	 * @return array An array first is the highest rank headings
 	 */
-	private function getTopHeadings( DOMDocument $doc ): array {
+	private function getTopHeadings(DOMDocument $doc): array {
 		$headings = [];
 
-		foreach ( $this->topHeadingTags as $tagName ) {
-			$allTags = DOMCompat::querySelectorAll( $doc, $tagName );
+		foreach ($this->topHeadingTags as $tagName) {
+			$allTags = DOMCompat::querySelectorAll($doc, $tagName);
 
-			foreach ( $allTags as $el ) {
+			foreach ($allTags as $el) {
 				$parent = $el->parentNode;
-				if ( !( $parent instanceof DOMElement ) ) {
+				if (!($parent instanceof DOMElement)) {
 					continue;
 				}
 
-				$parentClasses = DOMCompat::getClassList( $parent );
+				$parentClasses = DOMCompat::getClassList($parent);
 
 				// Use the `<div class="mw-heading">` wrapper if it is present. When they are required
 				// (T13555), the querySelectorAll() above can use the class and this can be removed.
-				if ( $parentClasses->contains( 'mw-heading' ) ) {
+				if ($parentClasses->contains('mw-heading')) {
 					$el = $parent;
-				} elseif ( !$parentClasses->contains( 'mw-parser-output' ) ) {
+				} elseif (!$parentClasses->contains('mw-parser-output')) {
 					// Only target page headings, but not other heading tags
 					// TODO: Drop this when T13555 is deployed on LTS
 					continue;
 				}
 
 				// This check can be removed too when we require the wrappers.
-				if ( $parent->getAttribute( 'class' ) !== 'toctitle' ) {
+				if ($parent->getAttribute('class') !== 'toctitle') {
 					$headings[] = $el;
 				}
 			}
-			if ( $headings ) {
+			if ($headings) {
 				return $headings;
 			}
-
 		}
 
 		return $headings;

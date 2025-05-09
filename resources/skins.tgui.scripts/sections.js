@@ -24,7 +24,7 @@ function init(bodyContent) {
 
     const heading = target.closest('.tgui-section-heading');
 
-    if (heading && heading.nextElementSibling && heading.nextElementSibling.classList.contains('tgui-section')) {
+    if (heading?.nextElementSibling?.classList.contains('tgui-section')) {
       const section = heading.nextElementSibling;
 
       if (section) {

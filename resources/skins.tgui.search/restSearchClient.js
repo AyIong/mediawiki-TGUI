@@ -98,7 +98,7 @@ function restSearchClient(config) {
      * @type {fetchByTitle}
      */
     fetchByTitle: (q, limit = 10, showDescription = true) => {
-      const searchApiUrl = config.get('wgTGUISearchApiUrl', config.get('wgScriptPath') + '/rest.php');
+      const searchApiUrl = config.get('wgTGUISearchApiUrl', `${config.get('wgScriptPath')}/rest.php`);
       const params = { q, limit: limit.toString() };
       const search = new URLSearchParams(params);
       const url = `${searchApiUrl}/v1/search/title?${search.toString()}`;

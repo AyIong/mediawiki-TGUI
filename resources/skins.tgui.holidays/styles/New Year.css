@@ -1,20 +1,20 @@
 .mw-logo {
-	position: relative;
+  position: relative;
 }
 
 .mw-logo-icon {
-	background-color: var(--color-bg-hover);
-	border: var(--border-classic);
-	border-radius: var(--border-radius-round);
+  background-color: var(--color-bg-hover);
+  border: var(--border-classic);
+  border-radius: var(--border-radius-round);
 }
 
 .mw-logo:before {
-	content: '';
-	position: absolute;
-	background: url('/skins/TGUI/resources/skins.tgui.holidays/assets/santa-hat.png') no-repeat;
-	background-size: 60px;
-	inset: 0;
-	top: -10px;
-	left: -6px;
-	z-index: 5;
+  content: "";
+  position: absolute;
+  background: url("/skins/TGUI/resources/skins.tgui.holidays/assets/santa-hat.png") no-repeat;
+  background-size: 60px;
+  inset: 0;
+  top: -10px;
+  left: -6px;
+  z-index: 5;
 }

@@ -1,19 +1,19 @@
 /** @module search */
 
-const Vue = require('vue'),
-  App = require('./App.vue'),
-  config = require('./config.json');
+const Vue = require('vue');
+const App = require('./App.vue');
+const config = require('./config.json');
 
 /**
  * @param {Element} searchBox
  * @return {void}
  */
 function initApp(searchBox) {
-  const searchForm = searchBox.querySelector('.cdx-search-input'),
-    titleInput = /** @type {HTMLInputElement|null} */ (searchBox.querySelector('input[name=title]')),
-    search = /** @type {HTMLInputElement|null} */ (searchBox.querySelector('input[name=search]')),
-    searchPageTitle = titleInput && titleInput.value,
-    searchContainer = searchBox.querySelector('.tgui-typeahead-search-container');
+  const searchForm = searchBox.querySelector('.cdx-search-input');
+  const titleInput = /** @type {HTMLInputElement|null} */ (searchBox.querySelector('input[name=title]'));
+  const search = /** @type {HTMLInputElement|null} */ (searchBox.querySelector('input[name=search]'));
+  const searchPageTitle = titleInput?.value;
+  const searchContainer = searchBox.querySelector('.tgui-typeahead-search-container');
 
   if (!searchForm || !search || !titleInput) {
     throw new Error('Attempted to create Vue search element from an incompatible element.');

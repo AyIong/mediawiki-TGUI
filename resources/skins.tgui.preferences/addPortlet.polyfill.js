@@ -59,7 +59,7 @@ function addPortlet(id, label, before) {
   const portlet = document.createElement('div');
   portlet.classList.add(
     'mw-portlet',
-    'mw-portlet-' + id,
+    `mw-portlet-${id}`,
     'emptyPortlet',
     // Additional class is added to allow skins to track portlets added via this mechanism.
     'mw-portlet-js',

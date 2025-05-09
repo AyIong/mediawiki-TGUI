@@ -18,7 +18,7 @@ function restoreSidebarState() {
 
 function bindSidebarClickEvent(checkbox, button) {
   if (checkbox instanceof HTMLInputElement && button) {
-    checkbox.addEventListener('input', function () {
+    checkbox.addEventListener('input', () => {
       saveSidebarState(checkbox);
     });
   }

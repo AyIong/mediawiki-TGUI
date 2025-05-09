@@ -1,6 +1,6 @@
 <?php
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI\Components;
 
@@ -16,7 +16,6 @@ use MessageLocalizer;
 use Wikimedia\IPUtils;
 
 class TGUIComponentPageHeading implements TGUIComponent {
-
 	public function __construct(
 		private MediaWikiServices $services,
 		private MessageLocalizer $localizer,
@@ -24,8 +23,7 @@ class TGUIComponentPageHeading implements TGUIComponent {
 		private Language|StubUserLang $pageLang,
 		private Title $title,
 		private string $titleData
-	) {
-	}
+	) {}
 
 	/**
 	 * Return new User object based on username or IP address.
@@ -36,13 +34,13 @@ class TGUIComponentPageHeading implements TGUIComponent {
 	private function buildPageUserObject(): ?User {
 		$titleText = $this->title->getText();
 
-		if ( IPUtils::isIPAddress( $titleText ) ) {
-			return $this->services->getUserFactory()->newFromName( $titleText );
+		if (IPUtils::isIPAddress($titleText)) {
+			return $this->services->getUserFactory()->newFromName($titleText);
 		}
 
-		$userIdentity = $this->services->getUserIdentityLookup()->getUserIdentityByName( $titleText );
-		if ( $userIdentity && $userIdentity->isRegistered() ) {
-			return $this->services->getUserFactory()->newFromId( $userIdentity->getId() );
+		$userIdentity = $this->services->getUserIdentityLookup()->getUserIdentityByName($titleText);
+		if ($userIdentity && $userIdentity->isRegistered()) {
+			return $this->services->getUserFactory()->newFromId($userIdentity->getId());
 		}
 
 		return null;
@@ -57,33 +55,33 @@ class TGUIComponentPageHeading implements TGUIComponent {
 		$localizer = $this->localizer;
 
 		$user = $this->buildPageUserObject();
-		if ( !$user ) {
+		if (!$user) {
 			return '';
 		}
 
 		$tagline = '<div id="tgui-tagline-user">';
 		$editCount = $user->getEditCount();
 		$regDate = $user->getRegistration();
-		$gender = $this->services->getGenderCache()->getGenderOf( $user, __METHOD__ );
+		$gender = $this->services->getGenderCache()->getGenderOf($user, __METHOD__);
 
-		if ( $gender === 'male' ) {
+		if ($gender === 'male') {
 			$msgGender = '♂';
-		} elseif ( $gender === 'female' ) {
+		} elseif ($gender === 'female') {
 			$msgGender = '♀';
 		}
-		if ( isset( $msgGender ) ) {
+		if (isset($msgGender)) {
 			$tagline .= "<span id=\"tgui-tagline-user-gender\" data-user-gender=\"$gender\">$msgGender</span>";
 		}
 
-		if ( $editCount ) {
-			$msgEditCount = $localizer->msg( 'usereditcount' )->numParams( sprintf( '%s', number_format( $editCount, 0 ) ) );
-			$editCountHref = SkinComponentUtils::makeSpecialUrlSubpage( 'Contributions', $user );
+		if ($editCount) {
+			$msgEditCount = $localizer->msg('usereditcount')->numParams(sprintf('%s', number_format($editCount, 0)));
+			$editCountHref = SkinComponentUtils::makeSpecialUrlSubpage('Contributions', $user);
 			$tagline .= "<span id=\"tgui-tagline-user-editcount\" data-user-editcount=\"$editCount\"><a href=\"$editCountHref\">$msgEditCount</a></span>";
 		}
 
-		if ( is_string( $regDate ) ) {
-			$regDateTs = wfTimestamp( TS_UNIX, $regDate );
-			$msgRegDate = $localizer->msg( 'tgui-tagline-user-regdate', $this->pageLang->userDate( new MWTimestamp( $regDate ), $user ), $user );
+		if (is_string($regDate)) {
+			$regDateTs = wfTimestamp(TS_UNIX, $regDate);
+			$msgRegDate = $localizer->msg('tgui-tagline-user-regdate', $this->pageLang->userDate(new MWTimestamp($regDate), $user), $user);
 			$tagline .= "<span id=\"tgui-tagline-user-regdate\" data-user-regdate=\"$regDateTs\">$msgRegDate</span>";
 		}
 
@@ -95,7 +93,7 @@ class TGUIComponentPageHeading implements TGUIComponent {
 	 * Return the modified page heading HTML
 	 */
 	private function getPageHeading(): string {
-		if ( !$this->title->isContentPage() ) {
+		if (!$this->title->isContentPage()) {
 			return $this->titleData;
 		}
 
@@ -104,7 +102,7 @@ class TGUIComponentPageHeading implements TGUIComponent {
 		$pattern = '/\s?(\p{Ps}.+\p{Pe})<\/(span|h1)>/';
 		$replacement = ' <span class="mw-page-title-parenthesis">$1</span></$2>';
 
-		return preg_replace( $pattern, $replacement, $this->titleData );
+		return preg_replace($pattern, $replacement, $this->titleData);
 	}
 
 	/**
@@ -118,49 +116,49 @@ class TGUIComponentPageHeading implements TGUIComponent {
 	private function determineTagline(): string {
 		$title = $this->title;
 
-		if ( $title->isSpecialPage() ) {
+		if ($title->isSpecialPage()) {
 			// No tagline if special page
 			return '';
 		}
 
-		if ( $title->isTalkPage() ) {
-			return $this->getTGUITagline( 'tgui-tagline-ns-talk' );
+		if ($title->isTalkPage()) {
+			return $this->getTGUITagline('tgui-tagline-ns-talk');
 		}
 
-		if ( $this->isUserPage() ) {
+		if ($this->isUserPage()) {
 			// Build user tagline if it is a top-level user page
 			return $this->buildUserTagline();
 		}
 
-		$nsMsgKey = 'tgui-tagline-ns-' . strtolower( $title->getNsText() );
-		if ( !$this->localizer->msg( $nsMsgKey )->isDisabled() ) {
-			return $this->localizer->msg( $nsMsgKey )->parse();
+		$nsMsgKey = 'tgui-tagline-ns-' . strtolower($title->getNsText());
+		if (!$this->localizer->msg($nsMsgKey)->isDisabled()) {
+			return $this->localizer->msg($nsMsgKey)->parse();
 		}
 
-		return $this->getTGUITagline( 'tgui-tagline' );
+		return $this->getTGUITagline('tgui-tagline');
 	}
 
 	private function isUserPage(): bool {
-		return ( $this->title->inNamespace( NS_USER ) || $this->isSocialProfilePage() ) && !$this->title->isSubpage();
+		return ($this->title->inNamespace(NS_USER) || $this->isSocialProfilePage()) && !$this->title->isSubpage();
 	}
 
 	private function isSocialProfilePage(): bool {
-		if ( !defined( 'NS_USER_WIKI' ) || !defined( 'NS_USER_PROFILE' ) ) {
+		if (!defined('NS_USER_WIKI') || !defined('NS_USER_PROFILE')) {
 			return false;
 		}
 
 		// @phan-suppress-next-line PhanTypeMismatchArgument
-		if ( !$this->title->inNamespaces( [ NS_USER_WIKI, NS_USER_PROFILE ] ) ) {
+		if (!$this->title->inNamespaces([NS_USER_WIKI, NS_USER_PROFILE])) {
 			return false;
 		}
 
 		return true;
 	}
 
-	private function getTGUITagline( string $msgKey ): string {
-		return $this->localizer->msg( $msgKey )->isDisabled() ?
-			$this->localizer->msg( 'tagline' )->parse() :
-			$this->localizer->msg( $msgKey )->parse();
+	private function getTGUITagline(string $msgKey): string {
+		return $this->localizer->msg($msgKey)->isDisabled()
+			? $this->localizer->msg('tagline')->parse()
+			: $this->localizer->msg($msgKey)->parse();
 	}
 
 	/**
@@ -169,19 +167,17 @@ class TGUIComponentPageHeading implements TGUIComponent {
 	private function getTagline(): string {
 		// Use short description if there is any
 		// from Extension:ShortDescription
-		$shortdesc = $this->out->getProperty( 'shortdesc' );
-		if ( $shortdesc ) {
+		$shortdesc = $this->out->getProperty('shortdesc');
+		if ($shortdesc) {
 			$tagline = $shortdesc;
 		} else {
 			$tagline = $this->determineTagline();
 		}
 
-		if ( $tagline !== '' ) {
+		if ($tagline !== '') {
 			// Apply language variant conversion
-			$langConv = $this->services
-				->getLanguageConverterFactory()
-				->getLanguageConverter( $this->services->getContentLanguage() );
-			$tagline = $langConv->convert( $tagline );
+			$langConv = $this->services->getLanguageConverterFactory()->getLanguageConverter($this->services->getContentLanguage());
+			$tagline = $langConv->convert($tagline);
 		}
 
 		return $tagline;
@@ -192,8 +188,8 @@ class TGUIComponentPageHeading implements TGUIComponent {
 	 */
 	public function getTemplateData(): array {
 		return [
-		'html-tagline' => $this->getTagline(),
-		'html-title-heading' => $this->getPageHeading()
+			'html-tagline' => $this->getTagline(),
+			'html-title-heading' => $this->getPageHeading(),
 		];
 	}
 }

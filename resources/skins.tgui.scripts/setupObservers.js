@@ -1,20 +1,20 @@
-const scrollObserver = require('./scrollObserver.js'),
-  initSectionObserver = require('./sectionObserver.js'),
-  initTableOfContents = require('./tableOfContents.js'),
-  deferUntilFrame = require('./deferUntilFrame.js'),
-  BODY_CONTENT_ID = 'bodyContent',
-  TOC_ID = 'tgui-panel-toc',
-  TOC_SECTION_ID_PREFIX = 'toc-',
-  HEADING_TAGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-  HEADING_SELECTOR = ['.mw-heading', ...HEADING_TAGS.map((tag) => `${tag}:not([id])`)]
-    .map((sel) => `.mw-parser-output ${sel}`)
-    .join(', '),
-  HEADLINE_SELECTOR = ['.mw-headline', ...HEADING_TAGS.map((tag) => `${tag}[id]`)]
-    .map((sel) => `.mw-parser-output ${sel}`)
-    .join(', '),
-  SCROLL_UP_CLASS = 'tgui-scroll--up',
-  SCROLL_DOWN_CLASS = 'tgui-scroll--down',
-  SCROLL_OFFTOP_CLASS = 'tgui-off-top';
+const scrollObserver = require('./scrollObserver.js');
+const initSectionObserver = require('./sectionObserver.js');
+const initTableOfContents = require('./tableOfContents.js');
+const deferUntilFrame = require('./deferUntilFrame.js');
+const BODY_CONTENT_ID = 'bodyContent';
+const TOC_ID = 'tgui-panel-toc';
+const TOC_SECTION_ID_PREFIX = 'toc-';
+const HEADING_TAGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+const HEADING_SELECTOR = ['.mw-heading', ...HEADING_TAGS.map((tag) => `${tag}:not([id])`)]
+  .map((sel) => `.mw-parser-output ${sel}`)
+  .join(', ');
+const HEADLINE_SELECTOR = ['.mw-headline', ...HEADING_TAGS.map((tag) => `${tag}[id]`)]
+  .map((sel) => `.mw-parser-output ${sel}`)
+  .join(', ');
+const SCROLL_UP_CLASS = 'tgui-scroll--up';
+const SCROLL_DOWN_CLASS = 'tgui-scroll--down';
+const SCROLL_OFFTOP_CLASS = 'tgui-off-top';
 
 /**
  * @ignore
@@ -46,7 +46,7 @@ function getDocumentScrollPaddingTop() {
   const defaultScrollPaddingTop = 75;
   const documentStyles = getComputedStyle(document.documentElement);
   const scrollPaddingTopString = documentStyles.getPropertyValue('scroll-padding-top');
-  return parseInt(scrollPaddingTopString, 10) || defaultScrollPaddingTop;
+  return Number.parseInt(scrollPaddingTopString, 10) || defaultScrollPaddingTop;
 }
 
 /**
@@ -98,9 +98,9 @@ const setupTableOfContents = (tocElement, bodyContent, initSectionObserverFn) =>
    */
   const updateTocStatus = () => {
     const tocElements = document.querySelectorAll('.sidebar-toc');
-    tocElements.forEach((element) => {
+    for (const element of tocElements) {
       element.classList.toggle('hidden');
-    });
+    }
   };
 
   const tableOfContents = initTableOfContents({

@@ -1,6 +1,6 @@
 <?php
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI\Components;
 
@@ -16,7 +16,7 @@ class TGUIComponentMenu implements TGUIComponent, Countable {
 	/**
 	 * @param array $data
 	 */
-	public function __construct( array $data ) {
+	public function __construct(array $data) {
 		$this->data = $data;
 	}
 
@@ -27,11 +27,11 @@ class TGUIComponentMenu implements TGUIComponent, Countable {
 	 */
 	public function count(): int {
 		$items = $this->data['array-list-items'] ?? null;
-		if ( $items ) {
-			return count( $items );
+		if ($items) {
+			return count($items);
 		}
 		$htmlItems = $this->data['html-items'] ?? '';
-		return substr_count( $htmlItems, '<li' );
+		return substr_count($htmlItems, '<li');
 	}
 
 	/**

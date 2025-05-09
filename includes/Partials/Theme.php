@@ -21,38 +21,37 @@
  * @ingroup Skins
  */
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI\Partials;
 
 const CLIENTPREFS_THEME_MAP = [
 	'auto' => 'os',
 	'light' => 'day',
-	'dark' => 'night'
+	'dark' => 'night',
 ];
 
 /**
  * Theme switcher partial of Skin TGUI
  */
 final class Theme extends Partial {
-
 	/**
 	 * Sets the corresponding theme and theme style classes on the <html> element
 	 * If the theme is set to auto, the theme switcher script will be added
 	 *
 	 * @param array &$options
 	 */
-	public function setSkinTheme( array &$options ) {
+	public function setSkinTheme(array &$options) {
 		$out = $this->out;
 
 		// Set theme to site theme
-		$theme = $this->getConfigValue( 'TGUIThemeDefault' ) ?? 'auto';
-		$themeStyle = $this->getConfigValue( 'TGUIThemeStyleDefault' ) ?? 'default';
+		$theme = $this->getConfigValue('TGUIThemeDefault') ?? 'auto';
+		$themeStyle = $this->getConfigValue('TGUIThemeStyleDefault') ?? 'default';
 
 		// Add HTML class based on theme set
-		if ( CLIENTPREFS_THEME_MAP[ $theme ] ) {
-			$out->addHtmlClasses( 'skin-theme-clientpref-' . CLIENTPREFS_THEME_MAP[ $theme ] );
+		if (CLIENTPREFS_THEME_MAP[$theme]) {
+			$out->addHtmlClasses('skin-theme-clientpref-' . CLIENTPREFS_THEME_MAP[$theme]);
 		}
-		$out->addHtmlClasses( 'skin-theme-style-clientpref-' . $themeStyle );
+		$out->addHtmlClasses('skin-theme-style-clientpref-' . $themeStyle);
 	}
 }

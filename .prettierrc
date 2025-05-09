@@ -1,5 +1,5 @@
 {
-  "printWidth": 120,
+  "plugins": ["@prettier/plugin-php"],
   "overrides": [
     {
       "files": "*.less",
@@ -8,22 +8,13 @@
       }
     },
     {
-      "files": "*.css",
+      "files": "*.php",
       "options": {
+        "useTabs": true,
+        "printWidth": 140,
         "singleQuote": true,
-        "useTabs": true
-      }
-    },
-    {
-      "files": "*.js",
-      "options": {
-        "singleQuote": true
-      }
-    },
-    {
-      "files": "*.ts",
-      "options": {
-        "singleQuote": true
+        "bracketSpacing": true,
+        "braceStyle": "1tbs"
       }
     }
   ]

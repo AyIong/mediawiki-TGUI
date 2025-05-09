@@ -43,18 +43,17 @@ function isValidFeatureValue(value) {
 function saveClientPrefs(feature, value) {
   const existingStorage = mw.storage.get(CLIENTPREF_STORAGE_NAME) || '';
   const data = {};
-  existingStorage.split(CLIENTPREF_DELIMITER).forEach(function (keyValuePair) {
+  for (const keyValuePair of existingStorage.split(CLIENTPREF_DELIMITER)) {
     const m = keyValuePair.match(/^([\w-]+)-clientpref-(\w+)$/);
     if (m) {
       data[m[1]] = m[2];
     }
-  });
+  }
+
   data[feature] = value;
 
   const newStorage = Object.keys(data)
-    .map(function (key) {
-      return key + CLIENTPREF_SUFFIX + data[key];
-    })
+    .map((key) => key + CLIENTPREF_SUFFIX + data[key])
     .join(CLIENTPREF_DELIMITER);
   mw.storage.set(CLIENTPREF_STORAGE_NAME, newStorage);
 }
@@ -103,11 +102,11 @@ function clientPrefs() {
      * @return {string|boolean} returns boolean if the feature is not recognized
      *  returns string if a feature was found.
      */
-    get: function (feature) {
+    get: (feature) => {
       const featurePrefix = feature + CLIENTPREF_SUFFIX;
       const docClass = document.documentElement.className;
       // eslint-disable-next-line security/detect-non-literal-regexp
-      const featureRegEx = new RegExp('(^| )' + mw.util.escapeRegExp(featurePrefix) + '([a-zA-Z0-9]+)( |$)');
+      const featureRegEx = new RegExp(`(^| )${mw.util.escapeRegExp(featurePrefix)}([a-zA-Z0-9]+)( |$)`);
       const match = docClass.match(featureRegEx);
 
       // check no further matches if we replaced this occurance.

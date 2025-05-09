@@ -8,19 +8,18 @@
 /** @interface TGUIResourceLoaderVirtualConfig */
 /** @interface MediaWikiPageReadyModule */
 
-const /** @type {TGUIResourceLoaderVirtualConfig} */
-  config = require(/** @type {string} */ ('./config.json')),
-  // T251544: Collect search performance metrics to compare Vue search with
-  // mediawiki.searchSuggest performance.
-  CAN_TEST_SEARCH = !!(
-    window.performance &&
-    !!performance.mark &&
-    !!performance.measure &&
-    performance.getEntriesByName
-  ),
-  LOAD_START_MARK = 'mwTGUIVueSearchLoadStart',
-  LOAD_END_MARK = 'mwTGUIVueSearchLoadEnd',
-  LOAD_MEASURE = 'mwTGUIVueSearchLoadStartToLoadEnd';
+const config = require(/** @type {string} */ ('./config.json'));
+// T251544: Collect search performance metrics to compare Vue search with
+// mediawiki.searchSuggest performance.
+const CAN_TEST_SEARCH = !!(
+  window.performance &&
+  !!performance.mark &&
+  !!performance.measure &&
+  performance.getEntriesByName
+);
+const LOAD_START_MARK = 'mwTGUIVueSearchLoadStart';
+const LOAD_END_MARK = 'mwTGUIVueSearchLoadEnd';
+const LOAD_MEASURE = 'mwTGUIVueSearchLoadStartToLoadEnd';
 
 /**
  * Loads the search module via `mw.loader.using` on the element's
@@ -89,10 +88,10 @@ function initSearchLoader(document) {
     return;
   }
 
-  Array.prototype.forEach.call(searchBoxes, function (searchBox) {
-    const searchInner = searchBox.querySelector('form > div'),
-      searchInput = searchBox.querySelector('input[name="search"]'),
-      isPrimarySearch = searchInput && searchInput.getAttribute('id') === 'searchInput';
+  Array.prototype.forEach.call(searchBoxes, (searchBox) => {
+    const searchInner = searchBox.querySelector('form > div');
+    const searchInput = searchBox.querySelector('input[name="search"]');
+    const isPrimarySearch = searchInput && searchInput.getAttribute('id') === 'searchInput';
 
     if (!searchInput || !searchInner) {
       return;
@@ -104,7 +103,7 @@ function initSearchLoader(document) {
       'skins.tgui.search',
       isPrimarySearch ? LOAD_START_MARK : null,
       // Note, loading Vue.js will remove the element from the DOM.
-      function () {
+      () => {
         if (isPrimarySearch) {
           markLoadEnd(LOAD_START_MARK, LOAD_END_MARK, LOAD_MEASURE);
         }

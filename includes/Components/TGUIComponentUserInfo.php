@@ -1,6 +1,6 @@
 <?php
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI\Components;
 
@@ -14,7 +14,6 @@ use MessageLocalizer;
  * TGUIComponentUserInfo component
  */
 class TGUIComponentUserInfo implements TGUIComponent {
-
 	public function __construct(
 		private bool $isRegistered,
 		private bool $isTemp,
@@ -22,27 +21,26 @@ class TGUIComponentUserInfo implements TGUIComponent {
 		private MessageLocalizer $localizer,
 		private Title $title,
 		private User $user,
-		private array $userPageData,
-	) {
-	}
+		private array $userPageData
+	) {}
 
 	/**
 	 * Get the user edit count
 	 */
 	private function getUserEditCount(): ?array {
 		// Return user edits
-		$edits = $this->services->getUserEditTracker()->getUserEditCount( $this->user );
+		$edits = $this->services->getUserEditTracker()->getUserEditCount($this->user);
 
-		if ( !$edits ) {
+		if (!$edits) {
 			return null;
 		}
 
-		$edits = number_format( $edits, 0 );
-		$label = $this->localizer->msg( 'tgui-sitestats-edits-label' )->text();
+		$edits = number_format($edits, 0);
+		$label = $this->localizer->msg('tgui-sitestats-edits-label')->text();
 
 		return [
 			'count' => $edits,
-			'label' => $label
+			'label' => $label,
 		];
 	}
 
@@ -50,39 +48,36 @@ class TGUIComponentUserInfo implements TGUIComponent {
 	 * Build the template data for the user groups
 	 */
 	private function getUserGroups(): ?array {
-		$groups = $this->services->getUserGroupManager()->getUserGroups( $this->user );
+		$groups = $this->services->getUserGroupManager()->getUserGroups($this->user);
 
-		if ( !$groups ) {
+		if (!$groups) {
 			return null;
 		}
 
 		$listItems = [];
 		$msgKey = 'group-%s-member';
-		foreach ( $groups as $group ) {
-			$id = sprintf( $msgKey, $group );
-			$text = $this->localizer->msg( $id )->text();
+		foreach ($groups as $group) {
+			$id = sprintf($msgKey, $group);
+			$text = $this->localizer->msg($id)->text();
 			try {
-				$title = $this->title->newFromTextThrow( $text, NS_PROJECT );
-			} catch ( MalformedTitleException $e ) {
+				$title = $this->title->newFromTextThrow($text, NS_PROJECT);
+			} catch (MalformedTitleException $e) {
 				// ignore
 			}
 
-			if ( !$text || !$title ) {
+			if (!$text || !$title) {
 				continue;
 			}
 
-			$link = new TGUIComponentLink(
-				$title->getLinkURL(),
-				ucfirst( $text )
-			);
+			$link = new TGUIComponentLink($title->getLinkURL(), ucfirst($text));
 
-			$listItem = new TGUIComponentMenuListItem( $link, 'tgui-userInfo-usergroup', $id );
+			$listItem = new TGUIComponentMenuListItem($link, 'tgui-userInfo-usergroup', $id);
 
 			$listItems[] = $listItem->getTemplateData();
 		}
 
 		return [
-			'array-list-items' => $listItems
+			'array-list-items' => $listItems,
 		];
 	}
 
@@ -94,27 +89,23 @@ class TGUIComponentUserInfo implements TGUIComponent {
 		$userPageData = $this->userPageData;
 
 		$htmlItems = $userPageData['html-items'];
-		$realname = htmlspecialchars( $user->getRealName(), ENT_QUOTES );
-		if ( $realname !== '' ) {
-			$username = htmlspecialchars( $user->getName(), ENT_QUOTES );
+		$realname = htmlspecialchars($user->getRealName(), ENT_QUOTES);
+		if ($realname !== '') {
+			$username = htmlspecialchars($user->getName(), ENT_QUOTES);
 			$innerHtml = <<<HTML
-				<span id="pt-userpage-username">$username</span>
-				<span id="pt-userpage-realname">aka $realname</span>
-			HTML;
+	<span id="pt-userpage-username">$username</span>
+	<span id="pt-userpage-realname">aka $realname</span>
+HTML;
 			// Dirty but it works
-			$htmlItems = str_replace(
-				">" . $username . "<",
-				">" . $innerHtml . "<",
-				$userPageData['html-items']
-			);
+			$htmlItems = str_replace('>' . $username . '<', '>' . $innerHtml . '<', $userPageData['html-items']);
 		}
 
-		$menu = new TGUIComponentMenu( [
+		$menu = new TGUIComponentMenu([
 			'id' => 'tgui-user-menu-userpage',
 			'class' => null,
 			'label' => null,
-			'html-items' => $htmlItems
-		] );
+			'html-items' => $htmlItems,
+		]);
 
 		return $menu->getTemplateData();
 	}
@@ -126,21 +117,21 @@ class TGUIComponentUserInfo implements TGUIComponent {
 		$localizer = $this->localizer;
 		$data = [];
 
-		if ( $this->isRegistered ) {
+		if ($this->isRegistered) {
 			$data = [
 				'data-user-page' => $this->getUserPage(),
-				'data-user-edit' => $this->getUserEditCount()
+				'data-user-edit' => $this->getUserEditCount(),
 			];
 
-			if ( $this->isTemp ) {
-				$data['text'] = $localizer->msg( 'tgui-user-info-text-temp' );
+			if ($this->isTemp) {
+				$data['text'] = $localizer->msg('tgui-user-info-text-temp');
 			} else {
 				$data['data-user-groups'] = $this->getUserGroups();
 			}
 		} else {
 			$data = [
-				'title' => $localizer->msg( 'notloggedin' ),
-				'text' => $localizer->msg( 'tgui-user-info-text-anon' )
+				'title' => $localizer->msg('notloggedin'),
+				'text' => $localizer->msg('tgui-user-info-text-anon'),
 			];
 		}
 

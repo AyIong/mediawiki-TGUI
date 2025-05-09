@@ -269,11 +269,11 @@ module.exports = function tableOfContents(props) {
 
     if (id === activeParentId && id === activeChildId) {
       return;
-    } else {
-      deactivateSections();
-      activateSection(id);
-      scrollToActiveSection(id);
     }
+
+    deactivateSections();
+    activateSection(id);
+    scrollToActiveSection(id);
   }
 
   /**
@@ -325,13 +325,13 @@ module.exports = function tableOfContents(props) {
    */
   function initializeExpandedStatus() {
     const parentSections = props.container.querySelectorAll(`.${TOP_SECTION_CLASS}`);
-    parentSections.forEach((section) => {
+    for (const section of parentSections) {
       const expanded = section.classList.contains(EXPANDED_SECTION_CLASS);
       const toggle = section.querySelector(`.${TOGGLE_CLASS}`);
       if (toggle) {
         toggle.setAttribute('aria-expanded', expanded.toString());
       }
-    });
+    }
   }
 
   /**
@@ -339,14 +339,14 @@ module.exports = function tableOfContents(props) {
    */
   function bindCollapseToggleListeners() {
     const showHideTocElement = document.querySelectorAll('#sidebar-toc-label button');
-    showHideTocElement.forEach(function (btn) {
+    for (const btn of showHideTocElement) {
       btn.addEventListener('click', () => {
         document.body.classList.toggle(TOC_COLLAPSED_CLASS);
         const isCollapsed = document.body.classList.contains(TOC_COLLAPSED_CLASS);
         localStorage.setItem(TOC_PREFERENCE_NAME, isCollapsed.toString());
         props.onToggleCollapse();
       });
-    });
+    }
   }
 
   /**
@@ -390,11 +390,11 @@ module.exports = function tableOfContents(props) {
    */
   function bindPinnedToggleListeners() {
     const toggleButtons = document.querySelectorAll('.tgui-toc-pinnable-header button');
-    toggleButtons.forEach((btn) => {
+    for (const btn of toggleButtons) {
       btn.addEventListener('click', () => {
         props.onTogglePinned();
       });
-    });
+    }
   }
 
   /**
@@ -408,7 +408,7 @@ module.exports = function tableOfContents(props) {
 
       const tocSection = /** @type {HTMLElement | null} */ (e.target.closest(`.${SECTION_CLASS}`));
 
-      if (tocSection && tocSection.id) {
+      if (tocSection?.id) {
         // In case section link contains HTML,
         // test if click occurs on any child elements.
         if (e.target.closest(`.${LINK_CLASS}`)) {

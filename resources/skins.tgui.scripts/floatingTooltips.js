@@ -35,7 +35,7 @@ function init(bodyContent) {
   }
 
   const contentClasses = tooltipText.map((className) => `.${className}`).join(', ');
-  tooltipElements.forEach((tooltip) => {
+  for (const tooltip of tooltipElements) {
     const tooltipContent = tooltip.querySelector(contentClasses);
 
     if (tooltipContent) {
@@ -59,15 +59,15 @@ function init(bodyContent) {
       const showEvents = ['mouseenter', 'focus'];
       const hideEvents = ['mouseleave', 'blur'];
 
-      showEvents.forEach((event) => {
+      for (const event of showEvents) {
         tooltip.addEventListener(event, show);
-      });
+      }
 
-      hideEvents.forEach((event) => {
+      for (const event of hideEvents) {
         tooltip.addEventListener(event, hide);
-      });
+      }
     }
-  });
+  }
 }
 
 module.exports = {

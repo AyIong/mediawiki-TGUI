@@ -41,21 +41,21 @@
 </template>
 
 <script>
-const { CdxTypeaheadSearch } = mw.loader.require("skins.tgui.search.codex.scripts"),
-  { defineComponent, nextTick } = require("vue"),
-  client = require("./restSearchClient.js"),
-  restClient = client(mw.config),
-  urlGenerator = require("./urlGenerator.js")(mw.config),
-  instrumentation = require("./instrumentation.js");
+const { CdxTypeaheadSearch } = mw.loader.require('skins.tgui.search.codex.scripts');
+const { defineComponent, nextTick } = require('vue');
+const client = require('./restSearchClient.js');
+const restClient = client(mw.config);
+const urlGenerator = require('./urlGenerator.js')(mw.config);
+const instrumentation = require('./instrumentation.js');
 
 // @vue/component
 module.exports = exports = defineComponent({
-  name: "App",
+  name: 'App',
   compatConfig: {
     MODE: 3,
   },
   compilerOptions: {
-    whitespace: "condense",
+    whitespace: 'condense',
   },
   components: { CdxTypeaheadSearch },
   props: {
@@ -69,7 +69,7 @@ module.exports = exports = defineComponent({
     },
     searchPageTitle: {
       type: String,
-      default: "Special:Search",
+      default: 'Special:Search',
     },
     autofocusInput: {
       type: Boolean,
@@ -77,7 +77,7 @@ module.exports = exports = defineComponent({
     },
     action: {
       type: String,
-      default: "",
+      default: '',
     },
     /** The keyboard shortcut to focus search. */
     searchAccessKey: {
@@ -129,10 +129,10 @@ module.exports = exports = defineComponent({
       suggestions: [],
 
       // Link to the search page for the current search query.
-      searchFooterUrl: "",
+      searchFooterUrl: '',
 
       // The current search query. Used to detect whether a fetch response is stale.
-      currentSearchQuery: "",
+      currentSearchQuery: '',
 
       // Whether to apply a CSS class that disables the CSS transitions on the text input
       disableTransitions: this.autofocusInput,
@@ -145,8 +145,8 @@ module.exports = exports = defineComponent({
   computed: {
     rootClasses() {
       return {
-        "tgui-search-box-disable-transitions": this.disableTransitions,
-        "tgui-typeahead-search--active": this.isFocused,
+        'tgui-search-box-disable-transitions': this.disableTransitions,
+        'tgui-typeahead-search--active': this.isFocused,
       };
     },
     visibleItemLimit() {
@@ -158,11 +158,11 @@ module.exports = exports = defineComponent({
   },
   methods: {
     addFocusClass() {
-      document.documentElement.classList.add("search-focus");
+      document.documentElement.classList.add('search-focus');
     },
 
     delFocusClass() {
-      document.documentElement.classList.remove("search-focus");
+      document.documentElement.classList.remove('search-focus');
     },
 
     /**
@@ -175,9 +175,9 @@ module.exports = exports = defineComponent({
 
       this.currentSearchQuery = query;
 
-      if (query === "") {
+      if (query === '') {
         this.suggestions = [];
-        this.searchFooterUrl = "";
+        this.searchFooterUrl = '';
         return;
       }
 
@@ -192,7 +192,7 @@ module.exports = exports = defineComponent({
      */
     onLoadMore() {
       if (!restClient.loadMore) {
-        mw.log.warn("onLoadMore() should not have been called for this search client");
+        mw.log.warn('onLoadMore() should not have been called for this search client');
         return;
       }
 

@@ -12,7 +12,7 @@ function init(content) {
   const { computePosition, offset, flip, shift, arrow } = window.FloatingUIDOM;
   function initializeTooltips() {
     const tooltipElements = content.querySelectorAll('[title]');
-    tooltipElements.forEach((tooltip) => {
+    for (const tooltip of tooltipElements) {
       if (tooltip.hasAttribute('data-tooltip-initialized')) {
         return;
       }
@@ -84,7 +84,10 @@ function init(content) {
           placement: 'top',
           middleware: [flip(), shift({ padding: 9 }), offset(9), arrow({ element: arrowEl })],
         }).then(({ x, y, middlewareData, placement }) => {
-          Object.assign(floatingElement.style, { top: `${y}px`, left: `${x}px` });
+          Object.assign(floatingElement.style, {
+            top: `${y}px`,
+            left: `${x}px`,
+          });
           floatingElement.setAttribute('data-position', placement);
           positionArrow(arrowEl, middlewareData.arrow, placement);
         });
@@ -108,7 +111,7 @@ function init(content) {
           hideTimeout = null;
         }
       }
-    });
+    }
   }
 
   const observer = new MutationObserver(() => {

@@ -74,7 +74,7 @@ function loadClientPreferences() {
   const details = document.getElementById('tgui-preferences-details');
   if (!localStorage.getItem('prefChecked')) {
     localStorage.setItem('prefChecked', 'true');
-    details.classList.remove(CLASS + '-notice');
+    details.classList.remove(`${CLASS}-notice`);
   }
 
   clientPreferences.render(`#${clientPreferenceId}`, clientPreferenceConfig);
@@ -92,7 +92,7 @@ function listenForButtonClick() {
   }
 
   if (storageAvailable('localStorage') && !localStorage.getItem('prefChecked')) {
-    details.classList.add(CLASS + '-notice');
+    details.classList.add(`${CLASS}-notice`);
   }
 
   details.addEventListener('click', loadClientPreferences, { once: true });

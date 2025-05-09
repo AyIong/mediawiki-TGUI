@@ -14,11 +14,11 @@ window.clientPrefs = () => {
   const storage = localStorage.getItem('mwclientpreferences');
   if (storage) {
     // TODO: Just use array for localStorage
-    storage.split(',').forEach(function (pref) {
+    for (const pref of storage.split(',')) {
       className = className.replace(
         // eslint-disable-next-line security/detect-non-literal-regexp
-        new RegExp('(^| )' + pref.replace(/-clientpref-\w+$|[^\w-]+/g, '') + '-clientpref-\\w+( |$)'),
-        '$1' + pref + '$2',
+        new RegExp(`(^| )${pref.replace(/-clientpref-\w+$|[^\w-]+/g, '')}-clientpref-\\w+( |$)`),
+        `$1${pref}$2`,
       );
 
       if (pref.includes('-slider')) {
@@ -46,7 +46,8 @@ window.clientPrefs = () => {
           className += ` ${LEGACY_PREFIX}${matchedKey}`;
         }
       }
-    });
+    }
+
     document.documentElement.className = className;
   }
 };

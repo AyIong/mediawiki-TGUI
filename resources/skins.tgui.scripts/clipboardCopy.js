@@ -4,21 +4,21 @@ function init(bodyContent) {
     return;
   }
 
-  elements.forEach((element) => {
+  for (const element of elements) {
     let contentToCopy = element;
 
     // Just add button directly to element if it has content class
     if (element.classList.contains('tgui-clipboard-content')) {
       const copyButton = createCopyButton(contentToCopy);
       element.insertBefore(copyButton, element.firstChild);
-      return;
+      continue;
     }
 
     // Otherwise, try to find content
     contentToCopy = element.querySelector('.tgui-clipboard-content');
     if (!contentToCopy) {
       console.error('[TGUI] found container with tgui-clipboard but without tgui-clipboard-content!', element);
-      return;
+      continue;
     }
 
     const copyButton = createCopyButton(contentToCopy);
@@ -26,11 +26,11 @@ function init(bodyContent) {
       const toggle = element.querySelector('.mw-collapsible-toggle');
       if (toggle) {
         toggle.insertAdjacentElement('afterend', copyButton);
-        return;
+        continue;
       }
     }
     element.insertBefore(copyButton, element.firstChild);
-  });
+  }
 }
 
 function createCopyButton(content) {
@@ -51,7 +51,10 @@ function copyToClipboard(content, button) {
   navigator.clipboard
     .writeText(textToCopy)
     .then(() => {
-      mw.notify(mw.message('tgui-clipboard-success').text(), { type: 'success', autoHideSeconds: hideTimeout });
+      mw.notify(mw.message('tgui-clipboard-success').text(), {
+        type: 'success',
+        autoHideSeconds: hideTimeout,
+      });
       button.classList.add('copied');
       setTimeout(() => {
         button.classList.remove('copied');
@@ -59,7 +62,10 @@ function copyToClipboard(content, button) {
     })
     .catch((err) => {
       console.error('[TGUI] Copy error:', err);
-      mw.notify(mw.message('tgui-clipboard-failure').text(), { type: 'error', autoHideSeconds: hideTimeout });
+      mw.notify(mw.message('tgui-clipboard-failure').text(), {
+        type: 'error',
+        autoHideSeconds: hideTimeout,
+      });
     });
 }
 

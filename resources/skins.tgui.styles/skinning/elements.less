@@ -34,6 +34,10 @@ h6 {
   overflow: hidden;
   margin: 0;
   color: var(--color-text);
+
+  + p {
+    margin-block-start: 0;
+  }
 }
 
 h1,
@@ -47,7 +51,6 @@ h3,
 h4,
 h5,
 h6 {
-  padding: 0.2em 0.1em 0.1em;
   margin-bottom: 0.25em;
 }
 
@@ -80,6 +83,14 @@ h6 {
 p {
   margin-block: 0.5lh;
   overflow-wrap: break-word;
+
+  &:first-of-type {
+    margin-block-start: 0;
+  }
+
+  &:only-of-type {
+    margin-block: 0;
+  }
 }
 
 p img {

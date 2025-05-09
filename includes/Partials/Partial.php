@@ -21,7 +21,7 @@
  * @ingroup Skins
  */
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI\Partials;
 
@@ -35,7 +35,6 @@ use MediaWiki\Title\Title;
  * TODO: Use SkinComponentRegistryContext
  */
 abstract class Partial {
-
 	use GetConfigTrait;
 
 	/** @var SkinTGUI */
@@ -54,7 +53,7 @@ abstract class Partial {
 	 * Constructor
 	 * @param SkinTGUI $skin
 	 */
-	public function __construct( SkinTGUI $skin ) {
+	public function __construct(SkinTGUI $skin) {
 		$this->skin = $skin;
 		$this->out = $skin->getOutput();
 		$this->title = $this->out->getTitle();

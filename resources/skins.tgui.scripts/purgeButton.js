@@ -18,14 +18,14 @@ function catchPurgeEvent(event) {
  * Purge cache function
  */
 function purgePageCache() {
-  const apiUrl = mw.config.get('wgScriptPath') + '/api.php';
+  const apiUrl = `${mw.config.get('wgScriptPath')}/api.php`;
   const params = {
     action: 'purge',
     titles: mw.config.get('wgPageName'),
     format: 'json',
   };
 
-  $.post(apiUrl, params).done(function () {
+  $.post(apiUrl, params).done(() => {
     location.reload();
   });
 }
@@ -62,6 +62,6 @@ function addPurgeButton() {
   parentElement.appendChild(purgeListItem);
 }
 
-module.exports = function () {
+module.exports = () => {
   addPurgeButton();
 };

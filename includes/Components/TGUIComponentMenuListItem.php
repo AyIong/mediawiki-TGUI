@@ -1,6 +1,6 @@
 <?php
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI\Components;
 
@@ -20,7 +20,7 @@ class TGUIComponentMenuListItem implements TGUIComponent {
 	 * @param string $class
 	 * @param string $id
 	 */
-	public function __construct( TGUIComponentLink $link, string $class = '', string $id = '' ) {
+	public function __construct(TGUIComponentLink $link, string $class = '', string $id = '') {
 		$this->link = $link;
 		$this->class = $class;
 		$this->id = $id;

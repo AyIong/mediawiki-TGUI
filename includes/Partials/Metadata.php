@@ -21,7 +21,7 @@
  * @ingroup Skins
  */
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI\Partials;
 
@@ -30,12 +30,11 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 final class Metadata extends Partial {
-
 	/**
 	 * Adds metadata to the output page
 	 */
 	public function addMetadata() {
 		// Theme color
-		$this->out->addMeta( 'theme-color', $this->getConfigValue( 'TGUIThemeColor' ) ?? '' );
+		$this->out->addMeta('theme-color', $this->getConfigValue('TGUIThemeColor') ?? '');
 	}
 }

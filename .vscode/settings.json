@@ -1,36 +1,18 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.biome": "explicit",
+    "source.action.useSortedKeys.biome": "explicit"
+  },
+  "editor.rulers": [120],
   "editor.formatOnSave": true,
-  "[javascript]": {
-    "editor.rulers": [100],
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+  "[javascript][typescript][css][json]": {
+    "editor.defaultFormatter": "biomejs.biome"
   },
-  "[javascriptreact]": {
-    "editor.rulers": [100],
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
-  "[typescript]": {
-    "editor.rulers": [100],
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
-  "[typescriptreact]": {
-    "editor.rulers": [100],
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
-  "[css]": {
-    "editor.rulers": [100],
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
-  },
-  "[less]": {
-    "editor.rulers": [100],
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "prettier.singleQuote": true
+  "[less][php]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "typescript.tsdk": "node_modules\\typescript\\lib"
 }

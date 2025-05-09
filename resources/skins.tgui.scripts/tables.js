@@ -8,8 +8,8 @@
 function setupOverflowState(element) {
   const initState = () => {
     const updateState = () => {
-      const containerWidth = element.parentNode.offsetWidth,
-        contentWidth = element.scrollWidth;
+      const containerWidth = element.parentNode.offsetWidth;
+      const contentWidth = element.scrollWidth;
 
       // Break if no horizontal overflow
       if (contentWidth <= containerWidth) {
@@ -68,12 +68,12 @@ function wrapTable(table) {
   // For example, float helper classes like floatleft and floatright
   const inheritTableClass = () => {
     const inheritedClasses = ['floatleft', 'floatright'];
-    inheritedClasses.forEach((inheritedClass) => {
+    for (const inheritedClass in inheritedClasses) {
       if (table.classList.contains(inheritedClass)) {
         wrapper.classList.add(inheritedClass);
         table.classList.remove(inheritedClass);
       }
-    });
+    }
   };
 
   wrapper.classList.add('tgui-table-wrapper');
@@ -95,15 +95,15 @@ function init(bodyContent) {
   }
 
   const tables = bodyContent.querySelectorAll('table:not( table table )');
-  tables.forEach((table) => {
+  for (const table of tables) {
     // TODO: Move disallowed classes to config
     const classesToCheck = ['table-nowrap', 'mw-enhanced-rc'];
     if (classesToCheck.some((cls) => table.classList.contains(cls))) {
-      return;
+      continue;
     }
 
     wrapTable(table);
-  });
+  }
 }
 
 module.exports = {

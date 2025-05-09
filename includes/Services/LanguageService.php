@@ -17,12 +17,39 @@ class LanguageService {
 
 	public function __construct() {
 		$this->splittableLanguages = [
-			'ar', 'ary', 'arz', 'ckb', 'fa', 'glk', 'ks', 'mzn', 'pnb', 'ps', 'sd', 'skr', 'ug', 'ur',
-			'as', 'bn', 'bpy',
-			'awa', 'bh', 'dty', 'gom', 'hi', 'ks', 'mai', 'mr', 'ne', 'new', 'pi', 'sa',
+			'ar',
+			'ary',
+			'arz',
+			'ckb',
+			'fa',
+			'glk',
+			'ks',
+			'mzn',
+			'pnb',
+			'ps',
+			'sd',
+			'skr',
+			'ug',
+			'ur',
+			'as',
+			'bn',
+			'bpy',
+			'awa',
+			'bh',
+			'dty',
+			'gom',
+			'hi',
+			'ks',
+			'mai',
+			'mr',
+			'ne',
+			'new',
+			'pi',
+			'sa',
 			'gu',
 			'pa',
-			'kn', 'tcy',
+			'kn',
+			'tcy',
 			'km',
 			'ml',
 			'or',
@@ -39,7 +66,7 @@ class LanguageService {
 	 * @param string $code
 	 * @return bool
 	 */
-	public function canWordsBeSplitSafely( string $code ): bool {
-		return !in_array( $code, $this->splittableLanguages );
+	public function canWordsBeSplitSafely(string $code): bool {
+		return !in_array($code, $this->splittableLanguages);
 	}
 }

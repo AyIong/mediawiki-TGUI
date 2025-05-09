@@ -296,9 +296,9 @@ function makeControl(featureName, config) {
   const type = pref.type || 'radio';
   switch (type) {
     case 'radio':
-      pref.options.forEach((value) => {
+      for (const value of pref.options) {
         appendRadioToggle(form, featureName, value, currentValue, config);
-      });
+      }
       break;
     case 'switch': {
       const labelElement = document.createElement('label');
@@ -327,30 +327,30 @@ function makeClientPreference(parent, featureName, config) {
   // exit as its a hidden client preference.
   if (!labelMsg.exists() && mw.config.get('wgUserLanguage') !== 'qqx') {
     return;
-  } else {
-    const id = `skin-client-prefs-${featureName}`;
-    const portlet = portlets.addDefaultPortlet(portlets.addPortlet(id, labelMsg.text()));
-    const labelElement = portlet.querySelector('label');
+  }
 
-    const descriptionMsg = getMessage(`${featureName}-description`);
-    if (descriptionMsg.exists()) {
-      const desc = document.createElement('span');
-      desc.classList.add('skin-client-pref-description');
-      desc.textContent = descriptionMsg.text();
-      if (labelElement && labelElement.parentNode) {
-        labelElement.appendChild(desc);
-      }
+  const id = `skin-client-prefs-${featureName}`;
+  const portlet = portlets.addDefaultPortlet(portlets.addPortlet(id, labelMsg.text()));
+  const labelElement = portlet.querySelector('label');
+
+  const descriptionMsg = getMessage(`${featureName}-description`);
+  if (descriptionMsg.exists()) {
+    const desc = document.createElement('span');
+    desc.classList.add('skin-client-pref-description');
+    desc.textContent = descriptionMsg.text();
+    if (labelElement?.parentNode) {
+      labelElement.appendChild(desc);
     }
-    const row = makeControl(featureName, config);
-    parent.appendChild(portlet);
-    if (row) {
-      const tmp = mw.util.addPortletLink(id, '', '');
-      // create a dummy link
-      if (tmp) {
-        const link = tmp.querySelector('a');
-        if (link) {
-          link.replaceWith(row);
-        }
+  }
+  const row = makeControl(featureName, config);
+  parent.appendChild(portlet);
+  if (row) {
+    const tmp = mw.util.addPortletLink(id, '', '');
+    // create a dummy link
+    if (tmp) {
+      const link = tmp.querySelector('a');
+      if (link) {
+        link.replaceWith(row);
       }
     }
   }
@@ -362,7 +362,7 @@ function makeClientPreferencesTabs(parent, config, visiblePreferences) {
   parent.appendChild(tabsContainer);
 
   let tabsCount = 0;
-  visiblePreferences.forEach((pref) => {
+  for (const pref of visiblePreferences) {
     let existingTab = document.getElementById(`tgui-preferences__${config[pref].category}`);
     if (!existingTab) {
       existingTab = document.createElement('div');
@@ -378,14 +378,14 @@ function makeClientPreferencesTabs(parent, config, visiblePreferences) {
       tabButton.classList.add('tgui-preferences__tab', `${tabsCount === 0 && 'tgui-preferences__tab--active'}`);
       tabButton.textContent = getFeatureLabelMsg(`tgui-preferences-${config[pref].category}-tab`).text();
       tabButton.addEventListener('click', () => {
-        document.querySelectorAll('.tgui-preferences__tab-content--active').forEach((tab) => {
+        for (const tab of document.querySelectorAll('.tgui-preferences__tab-content--active')) {
           tab.classList.remove('tgui-preferences__tab-content--active');
-        });
+        }
         existingTab.classList.add('tgui-preferences__tab-content--active');
 
-        document.querySelectorAll('.tgui-preferences__tab--active').forEach((button) => {
+        for (const button of document.querySelectorAll('.tgui-preferences__tab--active')) {
           button.classList.remove('tgui-preferences__tab--active');
-        });
+        }
         tabButton.classList.add('tgui-preferences__tab--active');
       });
       tabsContainer.appendChild(tabButton);
@@ -394,7 +394,7 @@ function makeClientPreferencesTabs(parent, config, visiblePreferences) {
 
     const prefPortlet = document.getElementById(`skin-client-prefs-${pref}`);
     existingTab.appendChild(prefPortlet);
-  });
+  }
 }
 /**
  * Fills the client side preference dropdown with controls.
@@ -410,9 +410,10 @@ function render(selector, config) {
   }
   return new Promise((resolve) => {
     const visiblePreferences = getVisibleClientPreferences(config);
-    visiblePreferences.forEach((pref) => {
+    for (const pref of visiblePreferences) {
       makeClientPreference(node, pref, config);
-    });
+    }
+
     makeClientPreferencesTabs(node, config, visiblePreferences);
     mw.requestIdleCallback(() => {
       resolve(node);

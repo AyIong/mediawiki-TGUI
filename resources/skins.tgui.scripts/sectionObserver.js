@@ -63,7 +63,7 @@ module.exports = function sectionObserver(props) {
     let /** @type {IntersectionObserverEntry | undefined} */ closestPositiveEntry;
     const topMargin = /** @type {number} */ (props.topMargin);
 
-    entries.forEach((entry) => {
+    for (const entry of entries) {
       const top = entry.boundingClientRect.top - topMargin;
       if (
         top > 0 &&
@@ -78,7 +78,7 @@ module.exports = function sectionObserver(props) {
       ) {
         closestNegativeEntry = entry;
       }
-    });
+    }
 
     const closestTag = /** @type {HTMLElement} */ (
       closestNegativeEntry
@@ -110,13 +110,13 @@ module.exports = function sectionObserver(props) {
   function calcIntersection() {
     // IntersectionObserver will asynchronously calculate the boundingClientRect
     // of each observed element off the main thread after `observe` is called.
-    props.elements.forEach((element) => {
+    for (const element of props.elements) {
       if (!element.parentNode) {
         mw.log.warn('Element being observed is not in DOM', element);
-        return;
+        continue;
       }
       observer.observe(/** @type {HTMLElement} */ (element));
-    });
+    }
   }
 
   function handleScroll() {

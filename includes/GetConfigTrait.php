@@ -21,7 +21,7 @@
  * @ingroup Skins
  */
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI;
 
@@ -29,7 +29,6 @@ use MediaWiki\Config\ConfigException;
 use MediaWiki\Output\OutputPage;
 
 trait GetConfigTrait {
-
 	/**
 	 * getConfig() wrapper to catch exceptions.
 	 * Returns null on exception
@@ -39,18 +38,18 @@ trait GetConfigTrait {
 	 * @return mixed|null
 	 * @see SkinTemplate::getConfig()
 	 */
-	protected function getConfigValue( $key, $out = null ) {
-		if ( isset( $this->out ) ) {
+	protected function getConfigValue($key, $out = null) {
+		if (isset($this->out)) {
 			$out = $this->out;
 		}
 
-		if ( is_callable( [ $this, 'getOutput' ] ) ) {
+		if (is_callable([$this, 'getOutput'])) {
 			$out = $this->getOutput();
 		}
 
 		try {
-			$value = $out->getConfig()->get( $key );
-		} catch ( ConfigException $e ) {
+			$value = $out->getConfig()->get($key);
+		} catch (ConfigException $e) {
 			$value = null;
 		}
 

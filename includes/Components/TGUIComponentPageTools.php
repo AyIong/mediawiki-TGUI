@@ -1,6 +1,6 @@
 <?php
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI\Components;
 
@@ -33,12 +33,7 @@ class TGUIComponentPageTools implements TGUIComponent {
 	 * @param Title $title
 	 * @param UserIdentity $user
 	 */
-	public function __construct(
-		Config $config,
-		MessageLocalizer $localizer,
-		Title $title,
-		UserIdentity $user,
-	) {
+	public function __construct(Config $config, MessageLocalizer $localizer, Title $title, UserIdentity $user) {
 		$this->config = $config;
 		$this->localizer = $localizer;
 		$this->title = $title;
@@ -58,27 +53,26 @@ class TGUIComponentPageTools implements TGUIComponent {
 	 * @return bool
 	 */
 	private function shouldShowPageTools(): bool {
-		$condition = $this->config->get( 'TGUIShowPageTools' );
+		$condition = $this->config->get('TGUIShowPageTools');
 		$user = $this->user;
 
 		// Login-based condition, return true if condition is met
-		if ( $condition === 'login' ) {
+		if ($condition === 'login') {
 			$condition = $user->isRegistered();
 		}
 
 		// Permission-based condition, return true if condition is met
-		if ( is_string( $condition ) && strpos( $condition, 'permission' ) === 0 ) {
-			$permission = substr( $condition, 11 );
+		if (is_string($condition) && strpos($condition, 'permission') === 0) {
+			$permission = substr($condition, 11);
 			try {
 				$title = $this->title;
-				$condition = MediaWikiServices::getInstance()->getPermissionManager()->userCan(
-					$permission, $user, $title );
-			} catch ( Exception $e ) {
+				$condition = MediaWikiServices::getInstance()->getPermissionManager()->userCan($permission, $user, $title);
+			} catch (Exception $e) {
 				$condition = false;
 			}
 		}
 
-		return (bool)$condition;
+		return (bool) $condition;
 	}
 
 	/**

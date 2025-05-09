@@ -13,10 +13,10 @@ function init(bodyContent) {
     return;
   }
 
-  popupElements.forEach((popup) => {
+  for (const popup of popupElements) {
     const popupText = popup.getAttribute('data-popup-text');
     if (!popupText) {
-      return;
+      continue;
     }
 
     const hyperLink = popup.querySelector('a');
@@ -60,9 +60,11 @@ function init(bodyContent) {
     }
 
     function hide() {
-      if (!popupContentElement) return;
-      popupContentElement.classList.remove('visible');
+      if (!popupContentElement) {
+        return;
+      }
 
+      popupContentElement.classList.remove('visible');
       if (!hideTimeout) {
         hideTimeout = setTimeout(() => {
           removePopupContentElement();
@@ -103,11 +105,9 @@ function init(bodyContent) {
     }
 
     popup.addEventListener('mouseenter', show);
-    popup.addEventListener('mousemove', (event) => {
-      updatePosition(event.clientX, event.clientY);
-    });
+    popup.addEventListener('mousemove', (event) => updatePosition(event.clientX, event.clientY));
     popup.addEventListener('mouseleave', hide);
-  });
+  }
 }
 
 module.exports = {

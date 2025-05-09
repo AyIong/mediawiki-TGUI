@@ -1,6 +1,6 @@
 <?php
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI\Components;
 
@@ -14,7 +14,7 @@ class TGUIComponentPageSidebar implements TGUIComponent {
 	/**
 	 * @param array $sidebarData
 	 */
-	public function __construct( array $sidebarData ) {
+	public function __construct(array $sidebarData) {
 		$this->sidebarData = $sidebarData;
 	}
 
@@ -23,14 +23,14 @@ class TGUIComponentPageSidebar implements TGUIComponent {
 	 */
 	public function getTemplateData(): array {
 		$portletsRest = [];
-		foreach ( $this->sidebarData[ 'array-portlets-rest' ] as $data ) {
-			$portletsRest[] = ( new TGUIComponentMenu( $data ) )->getTemplateData();
+		foreach ($this->sidebarData['array-portlets-rest'] as $data) {
+			$portletsRest[] = (new TGUIComponentMenu($data))->getTemplateData();
 		}
-		$firstPortlet = new TGUIComponentMenu( $this->sidebarData['data-portlets-first'] );
+		$firstPortlet = new TGUIComponentMenu($this->sidebarData['data-portlets-first']);
 
 		return [
 			'data-portlets-first' => $firstPortlet->getTemplateData(),
-			'array-portlets-rest' => $portletsRest
+			'array-portlets-rest' => $portletsRest,
 		];
 	}
 }

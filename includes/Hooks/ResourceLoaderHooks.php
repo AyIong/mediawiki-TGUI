@@ -21,7 +21,7 @@
  * @ingroup Skins
  */
 
-declare( strict_types=1 );
+declare(strict_types=1);
 
 namespace MediaWiki\Skins\TGUI\Hooks;
 
@@ -34,23 +34,19 @@ use MediaWiki\ResourceLoader as RL;
  * Hooks to run relating to the resource loader
  */
 class ResourceLoaderHooks {
-
 	/**
 	 * Passes config variables to skins.tgui.scripts ResourceLoader module.
 	 * @param RL\Context $context
 	 * @param Config $config
 	 * @return array
 	 */
-	public static function getTGUIResourceLoaderConfig(
-		RL\Context $context,
-		Config $config
-	) {
+	public static function getTGUIResourceLoaderConfig(RL\Context $context, Config $config) {
 		return [
-			'wgTGUIEnablePreferences' => $config->get( 'TGUIEnablePreferences' ),
-			'wgTGUITooltips' => $config->get( 'TGUITooltips' ),
-			'wgTGUIDropdowns' => $config->get( 'TGUIDropdowns' ),
-			'wgTGUIReplaceTitleTooltips' => $config->get( 'TGUIReplaceTitleTooltips' ),
-			'wgTGUIEnableHolidays' => $config->get( 'TGUIEnableHolidays' )
+			'wgTGUIEnablePreferences' => $config->get('TGUIEnablePreferences'),
+			'wgTGUITooltips' => $config->get('TGUITooltips'),
+			'wgTGUIDropdowns' => $config->get('TGUIDropdowns'),
+			'wgTGUIReplaceTitleTooltips' => $config->get('TGUIReplaceTitleTooltips'),
+			'wgTGUIEnableHolidays' => $config->get('TGUIEnableHolidays'),
 		];
 	}
 
@@ -60,13 +56,10 @@ class ResourceLoaderHooks {
 	 * @param Config $config
 	 * @return array
 	 */
-	public static function getTGUIPreferencesResourceLoaderConfig(
-		RL\Context $context,
-		Config $config
-	) {
+	public static function getTGUIPreferencesResourceLoaderConfig(RL\Context $context, Config $config) {
 		return [
-			'wgTGUIThemeDefault' => $config->get( 'TGUIThemeDefault' ),
-			'wgTGUIThemeStyleDefault' => $config->get( 'TGUIThemeStyleDefault' ),
+			'wgTGUIThemeDefault' => $config->get('TGUIThemeDefault'),
+			'wgTGUIThemeStyleDefault' => $config->get('TGUIThemeStyleDefault'),
 		];
 	}
 
@@ -78,20 +71,15 @@ class ResourceLoaderHooks {
 	 * @param Config $config
 	 * @return array<string,mixed>
 	 */
-	public static function getTGUISearchResourceLoaderConfig(
-		RL\Context $context,
-		Config $config
-	): array {
+	public static function getTGUISearchResourceLoaderConfig(RL\Context $context, Config $config): array {
 		$tguiSearchConfig = [
-			'highlightQuery' =>
-				TGUIServices::getLanguageService()->canWordsBeSplitSafely( $context->getLanguage() )
+			'highlightQuery' => TGUIServices::getLanguageService()->canWordsBeSplitSafely($context->getLanguage()),
 		];
 
-		MediaWikiServices::getInstance()->getHookContainer()->run(
-			'TGUISearchResourceLoaderConfig',
-			[ &$tguiSearchConfig ]
-		);
+		MediaWikiServices::getInstance()
+			->getHookContainer()
+			->run('TGUISearchResourceLoaderConfig', [&$tguiSearchConfig]);
 
-		return array_merge( $config->get( 'TGUIWvuiSearchOptions' ), $tguiSearchConfig );
+		return array_merge($config->get('TGUIWvuiSearchOptions'), $tguiSearchConfig);
 	}
 }

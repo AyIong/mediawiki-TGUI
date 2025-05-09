@@ -38,11 +38,10 @@ function registerServiceWorker() {
   }
 
   if ('serviceWorker' in navigator) {
-    const SW_MODULE_NAME = 'skins.tgui.serviceWorker',
-      version = mw.loader.moduleRegistry[SW_MODULE_NAME].version,
-      // HACK: Faking a RL link
-      swUrl =
-        scriptPath + '/load.php?modules=' + SW_MODULE_NAME + '&only=scripts&raw=true&skin=tgui&version=' + version;
+    const SW_MODULE_NAME = 'skins.tgui.serviceWorker';
+    const version = mw.loader.moduleRegistry[SW_MODULE_NAME].version;
+    // HACK: Faking a RL link
+    const swUrl = `${scriptPath}/load.php?modules=${SW_MODULE_NAME}&only=scripts&raw=true&skin=tgui&version=${version}`;
     navigator.serviceWorker.register(swUrl, { scope: '/' });
   }
 }
@@ -54,12 +53,12 @@ function registerServiceWorker() {
  * @return {void}
  */
 function initBodyContent(bodyContent) {
-  const sections = require('./sections.js'),
-    tables = require('./tables.js'),
-    clipboardCopy = require('./clipboardCopy.js'),
-    floatingPopups = require('./floatingPopups.js'),
-    floatingTooltips = require('./floatingTooltips.js'),
-    floatingDropdown = require('./floatingDropdown.js');
+  const sections = require('./sections.js');
+  const tables = require('./tables.js');
+  const clipboardCopy = require('./clipboardCopy.js');
+  const floatingPopups = require('./floatingPopups.js');
+  const floatingTooltips = require('./floatingTooltips.js');
+  const floatingDropdown = require('./floatingDropdown.js');
 
   // Collapsable sections
   sections.init(bodyContent);
@@ -80,11 +79,11 @@ function initBodyContent(bodyContent) {
  * @return {void}
  */
 function main(window) {
-  const config = require('./config.json'),
-    initSearchLoader = require('./searchLoader.js').initSearchLoader,
-    dropdown = require('./dropdown.js'),
-    floatingTitles = require('./floatingTitles.js'),
-    purgeButton = require('./purgeButton.js');
+  const config = require('./config.json');
+  const initSearchLoader = require('./searchLoader.js').initSearchLoader;
+  const dropdown = require('./dropdown.js');
+  const floatingTitles = require('./floatingTitles.js');
+  const purgeButton = require('./purgeButton.js');
 
   floatingTitles.init(window.document);
   initSearchLoader(document);
@@ -111,7 +110,7 @@ if (document.readyState === 'interactive' || document.readyState === 'complete')
   main(window);
 } else {
   // This is needed when document.readyState === 'loading'.
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', () => {
     main(window);
   });
 }

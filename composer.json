@@ -2,11 +2,7 @@
   "name": "mediawiki/tgui-skin",
   "type": "mediawiki-skin",
   "description": "TGUI like skin for MediaWiki",
-  "keywords": [
-    "wiki",
-    "MediaWiki",
-    "skin"
-  ],
+  "keywords": ["wiki", "MediaWiki", "skin"],
   "homepage": "https://github.com/AyIong/mediawiki-TGUI",
   "license": "GPL-2.0-or-later",
   "authors": [
@@ -31,15 +27,8 @@
     "php-parallel-lint/php-parallel-lint": "1.4.0"
   },
   "scripts": {
-    "fix": [
-      "minus-x fix .",
-      "phpcbf"
-    ],
-    "test": [
-      "parallel-lint . --exclude node_modules --exclude vendor",
-      "@phpcs",
-      "minus-x check ."
-    ],
+    "fix": ["minus-x fix .", "phpcbf"],
+    "test": ["parallel-lint . --exclude node_modules --exclude vendor", "@phpcs", "minus-x check ."],
     "test:size": "phpunit -c ../../phpunit.xml.dist tests/phpunit/structure/BundleSizeTest.php --verbose",
     "phan": "phan -d . --long-progress-bar",
     "phpcs": "phpcs -sp --cache"

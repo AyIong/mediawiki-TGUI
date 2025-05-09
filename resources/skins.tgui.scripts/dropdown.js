@@ -2,10 +2,10 @@
  * Enhance dropdown menus
  * Based on Vector
  */
-const DROPDOWN_CONTAINER_SELECTOR = '.tgui-dropdown',
-  DROPDOWN_DETAILS_SELECTOR = '.tgui-dropdown-details',
-  DROPDOWN_SUMMARY_SELECTOR = '.tgui-dropdown-summary',
-  DROPDOWN_TARGET_SELECTOR = '.tgui-window';
+const DROPDOWN_CONTAINER_SELECTOR = '.tgui-dropdown';
+const DROPDOWN_DETAILS_SELECTOR = '.tgui-dropdown-details';
+const DROPDOWN_SUMMARY_SELECTOR = '.tgui-dropdown-summary';
+const DROPDOWN_TARGET_SELECTOR = '.tgui-window';
 
 const isPointerDevice = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
@@ -30,7 +30,7 @@ class Dropdown {
   }
 
   dismiss() {
-    if (this.details && this.details.open) {
+    if (this.details?.open) {
       this.details.open = false;
     }
   }
@@ -64,7 +64,7 @@ class Dropdown {
    */
   dismissOnLinkClick(event) {
     const eventTarget = event.target;
-    if (eventTarget && eventTarget.closest('a')) {
+    if (eventTarget?.closest('a')) {
       this.dismiss();
     }
   }
@@ -86,7 +86,9 @@ class Dropdown {
   bind() {
     this.target.addEventListener('click', this.dismissOnLinkClick);
     window.addEventListener('mousedown', this.dismissIfExternalEventTarget);
-    window.addEventListener('touchstart', this.dismissIfExternalEventTarget, { passive: true });
+    window.addEventListener('touchstart', this.dismissIfExternalEventTarget, {
+      passive: true,
+    });
     window.addEventListener('focusin', this.dismissIfExternalEventTarget);
     window.addEventListener('keyup', this.dismissOnEscape);
   }
@@ -133,17 +135,17 @@ class Dropdown {
 function init() {
   const dropdowns = document.querySelectorAll(DROPDOWN_CONTAINER_SELECTOR);
 
-  dropdowns.forEach((dropdown) => {
-    const details = dropdown.querySelector(DROPDOWN_DETAILS_SELECTOR),
-      summary = dropdown.querySelector(DROPDOWN_SUMMARY_SELECTOR),
-      target = dropdown.querySelector(DROPDOWN_TARGET_SELECTOR);
+  for (const dropdown of dropdowns) {
+    const details = dropdown.querySelector(DROPDOWN_DETAILS_SELECTOR);
+    const summary = dropdown.querySelector(DROPDOWN_SUMMARY_SELECTOR);
+    const target = dropdown.querySelector(DROPDOWN_TARGET_SELECTOR);
 
     if (!(details && summary && target)) {
-      return;
+      continue;
     }
 
     new Dropdown(details, summary, target).init();
-  });
+  }
 }
 
 module.exports = {
