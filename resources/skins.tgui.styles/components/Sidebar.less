@@ -51,10 +51,7 @@
   }
 
   .sidebar-visible &,
-  @{selector-main-menu-closed}
-    ~ .tgui-page-container-inner
-    .tgui-sidebar-container
-    & {
+  @{selector-main-menu-closed} ~ .tgui-page-container-inner .tgui-sidebar-container & {
     visibility: hidden;
   }
 }
@@ -72,10 +69,7 @@
     visibility: hidden;
     background-color: var(--color-primal-blur);
 
-    @{selector-main-menu-open}
-      ~ .tgui-page-container-inner
-      .tgui-sidebar-container
-      & {
+    @{selector-main-menu-open} ~ .tgui-page-container-inner .tgui-sidebar-container & {
       visibility: visible;
     }
   }

@@ -3,8 +3,7 @@
 /* Tables */
 table {
   position: relative;
-  font-size: 100%;
-  border-color: var(--color-border);
+  border-color: transparent;
 }
 
 // JS-enhanced responsive table
@@ -25,20 +24,8 @@ table {
   }
 
   &--left&--right {
-    -webkit-mask-image: linear-gradient(
-      90deg,
-      transparent,
-      #000 15%,
-      #000 85%,
-      transparent
-    );
-    mask-image: linear-gradient(
-      90deg,
-      transparent,
-      #000 15%,
-      #000 85%,
-      transparent
-    );
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
   }
 }
 
