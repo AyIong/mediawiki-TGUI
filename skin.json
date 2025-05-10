@@ -185,6 +185,8 @@
       ],
       "messages": [
         "preferences",
+        "tgui-preferences-wip",
+        "tgui-preferences-wip-desc",
         "tgui-preferences-appearance-tab-name",
         "tgui-preferences-accessibility-tab-name",
         "tgui-reset-button",

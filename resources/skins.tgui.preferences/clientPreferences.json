@@ -10,6 +10,7 @@
     "category": "appearance"
   },
   "tgui-feature-font-size": {
+    "experimental": true,
     "options": ["small", "medium", "large"],
     "preferenceKey": "tgui-font-size",
     "category": "appearance"

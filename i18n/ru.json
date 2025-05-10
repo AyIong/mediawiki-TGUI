@@ -78,6 +78,8 @@
   "tgui-actions-more-toggle": "Доп. действия",
 
   "tgui-preferences": "Параметры",
+  "tgui-preferences-wip": "Превью",
+  "tgui-preferences-wip-desc": "Это экспериментальная возможность. При её использовании, некоторые страницы могут выглядеть некорректно.",
   "tgui-preferences-appearance-tab-name": "Внешний вид",
   "tgui-preferences-accessibility-tab-name": "Доступность",
 

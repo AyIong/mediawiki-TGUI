@@ -49,6 +49,8 @@
   "tgui-actions-more-toggle": "More actions",
 
   "tgui-preferences": "Preferences",
+  "tgui-preferences-wip": "Preview",
+  "tgui-preferences-wip-desc": "This is an experimental feature. When used, some pages may look incorrect.",
   "tgui-preferences-appearance-tab-name": "Appearance",
   "tgui-preferences-accessibility-tab-name": "Accessibility",
 

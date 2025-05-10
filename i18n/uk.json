@@ -66,6 +66,8 @@
   "tgui-actions-more-toggle": "Більше опцій",
 
   "tgui-preferences": "Налаштування",
+  "tgui-preferences-wip": "Preview",
+  "tgui-preferences-wip-desc": "Це експериментальна функція. При використанні деякі сторінки можуть виглядати неправильно.",
   "tgui-preferences-appearance-tab-name": "Зовнішній вигляд",
   "tgui-preferences-accessibility-tab-name": "Доступність",
 

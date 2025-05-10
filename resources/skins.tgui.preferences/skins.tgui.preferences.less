@@ -13,6 +13,20 @@
   }
 }
 
+@keyframes wip {
+  0% {
+    box-shadow: var(--shadow) transparent;
+  }
+
+  50% {
+    box-shadow: var(--shadow) var(--color-secondary);
+  }
+
+  100% {
+    box-shadow: var(--shadow) transparent;
+  }
+}
+
 .tgui-pref-notice {
   &:before,
   &:after {
@@ -115,6 +129,23 @@
 
   .tgui-menu {
     .tgui-section-mixin();
+
+    &__heading {
+      position: relative;
+    }
+
+    &__wip {
+      --shadow: 0 0 3px 1px;
+      position: absolute;
+      right: 0.33rem;
+      font-size: 0.75rem;
+      padding: 0.25em 0.5em;
+      background-color: var(--color-secondary);
+      background-image: var(--notice-stripes);
+      color: var(--color-white);
+      border-radius: var(--border-radius-small);
+      animation: wip 3s infinite;
+    }
 
     &:nth-child(n + 3) {
       flex: 1 0 10rem;

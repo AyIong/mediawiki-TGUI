@@ -330,18 +330,9 @@ function makeClientPreference(parent, featureName, config) {
   }
 
   const id = `skin-client-prefs-${featureName}`;
-  const portlet = portlets.addDefaultPortlet(portlets.addPortlet(id, labelMsg.text()));
+  const portlet = portlets.addDefaultPortlet(portlets.addPortlet(id, labelMsg.text()), config[featureName]);
   const labelElement = portlet.querySelector('label');
 
-  const descriptionMsg = getMessage(`${featureName}-description`);
-  if (descriptionMsg.exists()) {
-    const desc = document.createElement('span');
-    desc.classList.add('skin-client-pref-description');
-    desc.textContent = descriptionMsg.text();
-    if (labelElement?.parentNode) {
-      labelElement.appendChild(desc);
-    }
-  }
   const row = makeControl(featureName, config);
   parent.appendChild(portlet);
   if (row) {

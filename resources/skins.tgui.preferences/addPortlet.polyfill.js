@@ -9,20 +9,24 @@
  * @param {Element} portlet
  * @return {Element}
  */
-function addDefaultPortlet(portlet) {
+function addDefaultPortlet(portlet, preference) {
   const ul = portlet.querySelector('ul');
   if (!ul) {
     return portlet;
   }
+
+  let title;
   ul.classList.add('tgui-menu__content-list');
   const label = portlet.querySelector('label');
   if (label) {
     const labelDiv = document.createElement('div');
     labelDiv.classList.add('tgui-menu__heading');
     labelDiv.innerHTML = label.textContent || '';
-    portlet.insertBefore(labelDiv, label);
+    title = labelDiv;
+    portlet.insertBefore(title, label);
     label.remove();
   }
+
   let wrapper = portlet.querySelector('div:last-child');
   if (wrapper) {
     ul.remove();
@@ -35,6 +39,15 @@ function addDefaultPortlet(portlet) {
     wrapper.appendChild(ul);
     portlet.appendChild(wrapper);
   }
+
+  if (title && preference?.experimental) {
+    const wipDiv = document.createElement('div');
+    wipDiv.classList.add('tgui-menu__wip');
+    wipDiv.innerHTML = mw.message('tgui-preferences-wip').text();
+    wipDiv.title = mw.message('tgui-preferences-wip-desc').text();
+    title.appendChild(wipDiv);
+  }
+
   portlet.classList.add('tgui-menu');
   return portlet;
 }
@@ -64,12 +77,14 @@ function addPortlet(id, label, before) {
     // Additional class is added to allow skins to track portlets added via this mechanism.
     'mw-portlet-js',
   );
+
   portlet.id = id;
   if (label) {
     const labelNode = document.createElement('label');
     labelNode.textContent = label;
     portlet.appendChild(labelNode);
   }
+
   const listWrapper = document.createElement('div');
   const list = document.createElement('ul');
   listWrapper.appendChild(list);
@@ -88,6 +103,7 @@ function addPortlet(id, label, before) {
       return null;
     }
   }
+
   mw.hook('util.addPortlet').fire(portlet, before);
   return portlet;
 }
