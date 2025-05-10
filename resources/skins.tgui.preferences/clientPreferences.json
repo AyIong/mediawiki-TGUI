@@ -19,17 +19,17 @@
     "category": "appearance"
   },
   "tgui-feature-blur": {
-    "options": ["enabled", "disabled"],
+    "options": ["disabled", "enabled"],
     "preferenceKey": "tgui-blur",
     "category": "accessibility"
   },
   "tgui-feature-reduced-motion": {
-    "options": ["enabled", "disabled"],
+    "options": ["disabled", "enabled"],
     "preferenceKey": "tgui-motion",
     "category": "accessibility"
   },
   "tgui-feature-holidays": {
-    "options": ["enabled", "disabled"],
+    "options": ["disabled", "enabled"],
     "preferenceKey": "tgui-holidays",
     "category": "accessibility"
   },

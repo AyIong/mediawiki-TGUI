@@ -1,15 +1,20 @@
 @import '../variables.less';
 @import '../mixins.less';
 
+@selector-sidebar-no-toc-sidebar-closed: ~'.tgui-toc-collapsed @{selector-main-menu-closed}';
+@selector-sidebar-no-toc-sidebar-disabled: ~':not(:has(.sidebar-toc)) @{selector-main-menu-closed}';
+
 :root {
   interpolate-size: allow-keywords;
 }
 
 .tgui-page {
   &-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
+    z-index: var(--index-base);
 
     &-inner {
       display: flex;

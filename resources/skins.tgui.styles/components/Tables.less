@@ -4,13 +4,7 @@
 table {
   position: relative;
   font-size: 100%;
-  background-color: var(--color-second-fill);
   border-color: var(--color-border);
-
-  table,
-  .wikitable {
-    background-color: var(--color-second);
-  }
 }
 
 // JS-enhanced responsive table
@@ -51,12 +45,8 @@ table {
 /* Collapsible table toggle */
 .skin-tgui {
   table {
-    &:not(.wikitable) .mw-collapsible-toggle {
-      background-color: transparent !important;
-
-      &:before {
-        color: var(--color-text) !important;
-      }
+    &:not(.wikitable) .mw-collapsible-toggle:before {
+      color: var(--color-text) !important;
     }
 
     .mw-collapsible-toggle {
