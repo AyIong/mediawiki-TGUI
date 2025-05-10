@@ -82,12 +82,16 @@
     .tgui-button(@transparent: true);
     position: absolute;
     cursor: pointer;
-    top: 0.1rem;
-    left: -1.4rem;
-    width: 1.25rem;
-    height: 1.25rem;
-    font-size: 0.75em;
+    top: 0.1em;
+    left: -1.4em;
+    width: 1.25em;
+    height: 1.25em;
+    font-size: 1em;
     transition: transform var(--transition-time);
+
+    &:before {
+      vertical-align: middle;
+    }
   }
 
   .sidebar-toc-link {
@@ -135,8 +139,9 @@
 .tgui-toc-collapse-button {
   .tgui-button();
   display: block;
-  width: 1.25rem;
   padding: 0;
+  font-size: 1em;
+  width: 1.5em;
   border: 0;
 
   &:before {
@@ -153,12 +158,12 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    font-size: 1.3rem;
     background-color: var(--color-primal-blur);
     z-index: var(--index-element);
 
     .sidebar-toc-header {
       .sidebar-toc-title {
-        font-size: 1em;
         font-weight: bold;
 
         .tgui-toc-collapse-button {
@@ -176,12 +181,13 @@
       padding-right: 0.75em;
     }
 
-    .sidebar-toc-text {
-      padding: 0.4em 0;
-    }
-
+    .sidebar-toc-toggle,
     .sidebar-toc-list-item a {
       font-size: 1em;
+
+      &:before {
+        font-size: 0.7em;
+      }
     }
   }
 
