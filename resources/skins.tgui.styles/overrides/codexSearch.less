@@ -202,14 +202,13 @@
       height: 1.25rem;
       opacity: 0.5;
       transform: translateY(-50%);
-      transition:
-        transform var(--transition-time),
-        opacity var(--transition-time);
+      transition-property: transform, opacity;
+      transition-duration: var(--transition-time);
 
       &:before {
         content: '\f002';
         font: var(--fa-font-solid);
-        font-size: 1.05rem;
+        font-size: 1rem;
         color: var(--color-text-darker);
       }
 

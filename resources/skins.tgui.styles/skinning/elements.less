@@ -31,7 +31,6 @@ h3,
 h4,
 h5,
 h6 {
-  overflow: hidden;
   margin: 0;
   margin-top: 1em;
   color: var(--color-text);
@@ -43,12 +42,16 @@ h6 {
   span[typeof~='mw:File'] {
     vertical-align: bottom;
   }
+
+  @media (max-width: @max-width-mobile) {
+    overflow-wrap: anywhere;
+  }
 }
 
 h1,
 h2 {
   margin-bottom: 0.33rem;
-  padding: 0.25rem 0.33rem 0.1rem;
+  padding: 0.25rem 0.5rem 0.1rem;
   font-weight: var(--font-bolder);
   line-height: var(--line-height-medium);
   border-bottom: 2px solid var(--color-primary);
@@ -60,6 +63,24 @@ h5,
 h6 {
   margin-bottom: 0.25rem;
   line-height: var(--line-height-small);
+
+  .mw-headline {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: calc(-0.25rem * 0.5);
+      height: 2px;
+      width: calc(100% + 2em);
+      max-width: calc(100vw - 3rem); // 2 content margins * 2
+      background: linear-gradient(
+        to right,
+        ~'hsl(from var(--color-secondary-light) h s l / 0.5)' calc(100% - 2em),
+        transparent 100%
+      );
+    }
+  }
 }
 
 h3,
@@ -103,6 +124,10 @@ p {
 
   &:only-of-type {
     margin-block: 0;
+
+    + ul {
+      margin-top: 0 !important;
+    }
   }
 
   img {

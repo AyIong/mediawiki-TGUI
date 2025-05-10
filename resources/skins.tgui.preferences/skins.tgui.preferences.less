@@ -76,12 +76,12 @@
     }
 
     &--active {
-      cursor: default;
-      background-color: var(--color-bg-focus);
-      color: ~'hsla(var(--primary-hue), 100%, var(--primary-lightness--text))';
+      cursor: default !important;
+      background-color: var(--color-bg-focus) !important;
+      color: ~'hsla(var(--primary-hue), 100%, var(--primary-lightness--text))' !important;
 
       &:after {
-        transform: scaleX(1);
+        transform: scaleX(1) !important;
       }
     }
 
@@ -204,7 +204,7 @@
           display: flex;
           align-items: center;
           font-weight: bold;
-          font-size: 1.33em;
+          font-size: 1.33rem;
           margin-left: 0.33em;
           color: var(--color-white);
           text-shadow: 0 0 0.75rem rgba(0, 0, 0, 0.75);

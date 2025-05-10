@@ -184,33 +184,6 @@
 @dark-color-link-new--hover: @color-red90;
 @dark-color-link-new--active: @color-red30;
 
-/* Opacity */
-// @dark-opacity-icon-base:			0.4;
-// @dark-opacity-icon-base--hover:		0.6;
-@dark-opacity-icon-base--active: 0.4;
-
-/*
- * Framework
- */
-@html-font-size: 100%;
-@icon-size: 1.125rem; // 18px, TODO: Replace this var
-@icon-box-size: @icon-size + @icon-margin * 2;
-@icon-margin: 3px;
-
-/**
- * Legacy colors
- *
- * They are used by the SMW skinstyles and a few MW UI stuff.
- * Those styles should be updated to the new standard.
- * After that we can remove all theses LESS variables.
- */
-@dark-bg-10: #1d2129;
-@dark-bg-20: #22262d;
-@dark-bg-30: #24272f;
-@dark-bg-40: #2b2f36;
-@dark-bg-50: #33363d;
-@dark-bg-60: #34383f;
-
 /**
  * Used by Math and WikiHiero for recolor
  * TODO: Figure out a way to do recolor with CSS variable
@@ -220,22 +193,8 @@
 @dark-color-base--emphasized: hsl(60, 80%, 95%);
 @dark-color-base--subtle: hsl(50, 25%, 65%);
 
-/* Sizing calculation primitives */
-@font-size-root: 100%;
-@font-size-browser: 16; // Assumed browser default of `16px`
-
 // Page content
 @outline-color-base--focus: var(--color-primary);
-
-@font-size-base: unit(14 / @font-size-browser, em); // Equals `0.875em`.
-@font-size-base--trident-hack: calc(1em ~'*' unit(@font-size-base));
-@font-size-reset: @font-size-root;
-@font-size-heading-1: 1.8em;
-@font-size-heading-2: 1.5em;
-@font-size-heading-3: 1.2em;
-@font-size-notification: 0.8em;
-@font-size-site-notice: 0.8em;
-@font-size-footer: unit(12 / @font-size-browser, em);
 
 @line-height-base: 1.5;
 @line-height-heading: 1.25;
@@ -243,37 +202,14 @@
 @line-height-footer-info: 1.3;
 @line-height-footer-buttons: 2;
 
-@size-sidebar-button: unit(44 / @font-size-browser, em); // Equals `2.75em`.
-
-@size-icon: unit(20 / @font-size-browser, em);
-@size-indicator: unit(12 / @font-size-browser, em);
-@icon-padding-md: unit(12 / @font-size-browser, em);
-
 @padding-top-content: 0.5em;
 @padding-horizontal-content: 0.5em;
 @padding-blockquote: 8px 32px;
 @border-bottom-tabs: var(--border-classic);
 
-// Navigation
-@line-height-nav: 1.125em;
-
-// Navigation: Main
-@font-size-nav-main: inherit;
-@font-size-nav-main-heading: unit(12 / @font-size-browser, em); // Equals `0.75em`.
-
-@font-size-nav-main-body: unit(12 / @font-size-browser, em);
-@margin-start-nav-main-body: 0.5em;
-
-// Tabs
-@font-size-tabs: unit(13 / @font-size-browser, em); // Equals `0.8125em`.
-
 // Main menu
 @selector-main-menu-open: ~'#tgui-sidebar-checkbox:checked';
 @selector-main-menu-closed: ~'#tgui-sidebar-checkbox:not(:checked)';
-
-// Language button
-@height-button-lang: unit(32 / @font-size-browser, em);
-@height-sticky-header: unit(50px / @font-size-browser, rem);
 
 // Z-indexes
 @z-index-base: 0;
@@ -286,12 +222,6 @@
 @z-index-personal: 100;
 @z-index-sidebar-button: 101;
 @z-index-overlay: 101;
-
-// Layout
-@max-width-page-container: unit(1514px / @font-size-browser, em); // 99.75em @ 16
-@max-width-content-container: unit(960px / @font-size-browser, em); // 60em @ 16
-@padding-horizontal-page-container: unit(32px / @font-size-browser, em);
-@padding-horizontal-page-container-wide: unit(40px / @font-size-browser, em);
 
 // Grid
 @grid-row-gap: 24px;

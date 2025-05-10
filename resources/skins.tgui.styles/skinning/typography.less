@@ -9,7 +9,7 @@
 @import '../mixins.less';
 
 html {
-  font-size: @font-size-root;
+  font-size: 100%;
 }
 
 html,
@@ -35,8 +35,8 @@ pre,
 }
 
 .tgui-body {
-  font-size: @font-size-base;
-  line-height: @line-height-base;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-larger);
 
   blockquote {
     border-left: 2px solid var(--color-label);
@@ -87,22 +87,6 @@ pre,
     + ol {
       margin-top: -0.5lh;
       margin-bottom: 0.5lh;
-    }
-  }
-}
-
-@media (max-width: @max-width-mobile) {
-  .tgui-body {
-    & h1,
-    &-content h1 {
-      font-size: ~'calc(@{font-size-heading-1} - 0.15em)';
-    }
-  }
-
-  .mw-body {
-    & h1,
-    &-content h1 {
-      font-size: ~'calc(@{font-size-heading-1} - 0.15em)';
     }
   }
 }
