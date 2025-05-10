@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "php",
+      "request": "launch",
+      "name": "Launch MediaWiki",
+      "cwd": "${workspaceFolder}/../../",
+      "runtimeExecutable": "php",
+      "runtimeArgs": ["-S", "localhost:4000"],
+      "serverReadyAction": {
+        "pattern": "PHP [0-9.]+ Development Server \\(http://localhost:4000\\) started",
+        "uriFormat": "http://localhost:4000",
+        "action": "openExternally"
+      }
+    }
+  ]
+}

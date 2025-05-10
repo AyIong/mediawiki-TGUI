@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "DEVSENSE.phptools-vscode",
+    "biomejs.biome",
+    "esbenp.prettier-vscode",
+    "stylemistake.auto-comment-blocks"
+  ]
+}

@@ -6,7 +6,6 @@
  */
 
 /** @interface TGUIResourceLoaderVirtualConfig */
-/** @interface MediaWikiPageReadyModule */
 
 const config = require(/** @type {string} */ ('./config.json'));
 // T251544: Collect search performance metrics to compare Vue search with
