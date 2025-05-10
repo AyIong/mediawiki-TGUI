@@ -14,18 +14,18 @@ function init(content) {
     const tooltipElements = content.querySelectorAll('[title]');
     for (const tooltip of tooltipElements) {
       if (tooltip.hasAttribute('data-tooltip-initialized')) {
-        return;
+        continue;
       }
 
       if (tooltip.parentElement.hasAttribute('data-notitle')) {
         tooltip.setAttribute('data-tooltip-initialized', 'true');
         tooltip.removeAttribute('title');
-        return;
+        continue;
       }
 
       const tooltipText = tooltip.getAttribute('title');
       if (!tooltipText) {
-        return;
+        continue;
       }
 
       tooltip.setAttribute('data-tooltip-initialized', 'true');
