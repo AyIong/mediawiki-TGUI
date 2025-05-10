@@ -36,8 +36,9 @@ body {
 
   .firstHeading {
     overflow: visible;
-    margin-bottom: 0;
-    padding: 0.2em 0.4em 0.1em 0.4em;
+    margin: 0;
+    padding: 0.175em 0.4em calc(0.175em - 2px);
+    font-size: var(--font-size-huge);
   }
 }
 
@@ -104,6 +105,9 @@ body {
 ::selection {
   background-color: var(--color-primary) !important;
   color: var(--color-white) !important;
+  text-shadow:
+    1px 1px 0px ~'hsl(from var(--color-black) h s l / 0.5)',
+    2px 2px 4px var(--color-black);
 }
 
 ::-moz-selection {

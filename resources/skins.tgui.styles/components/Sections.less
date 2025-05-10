@@ -1,13 +1,5 @@
 .tgui-sections-enabled {
   .tgui-section {
-    overflow: hidden;
-    content-visibility: visible;
-    transition: height var(--transition-time);
-
-    &[hidden] {
-      height: 0;
-    }
-
     &-heading {
       cursor: pointer;
       user-select: none;
@@ -22,10 +14,6 @@
         font: var(--fa-font-solid);
         font-size: 1cap;
       }
-    }
-
-    &#tgui-section-0 {
-      overflow: visible;
     }
   }
 }

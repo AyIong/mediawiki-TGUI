@@ -9,6 +9,8 @@
     color-mix(in srgb, var(--color-bg) 98%, white) 0%,
     color-mix(in srgb, var(--color-bg) 98%, black) 100%
   );
+  --adjust-hover: 10;
+  --adjust-active: 7.5;
 
   /* TGUI Elements Colors */
   --color-primary: ~'hsl(var(--primary-hue), 37.5%, var(--primary-lightness))';
@@ -32,74 +34,93 @@
   --color-gray: var(--color-grey);
 
   /* TGUI Elements Colors (Light or Hover) */
-  --color-primary-light: ~'hsl(var(--primary-hue), 32.5%, calc(var(--primary-lightness) + 10%))';
-  --color-secondary-light: ~'hsl(var(--primary-hue), 100%, 60%)';
-  --color-red-light: hsl(0, 85%, 65%);
-  --color-orange-light: hsl(35, 100%, 60%);
-  --color-yellow-light: hsl(50, 100%, 60%);
-  --color-olive-light: hsl(70, 80%, 55%);
-  --color-green-light: hsl(95, 65%, 50%);
-  --color-teal-light: hsl(175, 100%, 45%);
-  --color-blue-light: hsl(205, 100%, 65%);
-  --color-violet-light: hsl(260, 100%, 65%);
-  --color-purple-light: hsl(285, 100%, 65%);
-  --color-pink-light: hsl(325, 100%, 65%);
-  --color-brown-light: hsl(25, 45%, 55%);
-  --color-grey-light: hsl(0, 0%, 55%);
-  --color-label-light: hsl(215, 30%, 70%);
-  --color-black-light: hsl(0, 0%, 15%);
-  --color-white-light: hsl(0, 0%, 85%);
+  --color-primary-light: ~'hsl(from var(--color-primary) h s calc(l + var(--adjust-hover)))';
+  --color-secondary-light: ~'hsl(from var(--color-secondary) h s calc(l + var(--adjust-hover)))';
+  --color-red-light: ~'hsl(from var(--color-red) h s calc(l + var(--adjust-hover)))';
+  --color-orange-light: ~'hsl(from var(--color-orange) h s calc(l + var(--adjust-hover)))';
+  --color-yellow-light: ~'hsl(from var(--color-yellow) h s calc(l + var(--adjust-hover)))';
+  --color-olive-light: ~'hsl(from var(--color-olive) h s calc(l + var(--adjust-hover)))';
+  --color-green-light: ~'hsl(from var(--color-green) h s calc(l + var(--adjust-hover)))';
+  --color-teal-light: ~'hsl(from var(--color-teal) h s calc(l + var(--adjust-hover)))';
+  --color-blue-light: ~'hsl(from var(--color-blue) h s calc(l + var(--adjust-hover)))';
+  --color-violet-light: ~'hsl(from var(--color-violet) h s calc(l + var(--adjust-hover)))';
+  --color-purple-light: ~'hsl(from var(--color-purple) h s calc(l + var(--adjust-hover)))';
+  --color-pink-light: ~'hsl(from var(--color-pink) h s calc(l + var(--adjust-hover)))';
+  --color-brown-light: ~'hsl(from var(--color-brown) h s calc(l + var(--adjust-hover)))';
+  --color-grey-light: ~'hsl(from var(--color-grey) h s calc(l + var(--adjust-hover)))';
+  --color-label-light: ~'hsl(from var(--color-label) h s calc(l + var(--adjust-hover)))';
+  --color-black-light: ~'hsl(from var(--color-black) h s calc(l + 25))';
+  --color-white-light: ~'hsl(from var(--color-white) h s calc(l - 10))';
   --color-gray-light: var(--color-grey-light);
 
   /* TGUI Elements Colors (Darker or Focus/Active) */
-  --color-primary-dark: ~'hsl(var(--primary-hue), 40%, calc(var(--primary-lightness) - 10%))';
-  --color-secondary-dark: ~'hsl(var(--primary-hue), 70%, 40%)';
-  --color-red-dark: hsl(0, 70%, 45%);
-  --color-orange-dark: hsl(35, 90%, 45%);
-  --color-yellow-dark: hsl(50, 95%, 45%);
-  --color-olive-dark: hsl(70, 80%, 40%);
-  --color-green-dark: hsl(95, 65%, 35%);
-  --color-teal-dark: hsl(175, 100%, 30%);
-  --color-blue-dark: hsl(205, 100%, 35%);
-  --color-violet-dark: hsl(260, 60%, 45%);
-  --color-purple-dark: hsl(285, 60%, 45%);
-  --color-pink-dark: hsl(325, 75%, 50%);
-  --color-brown-dark: hsl(25, 45%, 40%);
-  --color-grey-dark: hsl(0, 0%, 40%);
-  --color-label-dark: hsl(215, 20%, 50%);
-  --color-white-dark: hsl(0, 0%, 75%);
-  --color-gray: var(--color-grey);
-
-  /* Font sizes */
-  --font-size-x-small: 0.75rem;
-  --font-size-small: 0.875rem;
-  --font-size-medium: 1rem;
-  --font-size-large: 1rem;
-  --font-size-x-large: 1.125rem;
-  --font-size-xx-large: 1.375rem;
-  --font-size-xxx-large: 1.75rem;
-
-  /* Font weight */
-  --font-weight-normal: 400;
-  --font-weight-medium: ~'calc( var( --font-weight-normal ) + 100)';
-  --font-weight-semibold: ~'calc( var( --font-weight-normal ) + 200)';
-  --font-weight-bold: ~'calc( var( --font-weight-normal ) + 300)';
+  --color-primary-dark: ~'hsl(from var(--color-primary) h s calc(l - var(--adjust-active)))';
+  --color-secondary-dark: ~'hsl(from var(--color-secondary) h s calc(l - var(--adjust-active)))';
+  --color-red-dark: ~'hsl(from var(--color-red) h s calc(l - var(--adjust-active)))';
+  --color-orange-dark: ~'hsl(from var(--color-orange) h s calc(l - var(--adjust-active)))';
+  --color-yellow-dark: ~'hsl(from var(--color-yellow) h s calc(l - var(--adjust-active)))';
+  --color-olive-dark: ~'hsl(from var(--color-olive) h s calc(l - var(--adjust-active)))';
+  --color-green-dark: ~'hsl(from var(--color-green) h s calc(l - var(--adjust-active)))';
+  --color-teal-dark: ~'hsl(from var(--color-teal) h s calc(l - var(--adjust-active)))';
+  --color-blue-dark: ~'hsl(from var(--color-blue) h s calc(l - var(--adjust-active)))';
+  --color-violet-dark: ~'hsl(from var(--color-violet) h s calc(l - var(--adjust-active)))';
+  --color-purple-dark: ~'hsl(from var(--color-purple) h s calc(l - var(--adjust-active)))';
+  --color-pink-dark: ~'hsl(from var(--color-pink) h s calc(l - var(--adjust-active)))';
+  --color-brown-dark: ~'hsl(from var(--color-brown) h s calc(l - var(--adjust-active)))';
+  --color-grey-dark: ~'hsl(from var(--color-grey) h s calc(l - var(--adjust-active)))';
+  --color-label-dark: ~'hsl(from var(--color-label) h s calc(l - var(--adjust-active)))';
+  --color-black-dark: ~'hsl(from var(--color-black) h s calc(l + 10))';
+  --color-white-dark: ~'hsl(from var(--color-white) h s calc(l - 25))';
+  --color-gray-dark: var(--color-grey-dark);
 
   /* Font family */
   --font-family-base: 'Roboto', 'Roboto-fallback';
-  --font-family-heading: 'Verdana', 'Roboto', sans-serif;
+  --font-family-heading: 'Verdana', var(--font-family-base);
   --font-family-monospace: 'Consolas', 'Courier New', monospace;
+
+  /* Font sizes */
+  --font-size-base: 1rem;
+  --font-size-xxs: ~'calc(var(--font-size-base) * 0.75)';
+  --font-size-xs: ~'calc(var(--font-size-base) * 0.875)';
+  --font-size-m: var(--font-size-base);
+  --font-size-ml: ~'calc(var(--font-size-base) * 1.25)';
+  --font-size-l: ~'calc(var(--font-size-base) * 1.33)';
+  --font-size-xl: ~'calc(var(--font-size-base) * 1.5)';
+  --font-size-xxl: ~'calc(var(--font-size-base) * 1.66)';
+  --font-size-huge: ~'calc(var(--font-size-base) * 1.75)';
+  --font-size-giant: ~'calc(var(--font-size-base) * 2)';
+
+  /* Font weight */
+  --font-normal: 400;
+  --font-bolder: ~'calc(var(--font-normal) + 50)';
+  --font-medium: ~'calc(var(--font-normal) + 100)';
+  --font-semibold: ~'calc(var(--font-normal) + 200)';
+  --font-bold: ~'calc(var(--font-normal) + 300)';
+
+  /* Line height */
+  --line-height-base: 1;
+  --line-height-smallest: var(--line-height-base);
+  --line-height-small: ~'calc(var(--line-height-base) * 1.1)';
+  --line-height-medium: ~'calc(var(--line-height-base) * 1.25)';
+  --line-height-large: ~'calc(var(--line-height-base) * 1.33)';
+  --line-height-larger: ~'calc(var(--line-height-base) * 1.5)';
+  --line-height-huge: ~'calc(var(--line-height-base) * 1.75)';
+  --line-height-giant: ~'calc(var(--line-height-base) * 2)';
+
+  /* Border Radius */
+  --border-radius-base: 1rem;
+  --border-radius-smallest: ~'calc( var(--border-radius-base) * 0.175)';
+  --border-radius-small: ~'calc( var(--border-radius-base) * 0.25)';
+  --border-radius-medium: ~'calc( var(--border-radius-base) * 0.5)';
+  --border-radius-large: var(--border-radius-base);
+  --border-radius-larger: ~'calc( var(--border-radius-base) * 1.5)';
+  --border-radius-huge: ~'calc( var(--border-radius-base) * 2)';
+  --border-radius-round: 9999px;
 
   /* Opacity */
   --opacity-icon-base: 0.5;
   --opacity-icon-base-hover: 0.75;
   --opacity-icon-base-active: 1;
-
-  /* Border Radius */
-  --border-radius-small: 0.275rem;
-  --border-radius-medium: ~'calc( var(--border-radius-small) * 2)';
-  --border-radius-large: ~'calc( var(--border-radius-small) * 4)';
-  --border-radius-round: 9999px;
 
   /* Height */
   --header-height: 3.25rem;

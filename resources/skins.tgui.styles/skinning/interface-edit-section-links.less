@@ -1,0 +1,57 @@
+.mw-editsection,
+.mw-editsection-like {
+  display: inline-block;
+  opacity: 0;
+  visibility: hidden;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  font-size: var(--font-size-xxs);
+  font-weight: var(--font-normal);
+  transform: translateY(-100%);
+  transition-duration: var(--transition-time);
+  transition-property: opacity, visibility, transform;
+
+  @media (max-width: @max-width-mobile) {
+    display: none;
+  }
+
+  a {
+    .tgui-button();
+    font-size: smaller;
+    padding: 0.2em 0.5em 0.3em 0.5em;
+    margin-left: 0.5em;
+  }
+
+  &:before {
+    content: '' !important;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  &:hover .mw-editsection,
+  &:hover .mw-editsection-like {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+h1,
+h2 {
+  .mw-editsection,
+  .mw-editsection-like {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.mw-editsection-bracket,
+.mw-editsection-divider {
+  display: none;
+}

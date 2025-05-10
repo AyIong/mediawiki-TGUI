@@ -4,7 +4,8 @@
     {
       "files": "*.less",
       "options": {
-        "singleQuote": true
+        "singleQuote": true,
+        "printWidth": 120
       }
     },
     {

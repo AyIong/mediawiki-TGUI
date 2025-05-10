@@ -33,17 +33,24 @@ h5,
 h6 {
   overflow: hidden;
   margin: 0;
+  margin-top: 1em;
   color: var(--color-text);
 
   + p {
     margin-block-start: 0;
   }
+
+  span[typeof~='mw:File'] {
+    vertical-align: bottom;
+  }
 }
 
 h1,
 h2 {
+  margin-bottom: 0.33rem;
   padding: 0.25rem 0.33rem 0.1rem;
-  margin-bottom: 0.5rem;
+  font-weight: var(--font-bolder);
+  line-height: var(--line-height-medium);
   border-bottom: 2px solid var(--color-primary);
 }
 
@@ -51,33 +58,39 @@ h3,
 h4,
 h5,
 h6 {
-  margin-bottom: 0.25em;
+  margin-bottom: 0.25rem;
+  line-height: var(--line-height-small);
+}
+
+h3,
+h4 {
+  font-weight: var(--font-semibold);
+}
+
+h5,
+h6 {
+  font-weight: var(--font-bold);
 }
 
 h1 {
-  font-size: 175%;
-  font-weight: normal;
+  font-size: var(--font-size-xl);
 }
 
 h2 {
-  font-size: 150%;
-  font-weight: normal;
+  font-size: var(--font-size-l);
 }
 
 h3 {
-  font-size: 125%;
+  font-size: var(--font-size-ml);
 }
 
 h4 {
-  font-size: 115%;
+  font-size: var(--font-size-m);
 }
 
-h5 {
-  font-size: 110%;
-}
-
+h5,
 h6 {
-  font-size: 100%;
+  font-size: var(--font-size-xs);
 }
 
 p {
@@ -91,10 +104,10 @@ p {
   &:only-of-type {
     margin-block: 0;
   }
-}
 
-p img {
-  margin: 0;
+  img {
+    margin: 0;
+  }
 }
 
 ul {

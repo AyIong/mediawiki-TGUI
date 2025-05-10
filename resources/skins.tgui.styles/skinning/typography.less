@@ -34,90 +34,9 @@ pre,
   line-height: @line-height-code;
 }
 
-/* Use unscoped selector to allow edit sections outside of .mw-body-content and .tgui-body (T160269) */
-.mw-editsection,
-.mw-editsection-like {
-  vertical-align: middle !important;
-  margin-left: 0.5rem !important;
-
-  @media (max-width: @max-width-mobile) {
-    display: none;
-  }
-
-  a {
-    .tgui-button();
-    font-size: smaller;
-    padding: 0.2em 0.5em 0.3em 0.5em;
-    margin-left: 0.5em;
-  }
-
-  &:before {
-    content: '' !important;
-  }
-}
-
-.mw-editsection-bracket,
-.mw-editsection-divider {
-  display: none;
-}
-
-/* Main content area, including indicators, categories, firstHeading and `.tgui-body`. */
-.mw-body {
-  // h1's can exist outside of `.mw-body-content` so some heading styles
-  // therefore need to be defined in `.mw-body` as well.
-  & h1,
-  &-content h1,
-  &-content h2 {
-    margin-bottom: 0.25em;
-    line-height: @line-height-heading;
-  }
-
-  & h1,
-  &-content h1 {
-    font-size: @font-size-heading-1;
-  }
-}
-
 .tgui-body {
   font-size: @font-size-base;
   line-height: @line-height-base;
-
-  h1 {
-    margin-top: 0.75em;
-  }
-
-  h2 {
-    margin-top: 0.5em;
-    font-size: @font-size-heading-2;
-  }
-
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-top: 0.25em;
-    margin-bottom: 0em;
-    line-height: @line-height-base;
-  }
-
-  h3 {
-    font-size: @font-size-heading-3;
-  }
-
-  h3,
-  h4 {
-    font-weight: bold;
-  }
-
-  h4,
-  h5,
-  h6 {
-    font-size: @font-size-reset; // Reset.
-  }
-
-  .toc h2 {
-    font-size: @font-size-reset; // Reset.
-  }
 
   blockquote {
     border-left: 2px solid var(--color-label);
