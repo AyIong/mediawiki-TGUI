@@ -9,6 +9,11 @@
     "preferenceKey": "tgui-theme-style",
     "category": "appearance"
   },
+  "tgui-feature-font-size": {
+    "options": ["small", "medium", "large"],
+    "preferenceKey": "tgui-font-size",
+    "category": "appearance"
+  },
   "tgui-feature-primary-hue-slider": {
     "defaultValue": "210",
     "min": 0,

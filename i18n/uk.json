@@ -80,6 +80,11 @@
   "tgui-theme-style-ntos-label": "NTOS",
   "tgui-theme-style-paradise-label": "Paradise",
 
+  "tgui-feature-font-size-name": "Розмір шрифту",
+  "tgui-feature-font-size-small-label": "Меньше",
+  "tgui-feature-font-size-medium-label": "Стандартний",
+  "tgui-feature-font-size-large-label": "Більше",
+
   "tgui-feature-blur-name": "Ефекти розмиття",
   "tgui-feature-blur-enabled-label": "Увімкнені",
   "tgui-feature-blur-disabled-label": "Вимкнені",

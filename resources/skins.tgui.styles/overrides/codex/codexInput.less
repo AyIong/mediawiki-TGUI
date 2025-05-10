@@ -9,7 +9,7 @@
 
   & when not (@transparent) {
     background-color: ~'var(--color-@{color})';
-    color: var(--color-text);
+    color: var(--color-white);
 
     &:hover {
       background-color: ~'var(--color-@{color}-light)';
@@ -23,6 +23,7 @@
 
   & when (@transparent) {
     background-color: transparent;
+    color: var(--color-text);
 
     &:hover {
       background-color: var(--color-bg-hover);

@@ -63,24 +63,6 @@ h5,
 h6 {
   margin-bottom: 0.25rem;
   line-height: var(--line-height-small);
-
-  .mw-headline {
-    position: relative;
-
-    &:before {
-      content: '';
-      position: absolute;
-      bottom: calc(-0.25rem * 0.5);
-      height: 2px;
-      width: calc(100% + 2em);
-      max-width: calc(100vw - 3rem); // 2 content margins * 2
-      background: linear-gradient(
-        to right,
-        ~'hsl(from var(--color-secondary-light) h s l / 0.5)' calc(100% - 2em),
-        transparent 100%
-      );
-    }
-  }
 }
 
 h3,
@@ -94,24 +76,24 @@ h6 {
 }
 
 h1 {
-  font-size: var(--font-size-xl);
+  font-size: 1.75em;
 }
 
 h2 {
-  font-size: var(--font-size-l);
+  font-size: 1.5em;
 }
 
 h3 {
-  font-size: var(--font-size-ml);
+  font-size: 1.33em;
 }
 
 h4 {
-  font-size: var(--font-size-m);
+  font-size: 1.25em;
 }
 
 h5,
 h6 {
-  font-size: var(--font-size-xs);
+  font-size: 1em;
 }
 
 p {

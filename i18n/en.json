@@ -63,6 +63,11 @@
   "tgui-theme-style-ntos-label": "NTOS",
   "tgui-theme-style-paradise-label": "Paradise",
 
+  "tgui-feature-font-size-name": "Font size",
+  "tgui-feature-font-size-small-label": "Smaller",
+  "tgui-feature-font-size-medium-label": "Default",
+  "tgui-feature-font-size-large-label": "Larger",
+
   "tgui-feature-blur-name": "Blur Effects",
   "tgui-feature-blur-enabled-label": "Enabled",
   "tgui-feature-blur-disabled-label": "Disabled",

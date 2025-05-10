@@ -1,3 +1,24 @@
+.tgui-section {
+  > h3 .mw-headline,
+  > h4 .mw-headline {
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: calc(-0.25rem * 0.5);
+      height: 2px;
+      width: calc(100% + 2em);
+      max-width: calc(100vw - 3rem); // 2 content margins * 2
+      background: linear-gradient(
+        to right,
+        ~'hsl(from var(--color-secondary-light) h s l / 0.5)' calc(100% - 2em),
+        transparent 100%
+      );
+    }
+  }
+}
+
 .tgui-sections-enabled {
   .tgui-section {
     &-heading {
