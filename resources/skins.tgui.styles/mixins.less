@@ -78,6 +78,24 @@
   }
 }
 
+.tgui-dropshadow-like(@position: bottom) {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(100%);
+  transform-origin: top;
+  background: ~'linear-gradient(to @{position}, var(--shadow-color--small) -6px, transparent 6px)';
+  mask-image: linear-gradient(to right, transparent 0%, black 0.75rem, black calc(100% - 0.75rem), transparent 100%);
+  transition: opacity var(--transition-time);
+
+  & when (@position = top) {
+    transform: translateY(-100%);
+    transform-origin: bottom;
+  }
+}
+
 .tgui-button(@color: primary, @transparent: false, @hover: true, @active: true, @focus: false, @disabled: false) {
   user-select: none;
   -webkit-user-drag: none;

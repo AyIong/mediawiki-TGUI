@@ -67,7 +67,7 @@
 
   "tgui-preferences": "Налаштування",
   "tgui-preferences-wip": "Preview",
-  "tgui-preferences-wip-desc": "Це експериментальна функція. При використанні деякі сторінки можуть виглядати неправильно.",
+  "tgui-preferences-wip-desc": "Це експериментальна функція. При використанні деякі сторінки можуть виглядати неправильно та функція може бути непредсказуємою.",
   "tgui-preferences-appearance-tab-name": "Зовнішній вигляд",
   "tgui-preferences-accessibility-tab-name": "Доступність",
 
@@ -86,6 +86,10 @@
   "tgui-feature-font-size-small-label": "Меньше",
   "tgui-feature-font-size-medium-label": "Стандартний",
   "tgui-feature-font-size-large-label": "Більше",
+
+  "tgui-feature-sticky-header-name": "Зафіксований заголовок",
+  "tgui-feature-sticky-header-enabled-label": "Увімкнено",
+  "tgui-feature-sticky-header-disabled-label": "Вимкнено",
 
   "tgui-feature-blur-name": "Ефекти розмиття",
   "tgui-feature-blur-enabled-label": "Увімкнені",

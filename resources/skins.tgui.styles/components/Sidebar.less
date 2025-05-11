@@ -7,7 +7,7 @@
   pointer-events: none;
   overflow: hidden;
   position: sticky;
-  top: ~'calc(var(--header-height) + var(--header-padding) * 2)';
+  top: var(--header-full);
   height: var(--sidebar-height);
   transition:
     width var(--transition-time),
@@ -94,7 +94,7 @@
 
     .tgui-sidebar {
       visibility: hidden !important;
-      margin-top: ~'calc(var(--header-height) + var(--header-padding) * 2)';
+      margin-top: var(--header-full);
       border-bottom: var(--border-classic);
       z-index: var(--index-overlay);
 

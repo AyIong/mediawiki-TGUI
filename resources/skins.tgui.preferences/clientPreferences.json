@@ -15,6 +15,12 @@
     "preferenceKey": "tgui-font-size",
     "category": "appearance"
   },
+  "tgui-feature-sticky-header": {
+    "experimental": true,
+    "options": ["disabled", "enabled"],
+    "preferenceKey": "tgui-sticky-header",
+    "category": "appearance"
+  },
   "tgui-feature-primary-hue-slider": {
     "defaultValue": "210",
     "min": 0,

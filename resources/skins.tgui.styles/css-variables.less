@@ -118,6 +118,22 @@
   --border-radius-huge: ~'calc( var(--border-radius-base) * 2)';
   --border-radius-round: 9999px;
 
+  /* Shadows */
+  --box-shadow-small: 0px 15px 20px 0px var(--shadow-color--skin);
+  --box-shadow-medium: 0px 25px 30px 5px var(--shadow-color--skin);
+  --box-shadow-big: 0px 0px 35px 5px var(--shadow-color--skin);
+  --box-shadow-small--inv: 0px -15px 20px 0px var(--shadow-color--skin);
+  --box-shadow-medium--inv: 0px -25px 30px 5px var(--shadow-color--skin);
+
+  /* Template Shadows - @deprecated: use --template-shadow-- */
+  --shadow-template--small: var(--template-shadow--small) var(--shadow-color--small);
+  --shadow-template--medium: var(--template-shadow--medium) var(--shadow-color--medium);
+  --shadow-template--large: var(--template-shadow--large) var(--shadow-color--large);
+
+  --template-shadow--small: 0px 0px 6px;
+  --template-shadow--medium: 0px 0px 12px;
+  --template-shadow--large: 0px 0px 12px 3px;
+
   /* Opacity */
   --opacity-icon-base: 0.5;
   --opacity-icon-base-hover: 0.75;
@@ -148,6 +164,7 @@
   --index-lower: -10;
 
   /* Shortcuts */
+  --header-full: ~'calc(var(--header-height) + var(--header-padding) * 2)';
   --border-classic: 1px outset var(--color-border);
   --border-classic-input: 1px outset var(--color-border-input);
   --border-classic-input-focus: 1px outset var(--color-border-input-focus);
@@ -237,19 +254,11 @@
   --invert-button-icon: invert(1);
   --invert-logo: brightness(5) hue-rotate(25deg) opacity(0.8); // Only for TG wiki
 
-  /* Shadows */
-  --box-shadow-small: 0px 15px 20px 0px rgba(0, 0, 0, 0.5);
-  --box-shadow-medium: 0px 25px 30px 5px rgba(0, 0, 0, 0.5);
-  --box-shadow-big: 0px 0px 35px 5px rgba(0, 0, 0, 0.5);
-
-  /* Shadows Inverted */
-  --box-shadow-small--inv: 0px -15px 20px 0px rgba(0, 0, 0, 0.5);
-  --box-shadow-medium--inv: 0px -25px 30px 5px rgba(0, 0, 0, 0.5);
-
-  /* Template Shadows */
-  --shadow-template--small: 0px 0px 6px rgba(0, 0, 0, 0.66);
-  --shadow-template--medium: 0px 0px 12px rgba(0, 0, 0, 0.75);
-  --shadow-template--large: 0px 0px 12px 3px rgba(0, 0, 0, 0.5);
+  /* Shadow colors*/
+  --shadow-color--skin: var(--shadow-color--large);
+  --shadow-color--small: rgba(0, 0, 0, 0.66);
+  --shadow-color--medium: rgba(0, 0, 0, 0.75);
+  --shadow-color--large: rgba(0, 0, 0, 0.5);
 
   /* Blur */
   --blur-default: blur(20px);
@@ -324,19 +333,15 @@
   --invert-button-icon: invert(1);
   --logo-invert: none;
 
-  /* Shadow */
-  --box-shadow-small: 0px 15px 20px 0px rgba(0, 0, 0, 0.2);
-  --box-shadow-medium: 0px 25px 30px 5px rgba(0, 0, 0, 0.2);
-  --box-shadow-big: 0px 0px 35px 5px rgba(0, 0, 0, 0.2);
-
-  /* Shadows Inverted */
-  --box-shadow-small--inv: 0px -15px 20px 0px rgba(0, 0, 0, 0.2);
-  --box-shadow-medium--inv: 0px -25px 30px 5px rgba(0, 0, 0, 0.2);
-
   /* Template Shadows */
-  --shadow-template--small: 0px 0px 6px rgba(0, 0, 0, 0.33);
-  --shadow-template--medium: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  --shadow-template--large: 0px 0px 15px rgba(0, 0, 0, 0.5);
+  --template-shadow--medium: 0px 0px 10px;
+  --template-shadow--large: 0px 0px 15px;
+
+  /* Shadow colors*/
+  --shadow-color--skin: rgba(0, 0, 0, 0.2);
+  --shadow-color--small: rgba(0, 0, 0, 0.33);
+  --shadow-color--medium: rgba(0, 0, 0, 0.5);
+  --shadow-color--large: rgba(0, 0, 0, 0.5);
 
   /* Blur */
   --blur-default: blur(16px);

@@ -5,16 +5,19 @@
   position: sticky;
   top: 0;
   background-color: var(--color-primal-blur);
-  transition: box-shadow var(--transition-time);
   z-index: var(--index-static);
 
-  .tgui-off-top & {
-    box-shadow: var(--shadow-template--small);
+  .tgui-off-top &:before {
+    opacity: 1;
   }
 
   .tgui-dropdown-summary {
     width: var(--header-button-height);
     height: var(--header-button-height);
+  }
+
+  &:before {
+    .tgui-dropshadow-like();
   }
 
   &-content {
@@ -72,8 +75,8 @@
     width: 100%;
     border-bottom: var(--border-classic);
 
-    @{selector-main-menu-open} ~ & {
-      box-shadow: var(--shadow-template--small);
+    @{selector-main-menu-open} ~ &:before {
+      opacity: 1;
     }
 
     #tgui-sidebar-button .tgui-icon:before {

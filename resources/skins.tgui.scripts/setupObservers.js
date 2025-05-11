@@ -182,6 +182,10 @@ const main = () => {
   const bodyContent = document.getElementById(BODY_CONTENT_ID);
   const tableOfContents = setupTableOfContents(tocElement, bodyContent, initSectionObserver);
 
+  if (window.scrollY > 0) {
+    document.body.classList.add('tgui-off-top');
+  }
+
   const scrollDirectionObserver = scrollObserver.initDirectionObserver(
     () => {
       document.body.classList.remove(SCROLL_UP_CLASS);
@@ -199,7 +203,7 @@ const main = () => {
         document.body.classList.remove(SCROLL_OFFTOP_CLASS);
       }
     },
-    10,
+    5,
   );
 };
 

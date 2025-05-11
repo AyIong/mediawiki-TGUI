@@ -1,3 +1,5 @@
+@import '../variables.less';
+
 // MARK: Themes
 .skin-theme-clientpref-os {
   @media (prefers-color-scheme: dark) {
@@ -117,6 +119,32 @@
 .tgui-feature-font-size-clientpref-large {
   :root& {
     --font-size-base: 1.125rem;
+  }
+}
+
+// MARK: Sticky header
+@media (min-width: @min-width-tablet) {
+  .tgui-feature-sticky-header-clientpref-enabled {
+    #tgui-page-header {
+      position: sticky;
+      top: var(--header-full);
+      transition-duration: var(--transition-time);
+      transition-property: background-color, backdrop-filter;
+      z-index: 1;
+
+      &:before {
+        .tgui-dropshadow-like();
+      }
+    }
+
+    body.tgui-off-top #tgui-page-header {
+      background-color: var(--color-primal-blur);
+      backdrop-filter: var(--blur-default);
+
+      &:before {
+        opacity: 1;
+      }
+    }
   }
 }
 
