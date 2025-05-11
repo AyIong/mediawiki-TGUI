@@ -1,0 +1,82 @@
+/**
+ * Light theme variables
+ * Used with light theme
+ */
+.light-theme() {
+  /* Base Colors - Light */
+  --color-bg: hsl(0, 0%, 100%);
+  --color-bg-hover: hsla(0, 0%, 0%, 0.075);
+  --color-bg-focus: hsla(0, 0%, 0%, 0.125);
+
+  --color-primal: hsla(30, 7.5%, 80%, 0.33);
+  --color-primal-blur: hsla(30, 7.5%, 92.5%, 0.85);
+  --color-primal-fill: var(--color-primal-immutable);
+  --color-primal-immutable: hsl(20, 9%, 94%);
+
+  --color-second: ~'color-mix(in srgb, hsla(0,0%,0%,0.07), var(--color-primal-fill) 33%)';
+  --color-second-blur: ~'color-mix(in srgb,hsla(0,0%,5%,0.33),var(--color-primal-fill) 85%)';
+  --color-second-fill: ~'color-mix(in srgb, var(--color-primal-fill), black 4.5%)';
+
+  --color-text: hsl(0, 0%, 0%);
+  --color-text-darker: ~'hsl(var(--primary-hue), 15%, 15%)';
+  --color-text-gray: ~'hsl(var(--primary-hue), 7.5%, 50%)';
+  --color-text-translucent: hsla(0, 0%, 0%, 0.5);
+  --color-text-semi-translucent: hsla(0, 0%, 0%, 0.75);
+
+  --color-border: hsla(0, 0%, 0%, 0.1);
+  --color-border-input: ~'hsl(var(--primary-hue), 100%, calc(var(--primary-lightness) + 10%))';
+  --color-border-input-focus: ~'hsl(var(--primary-hue), 100%, var(--primary-lightness))';
+
+  --color-dark: hsla(0, 0%, 0%, 0.05);
+
+  /* Scrollbar - Light */
+  --color-scrollbar-base: var(--color-primal-fill);
+  --color-scrollbar-thumb: ~'color-mix(in hsl, var(--color-scrollbar-base), black 20%)';
+
+  /* Notices */
+  --color-notice: hsl(0, 0%, 60%);
+  --color-notice-red: hsl(0, 75%, 80%);
+  --color-notice-green: hsl(110, 75%, 80%);
+  --color-notice-blue: hsl(200, 75%, 80%);
+  --color-notice-brown: hsl(35, 50%, 60%);
+
+  /* Links */
+  --color-hyperlink: hsl(220, 100%, 30%);
+  --color-hyperlink-visited: hsl(280, 70%, 30%);
+  --color-hyperlink-new: hsl(0, 100%, 30%);
+  --color-hyperlink-new-visited: hsl(35, 100%, 30%);
+  /* Hover */
+  --color-hyperlink-hover: hsl(210, 100%, 50%);
+  --color-hyperlink-visited-hover: hsl(290, 70%, 50%);
+  --color-hyperlink-new-hover: hsl(0, 100%, 45%);
+  --color-hyperlink-new-visited-hover: hsl(35, 100%, 45%);
+  /* Links Shadow */
+  --hyperlink-shadow-new: hsl(0, 100%, 75%) 0px 0px 0.5em;
+  --hyperlink-shadow-new-hover: hsl(0, 100%, 75%) 0px 0px 0.5em;
+
+  /* Custom HSL */
+  --primary-lightness: 50%;
+  --primary-lightness--text: 10%;
+  --primary-lightness--soft: 90%;
+
+  /* Invert */
+  --invert-icon: invert(0.1);
+  --invert-button-icon: invert(1);
+  --logo-invert: none;
+
+  /* Template Shadows */
+  --template-shadow--medium: 0px 0px 10px;
+  --template-shadow--large: 0px 0px 15px;
+
+  /* Shadow colors*/
+  --shadow-color--skin: hsla(0, 0%, 0%, 0.2);
+  --shadow-color--small: hsla(0, 0%, 0%, 0.33);
+  --shadow-color--medium: hsla(0, 0%, 0%, 0.5);
+  --shadow-color--large: hsla(0, 0%, 0%, 0.5);
+
+  /* Blur */
+  --blur-default: blur(16px);
+
+  /* Background Image Opacity */
+  --bg-image-opacity: 0.33;
+}
