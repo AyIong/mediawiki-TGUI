@@ -72,6 +72,7 @@
   "tgui-clipboard-success": "Содержимое скопировано в буфер обмена!",
   "tgui-clipboard-failure": "Не удалось скопировать содержимое в буфер обмена.",
 
+  "tgui-scroll-to-top": "Наверх",
   "tgui-reset-button": "Сбросить",
   "tgui-usermenu": "Персональное меню",
   "tgui-sitestats-edits-label": "Правки",

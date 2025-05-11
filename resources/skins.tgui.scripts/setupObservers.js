@@ -15,6 +15,7 @@ const HEADLINE_SELECTOR = ['.mw-headline', ...HEADING_TAGS.map((tag) => `${tag}[
 const SCROLL_UP_CLASS = 'tgui-scroll--up';
 const SCROLL_DOWN_CLASS = 'tgui-scroll--down';
 const SCROLL_OFFTOP_CLASS = 'tgui-off-top';
+const SCROLL_OFFTOP_OFFSET = 10;
 
 /**
  * @ignore
@@ -176,22 +177,51 @@ const setupTableOfContents = (tocElement, bodyContent, initSectionObserverFn) =>
   return tableOfContents;
 };
 
+function setupScrollToTopButton() {
+  const indicatorsElement = document.getElementById('tgui-indicators');
+
+  const scrollToTopButton = document.createElement('button');
+  scrollToTopButton.id = 'tgui-scroll-to-top';
+  scrollToTopButton.classList.add('mw-indicator');
+
+  const scrollToTopLabel = document.createElement('span');
+  scrollToTopLabel.innerText = mw.message('tgui-scroll-to-top').text();
+  scrollToTopButton.appendChild(scrollToTopLabel);
+
+  function scrollToTop() {
+    if (window.scrollY > SCROLL_OFFTOP_OFFSET) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToTopButton.classList.add('clicked');
+
+      setTimeout(() => {
+        scrollToTopButton.classList.remove('clicked');
+      }, 3000);
+    }
+  }
+
+  scrollToTopButton.addEventListener('click', () => scrollToTop());
+  indicatorsElement.insertBefore(scrollToTopButton, indicatorsElement.firstChild);
+  return scrollToTopButton;
+}
+
 const main = () => {
+  if (window.scrollY > SCROLL_OFFTOP_OFFSET) {
+    document.body.classList.add(SCROLL_OFFTOP_CLASS);
+  }
+
   // Table of contents
   const tocElement = document.getElementById(TOC_ID);
   const bodyContent = document.getElementById(BODY_CONTENT_ID);
   const tableOfContents = setupTableOfContents(tocElement, bodyContent, initSectionObserver);
 
-  if (window.scrollY > 0) {
-    document.body.classList.add('tgui-off-top');
-  }
-
+  // Scroll behaviour
+  const scrollToTopButton = setupScrollToTopButton();
   const scrollDirectionObserver = scrollObserver.initDirectionObserver(
     () => {
       document.body.classList.remove(SCROLL_UP_CLASS);
       document.body.classList.add(SCROLL_DOWN_CLASS);
 
-      if (window.scrollY > 0) {
+      if (window.scrollY > SCROLL_OFFTOP_OFFSET) {
         document.body.classList.add(SCROLL_OFFTOP_CLASS);
       }
     },
@@ -199,7 +229,7 @@ const main = () => {
       document.body.classList.remove(SCROLL_DOWN_CLASS);
       document.body.classList.add(SCROLL_UP_CLASS);
 
-      if (window.scrollY < 10) {
+      if (window.scrollY < SCROLL_OFFTOP_OFFSET) {
         document.body.classList.remove(SCROLL_OFFTOP_CLASS);
       }
     },

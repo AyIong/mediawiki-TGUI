@@ -60,6 +60,7 @@
   "tgui-clipboard-success": "Вміст скопійований у буфер обміну!",
   "tgui-clipboard-failure": "Не вдалося скопіювати вміст у буфер обміну.",
 
+  "tgui-scroll-to-top": "Вгору",
   "tgui-reset-button": "Скинути",
   "tgui-usermenu": "Меню користувача",
   "tgui-sitestats-edits-label": "Редагувань",

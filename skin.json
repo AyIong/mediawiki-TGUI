@@ -138,7 +138,8 @@
         "tgui-purge-button-title",
         "tgui-clipboard-tooltip",
         "tgui-clipboard-success",
-        "tgui-clipboard-failure"
+        "tgui-clipboard-failure",
+        "tgui-scroll-to-top"
       ],
       "dependencies": ["mediawiki.page.ready", "mediawiki.util"]
     },

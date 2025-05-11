@@ -43,6 +43,7 @@
   "tgui-clipboard-success": "Content copied to clipboard!",
   "tgui-clipboard-failure": "Failed to copy content to clipboard.",
 
+  "tgui-scroll-to-top": "Scroll to top",
   "tgui-reset-button": "Reset",
   "tgui-usermenu": "User Menu",
   "tgui-sitestats-edits-label": "Edits",

@@ -137,13 +137,27 @@
       }
     }
 
-    body.tgui-off-top #tgui-page-header {
-      background-color: var(--color-primal-blur);
-      backdrop-filter: var(--blur-default);
+    body.tgui-off-top {
+      #tgui-page-header {
+        background-color: var(--color-primal-blur);
+        backdrop-filter: var(--blur-default);
 
-      &:before {
+        &:before {
+          opacity: 1;
+        }
+      }
+
+      #tgui-scroll-to-top {
+        visibility: visible;
         opacity: 1;
       }
+    }
+
+    #tgui-scroll-to-top {
+      position: unset;
+      box-shadow: none;
+      transform: none;
+      transition-property: opacity, visibility;
     }
   }
 }
