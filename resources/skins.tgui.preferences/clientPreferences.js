@@ -413,8 +413,7 @@ function makeClientPreferencesTabs(parent, config, visiblePreferences) {
   }
 }
 
-function updateSliders(selector) {
-  const preferences = document.querySelector(selector);
+function updateSliders(preferences) {
   const sliders = preferences.querySelectorAll('input[type="range"]');
   for (const slider of sliders) {
     slider.dispatchEvent(new Event('preference-slider-update'));
@@ -440,7 +439,7 @@ function render(selector, config) {
     }
 
     makeClientPreferencesTabs(node, config, visiblePreferences);
-    window.addEventListener('preference-changed', () => updateSliders(selector));
+    window.addEventListener('preference-changed', () => updateSliders(node));
     mw.requestIdleCallback(() => {
       resolve(node);
     });
