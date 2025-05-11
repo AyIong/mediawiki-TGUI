@@ -237,6 +237,7 @@ function appendSlider(parent, featureName, min, currentValue, max, step, config)
     input.value = defaultValue;
     label.textContent = defaultValue;
     button.disabled = true;
+    currentValue = '0';
     document.documentElement.style.removeProperty(cssVariable);
     toggleDocClassAndSave(featureName, currentValue, config, true, true);
   });
