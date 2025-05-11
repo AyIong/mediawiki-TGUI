@@ -1,53 +1,75 @@
 .mw-editsection,
 .mw-editsection-like {
-  display: inline-block;
-  opacity: 0;
-  visibility: hidden;
-  vertical-align: middle;
-  margin-left: 0.5rem;
-  font-size: var(--font-size-xxs);
-  font-weight: var(--font-normal);
-  transform: translateY(-100%);
-  transition-duration: var(--transition-time);
-  transition-property: opacity, visibility, transform;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 0.5rem;
+
+  a {
+    .tgui-button();
+    display: inline-flex;
+    align-items: center;
+    height: 1.66em;
+    padding: 0 0.66em;
+  }
 
   @media (max-width: @max-width-mobile) {
     display: none;
   }
 
-  a {
-    .tgui-button();
-    font-size: smaller;
-    padding: 0.2em 0.5em 0.3em 0.5em;
-    margin-left: 0.5em;
-  }
-
   &:before {
-    content: '' !important;
+    display: none !important;
   }
 }
 
-h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  &:hover .mw-editsection,
-  &:hover .mw-editsection-like {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-}
+  cursor: default;
 
-h1,
-h2 {
   .mw-editsection,
   .mw-editsection-like {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0.5em;
+    background-color: var(--color-second-blur);
+    border: var(--border-classic);
+    border-radius: var(--border-radius-medium);
+    transform: translateY(calc(-100% - 1.5rem));
+    box-shadow: var(--box-shadow-small);
+    backdrop-filter: var(--blur-default);
+    transition-property: transform, opacity, visibility;
+    transition-duration: var(--transition-time);
+    transition-delay: ~'calc( var(--transition-delay) / 2 )';
+
+    &:before {
+      content: '';
+      display: block !important;
+      position: absolute;
+      background: var(--color-second-fill);
+      width: 1em;
+      height: 1em;
+      left: 1em;
+      bottom: -0.5em;
+      transform: rotate(45deg);
+      border: var(--border-classic);
+      mask-image: linear-gradient(-45deg, black 50%, transparent 50%);
+    }
+  }
+
+  .mw-headline:hover ~ .mw-editsection,
+  .mw-headline:hover ~ .mw-editsection-like,
+  .mw-editsection:hover,
+  .mw-editsection-like:hover {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(calc(-100% - 0.75rem));
+    transition-delay: 0s;
   }
 }
 
