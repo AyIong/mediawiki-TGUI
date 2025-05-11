@@ -183,7 +183,7 @@ class SkinTGUI extends SkinMustache {
 	 * @param string $feature
 	 * @param string $value
 	 */
-	private function addClientPrefFeature(string $feature, string $value = 'standard') {
+	private function addClientPrefFeature(string $feature, string $value = '0') {
 		$this->getOutput()->addHtmlClasses($feature . '-clientpref-' . $value);
 	}
 
@@ -212,7 +212,7 @@ class SkinTGUI extends SkinMustache {
 		$this->addClientPrefFeature('tgui-feature-reduced-motion', 'disabled');
 		$this->addClientPrefFeature('tgui-feature-holidays', 'enabled');
 		$this->addClientPrefFeature('tgui-feature-darkened-images', 'light');
-		$this->addClientPrefFeature('tgui-feature-primary-hue-slider', '210');
+		$this->addClientPrefFeature('tgui-feature-primary-hue-slider');
 
 		if ($title !== null) {
 			// Collapsible sections

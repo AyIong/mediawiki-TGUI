@@ -69,11 +69,11 @@ function getVisibleClientPreferences(config) {
  * @param {string} value
  * @param {Record<string,ClientPreference>} config
  */
-function toggleDocClassAndSave(featureName, value, config, slider) {
+function toggleDocClassAndSave(featureName, value, config, slider, removePref) {
   const pref = config[featureName];
   const category = config[featureName].category;
   const callback = pref.callback || (() => {});
-  clientPrefs.set(featureName, value, category, slider);
+  clientPrefs.set(featureName, value, category, slider, removePref);
   callback();
 }
 
@@ -147,8 +147,11 @@ function appendRadioToggle(parent, featureName, value, currentValue, config) {
   // container.appendChild(icon);
   container.appendChild(label);
   parent.appendChild(container);
+
+  const changeEvent = new Event('preference-changed', { bubbles: true });
   input.addEventListener('change', () => {
     toggleDocClassAndSave(featureName, value, config);
+    dispatchEvent(changeEvent);
   });
 }
 
@@ -161,26 +164,25 @@ function appendRadioToggle(parent, featureName, value, currentValue, config) {
  */
 function appendToggleSwitch(form, featureName, labelElement, currentValue, config) {
   const input = makeInputElement('checkbox', featureName, currentValue);
-  // input.classList.add( 'cdx-toggle-switch__input' );
   input.classList.add('tgui-client-prefs-toggle-switch__input');
+
   const switcher = document.createElement('span');
-  // switcher.classList.add( 'cdx-toggle-switch__switch' );
   switcher.classList.add('tgui-client-prefs-toggle-switch__switch');
+
   const grip = document.createElement('span');
-  // grip.classList.add( 'cdx-toggle-switch__switch__grip' );
   grip.classList.add('tgui-client-prefs-toggle-switch__switch__grip');
   switcher.appendChild(grip);
+
   const label = labelElement || makeLabelElement(featureName, currentValue);
-  // label.classList.add( 'cdx-toggle-switch__label' );
   label.classList.add('tgui-client-prefs-toggle-switch__label');
+
   const toggleSwitch = document.createElement('span');
-  // toggleSwitch.classList.add( 'cdx-toggle-switch' );
   toggleSwitch.classList.add('tgui-client-prefs-toggle-switch');
   toggleSwitch.appendChild(input);
   toggleSwitch.appendChild(switcher);
   toggleSwitch.appendChild(label);
   input.addEventListener('change', () => {
-    toggleDocClassAndSave(featureName, input.checked ? '1' : '0', config);
+    toggleDocClassAndSave(featureName, input.checked ? 'enabled' : 'disabled', config);
   });
   form.appendChild(toggleSwitch);
 }
@@ -193,26 +195,53 @@ function appendToggleSwitch(form, featureName, labelElement, currentValue, confi
  * @param {number} max
  * @param {Record<string,ClientPreference>} config
  */
-function appendSlider(parent, featureName, min, currentValue, max, defaultValue, step, config) {
+function appendSlider(parent, featureName, min, currentValue, max, step, config) {
+  const cssVariable = `--${featureName.replace(/^tgui-feature-/, '').replace(/-slider$/, '')}`;
+  let defaultValue = updateDefaultValue();
+  function updateDefaultValue(croutchless = false) {
+    const documentStyles = croutchless ? false : document.documentElement.getAttribute('style');
+    if (documentStyles) {
+      document.body.setAttribute('style', documentStyles);
+      document.documentElement.removeAttribute('style');
+    }
+
+    const value = getComputedStyle(document.documentElement).getPropertyValue(cssVariable).trim();
+    if (documentStyles) {
+      document.documentElement.setAttribute('style', documentStyles);
+      document.body.removeAttribute('style');
+    }
+    return value;
+  }
+
   const input = makeInputElement('range', featureName);
+  const initValue = currentValue !== '0' ? currentValue : defaultValue;
   input.classList.add('tgui-client-prefs-slider__input');
   input.min = min;
   input.max = max;
-  input.value = currentValue;
+  input.value = initValue;
 
   if (step) {
     input.step = step;
   }
 
   const label = document.createElement('label');
-  label.textContent = currentValue;
+  label.textContent = initValue;
 
   const button = document.createElement('button');
   button.type = 'button';
   button.classList.add('tgui-icon', 'tgui-icon__white', 'tgui-icon-reset');
   button.setAttribute('title', mw.message('tgui-reset-button').text());
 
-  if (currentValue === defaultValue) {
+  button.addEventListener('click', () => {
+    defaultValue = updateDefaultValue();
+    input.value = defaultValue;
+    label.textContent = defaultValue;
+    button.disabled = true;
+    document.documentElement.style.removeProperty(cssVariable);
+    toggleDocClassAndSave(featureName, currentValue, config, true, true);
+  });
+
+  if (initValue === defaultValue) {
     button.disabled = true;
   }
 
@@ -223,27 +252,14 @@ function appendSlider(parent, featureName, min, currentValue, max, defaultValue,
   container.appendChild(button);
   parent.appendChild(container);
 
-  button.addEventListener('click', () => {
-    input.value = defaultValue;
-    label.textContent = defaultValue;
-    button.disabled = true;
-    document.documentElement.style.setProperty(
-      `--${featureName.replace(/^tgui-feature-/, '').replace(/-slider$/, '')}`,
-      defaultValue,
-    );
-
-    toggleDocClassAndSave(featureName, defaultValue, config, true);
-  });
-
   input.addEventListener('input', () => {
     label.textContent = input.value;
-    document.documentElement.style.setProperty(
-      `--${featureName.replace(/^tgui-feature-/, '').replace(/-slider$/, '')}`,
-      input.value,
-    );
+    document.documentElement.style.setProperty(cssVariable, input.value);
   });
 
   input.addEventListener('change', () => {
+    defaultValue = updateDefaultValue();
+
     if (input.value === defaultValue) {
       button.disabled = true;
     } else {
@@ -251,6 +267,15 @@ function appendSlider(parent, featureName, min, currentValue, max, defaultValue,
     }
 
     toggleDocClassAndSave(featureName, input.value, config, true);
+  });
+
+  const updateValueEvent = new Event('preference-slider-update');
+  input.addEventListener('preference-slider-update', () => {
+    defaultValue = updateDefaultValue(true);
+    if (currentValue === '0') {
+      input.value = defaultValue;
+      label.textContent = defaultValue;
+    }
   });
 }
 
@@ -307,7 +332,7 @@ function makeControl(featureName, config) {
       break;
     }
     case 'range': {
-      appendSlider(form, featureName, pref.min, currentValue, pref.max, pref.defaultValue, pref.step, config);
+      appendSlider(form, featureName, pref.min, currentValue, pref.max, pref.step, config);
       break;
     }
     default:
@@ -387,6 +412,15 @@ function makeClientPreferencesTabs(parent, config, visiblePreferences) {
     existingTab.appendChild(prefPortlet);
   }
 }
+
+function updateSliders(selector) {
+  const preferences = document.querySelector(selector);
+  const sliders = preferences.querySelectorAll('input[type="range"]');
+  for (const slider of sliders) {
+    slider.dispatchEvent(new Event('preference-slider-update'));
+  }
+}
+
 /**
  * Fills the client side preference dropdown with controls.
  *
@@ -406,6 +440,7 @@ function render(selector, config) {
     }
 
     makeClientPreferencesTabs(node, config, visiblePreferences);
+    window.addEventListener('preference-changed', () => updateSliders(selector));
     mw.requestIdleCallback(() => {
       resolve(node);
     });

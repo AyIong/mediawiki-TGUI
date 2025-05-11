@@ -164,7 +164,7 @@
     }
   }
 
-  // Preference personal layout
+  // MARK: Preference personal layout
   #skin-client-prefs-tgui-feature {
     &-blur,
     &-font-size,
@@ -201,6 +201,22 @@
 
     .skin-theme-clientpref-night & {
       display: block;
+    }
+  }
+
+  #skin-client-prefs-tgui-feature-font-size {
+    .tgui-client-prefs-radio:first-child label {
+      font-size: 0.875rem;
+    }
+
+    .tgui-client-prefs-radio:last-child label {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media (max-width: @max-width-mobile) {
+    #skin-client-prefs-tgui-feature-sticky-header {
+      display: none;
     }
   }
 

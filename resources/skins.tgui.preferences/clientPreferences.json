@@ -22,7 +22,6 @@
     "category": "appearance"
   },
   "tgui-feature-primary-hue-slider": {
-    "defaultValue": "210",
     "min": 0,
     "max": 360,
     "step": 5,

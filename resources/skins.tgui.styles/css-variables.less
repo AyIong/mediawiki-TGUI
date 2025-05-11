@@ -4,6 +4,8 @@
  */
 :root {
   --primary-hue: 210;
+  --primary-lightness: 40%;
+  --primary-saturacy: 37.5%;
   --background-gradient: linear-gradient(
     to bottom,
     color-mix(in srgb, var(--color-bg) 98%, white) 0%,
@@ -13,8 +15,8 @@
   --adjust-active: 7.5;
 
   /* TGUI Elements Colors */
-  --color-primary: ~'hsl(var(--primary-hue), 37.5%, var(--primary-lightness))';
-  --color-secondary: ~'hsl(var(--primary-hue), 57.5%, 50%)';
+  --color-primary: ~'hsl(var(--primary-hue), var(--primary-saturacy), var(--primary-lightness))';
+  --color-secondary: ~'hsl(var(--primary-hue), calc(var(--primary-saturacy) + 20%), 50%)';
   --color-red: hsl(0, 70%, 50%);
   --color-orange: hsl(35, 90%, 50%);
   --color-yellow: hsl(50, 95%, 50%);
@@ -245,7 +247,6 @@
   --hyperlink-shadow-new-hover: hsl(0, 100%, 50%) 0px 0px 0.5em;
 
   /* Custom HSL */
-  --primary-lightness: 40%;
   --primary-lightness--text: 95%;
   --primary-lightness--soft: 15%;
 

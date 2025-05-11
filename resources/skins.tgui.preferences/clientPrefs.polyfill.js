@@ -40,7 +40,7 @@ function isValidFeatureValue(value) {
  * @param {string} feature
  * @param {string} value
  */
-function saveClientPrefs(feature, value) {
+function changeClientPrefs(feature, value, removePRef) {
   const existingStorage = mw.storage.get(CLIENTPREF_STORAGE_NAME) || '';
   const data = {};
   for (const keyValuePair of existingStorage.split(CLIENTPREF_DELIMITER)) {
@@ -50,7 +50,11 @@ function saveClientPrefs(feature, value) {
     }
   }
 
-  data[feature] = value;
+  if (removePRef) {
+    delete data[feature];
+  } else {
+    data[feature] = value;
+  }
 
   const newStorage = Object.keys(data)
     .map((key) => key + CLIENTPREF_SUFFIX + data[key])
@@ -71,17 +75,23 @@ function clientPrefs() {
      *   uses a forbidden character or the feature is not recognised
      *   e.g. a matching class was not defined on the HTML document element.
      */
-    set: function (feature, value, category, slider) {
+    set: function (feature, value, category, slider, removePref) {
       if (!isValidFeatureName(feature) || !isValidFeatureValue(value) || !isValidFeatureName(category)) {
         return false;
       }
 
       const currentValue = this.get(feature);
       if (slider) {
-        document.documentElement.style.setProperty(
-          `--${feature.replace(/^tgui-feature-/, '').replace(/-slider$/, '')}`,
-          value,
-        );
+        if (removePref) {
+          document.documentElement.style.removeProperty(
+            `--${feature.replace(/^tgui-feature-/, '').replace(/-slider$/, '')}`,
+          );
+        } else {
+          document.documentElement.style.setProperty(
+            `--${feature.replace(/^tgui-feature-/, '').replace(/-slider$/, '')}`,
+            value,
+          );
+        }
       } else {
         const oldFeatureClass = feature + CLIENTPREF_SUFFIX + currentValue;
         const newFeatureClass = feature + CLIENTPREF_SUFFIX + value;
@@ -90,7 +100,7 @@ function clientPrefs() {
         document.documentElement.classList.add(newFeatureClass);
       }
 
-      saveClientPrefs(feature, value);
+      changeClientPrefs(feature, value, removePref);
       return true;
     },
 
