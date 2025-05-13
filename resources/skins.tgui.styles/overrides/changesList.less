@@ -32,15 +32,60 @@
   }
 
   #pagehistory {
-    li {
-      padding: 0.1em;
-    }
+    margin-top: 0.75rem;
 
-    li.selected {
-      outline: 0;
-      background-color: var(--color-bg-focus);
-      color: var(--color-text);
-      backdrop-filter: var(--blur-default);
+    ul {
+      margin: 0;
+
+      li {
+        padding: 0.1rem 0.2rem;
+        margin-block: 0.25rem;
+        border: var(--border-classic);
+        border-color: transparent;
+
+        &::marker {
+          content: none;
+        }
+
+        &.selected {
+          outline: 0;
+          background-color: var(--color-second-fill);
+          color: var(--color-text);
+          border-color: var(--color-border);
+          border-radius: var(--border-radius-small);
+        }
+
+        .mw-changeslist-links {
+          vertical-align: middle;
+        }
+
+        .mw-history-histlinks {
+          display: inline-flex;
+          gap: 0.15rem;
+
+          span:before,
+          &:before,
+          &:after {
+            display: none;
+          }
+
+          &-current,
+          &-previous {
+            display: inline-flex;
+            padding: 0 0.33rem;
+          }
+        }
+
+        a.mw-history-histlinks-current,
+        a.mw-history-histlinks-previous {
+          .tgui-button();
+        }
+
+        span.mw-history-histlinks-current,
+        span.mw-history-histlinks-previous {
+          .tgui-button(@disabled: true);
+        }
+      }
     }
 
     [type='checkbox'],

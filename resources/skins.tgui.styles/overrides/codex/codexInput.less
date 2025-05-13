@@ -1,3 +1,5 @@
+@import '../../mixins.less';
+
 .cdx-button-color(@color: primary, @transparent: false) {
   border: none;
   outline: none;
@@ -48,7 +50,8 @@
 
 // MARK: Buttons
 .skin-tgui {
-  .cdx-button {
+  .cdx-button,
+  .cdx-button:enabled {
     .cdx-button-color();
 
     &.cdx-button {
