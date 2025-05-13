@@ -5,7 +5,7 @@
     "category": "appearance"
   },
   "skin-theme-style": {
-    "options": ["default", "ntos", "paradise"],
+    "options": ["default", "ntos", "amoled"],
     "preferenceKey": "tgui-theme-style",
     "category": "appearance"
   },

@@ -75,44 +75,32 @@
   }
 }
 
-// MARK: Styles - Paradise
-.dark-paradise() {
-  --primary-hue: 340;
-  --color-bg: hsl(340, 50%, 14.5%);
-  --color-primal-blur: hsla(342, 50%, 9%, 0.85);
-  --color-primal-fill: hsl(337.78, 50%, 9.75%);
+// MARK: Styles - AMOLED
+.dark-amoled() {
+  --primary-saturacy: 25%;
+  --primary-lightness: 30%;
+  --palette-lightness: 40%;
+  --palette-saturation: 60%;
+  --color-bg: ~'hsl(from var(--color-black) h s 5)';
+  --color-primal: var(--color-black);
+  --color-primal-blur: var(--color-black);
+  --color-primal-fill: var(--color-black);
+  --color-white: hsl(0, 0%, 90%);
+  --bg-image-opacity: 0;
+  --blur-default: none;
 }
 
-.light-paradise() {
-  --primary-hue: 340;
-  --color-primal: hsla(340, 50%, 80%, 0.33);
-  --color-primal-blur: hsla(340, 50%, 92.5%, 0.85);
-  --color-primal-fill: hsl(339, 52%, 94%);
-}
-
-.skin-theme-clientpref-os.skin-theme-style-clientpref-paradise {
+.skin-theme-clientpref-os.skin-theme-style-clientpref-amoled {
   @media (prefers-color-scheme: dark) {
     :root& {
-      .dark-paradise();
-    }
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root& {
-      .light-paradise();
+      .dark-amoled();
     }
   }
 }
 
-.skin-theme-clientpref-night.skin-theme-style-clientpref-paradise {
+.skin-theme-clientpref-night.skin-theme-style-clientpref-amoled {
   :root& {
-    .dark-paradise();
-  }
-}
-
-.skin-theme-clientpref-day.skin-theme-style-clientpref-paradise {
-  :root& {
-    .light-paradise();
+    .dark-amoled();
   }
 }
 
