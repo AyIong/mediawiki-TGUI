@@ -11,19 +11,6 @@ html {
   &.search-focus {
     scroll-padding-top: 0 !important;
   }
-
-  &::selection {
-    background-color: var(--color-primary) !important;
-    color: var(--color-white) !important;
-    text-shadow:
-      1px 1px 0px ~'hsl(from var(--color-black) h s l / 0.5)',
-      2px 2px 4px var(--color-black);
-  }
-
-  &::-moz-selection {
-    background-color: var(--color-primary) !important;
-    color: var(--color-white) !important;
-  }
 }
 
 html,
@@ -138,4 +125,13 @@ body {
     clear: none !important;
     float: none !important;
   }
+}
+
+::selection,
+::-moz-selection {
+  background-color: var(--color-primary) !important;
+  color: var(--color-white) !important;
+  text-shadow:
+    1px 1px 0px ~'hsl(from var(--color-black) h s l / 0.5)',
+    2px 2px 4px var(--color-black);
 }

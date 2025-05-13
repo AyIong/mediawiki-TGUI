@@ -1,7 +1,7 @@
 {
   "name": "tgui",
   "private": true,
-  "version": "3.2.0-mediawiki",
+  "version": "3.2.1-mediawiki",
   "scripts": {
     "test:a11y": "node tests/a11y/runA11yTests.js",
     "selenium-daily": "node tests/a11y/runA11yTests.js --logResults",

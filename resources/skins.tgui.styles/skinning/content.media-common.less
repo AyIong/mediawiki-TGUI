@@ -10,10 +10,7 @@
 /**
  * Block media items
  */
-figure[typeof~='mw:File'],
-figure[typeof~='mw:File/Frameless'],
-figure[typeof~='mw:File/Thumb'],
-figure[typeof~='mw:File/Frame'] {
+figure[typeof*='mw:File'] {
   &.mw-halign-none {
     float: none;
     clear: none;

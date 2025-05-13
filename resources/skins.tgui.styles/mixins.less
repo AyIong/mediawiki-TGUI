@@ -234,11 +234,13 @@
 
 .tgui-collapsible-toggle() {
   .tgui-button();
+  position: relative;
   display: inline-block;
   min-width: 1.667em;
   height: 1.667em;
   margin-left: 0.25em;
   box-shadow: var(--shadow-template--small);
+  z-index: 1;
 
   a {
     display: none;
