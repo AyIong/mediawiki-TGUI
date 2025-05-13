@@ -3,29 +3,15 @@ const isCollapsed = localStorage.getItem('TGUI-ToC-Collapsed');
 const tocID = 'tgui-toc';
 
 async function waitToC() {
-  try {
-    const tocReady = await waitForElement(tocID, true);
-    if (tocReady) {
-      restoreTOCState();
-      handleWindowSize();
-      window.addEventListener('resize', handleWindowSize);
-    }
-  } catch (error) {
-    console.error('Oh nooo... ToC not found', error);
+  const tocReady = await waitForElement(tocID, true);
+  if (tocReady) {
+    restoreTOCState();
   }
 }
 
 function restoreTOCState() {
-  if (isCollapsed === 'true') {
+  if (isCollapsed === 'true' || window.innerWidth < 999) {
     document.body.classList.add(TOC_COLLAPSED_CLASS);
-  }
-}
-
-function handleWindowSize() {
-  if (window.innerWidth < 999) {
-    document.body.classList.add(TOC_COLLAPSED_CLASS);
-  } else {
-    document.body.classList.remove(TOC_COLLAPSED_CLASS);
   }
 }
 
@@ -51,7 +37,5 @@ function moveElement() {
   mediaQuery.addEventListener('change', handleMediaChange);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  waitToC();
-  moveElement();
-});
+waitToC();
+document.addEventListener('DOMContentLoaded', () => moveElement());
