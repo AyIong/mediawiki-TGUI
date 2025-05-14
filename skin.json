@@ -287,7 +287,6 @@
       "+mediawiki.special.search.styles": "skinStyles/mediawiki/special/mediawiki.special.search.styles.less",
       "+mediawiki.ui.button": "skinStyles/mediawiki/ui/mediawiki.ui.button.less",
       "+mediawiki.ui.icon": "skinStyles/mediawiki/ui/mediawiki.ui.icon.less",
-      "+mediawiki.action.edit": "skinStyles/mediawiki/mediawiki.action.edit.less",
       "+mediawiki.action.view.filepage": "skinStyles/mediawiki/mediawiki.action.view.filepage.less",
       "+mediawiki.action.view.redirectPage": "skinStyles/mediawiki/mediawiki.action.view.redirectPage.less",
       "+mediawiki.notification": "skinStyles/mediawiki/mediawiki.notification.less",
