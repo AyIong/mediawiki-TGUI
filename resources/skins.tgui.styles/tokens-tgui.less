@@ -75,6 +75,28 @@
   --color-white-dark: ~'hsl(from var(--color-white) h s calc(l - 25))';
   --color-gray-dark: var(--color-grey-dark);
 
+  /* Syntax highlight colors */
+  --color-syntax-red: var(--color-red-light);
+  --color-syntax-rusty: ~'color-mix(in hsl, var(--color-orange-dark), var(--color-red-dark) 25%)';
+  --color-syntax-orange: ~'color-mix(in hsl, var(--color-orange-dark), var(--color-text) 15%)';
+  --color-syntax-orange-light: ~'color-mix(in hsl, var(--color-orange-light), var(--color-text) 30%)';
+  --color-syntax-orange-dark: var(--color-orange-dark);
+  --color-syntax-brown: var(--color-brown);
+  --color-syntax-brown-light: var(--color-brown-light);
+  --color-syntax-brown-dark: var(--color-brown-light);
+  --color-syntax-pink: var(--color-pink);
+  --color-syntax-pink-light: var(--color-pink-light);
+  --color-syntax-pink-dark: var(--color-pink-dark);
+  --color-syntax-olive: var(--color-olive-dark);
+  --color-syntax-green: ~'color-mix(in hsl, var(--color-green-dark), var(--color-text) 30%)';
+  --color-syntax-blue: ~'color-mix(in hsl,var(--color-blue),var(--color-text) 33%)';
+  --color-syntax-paleblue: ~'color-mix(in hsl, var(--color-blue-dark), var(--color-text) 35%)';
+  --color-syntax-teal: ~'color-mix(in hsl, var(--color-teal-light), var(--color-text) 50%)';
+  --color-syntax-link: var(--color-hyperlink);
+  --color-syntax-violet: ~'color-mix(in hsl, var(--color-violet-dark), var(--color-text) 33%)';
+  --color-syntax-violet-light: ~'color-mix(in hsl, var(--color-violet-light), var(--color-text) 30%)';
+  --color-syntax-grey: var(--color-text-gray);
+
   /* Font family */
   --font-family-base: 'Roboto', 'Roboto-fallback';
   --font-family-heading: 'Verdana', var(--font-family-base);

@@ -1,0 +1,139 @@
+/**
+ * TGUI
+ *
+ * SkinStyles for Extension:SyntaxHighlight
+ * Module: ext.pygments
+ * Version: REL1_43
+ *
+ * Date: 15-05-2025
+ */
+
+.skin-tgui {
+  .mw-highlight {
+    background-color: var(--color-primal-fill);
+    color: var(--color-text);
+
+    .p {
+      color: var(--color-text);
+    }
+
+    .nt {
+      color: var(--color-syntax-red);
+    }
+
+    .na {
+      color: var(--color-syntax-violet);
+    }
+
+    .o {
+      color: var(--color-syntax-blue);
+    }
+
+    .s {
+      color: var(--color-syntax-olive);
+    }
+
+    .nc {
+      color: var(--color-syntax-green);
+    }
+
+    .k {
+      color: var(--color-syntax-paleblue);
+    }
+
+    .mi,
+    .kc {
+      color: var(--color-syntax-orange);
+    }
+
+    .kt {
+      color: var(--color-syntax-red);
+    }
+
+    .nf,
+    .nv {
+      color: var(--color-syntax-link);
+    }
+
+    /* HTML */
+    &-lang {
+      &-html {
+        .p {
+          color: var(--color-syntax-pink);
+        }
+
+        .o,
+        .s {
+          color: var(--color-syntax-violet);
+        }
+
+        .err {
+          background-color: transparent;
+          color: var(--color-syntax-brown-light);
+
+          + .na {
+            color: var(--color-syntax-brown);
+          }
+        }
+      }
+    }
+
+    /* CSS */
+    &-lang {
+      &-css {
+        .p {
+          color: var(--color-syntax-green);
+        }
+
+        .k + .p {
+          color: var(--color-syntax-paleblue);
+        }
+
+        .nf,
+        .nv {
+          + .p {
+            color: var(--color-syntax-link);
+          }
+        }
+      }
+    }
+
+    /* Comment */
+    .c {
+      color: var(--color-syntax-grey);
+    }
+
+    .k,
+    .kc,
+    .kd,
+    .kn,
+    .kr,
+    .nc,
+    .se,
+    .si {
+      font-weight: normal;
+    }
+
+    pre {
+      color: var(--color-text);
+    }
+
+    &-lines pre {
+      background-color: transparent;
+      box-shadow: inset 2.75em 0 0 var(--color-second-fill);
+    }
+
+    .linenos {
+      color: var(--color-text-gray);
+    }
+
+    a:hover .linenos,
+    .hll a .linenos {
+      color: var(--color-text);
+    }
+
+    .hll {
+      background-color: var(--color-bg-hover);
+    }
+  }
+}

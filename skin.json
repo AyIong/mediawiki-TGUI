@@ -270,6 +270,7 @@
   "ResourceModuleSkinStyles": {
     "tgui": {
       "+ext.echo.styles.alert": "skinStyles/extensions/ext.echo.styles.alert.less",
+      "+ext.pygments": "skinStyles/extensions/ext.pygments.less",
       "+ext.relatedArticles.readMore": "skinStyles/extensions/ext.relatedArticles.readMore.less",
       "+ext.ReplaceTextStyles": "skinStyles/extensions/ext.ReplaceTextStyles.less",
       "+ext.tabs": "skinStyles/extensions/ext.tabs.less",

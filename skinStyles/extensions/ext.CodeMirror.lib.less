@@ -28,7 +28,7 @@
       &-extlink-protocol,
       &-free-extlink-protocol,
       &-extlink-bracket {
-        color: var(--color-hyperlink) !important;
+        color: var(--color-syntax-link) !important;
       }
 
       // HTML
@@ -36,21 +36,21 @@
       &-htmltag-name,
       &-html-entity,
       &-mnemonic {
-        color: var(--color-red-light);
+        color: var(--color-syntax-red);
       }
 
       &-exttag-attribute,
       &-htmltag-attribute {
-        color: ~'color-mix(in hsl, var(--color-violet-light), var(--color-text) 30%)';
+        color: var(--color-syntax-violet-light);
       }
 
       &-exttag-bracket,
       &-htmltag-bracket {
-        color: var(--color-pink);
+        color: var(--color-syntax-pink);
       }
 
       &-comment {
-        color: var(--color-text-gray);
+        color: var(--color-syntax-grey);
       }
 
       // Templates
@@ -58,43 +58,43 @@
         color: var(--color-text) !important;
 
         &-name {
-          color: var(--color-brown) !important;
+          color: var(--color-syntax-brown) !important;
         }
 
         &-argument-name {
-          color: var(--color-brown-light) !important;
+          color: var(--color-syntax-brown-light) !important;
         }
 
         &-bracket,
         &-delimiter {
-          color: var(--color-brown-dark) !important;
+          color: var(--color-syntax-brown-dark) !important;
         }
       }
 
       // ParserFunctions
       &-parserfunction-name {
-        color: var(--color-pink);
+        color: var(--color-syntax-pink);
       }
 
       &-parserfunction-bracket {
-        color: var(--color-pink-light);
+        color: var(--color-syntax-pink-light);
       }
 
       &-parserfunction-delimiter {
-        color: var(--color-pink-dark);
+        color: var(--color-syntax-pink-dark);
       }
 
       // Tables
       &-table-definition {
-        color: ~'color-mix(in hsl, var(--color-orange-light), var(--color-text) 30%)' !important;
+        color: var(--color-syntax-orange-light) !important;
       }
 
       &-table-delimiter {
-        color: var(--color-orange-dark) !important;
+        color: var(--color-syntax-orange-dark) !important;
       }
 
       &-table-bracket {
-        color: ~'color-mix(in hsl, var(--color-orange-dark), var(--color-red-dark) 25%)' !important;
+        color: var(--color-syntax-rusty) !important;
       }
 
       // WikiText
@@ -103,7 +103,7 @@
       &-apostrophes-bold,
       &-apostrophes-italic,
       &-section-header {
-        color: var(--color-olive-dark) !important;
+        color: var(--color-syntax-olive) !important;
       }
 
       // Other
