@@ -68,45 +68,60 @@
     }
 
     /* HTML */
-    &-lang {
-      &-html {
-        .p {
-          color: var(--color-syntax-pink);
-        }
+    &-lang-html {
+      .p {
+        color: var(--color-syntax-pink);
+      }
 
-        .o,
-        .s {
-          color: var(--color-syntax-violet);
-        }
+      .o,
+      .s {
+        color: var(--color-syntax-violet);
+      }
 
-        .err {
-          background-color: transparent;
-          color: var(--color-syntax-brown-light);
+      .err {
+        background-color: transparent;
+        color: var(--color-syntax-brown-light);
 
-          + .na {
-            color: var(--color-syntax-brown);
-          }
+        + .na {
+          color: var(--color-syntax-brown);
         }
       }
     }
 
     /* CSS */
-    &-lang {
-      &-css {
-        .p {
-          color: var(--color-syntax-green);
+    &-lang-css {
+      .p {
+        color: var(--color-syntax-green);
+      }
+
+      .k + .p {
+        color: var(--color-syntax-paleblue);
+      }
+
+      .nf,
+      .nv {
+        + .p {
+          color: var(--color-syntax-link);
+        }
+      }
+    }
+
+    /* Wikitext */
+    &-lang-wikitext {
+      .p {
+        color: var(--color-syntax-brown-light);
+
+        + .nt {
+          color: var(--color-syntax-brown);
         }
 
-        .k + .p {
-          color: var(--color-syntax-paleblue);
+        + .nl {
+          color: var(--color-syntax-red);
         }
+      }
 
-        .nf,
-        .nv {
-          + .p {
-            color: var(--color-syntax-link);
-          }
-        }
+      .o {
+        color: var(--color-syntax-brown-dark);
       }
     }
 
@@ -115,6 +130,7 @@
       color: var(--color-syntax-grey);
     }
 
+    /* Remove bold font */
     .k,
     .kc,
     .kd,
