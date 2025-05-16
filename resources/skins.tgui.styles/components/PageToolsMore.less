@@ -62,3 +62,21 @@
     }
   }
 }
+
+.page-actions-more__icon {
+  --dot-size: 0.3575em;
+  display: flex;
+  gap: ~'calc(var(--dot-size) / 2)';
+  transition: gap 0.2s var(--linear-bounce);
+
+  &-dot {
+    width: var(--dot-size);
+    height: var(--dot-size);
+    background-color: var(--color-text);
+    border-radius: var(--border-radius-round);
+  }
+
+  details[open] & {
+    gap: ~'calc(var(--dot-size) * 1.5)';
+  }
+}
