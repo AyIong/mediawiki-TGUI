@@ -41,12 +41,12 @@
 
       &-exttag-attribute,
       &-htmltag-attribute {
-        color: var(--color-syntax-violet-light);
+        color: var(--color-syntax-violet);
       }
 
       &-exttag-bracket,
       &-htmltag-bracket {
-        color: var(--color-syntax-pink);
+        color: ~'hsl(from var(--color-syntax-red) calc(h - 15) s calc(l - 20))';
       }
 
       &-comment {
@@ -57,44 +57,55 @@
       &-template {
         color: var(--color-text) !important;
 
-        &-name {
-          color: var(--color-syntax-brown) !important;
-        }
-
+        &-name,
         &-argument-name {
-          color: var(--color-syntax-brown-light) !important;
+          color: var(--color-syntax-brown) !important;
         }
 
         &-bracket,
         &-delimiter {
-          color: var(--color-syntax-brown-dark) !important;
+          color: ~'hsl(from var(--color-syntax-brown) h s calc(l - 15))' !important;
+        }
+
+        &variable {
+          color: var(--color-syntax-orange) !important;
+
+          &-name {
+            color: var(--color-syntax-orange) !important;
+          }
+
+          &-bracket,
+          &-delimiter {
+            color: ~'hsl(from var(--color-syntax-orange) h s calc(l + 15))' !important;
+          }
         }
       }
 
       // ParserFunctions
-      &-parserfunction-name {
-        color: var(--color-syntax-pink);
-      }
+      &-parserfunction {
+        &-name {
+          color: var(--color-syntax-pink);
+        }
 
-      &-parserfunction-bracket {
-        color: var(--color-syntax-pink-light);
-      }
-
-      &-parserfunction-delimiter {
-        color: var(--color-syntax-pink-dark);
+        &-bracket,
+        &-delimiter {
+          color: ~'hsl(from var(--color-syntax-pink) h s calc(l - 15))';
+        }
       }
 
       // Tables
-      &-table-definition {
-        color: var(--color-syntax-orange-light) !important;
-      }
+      &-table {
+        &-definition {
+          color: var(--color-syntax-violet) !important;
+        }
 
-      &-table-delimiter {
-        color: var(--color-syntax-orange-dark) !important;
-      }
+        &-bracket {
+          color: ~'hsl(from var(--color-syntax-yellow) h s calc(l - 15))' !important;
+        }
 
-      &-table-bracket {
-        color: var(--color-syntax-rusty) !important;
+        &-delimiter {
+          color: var(--color-syntax-yellow) !important;
+        }
       }
 
       // WikiText
@@ -116,7 +127,7 @@
       &-signature,
       &-hr {
         background-color: var(--color-second) !important;
-        color: var(--color-secondary) !important;
+        color: var(--color-syntax-blue) !important;
         border: var(--border-classic);
       }
     }

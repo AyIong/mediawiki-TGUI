@@ -31,12 +31,9 @@
       color: var(--color-syntax-blue);
     }
 
-    .s {
-      color: var(--color-syntax-olive);
-    }
-
+    .s,
     .nc {
-      color: var(--color-syntax-green);
+      color: var(--color-syntax-salad);
     }
 
     .k {
@@ -55,7 +52,7 @@
 
     .nf,
     .nv {
-      color: var(--color-syntax-link);
+      color: var(--color-syntax-cyan);
     }
 
     .nd,
@@ -70,58 +67,43 @@
     /* HTML */
     &-lang-html {
       .p {
-        color: var(--color-syntax-pink);
-      }
-
-      .o,
-      .s {
-        color: var(--color-syntax-violet);
-      }
-
-      .err {
-        background-color: transparent;
-        color: var(--color-syntax-brown-light);
-
-        + .na {
-          color: var(--color-syntax-brown);
-        }
+        color: ~'hsl(from var(--color-syntax-red) calc(h - 15) s calc(l - 20))';
       }
     }
 
     /* CSS */
     &-lang-css {
       .p {
-        color: var(--color-syntax-green);
+        color: var(--color-syntax-violet);
       }
 
+      .w + .p,
+      .p + .p {
+        color: var(--color-syntax-blue);
+      }
+
+      .nv + .p,
+      .kc + .p,
+      .nf + .p,
       .k + .p {
-        color: var(--color-syntax-paleblue);
-      }
-
-      .nf,
-      .nv {
-        + .p {
-          color: var(--color-syntax-link);
-        }
+        color: var(--color-syntax-cyan);
       }
     }
 
     /* Wikitext */
     &-lang-wikitext {
       .p {
-        color: var(--color-syntax-brown-light);
-
-        + .nt {
-          color: var(--color-syntax-brown);
-        }
-
-        + .nl {
-          color: var(--color-syntax-red);
-        }
+        color: ~'hsl(from var(--color-syntax-brown) h s calc(l - 15))';
       }
 
+      .nt,
+      .nl,
       .o {
-        color: var(--color-syntax-brown-dark);
+        color: var(--color-syntax-brown);
+      }
+
+      .nf {
+        color: var(--color-syntax-red);
       }
     }
 

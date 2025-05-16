@@ -24,6 +24,7 @@
   --color-green: hsl(95, 65%, 40%);
   --color-teal: hsl(175, 100%, 35%);
   --color-blue: hsl(205, 70%, 45%);
+  --color-cyan: ~'color-mix(in hsl, var(--color-blue) 66%, var(--color-teal) 33%)';
   --color-violet: hsl(260, 60%, 50%);
   --color-purple: hsl(285, 60%, 50%);
   --color-pink: hsl(325, 75%, 55%);
@@ -45,6 +46,7 @@
   --color-green-light: ~'hsl(from var(--color-green) h s calc(l + var(--adjust-hover)))';
   --color-teal-light: ~'hsl(from var(--color-teal) h s calc(l + var(--adjust-hover)))';
   --color-blue-light: ~'hsl(from var(--color-blue) h s calc(l + var(--adjust-hover)))';
+  --color-cyan-light: ~'hsl(from var(--color-cyan) h s calc(l + var(--adjust-hover)))';
   --color-violet-light: ~'hsl(from var(--color-violet) h s calc(l + var(--adjust-hover)))';
   --color-purple-light: ~'hsl(from var(--color-purple) h s calc(l + var(--adjust-hover)))';
   --color-pink-light: ~'hsl(from var(--color-pink) h s calc(l + var(--adjust-hover)))';
@@ -65,6 +67,7 @@
   --color-green-dark: ~'hsl(from var(--color-green) h s calc(l - var(--adjust-active)))';
   --color-teal-dark: ~'hsl(from var(--color-teal) h s calc(l - var(--adjust-active)))';
   --color-blue-dark: ~'hsl(from var(--color-blue) h s calc(l - var(--adjust-active)))';
+  --color-cyan-dark: ~'hsl(from var(--color-cyan) h s calc(l - var(--adjust-active)))';
   --color-violet-dark: ~'hsl(from var(--color-violet) h s calc(l - var(--adjust-active)))';
   --color-purple-dark: ~'hsl(from var(--color-purple) h s calc(l - var(--adjust-active)))';
   --color-pink-dark: ~'hsl(from var(--color-pink) h s calc(l - var(--adjust-active)))';
@@ -76,25 +79,19 @@
   --color-gray-dark: var(--color-grey-dark);
 
   /* Syntax highlight colors */
-  --color-syntax-red: var(--color-red-light);
-  --color-syntax-rusty: ~'color-mix(in hsl, var(--color-orange-dark), var(--color-red-dark) 25%)';
-  --color-syntax-orange: ~'color-mix(in hsl, var(--color-orange-dark), var(--color-text) 15%)';
-  --color-syntax-orange-light: ~'color-mix(in hsl, var(--color-orange-light), var(--color-text) 30%)';
-  --color-syntax-orange-dark: var(--color-orange-dark);
-  --color-syntax-brown: var(--color-brown);
-  --color-syntax-brown-light: var(--color-brown-light);
-  --color-syntax-brown-dark: var(--color-brown-light);
-  --color-syntax-pink: var(--color-pink);
-  --color-syntax-pink-light: var(--color-pink-light);
-  --color-syntax-pink-dark: var(--color-pink-dark);
-  --color-syntax-olive: var(--color-olive-dark);
-  --color-syntax-green: ~'color-mix(in hsl, var(--color-green-dark), var(--color-text) 30%)';
-  --color-syntax-blue: ~'color-mix(in hsl,var(--color-blue),var(--color-text) 33%)';
-  --color-syntax-paleblue: ~'color-mix(in hsl, var(--color-blue-dark), var(--color-text) 35%)';
-  --color-syntax-teal: ~'color-mix(in hsl, var(--color-teal-light), var(--color-text) 50%)';
+  --color-syntax-red: ~'hsl(from var(--color-red) h s var(--syntax-mp))';
+  --color-syntax-green: ~'hsl(from var(--color-green) h s var(--syntax-mp))';
+  --color-syntax-blue: ~'hsl(from var(--color-blue) h s calc(var(--syntax-mp) + 10))';
+  --color-syntax-yellow: ~'hsl(from var(--color-yellow) h s calc(var(--syntax-mp) - 10))';
+  --color-syntax-orange: ~'hsl(from var(--color-orange) h s calc(var(--syntax-mp) - 15))';
+  --color-syntax-brown: ~'hsl(from var(--color-brown) h s var(--syntax-mp))';
+  --color-syntax-olive: ~'hsl(from var(--color-olive) h s var(--syntax-mp))';
+  --color-syntax-violet: ~'hsl(from var(--color-violet) h s calc(var(--syntax-mp) + 7.5))';
+  --color-syntax-cyan: ~'hsl(from var(--color-cyan) h s calc(var(--syntax-mp) * 1.35))';
+  --color-syntax-pink: ~'hsl(from var(--color-pink) h s var(--syntax-mp))';
+  --color-syntax-salad: ~'color-mix(in hsl, var(--color-syntax-green) 75%, var(--color-syntax-yellow) 25%)';
+  --color-syntax-paleblue: ~'color-mix(in hsl, var(--color-syntax-blue) 75%, var(--color-syntax-violet) 25%)';
   --color-syntax-link: var(--color-hyperlink);
-  --color-syntax-violet: ~'color-mix(in hsl, var(--color-violet-dark), var(--color-text) 33%)';
-  --color-syntax-violet-light: ~'color-mix(in hsl, var(--color-violet-light), var(--color-text) 30%)';
   --color-syntax-grey: var(--color-text-gray);
 
   /* Font family */

@@ -1,6 +1,6 @@
 .skin-tgui {
   .ace {
-    &-monokai {
+    &_editor {
       background-color: transparent;
       color: var(--color-text);
 
@@ -35,16 +35,20 @@
       box-shadow: var(--box-shadow-small);
       backdrop-filter: var(--blur-default);
     }
+
+    &_editor {
+      font-size: var(--font-size-xs) !important;
+    }
   }
 
-  .ace-monokai {
+  .ace_editor {
     .ace {
       &_comment {
         color: var(--color-text-gray);
       }
 
       &_variable {
-        color: var(--color-syntax-green);
+        color: var(--color-syntax-salad);
       }
 
       &_paren {
@@ -52,7 +56,7 @@
       }
 
       &_punctuation {
-        color: var(--color-syntax-teal);
+        color: var(--color-syntax-cyan);
       }
 
       &_numeric,
