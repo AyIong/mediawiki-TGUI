@@ -127,11 +127,18 @@ body {
   }
 }
 
-::selection,
-::-moz-selection {
+.selection-mixin() {
   background-color: var(--color-primary) !important;
   color: var(--color-white) !important;
   text-shadow:
     1px 1px 0px ~'hsl(from var(--color-black) h s l / 0.5)',
     2px 2px 4px var(--color-black);
+}
+
+::selection {
+  .selection-mixin();
+}
+
+::-moz-selection {
+  .selection-mixin();
 }

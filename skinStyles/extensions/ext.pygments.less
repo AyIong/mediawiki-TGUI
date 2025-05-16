@@ -1,3 +1,5 @@
+@import '../../resources/skins.tgui.styles/mixins.less';
+
 /**
  * TGUI
  *
@@ -42,6 +44,7 @@
     }
 
     .mi,
+    .mf,
     .kc {
       color: var(--color-syntax-orange);
     }
@@ -53,6 +56,15 @@
     .nf,
     .nv {
       color: var(--color-syntax-link);
+    }
+
+    .nd,
+    .cp {
+      color: var(--color-syntax-violet);
+    }
+
+    .nb {
+      color: var(--color-syntax-blue);
     }
 
     /* HTML */
@@ -114,6 +126,15 @@
       font-weight: normal;
     }
 
+    /* Copy button */
+    &-copy--bound button {
+      .tgui-button();
+      top: 0.5rem;
+      right: 0.5rem;
+      border: none;
+    }
+
+    /* Syntax block */
     pre {
       color: var(--color-text);
     }
