@@ -28,7 +28,7 @@
   .tgui-window {
     .tgui-window();
     opacity: 0;
-    visibility: hidden;
+    content-visibility: hidden;
     margin-top: 0.75rem;
     transform: scale(0.9);
     transform-origin: top;
@@ -40,7 +40,7 @@
 
     &[open] {
       + .tgui-window {
-        visibility: visible;
+        content-visibility: visible;
         opacity: 1;
         height: auto;
         transform: scale(0.99999);

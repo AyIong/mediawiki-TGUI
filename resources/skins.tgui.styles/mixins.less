@@ -23,8 +23,9 @@
   background-image: var(--background-gradient);
   color: var(--color-text);
   box-shadow: var(--box-shadow-medium);
+  transition-property: transform, opacity, content-visibility;
   transition-duration: var(--transition-time);
-  transition-property: transform, opacity, visibility;
+  transition-behavior: allow-discrete;
   z-index: var(--index-high);
 
   &__header {
