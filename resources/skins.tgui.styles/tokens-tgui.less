@@ -8,8 +8,8 @@
   --primary-saturacy: 37.5%;
   --background-gradient: linear-gradient(
     to bottom,
-    color-mix(in srgb, var(--color-bg) 98%, white) 0%,
-    color-mix(in srgb, var(--color-bg) 98%, black) 100%
+    hsl(from var(--color-bg) h s calc(l + 2)) 0%,
+    hsl(from var(--color-bg) h s calc(l - 2)) 100%
   );
   --adjust-hover: 10;
   --adjust-active: 7.5;
@@ -196,6 +196,8 @@
     var(--color-dark) 10px,
     var(--color-dark) 20px
   );
+  /* Shortcuts - Colors */
+  --tabs-background: ~'hsl(var(--primary-hue), 100%, var(--primary-lightness--text))';
   --input-background: ~'hsl(var(--primary-hue), 40%, var(--primary-lightness--soft))';
   --input-border-color: ~'hsl(from var(--color-secondary) h s l / 0.33)';
 }

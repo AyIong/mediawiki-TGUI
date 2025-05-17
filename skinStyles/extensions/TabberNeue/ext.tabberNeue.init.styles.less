@@ -25,7 +25,7 @@
 
       &:active {
         background-color: var(--color-bg-hover);
-        color: ~'hsla(var(--primary-hue), 100%, var(--primary-lightness--text))';
+        color: var(--tabs-background);
 
         &:after {
           transform: scaleX(0.25);
@@ -35,7 +35,7 @@
       &[aria-selected='true'],
       &[aria-selected='true']:visited {
         background-color: var(--color-bg-focus);
-        color: ~'hsla(var(--primary-hue), 100%, var(--primary-lightness--text))';
+        color: var(--tabs-background);
         box-shadow: none;
 
         &:after {
