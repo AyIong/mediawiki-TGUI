@@ -10,7 +10,7 @@ async function waitToC() {
 }
 
 function restoreTOCState() {
-  if (isCollapsed === 'true' || window.innerWidth < 999) {
+  if (isCollapsed === 'true' || window.innerWidth < 1000) {
     document.body.classList.add(TOC_COLLAPSED_CLASS);
   }
 }
@@ -19,7 +19,7 @@ function restoreTOCState() {
 function moveElement() {
   const toc = document.getElementById('tgui-toc');
   const newContainer = document.getElementById('bodyContent');
-  const mediaQuery = window.matchMedia('(max-width: 719px)');
+  const mediaQuery = window.matchMedia('(max-width: 999px)');
 
   function handleMediaChange(e) {
     if (!toc) {

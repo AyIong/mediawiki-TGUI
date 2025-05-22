@@ -17,6 +17,11 @@
   transition-duration: var(--transition-time);
   z-index: var(--index-static);
 
+  @media (min-width: @min-width-tablet) and (max-width: @max-width-tablet) {
+    position: fixed;
+    width: var(--sidebar-width-wide);
+  }
+
   @media (min-width: @min-width-desktop-wide) {
     width: var(--sidebar-width-wide);
   }

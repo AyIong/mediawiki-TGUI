@@ -49,61 +49,53 @@
       overflow-y: auto;
     }
   }
-
-  .sidebar-visible &,
-  @{selector-main-menu-closed} ~ .tgui-page-container-inner .tgui-sidebar-container & {
-    visibility: hidden;
-  }
 }
 
 @media (max-width: @max-width-tablet) {
-  .tgui-sidebar-container {
-    width: var(--sidebar-width-wide);
-
-    .tgui-sidebar-content .tgui-menu {
-      margin: 0.5em;
-    }
-  }
-
   .tgui-sidebar {
-    visibility: hidden;
     background-color: var(--color-primal-blur);
 
-    @{selector-main-menu-open} ~ .tgui-page-container-inner .tgui-sidebar-container & {
-      visibility: visible;
-    }
-  }
-}
-
-@media (max-width: @max-width-mobile) {
-  .tgui-sidebar-container {
-    position: fixed;
-    width: 100%;
-    max-height: 70vh;
-    top: 0;
-    transform: translateY(-100%);
-    transition:
-      transform var(--transition-time),
-      visibility var(--transition-time);
-    z-index: var(--index-overlay);
-
-    @{selector-main-menu-open} ~ .tgui-page-container-inner & {
-      transform: translateY(0%);
-      box-shadow: var(--box-shadow-medium);
-    }
-
-    .tgui-sidebar {
-      visibility: hidden !important;
-      margin-top: var(--header-full);
-      border-bottom: var(--border-classic);
-      z-index: var(--index-overlay);
+    &-container {
+      content-visibility: hidden;
+      position: fixed;
+      top: var(--header-full);
+      left: 0;
+      max-width: 75dvw;
+      width: var(--sidebar-width-wide);
+      transform: translateX(-100%);
+      transition-duration: var(--transition-time);
+      transition-property: transform, content-visibility;
+      transition-behavior: allow-discrete;
+      z-index: 3;
 
       @{selector-main-menu-open} ~ .tgui-page-container-inner & {
-        visibility: visible !important;
+        overflow: visible;
+        content-visibility: visible;
+        transform: translateX(0);
+
+        &:after {
+          opacity: 0.5;
+        }
       }
 
-      .tgui-sidebar-content {
-        overflow-y: auto;
+      &:after {
+        content: '';
+        opacity: 0;
+        position: absolute;
+        inset: 0;
+        width: 100dvw;
+        background: var(--color-black);
+        transform: translateX(var(--sidebar-width-wide));
+        transition: opacity var(--transition-time);
+        z-index: -1;
+      }
+    }
+
+    &-content {
+      overflow: auto !important;
+
+      .tgui-menu {
+        margin: 0.5em;
       }
     }
   }

@@ -74,20 +74,11 @@
   .tgui-header {
     position: fixed;
     width: 100%;
-    border-bottom: var(--border-classic);
 
     &-content__left,
     &-content__right {
       overflow: hidden;
       transition: width var(--transition-time);
-    }
-
-    @{selector-main-menu-open} ~ &:before {
-      opacity: 1;
-    }
-
-    #tgui-sidebar-button .tgui-icon:before {
-      content: '\f102';
     }
   }
 
