@@ -36,5 +36,7 @@ final class Metadata extends Partial {
 	public function addMetadata() {
 		// Theme color
 		$this->out->addMeta('theme-color', $this->getConfigValue('TGUIThemeColor') ?? '');
+		// Dark Reader exception
+		$this->out->addMeta('darkreader-lock', '');
 	}
 }
