@@ -1,4 +1,5 @@
 const config = require('./config.json');
+const tooltipInitializedAttr = 'data-tooltip-initialized';
 
 function init(content) {
   if (!config.wgTGUIReplaceTitleTooltips) {
@@ -13,12 +14,12 @@ function init(content) {
   function initializeTooltips() {
     const tooltipElements = content.querySelectorAll('[title]');
     for (const tooltip of tooltipElements) {
-      if (tooltip.hasAttribute('data-tooltip-initialized')) {
+      if (tooltip.hasAttribute(tooltipInitializedAttr)) {
         continue;
       }
 
       if (tooltip.parentElement.hasAttribute('data-notitle')) {
-        tooltip.setAttribute('data-tooltip-initialized', 'true');
+        tooltip.setAttribute(tooltipInitializedAttr, '');
         tooltip.removeAttribute('title');
         continue;
       }
@@ -28,7 +29,7 @@ function init(content) {
         continue;
       }
 
-      tooltip.setAttribute('data-tooltip-initialized', 'true');
+      tooltip.setAttribute(tooltipInitializedAttr, '');
       tooltip.removeAttribute('title');
 
       let tooltipContent = null;

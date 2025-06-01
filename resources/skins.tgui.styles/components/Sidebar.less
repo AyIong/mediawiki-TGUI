@@ -51,6 +51,11 @@
   }
 }
 
+#tgui-panel-mbg {
+  display: none;
+  content-visibility: hidden;
+}
+
 @media (max-width: @max-width-tablet) {
   .tgui-sidebar {
     background-color: var(--color-primal-blur);
@@ -71,22 +76,23 @@
       @{selector-main-menu-open} ~ .tgui-page-container-inner & {
         overflow: visible;
         content-visibility: visible;
-        transform: translateX(0);
+        transform: translateX(0px);
 
-        &:after {
-          opacity: 0.5;
+        #tgui-panel-mbg {
+          background-color: hsla(0, 0%, 0%, 0.66);
         }
       }
 
-      &:after {
-        content: '';
-        opacity: 0;
+      #tgui-panel-mbg {
+        display: block;
+        content-visibility: visible;
+        pointer-events: all;
         position: absolute;
         inset: 0;
         width: 100dvw;
-        background: var(--color-black);
+        background-color: hsla(0, 0%, 0%, 0);
         transform: translateX(var(--sidebar-width-wide));
-        transition: opacity var(--transition-time);
+        transition: background-color var(--transition-time);
         z-index: -1;
       }
     }

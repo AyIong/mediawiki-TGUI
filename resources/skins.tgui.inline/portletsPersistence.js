@@ -71,8 +71,8 @@ function toggleMenu(menu) {
   localStorage.setItem(`TGUI-nav-${menu.id}`, isCollapsed ? 'true' : 'false');
 }
 
-async function main() {
-  await initPortlets();
+function main() {
+  initPortlets();
 }
 
 main();

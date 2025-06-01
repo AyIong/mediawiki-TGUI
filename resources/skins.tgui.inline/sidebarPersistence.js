@@ -1,3 +1,4 @@
+const SIDEBAR_MOBILE_ID = 'tgui-panel-mbg';
 const SIDEBAR_BUTTON_ID = 'tgui-sidebar-button';
 const SIDEBAR_CHECKBOX_ID = 'tgui-sidebar-checkbox';
 const SIDEBAR_PREFERENCE_NAME = 'TGUI-SidebarVisible';
@@ -30,17 +31,31 @@ function saveSidebarState(checkbox) {
 }
 
 async function initSidebar() {
-  const [checkbox, button] = await Promise.all([
+  const [checkbox, button, mobile] = await Promise.all([
     waitForElement(SIDEBAR_CHECKBOX_ID),
     waitForElement(SIDEBAR_BUTTON_ID),
+    waitForElement(SIDEBAR_MOBILE_ID),
   ]);
 
-  if (checkbox && button) {
-    bindSidebarClickEvent(checkbox, button);
-    restoreSidebarState();
+  if (window.matchMedia('(min-width: 1119px)').matches) {
+    if (checkbox && button) {
+      bindSidebarClickEvent(checkbox, button);
+      restoreSidebarState();
+    }
+  } else {
+    document.addEventListener('scroll', () => {
+      checkbox.checked = false;
+    });
+  }
+
+  if (mobile) {
+    const events = ['mousedown', 'touchstart'];
+    for (const event of events) {
+      mobile.addEventListener(event, () => {
+        checkbox.checked = false;
+      });
+    }
   }
 }
 
-if (window.matchMedia('(min-width: 1000px)').matches) {
-  initSidebar();
-}
+initSidebar();
