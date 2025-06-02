@@ -204,7 +204,7 @@ You can find more here(RU wiki) - https://wiki.ss220.club/index.php/Template:Col
 | Light = var(--black-light)
 | Transparent = var(--black-transparent)
 }}
-|
+| Gray =
 {{#switch: {{{2|Primary}}}
 | Opaque = var(--gray-opaque)
 | Primary = var(--gray-primary)
@@ -212,4 +212,12 @@ You can find more here(RU wiki) - https://wiki.ss220.club/index.php/Template:Col
 | Light = var(--gray-light)
 | Transparent = var(--gray-transparent)
 }}
-}}</includeonly><noinclude>
+|
+{{#switch: {{{2|Primary}}}
+| Opaque = var(--default-opaque)
+| Primary = var(--default-primary)
+| Secondary = var(--default-secondary)
+| Light = var(--default-light)
+| Transparent = var(--default-transparent)
+}}
+}}</includeonly>
