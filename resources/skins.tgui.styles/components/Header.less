@@ -2,6 +2,7 @@
 @import 'mediawiki.mixins.less';
 
 .tgui-header {
+  --header-button-height: ~'calc(var(--header-height) - var(--header-padding) * 0.66)';
   position: sticky;
   top: 0;
   background-color: var(--color-primal-blur);
@@ -11,9 +12,35 @@
     opacity: 1;
   }
 
-  .tgui-dropdown-summary {
+  .tgui-dropdown-summary,
+  .tgui-header__button {
     width: var(--header-button-height);
     height: var(--header-button-height);
+  }
+
+  .tgui-header__button {
+    .tgui-header-button-mixin();
+
+    span ~ span {
+      display: none;
+    }
+  }
+
+  #p-notifications {
+    .tgui-menu__heading {
+      display: none;
+    }
+
+    .tgui-menu__content {
+      &-list {
+        display: flex;
+        gap: 0.25em;
+
+        & li {
+          margin: 0;
+        }
+      }
+    }
   }
 
   &:before {
@@ -39,6 +66,7 @@
     &__right {
       display: flex;
       gap: 0.25em;
+      flex-direction: row-reverse;
     }
   }
 

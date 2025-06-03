@@ -1,0 +1,29 @@
+.mw-echo-alert {
+  overflow: hidden;
+  padding: 0.75rem;
+  background-color: var(--color-second-blur) !important;
+  color: var(--color-text-darker);
+  border: var(--border-classic) !important;
+  box-shadow: var(--box-shadow-small);
+  border-radius: var(--border-radius-medium);
+  transition:
+    opacity var(--transition-time) ease-in-out,
+    transform var(--transition-time) ease-in-out;
+  backdrop-filter: var(--blur-default);
+
+  &:hover:before {
+    animation: none;
+    width: 100%;
+  }
+
+  &:before {
+    content: '';
+    display: inline;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 0.25em;
+    background-color: var(--color-primary);
+    animation: 5s delay linear 1;
+  }
+}

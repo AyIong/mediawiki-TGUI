@@ -84,11 +84,13 @@ function main(window) {
   const dropdown = require('./dropdown.js');
   const floatingTitles = require('./floatingTitles.js');
   const purgeButton = require('./purgeButton.js');
+  const echo = require('./echo.js');
 
   floatingTitles.init(window.document);
   initSearchLoader(document);
   dropdown.init();
   purgeButton();
+  echo();
 
   mw.hook('wikipage.content').add((content) => {
     // content is a jQuery object

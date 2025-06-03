@@ -1,0 +1,11 @@
+@import '../../resources/skins.tgui.styles/mixins.less';
+
+.tgui-echo-notification-badge {
+  &:not([data-counter-text='0']):after {
+    .tgui-badge();
+
+    #pt-notifications-alert & {
+      background: var(--color-primary);
+    }
+  }
+}

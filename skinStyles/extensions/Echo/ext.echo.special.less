@@ -1,0 +1,48 @@
+@import '../../resources/skins.tgui.styles/mixins.less';
+
+.skin-tgui {
+  .mw-echo-ui-notificationsInboxWidget-toolbarWrapper {
+    background-color: transparent;
+  }
+
+  .mw-echo-ui-readStateButtonSelectWidget {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .mw-echo-ui-sortedListWidget-group {
+    border: none !important;
+  }
+
+  .mw-echo-ui-crossWikiUnreadFilterWidget {
+    padding: 0.5rem;
+    border: none;
+  }
+
+  .mw-echo-ui-pageNotificationsOptionWidget {
+    .tgui-button();
+
+    &.oo-ui-optionWidget-selected {
+      .tgui-button(@color: 'green');
+    }
+
+    .mw-echo-ui-pageNotificationsOptionWidget-row {
+      .mw-echo-ui-pageNotificationsOptionWidget-icon {
+        min-width: 1.75em;
+        transform: scale(0.85);
+      }
+
+      .mw-echo-ui-pageNotificationsOptionWidget-label-count {
+        background-color: transparent;
+        color: var(--color-white);
+      }
+    }
+  }
+
+  .mw-echo-ui-pageFilterWidget {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 1.25rem;
+  }
+}

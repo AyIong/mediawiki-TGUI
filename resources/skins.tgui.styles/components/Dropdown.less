@@ -2,23 +2,7 @@
 
 .tgui-dropdown {
   &-summary {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 2.76em;
-    height: 2em;
-    border-radius: var(--border-radius-small);
-    transition: background-color var(--transition-time);
-
-    &:hover {
-      background-color: var(--color-bg-hover);
-    }
-
-    &:active {
-      background-color: var(--color-bg-focus);
-    }
+    .tgui-header-button-mixin();
 
     &::-webkit-details-marker {
       display: none;
@@ -29,9 +13,17 @@
     .tgui-window();
     opacity: 0;
     content-visibility: hidden;
-    margin-top: 0.75rem;
+    width: 22.5rem;
     transform: scale(0.9);
     transform-origin: top;
+
+    &__header {
+      .tgui-window-header();
+    }
+
+    &__content {
+      .tgui-window-content();
+    }
   }
 
   &-details {

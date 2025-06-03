@@ -18,7 +18,7 @@
   user-select: none;
   position: absolute;
   right: 0.75rem;
-  width: 22.5rem;
+  margin-top: 0.75rem;
   font-size: 0.95rem;
   background-image: var(--background-gradient);
   color: var(--color-text);
@@ -28,37 +28,37 @@
   transition-behavior: allow-discrete;
   z-index: var(--index-high);
 
-  &__header {
-    display: flex;
-    align-items: center;
-    position: relative;
-    height: 2rem;
-    font-size: 0.95rem;
-    font-family: var(--font-family-heading);
-    background-color: ~'hsl(from var(--color-bg) h s calc(l + 7.5))';
-    color: var(--color-text-semi-translucent);
-    border-bottom: 1px solid var(--color-second-fill);
-    box-shadow: var(--shadow-template--small);
-
-    &:before {
-      content: '\f06e';
-      font: var(--fa-font-solid);
-      color: var(--color-green);
-      padding: 0 0.66rem;
-      font-size: 1.45em;
-    }
-  }
-
-  &__content {
-    position: relative;
-    padding: 0.5em;
-  }
-
   * {
     user-drag: none;
     user-select: none;
     -webkit-user-drag: none;
   }
+}
+
+.tgui-window-header() {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 2rem;
+  font-size: 0.95rem;
+  font-family: var(--font-family-heading);
+  background-color: ~'hsl(from var(--color-bg) h s calc(l + 7.5))';
+  color: var(--color-text-semi-translucent);
+  border-bottom: 1px solid var(--color-second-fill);
+  box-shadow: var(--shadow-template--small);
+
+  &:before {
+    content: '\f06e';
+    font: var(--fa-font-solid);
+    color: var(--color-green);
+    padding: 0 0.66rem;
+    font-size: 1.45em;
+  }
+}
+
+.tgui-window-content() {
+  position: relative;
+  padding: 0.5em;
 }
 
 .tgui-section-mixin() {
@@ -263,4 +263,35 @@
   &[aria-expanded='true']:before {
     transform: rotate(180deg);
   }
+}
+
+.tgui-header-button-mixin() {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: var(--border-radius-small);
+  transition: background-color var(--transition-time);
+
+  &:hover {
+    background-color: var(--color-bg-hover);
+  }
+
+  &:active {
+    background-color: var(--color-bg-focus);
+  }
+}
+
+.tgui-badge() {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  height: 0.33rem;
+  width: 0.33rem;
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--border-radius-round);
 }

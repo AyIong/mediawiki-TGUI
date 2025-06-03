@@ -1,5 +1,6 @@
 const config = require('./config.json');
 const tooltipInitializedAttr = 'data-tooltip-initialized';
+const tooltipVisibleTimeout = 1000;
 
 function init(content) {
   if (!config.wgTGUIReplaceTitleTooltips) {
@@ -10,40 +11,36 @@ function init(content) {
     return;
   }
 
-  const { computePosition, offset, flip, shift, arrow } = window.FloatingUIDOM;
   function initializeTooltips() {
-    const tooltipElements = content.querySelectorAll('[title]');
-    for (const tooltip of tooltipElements) {
-      if (tooltip.hasAttribute(tooltipInitializedAttr)) {
+    const titleElements = content.querySelectorAll('[title]');
+    for (const titleElement of titleElements) {
+      if (titleElement.hasAttribute(tooltipInitializedAttr)) {
         continue;
       }
 
-      if (tooltip.parentElement.hasAttribute('data-notitle')) {
-        tooltip.setAttribute(tooltipInitializedAttr, '');
-        tooltip.removeAttribute('title');
+      if (titleElement.parentElement.hasAttribute('data-notitle')) {
+        titleElement.setAttribute(tooltipInitializedAttr, '');
+        titleElement.removeAttribute('title');
         continue;
       }
 
-      const tooltipText = tooltip.getAttribute('title');
+      const tooltipText = titleElement.getAttribute('title');
       if (!tooltipText) {
         continue;
       }
 
-      tooltip.setAttribute(tooltipInitializedAttr, '');
-      tooltip.removeAttribute('title');
+      titleElement.setAttribute(tooltipInitializedAttr, '');
+      titleElement.removeAttribute('title');
+      titleElement.addEventListener('mouseover', showTooltip);
+      titleElement.addEventListener('mouseout', hideTooltip);
 
       let tooltipContent = null;
       let hideTimeout = null;
       let appearTimeout = null;
-
-      tooltip.addEventListener('mouseover', showTooltip);
-      tooltip.addEventListener('mouseleave', hideTooltip);
-
       function showTooltip() {
         clearTimeout(appearTimeout);
-
         appearTimeout = setTimeout(() => {
-          if (!tooltip.parentNode) {
+          if (!titleElement.parentNode) {
             return;
           }
 
@@ -51,14 +48,14 @@ function init(content) {
             tooltipContent = createTooltipElement(tooltipText);
             document.body.appendChild(tooltipContent);
           }
-          positionTooltip(tooltip, tooltipContent);
+
+          positionTooltip(titleElement, tooltipContent);
           tooltipContent.classList.add('visible');
-        }, 1000);
+        }, tooltipVisibleTimeout);
       }
 
       function hideTooltip() {
         clearTimeout(appearTimeout);
-
         if (!tooltipContent) {
           return;
         }
@@ -67,9 +64,17 @@ function init(content) {
         hideTimeout = hideTimeout || setTimeout(() => removeTooltipElement(), 200);
       }
 
+      function removeTooltipElement() {
+        if (tooltipContent) {
+          document.body.removeChild(tooltipContent);
+          tooltipContent = null;
+          hideTimeout = null;
+        }
+      }
+
       function createTooltipElement(text) {
         const tooltipContent = document.createElement('div');
-        tooltipContent.classList.add('tooltip-content');
+        tooltipContent.classList.add('tgui-tooltip');
         tooltipContent.textContent = text;
 
         const arrowEl = document.createElement('div');
@@ -80,6 +85,7 @@ function init(content) {
       }
 
       function positionTooltip(reference, floatingElement) {
+        const { computePosition, offset, flip, shift, arrow } = window.FloatingUIDOM;
         const arrowEl = floatingElement.querySelector('.tooltip-arrow');
         computePosition(reference, floatingElement, {
           placement: 'top',
@@ -104,18 +110,18 @@ function init(content) {
         arrowPosition[placement === 'top' ? 'bottom' : 'top'] = `${-arrowOffset}px`;
         Object.assign(arrowEl.style, arrowPosition);
       }
-
-      function removeTooltipElement() {
-        if (tooltipContent) {
-          document.body.removeChild(tooltipContent);
-          tooltipContent = null;
-          hideTimeout = null;
-        }
-      }
     }
   }
 
   const observer = new MutationObserver(() => {
+    const orphanTooltips = document.body.querySelectorAll('.tgui-tooltip');
+    if (orphanTooltips.length > 1) {
+      for (const tooltip of orphanTooltips) {
+        document.body.removeChild(tooltip);
+        break; // ONLY 1
+      }
+    }
+
     initializeTooltips();
   });
 

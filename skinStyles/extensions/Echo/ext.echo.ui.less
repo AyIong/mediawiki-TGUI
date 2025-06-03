@@ -1,0 +1,178 @@
+@import '../../resources/skins.tgui.styles/mixins.less';
+
+.skin-tgui {
+  .mw-echo-ui-overlay {
+    .oo-ui-popupWidget {
+      &-anchored-top {
+        right: 0 !important;
+        margin: 0 !important;
+      }
+
+      &-popup {
+        .tgui-window();
+        border: none;
+        border-radius: 0;
+      }
+
+      &-head {
+        .tgui-window-header() !important;
+        box-sizing: content-box !important;
+
+        .oo-ui-iconElement {
+          display: none;
+        }
+
+        .oo-ui-labelElement-label {
+          margin: 0 !important;
+          font-weight: normal !important;
+          font-size: inherit !important;
+          line-height: inherit !important;
+        }
+
+        .mw-echo-ui-notificationsWidget-markAllReadButton {
+          margin: 0 !important;
+          border-radius: 0 !important;
+
+          a {
+            width: 32px;
+            padding: 0 0.33rem;
+          }
+
+          &:hover {
+            background-color: var(--color-blue) !important;
+
+            .oo-ui-iconElement-icon:before {
+              color: var(--color-white) !important;
+            }
+          }
+
+          .oo-ui-labelElement-label {
+            display: none;
+          }
+
+          .oo-ui-iconElement-icon {
+            display: block;
+            opacity: 1;
+            text-align: center;
+
+            &:before {
+              content: '\f560';
+              font: var(--fa-font-solid);
+              font-size: 1.25rem;
+              line-height: 1.25em;
+              color: var(--color-text) !important;
+            }
+          }
+        }
+      }
+
+      &-body {
+        .tgui-window-content() !important;
+      }
+
+      &-footer {
+        border: none !important;
+
+        .oo-ui-buttonGroupWidget {
+          gap: 0.5rem;
+          margin: 0 0.5rem 0.5rem;
+
+          .oo-ui-buttonWidget {
+            border: none !important;
+            border-radius: 0 !important;
+
+            a {
+              align-content: center;
+              line-height: 11px !important;
+
+              .oo-ui-iconElement-icon {
+                opacity: 1 !important;
+                left: 0.5rem !important;
+              }
+
+              .oo-ui-labelElement-label {
+                line-height: 1 !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .mw-echo-ui-placeholderItemWidget {
+    background-color: var(--color-primal-fill) !important;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-small);
+  }
+
+  .mw-echo-ui-notificationItemWidget {
+    background-color: var(--color-primal-fill) !important;
+    color: var(--color-text-gray) !important;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-small);
+    transition-property: transform, box-shadow, border-color;
+    transition-duration: var(--transition-time);
+
+    &:hover,
+    &:focus {
+      transform: translateY(-3px);
+      box-shadow: 0 3px 0px var(--color-border);
+    }
+
+    &-unread {
+      border-color: var(--color-primary);
+
+      &:hover,
+      &:focus {
+        box-shadow: 0 3px 0px var(--color-primary);
+      }
+    }
+
+    &:focus {
+      outline: none !important;
+    }
+
+    &-content-message-header,
+    &-content-actions-timestamp {
+      color: var(--color-secondary);
+    }
+
+    img {
+      filter: var(--invert-icon) !important;
+    }
+  }
+
+  .mw-echo-ui-toggleReadCircleButtonWidget {
+    &:hover {
+      .mw-echo-ui-toggleReadCircleButtonWidget-circle {
+        background-color: var(--color-secondary);
+        filter: none;
+
+        &-unread {
+          background-color: var(--color-secondary);
+        }
+      }
+    }
+
+    &-circle {
+      background-color: var(--color-secondary);
+      border-color: var(--color-border);
+      filter: drop-shadow(0 0 6px var(--color-secondary));
+
+      &:hover {
+        background-color: var(--color-bg);
+        filter: none;
+      }
+
+      &-unread {
+        background-color: var(--color-bg);
+        filter: none;
+
+        &:hover {
+          background-color: var(--color-secondary);
+        }
+      }
+    }
+  }
+}
