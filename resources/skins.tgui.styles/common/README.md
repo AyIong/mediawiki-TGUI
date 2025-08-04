@@ -196,6 +196,14 @@ You can find more here(RU wiki) - https://wiki.ss220.club/index.php/Template:Col
 | Light = var(--wizard-light)
 | Transparent = var(--wizard-transparent)
 }}
+| Indigo =
+{{#switch: {{{2|Primary}}}
+| Opaque = var(--indigo-opaque)
+| Primary = var(--indigo-primary)
+| Secondary = var(--indigo-secondary)
+| Light = var(--indigo-light)
+| Transparent = var(--indigo-transparent)
+}}
 | Black =
 {{#switch: {{{2|Primary}}}
 | Opaque = var(--black-opaque)
