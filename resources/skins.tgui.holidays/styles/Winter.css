@@ -21,7 +21,7 @@
   background-size: 250px, 200px, 150px;
   animation: snow 15s linear infinite;
   filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5)) brightness(0.75);
-  z-index: -999;
+  z-index: 0;
 }
 
 .tgui-feature-holidays-clientpref-enabled.skin-theme-clientpref-night body:before {
