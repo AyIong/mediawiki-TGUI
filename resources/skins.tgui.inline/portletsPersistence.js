@@ -18,13 +18,13 @@ async function initPortlets() {
   const menus = panelContent.querySelectorAll('.tgui-menu:not(.first)');
   for (const menu of menus) {
     const id = menu.id;
-    const openState = localStorage.getItem(`TGUI-nav-${id}`);
+    let openState = localStorage.getItem(`TGUI-nav-${id}`);
 
     // Get current portlets state from localStorage
     // If none is found, set it to true
     if (openState === null || openState === undefined) {
       localStorage.setItem(`TGUI-nav-${id}`, 'true');
-      state = 'true';
+      openState = 'true';
     }
 
     // Set menu state
