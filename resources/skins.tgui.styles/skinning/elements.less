@@ -26,11 +26,17 @@ hr {
 
 /* Structural Elements */
 h1,
+.mw-heading1,
 h2,
+.mw-heading2,
 h3,
+.mw-heading3,
 h4,
+.mw-heading4,
 h5,
-h6 {
+.mw-heading5,
+h6,
+.mw-heading5 {
   display: flow-root;
   position: relative;
   margin: 0;
@@ -51,7 +57,9 @@ h6 {
 }
 
 h1,
-h2 {
+.mw-heading1,
+h2,
+.mw-heading2 {
   margin-bottom: 0.33rem;
   padding: 0.25rem 0.5rem 0.1rem;
   font-weight: var(--font-bolder);
@@ -60,43 +68,70 @@ h2 {
 }
 
 h3,
+.mw-heading3,
 h4,
+.mw-heading4,
 h5,
-h6 {
+.mw-heading5,
+h6,
+.mw-heading6 {
   margin-bottom: 0.25rem;
   line-height: var(--line-height-small);
 }
 
 h3,
-h4 {
+.mw-heading3,
+h4,
+.mw-heading4 {
   font-weight: var(--font-semibold);
 }
 
 h5,
-h6 {
+.mw-heading5,
+h6,
+.mw-heading6 {
   font-weight: var(--font-bold);
 }
 
-h1 {
+h1,
+.mw-heading1 {
   font-size: 1.75em;
 }
 
-h2 {
+h2,
+.mw-heading2 {
   display: flow-root;
   font-size: 1.5em;
 }
 
-h3 {
+h3,
+.mw-heading3 {
   font-size: 1.33em;
 }
 
-h4 {
+h4,
+.mw-heading4 {
   font-size: 1.25em;
 }
 
 h5,
-h6 {
+.mw-heading5,
+h6,
+.mw-heading6 {
   font-size: 1em;
+}
+
+/* Reset size and remove border for headers on new MW version */
+.mw-heading1 h1,
+.mw-heading2 h2,
+.mw-heading3 h3,
+.mw-heading4 h4,
+.mw-heading5 h5,
+.mw-heading6 h6 {
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	border: none;
 }
 
 p {

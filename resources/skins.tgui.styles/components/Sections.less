@@ -52,9 +52,13 @@
   &-heading {
     display: flex;
     align-items: center;
+	border-bottom: 2px solid var(--color-primary);
 
-    .mw-headline {
+    .mw-headline,
+	:is(h1, h2, h3, h4, h5, h6) {
+	  margin: 0;
       flex-grow: 1;
+	  border-bottom: none;
     }
 
     &:has(+ .tgui-section[hidden]) {

@@ -28,7 +28,8 @@ h4,
 h5,
 h6,
 h1:not(.tgui-section-heading),
-h2:not(.tgui-section-heading) {
+h2:not(.tgui-section-heading),
+.mw-heading:not(.tgui-section-heading) {
   cursor: default;
 
   .mw-editsection,
@@ -67,7 +68,9 @@ h2:not(.tgui-section-heading) {
   .mw-headline:hover ~ .mw-editsection,
   .mw-headline:hover ~ .mw-editsection-like,
   .mw-editsection:hover,
-  .mw-editsection-like:hover {
+  .mw-editsection-like:hover,
+  > :is(h1, h2, h3, h4, h5, h6):hover  ~ .mw-editsection,
+  > :is(h1, h2, h3, h4, h5, h6):hover  ~ .mw-editsection-like {
     opacity: 1;
     visibility: visible;
     transform: translateY(calc(-100% - 0.75rem));
