@@ -1,7 +1,6 @@
 # TGUI Skin
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/designed-in-ms-paint.svg)](http://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/works-on-my-machine-1.svg)](http://forthebadge.com)
 
 ## About
 Requires MediaWiki >= 1.39.4 < 1.40.0
