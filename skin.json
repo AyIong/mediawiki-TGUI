@@ -1,8 +1,8 @@
 {
   "name": "TGUI",
-  "version": "3.2.7",
-  "author": ["[https://github.com/AyIong Aylong]"],
-  "url": "https://www.youtube.com/watch?v=JDQBvN1GATw",
+  "version": "3.2.8",
+  "author": ["[https://www.youtube.com/watch?v=JDQBvN1GATw Aylong]"],
+  "url": "https://github.com/AyIong/mediawiki-TGUI",
   "namemsg": "skinname-tgui",
   "descriptionmsg": "tgui-skin-desc",
   "license-name": "GPL-2.0-or-later",
@@ -309,6 +309,12 @@
       "value": true,
       "description": "Enables or disable preferences module",
       "descriptionmsg": "tgui-config-enablepreferences",
+      "public": true
+    },
+    "BackgroundMask": {
+      "value": null,
+      "description": "The background mask image used for theme transitions.",
+      "descriptionmsg": "tgui-config-backgroundmask",
       "public": true
     },
     "ThemeDefault": {

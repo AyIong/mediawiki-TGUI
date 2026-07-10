@@ -60,6 +60,7 @@ class ResourceLoaderHooks {
 		return [
 			'wgTGUIThemeDefault' => $config->get('TGUIThemeDefault'),
 			'wgTGUIThemeStyleDefault' => $config->get('TGUIThemeStyleDefault'),
+			'wgTGUIBackgroundMask' => $config->get('TGUIBackgroundMask'),
 		];
 	}
 

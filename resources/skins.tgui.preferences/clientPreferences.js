@@ -73,7 +73,14 @@ function toggleDocClassAndSave(featureName, value, config, slider, removePref) {
   const pref = config[featureName];
   const category = config[featureName].category;
   const callback = pref.callback || (() => {});
-  clientPrefs.set(featureName, value, category, slider, removePref);
+
+  if(featureName === 'skin-theme' || featureName === 'skin-theme-style') {
+    document.startViewTransition(() => {
+      clientPrefs.set(featureName, value, category, slider, removePref)
+    });
+  } else {
+    clientPrefs.set(featureName, value, category, slider, removePref);
+  }
   callback();
 }
 

@@ -5,7 +5,37 @@
 @selector-sidebar-no-toc-sidebar-disabled: ~':not(:has(.sidebar-toc)) @{selector-main-menu-closed}';
 
 :root {
+  --theme-change-duration: 1s;
   interpolate-size: allow-keywords;
+}
+
+::view-transition-group(root) {
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(root) {
+  animation: none var(--theme-change-duration);
+  animation-fill-mode: both;
+}
+
+::view-transition-new(root) {
+  mask: var(--theme-mask) center / 0 no-repeat;
+  animation: theme-change var(--theme-change-duration);
+  animation-fill-mode: both;
+}
+
+@keyframes theme-change {
+  0% {
+    opacity: 0;
+    mask-size: 40%;
+  }
+  40% {
+    opacity: 1;
+    mask-size: 40%;
+  }
+  100% {
+    mask-size: 1000%;
+  }
 }
 
 .tgui-page {
