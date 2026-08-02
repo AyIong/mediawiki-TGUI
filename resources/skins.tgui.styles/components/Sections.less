@@ -4,7 +4,7 @@
     position: relative;
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       bottom: -0.15em;
       height: 2px;
@@ -12,7 +12,7 @@
       max-width: 100cqw;
       background: linear-gradient(
         to right,
-        ~'hsl(from var(--color-secondary-light) h s l / 0.5)' calc(100% - 2em),
+        ~"hsl(from var(--color-secondary-light) h s l / 0.5)" calc(100% - 2em),
         transparent 100%
       );
     }
@@ -30,7 +30,7 @@
         margin-right: 0;
       }
 
-      &:has(span[typeof*='mw:File']) {
+      &:has(span[typeof*="mw:File"]) {
         align-items: baseline;
       }
     }
@@ -40,7 +40,7 @@
       transition: transform var(--transition-time);
 
       &:before {
-        content: '\f078';
+        content: "\f078";
         font: var(--fa-font-solid);
         font-size: 1cap;
       }

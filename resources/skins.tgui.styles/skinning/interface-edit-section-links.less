@@ -1,3 +1,16 @@
+.mw-heading,
+.mw-heading2 {
+  position: relative;
+
+  .mw-editsection:hover,
+  .mw-editsection-like:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(calc(-100% - 0.75rem));
+    transition-delay: 0s;
+  }
+}
+
 .mw-editsection,
 .mw-editsection-like {
   display: flex;
@@ -18,7 +31,8 @@
     display: none;
   }
 
-  &:before {
+  &:before,
+  &:after {
     display: none !important;
   }
 }
@@ -31,8 +45,8 @@ h1:not(.tgui-section-heading),
 h2:not(.tgui-section-heading) {
   cursor: default;
 
-  .mw-editsection,
-  .mw-editsection-like {
+  ~ .mw-editsection,
+  ~ .mw-editsection-like {
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -47,10 +61,10 @@ h2:not(.tgui-section-heading) {
     backdrop-filter: var(--blur-default);
     transition-property: transform, opacity, visibility;
     transition-duration: var(--transition-time);
-    transition-delay: ~'calc( var(--transition-delay) / 2 )';
+    transition-delay: ~"calc( var(--transition-delay) / 2 )";
 
     &:before {
-      content: '';
+      content: "";
       display: block !important;
       position: absolute;
       background: var(--color-second-fill);
@@ -64,6 +78,7 @@ h2:not(.tgui-section-heading) {
     }
   }
 
+  &:hover ~ .mw-editsection,
   .mw-headline:hover ~ .mw-editsection,
   .mw-headline:hover ~ .mw-editsection-like,
   .mw-editsection:hover,

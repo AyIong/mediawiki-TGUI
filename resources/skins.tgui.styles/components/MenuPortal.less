@@ -1,5 +1,5 @@
-@import '../variables.less';
-@import '../mixins.less';
+@import "../variables.less";
+@import "../mixins.less";
 
 .mw-portlet ul {
   list-style: none;
@@ -46,8 +46,12 @@
         display: flex;
         flex-direction: column;
         list-style: none;
+        min-height: 0;
         gap: 0.33rem;
-        padding: ~'calc(0.5rem + 2px)' 0.4rem 0.5rem;
+        padding: ~"calc(0.5rem + 2px)" 0.4rem 0.5rem;
+        transform-origin: top;
+        transition-duration: var(--transition-time);
+        transition-property: padding, opacity, visibility, transform;
       }
 
       li {
@@ -82,7 +86,7 @@
         color: var(--color-text-darker);
 
         &:before {
-          content: '\f078';
+          content: "\f078";
           font: var(--fa-font-solid);
           margin-right: 0.33em;
           transform: rotate(0deg) scale(0.75);
@@ -91,7 +95,9 @@
       }
 
       .tgui-menu__content {
-        transition: height var(--transition-time);
+        display: grid;
+        grid-template-rows: 1fr;
+        transition: grid-template-rows var(--transition-time);
         .border-animation(@top: true);
       }
 
@@ -101,10 +107,17 @@
         }
 
         .tgui-menu__content {
-          height: 0;
+          grid-template-rows: 0fr;
 
           &:before {
             transform: scale(0);
+          }
+
+          ul {
+            opacity: 0;
+            visibility: hidden;
+            padding: 0;
+            transform: scale(0.75);
           }
         }
       }

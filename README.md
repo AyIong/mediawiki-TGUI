@@ -3,7 +3,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/designed-in-ms-paint.svg)](http://forthebadge.com)
 
 ## About
-Requires MediaWiki >= 1.39.4 < 1.40.0
+Requires MediaWiki >= 1.43.0
 
 Based on the MediaWiki [Vector](https://www.mediawiki.org/wiki/Skin:Vector/2022) skin, inspired by the TGUI from SS13, which was originally made for [/tg/station](https://github.com/tgstation/tgstation)
 
